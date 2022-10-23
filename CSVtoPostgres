@@ -1,0 +1,47 @@
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from awsglue.dynamicframe import DynamicFrame
+
+args = getResolvedOptions(sys.argv, ["JOB_NAME"])
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args["JOB_NAME"], args)
+
+def ingest_data_in_postgres():
+ #   postgres_node = DynamicFrame.fromDF(S3bucket_node1, glueContext, "dynamicdf")
+    write_postgre_options = {
+                            "url": postgresurl,
+        #                    "database": postgresdbname,
+                            "dbtable": postgrestablename,
+                            "user": username,
+                            "password": password
+                        }
+    postgres = glueContext.write_dynamic_frame.from_options(S3bucket_node1, connection_type = "postgresql", connection_options=write_postgre_options,transformation_ctx = "postgres")
+
+# Script generated for node S3 bucket
+S3bucket_node1 = glueContext.create_dynamic_frame.from_options(
+    format_options={"quoteChar": '"', "withHeader": True, "separator": ","},
+    connection_type="s3",
+    format="csv",
+    connection_options={"paths": ["s3://lambda-layers-g/csvfile/LRLCourseQueue.csv"], "recurse": True},
+    transformation_ctx="S3bucket_node1",
+)
+
+# Script generated for node S3 bucket
+hostname = "postgresql.cljjq2zchhaf.eu-west-1.rds.amazonaws.com"
+port = "5432"
+username = "postgres_admin"
+password = "password"
+postgresdbname = "postgres"
+postgrestablename = "LRLCourseQueue"
+postgresurl = "jdbc:postgresql://" + hostname + ":" + port + "/" + postgresdbname
+ingest_data_in_postgres()
+
+
+job.commit()
