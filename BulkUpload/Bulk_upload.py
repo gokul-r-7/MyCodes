@@ -28,10 +28,15 @@ ObjectName = args['OBJECT_NAME']
 s3 = boto3.client('s3')
 secret_manager = boto3.client("secretsmanager")
 
+string_split = objectname.split("/") 
+filename = string_split[1]
+string_split1 = filename.split(".")
+postgrestablename = string_split1[0]
 
-
-column_names = ["Id", "First Name", "Last Name", "Gender", "Country", "Age", "Date", "Salary"]
-
+if 'SAP' in ObjectName:
+    column_names = ["BELNR", "CURRENCY", "CUSTOMER_ID", "EVENT_ALT_ID", "EVENT_ID", "EVENT_NM", "EVENT_PARENT_ID", "EVENT_PARENT_ID", "EVEENT_PROD_ID", "GLOBAL_ID", "HCO_ADRS_CITY", "HCO_ADRS_CNTRY_CD", "HCO_ADRS_LN_1", "HCO_ADRS_LN_2", "HCO_ADRS_PSTL_CD", "HCO_ADRS_RGN_CD", "HCO_ALT_NM", "HCO_ID", "HCO_NM", "HCO_TAX_ID", "HEALTH_CARE_ORG", "HEALTH_CARE_PROF", "INVC_TYPE", "MEETING_ID", "PATIENT_ORG", "PO_INFO", "PROD_DTL_PRCNT", "PROD_LLY_ID", "PROD_NM", "SPEND_AMT", "SPEND_DT_PD", "SPEND_ID", "SPEND_PURPOSR_CD", "SPEND_PURPOSE_SECONDARY_CD", "SPEND_TRAVEL_DETAILS_CITY", "SPEND_TRAVEL_DETAILS_CNTRY_CD", "SPEND_TRAVEL_DETAILS_ID", "SPEND_TRAVEL_DETAILS_RGN_CD", "SPEND_TYPE_CD", "TAX_CODE", "TAX RATE", "TRANSACTION_ID", "VAT_REG_NUM", "WEB_DR"]
+elif 'TPO' in ObjectName:
+    column_names = ["CLINICAL_TRIAL_ALIAS", "CURRENCY", "HCO_ADRS_CITY", "HCO_ADRS_CNTRY_CD", "HCO_ADRS_LN_1", "HCO_ADRS_LN_2", "HCO_ADRS_RGN_CD", "HCO_ID", "HCO_ID_TYP", "HCO_NM", "HCP_ADRS_CITY", "HCP_ADRS_CNTRY_CD", "HCP_ADRS_LN_1", "HCP_ADRS_LN_2", "HCP_ADRS_RGN_CD", "HCP_FRST_NM", "HCP_ID", "HCP_ID_TYP", "HCP_LAST_NM", "HCP_MDL_NM", "HCP_PRFSNL_DSGN_CD", "HCP_SFX", "SITE_ID", "SPEND_AMT", "SPEND_DT_PD", "SPEND_ID", "SPEND_PURPOSE_CD", "SPEND_TRAVEL_DETAILS_CITY", "SPEND_TRAVEL_DETAILS_CNTRY_CD", "SPEND_TRAVEL_DETAILS_RGN_CD","SPEND_TYPE_CD", "SRC_SYS_CD"]
 
 #postgresurl = "jdbc:postgresql://postgresql.cljjq2zchhaf.eu-west-1.rds.amazonaws.com:5432/postgres"
 #username = "postgres_admin"
@@ -39,7 +44,7 @@ column_names = ["Id", "First Name", "Last Name", "Gender", "Country", "Age", "Da
 
 secret_name = "postgres_secrets"
 postgresdbname = "postgres"
-postgrestablename = "sample_excel_sheet"
+#postgrestablename = "SampleExcelsheet"
 
 
 def get_secrets(Secret_Name):
@@ -103,6 +108,31 @@ def read_excel_from_s3():
         Excel_Sparkdf = spark.createDataFrame(df)
         return Excel_Sparkdf
 
+#Check table names 
+def check_tablenames()
+    list_tables_query = "(select tablename from pg_catalog.pg_tables where schemaname != 'information_schema' and schemaname != 'pg_catalog') sampletable"
+    df = spark.read \
+           .format("jdbc") \
+           .option("url", postgresurl) \
+           .option("dbtable", query) \
+           .option("user", username) \
+           .option("password", password) \
+           .load()
+    if df.count() > 0:
+        tables_list =  df.select('tablename').rdd.flatMap(lambda x: x).collect()
+        return tables_list
+
+
+secret_manager_data = get_secrets(secret_name)
+rdssecrets= json.loads(secret_manager_data)
+username = rdssecrets['username']
+password = rdssecrets['password']
+hostname = rdssecrets['host']
+port = str(rdssecrets['port'])
+postgresurl = "jdbc:postgresql://" + hostname + ":" + port + "/" + postgresdbname
+
+tableslist = check_tablenames()
+
 
 #Validating the Source data
 #Checking the FileType
@@ -113,9 +143,9 @@ if "xlsx" in ObjectName:
     column_list = list(df.columns)
     column_set = set(column_list)
 #Checking the Count     
-    if Record_count > 90000:
+    if Record_count > 30000:
         print("Maximum number of rows exceeded in file submitted. Maximum allowed is 30,000 rows or records per file")
-    elif Record_count == 0:
+    if Record_count == 0:
         print("Error: Submitted file is empty, please upload a completed file")
     elif len(column_list) != len(column_names):
         print("Error: Number of columns are not correct. Please refer to the excel template link above for the correct number of columns and resubmit the file.")
@@ -123,28 +153,12 @@ if "xlsx" in ObjectName:
         print("Error: Column heading(s) does not match the template for this source. Please refer to the excel template link above for the correct column headers and resubmit the file")
     elif len(column_list) != len(column_set):
         print("Error: Column heading(s) has duplicates, it doesn't match template for this source Please refer the excel template link above for correct column headers & resubmit the file")
+    elif postgrestablename in tableslist:
+        print("Error: Duplicate file cannot be imported. Please submit file with unique name.")
     else:
-        secret_manager_data = get_secrets(secret_name)
-        rdssecrets= json.loads(secret_manager_data)
-        username = rdssecrets['username']
-        password = rdssecrets['password']
-        hostname = rdssecrets['host']
-        port = str(rdssecrets['port'])
-        postgresurl = "jdbc:postgresql://" + hostname + ":" + port + "/" + postgresdbname
         ingest_data_in_postgres()
 else:
     print("Error: File format is invalid. Please convert the file to excel (xlsx) and resubmit the file.")
     
-
-
-
-
-    
-
-
-
-
-
-
 
 job.commit()
