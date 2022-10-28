@@ -28,15 +28,15 @@ ObjectName = args['OBJECT_NAME']
 s3 = boto3.client('s3')
 secret_manager = boto3.client("secretsmanager")
 
-string_split = objectname.split("/") 
+string_split = ObjectName.split("/") 
 filename = string_split[1]
 string_split1 = filename.split(".")
 postgrestablename = string_split1[0]
 
 if 'SAP' in ObjectName:
-    column_names = ["BELNR", "CURRENCY", "CUSTOMER_ID", "EVENT_ALT_ID", "EVENT_ID", "EVENT_NM", "EVENT_PARENT_ID", "EVENT_PARENT_ID", "EVEENT_PROD_ID", "GLOBAL_ID", "HCO_ADRS_CITY", "HCO_ADRS_CNTRY_CD", "HCO_ADRS_LN_1", "HCO_ADRS_LN_2", "HCO_ADRS_PSTL_CD", "HCO_ADRS_RGN_CD", "HCO_ALT_NM", "HCO_ID", "HCO_NM", "HCO_TAX_ID", "HEALTH_CARE_ORG", "HEALTH_CARE_PROF", "INVC_TYPE", "MEETING_ID", "PATIENT_ORG", "PO_INFO", "PROD_DTL_PRCNT", "PROD_LLY_ID", "PROD_NM", "SPEND_AMT", "SPEND_DT_PD", "SPEND_ID", "SPEND_PURPOSR_CD", "SPEND_PURPOSE_SECONDARY_CD", "SPEND_TRAVEL_DETAILS_CITY", "SPEND_TRAVEL_DETAILS_CNTRY_CD", "SPEND_TRAVEL_DETAILS_ID", "SPEND_TRAVEL_DETAILS_RGN_CD", "SPEND_TYPE_CD", "TAX_CODE", "TAX RATE", "TRANSACTION_ID", "VAT_REG_NUM", "WEB_DR"]
+    column_names = ["BELNR", "CURRENCY", "CUSTOMER_ID", "EVENT_ALT_ID", "EVENT_ID", "EVENT_NM", "EVENT_PARENT_ID", "EVEENT_PROD_ID", "GLOBAL_ID", "HCO_ADRS_CITY", "HCO_ADRS_CNTRY_CD", "HCO_ADRS_LN_1", "HCO_ADRS_LN_2", "HCO_ADRS_PSTL_CD", "HCO_ADRS_RGN_CD", "HCO_ALT_NM", "HCO_ID", "HCO_NM", "HCO_TAX_ID", "HEALTH_CARE_ORG", "HEALTH_CARE_PROF", "INVC_TYPE", "MEETING_ID", "PATIENT_ORG", "PO_INFO", "PROD_DTL_PRCNT", "PROD_LLY_ID", "PROD_NM", "SPEND_AMT", "SPEND_DT_PD", "SPEND_ID", "SPEND_PURPOSR_CD", "SPEND_PURPOSE_SECONDARY_CD", "SPEND_TRAVEL_DETAILS_CITY", "SPEND_TRAVEL_DETAILS_CNTRY_CD", "SPEND_TRAVEL_DETAILS_ID", "SPEND_TRAVEL_DETAILS_RGN_CD", "SPEND_TYPE_CD", "TAX_CODE", "TAX RATE", "TRANSACTION_ID", "VAT_REG_NUM", "WEB_DR"]
 elif 'TPO' in ObjectName:
-    column_names = ["CLINICAL_TRIAL_ALIAS", "CURRENCY", "HCO_ADRS_CITY", "HCO_ADRS_CNTRY_CD", "HCO_ADRS_LN_1", "HCO_ADRS_LN_2", "HCO_ADRS_RGN_CD", "HCO_ID", "HCO_ID_TYP", "HCO_NM", "HCP_ADRS_CITY", "HCP_ADRS_CNTRY_CD", "HCP_ADRS_LN_1", "HCP_ADRS_LN_2", "HCP_ADRS_RGN_CD", "HCP_FRST_NM", "HCP_ID", "HCP_ID_TYP", "HCP_LAST_NM", "HCP_MDL_NM", "HCP_PRFSNL_DSGN_CD", "HCP_SFX", "SITE_ID", "SPEND_AMT", "SPEND_DT_PD", "SPEND_ID", "SPEND_PURPOSE_CD", "SPEND_TRAVEL_DETAILS_CITY", "SPEND_TRAVEL_DETAILS_CNTRY_CD", "SPEND_TRAVEL_DETAILS_RGN_CD","SPEND_TYPE_CD", "SRC_SYS_CD"]
+    column_names = ["CLINICAL_TRIAL_ALIAS", "CURRENCY", "HCO_ADRS_CITY", "HCO_ADRS_CNTRY_CD", "HCO_ADRS_LN_1", "HCO_ADRS_LN_2", "HCO_ADRS_RGN_CD", "HCO_ID", "HCO_ID_TYP", "HCO_NM", "HCP_ADRS_CITY", "HCP_ADRS_CNTRY_CD", "HCP_ADRS_LN_1", "HCP_ADRS_LN_2", "HCP_ADRS_RGN_CD", "HCP_FRST_NM", "HCP_ID", "HCP_ID_TYP", "HCP_LAST_NM", "HCP_MDL_NM", "HCP_PRFSNL_DSGN_CD", "HCP_SFX", "SITE_ID", "SPEND_AMT", "SPEND_DT_PD", "SPEND_ID", "SPEND_PURPOSE_CD", "SPEND_TRAVEL_DETAILS_CITY", "SPEND_TRAVEL_DETAILS_CNTRY_CD", "SPEND_TRAVEL_DETAILS_RGN_CD","SPEND_TYP_CD", "SRC_SYS_CD"]
 
 #postgresurl = "jdbc:postgresql://postgresql.cljjq2zchhaf.eu-west-1.rds.amazonaws.com:5432/postgres"
 #username = "postgres_admin"
@@ -109,15 +109,15 @@ def read_excel_from_s3():
         return Excel_Sparkdf
 
 #Check table names 
-def check_tablenames()
-    list_tables_query = "(select tablename from pg_catalog.pg_tables where schemaname != 'information_schema' and schemaname != 'pg_catalog') sampletable"
+def check_tablenames():
+    query = "(select tablename from pg_catalog.pg_tables where schemaname != 'information_schema' and schemaname != 'pg_catalog') sampletable"
     df = spark.read \
-           .format("jdbc") \
-           .option("url", postgresurl) \
-           .option("dbtable", query) \
-           .option("user", username) \
-           .option("password", password) \
-           .load()
+            .format("jdbc") \
+            .option("url", postgresurl) \
+            .option("dbtable", query) \
+            .option("user", username) \
+            .option("password", password) \
+            .load()
     if df.count() > 0:
         tables_list =  df.select('tablename').rdd.flatMap(lambda x: x).collect()
         return tables_list
