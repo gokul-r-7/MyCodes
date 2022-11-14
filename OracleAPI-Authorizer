@@ -1,0 +1,28 @@
+import json
+
+def lambda_handler(event, context):
+    
+    print("***************THE EVENT***************")
+    print(event)
+    
+    auth = 'Deny'
+    if event['authorizationToken'] == 'password@123':
+        auth = 'Allow'
+    else:
+        auth = 'Deny'
+        
+    
+    authResponse = {
+        "principalId": 'password@123',
+        "policyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [{
+                "Action": "execute-api:Invoke",
+                "Effect": auth,
+                "Resource": "arn:aws:execute-api:eu-west-1:646156652167:jg15us0au8/*/*"
+            }]
+        }
+    }
+    
+    
+    return authResponse
