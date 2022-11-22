@@ -26,6 +26,7 @@ BucketName = args['BUCKET_NAME']
 ObjectName = args['OBJECT_NAME']
 
 s3 = boto3.client('s3')
+sns = boto3.client('sns')
 secret_manager = boto3.client("secretsmanager")
 
 string_split = ObjectName.split("/") 
@@ -42,10 +43,15 @@ elif 'TPO' in ObjectName:
 #username = "postgres_admin"
 #password = "password"
 
+Topic_ARN = "arn:aws:sns:eu-west-1:646156652167:demo-sns"
 secret_name = "postgres_secrets"
 postgresdbname = "postgres"
+Subject = "File Upload Error"
 #postgrestablename = "SampleExcelsheet"
 
+def publish_sns_notification(subject, message):
+    sns_response = sns.publish(TopicArn = Topic_ARN, Message = message, Subject = subject)
+    return sns_response['ResponseMetadata']['HTTPStatusCode']
 
 def get_secrets(Secret_Name):
     try:
@@ -104,6 +110,7 @@ def read_excel_from_s3():
             raise e
     else:
         Excel_df = pd.read_excel(io.BytesIO(s3_object['Body'].read()))
+        Excel_df = Excel_df.fillna('')
         df=Excel_df.applymap(str)
         Excel_Sparkdf = spark.createDataFrame(df)
         return Excel_Sparkdf
@@ -144,21 +151,31 @@ if "xlsx" in ObjectName:
     column_set = set(column_list)
 #Checking the Count     
     if Record_count > 30000:
-        print("Maximum number of rows exceeded in file submitted. Maximum allowed is 30,000 rows or records per file")
+        Message = "Maximum number of rows exceeded in file submitted. Maximum allowed is 30,000 rows or records per file"
+        snsresponse = publish_sns_notification(Subject, Message)
     if Record_count == 0:
-        print("Error: Submitted file is empty, please upload a completed file")
+        Message = "Error: Submitted file is empty, please upload a completed file"
+        snsresponse = publish_sns_notification(Subject, Message)
     elif len(column_list) != len(column_names):
-        print("Error: Number of columns are not correct. Please refer to the excel template link above for the correct number of columns and resubmit the file.")
+        Message = "Error: Number of columns are not correct. Please refer to the excel template link above for the correct number of columns and resubmit the file."
+        snsresponse = publish_sns_notification(Subject, Message)
     elif column_list != column_names:
-        print("Error: Column heading(s) does not match the template for this source. Please refer to the excel template link above for the correct column headers and resubmit the file")
+        Message = "Error: Column heading(s) does not match the template for this source. Please refer to the excel template link above for the correct column headers and resubmit the file"
+        snsresponse = publish_sns_notification(Subject, Message)
     elif len(column_list) != len(column_set):
-        print("Error: Column heading(s) has duplicates, it doesn't match template for this source Please refer the excel template link above for correct column headers & resubmit the file")
+        Message = "Error: Column heading(s) has duplicates, it doesn't match template for this source Please refer the excel template link above for correct column headers & resubmit the file"
+        snsresponse = publish_sns_notification(Subject, Message)
     elif postgrestablename in tableslist:
-        print("Error: Duplicate file cannot be imported. Please submit file with unique name.")
+        Message = "Error: Duplicate file cannot be imported. Please submit file with unique name."
+        snsresponse = publish_sns_notification(Subject, Message)
     else:
         ingest_data_in_postgres()
+        Success_Subject = "File Uploaded Successfully"
+        Success_Message = "File Uploaded Successfully without any error"
+        snsresponse = publish_sns_notification(Success_Subject, Success_Message)
 else:
-    print("Error: File format is invalid. Please convert the file to excel (xlsx) and resubmit the file.")
+    Message = "Error: File format is invalid. Please convert the file to excel (xlsx) and resubmit the file."
+    snsresponse = publish_sns_notification(Subject, Message)
     
 
 job.commit()
