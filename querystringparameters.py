@@ -1,4 +1,4 @@
-querystrings = {
+queryStringParameters = {
     'name' : 'gokila',
     'place' : 'vellore',
     'work' : 'it',
@@ -9,13 +9,19 @@ querystrings = {
     'marital status' : 'single',
     'age': '23'
 }
-arr = []
-query = 'select * from table where '
-for (k, v) in querystrings.items():
-    arr.append(k + ' = '+  v + ' and ')
-newquery = ''
-for i in arr:
-    newquery += i
-newquery=  newquery[:-4] 
-final_query = query + newquery 
-print(final_query)
+#queryStringParameters = None
+
+if queryStringParameters == None:
+    select_query = 'select * from tablename'
+    print(select_query)
+else:
+    arr = []
+    query = 'select * from table where '
+    for (k, v) in queryStringParameters.items():
+        arr.append(k + ' = '+  v + ' and ')
+    newquery = ''
+    for i in arr:
+        newquery += i
+    newquery=  newquery[:-4] 
+    select_query = query + newquery 
+    print(select_query)
