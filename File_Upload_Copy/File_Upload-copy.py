@@ -90,7 +90,6 @@ def ingest_data_in_postgres():
     postgres_node = DynamicFrame.fromDF(Excel_Sparkdf, glueContext, "dynamicdf")
     write_postgre_options = {
                             "url": postgresurl,
-        #                    "database": postgresdbname,
                             "dbtable": postgrestablename,
                             "user": username,
                             "password": password
@@ -102,7 +101,6 @@ def add_data_in_fileuploadmetadata():
     postgres_node = DynamicFrame.fromDF(File_Upload_Metadata_df, glueContext, "dynamicdf")
     write_postgre_options = {
                             "url": postgresurl,
-        #                    "database": postgresdbname,
                             "dbtable": Metadata_table,
                             "user": username,
                             "password": password
@@ -138,7 +136,7 @@ def check_tablenames():
         tables_list =  df.select('Uploaded_File_Name').rdd.flatMap(lambda x: x).collect()
         return tables_list
 
-def get_source_table_columns():
+def get_source_transcation_data():
     df = spark.read \
             .format("jdbc") \
             .option("url", postgresurl) \
@@ -146,8 +144,7 @@ def get_source_table_columns():
             .option("user", username) \
             .option("password", password) \
             .load()
-    columns_list = df.columns
-    return columns_list
+    return df
 
 #Fetching Credentials from SecretManager
 secret_manager_data = get_secrets(secret_name)
@@ -159,6 +156,8 @@ port = str(rdssecrets['port'])
 postgresurl = "jdbc:postgresql://" + hostname + ":" + port + "/" + postgresdbname
 
 tableslist = check_tablenames()
+source_transaction_data_df = get_source_transcation_data()
+column_names = source_transaction_data_df.columns
 
 
 #Validations before Ingesting data into PostgresDB
@@ -170,10 +169,7 @@ if "xlsx" in ObjectName:
     Total_Records_in_File = df.shape[0]
     column_list = list(df.columns.values)
     column_set = set(column_list)
-    source_system_cd_list = list(df['source_system_cd'])
-    Source_Code = source_system_cd_list[0]
-    Source_Description = source_system_cd_list[0]
-    column_names = get_source_table_columns()
+
 #Checking the Total  Number Records in a Excel File     
     if Total_Records_in_File > 30000:
         Status = 'Failure'
@@ -205,15 +201,15 @@ if "xlsx" in ObjectName:
         Message = "Error: Column heading(s) has duplicates, it doesn't match template for this source Please refer the excel template link above for correct column headers & resubmit the file"
         snsresponse = publish_sns_notification(Subject, Message)
 #Checking for If the Excel file data is already there in GTConnect PostgresDB
-    elif postgrestablename in tableslist:
+    elif Uploaded_File_Name in tableslist:
         Status = 'Failure'
         Subject = "File Upload Error"
         Message = "Error: Duplicate file cannot be imported. Please submit file with unique name."
         snsresponse = publish_sns_notification(Subject, Message)
     else:
 #Ingesting ExcelFile  Data to GTConnect PostgresDB
-        pandas_df= df.applymap(str)
-        Excel_Sparkdf = spark.createDataFrame(pandas_df)
+        source_transaction_data_schema = source_transaction_data_df.schema
+        Excel_Sparkdf = spark.createDataFrame(df, source_transaction_data_schema)
         try:
             ingest_data_in_postgres()
         except:
@@ -226,6 +222,7 @@ if "xlsx" in ObjectName:
             Subject = "File Uploaded Successfully"
             Message = "File Uploaded Successfully without any error"
             snsresponse = publish_sns_notification(Subject, Message)
+            
 else:
     Subject = "File Upload Error"
     Message = "Error: File format is invalid. Please convert the file to excel (xlsx) and resubmit the file."
@@ -235,6 +232,13 @@ else:
     Source_Description = ''
     Status = 'Failure'
 
+if 'source_system_cd' in column_list:
+    source_system_cd_list = list(df['source_system_cd'])
+    Source_Code = source_system_cd_list[0]
+    Source_Description = source_system_cd_list[0]
+else:
+    Source_Code = ''
+    Source_Description = ''
 
 #Adding Entries in FileUpload Metadata Table
 Metadata_table = 'File_Upload_Metadata'    
