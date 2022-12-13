@@ -124,7 +124,7 @@ def read_excel_from_s3():
         
 #Checking Filenames in FileUpload Metadata table
 def check_tablenames():
-    query = '(select "Uploaded_File_Name" from "File_Upload_Metadata") sampletable'
+    query = '(select "Uploaded_File_Name" from "file_upload_metadata" where "Status" = ' +  "'Success') sampletable"
     df = spark.read \
             .format("jdbc") \
             .option("url", postgresurl) \
@@ -132,9 +132,9 @@ def check_tablenames():
             .option("user", username) \
             .option("password", password) \
             .load()
-    if df.count() > 0:
-        tables_list =  df.select('Uploaded_File_Name').rdd.flatMap(lambda x: x).collect()
-        return tables_list
+
+    tables_list =  df.select('Uploaded_File_Name').rdd.flatMap(lambda x: x).collect()
+    return tables_list
 
 def get_source_transcation_data():
     df = spark.read \
@@ -241,7 +241,7 @@ else:
     Source_Description = ''
 
 #Adding Entries in FileUpload Metadata Table
-Metadata_table = 'File_Upload_Metadata'    
+Metadata_table = 'file_upload_metadata'    
 File_Upload_Metadata_Columns = ["Uploaded_File_Name", "File_Uploaded_Time", "Total_Records_in_File", "Source_Code", "Source_Description", "Status", "Failure_Reason"]
 File_Upload_Metadata_data = [(Uploaded_File_Name, File_Uploaded_Time, Total_Records_in_File, Source_Code, Source_Description, Status, Message)]
 File_Upload_Metadata_df = spark.createDataFrame(data = File_Upload_Metadata_data, schema = File_Upload_Metadata_Columns)
