@@ -1,0 +1,143 @@
+To achieve the task described, you can break it down into several steps using PySpark and AWS Glue/ Athena. Here's a general outline for how to approach it:
+
+### Steps:
+1. **Check if the table exists in the Glue Catalog (Athena)**.
+2. **Check if the column `LoadType` in the table contains the value `"Latest13months"`.**
+3. If `"Latest13months"` does not exist:
+   - Read all the data from the source Athena table.
+   - Load the data into an S3 bucket.
+4. If `"Latest13months"` exists:
+   - Identify and extract only the records for the latest month.
+   - Overwrite the existing data in S3 for the latest month with the new records.
+
+To implement this in PySpark (with Glue context), here's a sample approach:
+
+### 1. Setup PySpark with AWS Glue Context
+
+First, make sure your PySpark script is set up with the necessary AWS Glue contexts, and you have the required dependencies (e.g., `AWS Glue`, `PySpark`, etc.).
+
+```python
+import sys
+from pyspark.context import SparkContext
+from pyspark.sql import SparkSession
+from awsglue.context import GlueContext
+from awsglue.catalog import CatalogClient
+from awsglue.dynamicframe import DynamicFrame
+
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+```
+
+### 2. Check if the table exists and if it has the required `LoadType` value
+
+You can query the Glue Catalog to check if the `Job_Log_Table` exists and to check the column `LoadType`.
+
+```python
+def check_table_exists(database_name, table_name):
+    try:
+        # Checking if the table exists in Glue Catalog
+        client = CatalogClient()
+        table = client.get_table(DatabaseName=database_name, Name=table_name)
+        return True
+    except Exception as e:
+        print(f"Table {table_name} does not exist: {e}")
+        return False
+
+def check_load_type(database_name, table_name):
+    # Read the Glue catalog table as a dynamic frame
+    dynamic_frame = glueContext.create_dynamic_frame.from_catalog(
+        database=database_name,
+        table_name=table_name
+    )
+
+    # Convert to DataFrame and check if 'LoadType' contains 'Latest13months'
+    df = dynamic_frame.toDF()
+    
+    # Assuming 'LoadType' column is of string type
+    load_type_values = df.select("LoadType").distinct().collect()
+
+    for row in load_type_values:
+        if row['LoadType'] == 'Latest13months':
+            return True
+    return False
+```
+
+### 3. Read the full data or the latest data based on the `LoadType`
+
+If the `LoadType` contains `"Latest13months"`, we'll assume the data is partitioned by month or some form of temporal data. Here's how you can proceed to read data accordingly.
+
+```python
+def load_data_from_athena(database_name, table_name, load_full_data=True):
+    if load_full_data:
+        # Read all data from Athena (Glue Catalog)
+        dynamic_frame = glueContext.create_dynamic_frame.from_catalog(
+            database=database_name,
+            table_name=table_name
+        )
+    else:
+        # Read only the latest month data (Assuming a `Month` partition or similar column exists)
+        # Replace `Month` with actual partition/column name for the month
+        dynamic_frame = glueContext.create_dynamic_frame.from_catalog(
+            database=database_name,
+            table_name=table_name,
+            push_down_predicate="Month = 'latest'"  # This assumes you have a partition column or a condition
+        )
+        
+    return dynamic_frame
+```
+
+### 4. Write the data to S3
+
+You can write the data to S3 in the appropriate format (e.g., Parquet, JSON, CSV).
+
+```python
+def write_to_s3(dynamic_frame, s3_path):
+    # Write the dynamic frame to S3 (Parquet format)
+    glueContext.write_dynamic_frame.from_options(
+        dynamic_frame,
+        connection_type="s3",
+        connection_options={"path": s3_path},
+        format="parquet"
+    )
+```
+
+### 5. Main Logic
+
+Now, let's put everything together. We will check if the table exists and then either load all data or just the latest month's data based on whether the value `Latest13months` is present in the `LoadType` column.
+
+```python
+database_name = "your_glue_database"
+table_name = "Job_Log_Table"
+s3_output_path = "s3://your-bucket/path/to/output"
+
+# Step 1: Check if the table exists
+if check_table_exists(database_name, table_name):
+    
+    # Step 2: Check if 'LoadType' contains 'Latest13months'
+    if check_load_type(database_name, table_name):
+        # If 'Latest13months' is present, load only the latest month data
+        dynamic_frame = load_data_from_athena(database_name, table_name, load_full_data=False)
+    else:
+        # If 'Latest13months' is not present, load all data
+        dynamic_frame = load_data_from_athena(database_name, table_name, load_full_data=True)
+    
+    # Step 3: Write the loaded data to S3
+    write_to_s3(dynamic_frame, s3_output_path)
+    
+else:
+    print(f"Table {table_name} does not exist in the Glue Catalog.")
+```
+
+### Explanation:
+1. **`check_table_exists`**: This checks if the table exists in the Glue catalog.
+2. **`check_load_type`**: This checks if the `LoadType` column contains the value `"Latest13months"`.
+3. **`load_data_from_athena`**: Depending on whether the `"Latest13months"` record exists, it either loads the full data or only the latest month's data.
+4. **`write_to_s3`**: Writes the data to an S3 path in Parquet format.
+
+### Notes:
+- The actual column for partitioning (e.g., `Month`, `Date`) may differ depending on how your data is structured in Athena. You may need to adjust the query or the pushdown predicate accordingly.
+- Ensure your AWS Glue, S3, and Athena permissions are correctly set up for reading and writing data.
+- You may need to install and configure the necessary dependencies if you're running this script locally or in a different environment.
+
+Let me know if you need further clarification or modifications!
