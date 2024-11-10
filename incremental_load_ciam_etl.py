@@ -19,6 +19,7 @@ sc = SparkContext.getOrCreate()
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
 job = Job(glueContext)
+spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
 glue_client = boto3.client('glue')
 starttime = datetime.now()
 start_time = starttime.strftime("%Y-%m-%d %H:%M:%S")
@@ -30,7 +31,6 @@ source_database_name = "sample-datebase"
 source_table_name = "test_folder_1"
 s3_athena_results = "s3://gokul-test-bucket-07/temporary_files/"
 job_log_table_path = "s3://gokul-test-bucket-07/Job_log_table/"
-job_log_partitionkey = []
 conn = connect(
     s3_staging_dir = s3_athena_results,
     region_name = "us-east-1"
@@ -108,24 +108,16 @@ def load_data_from_athena(load_full_data=True):
         
     return df
 
-def write_to_s3(df, output_path,partitionkey):
-    # Write the dynamic frame to S3 (Parquet format))
-    write_df = DynamicFrame.fromDF(df, glueContext, "athena_table_source")
-    parquet_output = glueContext.write_dynamic_frame.from_options(
-    frame=write_df,
-    connection_type="s3",
-    connection_options={
-        "path": output_path,
-        "partitionKeys": partitionkey,
-        "recurse": True,
-        "overwrite": "true"
-    },
-    format="glueparquet",
-    format_options={
-        "compression": "gzip"
-    }
-    )
-    return parquet_output
+def write_to_s3(df,output_path,partitionkey):
+    write_df = df.write \
+    .partitionBy(partitionkey) \
+    .format("parquet") \
+    .option("compression", "gzip") \
+    .mode("overwrite") \
+    .save(output_path)
+    return write_df
+
+
 # Step 1: Check if the table exists
 s3_output_path ="s3://gokul-test-bucket-07/final_output_path/"
 partition_keys = ["index"]
@@ -139,7 +131,7 @@ if check_table_exists(job_log_database_name, job_log_table_name):
         pd.set_option('display.max_rows', 100) 
         load_df.head()
         record_count = load_df.shape[0]
-        loadtype = "Latest 13 Months"
+        loadtype = "Latest Current Month"
     else:
         # If 'Latest13months' is not present, load all data
         load_df = load_data_from_athena(load_full_data=True)
@@ -147,7 +139,7 @@ if check_table_exists(job_log_database_name, job_log_table_name):
         pd.set_option('display.max_rows', 100) 
         load_df.head()
         record_count = load_df.shape[0]
-        loadtype = "Latest Current Month"
+        loadtype = "Latest 13 Months"
 
     
     # Step 3: Write the loaded data to S3
@@ -167,8 +159,12 @@ else:
 
 endtime = datetime.now()
 end_time = endtime.strftime("%Y-%m-%d %H:%M:%S")
-runtime_seconds = (endtime - starttime).total_seconds()
-job_log_table_df = job_lob_table_data(loadtype,endtime,runtime_seconds,record_count)
+run_time = endtime - starttime
+runtime_str = str(run_time)
+hours, remainder = divmod(run_time.seconds, 3600)
+minutes, seconds = divmod(remainder, 60)
+runtime_formatted = f"{hours:02}:{minutes:02}:{seconds:02}"
+job_log_table_df = job_lob_table_data(loadtype,endtime,runtime_formatted,record_count)
 job_log_table_df.show()
-write_to_s3(job_log_table_df,job_log_table_path,job_log_partitionkey)
+job_log_table_write_df = job_log_table_df.write.format("parquet").mode("append").save(job_log_table_path)
 job.commit()
