@@ -914,18 +914,18 @@ a.event_date, a.host, o.application, m.eventtype,a.Authentication_Attempt,a.auth
 """
 
 # Athena Query Results Temporary files s3 path
-account_dim_sum_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/account_dim_sum_temp/"
-profile_dim_sum_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/profile_dim_sum_temp/"
-transaction_adobe_fact_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/transaction_adobe_fact_temp/"
-transaction_okta_user_agg_fact_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/transaction_okta_user_agg_fact_temp/"
-transcation_okta_day_agg_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/transcation_okta_day_agg_temp/"
+account_dim_sum_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/account_dim_sum_temp/"
+profile_dim_sum_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/profile_dim_sum_temp/"
+transaction_adobe_fact_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_adobe_fact_temp/"
+transaction_okta_user_agg_fact_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_okta_user_agg_fact_temp/"
+transcation_okta_day_agg_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transcation_okta_day_agg_temp/"
 
 #Output s3 path
-account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/account_dim_sum_output/"
-profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/profile_dim_sum_output/"
-transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/transaction_adobe_fact_output"
-transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/transaction_okta_user_agg_fact_output"
-transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/transcation_okta_day_agg_output"
+account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/account_dim_sum/"
+profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/profile_dim_sum/"
+transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_adobe_fact/"
+transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_okta_user_agg_fact/"
+transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transcation_okta_day_agg_fact/"
 
 #PartitionKeys for the target files
 account_dim_sum_partitionkeys = ["time_key"]
@@ -942,7 +942,7 @@ unique_id = str(uuid.uuid4())
 job_name = "CIAM_ETL"
 job_log_database_name = "default"
 job_log_table_name = "job_log_table"
-job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam_etl/job_log_table_path/"
+job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/job_log_table/"
 
 def job_lob_table_data(job_load_type,endtime,runtimeseconds,account_dim_count,profile_dim_count,adobe_fact_count,user_agg_fact_count,day_agg_count):
     job_log_data = {
@@ -1142,7 +1142,7 @@ job_log_table_write_df = job_log_table_df.write.format("parquet").mode("append")
 
 
 bucket_name = "cci-dig-aicoe-data-sb" 
-folder_paths = ["processed/ciam_etl/account_dim_sum_output/","processed/ciam_etl/profile_dim_sum_output/"]
+folder_paths = ["processed/ciam_data/account_dim_sum_output/","processed/ciam_data/profile_dim_sum_output/"]
 # Define the regex pattern to match 'time_key' partitions
 time_key_pattern = re.compile(r'time_key=(\d{4}-\d{2}-\d{2})/')
 # Define a cutoff date for keeping only the last 13 months
