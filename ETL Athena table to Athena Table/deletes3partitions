@@ -1,0 +1,56 @@
+import boto3
+from datetime import datetime
+
+# Initialize S3 client
+s3 = boto3.client('s3')
+
+def get_s3_objects(bucket, prefix):
+    """Fetch all objects in an S3 path."""
+    paginator = s3.get_paginator('list_objects_v2')
+    pages = paginator.paginate(Bucket=bucket, Prefix=prefix)
+    
+    # Collect folders matching "time_key=YYYY-MM-DD/"
+    partitions = []
+    for page in pages:
+        for obj in page.get('Contents', []):
+            key = obj['Key']
+            if 'time_key=' in key:
+                partition_date_str = key.split('time_key=')[-1].strip('/')
+                try:
+                    # Validate date format to match YYYY-MM-DD
+                    datetime.strptime(partition_date_str, '%Y-%m-%d')
+                    partitions.append(partition_date_str)
+                except ValueError:
+                    continue
+    return sorted(partitions)
+
+def check_and_delete_oldest_partition(s3_path):
+    """Check for 14 partitions and delete oldest if more than 14 exist."""
+    bucket, prefix = s3_path.replace('s3://', '').split('/', 1)
+    
+    # Get all partition folders in sorted order
+    partitions = get_s3_objects(bucket, prefix)
+    print(f"Found partitions: {partitions}")
+    
+    # Check if 14 or more partitions exist
+    if len(partitions) >= 14:
+        # Delete the oldest partition
+        oldest_partition = partitions[0]
+        delete_prefix = f"{prefix}/time_key={oldest_partition}/"
+        s3.delete_objects(
+            Bucket=bucket,
+            Delete={'Objects': [{'Key': obj['Key']} for obj in s3.list_objects_v2(Bucket=bucket, Prefix=delete_prefix).get('Contents', [])]}
+        )
+        print(f"Deleted oldest partition: {oldest_partition}")
+    else:
+        print("Less than 14 partitions found; no deletion required.")
+
+# Define your S3 paths
+s3_paths = [
+    "s3://your-bucket/path1/",
+    "s3://your-bucket/path2/"
+]
+
+# Iterate through each path and perform checks
+for s3_path in s3_paths:
+    check_and_delete_oldest_partition(s3_path)
