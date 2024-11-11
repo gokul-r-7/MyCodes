@@ -157,6 +157,7 @@ LEFT JOIN mob_data mob on s.customer_key=CAST(mob.customer_key as bigint)
 LEFT JOIN web_contact web ON g.household_member_guid = web.evar61_coxcust_guid
 LEFT JOIN app_contact app ON g.household_member_guid = app.coxcust_guid_v61
 LEFT JOIN dwelling_data d ON r.dwelling_type_key = d.dwelling_type_key
+limit 50
 """
 account_dim_sum_1 = """
 WITH customer_data AS (
@@ -292,6 +293,7 @@ LEFT JOIN mob_data mob on s.customer_key=CAST(mob.customer_key as bigint)
 LEFT JOIN web_contact web ON g.household_member_guid = web.evar61_coxcust_guid
 LEFT JOIN app_contact app ON g.household_member_guid = app.coxcust_guid_v61
 LEFT JOIN dwelling_data d ON r.dwelling_type_key = d.dwelling_type_key
+limit 50
 """
 
 profile_dim_sum_13 = """
@@ -506,6 +508,7 @@ LEFT JOIN app_contact app ON s.customer_key = CAST(app.customer_key AS bigint)
 LEFT JOIN  mfa_data mfa ON a.user_id = mfa.user_id
 LEFT JOIN account_details ad ON s.account_nbr = ad.account_nbr
 LEFT JOIN notification_flags nf ON s.account_nbr = nf.customer_number
+limit 50
 """
 
 profile_dim_sum_1 = """
@@ -721,6 +724,7 @@ LEFT JOIN app_contact app ON s.customer_key = CAST(app.customer_key AS bigint)
 LEFT JOIN  mfa_data mfa ON a.user_id = mfa.user_id
 LEFT JOIN account_details ad ON s.account_nbr = ad.account_nbr
 LEFT JOIN notification_flags nf ON s.account_nbr = nf.customer_number
+limit 50
 """
 
 transaction_adobe_fact = """
@@ -779,6 +783,7 @@ WHERE
     AND DATE_PARSE(SUBSTR(CAST(w.dt AS varchar), 1, 19), '%Y-%m-%d') >= DATE_ADD('day', -90, CURRENT_DATE)
     AND (a.pagename LIKE 'coxapp:reg:%' OR a.pagename LIKE 'coxapp:myaccount%')
     AND w.pagename LIKE 'cox:res:myprofile%'
+limit 50
 """
 transaction_okta_user_agg_fact = """
 WITH filtered_auth AS (
@@ -843,6 +848,7 @@ LEFT JOIN
     aggregated_signon o ON g.user_id = o.user_id
 LEFT JOIN
     ciam.mfa_total_mfa_users m ON g.user_id = m.username
+limit 50
 """
 transcation_okta_day_agg = """
 WITH filtered_auth AS (
@@ -911,6 +917,7 @@ LEFT JOIN
     ciam.mfa_total_mfa_users m ON g.user_id = m.username
 GROUP BY
 a.event_date, a.host, o.application, m.eventtype,a.Authentication_Attempt,a.authentication_success_result
+limit 50
 """
 
 # Athena Query Results Temporary files s3 path
@@ -1025,7 +1032,7 @@ def load_data_from_athena(sql_query,temp_path,load_full_data=True):
         .option("S3OutputLocation",temp_path)
         .load()
         )   
-    return df
+    return read_df
 
 def write_to_s3(df,output_path,partitionkey):
     write_df = df.write \
@@ -1104,7 +1111,6 @@ if check_table_exists(job_log_database_name, job_log_table_name):
     transcation_okta_day_agg_write_df.show()
     
 else:
-    months13_load_df = load_data_from_athena(load_full_data=True)
      # If 'Latest13months' is not present, load all data
     account_dim_sum_df = load_data_from_athena(account_dim_sum_13,account_dim_sum_temp,load_full_data=True)
     profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,profile_dim_sum_temp,load_full_data=True)
@@ -1127,6 +1133,23 @@ else:
     transaction_okta_user_agg_fact_record_count = transaction_okta_user_agg_fact_df.count()
     transcation_okta_day_agg_record_count = transcation_okta_day_agg_df.count()
     loadtype = "Latest 13 Months"
+    
+    # Step 3: Write the loaded data to S3
+    account_dim_sum_df_write_df = write_to_s3(account_dim_sum_df,account_dim_sum_output,account_dim_sum_partitionkeys)
+    profile_dim_sum_write_df = write_to_s3(profile_dim_sum_df,profile_dim_sum_output,profile_dim_sum_partitionkeys)
+    transaction_adobe_fact_write_df = write_to_s3(transaction_adobe_fact_df,transaction_adobe_fact_output,transaction_adobe_fact_partitionkeys)
+    transaction_okta_user_agg_fact_write_df = write_to_s3(transaction_okta_user_agg_fact_df,transaction_okta_user_agg_fact_output,transaction_okta_user_agg_fact_partitionkeys)
+    transcation_okta_day_agg_write_df = write_to_s3(transcation_okta_day_agg_df,transcation_okta_day_agg_output,transcation_okta_day_agg_partitionkeys)
+    account_dim_sum_df_write_df.printSchema()
+    profile_dim_sum_write_df.printSchema()
+    transaction_adobe_fact_write_df.printSchema()
+    transaction_okta_user_agg_fact_write_df.printSchema()
+    transcation_okta_day_agg_write_df.printSchema()
+    account_dim_sum_df_write_df.show()
+    profile_dim_sum_write_df.show()
+    transaction_adobe_fact_write_df.show()
+    transaction_okta_user_agg_fact_write_df.show()
+    transcation_okta_day_agg_write_df.show()
  
 
 endtime = datetime.now()
