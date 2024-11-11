@@ -1,0 +1,58 @@
+import boto3
+from datetime import datetime
+
+# Initialize AWS session and S3 client
+s3 = boto3.client('s3')
+
+# Define your two S3 paths
+bucket_name1 = 'your_bucket_name_1'  # replace with the first S3 bucket name
+prefix1 = 'your_prefix_1/'  # replace with the first S3 prefix/path
+
+bucket_name2 = 'your_bucket_name_2'  # replace with the second S3 bucket name
+prefix2 = 'your_prefix_2/'  # replace with the second S3 prefix/path
+
+# Helper function to list partitions and extract dates
+def list_and_extract_partitions(bucket_name, prefix):
+    response = s3.list_objects_v2(Bucket=bucket_name, Prefix=prefix)
+    partitions = [
+        obj['Key'] for obj in response.get('Contents', [])
+        if 'time_key=' in obj['Key'] or 'time_key-' in obj['Key']
+    ]
+    
+    # Extract dates from partition keys and sort them
+    def extract_date(partition_key):
+        date_str = partition_key.split('=')[-1].strip('/').replace('-', '')
+        return datetime.strptime(date_str, '%Y%m%d')
+    
+    sorted_partitions = sorted(partitions, key=extract_date)
+    return sorted_partitions
+
+# Delete the oldest partition if more than 14 months of data exists
+def delete_oldest_partition(bucket_name, sorted_partitions):
+    if len(sorted_partitions) > 14:
+        # Get the oldest partition to delete
+        partition_to_delete = sorted_partitions[0]
+        
+        # Delete the oldest partition
+        s3.delete_objects(
+            Bucket=bucket_name,
+            Delete={'Objects': [{'Key': partition_to_delete}]}
+        )
+        print(f"Deleted partition: {partition_to_delete} from bucket: {bucket_name}")
+    else:
+        print(f"No partitions older than 14 months to delete in bucket: {bucket_name}")
+
+# Check and delete for both S3 paths
+sorted_partitions1 = list_and_extract_partitions(bucket_name1, prefix1)
+sorted_partitions2 = list_and_extract_partitions(bucket_name2, prefix2)
+
+# Check if both paths have data
+if sorted_partitions1:
+    delete_oldest_partition(bucket_name1, sorted_partitions1)
+else:
+    print(f"No data found in the time_key partitions for bucket: {bucket_name1}")
+
+if sorted_partitions2:
+    delete_oldest_partition(bucket_name2, sorted_partitions2)
+else:
+    print(f"No data found in the time_key partitions for bucket: {bucket_name2}")
