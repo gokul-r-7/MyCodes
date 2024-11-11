@@ -1,7 +1,8 @@
 
 import sys
+import re
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from awsglue.transforms import *
 from awsglue.utils import getResolvedOptions
 from pyspark.context import SparkContext
@@ -21,6 +22,7 @@ spark = glueContext.spark_session
 job = Job(glueContext)
 spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
 glue_client = boto3.client('glue')
+s3 = boto3.client('s3')
 starttime = datetime.now()
 start_time = starttime.strftime("%Y-%m-%d %H:%M:%S")
 unique_id = str(uuid.uuid4())
@@ -97,13 +99,13 @@ else:
 def load_data_from_athena(load_full_data=True):
     if load_full_data:
         # Read all data from Athena (Glue Catalog)
-        query = 'SELECT * FROM "sample-datebase"."test_folder_1"'
+        query = 'SELECT * FROM "sample-datebase"."time_key_source"'
         df = pd.read_sql(query, conn)
 
     else:
         # Read only the latest month data (Assuming a `Month` partition or similar column exists)
         # Replace `Month` with actual partition/column name for the month
-        query = 'SELECT * FROM "sample-datebase"."test_folder_1" order by index desc limit 1'
+        query = 'SELECT * FROM "sample-datebase"."time_key_source" order by time_key desc limit 1'
         df = pd.read_sql(query, conn)
         
     return df
@@ -119,8 +121,8 @@ def write_to_s3(df,output_path,partitionkey):
 
 
 # Step 1: Check if the table exists
-s3_output_path ="s3://gokul-test-bucket-07/final_output_path/"
-partition_keys = ["index"]
+s3_output_path ="s3://gokul-test-bucket-07/time_key_target/"
+partition_keys = ["time_key"]
 if check_table_exists(job_log_database_name, job_log_table_name):
     
     # Step 2: Check if 'LoadType' contains 'Latest13months'
@@ -167,4 +169,37 @@ runtime_formatted = f"{hours:02}:{minutes:02}:{seconds:02}"
 job_log_table_df = job_lob_table_data(loadtype,endtime,runtime_formatted,record_count)
 job_log_table_df.show()
 job_log_table_write_df = job_log_table_df.write.format("parquet").mode("append").save(job_log_table_path)
+bucket_name = "gokul-test-bucket-07"
+folder_paths = ["time_key_target/"]
+# Define the regex pattern to match 'time_key' partitions
+time_key_pattern = re.compile(r'time_key=(\d{4}-\d{2}-\d{2})/')
+# Define a cutoff date for keeping only the last 13 months
+cutoff_date = datetime.now() - timedelta(days=13 * 30)  # Roughly 13 months
+def get_partition_dates(prefix):
+    """Get all 'time_key' partitions as dates from the given S3 prefix."""
+    partition_dates = []
+    result = s3.list_objects_v2(Bucket=bucket_name, Prefix=prefix)
+    if 'Contents' in result:
+        for obj in result['Contents']:
+            match = time_key_pattern.search(obj['Key'])
+            if match:
+                date_str = match.group(1)
+                date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+                partition_dates.append(date_obj)               
+    return sorted(set(partition_dates))
+a = get_partition_dates(folder_paths[0])
+print(a)
+def delete_old_partitions(prefix):
+    """Delete partitions older than 13 months."""
+    partition_dates = get_partition_dates(prefix)
+    if len(partition_dates) > 13:
+        for date in partition_dates[:-13]:  # Keep only the last 13 months
+            partition_prefix = f"{prefix}time_key={date.strftime('%Y-%m-%d')}/"
+            result = s3.list_objects_v2(Bucket=bucket_name, Prefix=partition_prefix)
+            if 'Contents' in result:
+                for obj in result['Contents']:
+                    s3.delete_object(Bucket=bucket_name, Key=obj['Key'])
+                print(f"Deleted partition: {partition_prefix}")
+b = delete_old_partitions(folder_paths[0])
+print(b)
 job.commit()
