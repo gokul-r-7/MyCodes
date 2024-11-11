@@ -1044,8 +1044,7 @@ def write_to_s3(df,output_path,partitionkey):
     return write_df
 
 
-s3_output_path ="s3://gokul-test-bucket-07/time_key_target/"
-partition_keys = ["time_key"]
+
 # Step 1: Check if the table exists
 if check_table_exists(job_log_database_name, job_log_table_name):
     
@@ -1104,12 +1103,6 @@ if check_table_exists(job_log_database_name, job_log_table_name):
     transaction_adobe_fact_write_df = write_to_s3(transaction_adobe_fact_df,transaction_adobe_fact_output,transaction_adobe_fact_partitionkeys)
     transaction_okta_user_agg_fact_write_df = write_to_s3(transaction_okta_user_agg_fact_df,transaction_okta_user_agg_fact_output,transaction_okta_user_agg_fact_partitionkeys)
     transcation_okta_day_agg_write_df = write_to_s3(transcation_okta_day_agg_df,transcation_okta_day_agg_output,transcation_okta_day_agg_partitionkeys)
-    account_dim_sum_df_write_df.show()
-    profile_dim_sum_write_df.show()
-    transaction_adobe_fact_write_df.show()
-    transaction_okta_user_agg_fact_write_df.show()
-    transcation_okta_day_agg_write_df.show()
-    
 else:
      # If 'Latest13months' is not present, load all data
     account_dim_sum_df = load_data_from_athena(account_dim_sum_13,account_dim_sum_temp,load_full_data=True)
@@ -1140,17 +1133,6 @@ else:
     transaction_adobe_fact_write_df = write_to_s3(transaction_adobe_fact_df,transaction_adobe_fact_output,transaction_adobe_fact_partitionkeys)
     transaction_okta_user_agg_fact_write_df = write_to_s3(transaction_okta_user_agg_fact_df,transaction_okta_user_agg_fact_output,transaction_okta_user_agg_fact_partitionkeys)
     transcation_okta_day_agg_write_df = write_to_s3(transcation_okta_day_agg_df,transcation_okta_day_agg_output,transcation_okta_day_agg_partitionkeys)
-    account_dim_sum_df_write_df.printSchema()
-    profile_dim_sum_write_df.printSchema()
-    transaction_adobe_fact_write_df.printSchema()
-    transaction_okta_user_agg_fact_write_df.printSchema()
-    transcation_okta_day_agg_write_df.printSchema()
-    account_dim_sum_df_write_df.show()
-    profile_dim_sum_write_df.show()
-    transaction_adobe_fact_write_df.show()
-    transaction_okta_user_agg_fact_write_df.show()
-    transcation_okta_day_agg_write_df.show()
- 
 
 endtime = datetime.now()
 end_time = endtime.strftime("%Y-%m-%d %H:%M:%S")
