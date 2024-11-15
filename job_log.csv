@@ -1,0 +1,3 @@
+"account_dim_sum_count","created_date","id","job_end_time","job_load_type","job_name","job_run_time","job_start_time","profile_dim_sum_count","transaction_adobe_fact_count","transaction_okta_user_agg_fact_count","transcation_okta_day_agg_output"
+"100961513","2024-11-15 13:58:01","9b0130a8-f80e-442b-841e-96c23567a64e","2024-11-15 13:58:01.208","Latest 13 Months","CIAM_ETL","01:01:16","2024-11-15 12:56:44","123732364","4494972","25982028","193151"
+"14294446","2024-11-15 14:31:49","ed501d32-6a7d-4d83-b0b4-d734b1567067","2024-11-15 14:31:49.183","Latest Current Month","CIAM_ETL","00:15:03","2024-11-15 14:16:45","17372689","4496523","25982739","193151"
