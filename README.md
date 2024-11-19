@@ -1,4 +1,4 @@
-F { FIXED [Customer Key]: 
+IF { FIXED [Customer Key]: 
         MAX(
             IF DATEPART('month', [time_key (copy)]) = DATEPART('month', DATEADD('month', -1, [selected_date])) 
                AND DATEPART('year', [time_key (copy)]) = DATEPART('year', DATEADD('month', -1, [selected_date])) 
