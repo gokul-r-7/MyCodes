@@ -1177,10 +1177,10 @@ def load_data_from_athena(sql_query, load_full_data=True):
         return read_df
 
 
-
+      
+      
 def write_to_s3(df, output_path, partitionkey):
-
-     """
+    """
     Write DataFrame to S3 with partitioning.
     
     Args:
@@ -1191,15 +1191,18 @@ def write_to_s3(df, output_path, partitionkey):
     Returns:
         DataFrame: The written DataFrame (for logging or chaining)
     """
-    
     try:
-        df = df.repartitionByRange(1, partitionkey)
+        # Repartition the DataFrame by the given partition columns
+        df = df.repartitionByRange(1, *partitionkey)
+        
+        # Write the DataFrame to S3 in Parquet format with partitioning and compression
         write_df = df.write \
-            .partitionBy(partitionkey) \
+            .partitionBy(*partitionkey) \
             .format("parquet") \
             .option("compression", "gzip") \
             .mode("overwrite") \
             .save(output_path)
+        
         logger.info(f"Data written to S3: {output_path}")
     except Exception as e:
         logger.error(f"Error writing data to S3: {e}")
@@ -1209,6 +1212,8 @@ def write_to_s3(df, output_path, partitionkey):
 
 
 
+  
+  
 # Step 1: Check if the table exists
 if check_table_exists(job_log_database_name, job_log_table_name):
     
