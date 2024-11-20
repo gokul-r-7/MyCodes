@@ -970,11 +970,11 @@ GROUP BY
 
 
 #Output s3 path
-account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/account_dim_sum/"
-profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/profile_dim_sum/"
-transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_adobe_fact/"
-transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_okta_user_agg_fact/"
-transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transcation_okta_day_agg_fact/"
+account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/account_dim_sum/"
+profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/profile_dim_sum/"
+transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/transaction_adobe_fact/"
+transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/transaction_okta_user_agg_fact/"
+transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/transcation_okta_day_agg_fact/"
 
 
 #PartitionKeys for the target files
@@ -995,9 +995,9 @@ starttime = datetime.now()
 start_time = starttime.strftime("%Y-%m-%d %H:%M:%S")
 unique_id = str(uuid.uuid4())
 job_name = "CIAM_ETL"
-job_log_database_name = "ciam_test1"
+job_log_database_name = "ciam_prod"
 job_log_table_name = "job_log_table"
-job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/job_log_table/"
+job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/job_log_table/"
 
 
 
@@ -1378,7 +1378,7 @@ except Exception as e:
 
 # Define S3 bucket name and folder paths to process
 bucket_name = "cci-dig-aicoe-data-sb"
-folder_paths = ["processed/ciam_data/account_dim_sum/", "processed/ciam_data/profile_dim_sum/"]
+folder_paths = ["processed/ciam_prod/account_dim_sum/", "processed/ciam_prod/profile_dim_sum/"]
 
 
 
