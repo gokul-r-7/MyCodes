@@ -62,3 +62,89 @@ SELECT
         ELSE 'Churned'
     END AS status
 FROM ciam_datamodel.account_dim_sum group by customer_key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select sum(distinct_customer_count),last_contacted_cox_app from account_aggregated_view group by last_contacted_cox_app
+ 
+SELECT
+    COUNT(DISTINCT customer_key) AS customer_count,
+    CASE
+        WHEN last_contacted_date_cox_app IS NULL OR last_contacted_date_cox_app = '' OR length(last_contacted_date_cox_app) = 0 THEN 'Never Contacted'
+         WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) <=30  THEN 'last 30 days'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 0 AND 30  THEN '0-30 days'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 31 AND 90 THEN '31-90 days'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 91 AND 180 THEN '91-180 days'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 181 AND 365 THEN '6-12 months'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 366 AND 1030 THEN '1-3 Years'
+        ELSE 'Above 2 Years'
+    END AS last_contacted_date_cox_app
+FROM
+    account_dim_sum
+GROUP BY
+    CASE
+        WHEN last_contacted_date_cox_app IS NULL OR last_contacted_date_cox_app = '' OR length(last_contacted_date_cox_app) = 0 THEN 'Never Contacted'
+       WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) <=30  THEN 'last 30 days'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+        date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d'))BETWEEN 0 AND 30  THEN '0-30 days'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 31 AND 90 THEN '31-90 days'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 91 AND 180 THEN '91-180 days'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 181 AND 365 THEN '6-12 months'
+        WHEN date_diff('day', CAST(time_key AS DATE),
+             date_parse(SUBSTRING(last_contacted_date_cox_app, 1, 10), '%Y-%m-%d')) BETWEEN 366 AND 1030 THEN '1-3 Years'
+        ELSE 'Above 2 Years'
+    END order by 2 desc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
