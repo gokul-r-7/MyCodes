@@ -13,6 +13,7 @@ from pyspark.sql import SparkSession
 from awsglue.job import Job
 from pyspark.sql import functions as F
 from awsglue.dynamicframe import DynamicFrame
+from pyspark.storagelevel import StorageLevel
 import logging
 
 
@@ -32,7 +33,7 @@ spark = glueContext.spark_session
 glueContext._jsc.hadoopConfiguration().set("fs.s3.useRequesterPaysHeader","true") ## this is needed for permissions
 spark._jsc.hadoopConfiguration().set("fs.s3.useRequesterPaysHeader","true") ## this is needed for permissions
 spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
-
+spark.catalog.clearCache()
 
 # Initialize Glue job
 job = Job(glueContext)
@@ -995,7 +996,7 @@ starttime = datetime.now()
 start_time = starttime.strftime("%Y-%m-%d %H:%M:%S")
 unique_id = str(uuid.uuid4())
 job_name = "CIAM_ETL"
-job_log_database_name = "ciam_prod"
+job_log_database_name = "ciam_test4"
 job_log_table_name = "job_log_table"
 job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/job_log_table/"
 
@@ -1236,11 +1237,17 @@ if check_table_exists(job_log_database_name, job_log_table_name):
         loadtype = "Latest 13 Months"
 
     
-    account_dim_sum_df.cache()
-    profile_dim_sum_df.cache()
-    transaction_adobe_fact_df.cache()
-    transaction_okta_user_agg_fact_df.cache()
-    transcation_okta_day_agg_df.cache()
+    #account_dim_sum_df.cache()
+    #profile_dim_sum_df.cache()
+    #transaction_adobe_fact_df.cache()
+    #transaction_okta_user_agg_fact_df.cache()
+    #transcation_okta_day_agg_df.cache()
+    
+    account_dim_sum_df.persist(StorageLevel.MEMORY_AND_DISK)
+    profile_dim_sum_df.persist(StorageLevel.MEMORY_AND_DISK)
+    transaction_adobe_fact_df.persist(StorageLevel.MEMORY_AND_DISK)
+    transaction_okta_user_agg_fact_df.persist(StorageLevel.MEMORY_AND_DISK)
+    transcation_okta_day_agg_df.persist(StorageLevel.MEMORY_AND_DISK)
 
 
     account_dim_sum_df = account_dim_sum_df.withColumn("time_key", F.to_date(account_dim_sum_df["time_key"], "yyyy-MM-dd"))
@@ -1269,7 +1276,7 @@ if check_table_exists(job_log_database_name, job_log_table_name):
     transaction_adobe_fact_df.show()
     transaction_okta_user_agg_fact_df.show()
     transcation_okta_day_agg_df.show()
-
+    
 
     account_dim_sum_record_count = account_dim_sum_df.count()
     profile_dim_sum_record_count = profile_dim_sum_df.count()
@@ -1295,14 +1302,21 @@ else:
     transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,load_full_data=True)
     transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,load_full_data=True)
     transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,load_full_data=True)
+    
+    
+    #account_dim_sum_df.cache()
+    #profile_dim_sum_df.cache()
+    #transaction_adobe_fact_df.cache()
+    #transaction_okta_user_agg_fact_df.cache()
+    #transcation_okta_day_agg_df.cache()
 
 
-    account_dim_sum_df.cache()
-    profile_dim_sum_df.cache()
-    transaction_adobe_fact_df.cache()
-    transaction_okta_user_agg_fact_df.cache()
-    transcation_okta_day_agg_df.cache()
-
+    account_dim_sum_df.persist(StorageLevel.MEMORY_AND_DISK)
+    profile_dim_sum_df.persist(StorageLevel.MEMORY_AND_DISK)
+    transaction_adobe_fact_df.persist(StorageLevel.MEMORY_AND_DISK)
+    transaction_okta_user_agg_fact_df.persist(StorageLevel.MEMORY_AND_DISK)
+    transcation_okta_day_agg_df.persist(StorageLevel.MEMORY_AND_DISK)
+    
 
     account_dim_sum_df = account_dim_sum_df.withColumn("time_key", F.to_date(account_dim_sum_df["time_key"], "yyyy-MM-dd"))
     account_dim_sum_df.printSchema()
