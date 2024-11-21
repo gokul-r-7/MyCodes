@@ -135,6 +135,70 @@ GROUP BY
 
 
 
+WITH date_diff_table AS (
+    SELECT 
+        customer_key,
+        last_contacted_date_cox_app,
+        time_key,
+        -- Attempt to cast string dates to date format and calculate the difference in days
+        -- Using try_cast to safely handle invalid date formats
+        date_diff('day', 
+                  try_cast(time_key AS date), 
+                  try_cast(last_contacted_date_cox_app AS date)) AS days_difference
+    FROM ciam_datamodel.account_dim_sum
+)
+
+SELECT
+    -- Calculate the distinct customer count
+    COUNT(DISTINCT customer_key) AS customer_count,
+    
+    -- Repeating the CASE expression to categorize days_difference
+    CASE 
+        -- Check for NULL or empty strings for 'never_contacted'
+        WHEN "last_contacted_date_cox_app" IS NULL OR "last_contacted_date_cox_app" = '' THEN 'never_contacted'
+        WHEN days_difference BETWEEN 0 AND 30 THEN '0-30 days'
+        WHEN days_difference BETWEEN 31 AND 90 THEN '31-90 days'
+        WHEN days_difference BETWEEN 91 AND 180 THEN '91-180 days'
+        WHEN days_difference BETWEEN 181 AND 365 THEN '6-12 months'
+        WHEN days_difference BETWEEN 366 AND 1095 THEN '1-3 years'
+        ELSE 'Other' -- For cases where the difference is greater than 3 years
+    END AS date_range
+FROM date_diff_table
+GROUP BY 
+    -- Grouping by the same CASE expression as in the SELECT statement
+    CASE 
+        -- Check for NULL or empty strings for 'never_contacted'
+        WHEN last_contacted_date_cox_app IS NULL OR last_contacted_date_cox_app = '' THEN 'never_contacted'
+        WHEN days_difference BETWEEN 0 AND 30 THEN '0-30 days'
+        WHEN days_difference BETWEEN 31 AND 90 THEN '31-90 days'
+        WHEN days_difference BETWEEN 91 AND 180 THEN '91-180 days'
+        WHEN days_difference BETWEEN 181 AND 365 THEN '6-12 months'
+        WHEN days_difference BETWEEN 366 AND 1095 THEN '1-3 years'
+        ELSE 'Other' -- For cases where the difference is greater than 3 years
+    END
+
+
+1
+2561962
+91-180 days
+2
+2840578
+31-90 days
+3
+4956236
+never_contacted
+4
+333739
+1-3 years
+5
+2894398
+0-30 days
+6
+2141117
+6-12 months
+7
+2994230
+Other
 
 
 
