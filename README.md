@@ -202,6 +202,25 @@ Other
 
 
 
+(CASE 
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '0') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '0')) THEN 'Data' 
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '1') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '0')) THEN 'TV' 
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '0') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '0')) THEN 'phone' 
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '0') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '1')) THEN 'mobile'
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '1') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '0')) THEN 'TV+Phone' 
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '1') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '1')) THEN 'TV+mobile'
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '0') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '1')) THEN 'Phone+mobile'
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '1') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '0')) THEN 'Data+TV' 
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '0') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '0')) THEN 'Data+Phone'
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '0') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '1')) THEN 'Data+mobile'
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '1') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '0')) THEN 'Data+TV+Phone' 
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '1') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '1')) THEN 'Data+TV+mobile'
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '0') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '1')) THEN 'Data+Phone+mobile'
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '1') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '1')) THEN 'TV+Phone+mobile'
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '1') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '1')) THEN 'Data+TV+Phone+mobile' 
+ELSE 'None' END) product_service_type 
+
+
 
 
 
