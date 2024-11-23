@@ -11,7 +11,6 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from pyspark.sql import SparkSession
 from awsglue.job import Job
-from pyspark.sql import functions as F
 from awsglue.dynamicframe import DynamicFrame
 ## @params: [JOB_NAME]
 args = getResolvedOptions(sys.argv, ['JOB_NAME'])
@@ -19,8 +18,6 @@ args = getResolvedOptions(sys.argv, ['JOB_NAME'])
 sc = SparkContext()
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
-glueContext._jsc.hadoopConfiguration().set("fs.s3.useRequesterPaysHeader","true") ## this is needed for permissions
-spark._jsc.hadoopConfiguration().set("fs.s3.useRequesterPaysHeader","true") ## this is needed for permissions
 spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
 job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
@@ -29,12 +26,12 @@ job.init(args['JOB_NAME'], args)
 account_dim_sum_13 = """
 WITH customer_data AS (
     SELECT distinct c.customer_key,
-           CAST(c.account_nbr AS varchar(255)) AS account_nbr,
+           CAST(c.account_nbr AS varchar) AS account_nbr,
            c.site_id,
            c.res_comm_ind,
            c.customer_status_cd,
-           CAST(c.account_guid AS varchar(255)) AS account_guid,
-           CAST(c.prim_account_holder_guid AS varchar(255)) AS prim_account_holder_guid,
+           CAST(c.account_guid AS varchar) AS account_guid,
+           CAST(c.prim_account_holder_guid AS varchar) AS prim_account_holder_guid,
            c.test_account_key AS test_account_key,
            c.inception_dt
     FROM edw.customer_dim c
@@ -70,7 +67,7 @@ account_summary AS (
            s.time_key
     FROM edw.cust_acct_sum s
     WHERE
-    to_date(s.time_key, 'yyyy-MM-dd') >= current_date() - INTERVAL 13 MONTH
+    DATE_PARSE(s.time_key, '%Y-%m-%d') >= DATE_ADD('month', -13, CURRENT_DATE)
 ),
 guid_data AS (
     SELECT g.customer_key,
@@ -82,14 +79,10 @@ guid_data AS (
 ivr_contact AS (
     SELECT distinct i.customer_key,
            MAX(i.time_key) AS Last_Contacted_Date_IVR_Call
-    FROM `call`.call_ivr_fact i
+    FROM "call"."call_ivr_fact" i
     GROUP BY i.customer_key
 ),
-web_data AS (
-    SELECT d.customer_key, MAX(d.dt) AS Last_Contacted_Date_Cox_com  
-    FROM webanalytics.web_contact_history d 
-    GROUP BY d.customer_key
-),
+web_data as(select d.customer_key, MAX(d.dt) AS Last_Contacted_Date_Cox_com  FROM webanalytics.web_contact_history d group by d.customer_key),
 web_contact AS (
     SELECT
         campaign,
@@ -112,11 +105,7 @@ app_contact AS (
         FROM mobile_data_temp.app_contact_history
         WHERE pagename = 'coxapp:reg:confirmation')
 ),
-mob_data AS (
-    SELECT mob.customer_key, MAX(mob.dt) AS Last_Contacted_Date_Cox_App 
-    FROM mobile_data_temp.app_contact_history mob 
-    GROUP BY mob.customer_key
-)
+mob_data as(select mob.customer_key, MAX(mob.dt) AS Last_Contacted_Date_Cox_App from mobile_data_temp.app_contact_history mob group by mob.customer_key)
 SELECT distinct
     s.customer_key AS Customer_Key,
     s.account_nbr AS Account_Nbr,
@@ -129,7 +118,7 @@ SELECT distinct
     s.employee_flag AS Employee_Flag,
     c.test_account_key AS Test_Account_Flag,
     c.inception_dt AS Inception_Date,
-    CAST(NULL AS varchar(255)) AS `Sale_Acquisition_Channel`,
+    CAST(NULL AS varchar) AS "Sale_Acquisition_Channel",
     g.create_dt AS Registration_Date,
     COALESCE(web.campaign, app.post_evar40) AS Registration_Traffic_Source_Detail,
     CASE 
@@ -142,11 +131,11 @@ SELECT distinct
     END AS Registration_Traffic_Source,
     s.data_flag AS Data_Flag,
     s.cable_flag AS TV_Flag,
-    s.telephony_flag AS `Phone_Flag`,
-    CAST(NULL AS varchar(255)) AS `Homelife_Flag`,
+    s.telephony_flag AS "Phone_Flag",
+    CAST(NULL AS varchar) AS "Homelife_Flag",
     s.wireless_flag AS Mobile_Flag,
-    CAST(NULL AS varchar(255)) AS `Pano_Flag`,
-    CAST(NULL AS varchar(255)) AS `Pano_Device`,
+    CAST(NULL AS varchar) AS "Pano_Flag",
+    CAST(NULL AS varchar) AS "Pano_Device",
     s.easy_pay_flag AS Easy_Pay_Flag,
     s.do_not_call_flag AS Do_Not_Call_Flag,
     s.do_not_email_flag AS Do_Not_Email_Flag,
@@ -155,17 +144,16 @@ SELECT distinct
     ivr.Last_Contacted_Date_IVR_Call,
     d.Last_Contacted_Date_Cox_com,
     mob.Last_Contacted_Date_Cox_App, 
-    CAST(NULL AS varchar(255)) AS `Cox_Segment`,
-    CAST(NULL AS varchar(255)) AS `Demographic_Info1`,
-    CAST(NULL AS varchar(255)) AS `Demographic_Info2`,
+    CAST(NULL AS varchar) AS "Cox_Segment",
+    CAST(NULL AS varchar) AS "Demographic_Info1",
+    CAST(NULL AS varchar) AS "Demographic_Info2",
     s.time_key
-FROM account_summary s 
-LEFT JOIN customer_data c ON CAST(s.customer_key AS bigint) = c.customer_key 
+FROM account_summary s LEFT JOIN customer_data c on CAST(s.customer_key AS bigint)=c.customer_key 
 LEFT JOIN revenue_data r ON s.customer_key = CAST(r.customer_key AS bigint)
-LEFT JOIN (SELECT * FROM guid_data WHERE rn = 1) g ON s.customer_key = CAST(g.customer_key AS bigint)
+LEFT JOIN (select * from guid_data where rn=1) g ON s.customer_key = CAST(g.customer_key AS bigint)
 LEFT JOIN ivr_contact ivr ON s.customer_key = CAST(ivr.customer_key AS bigint)
-LEFT JOIN web_data d ON s.customer_key = CAST(d.customer_key AS bigint)
-LEFT JOIN mob_data mob ON s.customer_key = CAST(mob.customer_key AS bigint)
+LEFT JOIN web_data d on s.customer_key=CAST(d.customer_key as bigint)
+LEFT JOIN mob_data mob on s.customer_key=CAST(mob.customer_key as bigint)
 LEFT JOIN web_contact web ON g.household_member_guid = web.evar61_coxcust_guid
 LEFT JOIN app_contact app ON g.household_member_guid = app.coxcust_guid_v61
 LEFT JOIN dwelling_data d ON r.dwelling_type_key = d.dwelling_type_key
@@ -173,12 +161,12 @@ LEFT JOIN dwelling_data d ON r.dwelling_type_key = d.dwelling_type_key
 account_dim_sum_1 = """
 WITH customer_data AS (
     SELECT distinct c.customer_key,
-           CAST(c.account_nbr AS varchar(255)) AS account_nbr,
+           CAST(c.account_nbr AS varchar) AS account_nbr,
            c.site_id,
            c.res_comm_ind,
            c.customer_status_cd,
-           CAST(c.account_guid AS varchar(255)) AS account_guid,
-           CAST(c.prim_account_holder_guid AS varchar(255)) AS prim_account_holder_guid,
+           CAST(c.account_guid AS varchar) AS account_guid,
+           CAST(c.prim_account_holder_guid AS varchar) AS prim_account_holder_guid,
            c.test_account_key AS test_account_key,
            c.inception_dt
     FROM edw.customer_dim c
@@ -214,7 +202,7 @@ account_summary AS (
            s.time_key
     FROM edw.cust_acct_sum s
     WHERE
-    to_date(s.time_key, 'yyyy-MM-dd') >= date_add(current_date(), -30)
+    DATE_PARSE(s.time_key, '%Y-%m-%d') >= DATE_ADD('month', -1, CURRENT_DATE)
 ),
 guid_data AS (
     SELECT g.customer_key,
@@ -226,14 +214,10 @@ guid_data AS (
 ivr_contact AS (
     SELECT distinct i.customer_key,
            MAX(i.time_key) AS Last_Contacted_Date_IVR_Call
-    FROM `call`.call_ivr_fact i
+    FROM "call"."call_ivr_fact" i
     GROUP BY i.customer_key
 ),
-web_data AS (
-    SELECT d.customer_key, MAX(d.dt) AS Last_Contacted_Date_Cox_com  
-    FROM webanalytics.web_contact_history d 
-    GROUP BY d.customer_key
-),
+web_data as(select d.customer_key, MAX(d.dt) AS Last_Contacted_Date_Cox_com  FROM webanalytics.web_contact_history d group by d.customer_key),
 web_contact AS (
     SELECT
         campaign,
@@ -256,11 +240,7 @@ app_contact AS (
         FROM mobile_data_temp.app_contact_history
         WHERE pagename = 'coxapp:reg:confirmation')
 ),
-mob_data AS (
-    SELECT mob.customer_key, MAX(mob.dt) AS Last_Contacted_Date_Cox_App 
-    FROM mobile_data_temp.app_contact_history mob 
-    GROUP BY mob.customer_key
-)
+mob_data as(select mob.customer_key, MAX(mob.dt) AS Last_Contacted_Date_Cox_App from mobile_data_temp.app_contact_history mob group by mob.customer_key)
 SELECT distinct
     s.customer_key AS Customer_Key,
     s.account_nbr AS Account_Nbr,
@@ -273,7 +253,7 @@ SELECT distinct
     s.employee_flag AS Employee_Flag,
     c.test_account_key AS Test_Account_Flag,
     c.inception_dt AS Inception_Date,
-    CAST(NULL AS varchar(255)) AS `Sale_Acquisition_Channel`,
+    CAST(NULL AS varchar) AS "Sale_Acquisition_Channel",
     g.create_dt AS Registration_Date,
     COALESCE(web.campaign, app.post_evar40) AS Registration_Traffic_Source_Detail,
     CASE 
@@ -286,11 +266,11 @@ SELECT distinct
     END AS Registration_Traffic_Source,
     s.data_flag AS Data_Flag,
     s.cable_flag AS TV_Flag,
-    s.telephony_flag AS `Phone_Flag`,
-    CAST(NULL AS varchar(255)) AS `Homelife_Flag`,
+    s.telephony_flag AS "Phone_Flag",
+    CAST(NULL AS varchar) AS "Homelife_Flag",
     s.wireless_flag AS Mobile_Flag,
-    CAST(NULL AS varchar(255)) AS `Pano_Flag`,
-    CAST(NULL AS varchar(255)) AS `Pano_Device`,
+    CAST(NULL AS varchar) AS "Pano_Flag",
+    CAST(NULL AS varchar) AS "Pano_Device",
     s.easy_pay_flag AS Easy_Pay_Flag,
     s.do_not_call_flag AS Do_Not_Call_Flag,
     s.do_not_email_flag AS Do_Not_Email_Flag,
@@ -299,21 +279,21 @@ SELECT distinct
     ivr.Last_Contacted_Date_IVR_Call,
     d.Last_Contacted_Date_Cox_com,
     mob.Last_Contacted_Date_Cox_App, 
-    CAST(NULL AS varchar(255)) AS `Cox_Segment`,
-    CAST(NULL AS varchar(255)) AS `Demographic_Info1`,
-    CAST(NULL AS varchar(255)) AS `Demographic_Info2`,
+    CAST(NULL AS varchar) AS "Cox_Segment",
+    CAST(NULL AS varchar) AS "Demographic_Info1",
+    CAST(NULL AS varchar) AS "Demographic_Info2",
     s.time_key
-FROM account_summary s 
-LEFT JOIN customer_data c ON CAST(s.customer_key AS bigint) = c.customer_key 
+FROM account_summary s LEFT JOIN customer_data c on CAST(s.customer_key AS bigint)=c.customer_key 
 LEFT JOIN revenue_data r ON s.customer_key = CAST(r.customer_key AS bigint)
-LEFT JOIN (SELECT * FROM guid_data WHERE rn = 1) g ON s.customer_key = CAST(g.customer_key AS bigint)
+LEFT JOIN (select * from guid_data where rn=1) g ON s.customer_key = CAST(g.customer_key AS bigint)
 LEFT JOIN ivr_contact ivr ON s.customer_key = CAST(ivr.customer_key AS bigint)
-LEFT JOIN web_data d ON s.customer_key = CAST(d.customer_key AS bigint)
-LEFT JOIN mob_data mob ON s.customer_key = CAST(mob.customer_key AS bigint)
+LEFT JOIN web_data d on s.customer_key=CAST(d.customer_key as bigint)
+LEFT JOIN mob_data mob on s.customer_key=CAST(mob.customer_key as bigint)
 LEFT JOIN web_contact web ON g.household_member_guid = web.evar61_coxcust_guid
 LEFT JOIN app_contact app ON g.household_member_guid = app.coxcust_guid_v61
 LEFT JOIN dwelling_data d ON r.dwelling_type_key = d.dwelling_type_key
 """
+
 profile_dim_sum_13 = """
 WITH customer_dim AS (
     SELECT 
@@ -329,13 +309,13 @@ WITH customer_dim AS (
 ),
 account_summary AS (
     SELECT
-        s.CUSTOMER_TYPE_CD,
-        s.account_nbr,
-        s.customer_key,
-        s.site_id,
-        s.time_key
+           s.CUSTOMER_TYPE_CD,
+           s.account_nbr,
+           s.customer_key,
+           s.site_id,
+           s.time_key
     FROM edw.cust_acct_sum s
-    WHERE to_date(s.time_key, 'yyyy-MM-dd') >= current_date() - INTERVAL 13 MONTH
+    WHERE DATE_PARSE(s.time_key, '%Y-%m-%d') >= DATE_ADD('month', -13, CURRENT_DATE)
 ),
 guid_data AS (
     SELECT 
@@ -369,7 +349,7 @@ guid_data AS (
         HAVING 
             COUNT(DISTINCT b.customer_key) >= 1
     ) email_counts ON a.cox_email_address = email_counts.cox_email_address
-),
+    ),
 web_contact AS (
     SELECT
         w.customer_key,
@@ -379,14 +359,8 @@ web_contact AS (
     GROUP BY
         w.customer_key
 ),
-mob_data AS (
-    SELECT
-        mob.customer_key, 
-        MAX(mob.dt) AS Last_Logged_In_Date_Cox_App 
-    FROM 
-        mobile_data_temp.app_contact_history mob 
-    GROUP BY 
-        mob.customer_key
+mob_data as(
+    select mob.customer_key, MAX(mob.dt) AS Last_Logged_In_Date_Cox_App from mobile_data_temp.app_contact_history mob group by mob.customer_key
 ),
 app_contact AS (
     SELECT
@@ -439,55 +413,49 @@ mfa_data AS (
         a.user_id, c.eventtype, c.event_date
 ),
 account_details AS (
-    SELECT 
-        ac.account_nbr,
-        ac.vndr_cust_account_key,
-        ac.do_not_email AS Email_Opt_Out,
-        ac.do_not_call AS Phone_Opt_Out,
-        em.bounced_flg AS Email_Bounce,
-        em.unsubscribe_flg,
-        ROW_NUMBER() OVER (PARTITION BY ac.account_nbr ORDER BY CASE WHEN em.bounced_flg IS NOT NULL THEN 1 ELSE 2 END) AS rn
+    SELECT ac.account_nbr,
+           ac.vndr_cust_account_key,
+           ac.do_not_email AS Email_Opt_Out,
+           ac.do_not_call AS Phone_Opt_Out,
+           em.bounced_flg AS Email_Bounce,
+           em.unsubscribe_flg,
+           ROW_NUMBER() OVER (PARTITION BY ac.account_nbr ORDER BY CASE WHEN em.bounced_flg IS NOT NULL THEN 1 ELSE 2 END) AS rn
     FROM camp_mgmt.accounts ac
     LEFT JOIN camp_mgmt.email_addresses em ON em.vndr_cust_account_key = ac.vndr_cust_account_key
 ),
 notification_flags AS (
     SELECT
-    cmcnbr AS customer_number,
-    MAX(CASE WHEN cmmeth = 'EMAIL' THEN 'Y' ELSE 'N' END) AS Email_Flag,
-    MAX(CASE WHEN cmmeth = 'PHONE' THEN 'Y' ELSE 'N' END) AS Phone_Flag,
-    MAX(CASE WHEN cmmeth = 'EMAIL' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Email_Verified_Flag,
-    MAX(CASE WHEN cmmeth = 'PHONE' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Phone_Verified_Flag,
-
-    -- Formatting the email verification date, ensuring non-empty string handling
-    MAX(CASE 
-        WHEN cmmeth = 'EMAIL' THEN 
-            CASE 
-                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
-                    CONCAT('20', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
-                    )
-                ELSE NULL 
-            END
-    END) AS email_verified_date,
-
-    -- Formatting the phone verification date, ensuring non-empty string handling
-    MAX(CASE 
-        WHEN cmmeth = 'PHONE' THEN 
-            CASE 
-                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
-                    CONCAT('20', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
-                    )
-                ELSE NULL 
-            END
-    END) AS phone_verified_date
-
-FROM pstage.stg_all_cust_notification_methods n 
-GROUP BY cmcnbr
+        customer_number,
+        MAX(CASE WHEN notification_method = 'EMAIL' THEN 'Y' ELSE 'N' END) AS Email_Flag,
+        MAX(CASE WHEN notification_method = 'PHONE' THEN 'Y' ELSE 'N' END) AS Phone_Flag,
+        MAX(CASE WHEN notification_method = 'EMAIL' AND confirm_flag = 'Y' THEN 'Y' ELSE 'N' END) AS Email_Verified_Flag,
+        MAX(CASE WHEN notification_method = 'PHONE' AND confirm_flag = 'Y' THEN 'Y' ELSE 'N' END) AS Phone_Verified_Flag,
+        MAX(CASE 
+            WHEN notification_method = 'EMAIL' THEN 
+                CASE 
+                    WHEN verification_date != 0 THEN 
+                        CONCAT('20', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 2, 2), '-', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 4, 2), '-', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 6, 2)
+                        )
+                    ELSE NULL 
+                END
+        END) AS email_verified_date,
+        MAX(CASE 
+            WHEN notification_method = 'PHONE' THEN 
+                CASE 
+                    WHEN verification_date != 0 THEN 
+                        CONCAT('20', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 2, 2), '-', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 4, 2), '-', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 6, 2)
+                        )
+                    ELSE NULL 
+                END
+        END) AS phone_verified_date
+    FROM pstage.ALL_CUST_NOTIFICATION_METHODS n 
+    GROUP BY customer_number
 )
 SELECT DISTINCT a.User_GUID,
     b.Res_Com_Ind,
@@ -498,7 +466,7 @@ SELECT DISTINCT a.User_GUID,
     b.Customer_Status,
     b.Inception_Date,
     a.Registration_date,
-    NULL AS `User_Permission`,
+    NULL AS "User_Permission",
     a.Email_Account_Count,
     nf.Email_Flag,
     nf.Phone_Flag,
@@ -509,15 +477,15 @@ SELECT DISTINCT a.User_GUID,
     ad.Email_Opt_Out, 
     ad.Phone_Opt_Out,   
     ad.Email_Bounce, 
-    NULL AS `Preferred_Contact_Method`,
-    NULL AS `Placeholder2`,
+    NULL AS "Preferred_Contact_Method",
+    NULL AS "Placeholder2",
     mfa.TSV_Enrolled_Status,
     mfa.TSV_EMAIL_Flag,
     mfa.TSV_CALL_Flag,
     mfa.TSV_SMS_Flag,
-    NULL AS `Preference_Placeholder1`,
-    NULL AS `Preference_Placeholder2`,
-    NULL AS `Preferences_Last_Used_Date`,
+    NULL AS "Preference_Placeholder1",
+    NULL AS "Preference_Placeholder2",
+    NULL AS "Preferences_Last_Used_Date",
     mfa.last_logged_in_date_okta,
     web.Last_Logged_In_Date_Cox_com,
     mob.Last_Logged_In_Date_Cox_App,
@@ -525,16 +493,15 @@ SELECT DISTINCT a.User_GUID,
         WHEN app.Last_Logged_In_App_ID LIKE 'CoxAccount%' THEN 'iOS'
         WHEN app.Last_Logged_In_App_ID LIKE 'Cox %' THEN 'Android'
         ELSE 'Null'
-    END AS `Last_Logged_In_OS_Cox_App`,
-    NULL AS `Last_Password_Change_Date`,
+    END AS "Last_Logged_In_OS_Cox_App",
+    NULL AS "Last_Password_Change_Date",
     s.time_key
-FROM account_summary s 
-LEFT JOIN customer_dim b ON s.customer_key = b.customer_key
-LEFT JOIN guid_data a ON s.customer_key = a.customer_key 
-LEFT JOIN mob_data mob ON s.customer_key = CAST(mob.customer_key AS bigint)
+FROM account_summary s left join customer_dim b on s.customer_key=b.customer_key
+left join guid_data a on s.customer_key=a.customer_key 
+LEFT JOIN mob_data mob on s.customer_key=CAST(mob.customer_key as bigint)
 LEFT JOIN web_contact web ON s.customer_key = CAST(web.customer_key AS bigint)
 LEFT JOIN app_contact app ON s.customer_key = CAST(app.customer_key AS bigint)
-LEFT JOIN mfa_data mfa ON a.user_id = mfa.user_id
+LEFT JOIN  mfa_data mfa ON a.user_id = mfa.user_id
 LEFT JOIN account_details ad ON s.account_nbr = ad.account_nbr AND ad.rn = 1
 LEFT JOIN notification_flags nf ON s.account_nbr = nf.customer_number
 """
@@ -554,13 +521,13 @@ WITH customer_dim AS (
 ),
 account_summary AS (
     SELECT
-        s.CUSTOMER_TYPE_CD,
-        s.account_nbr,
-        s.customer_key,
-        s.site_id,
-        s.time_key
+           s.CUSTOMER_TYPE_CD,
+           s.account_nbr,
+           s.customer_key,
+           s.site_id,
+           s.time_key
     FROM edw.cust_acct_sum s
-    WHERE to_date(s.time_key, 'yyyy-MM-dd') >= date_add(current_date(), -30)
+    WHERE DATE_PARSE(s.time_key, '%Y-%m-%d') >= DATE_ADD('month', -1, CURRENT_DATE)
 ),
 guid_data AS (
     SELECT 
@@ -594,7 +561,7 @@ guid_data AS (
         HAVING 
             COUNT(DISTINCT b.customer_key) >= 1
     ) email_counts ON a.cox_email_address = email_counts.cox_email_address
-),
+    ),
 web_contact AS (
     SELECT
         w.customer_key,
@@ -604,14 +571,8 @@ web_contact AS (
     GROUP BY
         w.customer_key
 ),
-mob_data AS (
-    SELECT
-        mob.customer_key, 
-        MAX(mob.dt) AS Last_Logged_In_Date_Cox_App 
-    FROM 
-        mobile_data_temp.app_contact_history mob 
-    GROUP BY 
-        mob.customer_key
+mob_data as(
+    select mob.customer_key, MAX(mob.dt) AS Last_Logged_In_Date_Cox_App from mobile_data_temp.app_contact_history mob group by mob.customer_key
 ),
 app_contact AS (
     SELECT
@@ -664,55 +625,49 @@ mfa_data AS (
         a.user_id, c.eventtype, c.event_date
 ),
 account_details AS (
-    SELECT 
-        ac.account_nbr,
-        ac.vndr_cust_account_key,
-        ac.do_not_email AS Email_Opt_Out,
-        ac.do_not_call AS Phone_Opt_Out,
-        em.bounced_flg AS Email_Bounce,
-        em.unsubscribe_flg,
-        ROW_NUMBER() OVER (PARTITION BY ac.account_nbr ORDER BY CASE WHEN em.bounced_flg IS NOT NULL THEN 1 ELSE 2 END) AS rn
+    SELECT ac.account_nbr,
+           ac.vndr_cust_account_key,
+           ac.do_not_email AS Email_Opt_Out,
+           ac.do_not_call AS Phone_Opt_Out,
+           em.bounced_flg AS Email_Bounce,
+           em.unsubscribe_flg,
+           ROW_NUMBER() OVER (PARTITION BY ac.account_nbr ORDER BY CASE WHEN em.bounced_flg IS NOT NULL THEN 1 ELSE 2 END) AS rn
     FROM camp_mgmt.accounts ac
     LEFT JOIN camp_mgmt.email_addresses em ON em.vndr_cust_account_key = ac.vndr_cust_account_key
 ),
 notification_flags AS (
     SELECT
-    cmcnbr AS customer_number,
-    MAX(CASE WHEN cmmeth = 'EMAIL' THEN 'Y' ELSE 'N' END) AS Email_Flag,
-    MAX(CASE WHEN cmmeth = 'PHONE' THEN 'Y' ELSE 'N' END) AS Phone_Flag,
-    MAX(CASE WHEN cmmeth = 'EMAIL' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Email_Verified_Flag,
-    MAX(CASE WHEN cmmeth = 'PHONE' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Phone_Verified_Flag,
-
-    -- Formatting the email verification date, ensuring non-empty string handling
-    MAX(CASE 
-        WHEN cmmeth = 'EMAIL' THEN 
-            CASE 
-                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
-                    CONCAT('20', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
-                    )
-                ELSE NULL 
-            END
-    END) AS email_verified_date,
-
-    -- Formatting the phone verification date, ensuring non-empty string handling
-    MAX(CASE 
-        WHEN cmmeth = 'PHONE' THEN 
-            CASE 
-                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
-                    CONCAT('20', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
-                    )
-                ELSE NULL 
-            END
-    END) AS phone_verified_date
-
-FROM pstage.stg_all_cust_notification_methods n 
-GROUP BY cmcnbr
+        customer_number,
+        MAX(CASE WHEN notification_method = 'EMAIL' THEN 'Y' ELSE 'N' END) AS Email_Flag,
+        MAX(CASE WHEN notification_method = 'PHONE' THEN 'Y' ELSE 'N' END) AS Phone_Flag,
+        MAX(CASE WHEN notification_method = 'EMAIL' AND confirm_flag = 'Y' THEN 'Y' ELSE 'N' END) AS Email_Verified_Flag,
+        MAX(CASE WHEN notification_method = 'PHONE' AND confirm_flag = 'Y' THEN 'Y' ELSE 'N' END) AS Phone_Verified_Flag,
+        MAX(CASE 
+            WHEN notification_method = 'EMAIL' THEN 
+                CASE 
+                    WHEN verification_date != 0 THEN 
+                        CONCAT('20', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 2, 2), '-', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 4, 2), '-', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 6, 2)
+                        )
+                    ELSE NULL 
+                END
+        END) AS email_verified_date,
+        MAX(CASE 
+            WHEN notification_method = 'PHONE' THEN 
+                CASE 
+                    WHEN verification_date != 0 THEN 
+                        CONCAT('20', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 2, 2), '-', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 4, 2), '-', 
+                               SUBSTRING(CAST(verification_date AS VARCHAR), 6, 2)
+                        )
+                    ELSE NULL 
+                END
+        END) AS phone_verified_date
+    FROM pstage.ALL_CUST_NOTIFICATION_METHODS n 
+    GROUP BY customer_number
 )
 SELECT DISTINCT a.User_GUID,
     b.Res_Com_Ind,
@@ -723,7 +678,7 @@ SELECT DISTINCT a.User_GUID,
     b.Customer_Status,
     b.Inception_Date,
     a.Registration_date,
-    NULL AS `User_Permission`,
+    NULL AS "User_Permission",
     a.Email_Account_Count,
     nf.Email_Flag,
     nf.Phone_Flag,
@@ -734,15 +689,15 @@ SELECT DISTINCT a.User_GUID,
     ad.Email_Opt_Out, 
     ad.Phone_Opt_Out,   
     ad.Email_Bounce, 
-    NULL AS `Preferred_Contact_Method`,
-    NULL AS `Placeholder2`,
+    NULL AS "Preferred_Contact_Method",
+    NULL AS "Placeholder2",
     mfa.TSV_Enrolled_Status,
     mfa.TSV_EMAIL_Flag,
     mfa.TSV_CALL_Flag,
     mfa.TSV_SMS_Flag,
-    NULL AS `Preference_Placeholder1`,
-    NULL AS `Preference_Placeholder2`,
-    NULL AS `Preferences_Last_Used_Date`,
+    NULL AS "Preference_Placeholder1",
+    NULL AS "Preference_Placeholder2",
+    NULL AS "Preferences_Last_Used_Date",
     mfa.last_logged_in_date_okta,
     web.Last_Logged_In_Date_Cox_com,
     mob.Last_Logged_In_Date_Cox_App,
@@ -750,16 +705,15 @@ SELECT DISTINCT a.User_GUID,
         WHEN app.Last_Logged_In_App_ID LIKE 'CoxAccount%' THEN 'iOS'
         WHEN app.Last_Logged_In_App_ID LIKE 'Cox %' THEN 'Android'
         ELSE 'Null'
-    END AS `Last_Logged_In_OS_Cox_App`,
-    NULL AS `Last_Password_Change_Date`,
+    END AS "Last_Logged_In_OS_Cox_App",
+    NULL AS "Last_Password_Change_Date",
     s.time_key
-FROM account_summary s 
-LEFT JOIN customer_dim b ON s.customer_key = b.customer_key
-LEFT JOIN guid_data a ON s.customer_key = a.customer_key 
-LEFT JOIN mob_data mob ON s.customer_key = CAST(mob.customer_key AS bigint)
+FROM account_summary s left join customer_dim b on s.customer_key=b.customer_key
+left join guid_data a on s.customer_key=a.customer_key 
+LEFT JOIN mob_data mob on s.customer_key=CAST(mob.customer_key as bigint)
 LEFT JOIN web_contact web ON s.customer_key = CAST(web.customer_key AS bigint)
 LEFT JOIN app_contact app ON s.customer_key = CAST(app.customer_key AS bigint)
-LEFT JOIN mfa_data mfa ON a.user_id = mfa.user_id
+LEFT JOIN  mfa_data mfa ON a.user_id = mfa.user_id
 LEFT JOIN account_details ad ON s.account_nbr = ad.account_nbr AND ad.rn = 1
 LEFT JOIN notification_flags nf ON s.account_nbr = nf.customer_number
 """
@@ -806,18 +760,18 @@ SELECT DISTINCT
     COALESCE(w.mvvar3, a.server_form_error_p13) AS Server_Error,
     NULL AS Client_Error,
     COALESCE(w.campaign, a.post_evar40) AS Traffic_Source_Detail_sc_id
-FROM 
-    edw.customer_guid_dtl_dim a2
+from 
+edw.customer_guid_dtl_dim a2
 LEFT JOIN 
-    edw.customer_dim b ON a2.customer_key = b.customer_key
+edw.customer_dim b ON a2.customer_key = b.customer_key
 LEFT JOIN 
-    webanalytics.web_contact_history w ON a2.household_member_guid = w.evar61_coxcust_guid
+webanalytics.web_contact_history w ON a2.household_member_guid = w.evar61_coxcust_guid
 LEFT JOIN 
-    mobile_data_temp.app_contact_history a 
-    ON a2.household_member_guid = a.coxcust_guid_v61
+mobile_data_temp.app_contact_history a 
+on a2.household_member_guid = a.coxcust_guid_v61
 WHERE
-    to_date(SUBSTR(CAST(a.dt AS string), 1, 19), 'yyyy-MM-dd') >= DATE_SUB(CURRENT_DATE, 90)
-    AND to_date(SUBSTR(CAST(w.dt AS string), 1, 19), 'yyyy-MM-dd') >= DATE_SUB(CURRENT_DATE, 90)
+    DATE_PARSE(SUBSTR(CAST(a.dt AS varchar), 1, 19), '%Y-%m-%d') >= DATE_ADD('day', -90, CURRENT_DATE)
+    AND DATE_PARSE(SUBSTR(CAST(w.dt AS varchar), 1, 19), '%Y-%m-%d') >= DATE_ADD('day', -90, CURRENT_DATE)
     AND (a.pagename LIKE 'coxapp:reg:%' OR a.pagename LIKE 'coxapp:myaccount%')
     AND w.pagename LIKE 'cox:res:myprofile%'
 """
@@ -832,7 +786,7 @@ WITH filtered_auth AS (
     FROM
         ciam.successful_authentications_okta
     WHERE
-        CAST(event_date AS DATE) >= DATE_ADD(CURRENT_DATE, -90)
+        CAST(event_date AS DATE) >= DATE_ADD('day', -90, CURRENT_DATE)
 ),
 filtered_signon AS (
     SELECT
@@ -842,7 +796,7 @@ filtered_signon AS (
     FROM
         ciam.single_signon_okta
     WHERE
-        CAST(event_date AS DATE) >= DATE_ADD(CURRENT_DATE, -90)
+        CAST(event_date AS DATE) >= DATE_ADD('day', -90, CURRENT_DATE)
 ),
 aggregated_auth AS (
     SELECT
@@ -866,7 +820,7 @@ aggregated_signon AS (
 )
 SELECT
     g.household_member_guid AS User_GUID,
-    a.host AS Authentication_Host,
+a.host AS Authentication_Host,
     o.application AS Authentication_Channel,
     a.Authentication_Attempt,
     a.authentication_success_result,
@@ -896,7 +850,7 @@ WITH filtered_auth AS (
     FROM
         ciam.successful_authentications_okta
     WHERE
-        CAST(event_date AS DATE) >= CURRENT_DATE - INTERVAL 1 YEAR  -- Corrected here
+        CAST(event_date AS DATE) >= DATE_ADD('year', -1, CURRENT_DATE)
 ),
 filtered_signon AS (
     SELECT
@@ -906,7 +860,7 @@ filtered_signon AS (
     FROM
         ciam.single_signon_okta
     WHERE
-        CAST(event_date AS DATE) >= CURRENT_DATE - INTERVAL 1 YEAR  -- Corrected here
+        CAST(event_date AS DATE) >= DATE_ADD('year', -1, CURRENT_DATE)
 ),
 aggregated_auth AS (
     SELECT
@@ -932,7 +886,7 @@ aggregated_signon AS (
 )
 SELECT
     a.event_date AS Event_Date,
-    a.host AS Authentication_Host,
+a.host AS Authentication_Host,
     o.application AS Authentication_Channel,
     a.Authentication_Attempt,
     a.authentication_success_result,
@@ -951,15 +905,22 @@ LEFT JOIN
 LEFT JOIN
     ciam.mfa_total_mfa_users m ON g.user_id = m.username
 GROUP BY
-    a.event_date, a.host, o.application, m.eventtype, a.Authentication_Attempt, a.authentication_success_result
+a.event_date, a.host, o.application, m.eventtype,a.Authentication_Attempt,a.authentication_success_result
 """
 
+# Athena Query Results Temporary files s3 path
+account_dim_sum_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/account_dim_sum_temp/"
+profile_dim_sum_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/profile_dim_sum_temp/"
+transaction_adobe_fact_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/transaction_adobe_fact_temp/"
+transaction_okta_user_agg_fact_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/transaction_okta_user_agg_fact_temp/"
+transcation_okta_day_agg_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/transcation_okta_day_agg_temp/"
+
 #Output s3 path
-account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/account_dim_sum/"
-profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/profile_dim_sum/"
-transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_adobe_fact/"
-transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_okta_user_agg_fact/"
-transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transcation_okta_day_agg_fact/"
+account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam/account_dim_sum/"
+profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam/profile_dim_sum/"
+transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam/transaction_adobe_fact/"
+transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam/transaction_okta_user_agg_fact/"
+transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam/transcation_okta_day_agg_fact/"
 
 #PartitionKeys for the target files
 account_dim_sum_partitionkeys = ["time_key"]
@@ -974,9 +935,9 @@ starttime = datetime.now()
 start_time = starttime.strftime("%Y-%m-%d %H:%M:%S")
 unique_id = str(uuid.uuid4())
 job_name = "CIAM_ETL"
-job_log_database_name = "ciam_test1"
+job_log_database_name = "ciam_test"
 job_log_table_name = "job_log_table"
-job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/job_log_table/"
+job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam/job_log_table/"
 
 def job_lob_table_data(job_load_type,endtime,runtimeseconds,account_dim_count,profile_dim_count,adobe_fact_count,user_agg_fact_count,day_agg_count):
     job_log_data = {
@@ -1035,14 +996,30 @@ def check_load_type(database_name, table_name):
     return False
 
 
-def load_data_from_athena(sql_query,load_full_data=True):
+def load_data_from_athena(sql_query,temp_path,load_full_data=True):
     if load_full_data:
         # Read all data from Athena (Glue Catalog)
-        read_df = spark.sql(sql_query)
+        read_df = (
+        glueContext.read.format("jdbc")
+        .option("driver", "com.simba.athena.jdbc.Driver")
+        .option("AwsCredentialsProviderClass","com.simba.athena.amazonaws.auth.InstanceProfileCredentialsProvider")
+        .option("url", "jdbc:awsathena://athena.us-east-1.amazonaws.com:443;QueryTimeout=25200")
+        .option("dbtable", f"({sql_query})")
+        .option("S3OutputLocation",temp_path)
+        .load()
+        )
     else:
         # Read only the latest month data (Assuming a `Month` partition or similar column exists)
         # Replace `Month` with actual partition/column name for the month
-        read_df = spark.sql(sql_query) 
+        read_df = (
+        glueContext.read.format("jdbc")
+        .option("driver", "com.simba.athena.jdbc.Driver")
+        .option("AwsCredentialsProviderClass","com.simba.athena.amazonaws.auth.InstanceProfileCredentialsProvider")
+        .option("url", "jdbc:awsathena://athena.us-east-1.amazonaws.com:443;QueryTimeout=25200")
+        .option("dbtable", f"({sql_query})")
+        .option("S3OutputLocation",temp_path)
+        .load()
+        )   
     return read_df
 
 def write_to_s3(df,output_path,partitionkey):
@@ -1062,34 +1039,15 @@ if check_table_exists(job_log_database_name, job_log_table_name):
     # Step 2: Check if 'LoadType' contains 'Latest13months'
     if check_load_type(job_log_database_name, job_log_table_name):
         # If 'Latest13months' is present, load only the latest month data
-        account_dim_sum_df = load_data_from_athena(account_dim_sum_1,load_full_data=False)
-        profile_dim_sum_df = load_data_from_athena(profile_dim_sum_1,load_full_data=False)
-        transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,load_full_data=False)
-        transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,load_full_data=False)
-        transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,load_full_data=False)
-        account_dim_sum_df.cache()
-        profile_dim_sum_df.cache()
-        transaction_adobe_fact_df.cache()
-        transaction_okta_user_agg_fact_df.cache()
-        transcation_okta_day_agg_df.cache()
-        account_dim_sum_df = account_dim_sum_df.withColumn("time_key", F.to_date(account_dim_sum_df["time_key"], "yyyy-MM-dd"))
+        account_dim_sum_df = load_data_from_athena(account_dim_sum_1,account_dim_sum_temp,load_full_data=False)
+        profile_dim_sum_df = load_data_from_athena(profile_dim_sum_1,profile_dim_sum_temp,load_full_data=False)
+        transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,transaction_adobe_fact_temp,load_full_data=False)
+        transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,transaction_okta_user_agg_fact_temp,load_full_data=False)
+        transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,transcation_okta_day_agg_temp,load_full_data=False)
         account_dim_sum_df.printSchema()
-        for col_name, dtype in profile_dim_sum_df.dtypes:
-            if dtype == 'void':
-                profile_dim_sum_df = profile_dim_sum_df.withColumn(col_name, F.lit("").cast("string"))
-        profile_dim_sum_df = profile_dim_sum_df.withColumn("time_key", F.to_date(profile_dim_sum_df["time_key"], "yyyy-MM-dd"))
         profile_dim_sum_df.printSchema()
-        for col_name, dtype in transaction_adobe_fact_df.dtypes:
-            if dtype == 'void':
-                transaction_adobe_fact_df = transaction_adobe_fact_df.withColumn(col_name, F.lit("").cast("string"))
         transaction_adobe_fact_df.printSchema()
-        for col_name, dtype in transaction_okta_user_agg_fact_df.dtypes:
-            if dtype == 'void':
-                transaction_okta_user_agg_fact_df = transaction_okta_user_agg_fact_df.withColumn(col_name, F.lit("").cast("string"))
         transaction_okta_user_agg_fact_df.printSchema()
-        for col_name, dtype in transcation_okta_day_agg_df.dtypes:
-            if dtype == 'void':
-                transcation_okta_day_agg_df = transcation_okta_day_agg_df.withColumn(col_name, F.lit("").cast("string"))
         transcation_okta_day_agg_df.printSchema()
         account_dim_sum_df.show()
         profile_dim_sum_df.show()
@@ -1104,34 +1062,15 @@ if check_table_exists(job_log_database_name, job_log_table_name):
         loadtype = "Latest Current Month"
     else:
         # If 'Latest13months' is not present, load all data
-        account_dim_sum_df = load_data_from_athena(account_dim_sum_13,load_full_data=True)
-        profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,load_full_data=True)
-        transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,load_full_data=True)
-        transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,load_full_data=True)
-        transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,load_full_data=True)
-        account_dim_sum_df.cache()
-        profile_dim_sum_df.cache()
-        transaction_adobe_fact_df.cache()
-        transaction_okta_user_agg_fact_df.cache()
-        transcation_okta_day_agg_df.cache()
-        account_dim_sum_df = account_dim_sum_df.withColumn("time_key", F.to_date(account_dim_sum_df["time_key"], "yyyy-MM-dd"))
+        account_dim_sum_df = load_data_from_athena(account_dim_sum_13,account_dim_sum_temp,load_full_data=True)
+        profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,profile_dim_sum_temp,load_full_data=True)
+        transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,transaction_adobe_fact_temp,load_full_data=True)
+        transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,transaction_okta_user_agg_fact_temp,load_full_data=True)
+        transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,transcation_okta_day_agg_temp,load_full_data=True)
         account_dim_sum_df.printSchema()
-        for col_name, dtype in profile_dim_sum_df.dtypes:
-            if dtype == 'void':
-                profile_dim_sum_df = profile_dim_sum_df.withColumn(col_name, F.lit("").cast("string"))
-        profile_dim_sum_df = profile_dim_sum_df.withColumn("time_key", F.to_date(profile_dim_sum_df["time_key"], "yyyy-MM-dd"))
         profile_dim_sum_df.printSchema()
-        for col_name, dtype in transaction_adobe_fact_df.dtypes:
-            if dtype == 'void':
-                transaction_adobe_fact_df = transaction_adobe_fact_df.withColumn(col_name, F.lit("").cast("string"))
         transaction_adobe_fact_df.printSchema()
-        for col_name, dtype in transaction_okta_user_agg_fact_df.dtypes:
-            if dtype == 'void':
-                transaction_okta_user_agg_fact_df = transaction_okta_user_agg_fact_df.withColumn(col_name, F.lit("").cast("string"))
         transaction_okta_user_agg_fact_df.printSchema()
-        for col_name, dtype in transcation_okta_day_agg_df.dtypes:
-            if dtype == 'void':
-                transcation_okta_day_agg_df = transcation_okta_day_agg_df.withColumn(col_name, F.lit("").cast("string"))
         transcation_okta_day_agg_df.printSchema()
         account_dim_sum_df.show()
         profile_dim_sum_df.show()
@@ -1154,34 +1093,15 @@ if check_table_exists(job_log_database_name, job_log_table_name):
     transcation_okta_day_agg_write_df = write_to_s3(transcation_okta_day_agg_df,transcation_okta_day_agg_output,transcation_okta_day_agg_partitionkeys)
 else:
      # If 'Latest13months' is not present, load all data
-    account_dim_sum_df = load_data_from_athena(account_dim_sum_13,load_full_data=True)
-    profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,load_full_data=True)
-    transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,load_full_data=True)
-    transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,load_full_data=True)
-    transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,load_full_data=True)
-    account_dim_sum_df.cache()
-    profile_dim_sum_df.cache()
-    transaction_adobe_fact_df.cache()
-    transaction_okta_user_agg_fact_df.cache()
-    transcation_okta_day_agg_df.cache()
-    account_dim_sum_df = account_dim_sum_df.withColumn("time_key", F.to_date(account_dim_sum_df["time_key"], "yyyy-MM-dd"))
+    account_dim_sum_df = load_data_from_athena(account_dim_sum_13,account_dim_sum_temp,load_full_data=True)
+    profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,profile_dim_sum_temp,load_full_data=True)
+    transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,transaction_adobe_fact_temp,load_full_data=True)
+    transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,transaction_okta_user_agg_fact_temp,load_full_data=True)
+    transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,transcation_okta_day_agg_temp,load_full_data=True)
     account_dim_sum_df.printSchema()
-    for col_name, dtype in profile_dim_sum_df.dtypes:
-        if dtype == 'void':
-            profile_dim_sum_df = profile_dim_sum_df.withColumn(col_name, F.lit("").cast("string"))
-    profile_dim_sum_df = profile_dim_sum_df.withColumn("time_key", F.to_date(profile_dim_sum_df["time_key"], "yyyy-MM-dd"))
     profile_dim_sum_df.printSchema()
-    for col_name, dtype in transaction_adobe_fact_df.dtypes:
-        if dtype == 'void':
-            transaction_adobe_fact_df = transaction_adobe_fact_df.withColumn(col_name, F.lit("").cast("string"))
     transaction_adobe_fact_df.printSchema()
-    for col_name, dtype in transaction_okta_user_agg_fact_df.dtypes:
-        if dtype == 'void':
-            transaction_okta_user_agg_fact_df = transaction_okta_user_agg_fact_df.withColumn(col_name, F.lit("").cast("string"))
     transaction_okta_user_agg_fact_df.printSchema()
-    for col_name, dtype in transcation_okta_day_agg_df.dtypes:
-        if dtype == 'void':
-            transcation_okta_day_agg_df = transcation_okta_day_agg_df.withColumn(col_name, F.lit("").cast("string"))
     transcation_okta_day_agg_df.printSchema()
     account_dim_sum_df.show()
     profile_dim_sum_df.show()
@@ -1215,7 +1135,7 @@ job_log_table_write_df = job_log_table_df.write.format("parquet").mode("append")
 
 
 bucket_name = "cci-dig-aicoe-data-sb" 
-folder_paths = ["processed/ciam_data/account_dim_sum/","processed/ciam_data/profile_dim_sum/"]
+folder_paths = ["processed/ciam/account_dim_sum/","processed/ciam/profile_dim_sum/"]
 # Define the regex pattern to match 'time_key' partitions
 time_key_pattern = re.compile(r'time_key=(\d{4}-\d{2}-\d{2})/')
 # Define a cutoff date for keeping only the last 13 months

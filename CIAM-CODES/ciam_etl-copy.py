@@ -314,6 +314,7 @@ LEFT JOIN web_contact web ON g.household_member_guid = web.evar61_coxcust_guid
 LEFT JOIN app_contact app ON g.household_member_guid = app.coxcust_guid_v61
 LEFT JOIN dwelling_data d ON r.dwelling_type_key = d.dwelling_type_key
 """
+
 profile_dim_sum_13 = """
 WITH customer_dim AS (
     SELECT 
@@ -954,19 +955,26 @@ GROUP BY
     a.event_date, a.host, o.application, m.eventtype, a.Authentication_Attempt, a.authentication_success_result
 """
 
+# Athena Query Results Temporary files s3 path
+account_dim_sum_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/account_dim_sum_temp/"
+profile_dim_sum_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/profile_dim_sum_temp/"
+transaction_adobe_fact_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/transaction_adobe_fact_temp/"
+transaction_okta_user_agg_fact_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/transaction_okta_user_agg_fact_temp/"
+transcation_okta_day_agg_temp = "s3://cci-dig-aicoe-data-sb/processed/ciam/transcation_okta_day_agg_temp/"
+
 #Output s3 path
-account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data1/account_dim_sum/"
-profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data1/profile_dim_sum/"
-transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data1/transaction_adobe_fact/"
-transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data1/transaction_okta_user_agg_fact/"
-transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data1/transcation_okta_day_agg_fact/"
+account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/account_dim_sum/"
+profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/profile_dim_sum/"
+transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_adobe_fact/"
+transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transaction_okta_user_agg_fact/"
+transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/transcation_okta_day_agg_fact/"
 
 #PartitionKeys for the target files
 account_dim_sum_partitionkeys = ["time_key"]
 profile_dim_sum_partitionkeys = ["time_key"]
-transaction_adobe_fact_partitionkeys = ["Activity_Name"]
-transaction_okta_user_agg_fact_partitionkeys = ["authentication_method"]
-transcation_okta_day_agg_partitionkeys = ["Authentication_method"]
+transaction_adobe_fact_partitionkeys = []
+transaction_okta_user_agg_fact_partitionkeys = []
+transcation_okta_day_agg_partitionkeys = []
 
 glue_client = boto3.client('glue')
 s3 = boto3.client('s3')
@@ -974,9 +982,9 @@ starttime = datetime.now()
 start_time = starttime.strftime("%Y-%m-%d %H:%M:%S")
 unique_id = str(uuid.uuid4())
 job_name = "CIAM_ETL"
-job_log_database_name = "ciam_test3"
+job_log_database_name = "ciam_test1"
 job_log_table_name = "job_log_table"
-job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam_data1/job_log_table/"
+job_log_table_path = "s3://cci-dig-aicoe-data-sb/processed/ciam_data/job_log_table/"
 
 def job_lob_table_data(job_load_type,endtime,runtimeseconds,account_dim_count,profile_dim_count,adobe_fact_count,user_agg_fact_count,day_agg_count):
     job_log_data = {
@@ -1046,7 +1054,6 @@ def load_data_from_athena(sql_query,load_full_data=True):
     return read_df
 
 def write_to_s3(df,output_path,partitionkey):
-    df = df.repartitionByRange(1,partitionkey)
     write_df = df.write \
     .partitionBy(partitionkey) \
     .format("parquet") \
@@ -1075,22 +1082,10 @@ if check_table_exists(job_log_database_name, job_log_table_name):
         transcation_okta_day_agg_df.cache()
         account_dim_sum_df = account_dim_sum_df.withColumn("time_key", F.to_date(account_dim_sum_df["time_key"], "yyyy-MM-dd"))
         account_dim_sum_df.printSchema()
-        for col_name, dtype in profile_dim_sum_df.dtypes:
-            if dtype == 'void':
-                profile_dim_sum_df = profile_dim_sum_df.withColumn(col_name, F.lit("").cast("string"))
         profile_dim_sum_df = profile_dim_sum_df.withColumn("time_key", F.to_date(profile_dim_sum_df["time_key"], "yyyy-MM-dd"))
         profile_dim_sum_df.printSchema()
-        for col_name, dtype in transaction_adobe_fact_df.dtypes:
-            if dtype == 'void':
-                transaction_adobe_fact_df = transaction_adobe_fact_df.withColumn(col_name, F.lit("").cast("string"))
         transaction_adobe_fact_df.printSchema()
-        for col_name, dtype in transaction_okta_user_agg_fact_df.dtypes:
-            if dtype == 'void':
-                transaction_okta_user_agg_fact_df = transaction_okta_user_agg_fact_df.withColumn(col_name, F.lit("").cast("string"))
         transaction_okta_user_agg_fact_df.printSchema()
-        for col_name, dtype in transcation_okta_day_agg_df.dtypes:
-            if dtype == 'void':
-                transcation_okta_day_agg_df = transcation_okta_day_agg_df.withColumn(col_name, F.lit("").cast("string"))
         transcation_okta_day_agg_df.printSchema()
         account_dim_sum_df.show()
         profile_dim_sum_df.show()
@@ -1105,11 +1100,11 @@ if check_table_exists(job_log_database_name, job_log_table_name):
         loadtype = "Latest Current Month"
     else:
         # If 'Latest13months' is not present, load all data
-        account_dim_sum_df = load_data_from_athena(account_dim_sum_13,load_full_data=True)
-        profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,load_full_data=True)
-        transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,load_full_data=True)
-        transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,load_full_data=True)
-        transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,load_full_data=True)
+        account_dim_sum_df = load_data_from_athena(account_dim_sum_13,account_dim_sum_temp,load_full_data=True)
+        profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,profile_dim_sum_temp,load_full_data=True)
+        transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,transaction_adobe_fact_temp,load_full_data=True)
+        transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,transaction_okta_user_agg_fact_temp,load_full_data=True)
+        transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,transcation_okta_day_agg_temp,load_full_data=True)
         account_dim_sum_df.cache()
         profile_dim_sum_df.cache()
         transaction_adobe_fact_df.cache()
@@ -1117,22 +1112,10 @@ if check_table_exists(job_log_database_name, job_log_table_name):
         transcation_okta_day_agg_df.cache()
         account_dim_sum_df = account_dim_sum_df.withColumn("time_key", F.to_date(account_dim_sum_df["time_key"], "yyyy-MM-dd"))
         account_dim_sum_df.printSchema()
-        for col_name, dtype in profile_dim_sum_df.dtypes:
-            if dtype == 'void':
-                profile_dim_sum_df = profile_dim_sum_df.withColumn(col_name, F.lit("").cast("string"))
         profile_dim_sum_df = profile_dim_sum_df.withColumn("time_key", F.to_date(profile_dim_sum_df["time_key"], "yyyy-MM-dd"))
         profile_dim_sum_df.printSchema()
-        for col_name, dtype in transaction_adobe_fact_df.dtypes:
-            if dtype == 'void':
-                transaction_adobe_fact_df = transaction_adobe_fact_df.withColumn(col_name, F.lit("").cast("string"))
         transaction_adobe_fact_df.printSchema()
-        for col_name, dtype in transaction_okta_user_agg_fact_df.dtypes:
-            if dtype == 'void':
-                transaction_okta_user_agg_fact_df = transaction_okta_user_agg_fact_df.withColumn(col_name, F.lit("").cast("string"))
         transaction_okta_user_agg_fact_df.printSchema()
-        for col_name, dtype in transcation_okta_day_agg_df.dtypes:
-            if dtype == 'void':
-                transcation_okta_day_agg_df = transcation_okta_day_agg_df.withColumn(col_name, F.lit("").cast("string"))
         transcation_okta_day_agg_df.printSchema()
         account_dim_sum_df.show()
         profile_dim_sum_df.show()
@@ -1155,11 +1138,11 @@ if check_table_exists(job_log_database_name, job_log_table_name):
     transcation_okta_day_agg_write_df = write_to_s3(transcation_okta_day_agg_df,transcation_okta_day_agg_output,transcation_okta_day_agg_partitionkeys)
 else:
      # If 'Latest13months' is not present, load all data
-    account_dim_sum_df = load_data_from_athena(account_dim_sum_13,load_full_data=True)
-    profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,load_full_data=True)
-    transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,load_full_data=True)
-    transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,load_full_data=True)
-    transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,load_full_data=True)
+    account_dim_sum_df = load_data_from_athena(account_dim_sum_13,account_dim_sum_temp,load_full_data=True)
+    profile_dim_sum_df = load_data_from_athena(profile_dim_sum_13,profile_dim_sum_temp,load_full_data=True)
+    transaction_adobe_fact_df = load_data_from_athena(transaction_adobe_fact,transaction_adobe_fact_temp,load_full_data=True)
+    transaction_okta_user_agg_fact_df = load_data_from_athena(transaction_okta_user_agg_fact,transaction_okta_user_agg_fact_temp,load_full_data=True)
+    transcation_okta_day_agg_df = load_data_from_athena(transcation_okta_day_agg,transcation_okta_day_agg_temp,load_full_data=True)
     account_dim_sum_df.cache()
     profile_dim_sum_df.cache()
     transaction_adobe_fact_df.cache()
@@ -1167,22 +1150,10 @@ else:
     transcation_okta_day_agg_df.cache()
     account_dim_sum_df = account_dim_sum_df.withColumn("time_key", F.to_date(account_dim_sum_df["time_key"], "yyyy-MM-dd"))
     account_dim_sum_df.printSchema()
-    for col_name, dtype in profile_dim_sum_df.dtypes:
-        if dtype == 'void':
-            profile_dim_sum_df = profile_dim_sum_df.withColumn(col_name, F.lit("").cast("string"))
     profile_dim_sum_df = profile_dim_sum_df.withColumn("time_key", F.to_date(profile_dim_sum_df["time_key"], "yyyy-MM-dd"))
     profile_dim_sum_df.printSchema()
-    for col_name, dtype in transaction_adobe_fact_df.dtypes:
-        if dtype == 'void':
-            transaction_adobe_fact_df = transaction_adobe_fact_df.withColumn(col_name, F.lit("").cast("string"))
     transaction_adobe_fact_df.printSchema()
-    for col_name, dtype in transaction_okta_user_agg_fact_df.dtypes:
-        if dtype == 'void':
-            transaction_okta_user_agg_fact_df = transaction_okta_user_agg_fact_df.withColumn(col_name, F.lit("").cast("string"))
     transaction_okta_user_agg_fact_df.printSchema()
-    for col_name, dtype in transcation_okta_day_agg_df.dtypes:
-        if dtype == 'void':
-            transcation_okta_day_agg_df = transcation_okta_day_agg_df.withColumn(col_name, F.lit("").cast("string"))
     transcation_okta_day_agg_df.printSchema()
     account_dim_sum_df.show()
     profile_dim_sum_df.show()
@@ -1216,7 +1187,7 @@ job_log_table_write_df = job_log_table_df.write.format("parquet").mode("append")
 
 
 bucket_name = "cci-dig-aicoe-data-sb" 
-folder_paths = ["processed/ciam_data1/account_dim_sum/","processed/ciam_data1/profile_dim_sum/"]
+folder_paths = ["processed/ciam_data/account_dim_sum/","processed/ciam_data/profile_dim_sum/"]
 # Define the regex pattern to match 'time_key' partitions
 time_key_pattern = re.compile(r'time_key=(\d{4}-\d{2}-\d{2})/')
 # Define a cutoff date for keeping only the last 13 months
@@ -1240,8 +1211,8 @@ def get_partition_dates(prefix):
 def delete_old_partitions(prefix):
     """Delete partitions older than 13 months."""
     partition_dates = get_partition_dates(prefix)
-    if len(partition_dates) > 14:
-        for date in partition_dates[:-14]:  # Keep only the last 13 months
+    if len(partition_dates) > 13:
+        for date in partition_dates[:-13]:  # Keep only the last 13 months
             partition_prefix = f"{prefix}time_key={date.strftime('%Y-%m-%d')}/"
             result = s3.list_objects_v2(Bucket=bucket_name, Prefix=partition_prefix)
             if 'Contents' in result:
