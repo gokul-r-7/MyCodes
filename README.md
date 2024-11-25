@@ -224,6 +224,85 @@ ELSE 'None' END) product_service_type
 
 
 
+WITH date_diff_table AS (
+
+    SELECT
+
+        customer_key,
+
+        last_contacted_date_cox_app,
+
+        time_key,
+
+        date_diff('day',
+
+            try_cast(last_contacted_date_cox_app AS date),
+
+                  try_cast(time_key AS date)
+
+                  ) AS days_difference
+
+    FROM ciam_datamodel.account_dim_sum)
+
+select COUNT(DISTINCT customer_key) AS customer_count,date_range from (
+
+SELECT
+
+    customer_key,
+
+    time_key,
+
+   CASE
+
+        when days_difference < 0 then 'less than 0 days'
+
+        WHEN "last_contacted_date_cox_app" IS NULL OR "last_contacted_date_cox_app" = '' THEN 'never_contacted'
+
+        WHEN days_difference BETWEEN 0 AND 30 THEN '0-30 days'
+
+        WHEN days_difference BETWEEN 31 AND 90 THEN '31-90 days'
+
+        WHEN days_difference BETWEEN 91 AND 180 THEN '91-180 days'
+
+        WHEN days_difference BETWEEN 181 AND 365 THEN '6-12 months'
+
+        WHEN days_difference BETWEEN 366 AND 1095 THEN '1-3 years'
+
+        ELSE 'Other'
+
+    END AS date_range
+
+FROM date_diff_table
+
+GROUP BY
+
+customer_key,
+
+time_key,
+
+    CASE
+
+        when days_difference < 0 then 'less than 0 days'
+
+        WHEN last_contacted_date_cox_app IS NULL OR last_contacted_date_cox_app = '' THEN 'never_contacted'
+
+        WHEN days_difference BETWEEN 0 AND 30 THEN '0-30 days'
+
+        WHEN days_difference BETWEEN 31 AND 90 THEN '31-90 days'
+
+        WHEN days_difference BETWEEN 91 AND 180 THEN '91-180 days'
+
+        WHEN days_difference BETWEEN 181 AND 365 THEN '6-12 months'
+
+        WHEN days_difference BETWEEN 366 AND 1095 THEN '1-3 years'
+
+        ELSE 'Other' 
+
+    END) where date_format(CAST(time_key as date),'%Y-%m')='2024-10' group by date_range
+
+ 
+
+
 
 
 
