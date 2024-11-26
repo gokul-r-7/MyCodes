@@ -308,5 +308,31 @@ time_key,
 
 
 
+SELECT DISTINCT     COALESCE(w.evar61_coxcust_guid, a.coxcust_guid_v61) AS User_guid,    COALESCE(w.evar75_marketing_cloud_id) AS Adobe_ECID,    COALESCE(w.visits, a.visits) AS Adobe_Visit_Id,    COALESCE(w.date_time, a.date_time) AS Activity_Date,    a2.create_dt as Registration_Date,    b.inception_dt as Inception_date,    CASE         WHEN w.pagename LIKE 'cox:res:myprofile:communication%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:contacts%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:disability%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:email:confirmation%' THEN 'Email Verification'        WHEN w.pagename LIKE 'cox:res:myprofile:forgot-password:%' THEN 'Forgot Password'        WHEN w.pagename LIKE 'cox:res:myprofile:forgot-userid:%' THEN 'Forgot UserID'        WHEN w.pagename LIKE 'cox:res:myprofile:forgotuserid:%' THEN 'Forgot UserID'        WHEN w.pagename LIKE 'cox:res:myprofile:fuid:%' THEN 'Forgot UserID'        WHEN w.pagename LIKE 'cox:res:myprofile:home%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:mailing-address%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:mailingaddress%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:manageusers%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:notifications%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:number-lock-protection%' THEN 'Number Lock Protection'        WHEN w.pagename LIKE 'cox:res:myprofile:password%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:privacy%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:reg:%' THEN 'Registration'        WHEN w.pagename LIKE 'cox:res:myprofile:security%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:updateprofile%' THEN 'Manage Profile'        WHEN w.pagename LIKE 'cox:res:myprofile:syncupaccount%' THEN 'Sync Account'        WHEN w.pagename LIKE 'cox:res:myprofile:tsv' THEN 'TSV Enrollment'        WHEN w.pagename LIKE 'cox:res:myprofile:tsv:email:%' THEN 'TSV Verification'        WHEN w.pagename LIKE 'cox:res:myprofile:tsv:call:%' THEN 'TSV Verification'        WHEN w.pagename LIKE 'cox:res:myprofile:tsv:text:%' THEN 'TSV Verification'        WHEN w.pagename LIKE 'cox:res:myprofile:tsv:reset:%' THEN 'TSV Reset'        WHEN w.pagename LIKE 'cox:res:myprofile:verify-identity:confirmation%' THEN 'Verify Contact'        WHEN w.pagename LIKE 'cox:res:myprofile:verify-identity:email%' THEN 'Verify Contact'        WHEN w.pagename LIKE 'cox:res:myprofile:verify-identity:landing%' THEN 'Verify Contact'        WHEN w.pagename LIKE 'cox:res:myprofile:verify-identity:phone%' THEN 'Verify Contact'        ELSE 'Unknown'    END AS Activity_Name,    COALESCE(w.pagename, a.pagename) AS Activity_Page,    COALESCE(w.mvvar3, a.server_form_error_p13) AS Server_Error,    NULL AS Client_Error,    COALESCE(w.campaign, a.post_evar40) AS Traffic_Source_Detail_sc_idfrom edw.customer_guid_dtl_dim a2LEFT JOIN edw.customer_dim b ON a2.customer_key = b.customer_keyLEFT JOIN webanalytics.web_contact_history w ON a2.household_member_guid = w.evar61_coxcust_guidLEFT JOIN mobile_data_temp.app_contact_history a on a2.household_member_guid = a.coxcust_guid_v61WHERE    DATE_PARSE(SUBSTR(CAST(a.dt AS varchar), 1, 19), '%Y-%m-%d') >= DATE_ADD('day', -365, CURRENT_DATE)    AND DATE_PARSE(SUBSTR(CAST(w.dt AS varchar), 1, 19), '%Y-%m-%d') >= DATE_ADD('day', -365, CURRENT_DATE)    AND (a.pagename LIKE 'coxapp:reg:%' OR a.pagename LIKE 'coxapp:myaccount%')    AND w.pagename LIKE 'cox:res:myprofile%'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
