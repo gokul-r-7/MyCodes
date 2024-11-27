@@ -320,7 +320,12 @@ SELECT DISTINCT     COALESCE(w.evar61_coxcust_guid, a.coxcust_guid_v61) AS User_
 
 
 
-
+(CASE 
+WHEN ((ads.data_flag = '1') AND (ads.tv_flag = '0') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '0')) THEN 'Data' 
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '1') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '0')) THEN 'TV' 
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '0') AND (ads.phone_flag = '1') AND (ads.mobile_flag = '0')) THEN 'phone' 
+WHEN ((ads.data_flag = '0') AND (ads.tv_flag = '0') AND (ads.phone_flag = '0') AND (ads.mobile_flag = '1')) THEN 'mobile'
+ELSE 'None' END) product_service_type 
 
 
 
