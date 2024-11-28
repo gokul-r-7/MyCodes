@@ -1,3 +1,30 @@
+select g.household_member_guid from edw.customer_guid_dtl_dim g join ciam_datamodel.tsv_guid_data t on cast(g.household_member_guid as varchar)=cast(t.household_member_guid as varchar)
+ 
+select * from ciam_datamodel.tsv_guid_data where HOUSEHOLD_MEMBER_GUID = '2a1e0a0d-3bc6-6c6b-9f00-017dd952b2c1'
+ 
+select * from
+ 
+select * from EDW.CUSTOMER_GUID_DTL_DIM GUID where HOUSEHOLD_MEMBER_GUID = '2a1e0a0d-3bc6-6c6b-9f00-017dd952b2c1'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 IF { FIXED [Customer Key]: 
         MAX(
             IF DATEPART('month', [time_key (copy)]) = DATEPART('month', DATEADD('month', -1, [selected_date])) 
