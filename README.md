@@ -1,3 +1,104 @@
+With revenue_data AS (
+SELECT r.customer_key,
+r.site_id,
+r.dwelling_type_key,
+r.easy_pay_flag,
+case when r.mobile_gross_mrc > 0 then '1' else '0' end as Mobile_Flag,
+           r.customer_substatus_key,
+		   r.time_key
+    FROM edw.customer_revenue_fact r
+	 WHERE r.bill_type_key != 2 and
+    DATE_PARSE(r.time_key, '%Y-%m-%d') >= DATE_ADD('month', -13, CURRENT_DATE)
+),
+ 
+ivr_contact AS (
+    SELECT
+        i.customer_key,
+        DATE_FORMAT(CAST(i.time_key AS TIMESTAMP), '%Y-%m') AS Contact_Month,
+        i.time_key
+        --MAX(CAST(i.time_key AS TIMESTAMP)) AS Last_Contacted_Date_IVR_Call
+    FROM "call"."call_ivr_fact" i
+    GROUP BY i.customer_key,DATE_FORMAT(CAST(i.time_key AS TIMESTAMP), '%Y-%m'),i.time_key
+),
+web_data AS (
+    SELECT
+        d.customer_key,
+        DATE_FORMAT(CAST(d.dt AS TIMESTAMP), '%Y-%m') AS Contact_Month,
+        d.dt
+        --MAX(CAST(d.dt AS TIMESTAMP)) AS Last_Contacted_Date_Cox_com
+        --ROW_NUMBER() OVER (PARTITION BY d.customer_key ORDER BY dt) AS rn
+    FROM webanalytics.web_contact_history d
+    GROUP BY d.customer_key, DATE_FORMAT(CAST(d.dt AS TIMESTAMP), '%Y-%m'),d.dt
+),
+mob_data AS (
+    SELECT
+        mob.customer_key,
+        DATE_FORMAT(CAST(mob.dt AS TIMESTAMP), '%Y-%m') AS Contact_Month,
+        mob.dt
+        --MAX(CAST(mob.dt AS TIMESTAMP)) AS Last_Contacted_Date_Cox_App
+        --ROW_NUMBER() OVER (PARTITION BY mob.customer_key ORDER BY dt) AS rn
+    FROM mobile_data_temp.app_contact_history mob
+    GROUP BY mob.customer_key, DATE_FORMAT(CAST(mob.dt AS TIMESTAMP), '%Y-%m'),mob.dt
+)
+SELECT distinct
+    r.customer_key AS Customer_Key,
+    MAX(CAST(ivr.time_key AS TIMESTAMP))as Last_Contacted_Date_IVR_Call,
+   MAX(CAST(w.dt AS TIMESTAMP))as Last_Contacted_Date_Cox_com,
+    MAX(CAST(mob.dt AS TIMESTAMP)) as Last_Contacted_Date_Cox_App,
+	 r.time_key
+FROM revenue_data r LEFT JOIN ivr_contact ivr
+    ON r.customer_key = CAST(ivr.customer_key AS double)
+    AND DATE_FORMAT(CAST(r.time_key AS TIMESTAMP), '%Y-%m') >= ivr.Contact_Month
+LEFT JOIN web_data w
+    ON r.customer_key = CAST(w.customer_key AS double)
+    AND DATE_FORMAT(CAST(r.time_key AS TIMESTAMP), '%Y-%m') >= w.Contact_Month 
+LEFT JOIN mob_data mob
+    ON r.customer_key = CAST(mob.customer_key AS double)
+    AND DATE_FORMAT(CAST(r.time_key AS TIMESTAMP), '%Y-%m') >= mob.Contact_Month
+group by r.time_key,r.customer_key)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 select g.household_member_guid from edw.customer_guid_dtl_dim g join ciam_datamodel.tsv_guid_data t on cast(g.household_member_guid as varchar)=cast(t.household_member_guid as varchar)
  
 select * from ciam_datamodel.tsv_guid_data where HOUSEHOLD_MEMBER_GUID = '2a1e0a0d-3bc6-6c6b-9f00-017dd952b2c1'
@@ -5,6 +106,19 @@ select * from ciam_datamodel.tsv_guid_data where HOUSEHOLD_MEMBER_GUID = '2a1e0a
 select * from
  
 select * from EDW.CUSTOMER_GUID_DTL_DIM GUID where HOUSEHOLD_MEMBER_GUID = '2a1e0a0d-3bc6-6c6b-9f00-017dd952b2c1'
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
