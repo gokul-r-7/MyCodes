@@ -1,3 +1,6 @@
+ $env:Path += ";D:\terraform_1.10.1_windows_386"
+
+
 With revenue_data AS (
 SELECT r.customer_key,
 r.site_id,
