@@ -1,0 +1,25 @@
+import pandas as pd
+
+# Assuming you have a DataFrame named df
+# Sample DataFrame for demonstration
+df = pd.DataFrame({
+    'A': range(1, 11),
+    'B': range(11, 21)
+})
+
+# Specify the rows and their new positions
+rows_to_move = {122: 119, 130: 127, 301: 298, 309: 306}
+
+# Extract the rows to move
+rows_to_insert = df.loc[rows_to_move.keys()]
+
+# Drop those rows from the DataFrame
+df = df.drop(rows_to_move.keys())
+
+# Reinsert rows at the specified positions
+for old_idx, new_idx in sorted(rows_to_move.items(), key=lambda x: x[1], reverse=True):
+    # Insert the row at the new position (adjusting for 0-based index)
+    df = pd.concat([df.iloc[:new_idx], rows_to_insert.loc[[old_idx]], df.iloc[new_idx:]]).reset_index(drop=True)
+
+# View the updated DataFrame
+print(df)
