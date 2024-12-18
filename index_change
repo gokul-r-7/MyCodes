@@ -1,25 +1,24 @@
 import pandas as pd
 
-# Assuming you have a DataFrame named df
-# Sample DataFrame for demonstration
-df = pd.DataFrame({
-    'A': range(1, 11),
-    'B': range(11, 21)
-})
+# Sample DataFrame
+data = {'col1': [1, 2, 3, 4, 5], 'col2': ['a', 'b', 'c', 'd', 'e']}
+df = pd.DataFrame(data)
 
-# Specify the rows and their new positions
-rows_to_move = {122: 119, 130: 127, 301: 298, 309: 306}
+# Specify the row swaps
+# The index positions where the rows should be moved to
+# We can modify these indices based on your specific situation
+swap_indices = {122: 119, 130: 127, 301: 298, 309: 306}
 
-# Extract the rows to move
-rows_to_insert = df.loc[rows_to_move.keys()]
+# First, get the current DataFrame index order
+df_reordered = df.copy()
 
-# Drop those rows from the DataFrame
-df = df.drop(rows_to_move.keys())
+# Reindex the DataFrame based on the swap logic
+# Use `.loc` to reorder based on the target indices
+for src, dest in swap_indices.items():
+    # Move the row from source index to destination index
+    df_reordered.loc[dest] = df.loc[src]
 
-# Reinsert rows at the specified positions
-for old_idx, new_idx in sorted(rows_to_move.items(), key=lambda x: x[1], reverse=True):
-    # Insert the row at the new position (adjusting for 0-based index)
-    df = pd.concat([df.iloc[:new_idx], rows_to_insert.loc[[old_idx]], df.iloc[new_idx:]]).reset_index(drop=True)
+# Reset the index (optional, if you want a clean re-index)
+df_reordered = df_reordered.sort_index()
 
-# View the updated DataFrame
-print(df)
+print(df_reordered)
