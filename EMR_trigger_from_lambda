@@ -1,0 +1,69 @@
+import boto3
+import json
+import time
+
+def lambda_handler(event, context):
+    # Initialize the boto3 client for EMR Serverless
+    emr_client = boto3.client('emr-serverless')
+
+    # Define the EMR Serverless application ID and the S3 location of your PySpark script
+    application_id = 'your-emr-serverless-application-id'  # Replace with your actual application ID
+    s3_script_path = 's3://your-bucket/path/to/your-script.py'  # Replace with your actual S3 script location
+
+    # Define the job parameters
+    job_params = {
+        'name': 'my-emr-serverless-job',
+        'applicationId': application_id,
+        'executionRoleArn': 'arn:aws:iam::account-id:role/your-emr-role',  # Replace with the correct execution role ARN
+        'releaseLabel': 'emr-6.9.0',  # Set the EMR version you are using
+        'jobDriver': {
+            'sparkSubmit': {
+                'entryPoint': s3_script_path,
+                'entryPointArguments': [],
+                'sparkSubmitParameters': '--conf spark.yarn.maxAppAttempts=1 --conf spark.sql.shuffle.partitions=200'
+            }
+        },
+        'configurationOverrides': {
+            'applicationConfiguration': [],
+            'monitoringConfiguration': {
+                'cloudWatchMonitoringConfiguration': {
+                    'logGroupName': '/aws/emr-serverless/joblogs',
+                    'logStreamNamePrefix': 'my-job-log-stream'
+                }
+            }
+        }
+    }
+
+    try:
+        # Submit the job
+        response = emr_client.start_job_run(**job_params)
+
+        # Log the job run ID and wait for completion (optional)
+        job_run_id = response['jobRunId']
+        print(f"Job started with JobRunId: {job_run_id}")
+
+        # Optionally, you can wait for the job to complete (not ideal for large jobs)
+        # You may also want to implement more sophisticated waiting and monitoring
+        job_status = 'RUNNING'
+        while job_status in ['RUNNING', 'PENDING']:
+            time.sleep(30)  # Check every 30 seconds
+            job_status_response = emr_client.describe_job_run(
+                applicationId=application_id,
+                jobRunId=job_run_id
+            )
+            job_status = job_status_response['jobRun']['state']
+            print(f"Job status: {job_status}")
+
+        print(f"Job {job_run_id} finished with state: {job_status}")
+
+        return {
+            'statusCode': 200,
+            'body': json.dumps(f"Job {job_run_id} finished with state: {job_status}")
+        }
+
+    except Exception as e:
+        print(f"Error occurred while submitting job: {str(e)}")
+        return {
+            'statusCode': 500,
+            'body': json.dumps(f"Error occurred: {str(e)}")
+        }
