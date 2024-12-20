@@ -76,3 +76,52 @@ print(df)
 
 
 
+
+
+import pandas as pd
+
+# Sample DataFrame
+data = {
+    'DATE': [2021, 2022, 2023, 2024],
+    'HIERARCHYID': ['A', 'B', 'C', 'D'],
+    'PARENTID': ['P', 'P', 'Q', 'Q']
+}
+
+df = pd.DataFrame(data)
+
+# Initialize an empty list to store the percentages
+percentages = []
+
+# Iterate through each row and calculate the percentage
+for idx, row in df.iterrows():
+    # Get the numerator, which is the DATE value corresponding to the HIERARCHYID
+    numerator = row['DATE']
+    
+    # Get the parent hierarchy ID
+    parent_hierarchyid = row['PARENTID']
+    
+    # Find the row where HIERARCHYID == parent_hierarchyid to get the parent's DATE value
+    parent_row = df[df['HIERARCHYID'] == parent_hierarchyid]
+    
+    # If the parent exists, get the parent's DATE value
+    if not parent_row.empty:
+        denominator = parent_row['DATE'].values[0]
+    else:
+        denominator = 0  # In case no parent is found, avoid division by zero
+    
+    # Calculate the percentage
+    if denominator != 0:
+        percentage = (numerator / denominator) * 100
+    else:
+        percentage = 0  # To handle division by zero if no parent found
+    
+    # Round to 3 decimal places and append to the list
+    percentages.append(round(percentage, 3))
+
+# Add the PERCENTAGE column to the DataFrame
+df['PERCENTAGE'] = percentages
+
+# Display the DataFrame
+print(df)
+
+
