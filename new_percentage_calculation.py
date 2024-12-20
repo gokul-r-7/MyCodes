@@ -1,39 +1,25 @@
 import pandas as pd
 
-# Sample DataFrame for demonstration
+# Sample DataFrame (Replace with your actual DataFrame)
 data = {
-    'Display_Name': ['A', 'B', 'C', 'D'],
-    'HierarchyID': ['H1', 'H2', 'H3', 'H4'],
-    'ParentID': ['P1', 'P2', 'P1', 'P3'],
-    'Date_Column': [20230101, 20230101, 20230102, 20230102]
+    'number_column': [100, 200, 150, 300, 250],
+    'HierarchyID': ['A', 'B', 'C', 'D', 'E'],
+    'ParentID': ['B', 'C', 'D', 'E', 'A']
 }
 
 df = pd.DataFrame(data)
 
-# Initialize the Percentage column
-df['Percentage'] = 0.0
+# Step 1: Create a mapping of ParentID to HierarchyID index for reference
+parent_to_hierarchy = {row['HierarchyID']: row['number_column'] for _, row in df.iterrows()}
 
-# Iterate through the rows of the dataframe
-for idx, row in df.iterrows():
-    # Get the HierarchyID (numerator) and ParentID
-    numerator = row['HierarchyID']
-    parent_id = row['ParentID']
-    date_column = row['Date_Column']
-    
-    # Filter the dataframe for the same date
-    date_df = df[df['Date_Column'] == date_column]
-    
-    # Find the row where ParentID matches HierarchyID in the same date group (denominator)
-    denominator_row = date_df[date_df['HierarchyID'] == parent_id]
-    
-    if not denominator_row.empty:
-        # Extract the index of the denominator row
-        denominator_idx = denominator_row.index[0]
-        
-        # Calculate the percentage
-        percentage = (1 / (denominator_idx + 1)) * 100  # denominator + 1 is for 1-index based logic
-        
-        # Assign the result to the 'Percentage' column
-        df.at[idx, 'Percentage'] = round(percentage, 3)
+# Step 2: Calculate the percentage
+def calculate_percentage(row):
+    numerator = row['number_column']
+    denominator = parent_to_hierarchy.get(row['ParentID'], 1)  # Default to 1 if ParentID not found
+    return round((numerator / denominator) * 100, 3)
 
+# Apply the function to calculate percentage for each row
+df['percentage'] = df.apply(calculate_percentage, axis=1)
+
+# Display the result
 print(df)
