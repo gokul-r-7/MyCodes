@@ -1,28 +1,39 @@
 import pandas as pd
-import numpy as np
 
-# Load the CSV file
-file_path = '/path/to/your/file.csv'
-df = pd.read_csv(file_path)
+# Sample DataFrame for demonstration
+data = {
+    'Display_Name': ['A', 'B', 'C', 'D'],
+    'HierarchyID': ['H1', 'H2', 'H3', 'H4'],
+    'ParentID': ['P1', 'P2', 'P1', 'P3'],
+    'Date_Column': [20230101, 20230101, 20230102, 20230102]
+}
 
-# Identify date columns (columns with recognizable date formats)
-date_columns = [col for col in df.columns if '/' in col or '-' in col]
+df = pd.DataFrame(data)
 
-# Create a dictionary to map Parent_ID values
-parent_values = df.set_index('Hierarchy_ID (Num)')[date_columns]
+# Initialize the Percentage column
+df['Percentage'] = 0.0
 
-# Define a function to calculate percentages
-def calculate_percentage_safe(row):
-    if row['Parent_ID(Den)'] in parent_values.index:
-        parent_row = parent_values.loc[row['Parent_ID(Den)']]
-        # Replace zero denominators with NaN to avoid division errors
-        safe_parent_row = parent_row.replace(0, np.nan)
-        percentages = (row[date_columns] / safe_parent_row) * 100
-        return percentages.round(3)
-    return row[date_columns]  # Keep the same values if Parent_ID is not found
+# Iterate through the rows of the dataframe
+for idx, row in df.iterrows():
+    # Get the HierarchyID (numerator) and ParentID
+    numerator = row['HierarchyID']
+    parent_id = row['ParentID']
+    date_column = row['Date_Column']
+    
+    # Filter the dataframe for the same date
+    date_df = df[df['Date_Column'] == date_column]
+    
+    # Find the row where ParentID matches HierarchyID in the same date group (denominator)
+    denominator_row = date_df[date_df['HierarchyID'] == parent_id]
+    
+    if not denominator_row.empty:
+        # Extract the index of the denominator row
+        denominator_idx = denominator_row.index[0]
+        
+        # Calculate the percentage
+        percentage = (1 / (denominator_idx + 1)) * 100  # denominator + 1 is for 1-index based logic
+        
+        # Assign the result to the 'Percentage' column
+        df.at[idx, 'Percentage'] = round(percentage, 3)
 
-# Apply the function row-wise
-df[date_columns] = df.apply(calculate_percentage_safe, axis=1)
-
-# Save the updated dataframe to a new file
-df.to_csv('/path/to/output/file.csv', index=False)
+print(df)
