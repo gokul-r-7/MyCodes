@@ -1,31 +1,51 @@
 import pandas as pd
+import numpy as np
+from datetime import datetime
+df = pd.read_csv(r"D:\shalini\HS_ID.csv")
 
-# Read the CSV file into a DataFrame
-df = pd.read_csv('your_file.csv')
 
-# Get all the columns that represent dates (assumed to be columns starting with 'DATE')
-date_columns = [col for col in df.columns if col.startswith('DATE')]
 
-# Initialize the list of columns to store the percentage values for each DATE column
+
+filtered_df = df[df['Feature'].isin(['SMART HELP'])]
+#print(filtered_df[['Display_Names','8/29/2024','Hierarchy_ID (Num)', 'Parent_ID(Den)']].head(500))
+#print(filtered_df.head(500))
+
+
+
+
+
+
+def is_date_column(col_name):
+    try:
+        pd.to_datetime(col_name, format='%m/%d/%Y')
+        return True
+    except ValueError:
+        return False
+
+# Filter columns with date format 'm/d/Y'
+date_columns = [col for col in filtered_df.columns if is_date_column(col)]
+print(date_columns)
+
+
 percentage_columns = []
 
 # Iterate through each row and calculate the percentage for each DATE column
-for idx, row in df.iterrows():
+for idx, row in filtered_df.iterrows():
     # Iterate through all the DATE columns
     for date_col in date_columns:
         # Get the numerator (DATE value)
         numerator = row[date_col]
         
         # Get the parent hierarchy ID
-        parent_hierarchyid = row['PARENTID']
+        parent_hierarchyid = row['Parent_ID(Den)']
         
         # Check if the parent is empty
         if pd.isna(parent_hierarchyid) or parent_hierarchyid == "":
             # If the PARENTID is empty, keep the original DATE value
-            percentage = 100.0  # Assuming 100% when no parent is found
+            percentage = numerator  # Assuming 100% when no parent is found
         else:
             # Find the row where HIERARCHYID == parent_hierarchyid to get the parent's DATE value
-            parent_row = df[df['HIERARCHYID'] == parent_hierarchyid]
+            parent_row = filtered_df[filtered_df['Hierarchy_ID (Num)'] == parent_hierarchyid]
             
             # If the parent exists, get the parent's DATE value for the current DATE column
             if not parent_row.empty:
@@ -43,15 +63,15 @@ for idx, row in df.iterrows():
         percentage = round(percentage, 3)
         
         # Add the percentage to the DataFrame in a new column
-        percentage_column_name = f"{date_col}_PERCENTAGE"
-        if percentage_column_name not in df.columns:
+        percentage_column_name = f"{date_col} PERCENTAGE"
+        if percentage_column_name not in filtered_df.columns:
             df[percentage_column_name] = None  # Initialize the column
         
         # Set the percentage for the current row and current date column
-        df.at[idx, percentage_column_name] = percentage
+        filtered_df.at[idx, percentage_column_name] = percentage
 
-# Save the modified DataFrame to a new CSV
-df.to_csv('modified_file.csv', index=False)
 
-# Display the updated DataFrame
-print(df)
+
+pd.set_option('display.max_columns', None)  # Show all columns
+pd.set_option('display.max_rows', 100)
+print(filtered_df.head(100))
