@@ -1,37 +1,4 @@
-import pandas as pd
-
-def calculate_sums(df, items_dict):
-    # Sum date columns for each combination of display_names and operating_system_type
-    sum_df = df.groupby(['display_names', 'operating_system_type']).sum().reset_index()
-    
-    # Identify iOS and Android rows
-    ios_rows = sum_df[sum_df['operating_system_type'] == 'Apple iOS']
-    android_rows = sum_df[sum_df['operating_system_type'] == 'Google Android']
-    
-    # Initialize an empty list to hold 'Both' rows
-    both_rows = []
-
-    # Iterate over each item in the dictionary
-    for item in items_dict:
-        if any(ios_rows['display_names'].str.contains(item)) or any(android_rows['display_names'].str.contains(item)):
-            # Get the relevant iOS and Android rows for this item
-            ios_item_row = ios_rows[ios_rows['display_names'].str.contains(item)]
-            android_item_row = android_rows[android_rows['display_names'].str.contains(item)]
-            
-            # Create a new row for 'Both' by summing iOS and Android values
-            new_row = {'display_names': item, 'operating_system_type': 'Both'}
-            for date in df.columns[2:]:  # Assuming date columns start from index 2
-                new_row[date] = ios_item_row[date].sum() + android_item_row[date].sum()
-            
-            both_rows.append(new_row)
-
-    # Convert both_rows to a DataFrame
-    both_df = pd.DataFrame(both_rows)
-
-    # Append the 'Both' rows to the sum_df
-    sum_df = pd.concat([sum_df, both_df], ignore_index=True)
-
-    # Drop unnecessary columns if they exist
-    sum_df = sum_df.drop(columns=['operating_system_type_ios', 'operating_system_type_Android'], errors='ignore')
-
-    return sum_df
+[767397783814_ps-appteam-rw-n]
+aws_access_key_id=ASIA3FLDY5EDPPDGQX5W
+aws_secret_access_key=qtidqOJfI0pW2/ehMbgRo0RXqEIoFo84tlqxxDxD
+aws_session_token=IQoJb3JpZ2luX2VjEFgaCXVzLWVhc3QtMSJHMEUCIQCT8aXDP1VV1PSqNTkBOi0ov403yG3q1qr0Vi7oCXAOkQIgdgeOkwWA4ftdNvqevVKntIeZhJIpkmTo2e2VI0v2OL8qlAMIQBAAGgw3NjczOTc3ODM4MTQiDE9a1Jkwd7vkiNJ5xCrxAmp07NyY+FaPRw8cv8KWtFo6RdG8NLN2TWI28cRACZyja3B/62/YjR07OGn9wjW5TzsC8Il9qzYFc1yeI6ycGs6M4F+qMK9ReNkdkL7sZaLXBj2wYws2g+M4Umjf07Z65b2X5BbHvQVlv/xMr2Nsu6D+d7Rwm+qmjJ6b9cauYBXnz+W48okqx9fSz9R08QV5UIKnNFd9JidGhGl6E2smgtufKCAFMlM6EAk3CMNSLPRC0yqsahg8kgM+1e2qcJw6PUkMcVGjtqal0qZVD6vluQiPuXVOjCgpDCG0aJ+NWuQ2J56uNnYaQKdDMzDIaJwyIFLLYgSdxyDPlx10IKdWtgNkl6fXXTMIhgYm0ecWUpPKenRyUAAIJ82OfSLB84xi9LNCdY2b7aSRTfjnIlwJwq7c1hqbVxIip2OZu4hTwtOyWPzRK4ijt989dDG0mu8kMCJ4UeosUckBp1AVUbkZ5XBltFiix3gUbmbcI3YW/1+YJjCagu67BjqmAV1jWPOoTxghvMUxVvp822j8MAGGfzL6wPXRM7EwXfWVEOfsVyOPg+31BcURriL6D3FeyKNkDsR+Q346kMLPdc0Y91H59oTTrM0RreVKjDvoPymd5CXvg9BTviPDXQGKmID1ICjRMYgCNxQfRyWTGfmf/kRIhpAu3XoB8AA3OHal3zV80KyRL9VEEjfN51wAdPHsbs1brvgpyKHIUrWuDrIesUELQrs=
