@@ -55,7 +55,6 @@ def calculate_percentage(df, datecolumns, column1, column2):
 df = calculate_percentage(sample_df, date_columns, 'hierarchy_id', 'parent_id_old')
 pd.set_option('display.max_columns', None)  # Show all columns
 pd.set_option('display.max_rows', 5)
-df.head(5)
 
 
 
@@ -122,3 +121,74 @@ combined_df2 = pd.concat(combined_dfs2, ignore_index=True)
 pd.set_option('display.max_columns', None)  # Show all columns
 pd.set_option('display.max_rows', 500)      # Show 100 rows
 combined_df2.head(500)
+
+
+
+
+import pandas as pd
+
+def calculate_combined_percentage(df, datecolumns, column1, column2, display_name_col, os_type_col):
+    # Ensure these columns exist in the DataFrame
+    if column1 not in df.columns or column2 not in df.columns:
+        raise ValueError(f"'{column1}' or '{column2}' columns not found in DataFrame.")
+    
+    # Prepare a new DataFrame to hold the results
+    results = []
+
+    # Iterate through each unique display_name
+    for display_name in df[display_name_col].unique():
+        # Filter rows for the current display_name
+        display_df = df[df[display_name_col] == display_name]
+
+        # Initialize numerator and denominator values
+        numerator_ios_value = display_df[display_df[os_type_col] == 'IOS'][datecolumns].sum().sum()
+        numerator_android_value = display_df[display_df[os_type_col] == 'Android'][datecolumns].sum().sum()
+        
+        denominator_ios_value = display_df[display_df[os_type_col] == 'IOS'][datecolumns].sum().sum()
+        denominator_android_value = display_df[display_df[os_type_col] == 'Android'][datecolumns].sum().sum()
+
+        # Check the ParentID for null, empty, or 0
+        parent_id = display_df[column2].iloc[0]  # Assuming all rows have the same ParentID
+
+        if pd.isna(parent_id) or parent_id == "" or parent_id == 0:
+            # Use the alternative formula
+            result = numerator_ios_value + numerator_android_value
+        else:
+            # Use the original formula
+            total_denominator = denominator_ios_value + denominator_android_value
+            if total_denominator != 0:
+                result = (numerator_ios_value + numerator_android_value) / total_denominator * 100
+            else:
+                result = 0  # Handle division by zero
+
+        # Create a new row for the 'Both' operating system type
+        new_row = {**display_df.iloc[0].to_dict(),  # Copy existing row data
+                   os_type_col: 'Both',           # Set operating_system_type to 'Both'
+                   'result': result}               # Add calculated result
+
+        # Append the new row to results
+        results.append(new_row)
+
+    # Convert results to DataFrame and concatenate with the original DataFrame
+    results_df = pd.DataFrame(results)
+    df = pd.concat([df, results_df], ignore_index=True)
+
+    return df
+
+# Example usage:
+df = calculate_combined_percentage(sample_df, date_columns, 'hierarchy_id', 'parent_id_old', 'display_name', 'operating_system_type')
+pd.set_option('display.max_columns', None)  # Show all columns
+pd.set_option('display.max_rows', 5)
+df.head(5)
+
+
+
+
+
+
+
+
+
+
+
+
