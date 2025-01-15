@@ -6,84 +6,14 @@ aws_session_token=IQoJb3JpZ2luX2VjEFgaCXVzLWVhc3QtMSJHMEUCIQCT8aXDP1VV1PSqNTkBOi
 
 
 
-
 import pandas as pd
 
-def process_dataframe(df, hierarchy_col, parent_col):
-    """
-    Processes a DataFrame to add new rows for each distinct 'display_names' with specific rules for 'Both' operating_system_type.
-    
-    Args:
-        df (pd.DataFrame): The input DataFrame.
-        hierarchy_col (str): The column name for Hierarchy_ID.
-        parent_col (str): The column name for Parent_ID.
-        
-    Returns:
-        pd.DataFrame: The modified DataFrame with new rows and updated values.
-    """
-    # Identify date columns (assume columns after the 6th index are date columns)
-    date_columns = df.columns[6:]
+# Sample DataFrame with 200 rows
+df = pd.DataFrame({'data': range(200)})
+print(df)
+# Generate the unique 'both_id'
+df['both_id'] = 'both_id_' + (df.index + 1).astype(str)
 
-    # Step 1: Generate new rows based on the conditions for each distinct display_name
-    new_rows = []
+# Display the updated DataFrame
+print(df)
 
-    for name in df['display_names'].unique():
-        # Filter rows for this display_name
-        display_name_rows = df[df['display_names'] == name]
-        
-        # Separate Apple iOS and Google Android rows
-        os_ios = display_name_rows[display_name_rows['operating_system_type'] == 'Apple iOS']
-        os_android = display_name_rows[display_name_rows['operating_system_type'] == 'Google Android']
-
-        # Iterate over rows for the display_name to compute new values
-        for _, row in display_name_rows.iterrows():
-            # Initialize the new row with base values
-            new_row = {
-                'metric_id': max(df['metric_id']) + len(new_rows) + 1,
-                'display_names': name,
-                'operating_system_type': 'Both',
-                hierarchy_col: None,
-                parent_col: None,
-            }
-
-            # Compute values for each date column
-            for date_col in date_columns:
-                if pd.isna(row[parent_col]):  # Parent_ID is null
-                    # Sum iOS and Android values for the date column
-                    value = os_ios[date_col].sum() + os_android[date_col].sum()
-                else:  # Parent_ID is not null
-                    parent_id = row[parent_col]
-                    parent_ios = df[(df[hierarchy_col] == parent_id) & (df['operating_system_type'] == 'Apple iOS')]
-                    parent_android = df[(df[hierarchy_col] == parent_id) & (df['operating_system_type'] == 'Google Android')]
-
-                    if not parent_ios.empty and not parent_android.empty:
-                        # Perform the calculation involving parent rows
-                        value = (
-                            os_ios[date_col].sum() + os_android[date_col].sum()
-                        ) / (parent_ios[date_col].sum() + parent_android[date_col].sum())
-                    else:
-                        value = 0  # Default value if parent rows are not found
-
-                # Assign the computed value to the new row's date column
-                new_row[date_col] = value
-
-            # Add the new row to the list
-            new_rows.append(new_row)
-
-    # Create a DataFrame for the new rows
-    new_rows_df = pd.DataFrame(new_rows)
-
-    # Combine the original DataFrame with the new rows
-    extended_df = pd.concat([df, new_rows_df], ignore_index=True)
-
-    return extended_df
-
-# Example usage:
-file_path = '/mnt/data/HS_ID 2 copy.xlsx'
-df = pd.read_excel(file_path, sheet_name='in')
-processed_df = process_dataframe(df, 'Hierarchy_ID', 'Parent_ID')
-
-# Save the final dataframe to a file
-output_path = '/mnt/data/processed_dataset.xlsx'
-processed_df.to_excel(output_path, index=False)
-print(f"File saved to: {output_path}")
