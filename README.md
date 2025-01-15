@@ -34,31 +34,43 @@ def process_dataframe(df, hierarchy_col, parent_col):
         }
         # Initialize date columns as 0 for now
         for col in df.columns:
-            if isinstance(col, pd.Timestamp):
+            if isinstance(col, pd.Timestamp) or "date" in col.lower():  # Check for date columns
                 new_row[col] = 0
         new_rows.append(new_row)
 
-    # Add the new rows to the dataframe
+    # Create a DataFrame for the new rows
     new_rows_df = pd.DataFrame(new_rows)
+
+    # Add the new rows to the original DataFrame
     extended_df = pd.concat([df, new_rows_df], ignore_index=True)
 
-    # Step 2: Update date column values based on the specified formulas
-    for index, row in new_rows_df.iterrows():
+    # Step 2: Update the new rows with computed date column values
+    for new_row_index in range(len(df), len(extended_df)):  # Only iterate over new rows
+        row = extended_df.iloc[new_row_index]
         name = row['display_names']
+        
+        # Filter original rows for Apple iOS and Google Android for this display_name
         os_ios = df[(df['display_names'] == name) & (df['operating_system_type'] == 'Apple iOS')]
         os_android = df[(df['display_names'] == name) & (df['operating_system_type'] == 'Google Android')]
 
         for date_col in df.columns[6:]:  # Assuming date columns start from index 6
             if pd.isna(row[parent_col]):  # If Parent_ID is empty
-                row[date_col] = os_ios[date_col].sum() + os_android[date_col].sum()
+                # Calculate the value for rows with no Parent_ID
+                value = os_ios[date_col].sum() + os_android[date_col].sum()
             else:  # If Parent_ID is not empty
                 parent_id = row[parent_col]
                 parent_ios = df[(df[hierarchy_col] == parent_id) & (df['operating_system_type'] == 'Apple iOS')]
                 parent_android = df[(df[hierarchy_col] == parent_id) & (df['operating_system_type'] == 'Google Android')]
                 if not parent_ios.empty and not parent_android.empty:
-                    row[date_col] = (
+                    # Calculate the value for rows with Parent_ID
+                    value = (
                         os_ios[date_col].sum() + os_android[date_col].sum()
                     ) / (parent_ios[date_col].sum() + parent_android[date_col].sum())
+                else:
+                    value = 0  # Default value if parent rows are not found
+
+            # Update the value in the corresponding date column for the current new row
+            extended_df.at[new_row_index, date_col] = value
 
     return extended_df
 
