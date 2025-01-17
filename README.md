@@ -1,87 +1,67 @@
-def generate_new_rows_fixed(df, hierarchy_id_col, parent_id_col):
+def process_csv_data(df, hierarchy_col, parent_id_col):
     """
-    Generate new rows for every unique 'display_names' and calculate results efficiently.
-
+    Processes the dataframe to generate new rows based on the given logic.
+    
     Args:
-    - df (pd.DataFrame): Input DataFrame.
-    - hierarchy_id_col (str): Name of the Hierarchy_ID column.
-    - parent_id_col (str): Name of the Parent_ID column.
-
+        df (pd.DataFrame): The input dataframe.
+        hierarchy_col (str): The column name for hierarchy ID.
+        parent_id_col (str): The column name for parent ID.
+        
     Returns:
-    - pd.DataFrame: Updated DataFrame with new rows.
+        pd.DataFrame: The updated dataframe with the generated rows.
     """
-    # Extract date columns
-    date_cols = df.columns[5:]
-
-    # Step 1: Create "Both" rows
-    both_rows = (
-        df.groupby("display_names")[date_cols]
-        .sum()
-        .reset_index()
-        .assign(
-            operating_system_type="Both",
-            metric_id=lambda x: "Both_ID_" + (x.index + 1).astype(str),
-            Hierarchy_ID=None,
-            Parent_ID=None,
-        )
-    )
-
-    # Step 2: Initialize list for new rows
+    # Create a copy of the dataframe to avoid modifying the original
     new_rows = []
+    date_cols = [col for col in df.columns if "2024" in col]  # Identify date columns
+    sequence_number = 1
 
-    for _, row in both_rows.iterrows():
-        display_name = row["display_names"]
-
-        # Filter iOS and Android rows for the same display_name
-        ios_rows = df[
-            (df["display_names"] == display_name)
-            & (df["operating_system_type"] == "Apple iOS")
-        ]
-        android_rows = df[
-            (df["display_names"] == display_name)
-            & (df["operating_system_type"] == "Google Android")
-        ]
-
-        # Calculate numerator
-        numerator = ios_rows[date_cols].sum().values + android_rows[date_cols].sum().values
-
-        # Add new row with the numerator
-        formula_row = row.copy()
-        formula_row.update(dict(zip(date_cols, numerator)))
-        new_rows.append(formula_row)
-
-        # If Parent_ID exists, calculate denominator and result
-        parent_ids = df.loc[
-            (df["display_names"] == display_name) & df[parent_id_col].notna(), parent_id_col
-        ].unique()
-
-        for parent_id in parent_ids:
-            # Find parent rows using the Hierarchy_ID
-            parent_rows = df[df[hierarchy_id_col] == parent_id]
-
-            if not parent_rows.empty:
-                ios_parent_rows = parent_rows[
-                    parent_rows["operating_system_type"] == "Apple iOS"
-                ]
-                android_parent_rows = parent_rows[
-                    parent_rows["operating_system_type"] == "Google Android"
-                ]
-
-                # Calculate denominator
-                denominator = (
-                    ios_parent_rows[date_cols].sum().values
-                    + android_parent_rows[date_cols].sum().values
-                )
-
-                # Result formula
-                result = numerator + denominator * 100
-
-                # Add new row for the calculated result
-                formula_row = row.copy()
-                formula_row[parent_id_col] = parent_id
-                formula_row.update(dict(zip(date_cols, result)))
-                new_rows.append(formula_row)
-
-    # Combine the original DataFrame with "Both" rows and new formula rows
-    final_df = pd.concat([df, both_rows, pd.DataFrame(new_rows)], ignore_index=True)
-    return final_df
+    # Iterate over unique display_names
+    for display_name in df["display_names"].unique():
+        # Filter for Apple iOS and Google Android rows for this display_name
+        ios_rows = df[(df["display_names"] == display_name) & 
+                      (df["operating_system_type"] == "Apple iOS")]
+        android_rows = df[(df["display_names"] == display_name) & 
+                          (df["operating_system_type"] == "Google Android")]
+        
+        # Check if the rows exist
+        if ios_rows.empty or android_rows.empty:
+            continue
+        
+        # Sum the date values for numerator
+        ios_sums = ios_rows[date_cols].sum()
+        android_sums = android_rows[date_cols].sum()
+        numerator = ios_sums + android_sums
+        
+        # Determine parent_id_old status and calculate denominator if needed
+        for _, ios_row in ios_rows.iterrows():
+            if pd.isna(ios_row["parent_id_old"]):  # Case: parent_id_old is null/empty
+                result = numerator
+            else:  # Case: parent_id_old is not null/empty
+                parent_hierarchy_id = ios_row["parent_id_old"]
+                parent_ios_row = df[(df[hierarchy_col] == parent_hierarchy_id) & 
+                                    (df["operating_system_type"] == "Apple iOS")]
+                parent_android_row = df[(df[hierarchy_col] == parent_hierarchy_id) & 
+                                        (df["operating_system_type"] == "Google Android")]
+                if not parent_ios_row.empty and not parent_android_row.empty:
+                    parent_ios_sums = parent_ios_row[date_cols].sum()
+                    parent_android_sums = parent_android_row[date_cols].sum()
+                    denominator = parent_ios_sums + parent_android_sums
+                    result = (numerator / denominator) * 100
+                else:
+                    continue  # Skip if parent rows are missing
+            
+            # Generate new row
+            new_row = {
+                "display_names": display_name,
+                "metric_id": f"Both_ID_{sequence_number}",
+                "hierarchy_id": None,
+                "parent_id_old": None,
+                "parent_id": None,
+                **result.to_dict()  # Add date column values
+            }
+            new_rows.append(new_row)
+            sequence_number += 1
+    
+    # Append new rows to the original dataframe
+    new_df = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True)
+    return new_df
