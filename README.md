@@ -10,7 +10,7 @@ def process_csv_data(df, hierarchy_col, parent_id_col):
     Returns:
         pd.DataFrame: The updated dataframe with the generated rows.
     """
-    # Create a copy of the dataframe to avoid modifying the original
+    # Create a list for new rows and identify date columns
     new_rows = []
     date_cols = [col for col in df.columns if "2024" in col]  # Identify date columns
     sequence_number = 1
@@ -38,17 +38,27 @@ def process_csv_data(df, hierarchy_col, parent_id_col):
                 result = numerator
             else:  # Case: parent_id_old is not null/empty
                 parent_hierarchy_id = ios_row["parent_id_old"]
+                
+                # Retrieve parent rows
                 parent_ios_row = df[(df[hierarchy_col] == parent_hierarchy_id) & 
                                     (df["operating_system_type"] == "Apple iOS")]
                 parent_android_row = df[(df[hierarchy_col] == parent_hierarchy_id) & 
                                         (df["operating_system_type"] == "Google Android")]
-                if not parent_ios_row.empty and not parent_android_row.empty:
-                    parent_ios_sums = parent_ios_row[date_cols].sum()
-                    parent_android_sums = parent_android_row[date_cols].sum()
-                    denominator = parent_ios_sums + parent_android_sums
-                    result = (numerator / denominator) * 100
+                
+                # Sum values and store in dictionaries
+                parent_sums = {
+                    "parent_ios_sums": parent_ios_row[date_cols].sum() if not parent_ios_row.empty else 0,
+                    "parent_android_sums": parent_android_row[date_cols].sum() if not parent_android_row.empty else 0
+                }
+                
+                # Remove zero values
+                parent_sums = {k: v for k, v in parent_sums.items() if v.sum() != 0}
+                
+                if parent_sums:  # Check if the dictionary has values
+                    denominator = sum(parent_sums.values())
+                    result = (numerator + denominator) * 100
                 else:
-                    continue  # Skip if parent rows are missing
+                    continue  # Skip if no valid parent sums exist
             
             # Generate new row
             new_row = {
