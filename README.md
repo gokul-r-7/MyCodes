@@ -1,4 +1,4 @@
-def generate_new_rows_corrected(df, hierarchy_id_col, parent_id_col):
+def generate_new_rows_fixed(df, hierarchy_id_col, parent_id_col):
     """
     Generate new rows for every unique 'display_names' and calculate results efficiently.
 
@@ -13,7 +13,7 @@ def generate_new_rows_corrected(df, hierarchy_id_col, parent_id_col):
     # Extract date columns
     date_cols = df.columns[5:]
 
-    # Step 1: Create rows for "Both"
+    # Step 1: Create "Both" rows
     both_rows = (
         df.groupby("display_names")[date_cols]
         .sum()
@@ -26,8 +26,9 @@ def generate_new_rows_corrected(df, hierarchy_id_col, parent_id_col):
         )
     )
 
-    # Step 2: Add formulas based on Parent_ID
+    # Step 2: Initialize list for new rows
     new_rows = []
+
     for _, row in both_rows.iterrows():
         display_name = row["display_names"]
 
@@ -44,36 +45,43 @@ def generate_new_rows_corrected(df, hierarchy_id_col, parent_id_col):
         # Calculate numerator
         numerator = ios_rows[date_cols].sum().values + android_rows[date_cols].sum().values
 
-        # Add logic for Parent_ID
-        if not ios_rows.empty and not android_rows.empty:
-            parent_ids = df.loc[
-                (df["display_names"] == display_name) & df[parent_id_col].notna(), parent_id_col
-            ].unique()
+        # Add new row with the numerator
+        formula_row = row.copy()
+        formula_row.update(dict(zip(date_cols, numerator)))
+        new_rows.append(formula_row)
 
-            for parent_id in parent_ids:
-                parent_rows = df[df[hierarchy_id_col] == parent_id]
+        # If Parent_ID exists, calculate denominator and result
+        parent_ids = df.loc[
+            (df["display_names"] == display_name) & df[parent_id_col].notna(), parent_id_col
+        ].unique()
 
-                if not parent_rows.empty:
-                    ios_parent_rows = parent_rows[
-                        parent_rows["operating_system_type"] == "Apple iOS"
-                    ]
-                    android_parent_rows = parent_rows[
-                        parent_rows["operating_system_type"] == "Google Android"
-                    ]
+        for parent_id in parent_ids:
+            # Find parent rows using the Hierarchy_ID
+            parent_rows = df[df[hierarchy_id_col] == parent_id]
 
-                    # Denominator
-                    denominator = (
-                        ios_parent_rows[date_cols].sum().values + android_parent_rows[date_cols].sum().values
-                    )
+            if not parent_rows.empty:
+                ios_parent_rows = parent_rows[
+                    parent_rows["operating_system_type"] == "Apple iOS"
+                ]
+                android_parent_rows = parent_rows[
+                    parent_rows["operating_system_type"] == "Google Android"
+                ]
 
-                    # Calculate result
-                    result = numerator + denominator * 100
+                # Calculate denominator
+                denominator = (
+                    ios_parent_rows[date_cols].sum().values
+                    + android_parent_rows[date_cols].sum().values
+                )
 
-                    formula_row = row.copy()
-                    formula_row[parent_id_col] = parent_id
-                    formula_row.update(dict(zip(date_cols, result)))
-                    new_rows.append(formula_row)
+                # Result formula
+                result = numerator + denominator * 100
 
-    # Combine original rows with both_rows and new formula rows
+                # Add new row for the calculated result
+                formula_row = row.copy()
+                formula_row[parent_id_col] = parent_id
+                formula_row.update(dict(zip(date_cols, result)))
+                new_rows.append(formula_row)
+
+    # Combine the original DataFrame with "Both" rows and new formula rows
     final_df = pd.concat([df, both_rows, pd.DataFrame(new_rows)], ignore_index=True)
     return final_df
