@@ -1,0 +1,33 @@
+import pandas as pd
+
+# Load the dataset
+file_path = '/mnt/data/test_file.csv'
+data = pd.read_csv(file_path)
+
+# List of date columns
+date_columns = [col for col in data.columns if col.endswith('-2024')]
+
+# Filter for rows where parent_id_old is present in hierarchy_id for Apple iOS
+filtered_ios = data[
+    (data['operating_system_type'] == 'Apple iOS') &
+    (data['parent_id_old'].notna())
+]
+
+# Filter for rows of Google Android with matching display_names
+filtered_android = data[
+    (data['operating_system_type'] == 'Google Android') &
+    (data['display_names'].isin(filtered_ios['display_names']))
+]
+
+# Sum each date column for Apple iOS and Google Android
+ios_date_sums = filtered_ios[date_columns].sum()
+android_date_sums = filtered_android[date_columns].sum()
+
+# Add Apple iOS and Google Android sums for each date column
+denominator = ios_date_sums + android_date_sums
+
+# Save the result as a CSV file (optional)
+output_path = '/mnt/data/denominator_date_sums.csv'
+denominator.to_csv(output_path, header=["Total_Sum"], index_label="Date")
+
+print(f"Denominator values calculated and saved to {output_path}")
