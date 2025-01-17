@@ -78,3 +78,8 @@ def generate_new_rows(df, hierarchy_id_col, parent_id_col):
     # Combine the original DataFrame with the new rows
     updated_df = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True)
     return updated_df
+
+
+
+updated_df = generate_new_rows(df, 'Hierarchy_ID', 'Parent_ID')
+
