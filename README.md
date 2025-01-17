@@ -1,40 +1,4 @@
-def generate_new_rows_optimized(df, hierarchy_id_col, parent_id_col):
-    """
-    Generate new rows for every unique 'display_names' and calculate results efficiently.
-
-    Args:
-    - df (pd.DataFrame): Input DataFrame.
-    - hierarchy_id_col (str): Name of the Hierarchy_ID column.
-    - parent_id_col (str): Name of the Parent_ID column.
-
-    Returns:
-    - pd.DataFrame: Updated DataFrame with new rows.
-    """
-    # Extract date columns
-    date_cols = df.columns[5:]
-    
-    # Step 1: Calculate "Both" operating system rows
-    both_rows = (
-        df.pivot_table(
-            index="display_names",
-            values=date_cols,
-            aggfunc="sum",
-            columns="operating_system_type"
-        )
-        .sum(axis=1, level=0)  # Sum iOS and Android rows
-        .reset_index()
-    )
-    both_rows['operating_system_type'] = 'Both'
-    both_rows[hierarchy_id_col] = None
-    both_rows[parent_id_col]None 
-    
-### SUM
-
-Here is the complete and **optimized version** of the function. It eliminates redundant loops and uses vectorized operations to improve performance:
-
-### Optimized Function
-```python
-def generate_new_rows_optimized(df, hierarchy_id_col, parent_id_col):
+def generate_new_rows_corrected(df, hierarchy_id_col, parent_id_col):
     """
     Generate new rows for every unique 'display_names' and calculate results efficiently.
 
@@ -80,31 +44,36 @@ def generate_new_rows_optimized(df, hierarchy_id_col, parent_id_col):
         # Calculate numerator
         numerator = ios_rows[date_cols].sum().values + android_rows[date_cols].sum().values
 
-        if pd.isna(row[parent_id_col]):  # If Parent_ID is null
-            formula_row = row.copy()
-            formula_row.update(dict(zip(date_cols, numerator)))
-            new_rows.append(formula_row)
-        else:  # If Parent_ID is not null
-            parent_hierarchy_id = row[parent_id_col]
-            parent_rows = df[df[hierarchy_id_col] == parent_hierarchy_id]
+        # Add logic for Parent_ID
+        if not ios_rows.empty and not android_rows.empty:
+            parent_ids = df.loc[
+                (df["display_names"] == display_name) & df[parent_id_col].notna(), parent_id_col
+            ].unique()
 
-            if not parent_rows.empty:
-                ios_parent_rows = parent_rows[
-                    parent_rows["operating_system_type"] == "Apple iOS"
-                ]
-                android_parent_rows = parent_rows[
-                    parent_rows["operating_system_type"] == "Google Android"
-                ]
+            for parent_id in parent_ids:
+                parent_rows = df[df[hierarchy_id_col] == parent_id]
 
-                # Denominator
-                denominator = ios_parent_rows[date_cols].sum().values + android_parent_rows[date_cols].sum().values
+                if not parent_rows.empty:
+                    ios_parent_rows = parent_rows[
+                        parent_rows["operating_system_type"] == "Apple iOS"
+                    ]
+                    android_parent_rows = parent_rows[
+                        parent_rows["operating_system_type"] == "Google Android"
+                    ]
 
-                # Result
-                result = numerator + denominator * 100
-                formula_row = row.copy()
-                formula_row.update(dict(zip(date_cols, result)))
-                new_rows.append(formula_row)
+                    # Denominator
+                    denominator = (
+                        ios_parent_rows[date_cols].sum().values + android_parent_rows[date_cols].sum().values
+                    )
 
-    # Combine the new rows
+                    # Calculate result
+                    result = numerator + denominator * 100
+
+                    formula_row = row.copy()
+                    formula_row[parent_id_col] = parent_id
+                    formula_row.update(dict(zip(date_cols, result)))
+                    new_rows.append(formula_row)
+
+    # Combine original rows with both_rows and new formula rows
     final_df = pd.concat([df, both_rows, pd.DataFrame(new_rows)], ignore_index=True)
     return final_df
