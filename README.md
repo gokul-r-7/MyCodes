@@ -28,8 +28,8 @@ def process_csv_data(df, hierarchy_col, parent_id_col):
             continue
         
         # Sum the date values for numerator
-        ios_sums = ios_rows[date_cols].sum()
-        android_sums = android_rows[date_cols].sum()
+        ios_sums = ios_rows[date_cols].replace(0, pd.NA).sum()
+        android_sums = android_rows[date_cols].replace(0, pd.NA).sum()
         numerator = ios_sums + android_sums
         
         # Determine parent_id_old status and calculate denominator if needed
@@ -45,20 +45,16 @@ def process_csv_data(df, hierarchy_col, parent_id_col):
                 parent_android_row = df[(df[hierarchy_col] == parent_hierarchy_id) & 
                                         (df["operating_system_type"] == "Google Android")]
                 
-                # Sum values and store in dictionaries
-                parent_sums = {
-                    "parent_ios_sums": parent_ios_row[date_cols].sum() if not parent_ios_row.empty else 0,
-                    "parent_android_sums": parent_android_row[date_cols].sum() if not parent_android_row.empty else 0
-                }
+                # Sum values while excluding zeros
+                parent_ios_sums = parent_ios_row[date_cols].replace(0, pd.NA).sum()
+                parent_android_sums = parent_android_row[date_cols].replace(0, pd.NA).sum()
+                denominator = parent_ios_sums + parent_android_sums
                 
-                # Remove zero values
-                parent_sums = {k: v for k, v in parent_sums.items() if v.sum() != 0}
-                
-                if parent_sums:  # Check if the dictionary has values
-                    denominator = sum(parent_sums.values())
+                # Ensure denominator is valid
+                if denominator.sum() > 0:
                     result = (numerator + denominator) * 100
                 else:
-                    continue  # Skip if no valid parent sums exist
+                    continue  # Skip if denominator is invalid
             
             # Generate new row
             new_row = {
