@@ -1,0 +1,11 @@
+metric_id,display_names,operating_system_type,Hierarchy_ID,Parent_ID,8/29/2024,8/30/2024,8/31/2024
+139,Devices Page Visits,Apple iOS,Apple iOS_SH_1,,3444,3530,3271
+140,Started Troubleshooting (Solution Center),Apple iOS,Apple iOS_SH_1.1,Apple iOS_SH_1,80,104,112
+141,Saw a Result,Apple iOS,Apple iOS_SH_1.1.1,Apple iOS_SH_1.1,76,100,110
+142,1st common reason (Unknown),Apple iOS,Apple iOS_SH_1.1.1.1,Apple iOS_SH_1.1.1,60,84,89
+143,2nd common reason (Disconnected),Apple iOS,Apple iOS_SH_1.1.1.2,Apple iOS_SH_1.1.1,11,10,13
+318,Devices Page Visits,Google Android,Google Android_SH_1,,1699,1780,1587
+319,Started Troubleshooting (Solution Center),Google Android,Google Android_SH_1.1,Google Android_SH_1,46,51,45
+320,Saw a Result,Google Android,Google Android_SH_1.1.1,Google Android_SH_1.1,46,44,43
+321,1st common reason (Unknown),Google Android,Google Android_SH_1.1.1.1,Google Android_SH_1.1.1,36,32,34
+322,2nd common reason (Disconnected),Google Android,Google Android_SH_1.1.1.2,Google Android_SH_1.1.1,5,6,8
