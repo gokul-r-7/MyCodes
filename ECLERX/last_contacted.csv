@@ -1,0 +1,140 @@
+all months,,
+#,customer_count,date_range
+8,1113,Other
+2,4956236,never_contacted
+7,3044926,less than 0 days
+5,856679,91-180 days
+1,536112,6-12 months
+3,2125691,31-90 days
+4,350886,1-3 years
+6,2654559,0-30 days
+,,
+2024-10,,
+#,customer_count,date_range
+1,4035719,never_contacted
+7,412040,less than 0 days
+5,273494,91-180 days
+2,218848,6-12 months
+6,441595,31-90 days
+3,284287,1-3 years
+4,1095885,0-30 days
+,,
+2024-09,,
+#,customer_count,date_range
+1,4036047,never_contacted
+7,1497909,less than 0 days
+5,208248,91-180 days
+2,191814,6-12 months
+6,292664,31-90 days
+3,264865,1-3 years
+4,287093,0-30 days
+,,
+2024-08,,
+#,customer_count,date_range
+1,4049211,never_contacted
+3,1765661,less than 0 days
+5,165298,91-180 days
+2,174651,6-12 months
+4,216443,31-90 days
+7,246638,1-3 years
+6,189670,0-30 days
+,,
+2024-07,,
+#,customer_count,date_range
+1,4055954,never_contacted
+7,1925610,less than 0 days
+5,137835,91-180 days
+2,162668,6-12 months
+6,163919,31-90 days
+3,228342,1-3 years
+4,136433,0-30 days
+,,
+2024-06,,
+#,customer_count,date_range
+2,4073768,never_contacted
+5,2040318,less than 0 days
+6,121605,91-180 days
+3,153142,6-12 months
+4,127680,31-90 days
+1,212286,1-3 years
+7,108341,0-30 days
+,,
+2024-05,,
+#,customer_count,date_range
+1,4084871,never_contacted
+4,2125432,less than 0 days
+6,107284,91-180 days
+2,146459,6-12 months
+5,107742,31-90 days
+3,198400,1-3 years
+7,82365,0-30 days
+,,
+2024-04,,
+#,customer_count,date_range
+1,4084871,never_contacted
+4,2125432,less than 0 days
+6,107284,91-180 days
+2,146459,6-12 months
+5,107742,31-90 days
+3,198400,1-3 years
+7,82365,0-30 days
+,,
+2024-03,,
+#,customer_count,date_range
+1,4091915,never_contacted
+6,2237358,less than 0 days
+5,87521,91-180 days
+2,131873,6-12 months
+7,84519,31-90 days
+3,174228,1-3 years
+4,60102,0-30 days
+,,
+2024-02,,
+#,customer_count,date_range
+1,4102169,never_contacted
+6,2274041,less than 0 days
+4,85384,91-180 days
+2,122456,6-12 months
+7,75585,31-90 days
+3,162091,1-3 years
+5,52410,0-30 days
+,,
+2024-01,,
+#,customer_count,date_range
+3,4114937,never_contacted
+1,2300473,less than 0 days
+6,85704,91-180 days
+4,114786,6-12 months
+2,65961,31-90 days
+5,150288,1-3 years
+7,50675,0-30 days
+,,
+2023-12,,
+#,customer_count,date_range
+6,4127614,never_contacted
+1,2330081,less than 0 days
+3,83844,91-180 days
+7,106128,6-12 months
+2,64195,31-90 days
+5,137976,1-3 years
+4,42226,0-30 days
+,,
+2023-11,,
+#,customer_count,date_range
+4,4138466,never_contacted
+6,2348944,less than 0 days
+1,77849,91-180 days
+5,99900,6-12 months
+7,65671,31-90 days
+3,126973,1-3 years
+2,39906,0-30 days
+,,
+2023-10,,
+#,customer_count,date_range
+3,4148305,never_contacted
+1,2360577,less than 0 days
+7,69972,91-180 days
+4,96955,6-12 months
+2,65159,31-90 days
+5,116522,1-3 years
+6,42476,0-30 days

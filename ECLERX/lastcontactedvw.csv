@@ -1,0 +1,141 @@
+all_Data,,
+#,_col0,last_contacted_cox_app
+8,3146713,0-30 days
+7,2847195,1-3 years
+5,3286870,31-90 days
+4,2169692,6-12 months
+1,2034501,91-180 days
+3,25980947,less than 0 days
+2,48674633,never_contacted
+6,1117,Other
+,,
+2024-10,,
+#,_col0,last_contacted_cox_app
+1,1136158,0-30 days
+3,289067,1-3 years
+4,455732,31-90 days
+7,222391,6-12 months
+2,277836,91-180 days
+5,415181,less than 0 days
+6,3414884,never_contacted
+,,
+2024-09,,
+#,_col0,last_contacted_cox_app
+6,323178,0-30 days
+4,269898,1-3 years
+3,305772,31-90 days
+1,196173,6-12 months
+5,213934,91-180 days
+2,1510298,less than 0 days
+7,3418875,never_contacted
+,,
+2024-08,,
+#,_col0,last_contacted_cox_app
+6,226537,0-30 days
+5,251690,1-3 years
+3,229520,31-90 days
+4,178529,6-12 months
+7,169567,91-180 days
+2,1779590,less than 0 days
+1,3434041,never_contacted
+,,
+,,
+2024-07,,
+#,_col0,last_contacted_cox_app
+6,173672,0-30 days
+5,234536,1-3 years
+2,177182,31-90 days
+3,168398,6-12 months
+7,142998,91-180 days
+1,1942557,less than 0 days
+4,3448671,never_contacted
+,,
+2024-06,,
+#,_col0,last_contacted_cox_app
+5,142886,0-30 days
+4,217016,1-3 years
+2,137746,31-90 days
+6,157764,6-12 months
+3,125825,91-180 days
+1,2056200,less than 0 days
+7,3457108,never_contacted
+,,
+2024-05,,
+#,_col0,last_contacted_cox_app
+4,115641,0-30 days
+5,202909,1-3 years
+3,118048,31-90 days
+1,150922,6-12 months
+6,111540,91-180 days
+2,2142217,less than 0 days
+7,3469007,never_contacted
+,,
+2024-04,,
+#,_col0,last_contacted_cox_app
+5,96902,0-30 days
+4,190174,1-3 years
+2,102407,31-90 days
+3,143760,6-12 months
+6,99891,91-180 days
+1,2204933,less than 0 days
+7,3474619,never_contacted
+,,
+2024-03,,
+#,_col0,last_contacted_cox_app
+1,88033,0-30 days
+3,177777,1-3 years
+5,93636,31-90 days
+6,135525,6-12 months
+2,91047,91-180 days
+4,2250823,less than 0 days
+7,3490635,never_contacted
+,,
+2024-02,,
+#,_col0,last_contacted_cox_app
+5,76652,0-30 days
+4,165199,1-3 years
+3,83106,31-90 days
+6,125827,6-12 months
+1,89045,91-180 days
+2,2287231,less than 0 days
+7,3500566,never_contacted
+,,
+2024-01,,
+#,_col0,last_contacted_cox_app
+6,74755,0-30 days
+4,153285,1-3 years
+1,73697,31-90 days
+5,117883,6-12 months
+7,89587,91-180 days
+2,2313618,less than 0 days
+3,3515944,never_contacted
+,,
+2023-12,,
+#,_col0,last_contacted_cox_app
+6,63462,0-30 days
+5,140626,1-3 years
+3,72943,31-90 days
+4,109083,6-12 months
+7,87712,91-180 days
+2,2342936,less than 0 days
+1,3528929,never_contacted
+,,
+2023-11,,
+#,_col0,last_contacted_cox_app
+2,61763,0-30 days
+6,129690,1-3 years
+4,74968,31-90 days
+1,102923,6-12 months
+7,81679,91-180 days
+3,2361433,less than 0 days
+5,3541856,never_contacted
+,,
+2023-10,,
+#,_col0,last_contacted_cox_app
+1,68280,0-30 days
+2,119248,1-3 years
+4,74833,31-90 days
+5,100176,6-12 months
+7,73612,91-180 days
+3,2373930,less than 0 days
+6,3560894,never_contacted

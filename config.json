@@ -1,0 +1,128 @@
+{
+    "config1" : [
+        {
+        "new_row": {"display_names": "Started Troubleshooting (Solution Center)", "operating_system_type": "Both"},
+        "numerator_ios": "Started Troubleshooting (Solution Center)",
+        "numerator_android": "Started Troubleshooting (Solution Center)",
+        "denominator_ios": "Devices Page Visits",
+        "denominator_android": "Devices Page Visits"
+        },
+        {
+            "new_row": {"display_names": "Did a Device Reboot", "operating_system_type": "Both"},
+            "numerator_ios": "Did a Device Reboot",
+            "numerator_android": "Did a Device Reboot",
+            "denominator_ios": "Devices Page Visits",
+            "denominator_android": "Devices Page Visits"
+        },
+        {
+            "new_row": {"display_names": "Started Proactive and Preventive (P&P)", "operating_system_type": "Both"},
+            "numerator_ios": "Started Proactive and Preventive (P&P)",
+            "numerator_android": "Started Proactive and Preventive (P&P)",
+            "denominator_ios": "Devices Page Visits",
+            "denominator_android": "Devices Page Visits"
+        },
+        {
+            "new_row": {"display_names": "Clicked Billing & Account Support", "operating_system_type": "Both"},
+            "numerator_ios": "Clicked Billing & Account Support",
+            "numerator_android": "Clicked Billing & Account Support",
+            "denominator_ios": "Devices Page Visits",
+            "denominator_android": "Devices Page Visits"
+        },
+        {
+            "new_row": {"display_names": "Clicked Internet Support", "operating_system_type": "Both"},
+            "numerator_ios": "Clicked Internet Support",
+            "numerator_android": "Clicked Internet Support",
+            "denominator_ios": "Devices Page Visits",
+            "denominator_android": "Devices Page Visits"
+        },
+        {
+            "new_row": {"display_names": "Clicked TV Support", "operating_system_type": "Both"},
+            "numerator_ios": "Clicked TV Support",
+            "numerator_android": "Clicked TV Support",
+            "denominator_ios": "Devices Page Visits",
+            "denominator_android": "Devices Page Visits"
+        },
+        {
+            "new_row": {"display_names": "Clicked Homelife Support", "operating_system_type": "Both"},
+            "numerator_ios": "Clicked Homelife Support",
+            "numerator_android": "Clicked Homelife Support",
+            "denominator_ios": "Devices Page Visits",
+            "denominator_android": "Devices Page Visits"            
+        },
+        {
+            "new_row": {"display_names": "Smarthelp_Interacted with Chat", "operating_system_type": "Both"},
+            "numerator_ios": "Smarthelp_Interacted with Chat",
+            "numerator_android": "Smarthelp_Interacted with Chat",
+            "denominator_ios": "Devices Page Visits",
+            "denominator_android": "Devices Page Visits"
+        }
+    ],
+    "config2" : [
+        {
+            "new_row": {"display_names": "Saw a Result", "operating_system_type": "Both"},
+            "numerator_ios": "Saw a Result",
+            "numerator_android": "Saw a Result",
+            "denominator_ios": "Started Troubleshooting (Solution Center)",
+            "denominator_android": "Started Troubleshooting (Solution Center)"            
+        },
+        {
+            "new_row": {"display_names": "1st common reason (Unknown)", "operating_system_type": "Both"},
+            "numerator_ios": "1st common reason (Unknown)",
+            "numerator_android": "1st common reason (Unknown)",
+            "denominator_ios": "Saw a Result",
+            "denominator_android": "Saw a Result"
+        },
+        {
+            "new_row": {"display_names": "2nd common reason (Disconnected)", "operating_system_type": "Both"},
+            "numerator_ios": "2nd common reason (Disconnected)",
+            "numerator_android": "2nd common reason (Disconnected)",
+            "denominator_ios": "Saw a Result",
+            "denominator_android": "Saw a Result"            
+        },
+        {
+            "new_row": {"display_names": "3rd common reason (Incomplete Install)", "operating_system_type": "Both"},
+            "numerator_ios": "3rd common reason (Incomplete Install)",
+            "numerator_android": "3rd common reason (Incomplete Install)",
+            "denominator_ios": "Saw a Result",
+            "denominator_android": "Saw a Result"            
+        },
+        {
+            "new_row": {"display_names": "Started P&P troubleshooting", "operating_system_type": "Both"},
+            "numerator_ios": "Started P&P troubleshooting",
+            "numerator_android": "Started P&P troubleshooting",
+            "denominator_ios": "Started Proactive and Preventive (P&P)",
+            "denominator_android": "Started Proactive and Preventive (P&P)"            
+        },
+        {
+            "new_row": {"display_names": "Smarthelp Reset Complete", "operating_system_type": "Both"},
+            "numerator_ios": "Smarthelp Reset Complete",
+            "numerator_android": "Smarthelp Reset Complete",
+            "denominator_ios": "Started Proactive and Preventive (P&P)",
+            "denominator_android": "Started Proactive and Preventive (P&P)"            
+        },
+        {
+            "new_row": {"display_names": "Schedule Tech", "operating_system_type": "Both"},
+            "numerator_ios": "Schedule Tech",
+            "numerator_android": "Schedule Tech",
+            "denominator_ios": "Started Proactive and Preventive (P&P)",
+            "denominator_android": "Started Proactive and Preventive (P&P)"
+        },
+        {
+            "new_row": {"display_names": "Connect with Agent", "operating_system_type": "Both"},
+            "numerator_ios": "Connect with Agent",
+            "numerator_android": "Connect with Agent",
+            "denominator_ios": "Started Proactive and Preventive (P&P)",
+            "denominator_android": "Started Proactive and Preventive (P&P)"
+        },
+        {
+            "new_row": {"display_names": "Smarthelp_P&P Interacted with Chat", "operating_system_type": "Both"},
+            "numerator_ios": "Smarthelp_P&P Interacted with Chat",
+            "numerator_android": "Smarthelp_P&P Interacted with Chat",
+            "denominator_ios": "Started Proactive and Preventive (P&P)",
+            "denominator_android": "Started Proactive and Preventive (P&P)"            
+        }
+    ],
+    "config3" : [
+        "Devices Page Visits"
+    ]
+}
