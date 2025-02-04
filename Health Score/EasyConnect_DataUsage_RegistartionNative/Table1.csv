@@ -1,0 +1,572 @@
+metric_id,metrics,display_names,operating_system_type,feature_name,unique_identifier,metric_nature,level_1,level_2,level_3,level_4,level_5,hierarchy_id,parent_id_old,metric_sequence_num,metric_seqno,level_no,feature_id,feature_seq_num,parent_id,create_dt
+1,DR_Visits to Billing Home,Billing Section Visits,Apple iOS,BIL LING,BL,Positive,Billing Section Visits,,,,,Apple iOS_BL_1,,1,1,1.0,1,3,,2025-02-04
+2,DR_Billing Make a Payment,Make Payments,Apple iOS,BIL LING,BL,Positive,,Make Payments,,,,Apple iOS_BL_1.1,Apple iOS_BL_1,2,2,2.0,1,3,1.0,2025-02-04
+3,DR_Client Errors on Make Payment,Client Errors on Payment Page,Apple iOS,BIL LING,BL,Negative,,,Client Errors on Payment Page,,,Apple iOS_BL_1.1.1,Apple iOS_BL_1.1,3,5,3.0,1,3,2.0,2025-02-04
+4,DR_Server Errors on Make Payment,Server Errors on Payment Page,Apple iOS,BIL LING,BL,Negative,,,Server Errors on Payment Page,,,Apple iOS_BL_1.1.2,Apple iOS_BL_1.1,4,6,3.0,1,3,2.0,2025-02-04
+5,DR_Payment Submit,Payment Submit,Apple iOS,BIL LING,BL,Positive,,Payment Submit,,,,Apple iOS_BL_1.2,Apple iOS_BL_1,5,3,2.0,1,3,1.0,2025-02-04
+6,DR_Payments,Payment Success Rate,Apple iOS,BIL LING,BL,Positive,,,Payment Success Rate,,,Apple iOS_BL_1.2.1,Apple iOS_BL_1.2,6,4,3.0,1,3,5.0,2025-02-04
+7,DR_Promise to Pay,Promise to Pay - Linkout,Apple iOS,BIL LING,BL,Positive,,Promise to Pay - Linkout,,,,Apple iOS_BL_1.3,Apple iOS_BL_1,7,7,2.0,1,3,1.0,2025-02-04
+8,DR_Promise to Pay (Native),Promise to Pay - Native,Apple iOS,BIL LING,BL,Positive,,Promise to Pay - Native,,,,Apple iOS_BL_1.4,Apple iOS_BL_1,8,8,2.0,1,3,1.0,2025-02-04
+9,DR_CoxApp | Billing - Additional time to pay (Link out),Additional time to pay - Linkout,Apple iOS,BIL LING,BL,Positive,,,Additional time to pay - Linkout,,,Apple iOS_BL_1.4.1,Apple iOS_BL_1.4,9,9,3.0,1,3,8.0,2025-02-04
+10,DR_CoxApp | Billing - Future date payment (Link out),Future date payment - Linkout,Apple iOS,BIL LING,BL,Positive,,,Future date payment - Linkout,,,Apple iOS_BL_1.4.2,Apple iOS_BL_1.4,10,10,3.0,1,3,8.0,2025-02-04
+11,DR_Billing - View Bill Details,Bill Downloads,Apple iOS,BIL LING,BL,Positive,,Bill Downloads,,,,Apple iOS_BL_1.5,Apple iOS_BL_1,11,11,2.0,1,3,1.0,2025-02-04
+12,DR_Billing - Activity & Statements,Activity & Statements,Apple iOS,BIL LING,BL,Positive,,Activity & Statements,,,,Apple iOS_BL_1.6,Apple iOS_BL_1,12,12,2.0,1,3,1.0,2025-02-04
+13,DR_Billing - Automatic Payments,Easy Pay Enrollments,Apple iOS,BIL LING,BL,Positive,,Easy Pay Enrollments,,,,Apple iOS_BL_1.7,Apple iOS_BL_1,13,13,2.0,1,3,1.0,2025-02-04
+14,DR_Billing - Manage Payment Methods,Payment Method Changes,Apple iOS,BIL LING,BL,Positive,,Payment Method Changes,,,,Apple iOS_BL_1.8,Apple iOS_BL_1,14,14,2.0,1,3,1.0,2025-02-04
+15,DR_Billing - Agreements & Discounts,Agreement & Discounts,Apple iOS,BIL LING,BL,Positive,,Agreement & Discounts,,,,Apple iOS_BL_1.9,Apple iOS_BL_1,15,15,2.0,1,3,1.0,2025-02-04
+16,DR_Billing - Bill Delivery,Bill Delivery Options,Apple iOS,BIL LING,BL,Positive,,Bill Delivery Options,,,,Apple iOS_BL_1.10,Apple iOS_BL_1,16,16,2.0,1,3,1.0,2025-02-04
+17,DR_Billing - Edit Billing Address,Address Changes,Apple iOS,BIL LING,BL,Positive,,Address Changes,,,,Apple iOS_BL_1.11,Apple iOS_BL_1,17,17,2.0,1,3,1.0,2025-02-04
+18,DR_Billing - Move My Service,Move Service,Apple iOS,BIL LING,BL,Positive,,Move Service,,,,Apple iOS_BL_1.12,Apple iOS_BL_1,18,18,2.0,1,3,1.0,2025-02-04
+19,DR_Billing visits to chat,Billing_Interacted with chat,Apple iOS,BIL LING,BL,Negative,,Billing_Interacted with chat,,,,Apple iOS_BL_1.13,Apple iOS_BL_1,19,19,2.0,1,3,1.0,2025-02-04
+20,DR_Wireless Service,Visits from 'Cox Mobile' users,Apple iOS,COX MOBILE,CM,Positive,Visits from 'Cox Mobile' users,,,,,Apple iOS_CM_1,,20,1,1.0,2,13,,2025-02-04
+21,DR_Mymobile HomePage Visits,Coxmob Line Detail Page,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Line Detail Page,,,,Apple iOS_CM_1.1,Apple iOS_CM_1,21,2,2.0,2,13,20.0,2025-02-04
+22,DR_Mobile Lock Enabled,,Apple iOS,COX MOBILE,CM,,,,,,,,,22,,1.0,2,13,,2025-02-04
+23,DR_Mobile Lock Disabled,,Apple iOS,COX MOBILE,CM,,,,,,,,,23,,1.0,2,13,,2025-02-04
+24,DR_Change Status Exit link,Coxmob Change Status External Link,Apple iOS,COX MOBILE,CM,Positive,,,Coxmob Change Status External Link,,,Apple iOS_CM_1.1.1,Apple iOS_CM_1.1,24,13,3.0,2,13,21.0,2025-02-04
+25,DR_Add a Line,Coxmob Add a Line,Apple iOS,COX MOBILE,CM,Positive,,,Coxmob Add a Line,,,Apple iOS_CM_1.1.2,Apple iOS_CM_1.1,25,3,3.0,2,13,21.0,2025-02-04
+26,DR_Change your Plan,Coxmob Change  Plan - linkout,Apple iOS,COX MOBILE,CM,Positive,,,Coxmob Change  Plan - linkout,,,Apple iOS_CM_1.1.3,Apple iOS_CM_1.1,26,4,3.0,2,13,21.0,2025-02-04
+27,DR_Change Plan - New,Coxmob Change Plan - Native,Apple iOS,COX MOBILE,CM,Positive,,,Coxmob Change Plan - Native,,,Apple iOS_CM_1.1.4,Apple iOS_CM_1.1,27,5,3.0,2,13,21.0,2025-02-04
+28,DR_Change plan - Account Restrictions,Coxmob Account Restrictions,Apple iOS,COX MOBILE,CM,Negative,,,,Coxmob Account Restrictions,,Apple iOS_CM_1.1.4.1,Apple iOS_CM_1.1.4,28,6,4.0,2,13,27.0,2025-02-04
+29,DR_Change plan Confirmation,Coxmob Plan Purchased,Apple iOS,COX MOBILE,CM,Positive,,,,Coxmob Plan Purchased,,Apple iOS_CM_1.1.4.2,Apple iOS_CM_1.1.4,29,7,4.0,2,13,27.0,2025-02-04
+30,DR_Change Plan - Pay as Gig,Coxmob Gig Plan,Apple iOS,COX MOBILE,CM,Positive,,,,,Coxmob Gig Plan,Apple iOS_CM_1.1.4.2.1,Apple iOS_CM_1.1.4.2,30,8,5.0,2,13,29.0,2025-02-04
+31,DR_Change Plan - Unlimited,Coxmob Unlimited Plan,Apple iOS,COX MOBILE,CM,Positive,,,,,Coxmob Unlimited Plan,Apple iOS_CM_1.1.4.2.2,Apple iOS_CM_1.1.4.2,31,9,5.0,2,13,29.0,2025-02-04
+32,DR_Welcome Guide,Coxmob Welcome Guide,Apple iOS,COX MOBILE,CM,Positive,,,Coxmob Welcome Guide,,,Apple iOS_CM_1.1.5,Apple iOS_CM_1.1,32,10,3.0,2,13,21.0,2025-02-04
+33,DR_Device Payment Plan,Coxmob Device Payment Plan,Apple iOS,COX MOBILE,CM,Positive,,,Coxmob Device Payment Plan,,,Apple iOS_CM_1.1.6,Apple iOS_CM_1.1,33,11,3.0,2,13,21.0,2025-02-04
+34,DR_Insurance Claim,File a Claim,Apple iOS,COX MOBILE,CM,Negative,,,File a Claim,,,Apple iOS_CM_1.1.7,Apple iOS_CM_1.1,34,12,3.0,2,13,21.0,2025-02-04
+35,DR_Opted for Pay as you Gig Plan,Coxmob Pay as you Gig,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Pay as you Gig,,,,Apple iOS_CM_1.2,Apple iOS_CM_1,35,14,2.0,2,13,20.0,2025-02-04
+36,DR_Opted for Gig Unlimited Plan,Coxmob Gig Unlimited Plan,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Gig Unlimited Plan,,,,Apple iOS_CM_1.3,Apple iOS_CM_1,36,15,2.0,2,13,20.0,2025-02-04
+37,DR_Mobile Billing Home,Coxmob Billing Home,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Billing Home,,,,Apple iOS_CM_1.4,Apple iOS_CM_1,37,16,2.0,2,13,20.0,2025-02-04
+38,DR_Mobile Billing - Additional Payment,Coxmob Make Additional Payment,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Make Additional Payment,,,,Apple iOS_CM_1.5,Apple iOS_CM_1,38,17,2.0,2,13,20.0,2025-02-04
+39,DR_Mobile Billing - Payment Method,Coxmob Payment Method Changes,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Payment Method Changes,,,,Apple iOS_CM_1.6,Apple iOS_CM_1,39,18,2.0,2,13,20.0,2025-02-04
+40,DR_Mobile Billing - Activity & Statements,Coxmob Activity & Statements,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Activity & Statements,,,,Apple iOS_CM_1.7,Apple iOS_CM_1,40,19,2.0,2,13,20.0,2025-02-04
+41,DR_Mobile Billing - Easypay Confirmation,Coxmob Easypay Enrollment,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Easypay Enrollment,,,,Apple iOS_CM_1.8,Apple iOS_CM_1,41,20,2.0,2,13,20.0,2025-02-04
+42,DR_Mobile Billing - Bill Delivery Confirmation,Coxmob Bill Delivery Changes,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Bill Delivery Changes,,,,Apple iOS_CM_1.9,Apple iOS_CM_1,42,21,2.0,2,13,20.0,2025-02-04
+43,DR_Wireless Support,Coxmob Support Section,Apple iOS,COX MOBILE,CM,Positive,,Coxmob Support Section,,,,Apple iOS_CM_1.10,Apple iOS_CM_1,43,22,2.0,2,13,20.0,2025-02-04
+44,DR_Total Data Usage Visits,Total Data Usage Visits,Apple iOS,DATA USAGE,DU,Positive,Total Data Usage Visits,,,,,Apple iOS_DU_1,,44,1,1.0,3,10,,2025-02-04
+45,DR_Data Plan upgrade,Data Plan Upgrade,Apple iOS,DATA USAGE,DU,Positive,,Data Plan Upgrade,,,,Apple iOS_DU_1.1,Apple iOS_DU_1,45,2,2.0,3,10,44.0,2025-02-04
+46,DR_Data Usage Learn More,Learn More,Apple iOS,DATA USAGE,DU,Positive,,Learn More,,,,Apple iOS_DU_1.2,Apple iOS_DU_1,46,3,2.0,3,10,44.0,2025-02-04
+47,DR_Data Usage Courtesy Credits,Courtesy Credit,Apple iOS,DATA USAGE,DU,Positive,,Courtesy Credit,,,,Apple iOS_DU_1.3,Apple iOS_DU_1,47,4,2.0,3,10,44.0,2025-02-04
+48,DR_Total Data Usage >=75%,Data usage >=75%,Apple iOS,DATA USAGE,DU,Positive,,Data usage >=75%,,,,Apple iOS_DU_1.4,Apple iOS_DU_1,48,5,2.0,3,10,44.0,2025-02-04
+49,DR_Total Data Usage >=100%,Data usage >=100%,Apple iOS,DATA USAGE,DU,Positive,,Data usage >=100%,,,,Apple iOS_DU_1.5,Apple iOS_DU_1,49,6,2.0,3,10,44.0,2025-02-04
+50,DR_Data Usage - Agent Chat Started,Data_usage Interacted with Chat,Apple iOS,DATA USAGE,DU,Negative,,Data_usage Interacted with Chat,,,,Apple iOS_DU_1.6,Apple iOS_DU_1,50,7,2.0,3,10,44.0,2025-02-04
+51,DR_Direct Ecomm Visits Traffic from to Cox.com,Total Visits from web ecomm,Apple iOS,E COMMERCE,EC,Positive,,,,,,,,51,1,1.0,4,8,,2025-02-04
+52,DR_Direct Ecomm order Traffic sent from cox.com,Total Orders from web ecomm,Apple iOS,E COMMERCE,EC,Positive,,,,,,,,52,2,1.0,4,8,,2025-02-04
+53,DR_Direct Ecomm Traffic sent from App to cox.com,Visits sent from app to cox.com,Apple iOS,E COMMERCE,EC,Positive,Visits sent from app to cox.com,,,,,Apple iOS_EC_1,,53,3,1.0,4,8,,2025-02-04
+54,DR_Direct Ecomm order Traffic sent from App to cox.com,Orders generated,Apple iOS,E COMMERCE,EC,Positive,,,,,,,,54,4,1.0,4,8,,2025-02-04
+55,DR_Data Plan Upgrade Ecomm Traffic sent from App to cox.com,Data Usage,Apple iOS,E COMMERCE,EC,Positive,,Data Usage,,,,Apple iOS_EC_1.1,Apple iOS_EC_1,55,5,2.0,4,8,53.0,2025-02-04
+56,DR_Service Plan Upgrade Ecomm Traffic sent from App to cox.com,Plan Changes,Apple iOS,E COMMERCE,EC,Positive,,Plan Changes,,,,Apple iOS_EC_1.2,Apple iOS_EC_1,56,6,2.0,4,8,53.0,2025-02-04
+57,DR_CRO Ecomm Traffic sent from App to cox.com,CRO,Apple iOS,E COMMERCE,EC,Positive,,CRO,,,,Apple iOS_EC_1.3,Apple iOS_EC_1,57,7,2.0,4,8,53.0,2025-02-04
+58,DR_Transfer Ecomm Traffic sent from App to cox.com,Transfer,Apple iOS,E COMMERCE,EC,Positive,,Transfer,,,,Apple iOS_EC_1.4,Apple iOS_EC_1,58,8,2.0,4,8,53.0,2025-02-04
+59,DR_Visits where One EC Card was shown,Easy Connect Eligible Visits,Apple iOS,EASY CON NECT,ECN,Positive,Easy Connect Eligible Visits,,,,,Apple iOS_ECN_1,,59,1,1.0,5,4,,2025-02-04
+60,DR_EC Flow>Success,Overall Success,Apple iOS,EASY CON NECT,ECN,Positive,,Overall Success,,,,Apple iOS_ECN_1.1,Apple iOS_ECN_1,60,2,2.0,5,4,59.0,2025-02-04
+61,DR_EC>Failure,Overall Failure,Apple iOS,EASY CON NECT,ECN,Negative,,Overall Failure,,,,Apple iOS_ECN_1.2,Apple iOS_ECN_1,61,3,2.0,5,4,59.0,2025-02-04
+62,DR_EC Flow>Timeout,Overall Timeout,Apple iOS,EASY CON NECT,ECN,Negative,,Overall Timeout,,,,Apple iOS_ECN_1.3,Apple iOS_ECN_1,62,4,2.0,5,4,59.0,2025-02-04
+63,DR_EC>No Result,Overall No Result,Apple iOS,EASY CON NECT,ECN,Negative,,Overall No Result,,,,Apple iOS_ECN_1.4,Apple iOS_ECN_1,63,5,2.0,5,4,59.0,2025-02-04
+64,DR_Easy Connect - Started,Started the Flow,Apple iOS,EASY CON NECT,ECN,Positive,,Started the Flow,,,,Apple iOS_ECN_1.5,Apple iOS_ECN_1,64,6,2.0,5,4,59.0,2025-02-04
+65,DR_Easy Connect Started - Success,Success,Apple iOS,EASY CON NECT,ECN,Positive,,,Success,,,Apple iOS_ECN_1.5.1,Apple iOS_ECN_1.5,65,7,3.0,5,4,64.0,2025-02-04
+66,DR_Easy Connect Started - Failure,Failure,Apple iOS,EASY CON NECT,ECN,Negative,,,Failure,,,Apple iOS_ECN_1.5.2,Apple iOS_ECN_1.5,66,8,3.0,5,4,64.0,2025-02-04
+67,DR_Easy Connect Started - Timeout,Timeout,Apple iOS,EASY CON NECT,ECN,Negative,,,Timeout,,,Apple iOS_ECN_1.5.3,Apple iOS_ECN_1.5,67,9,3.0,5,4,64.0,2025-02-04
+68,DR_Easy Connect Started - No Result,No Result,Apple iOS,EASY CON NECT,ECN,Negative,,,No Result,,,Apple iOS_ECN_1.5.4,Apple iOS_ECN_1.5,68,10,3.0,5,4,64.0,2025-02-04
+69,DR_Easy Connect - Started Agent Chat,Easyconnect_Interacted with Chat,Apple iOS,EASY CON NECT,ECN,Negative,,,Easyconnect_Interacted with Chat,,,Apple iOS_ECN_1.5.5,Apple iOS_ECN_1.5,69,11,3.0,5,4,64.0,2025-02-04
+70,DR_Visits who did not Start EC Flow,Did Not Start the Flow,Apple iOS,EASY CON NECT,ECN,Negative,,Did Not Start the Flow,,,,Apple iOS_ECN_1.6,Apple iOS_ECN_1,70,12,2.0,5,4,59.0,2025-02-04
+71,DR_Visits who did not Start EC Flow - Success,Did_not Success,Apple iOS,EASY CON NECT,ECN,Positive,,,Did_not Success,,,Apple iOS_ECN_1.6.1,Apple iOS_ECN_1.6,71,13,3.0,5,4,70.0,2025-02-04
+72,DR_Visits who did not Start EC Flow - Failure,Did_not Failure,Apple iOS,EASY CON NECT,ECN,Negative,,,Did_not Failure,,,Apple iOS_ECN_1.6.2,Apple iOS_ECN_1.6,72,14,3.0,5,4,70.0,2025-02-04
+73,DR_Visits who did not Start EC Flow - No Result,Did_not No Result,Apple iOS,EASY CON NECT,ECN,Negative,,,Did_not No Result,,,Apple iOS_ECN_1.6.3,Apple iOS_ECN_1.6,73,15,3.0,5,4,70.0,2025-02-04
+74,DR_Easy Connect - Self install success,,Apple iOS,EASY CON NECT,ECN,,,,,,,,,74,,1.0,5,4,,2025-02-04
+75,DR_Easy Connect - Self install Timeout,,Apple iOS,EASY CON NECT,ECN,,,,,,,,,75,,1.0,5,4,,2025-02-04
+76,cancel,,Apple iOS,KEY WORDS,KW,,,,,,,,,76,,1.0,6,17,,2025-02-04
+77,cancel service,,Apple iOS,KEY WORDS,KW,,,,,,,,,77,,1.0,6,17,,2025-02-04
+78,outage,,Apple iOS,KEY WORDS,KW,,,,,,,,,78,,1.0,6,17,,2025-02-04
+79,bill,,Apple iOS,KEY WORDS,KW,,,,,,,,,79,,1.0,6,17,,2025-02-04
+80,pay bill,,Apple iOS,KEY WORDS,KW,,,,,,,,,80,,1.0,6,17,,2025-02-04
+81,modem,,Apple iOS,KEY WORDS,KW,,,,,,,,,81,,1.0,6,17,,2025-02-04
+82,billing,,Apple iOS,KEY WORDS,KW,,,,,,,,,82,,1.0,6,17,,2025-02-04
+83,Setup,,Apple iOS,KEY WORDS,KW,,,,,,,,,83,,1.0,6,17,,2025-02-04
+84,new modem,,Apple iOS,KEY WORDS,KW,,,,,,,,,84,,1.0,6,17,,2025-02-04
+85,set up,,Apple iOS,KEY WORDS,KW,,,,,,,,,85,,1.0,6,17,,2025-02-04
+86,speed test,,Apple iOS,KEY WORDS,KW,,,,,,,,,86,,1.0,6,17,,2025-02-04
+87,phone number,,Apple iOS,KEY WORDS,KW,,,,,,,,,87,,1.0,6,17,,2025-02-04
+88,contact,,Apple iOS,KEY WORDS,KW,,,,,,,,,88,,1.0,6,17,,2025-02-04
+89,call,,Apple iOS,KEY WORDS,KW,,,,,,,,,89,,1.0,6,17,,2025-02-04
+90,outages,,Apple iOS,KEY WORDS,KW,,,,,,,,,90,,1.0,6,17,,2025-02-04
+91,outage map,,Apple iOS,KEY WORDS,KW,,,,,,,,,91,,1.0,6,17,,2025-02-04
+92,password,,Apple iOS,KEY WORDS,KW,,,,,,,,,92,,1.0,6,17,,2025-02-04
+93,disconnect,,Apple iOS,KEY WORDS,KW,,,,,,,,,93,,1.0,6,17,,2025-02-04
+94,customer service,,Apple iOS,KEY WORDS,KW,,,,,,,,,94,,1.0,6,17,,2025-02-04
+95,install,,Apple iOS,KEY WORDS,KW,,,,,,,,,95,,1.0,6,17,,2025-02-04
+96,DR_Login Page Visits,Login Page Visits,Apple iOS,LOG IN,LI,Positive,Login Page Visits,,,,,Apple iOS_LI_1,,96,1,1.0,7,2,,2025-02-04
+97,DR_Successful logins,Login Success Rate,Apple iOS,LOG IN,LI,Positive,,Login Success Rate,,,,Apple iOS_LI_1.1,Apple iOS_LI_1,97,2,2.0,7,2,96.0,2025-02-04
+98,DR_Auto Logins,Share of Auto Login (Remember/Biometrics),Apple iOS,LOG IN,LI,Positive,,,Share of Auto Login (Remember/Biometrics),,,Apple iOS_LI_1.1.1,Apple iOS_LI_1.1,98,3,3.0,7,2,97.0,2025-02-04
+99,DR_Clicks to MFA Verification,with TSV,Apple iOS,LOG IN,LI,Positive,,with TSV,,,,Apple iOS_LI_1.2,Apple iOS_LI_1,99,4,2.0,7,2,96.0,2025-02-04
+100,DR_Clicks on Forgot User ID,User ID Recovery,Apple iOS,LOG IN,LI,Negative,,User ID Recovery,,,,Apple iOS_LI_1.3,Apple iOS_LI_1,100,5,2.0,7,2,96.0,2025-02-04
+101,Clicks on Forgot Password,Password Reset,Apple iOS,LOG IN,LI,Negative,,Password Reset,,,,Apple iOS_LI_1.4,Apple iOS_LI_1,101,6,2.0,7,2,96.0,2025-02-04
+102,DR_Need to Register,Registration,Apple iOS,LOG IN,LI,Positive,,Registration,,,,Apple iOS_LI_1.5,Apple iOS_LI_1,102,7,2.0,7,2,96.0,2025-02-04
+103,DR_Notification status Exists,Notifi_center Visits with Bell icon,Apple iOS,NOTIFICATION CENTER,NC,Positive,Notifi_center Visits with Bell icon,,,,,Apple iOS_NC_1,,103,1,1.0,8,15,,2025-02-04
+104,DR_Notification received visits,Notifi_center Visits with new notifications,Apple iOS,NOTIFICATION CENTER,NC,Positive,,Notifi_center Visits with new notifications,,,,Apple iOS_NC_1.1,Apple iOS_NC_1,104,2,2.0,8,15,103.0,2025-02-04
+105,DR_Notification page Visits,Notifi_center Clicked bell with new notifications,Apple iOS,NOTIFICATION CENTER,NC,Positive,,,Notifi_center Clicked bell with new notifications,,,Apple iOS_NC_1.1.1,Apple iOS_NC_1.1,105,3,3.0,8,15,104.0,2025-02-04
+106,DR_Notification Viewed with new notifications,Notifi_center Viewed,Apple iOS,NOTIFICATION CENTER,NC,Positive,,,,Notifi_center Viewed,,Apple iOS_NC_1.1.1.1,Apple iOS_NC_1.1.1,106,4,4.0,8,15,105.0,2025-02-04
+107,DR_Notification Declined with new notifications,Notifi_center Declined,Apple iOS,NOTIFICATION CENTER,NC,Negative,,,,Notifi_center Declined,,Apple iOS_NC_1.1.1.2,Apple iOS_NC_1.1.1,107,5,4.0,8,15,105.0,2025-02-04
+108,DR_Notification accepted with new notifications,Notifi_center Accepted,Apple iOS,NOTIFICATION CENTER,NC,Positive,,,,Notifi_center Accepted,,Apple iOS_NC_1.1.1.3,Apple iOS_NC_1.1.1,108,6,4.0,8,15,105.0,2025-02-04
+109,DR_No action on new notifications,Notifi_center No Action,Apple iOS,NOTIFICATION CENTER,NC,Negative,,,,Notifi_center No Action,,Apple iOS_NC_1.1.1.4,Apple iOS_NC_1.1.1,109,7,4.0,8,15,105.0,2025-02-04
+110,DR_Notifications not received visits,Notifi_center Visits with no new notifications,Apple iOS,NOTIFICATION CENTER,NC,Negative,,Notifi_center Visits with no new notifications,,,,Apple iOS_NC_1.2,Apple iOS_NC_1,110,8,2.0,8,15,103.0,2025-02-04
+111,DR_Notification Viewed with no new notifications,with no new notifi Viewed,Apple iOS,NOTIFICATION CENTER,NC,Positive,,,,with no new notifi Viewed,,Apple iOS_NC_1.2.0.1,Apple iOS_NC_1.2.0,111,9,4.0,8,15,,2025-02-04
+112,DR_Notification Declined with no new notification,with no new notifi Declined,Apple iOS,NOTIFICATION CENTER,NC,Negative,,,,with no new notifi Declined,,Apple iOS_NC_1.2.0.2,Apple iOS_NC_1.2.0,112,10,4.0,8,15,,2025-02-04
+113,DR_Notification accepted with no new notifications,with no new notifi Accepted,Apple iOS,NOTIFICATION CENTER,NC,Positive,,,,with no new notifi Accepted,,Apple iOS_NC_1.2.0.3,Apple iOS_NC_1.2.0,113,11,4.0,8,15,,2025-02-04
+114,DR_No action on no new notifications,with no new notifi No Action,Apple iOS,NOTIFICATION CENTER,NC,Negative,,,,with no new notifi No Action,,Apple iOS_NC_1.2.0.4,Apple iOS_NC_1.2.0,114,12,4.0,8,15,,2025-02-04
+115,DR_Visits,Visits,Apple iOS,OVER ALL,OA,Positive,Visits,,,,,Apple iOS_OA_1,,115,1,1.0,9,1,,2025-02-04
+116,Unique Visitors,Visitors,Apple iOS,OVER ALL,OA,Positive,,,,,,,,116,2,1.0,9,1,,2025-02-04
+117,Page Views,Page Views,Apple iOS,OVER ALL,OA,Positive,,,,,,,,117,3,1.0,9,1,,2025-02-04
+118,Average Time Spent on Page,Average Time Spent (mins),Apple iOS,OVER ALL,OA,Negative,,,,,,,,118,4,1.0,9,1,,2025-02-04
+119,DR_New Visitors,New Visitors,Apple iOS,OVER ALL,OA,Positive,,New Visitors,,,,Apple iOS_OA_1.1,Apple iOS_OA_1,119,5,2.0,9,1,115.0,2025-02-04
+120,DR_Server Errors,Server Errors,Apple iOS,OVER ALL,OA,Negative,,Server Errors,,,,Apple iOS_OA_1.2,Apple iOS_OA_1,120,6,2.0,9,1,115.0,2025-02-04
+121,DR_Overall Chat,Visits to Chat,Apple iOS,OVER ALL,OA,Negative,,Visits to Chat,,,,Apple iOS_OA_1.3,Apple iOS_OA_1,121,7,2.0,9,1,115.0,2025-02-04
+122,DR_Message Us,Visits to Chat (Bot),Apple iOS,OVER ALL,OA,Negative,,Visits to Chat (Bot),,,,Apple iOS_OA_1.4,Apple iOS_OA_1,122,8,2.0,9,1,115.0,2025-02-04
+123,DR_Agent Chat,Visits to Agent Chat (Skip bot),Apple iOS,OVER ALL,OA,Negative,,Visits to Agent Chat (Skip bot),,,,Apple iOS_OA_1.5,Apple iOS_OA_1,123,9,2.0,9,1,115.0,2025-02-04
+124,DR_Self Service Initiated,Visits to Self Service Features,Apple iOS,OVER ALL,OA,Positive,,Visits to Self Service Features,,,,Apple iOS_OA_1.6,Apple iOS_OA_1,124,10,2.0,9,1,115.0,2025-02-04
+125,DR_CoxApp | Visits with Chat and No Self Service Initiated,Visits with Chat but No Self Service,Apple iOS,OVER ALL,OA,Negative,,Visits with Chat but No Self Service,,,,Apple iOS_OA_1.7,Apple iOS_OA_1,125,11,2.0,9,1,115.0,2025-02-04
+126,DR_CoxApp | Visits with No Self Service and No Chat,Visits with Neither Self Service nor Chat,Apple iOS,OVER ALL,OA,Negative,,Visits with Neither Self Service nor Chat,,,,Apple iOS_OA_1.8,Apple iOS_OA_1,126,12,2.0,9,1,115.0,2025-02-04
+127,DR_CoxApp | Visits not logged in,Not Logged-in Visits,Apple iOS,OVER ALL,OA,Negative,,Not Logged-in Visits,,,,Apple iOS_OA_1.9,Apple iOS_OA_1,127,13,2.0,9,1,115.0,2025-02-04
+128,DR_Native Registration Home Page,Visits to Registration Home Page,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,Visits to Registration Home Page,,,,,Apple iOS_RG(_1,,128,1,1.0,10,9,,2025-02-04
+129,DR_Native Registration Confirmation,New Registrations,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,,New Registrations,,,,Apple iOS_RG(_1.1,Apple iOS_RG(_1,129,2,2.0,10,9,128.0,2025-02-04
+130,DR_Native Registration - Already Registered,Already Registered,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,,Already Registered,,,,Apple iOS_RG(_1.2,Apple iOS_RG(_1,130,3,2.0,10,9,128.0,2025-02-04
+131,DR_Native Registration - Did not Registered,Did not Register,Apple iOS,RE GISTRATION (NATIVE),RG(,Negative,,Did not Register,,,,Apple iOS_RG(_1.3,Apple iOS_RG(_1,131,4,2.0,10,9,128.0,2025-02-04
+132,DR_Native Registration - Server Form Errors,Reg_native Server Errors,Apple iOS,RE GISTRATION (NATIVE),RG(,Negative,,Reg_native Server Errors,,,,Apple iOS_RG(_1.4,Apple iOS_RG(_1,132,11,2.0,10,9,128.0,2025-02-04
+133,DR_CoxApp | Chat from Registration Flow,Reg_native Interacted with Chat,Apple iOS,RE GISTRATION (NATIVE),RG(,Negative,,Reg_native Interacted with Chat,,,,Apple iOS_RG(_1.5,Apple iOS_RG(_1,133,12,2.0,10,9,128.0,2025-02-04
+134,DR_Native Registration - Intent to Register,Intent to Register,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,Intent to Register,,,,,Apple iOS_RG(_2,,134,5,1.0,10,9,,2025-02-04
+135,DR_Native Registration Success,Funnel Success Rate,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,,Funnel Success Rate,,,,Apple iOS_RG(_2.1,Apple iOS_RG(_2,135,6,2.0,10,9,134.0,2025-02-04
+136,DR_Native Registration - Phone Lookup,Phone Lookup,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,Phone Lookup,,,,,Apple iOS_RG(_3,,136,7,1.0,10,9,,2025-02-04
+137,DR_Native Registration - Phone Lookup Success,Phone Lookup Success Rate,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,,Phone Lookup Success Rate,,,,Apple iOS_RG(_3.1,Apple iOS_RG(_3,137,8,2.0,10,9,136.0,2025-02-04
+138,DR_Native Registration - Email Lookup,Email Lookup,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,Email Lookup,,,,,Apple iOS_RG(_4,,138,9,1.0,10,9,,2025-02-04
+139,DR_Native Registration - Email Lookup Success,Email Lookup Success Rate,Apple iOS,RE GISTRATION (NATIVE),RG(,Positive,,Email Lookup Success Rate,,,,Apple iOS_RG(_4.1,Apple iOS_RG(_4,139,10,2.0,10,9,138.0,2025-02-04
+140,DR_Reset Modem - Home Page,Reset Modem Start Page Visits,Apple iOS,RESET MODEM,RM,Positive,Reset Modem Start Page Visits,,,,,Apple iOS_RM_1,,140,1,1.0,11,6,,2025-02-04
+141,DR_Reset Modem - Started Rebooting Process,Started Reset Process,Apple iOS,RESET MODEM,RM,Positive,,Started Reset Process,,,,Apple iOS_RM_1.1,Apple iOS_RM_1,141,2,2.0,11,6,140.0,2025-02-04
+142,DR_Reset Modem - Rebooting Complete,Reset Process Complete,Apple iOS,RESET MODEM,RM,Positive,,,Reset Process Complete,,,Apple iOS_RM_1.1.1,Apple iOS_RM_1.1,142,3,3.0,11,6,141.0,2025-02-04
+143,DR_Reset Modem - Rebooting Incomplete,Reset Process Incomplete,Apple iOS,RESET MODEM,RM,Negative,,,Reset Process Incomplete,,,Apple iOS_RM_1.1.2,Apple iOS_RM_1.1,143,4,3.0,11,6,141.0,2025-02-04
+144,DR_Reset Modem - Agent Chat,Reset_Modem Interacted with Chat,Apple iOS,RESET MODEM,RM,Negative,,,Reset_Modem Interacted with Chat,,,Apple iOS_RM_1.1.3,Apple iOS_RM_1.1,144,5,3.0,11,6,141.0,2025-02-04
+145,DR_Reset Modem - Error Outage,Error Outage,Apple iOS,RESET MODEM,RM,Negative,,Error Outage,,,,Apple iOS_RM_1.2,Apple iOS_RM_1,145,6,2.0,11,6,140.0,2025-02-04
+146,DR_Reset Modem Error - Non Pay,Non Pay Error,Apple iOS,RESET MODEM,RM,Negative,,Non Pay Error,,,,Apple iOS_RM_1.3,Apple iOS_RM_1,146,7,2.0,11,6,140.0,2025-02-04
+147,DR_Reset Modem Error -DMCA,DMCA Error,Apple iOS,RESET MODEM,RM,Negative,,DMCA Error,,,,Apple iOS_RM_1.4,Apple iOS_RM_1,147,8,2.0,11,6,140.0,2025-02-04
+148,DR_Reset Tvbox - Home Page,Reset TV Box Start Page Visits,Apple iOS,RESET TV BOX,RTB,Positive,Reset TV Box Start Page Visits,,,,,Apple iOS_RTB_1,,148,1,1.0,12,7,,2025-02-04
+149,DR_Reset Tvbox - Rebooting,Reset_TV Started Reset Process,Apple iOS,RESET TV BOX,RTB,Positive,,Reset_TV Started Reset Process,,,,Apple iOS_RTB_1.1,Apple iOS_RTB_1,149,2,2.0,12,7,148.0,2025-02-04
+150,DR_Reset Tvbox - Complete,Reset_TV Process Complete,Apple iOS,RESET TV BOX,RTB,Positive,,,Reset_TV Process Complete,,,Apple iOS_RTB_1.1.1,Apple iOS_RTB_1.1,150,3,3.0,12,7,149.0,2025-02-04
+151,DR_Reset Tvbox - Incomplete,Reset_TV Process Incomplete,Apple iOS,RESET TV BOX,RTB,Negative,,,Reset_TV Process Incomplete,,,Apple iOS_RTB_1.1.2,Apple iOS_RTB_1.1,151,4,3.0,12,7,149.0,2025-02-04
+152,DR_Reset Tvbox - Agent Chat,Reset_TV Interacted with Chat,Apple iOS,RESET TV BOX,RTB,Negative,,,Reset_TV Interacted with Chat,,,Apple iOS_RTB_1.1.3,Apple iOS_RTB_1.1,152,5,3.0,12,7,149.0,2025-02-04
+153,DR_Reset Tvbox - Error Outage,Reset_TV Error Outage,Apple iOS,RESET TV BOX,RTB,Negative,,Reset_TV Error Outage,,,,Apple iOS_RTB_1.2,Apple iOS_RTB_1,153,6,2.0,12,7,148.0,2025-02-04
+154,DR_Reset Tvbox Error - Non Pay,Reset_TV Non Pay Error,Apple iOS,RESET TV BOX,RTB,Negative,,Reset_TV Non Pay Error,,,,Apple iOS_RTB_1.3,Apple iOS_RTB_1,154,7,2.0,12,7,148.0,2025-02-04
+155,DR_Reset Tvbox Error - DMCA,Reset_TV DMCA Error,Apple iOS,RESET TV BOX,RTB,Negative,,Reset_TV DMCA Error,,,,Apple iOS_RTB_1.4,Apple iOS_RTB_1,155,8,2.0,12,7,148.0,2025-02-04
+156,DR_Alert Type Visits,Visits with Service Alert,Apple iOS,SERVICE ALERT,SA,Negative,Visits with Service Alert,,,,,Apple iOS_SA_1,,156,1,1.0,13,14,,2025-02-04
+157,DR_Outage Alert,Service_alert Outage,Apple iOS,SERVICE ALERT,SA,Negative,,Service_alert Outage,,,,Apple iOS_SA_1.1,Apple iOS_SA_1,157,2,2.0,13,14,156.0,2025-02-04
+158,Dr_Campaign Rolloff Alert,Service_alert Campaign Rolloff,Apple iOS,SERVICE ALERT,SA,Negative,,Service_alert Campaign Rolloff,,,,Apple iOS_SA_1.2,Apple iOS_SA_1,158,3,2.0,13,14,156.0,2025-02-04
+159,Dr_NonPay Suspension Alert,Service_alert NonPay Suspension,Apple iOS,SERVICE ALERT,SA,Negative,,Service_alert NonPay Suspension,,,,Apple iOS_SA_1.3,Apple iOS_SA_1,159,4,2.0,13,14,156.0,2025-02-04
+160,Dr_Network Construction Alert,Service_alert Network Construction,Apple iOS,SERVICE ALERT,SA,Negative,,Service_alert Network Construction,,,,Apple iOS_SA_1.4,Apple iOS_SA_1,160,5,2.0,13,14,156.0,2025-02-04
+161,Dr_DMCA Termination Alert,Service_alert DMCA Termination,Apple iOS,SERVICE ALERT,SA,Negative,,Service_alert DMCA Termination,,,,Apple iOS_SA_1.5,Apple iOS_SA_1,161,6,2.0,13,14,156.0,2025-02-04
+162,server:error:CC-CLIENT_ERROR,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,162,,1.0,14,16,,2025-02-04
+163,server:error:CC-NO-INTERNET,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,163,,1.0,14,16,,2025-02-04
+164,server:error:CC-INTERNAL_ERROR,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,164,,1.0,14,16,,2025-02-04
+165,server:error:CC-PAYMENT_AUTH_FAILED,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,165,,1.0,14,16,,2025-02-04
+166,server:error:unable_to_retrieve_data_usage_information_at_this_time.,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,166,,1.0,14,16,,2025-02-04
+167,server:error:CC-ACCOUNT_NOT_FOUND,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,167,,1.0,14,16,,2025-02-04
+168,server:error:CC-USERNAME-ALREADY-EXISTS,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,168,,1.0,14,16,,2025-02-04
+169,server:error:CC-PASSWORD_DENIED,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,169,,1.0,14,16,,2025-02-04
+170,server:error:CC-SECURITY_TOKEN_NOT_FOUND,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,170,,1.0,14,16,,2025-02-04
+171,server:error:CC-PAYMENT_UNKNOWN_ERROR,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,171,,1.0,14,16,,2025-02-04
+172,server:error:CC-DUPLICATE_PAYMENT,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,172,,1.0,14,16,,2025-02-04
+173,server:error:CC-INVALID_ZIPCODE,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,173,,1.0,14,16,,2025-02-04
+174,server:error:CC-PRIMARY-IDENTITY-ALREADY-EXISTS,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,174,,1.0,14,16,,2025-02-04
+175,server:error:CC-INVALID_CVV,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,175,,1.0,14,16,,2025-02-04
+176,server:error:CC-INVALID_CARD_NUMBER,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,176,,1.0,14,16,,2025-02-04
+177,server:error:CC-APPOINTMENT-SLOT-ERROR,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,177,,1.0,14,16,,2025-02-04
+178,server:error:CC-PAYMENT_METHOD_RESTRICTED,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,178,,1.0,14,16,,2025-02-04
+179,server:error:CC-INVALID_ROUTING_NUMBER,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,179,,1.0,14,16,,2025-02-04
+180,server:error:CC-SECURE_TOKEN_ALREADY_VERIFIED,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,180,,1.0,14,16,,2025-02-04
+181,server:error:CC-VALIDATION_ERROR,,Apple iOS,SERVER ERRORS,SE,,,,,,,,,181,,1.0,14,16,,2025-02-04
+182,DR_SmartHelp - Landing Page,Devices Page Visits,Apple iOS,SMART HELP,SH,Positive,Devices Page Visits,,,,,Apple iOS_SH_1,,182,1,1.0,15,5,,2025-02-04
+183,DR_SmartHelp - Started,Started Troubleshooting (Solution Center),Apple iOS,SMART HELP,SH,Positive,,Started Troubleshooting (Solution Center),,,,Apple iOS_SH_1.1,Apple iOS_SH_1,183,2,2.0,15,5,182.0,2025-02-04
+184,DR_SmartHelp - Result,Saw a Result,Apple iOS,SMART HELP,SH,Positive,,,Saw a Result,,,Apple iOS_SH_1.1.1,Apple iOS_SH_1.1,184,3,3.0,15,5,183.0,2025-02-04
+185,DR_SmartHelp Result - Unknown,1st common reason (Unknown),Apple iOS,SMART HELP,SH,Negative,,,,1st common reason (Unknown),,Apple iOS_SH_1.1.1.1,Apple iOS_SH_1.1.1,185,4,4.0,15,5,184.0,2025-02-04
+186,DR_SmartHelp Result - Disconnected,2nd common reason (Disconnected),Apple iOS,SMART HELP,SH,Negative,,,,2nd common reason (Disconnected),,Apple iOS_SH_1.1.1.2,Apple iOS_SH_1.1.1,186,5,4.0,15,5,184.0,2025-02-04
+187,DR_SmartHelp Result - Incomplete Install,3rd common reason (Incomplete Install),Apple iOS,SMART HELP,SH,Negative,,,,3rd common reason (Incomplete Install),,Apple iOS_SH_1.1.1.3,Apple iOS_SH_1.1.1,187,6,4.0,15,5,184.0,2025-02-04
+188,DR_SmartHelp - Reboot Flow Started,Did a Device Reboot,Apple iOS,SMART HELP,SH,Positive,,Did a Device Reboot,,,,Apple iOS_SH_1.2,Apple iOS_SH_1,188,7,2.0,15,5,182.0,2025-02-04
+189,DR_SmartHelp - P&P,Started Proactive and Preventive (P&P),Apple iOS,SMART HELP,SH,Positive,,Started Proactive and Preventive (P&P),,,,Apple iOS_SH_1.3,Apple iOS_SH_1,189,8,2.0,15,5,182.0,2025-02-04
+190,DR_Smarthelp P&P - Let's troubleshoot together,Started P&P troubleshooting,Apple iOS,SMART HELP,SH,Positive,,,Started P&P troubleshooting,,,Apple iOS_SH_1.3.1,Apple iOS_SH_1.3,190,9,3.0,15,5,189.0,2025-02-04
+191,DR_Smarthelp P&P - Reset Complete,Smarthelp Reset Complete,Apple iOS,SMART HELP,SH,Positive,,,Smarthelp Reset Complete,,,Apple iOS_SH_1.3.2,Apple iOS_SH_1.3,191,10,3.0,15,5,189.0,2025-02-04
+192,DR_Smarthelp P&P - Let's schedule a technician visit,Schedule Tech,Apple iOS,SMART HELP,SH,Positive,,,Schedule Tech,,,Apple iOS_SH_1.3.3,Apple iOS_SH_1.3,192,11,3.0,15,5,189.0,2025-02-04
+193,DR_Smarthelp P&P - Connect with a support agent,Connect with Agent,Apple iOS,SMART HELP,SH,Negative,,,Connect with Agent,,,Apple iOS_SH_1.3.4,Apple iOS_SH_1.3,193,12,3.0,15,5,189.0,2025-02-04
+194,DR_Smarthelp P&P - Interacted with Chat Agent,Smarthelp_P&P Interacted with Chat,Apple iOS,SMART HELP,SH,Negative,,,Smarthelp_P&P Interacted with Chat,,,Apple iOS_SH_1.3.5,Apple iOS_SH_1.3,194,13,3.0,15,5,189.0,2025-02-04
+195,DR_SmartHelp - Billing & Account Support,Clicked Billing & Account Support,Apple iOS,SMART HELP,SH,Positive,,Clicked Billing & Account Support,,,,Apple iOS_SH_1.4,Apple iOS_SH_1,195,14,2.0,15,5,182.0,2025-02-04
+196,DR_SmartHelp - Internet Support,Clicked Internet Support,Apple iOS,SMART HELP,SH,Positive,,Clicked Internet Support,,,,Apple iOS_SH_1.5,Apple iOS_SH_1,196,15,2.0,15,5,182.0,2025-02-04
+197,DR_SmartHelp - TV Support,Clicked TV Support,Apple iOS,SMART HELP,SH,Positive,,Clicked TV Support,,,,Apple iOS_SH_1.6,Apple iOS_SH_1,197,16,2.0,15,5,182.0,2025-02-04
+198,DR_SmartHelp - Homelife Support,Clicked Homelife Support,Apple iOS,SMART HELP,SH,Positive,,Clicked Homelife Support,,,,Apple iOS_SH_1.7,Apple iOS_SH_1,198,17,2.0,15,5,182.0,2025-02-04
+199,DR_SmartHelp - Agent Chat,Smarthelp_Interacted with Chat,Apple iOS,SMART HELP,SH,Negative,,Smarthelp_Interacted with Chat,,,,Apple iOS_SH_1.8,Apple iOS_SH_1,199,18,2.0,15,5,182.0,2025-02-04
+200,DR_Support Home,Support Home Visits,Apple iOS,S UPPORT,SU,Positive,Support Home Visits,,,,,Apple iOS_SU_1,,200,1,1.0,16,11,,2025-02-04
+201,DR_Support - Internet,Support Internet Support,Apple iOS,S UPPORT,SU,Positive,,Support Internet Support,,,,Apple iOS_SU_1.1,Apple iOS_SU_1,201,2,2.0,16,11,200.0,2025-02-04
+202,DR_Support - Billing and Account,Billing & Account Support,Apple iOS,S UPPORT,SU,Positive,,Billing & Account Support,,,,Apple iOS_SU_1.2,Apple iOS_SU_1,202,3,2.0,16,11,200.0,2025-02-04
+203,DR_Support - Billing,Billing Support,Apple iOS,S UPPORT,SU,Positive,,Billing Support,,,,Apple iOS_SU_1.3,Apple iOS_SU_1,203,4,2.0,16,11,200.0,2025-02-04
+204,DR_Support - Account,Account Support,Apple iOS,S UPPORT,SU,Positive,,Account Support,,,,Apple iOS_SU_1.4,Apple iOS_SU_1,204,5,2.0,16,11,200.0,2025-02-04
+205,DR_Support - TV,Support TV Support,Apple iOS,S UPPORT,SU,Positive,,Support TV Support,,,,Apple iOS_SU_1.5,Apple iOS_SU_1,205,6,2.0,16,11,200.0,2025-02-04
+206,DR_Support - Homelife,Support Homelife Support,Apple iOS,S UPPORT,SU,Positive,,Support Homelife Support,,,,Apple iOS_SU_1.6,Apple iOS_SU_1,206,7,2.0,16,11,200.0,2025-02-04
+207,DR_Support - Mobile,Support Mobile Support,Apple iOS,S UPPORT,SU,Positive,,Support Mobile Support,,,,Apple iOS_SU_1.7,Apple iOS_SU_1,207,8,2.0,16,11,200.0,2025-02-04
+208,DR_Support - Read an Article,Read an Article,Apple iOS,S UPPORT,SU,Positive,,Read an Article,,,,Apple iOS_SU_1.8,Apple iOS_SU_1,208,9,2.0,16,11,200.0,2025-02-04
+209,DR_Support - Search,Support Search,Apple iOS,S UPPORT,SU,Negative,,Support Search,,,,Apple iOS_SU_1.9,Apple iOS_SU_1,209,10,2.0,16,11,200.0,2025-02-04
+210,DR_Support - Click on Exit Link,Went to External Link,Apple iOS,S UPPORT,SU,Positive,,Went to External Link,,,,Apple iOS_SU_1.10,Apple iOS_SU_1,210,11,2.0,16,11,200.0,2025-02-04
+211,DR_Support - App Feedback,App Feedback,Apple iOS,S UPPORT,SU,Positive,,App Feedback,,,,Apple iOS_SU_1.11,Apple iOS_SU_1,211,12,2.0,16,11,200.0,2025-02-04
+212,DR_Support - Agent chat started,Support Interacted with Chat,Apple iOS,S UPPORT,SU,Negative,,Support Interacted with Chat,,,,Apple iOS_SU_1.12,Apple iOS_SU_1,212,13,2.0,16,11,200.0,2025-02-04
+213,DR_TSV Enrollment Home Page,Visits to TSV Home Page,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,Visits to TSV Home Page,,,,,Apple iOS_TV_1,,213,1,1.0,17,12,,2025-02-04
+214,DR_TSV | Intent to Enrollment,TSV Enrollment Page,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,,TSV Enrollment Page,,,,Apple iOS_TV_1.1,Apple iOS_TV_1,214,2,2.0,17,12,213.0,2025-02-04
+215,DR_TSV Enrollment - Success,TSV Overall Success Rate,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,,TSV Overall Success Rate,,,,Apple iOS_TV_1.2,Apple iOS_TV_1,215,3,2.0,17,12,213.0,2025-02-04
+216,DR_TSV Enrollment - Update,TSV Update,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,,TSV Update,,,,Apple iOS_TV_1.3,Apple iOS_TV_1,216,10,2.0,17,12,213.0,2025-02-04
+217,DR_TSV Enrollment - Server Errors,TSV Server Errors,Apple iOS,TWO-STEP VERIFICATION,TV,Negative,,TSV Server Errors,,,,Apple iOS_TV_1.4,Apple iOS_TV_1,217,11,2.0,17,12,213.0,2025-02-04
+218,DR_TSV Enrollment - Phone text,TSV Phone Text,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,TSV Phone Text,,,,,Apple iOS_TV_2,,218,4,1.0,17,12,,2025-02-04
+219,DR_TSV Enrollment - Phone text Success,TSV Text Success Rate,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,,TSV Text Success Rate,,,,Apple iOS_TV_2.1,Apple iOS_TV_2,219,5,2.0,17,12,218.0,2025-02-04
+220,DR_TSV Enrollment - Phone call,TSV Phone Call,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,TSV Phone Call,,,,,Apple iOS_TV_3,,220,6,1.0,17,12,,2025-02-04
+221,DR_TSV Enrollment - Phone call Success,TSV Call Success Rate,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,,TSV Call Success Rate,,,,Apple iOS_TV_3.1,Apple iOS_TV_3,221,7,2.0,17,12,220.0,2025-02-04
+222,DR_TSV Enrollment - Email,TSV Email Text,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,TSV Email Text,,,,,Apple iOS_TV_4,,222,8,1.0,17,12,,2025-02-04
+223,DR_TSV Enrollment - Email Success,TSV Email Success Rate,Apple iOS,TWO-STEP VERIFICATION,TV,Positive,,TSV Email Success Rate,,,,Apple iOS_TV_4.1,Apple iOS_TV_4,223,9,2.0,17,12,222.0,2025-02-04
+224,DR_continuing chat from new chat page,,Apple iOS,Unknown,U,,,,,,,,,224,,1.0,18,,,2025-02-04
+225,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_b,,Apple iOS,U R L,URL,,,,,,,,,225,,1.0,19,18,,2025-02-04
+226,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_2,,Apple iOS,U R L,URL,,,,,,,,,226,,1.0,19,18,,2025-02-04
+227,www.cox.com/mobile-shop/devices/apple?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_ga,,Apple iOS,U R L,URL,,,,,,,,,227,,1.0,19,18,,2025-02-04
+228,www.cox.com/mobile-shop/check-device-compatibility.html&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mob,,Apple iOS,U R L,URL,,,,,,,,,228,,1.0,19,18,,2025-02-04
+229,www.cox.com/mobile-shop/device/motorola-moto-g-play-2024_sapphire-blue?storage=64gb&sc_id=cr_mobile_,,Apple iOS,U R L,URL,,,,,,,,,229,,1.0,19,18,,2025-02-04
+230,www.cox.com/residential/refer-a-friend.html?&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_extole,,Apple iOS,U R L,URL,,,,,,,,,230,,1.0,19,18,,2025-02-04
+231,www.cox.com/mobile-shop/devices/apple&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_PO,,Apple iOS,U R L,URL,,,,,,,,,231,,1.0,19,18,,2025-02-04
+232,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro45,,Apple iOS,U R L,URL,,,,,,,,,232,,1.0,19,18,,2025-02-04
+233,www.cox.com/residential/move.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_inapp,,Apple iOS,U R L,URL,,,,,,,,,233,,1.0,19,18,,2025-02-04
+234,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro00,,Apple iOS,U R L,URL,,,,,,,,,234,,1.0,19,18,,2025-02-04
+235,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro21,,Apple iOS,U R L,URL,,,,,,,,,235,,1.0,19,18,,2025-02-04
+236,www.cox.com/mobile-shop/devices?brand=apple?intercept=false&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb,,Apple iOS,U R L,URL,,,,,,,,,236,,1.0,19,18,,2025-02-04
+237,DR_Visits to Billing Home,Billing Section Visits,Google Android,BIL LING,BL,Positive,Billing Section Visits,,,,,Google Android_BL_1,,1,1,1.0,1,3,,2025-02-04
+238,DR_Billing Make a Payment,Make Payments,Google Android,BIL LING,BL,Positive,,Make Payments,,,,Google Android_BL_1.1,Google Android_BL_1,2,2,2.0,1,3,237.0,2025-02-04
+239,DR_Client Errors on Make Payment,Client Errors on Payment Page,Google Android,BIL LING,BL,Negative,,,Client Errors on Payment Page,,,Google Android_BL_1.1.1,Google Android_BL_1.1,3,5,3.0,1,3,238.0,2025-02-04
+240,DR_Server Errors on Make Payment,Server Errors on Payment Page,Google Android,BIL LING,BL,Negative,,,Server Errors on Payment Page,,,Google Android_BL_1.1.2,Google Android_BL_1.1,4,6,3.0,1,3,238.0,2025-02-04
+241,DR_Payment Submit,Payment Submit,Google Android,BIL LING,BL,Positive,,Payment Submit,,,,Google Android_BL_1.2,Google Android_BL_1,5,3,2.0,1,3,237.0,2025-02-04
+242,DR_Payments,Payment Success Rate,Google Android,BIL LING,BL,Positive,,,Payment Success Rate,,,Google Android_BL_1.2.1,Google Android_BL_1.2,6,4,3.0,1,3,241.0,2025-02-04
+243,DR_Promise to Pay,Promise to Pay - Linkout,Google Android,BIL LING,BL,Positive,,Promise to Pay - Linkout,,,,Google Android_BL_1.3,Google Android_BL_1,7,7,2.0,1,3,237.0,2025-02-04
+244,DR_Promise to Pay (Native),Promise to Pay - Native,Google Android,BIL LING,BL,Positive,,Promise to Pay - Native,,,,Google Android_BL_1.4,Google Android_BL_1,8,8,2.0,1,3,237.0,2025-02-04
+245,DR_CoxApp | Billing - Additional time to pay (Link out),Additional time to pay - Linkout,Google Android,BIL LING,BL,Positive,,,Additional time to pay - Linkout,,,Google Android_BL_1.4.1,Google Android_BL_1.4,9,9,3.0,1,3,244.0,2025-02-04
+246,DR_CoxApp | Billing - Future date payment (Link out),Future date payment - Linkout,Google Android,BIL LING,BL,Positive,,,Future date payment - Linkout,,,Google Android_BL_1.4.2,Google Android_BL_1.4,10,10,3.0,1,3,244.0,2025-02-04
+247,DR_Billing - View Bill Details,Bill Downloads,Google Android,BIL LING,BL,Positive,,Bill Downloads,,,,Google Android_BL_1.5,Google Android_BL_1,11,11,2.0,1,3,237.0,2025-02-04
+248,DR_Billing - Activity & Statements,Activity & Statements,Google Android,BIL LING,BL,Positive,,Activity & Statements,,,,Google Android_BL_1.6,Google Android_BL_1,12,12,2.0,1,3,237.0,2025-02-04
+249,DR_Billing - Automatic Payments,Easy Pay Enrollments,Google Android,BIL LING,BL,Positive,,Easy Pay Enrollments,,,,Google Android_BL_1.7,Google Android_BL_1,13,13,2.0,1,3,237.0,2025-02-04
+250,DR_Billing - Manage Payment Methods,Payment Method Changes,Google Android,BIL LING,BL,Positive,,Payment Method Changes,,,,Google Android_BL_1.8,Google Android_BL_1,14,14,2.0,1,3,237.0,2025-02-04
+251,DR_Billing - Agreements & Discounts,Agreement & Discounts,Google Android,BIL LING,BL,Positive,,Agreement & Discounts,,,,Google Android_BL_1.9,Google Android_BL_1,15,15,2.0,1,3,237.0,2025-02-04
+252,DR_Billing - Bill Delivery,Bill Delivery Options,Google Android,BIL LING,BL,Positive,,Bill Delivery Options,,,,Google Android_BL_1.10,Google Android_BL_1,16,16,2.0,1,3,237.0,2025-02-04
+253,DR_Billing - Edit Billing Address,Address Changes,Google Android,BIL LING,BL,Positive,,Address Changes,,,,Google Android_BL_1.11,Google Android_BL_1,17,17,2.0,1,3,237.0,2025-02-04
+254,DR_Billing - Move My Service,Move Service,Google Android,BIL LING,BL,Positive,,Move Service,,,,Google Android_BL_1.12,Google Android_BL_1,18,18,2.0,1,3,237.0,2025-02-04
+255,DR_Billing visits to chat,Billing_Interacted with chat,Google Android,BIL LING,BL,Negative,,Billing_Interacted with chat,,,,Google Android_BL_1.13,Google Android_BL_1,19,19,2.0,1,3,237.0,2025-02-04
+256,DR_Wireless Service,Visits from 'Cox Mobile' users,Google Android,COX MOBILE,CM,Positive,Visits from 'Cox Mobile' users,,,,,Google Android_CM_1,,20,1,1.0,2,13,,2025-02-04
+257,DR_Mymobile HomePage Visits,Coxmob Line Detail Page,Google Android,COX MOBILE,CM,Positive,,Coxmob Line Detail Page,,,,Google Android_CM_1.1,Google Android_CM_1,21,2,2.0,2,13,256.0,2025-02-04
+258,DR_Mobile Lock Enabled,,Google Android,COX MOBILE,CM,,,,,,,,,22,,1.0,2,13,,2025-02-04
+259,DR_Mobile Lock Disabled,,Google Android,COX MOBILE,CM,,,,,,,,,23,,1.0,2,13,,2025-02-04
+260,DR_Change Status Exit link,Coxmob Change Status External Link,Google Android,COX MOBILE,CM,Positive,,,Coxmob Change Status External Link,,,Google Android_CM_1.1.1,Google Android_CM_1.1,24,13,3.0,2,13,257.0,2025-02-04
+261,DR_Add a Line,Coxmob Add a Line,Google Android,COX MOBILE,CM,Positive,,,Coxmob Add a Line,,,Google Android_CM_1.1.2,Google Android_CM_1.1,25,3,3.0,2,13,257.0,2025-02-04
+262,DR_Change your Plan,Coxmob Change  Plan - linkout,Google Android,COX MOBILE,CM,Positive,,,Coxmob Change  Plan - linkout,,,Google Android_CM_1.1.3,Google Android_CM_1.1,26,4,3.0,2,13,257.0,2025-02-04
+263,DR_Change Plan - New,Coxmob Change Plan - Native,Google Android,COX MOBILE,CM,Positive,,,Coxmob Change Plan - Native,,,Google Android_CM_1.1.4,Google Android_CM_1.1,27,5,3.0,2,13,257.0,2025-02-04
+264,DR_Change plan - Account Restrictions,Coxmob Account Restrictions,Google Android,COX MOBILE,CM,Negative,,,,Coxmob Account Restrictions,,Google Android_CM_1.1.4.1,Google Android_CM_1.1.4,28,6,4.0,2,13,263.0,2025-02-04
+265,DR_Change plan Confirmation,Coxmob Plan Purchased,Google Android,COX MOBILE,CM,Positive,,,,Coxmob Plan Purchased,,Google Android_CM_1.1.4.2,Google Android_CM_1.1.4,29,7,4.0,2,13,263.0,2025-02-04
+266,DR_Change Plan - Pay as Gig,Coxmob Gig Plan,Google Android,COX MOBILE,CM,Positive,,,,,Coxmob Gig Plan,Google Android_CM_1.1.4.2.1,Google Android_CM_1.1.4.2,30,8,5.0,2,13,265.0,2025-02-04
+267,DR_Change Plan - Unlimited,Coxmob Unlimited Plan,Google Android,COX MOBILE,CM,Positive,,,,,Coxmob Unlimited Plan,Google Android_CM_1.1.4.2.2,Google Android_CM_1.1.4.2,31,9,5.0,2,13,265.0,2025-02-04
+268,DR_Welcome Guide,Coxmob Welcome Guide,Google Android,COX MOBILE,CM,Positive,,,Coxmob Welcome Guide,,,Google Android_CM_1.1.5,Google Android_CM_1.1,32,10,3.0,2,13,257.0,2025-02-04
+269,DR_Device Payment Plan,Coxmob Device Payment Plan,Google Android,COX MOBILE,CM,Positive,,,Coxmob Device Payment Plan,,,Google Android_CM_1.1.6,Google Android_CM_1.1,33,11,3.0,2,13,257.0,2025-02-04
+270,DR_Insurance Claim,File a Claim,Google Android,COX MOBILE,CM,Negative,,,File a Claim,,,Google Android_CM_1.1.7,Google Android_CM_1.1,34,12,3.0,2,13,257.0,2025-02-04
+271,DR_Opted for Pay as you Gig Plan,Coxmob Pay as you Gig,Google Android,COX MOBILE,CM,Positive,,Coxmob Pay as you Gig,,,,Google Android_CM_1.2,Google Android_CM_1,35,14,2.0,2,13,256.0,2025-02-04
+272,DR_Opted for Gig Unlimited Plan,Coxmob Gig Unlimited Plan,Google Android,COX MOBILE,CM,Positive,,Coxmob Gig Unlimited Plan,,,,Google Android_CM_1.3,Google Android_CM_1,36,15,2.0,2,13,256.0,2025-02-04
+273,DR_Mobile Billing Home,Coxmob Billing Home,Google Android,COX MOBILE,CM,Positive,,Coxmob Billing Home,,,,Google Android_CM_1.4,Google Android_CM_1,37,16,2.0,2,13,256.0,2025-02-04
+274,DR_Mobile Billing - Additional Payment,Coxmob Make Additional Payment,Google Android,COX MOBILE,CM,Positive,,Coxmob Make Additional Payment,,,,Google Android_CM_1.5,Google Android_CM_1,38,17,2.0,2,13,256.0,2025-02-04
+275,DR_Mobile Billing - Payment Method,Coxmob Payment Method Changes,Google Android,COX MOBILE,CM,Positive,,Coxmob Payment Method Changes,,,,Google Android_CM_1.6,Google Android_CM_1,39,18,2.0,2,13,256.0,2025-02-04
+276,DR_Mobile Billing - Activity & Statements,Coxmob Activity & Statements,Google Android,COX MOBILE,CM,Positive,,Coxmob Activity & Statements,,,,Google Android_CM_1.7,Google Android_CM_1,40,19,2.0,2,13,256.0,2025-02-04
+277,DR_Mobile Billing - Easypay Confirmation,Coxmob Easypay Enrollment,Google Android,COX MOBILE,CM,Positive,,Coxmob Easypay Enrollment,,,,Google Android_CM_1.8,Google Android_CM_1,41,20,2.0,2,13,256.0,2025-02-04
+278,DR_Mobile Billing - Bill Delivery Confirmation,Coxmob Bill Delivery Changes,Google Android,COX MOBILE,CM,Positive,,Coxmob Bill Delivery Changes,,,,Google Android_CM_1.9,Google Android_CM_1,42,21,2.0,2,13,256.0,2025-02-04
+279,DR_Wireless Support,Coxmob Support Section,Google Android,COX MOBILE,CM,Positive,,Coxmob Support Section,,,,Google Android_CM_1.10,Google Android_CM_1,43,22,2.0,2,13,256.0,2025-02-04
+280,DR_Total Data Usage Visits,Total Data Usage Visits,Google Android,DATA USAGE,DU,Positive,Total Data Usage Visits,,,,,Google Android_DU_1,,44,1,1.0,3,10,,2025-02-04
+281,DR_Data Plan upgrade,Data Plan Upgrade,Google Android,DATA USAGE,DU,Positive,,Data Plan Upgrade,,,,Google Android_DU_1.1,Google Android_DU_1,45,2,2.0,3,10,280.0,2025-02-04
+282,DR_Data Usage Learn More,Learn More,Google Android,DATA USAGE,DU,Positive,,Learn More,,,,Google Android_DU_1.2,Google Android_DU_1,46,3,2.0,3,10,280.0,2025-02-04
+283,DR_Data Usage Courtesy Credits,Courtesy Credit,Google Android,DATA USAGE,DU,Positive,,Courtesy Credit,,,,Google Android_DU_1.3,Google Android_DU_1,47,4,2.0,3,10,280.0,2025-02-04
+284,DR_Total Data Usage >=75%,Data usage >=75%,Google Android,DATA USAGE,DU,Positive,,Data usage >=75%,,,,Google Android_DU_1.4,Google Android_DU_1,48,5,2.0,3,10,280.0,2025-02-04
+285,DR_Total Data Usage >=100%,Data usage >=100%,Google Android,DATA USAGE,DU,Positive,,Data usage >=100%,,,,Google Android_DU_1.5,Google Android_DU_1,49,6,2.0,3,10,280.0,2025-02-04
+286,DR_Data Usage - Agent Chat Started,Data_usage Interacted with Chat,Google Android,DATA USAGE,DU,Negative,,Data_usage Interacted with Chat,,,,Google Android_DU_1.6,Google Android_DU_1,50,7,2.0,3,10,280.0,2025-02-04
+287,DR_Direct Ecomm Visits Traffic from to Cox.com,Total Visits from web ecomm,Google Android,E COMMERCE,EC,Positive,,,,,,,,51,1,1.0,4,8,,2025-02-04
+288,DR_Direct Ecomm order Traffic sent from cox.com,Total Orders from web ecomm,Google Android,E COMMERCE,EC,Positive,,,,,,,,52,2,1.0,4,8,,2025-02-04
+289,DR_Direct Ecomm Traffic sent from App to cox.com,Visits sent from app to cox.com,Google Android,E COMMERCE,EC,Positive,Visits sent from app to cox.com,,,,,Google Android_EC_1,,53,3,1.0,4,8,,2025-02-04
+290,DR_Direct Ecomm order Traffic sent from App to cox.com,Orders generated,Google Android,E COMMERCE,EC,Positive,,,,,,,,54,4,1.0,4,8,,2025-02-04
+291,DR_Data Plan Upgrade Ecomm Traffic sent from App to cox.com,Data Usage,Google Android,E COMMERCE,EC,Positive,,Data Usage,,,,Google Android_EC_1.1,Google Android_EC_1,55,5,2.0,4,8,289.0,2025-02-04
+292,DR_Service Plan Upgrade Ecomm Traffic sent from App to cox.com,Plan Changes,Google Android,E COMMERCE,EC,Positive,,Plan Changes,,,,Google Android_EC_1.2,Google Android_EC_1,56,6,2.0,4,8,289.0,2025-02-04
+293,DR_CRO Ecomm Traffic sent from App to cox.com,CRO,Google Android,E COMMERCE,EC,Positive,,CRO,,,,Google Android_EC_1.3,Google Android_EC_1,57,7,2.0,4,8,289.0,2025-02-04
+294,DR_Transfer Ecomm Traffic sent from App to cox.com,Transfer,Google Android,E COMMERCE,EC,Positive,,Transfer,,,,Google Android_EC_1.4,Google Android_EC_1,58,8,2.0,4,8,289.0,2025-02-04
+295,DR_Visits where One EC Card was shown,Easy Connect Eligible Visits,Google Android,EASY CON NECT,ECN,Positive,Easy Connect Eligible Visits,,,,,Google Android_ECN_1,,59,1,1.0,5,4,,2025-02-04
+296,DR_EC Flow>Success,Overall Success,Google Android,EASY CON NECT,ECN,Positive,,Overall Success,,,,Google Android_ECN_1.1,Google Android_ECN_1,60,2,2.0,5,4,295.0,2025-02-04
+297,DR_EC>Failure,Overall Failure,Google Android,EASY CON NECT,ECN,Negative,,Overall Failure,,,,Google Android_ECN_1.2,Google Android_ECN_1,61,3,2.0,5,4,295.0,2025-02-04
+298,DR_EC Flow>Timeout,Overall Timeout,Google Android,EASY CON NECT,ECN,Negative,,Overall Timeout,,,,Google Android_ECN_1.3,Google Android_ECN_1,62,4,2.0,5,4,295.0,2025-02-04
+299,DR_EC>No Result,Overall No Result,Google Android,EASY CON NECT,ECN,Negative,,Overall No Result,,,,Google Android_ECN_1.4,Google Android_ECN_1,63,5,2.0,5,4,295.0,2025-02-04
+300,DR_Easy Connect - Started,Started the Flow,Google Android,EASY CON NECT,ECN,Positive,,Started the Flow,,,,Google Android_ECN_1.5,Google Android_ECN_1,64,6,2.0,5,4,295.0,2025-02-04
+301,DR_Easy Connect Started - Success,Success,Google Android,EASY CON NECT,ECN,Positive,,,Success,,,Google Android_ECN_1.5.1,Google Android_ECN_1.5,65,7,3.0,5,4,300.0,2025-02-04
+302,DR_Easy Connect Started - Failure,Failure,Google Android,EASY CON NECT,ECN,Negative,,,Failure,,,Google Android_ECN_1.5.2,Google Android_ECN_1.5,66,8,3.0,5,4,300.0,2025-02-04
+303,DR_Easy Connect Started - Timeout,Timeout,Google Android,EASY CON NECT,ECN,Negative,,,Timeout,,,Google Android_ECN_1.5.3,Google Android_ECN_1.5,67,9,3.0,5,4,300.0,2025-02-04
+304,DR_Easy Connect Started - No Result,No Result,Google Android,EASY CON NECT,ECN,Negative,,,No Result,,,Google Android_ECN_1.5.4,Google Android_ECN_1.5,68,10,3.0,5,4,300.0,2025-02-04
+305,DR_Easy Connect - Started Agent Chat,Easyconnect_Interacted with Chat,Google Android,EASY CON NECT,ECN,Negative,,,Easyconnect_Interacted with Chat,,,Google Android_ECN_1.5.5,Google Android_ECN_1.5,69,11,3.0,5,4,300.0,2025-02-04
+306,DR_Visits who did not Start EC Flow,Did Not Start the Flow,Google Android,EASY CON NECT,ECN,Negative,,Did Not Start the Flow,,,,Google Android_ECN_1.6,Google Android_ECN_1,70,12,2.0,5,4,295.0,2025-02-04
+307,DR_Visits who did not Start EC Flow - Success,Did_not Success,Google Android,EASY CON NECT,ECN,Positive,,,Did_not Success,,,Google Android_ECN_1.6.1,Google Android_ECN_1.6,71,13,3.0,5,4,306.0,2025-02-04
+308,DR_Visits who did not Start EC Flow - Failure,Did_not Failure,Google Android,EASY CON NECT,ECN,Negative,,,Did_not Failure,,,Google Android_ECN_1.6.2,Google Android_ECN_1.6,72,14,3.0,5,4,306.0,2025-02-04
+309,DR_Visits who did not Start EC Flow - No Result,Did_not No Result,Google Android,EASY CON NECT,ECN,Negative,,,Did_not No Result,,,Google Android_ECN_1.6.3,Google Android_ECN_1.6,73,15,3.0,5,4,306.0,2025-02-04
+310,DR_Easy Connect - Self install success,,Google Android,EASY CON NECT,ECN,,,,,,,,,74,,1.0,5,4,,2025-02-04
+311,DR_Easy Connect - Self install Timeout,,Google Android,EASY CON NECT,ECN,,,,,,,,,75,,1.0,5,4,,2025-02-04
+312,cancel,,Google Android,KEY WORDS,KW,,,,,,,,,76,,1.0,6,17,,2025-02-04
+313,cancel service,,Google Android,KEY WORDS,KW,,,,,,,,,77,,1.0,6,17,,2025-02-04
+314,modem,,Google Android,KEY WORDS,KW,,,,,,,,,78,,1.0,6,17,,2025-02-04
+315,speed test,,Google Android,KEY WORDS,KW,,,,,,,,,79,,1.0,6,17,,2025-02-04
+316,outage,,Google Android,KEY WORDS,KW,,,,,,,,,80,,1.0,6,17,,2025-02-04
+317,bill,,Google Android,KEY WORDS,KW,,,,,,,,,81,,1.0,6,17,,2025-02-04
+318,install,,Google Android,KEY WORDS,KW,,,,,,,,,82,,1.0,6,17,,2025-02-04
+319,hotspot,,Google Android,KEY WORDS,KW,,,,,,,,,83,,1.0,6,17,,2025-02-04
+320,outage map,,Google Android,KEY WORDS,KW,,,,,,,,,84,,1.0,6,17,,2025-02-04
+321,email,,Google Android,KEY WORDS,KW,,,,,,,,,85,,1.0,6,17,,2025-02-04
+322,activate,,Google Android,KEY WORDS,KW,,,,,,,,,86,,1.0,6,17,,2025-02-04
+323,fiber,,Google Android,KEY WORDS,KW,,,,,,,,,87,,1.0,6,17,,2025-02-04
+324,moving,,Google Android,KEY WORDS,KW,,,,,,,,,88,,1.0,6,17,,2025-02-04
+325,upgrade,,Google Android,KEY WORDS,KW,,,,,,,,,89,,1.0,6,17,,2025-02-04
+326,plans,,Google Android,KEY WORDS,KW,,,,,,,,,90,,1.0,6,17,,2025-02-04
+327,outages,,Google Android,KEY WORDS,KW,,,,,,,,,91,,1.0,6,17,,2025-02-04
+328,customer service,,Google Android,KEY WORDS,KW,,,,,,,,,92,,1.0,6,17,,2025-02-04
+329,set up,,Google Android,KEY WORDS,KW,,,,,,,,,93,,1.0,6,17,,2025-02-04
+330,speed,,Google Android,KEY WORDS,KW,,,,,,,,,94,,1.0,6,17,,2025-02-04
+331,set up new modem,,Google Android,KEY WORDS,KW,,,,,,,,,95,,1.0,6,17,,2025-02-04
+332,DR_Login Page Visits,Login Page Visits,Google Android,LOG IN,LI,Positive,Login Page Visits,,,,,Google Android_LI_1,,96,1,1.0,7,2,,2025-02-04
+333,DR_Successful logins,Login Success Rate,Google Android,LOG IN,LI,Positive,,Login Success Rate,,,,Google Android_LI_1.1,Google Android_LI_1,97,2,2.0,7,2,332.0,2025-02-04
+334,DR_Auto Logins,Share of Auto Login (Remember/Biometrics),Google Android,LOG IN,LI,Positive,,,Share of Auto Login (Remember/Biometrics),,,Google Android_LI_1.1.1,Google Android_LI_1.1,98,3,3.0,7,2,333.0,2025-02-04
+335,DR_Clicks to MFA Verification,with TSV,Google Android,LOG IN,LI,Positive,,with TSV,,,,Google Android_LI_1.2,Google Android_LI_1,99,4,2.0,7,2,332.0,2025-02-04
+336,DR_Clicks on Forgot User ID,User ID Recovery,Google Android,LOG IN,LI,Negative,,User ID Recovery,,,,Google Android_LI_1.3,Google Android_LI_1,100,5,2.0,7,2,332.0,2025-02-04
+337,Clicks on Forgot Password,Password Reset,Google Android,LOG IN,LI,Negative,,Password Reset,,,,Google Android_LI_1.4,Google Android_LI_1,101,6,2.0,7,2,332.0,2025-02-04
+338,DR_Need to Register,Registration,Google Android,LOG IN,LI,Positive,,Registration,,,,Google Android_LI_1.5,Google Android_LI_1,102,7,2.0,7,2,332.0,2025-02-04
+339,DR_Notification status Exists,Notifi_center Visits with Bell icon,Google Android,NOTIFICATION CENTER,NC,Positive,Notifi_center Visits with Bell icon,,,,,Google Android_NC_1,,103,1,1.0,8,15,,2025-02-04
+340,DR_Notification received visits,Notifi_center Visits with new notifications,Google Android,NOTIFICATION CENTER,NC,Positive,,Notifi_center Visits with new notifications,,,,Google Android_NC_1.1,Google Android_NC_1,104,2,2.0,8,15,339.0,2025-02-04
+341,DR_Notification page Visits,Notifi_center Clicked bell with new notifications,Google Android,NOTIFICATION CENTER,NC,Positive,,,Notifi_center Clicked bell with new notifications,,,Google Android_NC_1.1.1,Google Android_NC_1.1,105,3,3.0,8,15,340.0,2025-02-04
+342,DR_Notification Viewed with new notifications,Notifi_center Viewed,Google Android,NOTIFICATION CENTER,NC,Positive,,,,Notifi_center Viewed,,Google Android_NC_1.1.1.1,Google Android_NC_1.1.1,106,4,4.0,8,15,341.0,2025-02-04
+343,DR_Notification Declined with new notifications,Notifi_center Declined,Google Android,NOTIFICATION CENTER,NC,Negative,,,,Notifi_center Declined,,Google Android_NC_1.1.1.2,Google Android_NC_1.1.1,107,5,4.0,8,15,341.0,2025-02-04
+344,DR_Notification accepted with new notifications,Notifi_center Accepted,Google Android,NOTIFICATION CENTER,NC,Positive,,,,Notifi_center Accepted,,Google Android_NC_1.1.1.3,Google Android_NC_1.1.1,108,6,4.0,8,15,341.0,2025-02-04
+345,DR_No action on new notifications,Notifi_center No Action,Google Android,NOTIFICATION CENTER,NC,Negative,,,,Notifi_center No Action,,Google Android_NC_1.1.1.4,Google Android_NC_1.1.1,109,7,4.0,8,15,341.0,2025-02-04
+346,DR_Notifications not received visits,Notifi_center Visits with no new notifications,Google Android,NOTIFICATION CENTER,NC,Negative,,Notifi_center Visits with no new notifications,,,,Google Android_NC_1.2,Google Android_NC_1,110,8,2.0,8,15,339.0,2025-02-04
+347,DR_Notification Viewed with no new notifications,with no new notifi Viewed,Google Android,NOTIFICATION CENTER,NC,Positive,,,,with no new notifi Viewed,,Google Android_NC_1.2.0.1,Google Android_NC_1.2.0,111,9,4.0,8,15,,2025-02-04
+348,DR_Notification Declined with no new notification,with no new notifi Declined,Google Android,NOTIFICATION CENTER,NC,Negative,,,,with no new notifi Declined,,Google Android_NC_1.2.0.2,Google Android_NC_1.2.0,112,10,4.0,8,15,,2025-02-04
+349,DR_Notification accepted with no new notifications,with no new notifi Accepted,Google Android,NOTIFICATION CENTER,NC,Positive,,,,with no new notifi Accepted,,Google Android_NC_1.2.0.3,Google Android_NC_1.2.0,113,11,4.0,8,15,,2025-02-04
+350,DR_No action on no new notifications,with no new notifi No Action,Google Android,NOTIFICATION CENTER,NC,Negative,,,,with no new notifi No Action,,Google Android_NC_1.2.0.4,Google Android_NC_1.2.0,114,12,4.0,8,15,,2025-02-04
+351,DR_Visits,Visits,Google Android,OVER ALL,OA,Positive,Visits,,,,,Google Android_OA_1,,115,1,1.0,9,1,,2025-02-04
+352,Unique Visitors,Visitors,Google Android,OVER ALL,OA,Positive,,,,,,,,116,2,1.0,9,1,,2025-02-04
+353,Page Views,Page Views,Google Android,OVER ALL,OA,Positive,,,,,,,,117,3,1.0,9,1,,2025-02-04
+354,Average Time Spent on Page,Average Time Spent (mins),Google Android,OVER ALL,OA,Negative,,,,,,,,118,4,1.0,9,1,,2025-02-04
+355,DR_New Visitors,New Visitors,Google Android,OVER ALL,OA,Positive,,New Visitors,,,,Google Android_OA_1.1,Google Android_OA_1,119,5,2.0,9,1,351.0,2025-02-04
+356,DR_Server Errors,Server Errors,Google Android,OVER ALL,OA,Negative,,Server Errors,,,,Google Android_OA_1.2,Google Android_OA_1,120,6,2.0,9,1,351.0,2025-02-04
+357,DR_Overall Chat,Visits to Chat,Google Android,OVER ALL,OA,Negative,,Visits to Chat,,,,Google Android_OA_1.3,Google Android_OA_1,121,7,2.0,9,1,351.0,2025-02-04
+358,DR_Message Us,Visits to Chat (Bot),Google Android,OVER ALL,OA,Negative,,Visits to Chat (Bot),,,,Google Android_OA_1.4,Google Android_OA_1,122,8,2.0,9,1,351.0,2025-02-04
+359,DR_Agent Chat,Visits to Agent Chat (Skip bot),Google Android,OVER ALL,OA,Negative,,Visits to Agent Chat (Skip bot),,,,Google Android_OA_1.5,Google Android_OA_1,123,9,2.0,9,1,351.0,2025-02-04
+360,DR_Self Service Initiated,Visits to Self Service Features,Google Android,OVER ALL,OA,Positive,,Visits to Self Service Features,,,,Google Android_OA_1.6,Google Android_OA_1,124,10,2.0,9,1,351.0,2025-02-04
+361,DR_CoxApp | Visits with Chat and No Self Service Initiated,Visits with Chat but No Self Service,Google Android,OVER ALL,OA,Negative,,Visits with Chat but No Self Service,,,,Google Android_OA_1.7,Google Android_OA_1,125,11,2.0,9,1,351.0,2025-02-04
+362,DR_CoxApp | Visits with No Self Service and No Chat,Visits with Neither Self Service nor Chat,Google Android,OVER ALL,OA,Negative,,Visits with Neither Self Service nor Chat,,,,Google Android_OA_1.8,Google Android_OA_1,126,12,2.0,9,1,351.0,2025-02-04
+363,DR_CoxApp | Visits not logged in,Not Logged-in Visits,Google Android,OVER ALL,OA,Negative,,Not Logged-in Visits,,,,Google Android_OA_1.9,Google Android_OA_1,127,13,2.0,9,1,351.0,2025-02-04
+364,DR_Native Registration Home Page,Visits to Registration Home Page,Google Android,RE GISTRATION (NATIVE),RG(,Positive,Visits to Registration Home Page,,,,,Google Android_RG(_1,,128,1,1.0,10,9,,2025-02-04
+365,DR_Native Registration Confirmation,New Registrations,Google Android,RE GISTRATION (NATIVE),RG(,Positive,,New Registrations,,,,Google Android_RG(_1.1,Google Android_RG(_1,129,2,2.0,10,9,364.0,2025-02-04
+366,DR_Native Registration - Already Registered,Already Registered,Google Android,RE GISTRATION (NATIVE),RG(,Positive,,Already Registered,,,,Google Android_RG(_1.2,Google Android_RG(_1,130,3,2.0,10,9,364.0,2025-02-04
+367,DR_Native Registration - Did not Registered,Did not Register,Google Android,RE GISTRATION (NATIVE),RG(,Negative,,Did not Register,,,,Google Android_RG(_1.3,Google Android_RG(_1,131,4,2.0,10,9,364.0,2025-02-04
+368,DR_Native Registration - Server Form Errors,Reg_native Server Errors,Google Android,RE GISTRATION (NATIVE),RG(,Negative,,Reg_native Server Errors,,,,Google Android_RG(_1.4,Google Android_RG(_1,132,11,2.0,10,9,364.0,2025-02-04
+369,DR_CoxApp | Chat from Registration Flow,Reg_native Interacted with Chat,Google Android,RE GISTRATION (NATIVE),RG(,Negative,,Reg_native Interacted with Chat,,,,Google Android_RG(_1.5,Google Android_RG(_1,133,12,2.0,10,9,364.0,2025-02-04
+370,DR_Native Registration - Intent to Register,Intent to Register,Google Android,RE GISTRATION (NATIVE),RG(,Positive,Intent to Register,,,,,Google Android_RG(_2,,134,5,1.0,10,9,,2025-02-04
+371,DR_Native Registration Success,Funnel Success Rate,Google Android,RE GISTRATION (NATIVE),RG(,Positive,,Funnel Success Rate,,,,Google Android_RG(_2.1,Google Android_RG(_2,135,6,2.0,10,9,370.0,2025-02-04
+372,DR_Native Registration - Phone Lookup,Phone Lookup,Google Android,RE GISTRATION (NATIVE),RG(,Positive,Phone Lookup,,,,,Google Android_RG(_3,,136,7,1.0,10,9,,2025-02-04
+373,DR_Native Registration - Phone Lookup Success,Phone Lookup Success Rate,Google Android,RE GISTRATION (NATIVE),RG(,Positive,,Phone Lookup Success Rate,,,,Google Android_RG(_3.1,Google Android_RG(_3,137,8,2.0,10,9,372.0,2025-02-04
+374,DR_Native Registration - Email Lookup,Email Lookup,Google Android,RE GISTRATION (NATIVE),RG(,Positive,Email Lookup,,,,,Google Android_RG(_4,,138,9,1.0,10,9,,2025-02-04
+375,DR_Native Registration - Email Lookup Success,Email Lookup Success Rate,Google Android,RE GISTRATION (NATIVE),RG(,Positive,,Email Lookup Success Rate,,,,Google Android_RG(_4.1,Google Android_RG(_4,139,10,2.0,10,9,374.0,2025-02-04
+376,DR_Reset Modem - Home Page,Reset Modem Start Page Visits,Google Android,RESET MODEM,RM,Positive,Reset Modem Start Page Visits,,,,,Google Android_RM_1,,140,1,1.0,11,6,,2025-02-04
+377,DR_Reset Modem - Started Rebooting Process,Started Reset Process,Google Android,RESET MODEM,RM,Positive,,Started Reset Process,,,,Google Android_RM_1.1,Google Android_RM_1,141,2,2.0,11,6,376.0,2025-02-04
+378,DR_Reset Modem - Rebooting Complete,Reset Process Complete,Google Android,RESET MODEM,RM,Positive,,,Reset Process Complete,,,Google Android_RM_1.1.1,Google Android_RM_1.1,142,3,3.0,11,6,377.0,2025-02-04
+379,DR_Reset Modem - Rebooting Incomplete,Reset Process Incomplete,Google Android,RESET MODEM,RM,Negative,,,Reset Process Incomplete,,,Google Android_RM_1.1.2,Google Android_RM_1.1,143,4,3.0,11,6,377.0,2025-02-04
+380,DR_Reset Modem - Agent Chat,Reset_Modem Interacted with Chat,Google Android,RESET MODEM,RM,Negative,,,Reset_Modem Interacted with Chat,,,Google Android_RM_1.1.3,Google Android_RM_1.1,144,5,3.0,11,6,377.0,2025-02-04
+381,DR_Reset Modem - Error Outage,Error Outage,Google Android,RESET MODEM,RM,Negative,,Error Outage,,,,Google Android_RM_1.2,Google Android_RM_1,145,6,2.0,11,6,376.0,2025-02-04
+382,DR_Reset Modem Error - Non Pay,Non Pay Error,Google Android,RESET MODEM,RM,Negative,,Non Pay Error,,,,Google Android_RM_1.3,Google Android_RM_1,146,7,2.0,11,6,376.0,2025-02-04
+383,DR_Reset Modem Error -DMCA,DMCA Error,Google Android,RESET MODEM,RM,Negative,,DMCA Error,,,,Google Android_RM_1.4,Google Android_RM_1,147,8,2.0,11,6,376.0,2025-02-04
+384,DR_Reset Tvbox - Home Page,Reset TV Box Start Page Visits,Google Android,RESET TV BOX,RTB,Positive,Reset TV Box Start Page Visits,,,,,Google Android_RTB_1,,148,1,1.0,12,7,,2025-02-04
+385,DR_Reset Tvbox - Rebooting,Reset_TV Started Reset Process,Google Android,RESET TV BOX,RTB,Positive,,Reset_TV Started Reset Process,,,,Google Android_RTB_1.1,Google Android_RTB_1,149,2,2.0,12,7,384.0,2025-02-04
+386,DR_Reset Tvbox - Complete,Reset_TV Process Complete,Google Android,RESET TV BOX,RTB,Positive,,,Reset_TV Process Complete,,,Google Android_RTB_1.1.1,Google Android_RTB_1.1,150,3,3.0,12,7,385.0,2025-02-04
+387,DR_Reset Tvbox - Incomplete,Reset_TV Process Incomplete,Google Android,RESET TV BOX,RTB,Negative,,,Reset_TV Process Incomplete,,,Google Android_RTB_1.1.2,Google Android_RTB_1.1,151,4,3.0,12,7,385.0,2025-02-04
+388,DR_Reset Tvbox - Agent Chat,Reset_TV Interacted with Chat,Google Android,RESET TV BOX,RTB,Negative,,,Reset_TV Interacted with Chat,,,Google Android_RTB_1.1.3,Google Android_RTB_1.1,152,5,3.0,12,7,385.0,2025-02-04
+389,DR_Reset Tvbox - Error Outage,Reset_TV Error Outage,Google Android,RESET TV BOX,RTB,Negative,,Reset_TV Error Outage,,,,Google Android_RTB_1.2,Google Android_RTB_1,153,6,2.0,12,7,384.0,2025-02-04
+390,DR_Reset Tvbox Error - Non Pay,Reset_TV Non Pay Error,Google Android,RESET TV BOX,RTB,Negative,,Reset_TV Non Pay Error,,,,Google Android_RTB_1.3,Google Android_RTB_1,154,7,2.0,12,7,384.0,2025-02-04
+391,DR_Reset Tvbox Error - DMCA,Reset_TV DMCA Error,Google Android,RESET TV BOX,RTB,Negative,,Reset_TV DMCA Error,,,,Google Android_RTB_1.4,Google Android_RTB_1,155,8,2.0,12,7,384.0,2025-02-04
+392,DR_Alert Type Visits,Visits with Service Alert,Google Android,SERVICE ALERT,SA,Negative,Visits with Service Alert,,,,,Google Android_SA_1,,156,1,1.0,13,14,,2025-02-04
+393,DR_Outage Alert,Service_alert Outage,Google Android,SERVICE ALERT,SA,Negative,,Service_alert Outage,,,,Google Android_SA_1.1,Google Android_SA_1,157,2,2.0,13,14,392.0,2025-02-04
+394,Dr_Campaign Rolloff Alert,Service_alert Campaign Rolloff,Google Android,SERVICE ALERT,SA,Negative,,Service_alert Campaign Rolloff,,,,Google Android_SA_1.2,Google Android_SA_1,158,3,2.0,13,14,392.0,2025-02-04
+395,Dr_NonPay Suspension Alert,Service_alert NonPay Suspension,Google Android,SERVICE ALERT,SA,Negative,,Service_alert NonPay Suspension,,,,Google Android_SA_1.3,Google Android_SA_1,159,4,2.0,13,14,392.0,2025-02-04
+396,Dr_Network Construction Alert,Service_alert Network Construction,Google Android,SERVICE ALERT,SA,Negative,,Service_alert Network Construction,,,,Google Android_SA_1.4,Google Android_SA_1,160,5,2.0,13,14,392.0,2025-02-04
+397,Dr_DMCA Termination Alert,Service_alert DMCA Termination,Google Android,SERVICE ALERT,SA,Negative,,Service_alert DMCA Termination,,,,Google Android_SA_1.5,Google Android_SA_1,161,6,2.0,13,14,392.0,2025-02-04
+398,server:error:CC-EACCES,,Google Android,SERVER ERRORS,SE,,,,,,,,,162,,1.0,14,16,,2025-02-04
+399,server:error:CC-INVALID_CREDS,,Google Android,SERVER ERRORS,SE,,,,,,,,,163,,1.0,14,16,,2025-02-04
+400,server:error:CC-INTERNAL_ERROR,,Google Android,SERVER ERRORS,SE,,,,,,,,,164,,1.0,14,16,,2025-02-04
+401,server:error:CC-TOKEN_EXPIRED,,Google Android,SERVER ERRORS,SE,,,,,,,,,165,,1.0,14,16,,2025-02-04
+402,server:error:null,,Google Android,SERVER ERRORS,SE,,,,,,,,,166,,1.0,14,16,,2025-02-04
+403,server:error:unable_to_retrieve_data_usage_information_at_this_time,,Google Android,SERVER ERRORS,SE,,,,,,,,,167,,1.0,14,16,,2025-02-04
+404,server:error:CC-ACCOUNT_NOT_FOUND,,Google Android,SERVER ERRORS,SE,,,,,,,,,168,,1.0,14,16,,2025-02-04
+405,server:error:CC-USERNAME-ALREADY-EXISTS,,Google Android,SERVER ERRORS,SE,,,,,,,,,169,,1.0,14,16,,2025-02-04
+406,server:error:CC-INVALID_ZIPCODE,,Google Android,SERVER ERRORS,SE,,,,,,,,,170,,1.0,14,16,,2025-02-04
+407,server:error:CC-INVALID_CVV,,Google Android,SERVER ERRORS,SE,,,,,,,,,171,,1.0,14,16,,2025-02-04
+408,server:error:CC-INVALID_CARD_NUMBER,,Google Android,SERVER ERRORS,SE,,,,,,,,,172,,1.0,14,16,,2025-02-04
+409,server:error:CC-DUPLICATE_PAYMENT,,Google Android,SERVER ERRORS,SE,,,,,,,,,173,,1.0,14,16,,2025-02-04
+410,server:error:CC-PASSWORD_DENIED,,Google Android,SERVER ERRORS,SE,,,,,,,,,174,,1.0,14,16,,2025-02-04
+411,server:error:CC-CURRENT_PIN_INVALID,,Google Android,SERVER ERRORS,SE,,,,,,,,,175,,1.0,14,16,,2025-02-04
+412,server:error:CC-PASSWORD_EXPIRED,,Google Android,SERVER ERRORS,SE,,,,,,,,,176,,1.0,14,16,,2025-02-04
+413,server:error:CC-PAYMENT_METHOD_RESTRICTED,,Google Android,SERVER ERRORS,SE,,,,,,,,,177,,1.0,14,16,,2025-02-04
+414,server:error:MappingTemplate,,Google Android,SERVER ERRORS,SE,,,,,,,,,178,,1.0,14,16,,2025-02-04
+415,server:error:CC-ICOMS_API_ERROR,,Google Android,SERVER ERRORS,SE,,,,,,,,,179,,1.0,14,16,,2025-02-04
+416,DR_SmartHelp - Landing Page,Devices Page Visits,Google Android,SMART HELP,SH,Positive,Devices Page Visits,,,,,Google Android_SH_1,,180,1,1.0,15,5,,2025-02-04
+417,DR_SmartHelp - Started,Started Troubleshooting (Solution Center),Google Android,SMART HELP,SH,Positive,,Started Troubleshooting (Solution Center),,,,Google Android_SH_1.1,Google Android_SH_1,181,2,2.0,15,5,416.0,2025-02-04
+418,DR_SmartHelp - Result,Saw a Result,Google Android,SMART HELP,SH,Positive,,,Saw a Result,,,Google Android_SH_1.1.1,Google Android_SH_1.1,182,3,3.0,15,5,417.0,2025-02-04
+419,DR_SmartHelp Result - Unknown,1st common reason (Unknown),Google Android,SMART HELP,SH,Negative,,,,1st common reason (Unknown),,Google Android_SH_1.1.1.1,Google Android_SH_1.1.1,183,4,4.0,15,5,418.0,2025-02-04
+420,DR_SmartHelp Result - Disconnected,2nd common reason (Disconnected),Google Android,SMART HELP,SH,Negative,,,,2nd common reason (Disconnected),,Google Android_SH_1.1.1.2,Google Android_SH_1.1.1,184,5,4.0,15,5,418.0,2025-02-04
+421,DR_SmartHelp Result - Incomplete Install,3rd common reason (Incomplete Install),Google Android,SMART HELP,SH,Negative,,,,3rd common reason (Incomplete Install),,Google Android_SH_1.1.1.3,Google Android_SH_1.1.1,185,6,4.0,15,5,418.0,2025-02-04
+422,DR_SmartHelp - Reboot Flow Started,Did a Device Reboot,Google Android,SMART HELP,SH,Positive,,Did a Device Reboot,,,,Google Android_SH_1.2,Google Android_SH_1,186,7,2.0,15,5,416.0,2025-02-04
+423,DR_SmartHelp - P&P,Started Proactive and Preventive (P&P),Google Android,SMART HELP,SH,Positive,,Started Proactive and Preventive (P&P),,,,Google Android_SH_1.3,Google Android_SH_1,187,8,2.0,15,5,416.0,2025-02-04
+424,DR_Smarthelp P&P - Let's troubleshoot together,Started P&P troubleshooting,Google Android,SMART HELP,SH,Positive,,,Started P&P troubleshooting,,,Google Android_SH_1.3.1,Google Android_SH_1.3,188,9,3.0,15,5,423.0,2025-02-04
+425,DR_Smarthelp P&P - Reset Complete,Smarthelp Reset Complete,Google Android,SMART HELP,SH,Positive,,,Smarthelp Reset Complete,,,Google Android_SH_1.3.2,Google Android_SH_1.3,189,10,3.0,15,5,423.0,2025-02-04
+426,DR_Smarthelp P&P - Let's schedule a technician visit,Schedule Tech,Google Android,SMART HELP,SH,Positive,,,Schedule Tech,,,Google Android_SH_1.3.3,Google Android_SH_1.3,190,11,3.0,15,5,423.0,2025-02-04
+427,DR_Smarthelp P&P - Connect with a support agent,Connect with Agent,Google Android,SMART HELP,SH,Negative,,,Connect with Agent,,,Google Android_SH_1.3.4,Google Android_SH_1.3,191,12,3.0,15,5,423.0,2025-02-04
+428,DR_Smarthelp P&P - Interacted with Chat Agent,Smarthelp_P&P Interacted with Chat,Google Android,SMART HELP,SH,Negative,,,Smarthelp_P&P Interacted with Chat,,,Google Android_SH_1.3.5,Google Android_SH_1.3,192,13,3.0,15,5,423.0,2025-02-04
+429,DR_SmartHelp - Billing & Account Support,Clicked Billing & Account Support,Google Android,SMART HELP,SH,Positive,,Clicked Billing & Account Support,,,,Google Android_SH_1.4,Google Android_SH_1,193,14,2.0,15,5,416.0,2025-02-04
+430,DR_SmartHelp - Internet Support,Clicked Internet Support,Google Android,SMART HELP,SH,Positive,,Clicked Internet Support,,,,Google Android_SH_1.5,Google Android_SH_1,194,15,2.0,15,5,416.0,2025-02-04
+431,DR_SmartHelp - TV Support,Clicked TV Support,Google Android,SMART HELP,SH,Positive,,Clicked TV Support,,,,Google Android_SH_1.6,Google Android_SH_1,195,16,2.0,15,5,416.0,2025-02-04
+432,DR_SmartHelp - Homelife Support,Clicked Homelife Support,Google Android,SMART HELP,SH,Positive,,Clicked Homelife Support,,,,Google Android_SH_1.7,Google Android_SH_1,196,17,2.0,15,5,416.0,2025-02-04
+433,DR_SmartHelp - Agent Chat,Smarthelp_Interacted with Chat,Google Android,SMART HELP,SH,Negative,,Smarthelp_Interacted with Chat,,,,Google Android_SH_1.8,Google Android_SH_1,197,18,2.0,15,5,416.0,2025-02-04
+434,DR_Support Home,Support Home Visits,Google Android,S UPPORT,SU,Positive,Support Home Visits,,,,,Google Android_SU_1,,198,1,1.0,16,11,,2025-02-04
+435,DR_Support - Internet,Support Internet Support,Google Android,S UPPORT,SU,Positive,,Support Internet Support,,,,Google Android_SU_1.1,Google Android_SU_1,199,2,2.0,16,11,434.0,2025-02-04
+436,DR_Support - Billing and Account,Billing & Account Support,Google Android,S UPPORT,SU,Positive,,Billing & Account Support,,,,Google Android_SU_1.2,Google Android_SU_1,200,3,2.0,16,11,434.0,2025-02-04
+437,DR_Support - Billing,Billing Support,Google Android,S UPPORT,SU,Positive,,Billing Support,,,,Google Android_SU_1.3,Google Android_SU_1,201,4,2.0,16,11,434.0,2025-02-04
+438,DR_Support - Account,Account Support,Google Android,S UPPORT,SU,Positive,,Account Support,,,,Google Android_SU_1.4,Google Android_SU_1,202,5,2.0,16,11,434.0,2025-02-04
+439,DR_Support - TV,Support TV Support,Google Android,S UPPORT,SU,Positive,,Support TV Support,,,,Google Android_SU_1.5,Google Android_SU_1,203,6,2.0,16,11,434.0,2025-02-04
+440,DR_Support - Homelife,Support Homelife Support,Google Android,S UPPORT,SU,Positive,,Support Homelife Support,,,,Google Android_SU_1.6,Google Android_SU_1,204,7,2.0,16,11,434.0,2025-02-04
+441,DR_Support - Mobile,Support Mobile Support,Google Android,S UPPORT,SU,Positive,,Support Mobile Support,,,,Google Android_SU_1.7,Google Android_SU_1,205,8,2.0,16,11,434.0,2025-02-04
+442,DR_Support - Read an Article,Read an Article,Google Android,S UPPORT,SU,Positive,,Read an Article,,,,Google Android_SU_1.8,Google Android_SU_1,206,9,2.0,16,11,434.0,2025-02-04
+443,DR_Support - Search,Support Search,Google Android,S UPPORT,SU,Negative,,Support Search,,,,Google Android_SU_1.9,Google Android_SU_1,207,10,2.0,16,11,434.0,2025-02-04
+444,DR_Support - Click on Exit Link,Went to External Link,Google Android,S UPPORT,SU,Positive,,Went to External Link,,,,Google Android_SU_1.10,Google Android_SU_1,208,11,2.0,16,11,434.0,2025-02-04
+445,DR_Support - App Feedback,App Feedback,Google Android,S UPPORT,SU,Positive,,App Feedback,,,,Google Android_SU_1.11,Google Android_SU_1,209,12,2.0,16,11,434.0,2025-02-04
+446,DR_Support - Agent chat started,Support Interacted with Chat,Google Android,S UPPORT,SU,Negative,,Support Interacted with Chat,,,,Google Android_SU_1.12,Google Android_SU_1,210,13,2.0,16,11,434.0,2025-02-04
+447,DR_TSV Enrollment Home Page,Visits to TSV Home Page,Google Android,TWO-STEP VERIFICATION,TV,Positive,Visits to TSV Home Page,,,,,Google Android_TV_1,,211,1,1.0,17,12,,2025-02-04
+448,DR_TSV | Intent to Enrollment,TSV Enrollment Page,Google Android,TWO-STEP VERIFICATION,TV,Positive,,TSV Enrollment Page,,,,Google Android_TV_1.1,Google Android_TV_1,212,2,2.0,17,12,447.0,2025-02-04
+449,DR_TSV Enrollment - Success,TSV Overall Success Rate,Google Android,TWO-STEP VERIFICATION,TV,Positive,,TSV Overall Success Rate,,,,Google Android_TV_1.2,Google Android_TV_1,213,3,2.0,17,12,447.0,2025-02-04
+450,DR_TSV Enrollment - Update,TSV Update,Google Android,TWO-STEP VERIFICATION,TV,Positive,,TSV Update,,,,Google Android_TV_1.3,Google Android_TV_1,214,10,2.0,17,12,447.0,2025-02-04
+451,DR_TSV Enrollment - Server Errors,TSV Server Errors,Google Android,TWO-STEP VERIFICATION,TV,Negative,,TSV Server Errors,,,,Google Android_TV_1.4,Google Android_TV_1,215,11,2.0,17,12,447.0,2025-02-04
+452,DR_TSV Enrollment - Phone text,TSV Phone Text,Google Android,TWO-STEP VERIFICATION,TV,Positive,TSV Phone Text,,,,,Google Android_TV_2,,216,4,1.0,17,12,,2025-02-04
+453,DR_TSV Enrollment - Phone text Success,TSV Text Success Rate,Google Android,TWO-STEP VERIFICATION,TV,Positive,,TSV Text Success Rate,,,,Google Android_TV_2.1,Google Android_TV_2,217,5,2.0,17,12,452.0,2025-02-04
+454,DR_TSV Enrollment - Phone call,TSV Phone Call,Google Android,TWO-STEP VERIFICATION,TV,Positive,TSV Phone Call,,,,,Google Android_TV_3,,218,6,1.0,17,12,,2025-02-04
+455,DR_TSV Enrollment - Phone call Success,TSV Call Success Rate,Google Android,TWO-STEP VERIFICATION,TV,Positive,,TSV Call Success Rate,,,,Google Android_TV_3.1,Google Android_TV_3,219,7,2.0,17,12,454.0,2025-02-04
+456,DR_TSV Enrollment - Email,TSV Email Text,Google Android,TWO-STEP VERIFICATION,TV,Positive,TSV Email Text,,,,,Google Android_TV_4,,220,8,1.0,17,12,,2025-02-04
+457,DR_TSV Enrollment - Email Success,TSV Email Success Rate,Google Android,TWO-STEP VERIFICATION,TV,Positive,,TSV Email Success Rate,,,,Google Android_TV_4.1,Google Android_TV_4,221,9,2.0,17,12,456.0,2025-02-04
+458,DR_continuing chat from new chat page,,Google Android,Unknown,U,,,,,,,,,222,,1.0,18,,,2025-02-04
+459,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_b,,Google Android,U R L,URL,,,,,,,,,223,,1.0,19,18,,2025-02-04
+460,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_2,,Google Android,U R L,URL,,,,,,,,,224,,1.0,19,18,,2025-02-04
+461,www.cox.com/residential/refer-a-friend.html?&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_extole,,Google Android,U R L,URL,,,,,,,,,225,,1.0,19,18,,2025-02-04
+462,www.cox.com/mobile-shop/check-device-compatibility.html&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mob,,Google Android,U R L,URL,,,,,,,,,226,,1.0,19,18,,2025-02-04
+463,www.cox.com/residential/move.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_inapp,,Google Android,U R L,URL,,,,,,,,,227,,1.0,19,18,,2025-02-04
+1000001,DR_Visits to Billing Home,Billing Section Visits,Both,BIL LING,BL,Positive,,,,,,,,1,1,,1,3,,2025-02-04
+1000002,DR_Billing Make a Payment,Make Payments,Both,BIL LING,BL,Positive,,,,,,,,2,2,,1,3,1.0,2025-02-04
+1000003,DR_Client Errors on Make Payment,Client Errors on Payment Page,Both,BIL LING,BL,Negative,,,,,,,,3,5,,1,3,2.0,2025-02-04
+1000004,DR_Server Errors on Make Payment,Server Errors on Payment Page,Both,BIL LING,BL,Negative,,,,,,,,4,6,,1,3,2.0,2025-02-04
+1000005,DR_Payment Submit,Payment Submit,Both,BIL LING,BL,Positive,,,,,,,,5,3,,1,3,1.0,2025-02-04
+1000006,DR_Payments,Payment Success Rate,Both,BIL LING,BL,Positive,,,,,,,,6,4,,1,3,5.0,2025-02-04
+1000007,DR_Promise to Pay,Promise to Pay - Linkout,Both,BIL LING,BL,Positive,,,,,,,,7,7,,1,3,1.0,2025-02-04
+1000008,DR_Promise to Pay (Native),Promise to Pay - Native,Both,BIL LING,BL,Positive,,,,,,,,8,8,,1,3,1.0,2025-02-04
+1000009,DR_CoxApp | Billing - Additional time to pay (Link out),Additional time to pay - Linkout,Both,BIL LING,BL,Positive,,,,,,,,9,9,,1,3,8.0,2025-02-04
+10000010,DR_CoxApp | Billing - Future date payment (Link out),Future date payment - Linkout,Both,BIL LING,BL,Positive,,,,,,,,10,10,,1,3,8.0,2025-02-04
+10000011,DR_Billing - View Bill Details,Bill Downloads,Both,BIL LING,BL,Positive,,,,,,,,11,11,,1,3,1.0,2025-02-04
+10000012,DR_Billing - Activity & Statements,Activity & Statements,Both,BIL LING,BL,Positive,,,,,,,,12,12,,1,3,1.0,2025-02-04
+10000013,DR_Billing - Automatic Payments,Easy Pay Enrollments,Both,BIL LING,BL,Positive,,,,,,,,13,13,,1,3,1.0,2025-02-04
+10000014,DR_Billing - Manage Payment Methods,Payment Method Changes,Both,BIL LING,BL,Positive,,,,,,,,14,14,,1,3,1.0,2025-02-04
+10000015,DR_Billing - Agreements & Discounts,Agreement & Discounts,Both,BIL LING,BL,Positive,,,,,,,,15,15,,1,3,1.0,2025-02-04
+10000016,DR_Billing - Bill Delivery,Bill Delivery Options,Both,BIL LING,BL,Positive,,,,,,,,16,16,,1,3,1.0,2025-02-04
+10000017,DR_Billing - Edit Billing Address,Address Changes,Both,BIL LING,BL,Positive,,,,,,,,17,17,,1,3,1.0,2025-02-04
+10000018,DR_Billing - Move My Service,Move Service,Both,BIL LING,BL,Positive,,,,,,,,18,18,,1,3,1.0,2025-02-04
+10000019,DR_Billing visits to chat,Billing_Interacted with chat,Both,BIL LING,BL,Negative,,,,,,,,19,19,,1,3,1.0,2025-02-04
+10000020,DR_Total Data Usage Visits,Total Data Usage Visits,Both,DATA USAGE,DU,Positive,,,,,,,,44,1,,3,10,,2025-02-04
+10000021,DR_Data Plan upgrade,Data Plan Upgrade,Both,DATA USAGE,DU,Positive,,,,,,,,45,2,,3,10,44.0,2025-02-04
+10000022,DR_Data Usage Learn More,Learn More,Both,DATA USAGE,DU,Positive,,,,,,,,46,3,,3,10,44.0,2025-02-04
+10000023,DR_Data Usage Courtesy Credits,Courtesy Credit,Both,DATA USAGE,DU,Positive,,,,,,,,47,4,,3,10,44.0,2025-02-04
+10000024,DR_Total Data Usage >=75%,Data usage >=75%,Both,DATA USAGE,DU,Positive,,,,,,,,48,5,,3,10,44.0,2025-02-04
+10000025,DR_Total Data Usage >=100%,Data usage >=100%,Both,DATA USAGE,DU,Positive,,,,,,,,49,6,,3,10,44.0,2025-02-04
+10000026,DR_Data Usage - Agent Chat Started,Data_usage Interacted with Chat,Both,DATA USAGE,DU,Negative,,,,,,,,50,7,,3,10,44.0,2025-02-04
+10000027,DR_Visits where One EC Card was shown,Easy Connect Eligible Visits,Both,EASY CON NECT,ECN,Positive,,,,,,,,59,1,,5,4,,2025-02-04
+10000028,DR_EC Flow>Success,Overall Success,Both,EASY CON NECT,ECN,Positive,,,,,,,,60,2,,5,4,59.0,2025-02-04
+10000029,DR_EC>Failure,Overall Failure,Both,EASY CON NECT,ECN,Negative,,,,,,,,61,3,,5,4,59.0,2025-02-04
+10000030,DR_EC Flow>Timeout,Overall Timeout,Both,EASY CON NECT,ECN,Negative,,,,,,,,62,4,,5,4,59.0,2025-02-04
+10000031,DR_EC>No Result,Overall No Result,Both,EASY CON NECT,ECN,Negative,,,,,,,,63,5,,5,4,59.0,2025-02-04
+10000032,DR_Easy Connect - Started,Started the Flow,Both,EASY CON NECT,ECN,Positive,,,,,,,,64,6,,5,4,59.0,2025-02-04
+10000033,DR_Easy Connect Started - Success,Success,Both,EASY CON NECT,ECN,Positive,,,,,,,,65,7,,5,4,64.0,2025-02-04
+10000034,DR_Easy Connect Started - Failure,Failure,Both,EASY CON NECT,ECN,Negative,,,,,,,,66,8,,5,4,64.0,2025-02-04
+10000035,DR_Easy Connect Started - Timeout,Timeout,Both,EASY CON NECT,ECN,Negative,,,,,,,,67,9,,5,4,64.0,2025-02-04
+10000036,DR_Easy Connect Started - No Result,No Result,Both,EASY CON NECT,ECN,Negative,,,,,,,,68,10,,5,4,64.0,2025-02-04
+10000037,DR_Easy Connect - Started Agent Chat,Easyconnect_Interacted with Chat,Both,EASY CON NECT,ECN,Negative,,,,,,,,69,11,,5,4,64.0,2025-02-04
+10000038,DR_Visits who did not Start EC Flow,Did Not Start the Flow,Both,EASY CON NECT,ECN,Negative,,,,,,,,70,12,,5,4,59.0,2025-02-04
+10000039,DR_Visits who did not Start EC Flow - Success,Did_not Success,Both,EASY CON NECT,ECN,Positive,,,,,,,,71,13,,5,4,70.0,2025-02-04
+10000040,DR_Visits who did not Start EC Flow - Failure,Did_not Failure,Both,EASY CON NECT,ECN,Negative,,,,,,,,72,14,,5,4,70.0,2025-02-04
+10000041,DR_Visits who did not Start EC Flow - No Result,Did_not No Result,Both,EASY CON NECT,ECN,Negative,,,,,,,,73,15,,5,4,70.0,2025-02-04
+10000042,DR_Mobile Lock Enabled,,Both,COX MOBILE,CM,,,,,,,,,22,,,2,13,,2025-02-04
+10000043,DR_Login Page Visits,Login Page Visits,Both,LOG IN,LI,Positive,,,,,,,,96,1,,7,2,,2025-02-04
+10000044,DR_Successful logins,Login Success Rate,Both,LOG IN,LI,Positive,,,,,,,,97,2,,7,2,96.0,2025-02-04
+10000045,DR_Auto Logins,Share of Auto Login (Remember/Biometrics),Both,LOG IN,LI,Positive,,,,,,,,98,3,,7,2,97.0,2025-02-04
+10000046,DR_Clicks to MFA Verification,with TSV,Both,LOG IN,LI,Positive,,,,,,,,99,4,,7,2,96.0,2025-02-04
+10000047,DR_Clicks on Forgot User ID,User ID Recovery,Both,LOG IN,LI,Negative,,,,,,,,100,5,,7,2,96.0,2025-02-04
+10000048,Clicks on Forgot Password,Password Reset,Both,LOG IN,LI,Negative,,,,,,,,101,6,,7,2,96.0,2025-02-04
+10000049,DR_Need to Register,Registration,Both,LOG IN,LI,Positive,,,,,,,,102,7,,7,2,96.0,2025-02-04
+10000050,DR_Visits,Visits,Both,OVER ALL,OA,Positive,,,,,,,,115,1,,9,1,,2025-02-04
+10000051,Unique Visitors,Visitors,Both,OVER ALL,OA,Positive,,,,,,,,116,2,,9,1,,2025-02-04
+10000052,Page Views,Page Views,Both,OVER ALL,OA,Positive,,,,,,,,117,3,,9,1,,2025-02-04
+10000053,Average Time Spent on Page,Average Time Spent (mins),Both,OVER ALL,OA,Negative,,,,,,,,118,4,,9,1,,2025-02-04
+10000054,DR_New Visitors,New Visitors,Both,OVER ALL,OA,Positive,,,,,,,,119,5,,9,1,115.0,2025-02-04
+10000055,DR_Server Errors,Server Errors,Both,OVER ALL,OA,Negative,,,,,,,,120,6,,9,1,115.0,2025-02-04
+10000056,DR_Overall Chat,Visits to Chat,Both,OVER ALL,OA,Negative,,,,,,,,121,7,,9,1,115.0,2025-02-04
+10000057,DR_Message Us,Visits to Chat (Bot),Both,OVER ALL,OA,Negative,,,,,,,,122,8,,9,1,115.0,2025-02-04
+10000058,DR_Agent Chat,Visits to Agent Chat (Skip bot),Both,OVER ALL,OA,Negative,,,,,,,,123,9,,9,1,115.0,2025-02-04
+10000059,DR_Self Service Initiated,Visits to Self Service Features,Both,OVER ALL,OA,Positive,,,,,,,,124,10,,9,1,115.0,2025-02-04
+10000060,DR_CoxApp | Visits with Chat and No Self Service Initiated,Visits with Chat but No Self Service,Both,OVER ALL,OA,Negative,,,,,,,,125,11,,9,1,115.0,2025-02-04
+10000061,DR_CoxApp | Visits with No Self Service and No Chat,Visits with Neither Self Service nor Chat,Both,OVER ALL,OA,Negative,,,,,,,,126,12,,9,1,115.0,2025-02-04
+10000062,DR_CoxApp | Visits not logged in,Not Logged-in Visits,Both,OVER ALL,OA,Negative,,,,,,,,127,13,,9,1,115.0,2025-02-04
+10000063,DR_Native Registration Home Page,Visits to Registration Home Page,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,128,1,,10,9,,2025-02-04
+10000064,DR_Native Registration Confirmation,New Registrations,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,129,2,,10,9,128.0,2025-02-04
+10000065,DR_Native Registration - Already Registered,Already Registered,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,130,3,,10,9,128.0,2025-02-04
+10000066,DR_Native Registration - Did not Registered,Did not Register,Both,RE GISTRATION (NATIVE),RG(,Negative,,,,,,,,131,4,,10,9,128.0,2025-02-04
+10000067,DR_Native Registration - Server Form Errors,Reg_native Server Errors,Both,RE GISTRATION (NATIVE),RG(,Negative,,,,,,,,132,11,,10,9,128.0,2025-02-04
+10000068,DR_CoxApp | Chat from Registration Flow,Reg_native Interacted with Chat,Both,RE GISTRATION (NATIVE),RG(,Negative,,,,,,,,133,12,,10,9,128.0,2025-02-04
+10000069,DR_Native Registration - Intent to Register,Intent to Register,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,134,5,,10,9,,2025-02-04
+10000070,DR_Native Registration Success,Funnel Success Rate,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,135,6,,10,9,134.0,2025-02-04
+10000071,DR_Native Registration - Phone Lookup,Phone Lookup,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,136,7,,10,9,,2025-02-04
+10000072,DR_Native Registration - Phone Lookup Success,Phone Lookup Success Rate,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,137,8,,10,9,136.0,2025-02-04
+10000073,DR_Native Registration - Email Lookup,Email Lookup,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,138,9,,10,9,,2025-02-04
+10000074,DR_Native Registration - Email Lookup Success,Email Lookup Success Rate,Both,RE GISTRATION (NATIVE),RG(,Positive,,,,,,,,139,10,,10,9,138.0,2025-02-04
+10000075,DR_Reset Modem - Home Page,Reset Modem Start Page Visits,Both,RESET MODEM,RM,Positive,,,,,,,,140,1,,11,6,,2025-02-04
+10000076,DR_Reset Modem - Started Rebooting Process,Started Reset Process,Both,RESET MODEM,RM,Positive,,,,,,,,141,2,,11,6,140.0,2025-02-04
+10000077,DR_Reset Modem - Rebooting Complete,Reset Process Complete,Both,RESET MODEM,RM,Positive,,,,,,,,142,3,,11,6,141.0,2025-02-04
+10000078,DR_Reset Modem - Rebooting Incomplete,Reset Process Incomplete,Both,RESET MODEM,RM,Negative,,,,,,,,143,4,,11,6,141.0,2025-02-04
+10000079,DR_Reset Modem - Agent Chat,Reset_Modem Interacted with Chat,Both,RESET MODEM,RM,Negative,,,,,,,,144,5,,11,6,141.0,2025-02-04
+10000080,DR_Reset Modem - Error Outage,Error Outage,Both,RESET MODEM,RM,Negative,,,,,,,,145,6,,11,6,140.0,2025-02-04
+10000081,DR_Reset Modem Error - Non Pay,Non Pay Error,Both,RESET MODEM,RM,Negative,,,,,,,,146,7,,11,6,140.0,2025-02-04
+10000082,DR_Reset Modem Error -DMCA,DMCA Error,Both,RESET MODEM,RM,Negative,,,,,,,,147,8,,11,6,140.0,2025-02-04
+10000083,DR_Reset Tvbox - Home Page,Reset TV Box Start Page Visits,Both,RESET TV BOX,RTB,Positive,,,,,,,,148,1,,12,7,,2025-02-04
+10000084,DR_Reset Tvbox - Rebooting,Reset_TV Started Reset Process,Both,RESET TV BOX,RTB,Positive,,,,,,,,149,2,,12,7,148.0,2025-02-04
+10000085,DR_Reset Tvbox - Complete,Reset_TV Process Complete,Both,RESET TV BOX,RTB,Positive,,,,,,,,150,3,,12,7,149.0,2025-02-04
+10000086,DR_Reset Tvbox - Incomplete,Reset_TV Process Incomplete,Both,RESET TV BOX,RTB,Negative,,,,,,,,151,4,,12,7,149.0,2025-02-04
+10000087,DR_Reset Tvbox - Agent Chat,Reset_TV Interacted with Chat,Both,RESET TV BOX,RTB,Negative,,,,,,,,152,5,,12,7,149.0,2025-02-04
+10000088,DR_Reset Tvbox - Error Outage,Reset_TV Error Outage,Both,RESET TV BOX,RTB,Negative,,,,,,,,153,6,,12,7,148.0,2025-02-04
+10000089,DR_Reset Tvbox Error - Non Pay,Reset_TV Non Pay Error,Both,RESET TV BOX,RTB,Negative,,,,,,,,154,7,,12,7,148.0,2025-02-04
+10000090,DR_Reset Tvbox Error - DMCA,Reset_TV DMCA Error,Both,RESET TV BOX,RTB,Negative,,,,,,,,155,8,,12,7,148.0,2025-02-04
+10000091,DR_SmartHelp - Landing Page,Devices Page Visits,Both,SMART HELP,SH,Positive,,,,,,,,182,1,,15,5,,2025-02-04
+10000092,DR_SmartHelp - Started,Started Troubleshooting (Solution Center),Both,SMART HELP,SH,Positive,,,,,,,,183,2,,15,5,182.0,2025-02-04
+10000093,DR_SmartHelp - Result,Saw a Result,Both,SMART HELP,SH,Positive,,,,,,,,184,3,,15,5,183.0,2025-02-04
+10000094,DR_SmartHelp Result - Unknown,1st common reason (Unknown),Both,SMART HELP,SH,Negative,,,,,,,,185,4,,15,5,184.0,2025-02-04
+10000095,DR_SmartHelp Result - Disconnected,2nd common reason (Disconnected),Both,SMART HELP,SH,Negative,,,,,,,,186,5,,15,5,184.0,2025-02-04
+10000096,DR_SmartHelp Result - Incomplete Install,3rd common reason (Incomplete Install),Both,SMART HELP,SH,Negative,,,,,,,,187,6,,15,5,184.0,2025-02-04
+10000097,DR_SmartHelp - Reboot Flow Started,Did a Device Reboot,Both,SMART HELP,SH,Positive,,,,,,,,188,7,,15,5,182.0,2025-02-04
+10000098,DR_SmartHelp - P&P,Started Proactive and Preventive (P&P),Both,SMART HELP,SH,Positive,,,,,,,,189,8,,15,5,182.0,2025-02-04
+10000099,DR_Smarthelp P&P - Let's troubleshoot together,Started P&P troubleshooting,Both,SMART HELP,SH,Positive,,,,,,,,190,9,,15,5,189.0,2025-02-04
+100000100,DR_Smarthelp P&P - Reset Complete,Smarthelp Reset Complete,Both,SMART HELP,SH,Positive,,,,,,,,191,10,,15,5,189.0,2025-02-04
+100000101,DR_Smarthelp P&P - Let's schedule a technician visit,Schedule Tech,Both,SMART HELP,SH,Positive,,,,,,,,192,11,,15,5,189.0,2025-02-04
+100000102,DR_Smarthelp P&P - Connect with a support agent,Connect with Agent,Both,SMART HELP,SH,Negative,,,,,,,,193,12,,15,5,189.0,2025-02-04
+100000103,DR_Smarthelp P&P - Interacted with Chat Agent,Smarthelp_P&P Interacted with Chat,Both,SMART HELP,SH,Negative,,,,,,,,194,13,,15,5,189.0,2025-02-04
+100000104,DR_SmartHelp - Billing & Account Support,Clicked Billing & Account Support,Both,SMART HELP,SH,Positive,,,,,,,,195,14,,15,5,182.0,2025-02-04
+100000105,DR_SmartHelp - Internet Support,Clicked Internet Support,Both,SMART HELP,SH,Positive,,,,,,,,196,15,,15,5,182.0,2025-02-04
+100000106,DR_SmartHelp - TV Support,Clicked TV Support,Both,SMART HELP,SH,Positive,,,,,,,,197,16,,15,5,182.0,2025-02-04
+100000107,DR_SmartHelp - Homelife Support,Clicked Homelife Support,Both,SMART HELP,SH,Positive,,,,,,,,198,17,,15,5,182.0,2025-02-04
+100000108,DR_SmartHelp - Agent Chat,Smarthelp_Interacted with Chat,Both,SMART HELP,SH,Negative,,,,,,,,199,18,,15,5,182.0,2025-02-04
