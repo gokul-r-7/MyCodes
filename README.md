@@ -12,24 +12,53 @@ select da.*,count(wch.customer_key) from digital_adoption_all_channels da JOIN w
 
 import sys
 import logging
-from awsglue.context import GlueContext
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
 from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
 
-# ✅ Configure logging for AWS Glue (ensures logs go to CloudWatch)
-logging.basicConfig(
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    level=logging.INFO,
-    handlers=[logging.StreamHandler(sys.stdout)]  # Ensure logs go to stdout (CloudWatch Output Logs)
-)
+# Get arguments
+args = getResolvedOptions(sys.argv, ['JOB_NAME'])
 
-logger = logging.getLogger(__name__)  # Create a logger instance
+# Set up logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
-# ✅ Initialize AWS Glue and Spark Context
-sc = SparkContext()
-glueContext = GlueContext(sc)
+# Create a CloudWatch log handler
+handler = logging.StreamHandler(sys.stdout)  # Use stdout for CloudWatch
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
+# Initialize Glue context
+glueContext = GlueContext(SparkContext.getOrCreate())
 spark = glueContext.spark_session
+job = Job(glueContext)
 
-# ✅ Log messages (will appear in CloudWatch Output Logs)
-logger.info("Hello world")
-logger.info("Hey, how are you?")
-logger.info("What are you doing?")
+# Start the job
+logger.info("Starting Glue job: %s", args['JOB_NAME'])
+job.init(args['JOB_NAME'], args)
+
+try:
+    # Your ETL logic goes here
+    logger.info("Performing ETL operations.")
+    
+    # Example: reading data
+    datasource0 = glueContext.create_dynamic_frame.from_catalog(database="your_database", table_name="your_table")
+    logger.info("Data read successfully from catalog.")
+    
+    # Example: transforming data
+    transformed_data = datasource0 # Replace with your transformation logic
+    logger.info("Data transformed successfully.")
+    
+    # Example: writing data
+    glueContext.write_dynamic_frame.from_catalog(transformed_data, database="your_output_database", table_name="your_output_table")
+    logger.info("Data written successfully to catalog.")
+
+except Exception as e:
+    logger.error("An error occurred: %s", str(e))
+
+finally:
+    job.commit()
+    logger.info("Glue job completed.")
