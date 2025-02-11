@@ -14,3 +14,8 @@ select da.*,count(wch.customer_key) from digital_adoption_all_channels da JOIN w
 
 s3://cci-dig-aicoe-data-sb/processed/healthscore/healthscore_raw_file/
 s3://cci-dig-aicoe-data-sb/processed/healthscore/healthscore_json/healthscore_dashboard.json
+
+s3://cci-dig-aicoe-data-sb/processed/healthscore/healthscore_master/
+s3://cci-dig-aicoe-data-sb/processed/healthscore/healthscore_actual_data/
+s3://cci-dig-aicoe-data-sb/processed/healthscore/healthscore_percent_both/
+s3://cci-dig-aicoe-data-sb/processed/healthscore/healthscore_calculations/
