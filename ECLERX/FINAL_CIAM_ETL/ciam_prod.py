@@ -43,20 +43,20 @@ job.init(args['JOB_NAME'], args)
 #SQL Queries
 account_dim_sum_13 = """
 WITH customer_data AS (
-    SELECT DISTINCT c.customer_key,
-           CAST(c.account_nbr AS varchar(255)) AS account_nbr,
+    SELECT distinct c.customer_key,
+           c.account_nbr,
            c.site_id,
            c.res_comm_ind,
            c.customer_status_cd,
-           CAST(c.account_guid AS varchar(255)) AS account_guid,
-           CAST(c.prim_account_holder_guid AS varchar(255)) AS prim_account_holder_guid,
+           c.account_guid,
+           c.prim_account_holder_guid,
            c.test_account_key AS test_account_key,
            c.inception_dt
     FROM edw.customer_dim c
-    WHERE test_account_key = 2
+    WHERE test_account_key=2
 ),
 revenue_data AS (
-    SELECT r.customer_key,
+    SELECT distinct r.customer_key,
            r.site_id,
            r.dwelling_type_key,
            r.easy_pay_flag,
@@ -65,14 +65,14 @@ revenue_data AS (
            r.time_key
     FROM edw.customer_revenue_fact r
     WHERE r.bill_type_key != 2 
-          AND to_date(r.time_key, 'yyyy-MM-dd') >= add_months(CURRENT_DATE, -13)
+      AND to_date(r.time_key, 'yyyy-MM-dd') >= add_months(CURRENT_DATE, -13)
 ),
 customer_status AS (
-    SELECT customer_substatus_key, sub_status_desc 
+    SELECT distinct customer_substatus_key, sub_status_desc 
     FROM edw.customer_substatus_dim
 ),
 dwelling_data AS (
-    SELECT DISTINCT d.dwelling_type_key,
+    SELECT distinct d.dwelling_type_key,
            d.dwelling_type_desc
     FROM edw.dwelling_type_dim d
 ),
@@ -86,7 +86,7 @@ account_summary AS (
            s.do_not_call_flag,
            s.do_not_email_flag,
            s.do_not_mail_flag,
-           s.telephony_flag,
+           s.telephony_flag ,
            s.do_not_market_flag,
            s.time_key,
            ROW_NUMBER() OVER (PARTITION BY s.customer_key ORDER BY s.time_key DESC) AS rn
@@ -99,52 +99,104 @@ guid_data AS (
            ROW_NUMBER() OVER (PARTITION BY g.customer_key ORDER BY g.create_dt ASC) AS rn
     FROM edw.customer_guid_dtl_dim g
 ),
+account_details AS (
+    SELECT distinct a.customer_key,
+           ac.do_not_email AS Email_Opt_Out,
+           ac.do_not_call AS Phone_Opt_Out,
+           em.email_address,
+           ROW_NUMBER() OVER (PARTITION BY a.customer_key ORDER BY ac.do_not_email) AS rn
+    FROM edw.customer_dim a 
+    LEFT JOIN camp_mgmt.accounts ac ON a.account_nbr = ac.account_nbr
+    LEFT JOIN camp_mgmt.email_addresses em ON em.vndr_cust_account_key = ac.vndr_cust_account_key
+),
+notification_flags AS (
+    SELECT distinct a.customer_key,
+    MAX(CASE WHEN cmmeth = 'EMAIL' THEN 'Y' ELSE 'N' END) AS Notification_Email_Flag,
+    MAX(CASE WHEN cmmeth = 'PHONE' THEN 'Y' ELSE 'N' END) AS Notification_Phone_Flag,
+    MAX(CASE WHEN cmmeth = 'EMAIL' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Email_Verified_Flag,
+    MAX(CASE WHEN cmmeth = 'PHONE' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Phone_Verified_Flag,
+
+    -- Formatting the email verification date, ensuring non-empty string handling
+    MAX(CASE 
+        WHEN cmmeth = 'EMAIL' THEN 
+            CASE 
+                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
+                    CONCAT('20', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
+                    )
+                ELSE NULL 
+            END
+    END) AS email_verified_date,
+
+    -- Formatting the phone verification date, ensuring non-empty string handling
+    MAX(CASE 
+        WHEN cmmeth = 'PHONE' THEN 
+            CASE 
+                WHEN cmcfdt != 0 THEN 
+                    CONCAT('20', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
+                    )
+                ELSE NULL 
+            END
+    END) AS phone_verified_date
+
+FROM edw.customer_dim a 
+LEFT JOIN pstage.stg_all_cust_notification_methods n ON a.account_nbr=n.cmcnbr
+GROUP BY a.customer_key
+),
 web_contact AS (
-    SELECT campaign,
-           evar61_coxcust_guid,
-           ROW_NUMBER() OVER (PARTITION BY evar61_coxcust_guid ORDER BY MIN(dt)) AS rn
+    SELECT DISTINCT
+        campaign,
+        evar61_coxcust_guid,
+        ROW_NUMBER() OVER (PARTITION BY evar61_coxcust_guid ORDER BY MIN(dt)) AS rn
     FROM webanalytics.web_contact_history
     WHERE visits IN (
         SELECT DISTINCT visits
         FROM webanalytics.web_contact_history
-        WHERE pagename = 'cox:res:myprofile:reg:confirmation'
-    )
+        WHERE pagename = 'cox:res:myprofile:reg:confirmation')
     GROUP BY campaign, evar61_coxcust_guid
 ),
 app_contact AS (
-    SELECT coxcust_guid_v61,
-           post_evar40,
-           ROW_NUMBER() OVER (PARTITION BY coxcust_guid_v61 ORDER BY MIN(dt)) AS rn
+    SELECT DISTINCT
+        coxcust_guid_v61,
+        post_evar40,
+        ROW_NUMBER() OVER (PARTITION BY coxcust_guid_v61 ORDER BY MIN(dt)) AS rn
     FROM mobile_data_temp.app_contact_history
     WHERE visits IN (
         SELECT DISTINCT visits
         FROM mobile_data_temp.app_contact_history
-        WHERE pagename = 'coxapp:reg:confirmation'
-    )
+        WHERE pagename = 'coxapp:reg:confirmation')
     GROUP BY coxcust_guid_v61, post_evar40
 ),
 ivr_contact AS (
-    SELECT DISTINCT i.customer_key,
-           DATE_FORMAT(CAST(i.time_key AS DATE), 'yyyy-MM') AS Contact_Month,
-           MAX(CAST(i.time_key AS DATE)) AS Last_Contacted_Date_IVR_Call
-    FROM call.call_ivr_fact i
+    SELECT distinct 
+        i.customer_key,
+        DATE_FORMAT(CAST(i.time_key AS DATE), 'yyyy-MM') AS Contact_Month,
+        MAX(CAST(i.time_key AS DATE)) AS Last_Contacted_Date_IVR_Call
+    FROM `call`.call_ivr_fact i
     GROUP BY i.customer_key, DATE_FORMAT(CAST(i.time_key AS DATE), 'yyyy-MM')
 ),
 web_data AS (
-    SELECT DISTINCT d.customer_key,
-           DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM') AS Contact_Month,
-           MAX(CAST(d.dt AS DATE)) AS Last_Contacted_Date_Cox_com
+    SELECT distinct
+        d.customer_key,
+        DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM') AS Contact_Month,
+        MAX(CAST(d.dt AS DATE)) AS Last_Contacted_Date_Cox_com
     FROM webanalytics.web_contact_history d
     GROUP BY d.customer_key, DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM')
 ),
 mob_data AS (
-    SELECT DISTINCT mob.customer_key,
-           DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM') AS Contact_Month,
-           MAX(CAST(mob.dt AS DATE)) AS Last_Contacted_Date_Cox_App
+    SELECT distinct
+        mob.customer_key,
+        DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM') AS Contact_Month,
+        MAX(CAST(mob.dt AS DATE)) AS Last_Contacted_Date_Cox_App
     FROM mobile_data_temp.app_contact_history mob
     GROUP BY mob.customer_key, DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM')
 )
-SELECT DISTINCT
+SELECT distinct
     r.customer_key AS Customer_Key,
     c.account_nbr AS Account_Nbr,
     r.site_id AS Site_Id,
@@ -165,7 +217,7 @@ SELECT DISTINCT
         WHEN LOWER(COALESCE(web.campaign, app.post_evar40)) LIKE 'cr_em%' THEN 'Email-Others'
         WHEN LOWER(COALESCE(web.campaign, app.post_evar40)) LIKE 'cr_sms%' THEN 'sms'
         WHEN LOWER(COALESCE(web.campaign, app.post_evar40)) LIKE 'cr_dm%' THEN 'direct mail'
-        WHEN SUBSTRING(LOWER(COALESCE(web.campaign, app.post_evar40)), LENGTH(COALESCE(web.campaign, app.post_evar40)) - 5, 6) = 'vanity' THEN 'Vanity URL'
+        WHEN SUBSTRING(LOWER(COALESCE(web.campaign, app.post_evar40)), LENGTH(COALESCE(web.campaign, app.post_evar40)) - 5,6) = 'vanity' THEN 'Vanity URL'
         WHEN LOWER(COALESCE(web.campaign, app.post_evar40)) LIKE '%panoapp%' THEN 'panoapp'
         WHEN COALESCE(web.campaign, app.post_evar40) IS NOT NULL AND LENGTH(COALESCE(web.campaign, app.post_evar40)) > 0 THEN 'organic'
         ELSE 'null'  
@@ -176,6 +228,15 @@ SELECT DISTINCT
     CAST(NULL AS varchar(255)) AS Homelife_Flag,
     r.Mobile_Flag,
     cd.sub_status_desc,
+    COUNT(DISTINCT ad.email_address) AS email_count,
+    nf.Notification_Email_Flag,
+    nf.Notification_Phone_Flag,
+    nf.Email_Verified_Flag,
+    nf.Phone_Verified_Flag,
+    nf.Email_Verified_Date,
+    nf.Phone_Verified_Date,
+    ad.Email_Opt_Out, 
+    ad.Phone_Opt_Out,
     CAST(NULL AS varchar(255)) AS Pano_Flag,
     CAST(NULL AS varchar(255)) AS Pano_Device,
     r.easy_pay_flag AS Easy_Pay_Flag,
@@ -185,19 +246,21 @@ SELECT DISTINCT
     s.do_not_market_flag AS Do_Not_Market_Flag,
     MAX(ivr.Last_Contacted_Date_IVR_Call) AS Last_Contacted_Date_IVR_Call,
     MAX(w.Last_Contacted_Date_Cox_com) AS Last_Contacted_Date_Cox_com,
-    MAX(mob.Last_Contacted_Date_Cox_App) AS Last_Contacted_Date_Cox_App, 
+    MAX(mob.Last_Contacted_Date_Cox_App) AS Last_Contacted_Date_Cox_App,
     CAST(NULL AS varchar(255)) AS Cox_Segment,
     CAST(NULL AS varchar(255)) AS Demographic_Info1,
     CAST(NULL AS varchar(255)) AS Demographic_Info2,
     r.time_key
-FROM revenue_data r
+FROM revenue_data r 
 LEFT JOIN dwelling_data d ON r.dwelling_type_key = d.dwelling_type_key
-LEFT JOIN (SELECT * FROM account_summary WHERE rn = 1) s ON r.customer_key = CAST(s.customer_key AS double)
+LEFT JOIN (SELECT * FROM account_summary WHERE rn=1) s ON r.customer_key = CAST(s.customer_key AS double)
 LEFT JOIN customer_status cd ON r.customer_substatus_key = cd.customer_substatus_key 
 LEFT JOIN customer_data c ON r.customer_key = CAST(c.customer_key AS double)
-LEFT JOIN (SELECT * FROM guid_data WHERE rn = 1) g ON r.customer_key = CAST(g.customer_key AS double)
-LEFT JOIN (SELECT * FROM web_contact WHERE rn = 1) web ON g.household_member_guid = web.evar61_coxcust_guid
-LEFT JOIN (SELECT * FROM app_contact WHERE rn = 1) app ON g.household_member_guid = app.coxcust_guid_v61
+LEFT JOIN (SELECT * FROM account_details WHERE rn=1) ad ON r.customer_key = ad.customer_key
+LEFT JOIN notification_flags nf ON r.customer_key = nf.customer_key
+LEFT JOIN (SELECT * FROM guid_data WHERE rn=1) g ON r.customer_key = CAST(g.customer_key AS double)
+LEFT JOIN (SELECT * FROM web_contact WHERE rn=1) web ON g.household_member_guid = web.evar61_coxcust_guid
+LEFT JOIN (SELECT * FROM app_contact WHERE rn=1) app ON g.household_member_guid = app.coxcust_guid_v61
 LEFT JOIN ivr_contact ivr ON r.customer_key = CAST(ivr.customer_key AS double) AND ivr.Contact_Month <= r.time_key
 LEFT JOIN web_data w ON r.customer_key = CAST(w.customer_key AS double) AND w.Contact_Month <= r.time_key
 LEFT JOIN mob_data mob ON r.customer_key = CAST(mob.customer_key AS double) AND mob.Contact_Month <= r.time_key
@@ -220,6 +283,14 @@ GROUP BY
     s.telephony_flag,
     r.Mobile_Flag,
     cd.sub_status_desc,
+    nf.Notification_Email_Flag,
+    nf.Notification_Phone_Flag,
+    nf.Email_Verified_Flag,
+    nf.Phone_Verified_Flag,
+    nf.Email_Verified_Date,
+    nf.Phone_Verified_Date,
+    ad.Email_Opt_Out, 
+    ad.Phone_Opt_Out,
     r.easy_pay_flag,
     s.do_not_call_flag,
     s.do_not_email_flag,
@@ -230,20 +301,20 @@ GROUP BY
 
 account_dim_sum_1 = """
 WITH customer_data AS (
-    SELECT DISTINCT c.customer_key,
-           CAST(c.account_nbr AS varchar(255)) AS account_nbr,
+    SELECT distinct c.customer_key,
+           c.account_nbr,
            c.site_id,
            c.res_comm_ind,
            c.customer_status_cd,
-           CAST(c.account_guid AS varchar(255)) AS account_guid,
-           CAST(c.prim_account_holder_guid AS varchar(255)) AS prim_account_holder_guid,
+           c.account_guid,
+           c.prim_account_holder_guid,
            c.test_account_key AS test_account_key,
            c.inception_dt
     FROM edw.customer_dim c
-    WHERE test_account_key = 2
+    WHERE test_account_key=2
 ),
 revenue_data AS (
-    SELECT r.customer_key,
+    SELECT distinct r.customer_key,
            r.site_id,
            r.dwelling_type_key,
            r.easy_pay_flag,
@@ -252,14 +323,14 @@ revenue_data AS (
            r.time_key
     FROM edw.customer_revenue_fact r
     WHERE r.bill_type_key != 2 
-          AND to_date(r.time_key, 'yyyy-MM-dd') >= add_months(CURRENT_DATE, -1)
+      AND to_date(r.time_key, 'yyyy-MM-dd') >= add_months(CURRENT_DATE, -1)
 ),
 customer_status AS (
-    SELECT customer_substatus_key, sub_status_desc 
+    SELECT distinct customer_substatus_key, sub_status_desc 
     FROM edw.customer_substatus_dim
 ),
 dwelling_data AS (
-    SELECT DISTINCT d.dwelling_type_key,
+    SELECT distinct d.dwelling_type_key,
            d.dwelling_type_desc
     FROM edw.dwelling_type_dim d
 ),
@@ -273,7 +344,7 @@ account_summary AS (
            s.do_not_call_flag,
            s.do_not_email_flag,
            s.do_not_mail_flag,
-           s.telephony_flag,
+           s.telephony_flag ,
            s.do_not_market_flag,
            s.time_key,
            ROW_NUMBER() OVER (PARTITION BY s.customer_key ORDER BY s.time_key DESC) AS rn
@@ -286,52 +357,104 @@ guid_data AS (
            ROW_NUMBER() OVER (PARTITION BY g.customer_key ORDER BY g.create_dt ASC) AS rn
     FROM edw.customer_guid_dtl_dim g
 ),
+account_details AS (
+    SELECT distinct a.customer_key,
+           ac.do_not_email AS Email_Opt_Out,
+           ac.do_not_call AS Phone_Opt_Out,
+           em.email_address,
+           ROW_NUMBER() OVER (PARTITION BY a.customer_key ORDER BY ac.do_not_email) AS rn
+    FROM edw.customer_dim a 
+    LEFT JOIN camp_mgmt.accounts ac ON a.account_nbr = ac.account_nbr
+    LEFT JOIN camp_mgmt.email_addresses em ON em.vndr_cust_account_key = ac.vndr_cust_account_key
+),
+notification_flags AS (
+    SELECT distinct a.customer_key,
+    MAX(CASE WHEN cmmeth = 'EMAIL' THEN 'Y' ELSE 'N' END) AS Notification_Email_Flag,
+    MAX(CASE WHEN cmmeth = 'PHONE' THEN 'Y' ELSE 'N' END) AS Notification_Phone_Flag,
+    MAX(CASE WHEN cmmeth = 'EMAIL' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Email_Verified_Flag,
+    MAX(CASE WHEN cmmeth = 'PHONE' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Phone_Verified_Flag,
+
+    -- Formatting the email verification date, ensuring non-empty string handling
+    MAX(CASE 
+        WHEN cmmeth = 'EMAIL' THEN 
+            CASE 
+                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
+                    CONCAT('20', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
+                    )
+                ELSE NULL 
+            END
+    END) AS email_verified_date,
+
+    -- Formatting the phone verification date, ensuring non-empty string handling
+    MAX(CASE 
+        WHEN cmmeth = 'PHONE' THEN 
+            CASE 
+                WHEN cmcfdt != 0 THEN 
+                    CONCAT('20', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
+                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
+                    )
+                ELSE NULL 
+            END
+    END) AS phone_verified_date
+
+FROM edw.customer_dim a 
+LEFT JOIN pstage.stg_all_cust_notification_methods n ON a.account_nbr=n.cmcnbr
+GROUP BY a.customer_key
+),
 web_contact AS (
-    SELECT campaign,
-           evar61_coxcust_guid,
-           ROW_NUMBER() OVER (PARTITION BY evar61_coxcust_guid ORDER BY MIN(dt)) AS rn
+    SELECT DISTINCT
+        campaign,
+        evar61_coxcust_guid,
+        ROW_NUMBER() OVER (PARTITION BY evar61_coxcust_guid ORDER BY MIN(dt)) AS rn
     FROM webanalytics.web_contact_history
     WHERE visits IN (
         SELECT DISTINCT visits
         FROM webanalytics.web_contact_history
-        WHERE pagename = 'cox:res:myprofile:reg:confirmation'
-    )
+        WHERE pagename = 'cox:res:myprofile:reg:confirmation')
     GROUP BY campaign, evar61_coxcust_guid
 ),
 app_contact AS (
-    SELECT coxcust_guid_v61,
-           post_evar40,
-           ROW_NUMBER() OVER (PARTITION BY coxcust_guid_v61 ORDER BY MIN(dt)) AS rn
+    SELECT DISTINCT
+        coxcust_guid_v61,
+        post_evar40,
+        ROW_NUMBER() OVER (PARTITION BY coxcust_guid_v61 ORDER BY MIN(dt)) AS rn
     FROM mobile_data_temp.app_contact_history
     WHERE visits IN (
         SELECT DISTINCT visits
         FROM mobile_data_temp.app_contact_history
-        WHERE pagename = 'coxapp:reg:confirmation'
-    )
+        WHERE pagename = 'coxapp:reg:confirmation')
     GROUP BY coxcust_guid_v61, post_evar40
 ),
 ivr_contact AS (
-    SELECT DISTINCT i.customer_key,
-           DATE_FORMAT(CAST(i.time_key AS DATE), 'yyyy-MM') AS Contact_Month,
-           MAX(CAST(i.time_key AS DATE)) AS Last_Contacted_Date_IVR_Call
-    FROM call.call_ivr_fact i
+    SELECT distinct 
+        i.customer_key,
+        DATE_FORMAT(CAST(i.time_key AS DATE), 'yyyy-MM') AS Contact_Month,
+        MAX(CAST(i.time_key AS DATE)) AS Last_Contacted_Date_IVR_Call
+    FROM `call`.call_ivr_fact i
     GROUP BY i.customer_key, DATE_FORMAT(CAST(i.time_key AS DATE), 'yyyy-MM')
 ),
 web_data AS (
-    SELECT DISTINCT d.customer_key,
-           DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM') AS Contact_Month,
-           MAX(CAST(d.dt AS DATE)) AS Last_Contacted_Date_Cox_com
+    SELECT distinct
+        d.customer_key,
+        DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM') AS Contact_Month,
+        MAX(CAST(d.dt AS DATE)) AS Last_Contacted_Date_Cox_com
     FROM webanalytics.web_contact_history d
     GROUP BY d.customer_key, DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM')
 ),
 mob_data AS (
-    SELECT DISTINCT mob.customer_key,
-           DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM') AS Contact_Month,
-           MAX(CAST(mob.dt AS DATE)) AS Last_Contacted_Date_Cox_App
+    SELECT distinct
+        mob.customer_key,
+        DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM') AS Contact_Month,
+        MAX(CAST(mob.dt AS DATE)) AS Last_Contacted_Date_Cox_App
     FROM mobile_data_temp.app_contact_history mob
     GROUP BY mob.customer_key, DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM')
 )
-SELECT DISTINCT
+SELECT distinct
     r.customer_key AS Customer_Key,
     c.account_nbr AS Account_Nbr,
     r.site_id AS Site_Id,
@@ -352,7 +475,7 @@ SELECT DISTINCT
         WHEN LOWER(COALESCE(web.campaign, app.post_evar40)) LIKE 'cr_em%' THEN 'Email-Others'
         WHEN LOWER(COALESCE(web.campaign, app.post_evar40)) LIKE 'cr_sms%' THEN 'sms'
         WHEN LOWER(COALESCE(web.campaign, app.post_evar40)) LIKE 'cr_dm%' THEN 'direct mail'
-        WHEN SUBSTRING(LOWER(COALESCE(web.campaign, app.post_evar40)), LENGTH(COALESCE(web.campaign, app.post_evar40)) - 5, 6) = 'vanity' THEN 'Vanity URL'
+        WHEN SUBSTRING(LOWER(COALESCE(web.campaign, app.post_evar40)), LENGTH(COALESCE(web.campaign, app.post_evar40)) - 5,6) = 'vanity' THEN 'Vanity URL'
         WHEN LOWER(COALESCE(web.campaign, app.post_evar40)) LIKE '%panoapp%' THEN 'panoapp'
         WHEN COALESCE(web.campaign, app.post_evar40) IS NOT NULL AND LENGTH(COALESCE(web.campaign, app.post_evar40)) > 0 THEN 'organic'
         ELSE 'null'  
@@ -363,6 +486,15 @@ SELECT DISTINCT
     CAST(NULL AS varchar(255)) AS Homelife_Flag,
     r.Mobile_Flag,
     cd.sub_status_desc,
+    COUNT(DISTINCT ad.email_address) AS email_count,
+    nf.Notification_Email_Flag,
+    nf.Notification_Phone_Flag,
+    nf.Email_Verified_Flag,
+    nf.Phone_Verified_Flag,
+    nf.Email_Verified_Date,
+    nf.Phone_Verified_Date,
+    ad.Email_Opt_Out, 
+    ad.Phone_Opt_Out,
     CAST(NULL AS varchar(255)) AS Pano_Flag,
     CAST(NULL AS varchar(255)) AS Pano_Device,
     r.easy_pay_flag AS Easy_Pay_Flag,
@@ -372,19 +504,21 @@ SELECT DISTINCT
     s.do_not_market_flag AS Do_Not_Market_Flag,
     MAX(ivr.Last_Contacted_Date_IVR_Call) AS Last_Contacted_Date_IVR_Call,
     MAX(w.Last_Contacted_Date_Cox_com) AS Last_Contacted_Date_Cox_com,
-    MAX(mob.Last_Contacted_Date_Cox_App) AS Last_Contacted_Date_Cox_App, 
+    MAX(mob.Last_Contacted_Date_Cox_App) AS Last_Contacted_Date_Cox_App,
     CAST(NULL AS varchar(255)) AS Cox_Segment,
     CAST(NULL AS varchar(255)) AS Demographic_Info1,
     CAST(NULL AS varchar(255)) AS Demographic_Info2,
     r.time_key
-FROM revenue_data r
+FROM revenue_data r 
 LEFT JOIN dwelling_data d ON r.dwelling_type_key = d.dwelling_type_key
-LEFT JOIN (SELECT * FROM account_summary WHERE rn = 1) s ON r.customer_key = CAST(s.customer_key AS double)
+LEFT JOIN (SELECT * FROM account_summary WHERE rn=1) s ON r.customer_key = CAST(s.customer_key AS double)
 LEFT JOIN customer_status cd ON r.customer_substatus_key = cd.customer_substatus_key 
 LEFT JOIN customer_data c ON r.customer_key = CAST(c.customer_key AS double)
-LEFT JOIN (SELECT * FROM guid_data WHERE rn = 1) g ON r.customer_key = CAST(g.customer_key AS double)
-LEFT JOIN (SELECT * FROM web_contact WHERE rn = 1) web ON g.household_member_guid = web.evar61_coxcust_guid
-LEFT JOIN (SELECT * FROM app_contact WHERE rn = 1) app ON g.household_member_guid = app.coxcust_guid_v61
+LEFT JOIN (SELECT * FROM account_details WHERE rn=1) ad ON r.customer_key = ad.customer_key
+LEFT JOIN notification_flags nf ON r.customer_key = nf.customer_key
+LEFT JOIN (SELECT * FROM guid_data WHERE rn=1) g ON r.customer_key = CAST(g.customer_key AS double)
+LEFT JOIN (SELECT * FROM web_contact WHERE rn=1) web ON g.household_member_guid = web.evar61_coxcust_guid
+LEFT JOIN (SELECT * FROM app_contact WHERE rn=1) app ON g.household_member_guid = app.coxcust_guid_v61
 LEFT JOIN ivr_contact ivr ON r.customer_key = CAST(ivr.customer_key AS double) AND ivr.Contact_Month <= r.time_key
 LEFT JOIN web_data w ON r.customer_key = CAST(w.customer_key AS double) AND w.Contact_Month <= r.time_key
 LEFT JOIN mob_data mob ON r.customer_key = CAST(mob.customer_key AS double) AND mob.Contact_Month <= r.time_key
@@ -407,6 +541,14 @@ GROUP BY
     s.telephony_flag,
     r.Mobile_Flag,
     cd.sub_status_desc,
+    nf.Notification_Email_Flag,
+    nf.Notification_Phone_Flag,
+    nf.Email_Verified_Flag,
+    nf.Phone_Verified_Flag,
+    nf.Email_Verified_Date,
+    nf.Phone_Verified_Date,
+    ad.Email_Opt_Out, 
+    ad.Phone_Opt_Out,
     r.easy_pay_flag,
     s.do_not_call_flag,
     s.do_not_email_flag,
@@ -427,15 +569,34 @@ WITH customer_dim AS (
         b.test_account_key 
     FROM
         edw.customer_dim b
-    WHERE test_account_key=2
+        WHERE test_account_key=2
 ),
 revenue_data AS (
     SELECT r.customer_key,
            r.site_id,
+           MAX(last_logged_in_date_okta) AS last_logged_in_date_okta,
            r.time_key
-    FROM edw.customer_revenue_fact r
-    WHERE r.bill_type_key != 2 AND
-    to_date(r.time_key, 'yyyy-MM-dd') >= add_months(CURRENT_DATE, -13)
+    FROM edw.customer_revenue_fact r 
+    LEFT JOIN (
+        SELECT DISTINCT
+            a.Customer_Key,
+            a.household_member_guid AS User_GUID,
+            DATE_FORMAT(CAST(o.event_date AS DATE), 'yyyy-MM') AS Contact_Month,
+            MAX(o.event_date) AS last_logged_in_date_okta
+         FROM
+            edw.customer_guid_dtl_dim a 
+            LEFT JOIN ciam.successful_authentications_okta o 
+            ON a.user_id = o.actor_alternateid
+            GROUP BY
+            a.Customer_Key, a.household_member_guid, DATE_FORMAT(CAST(o.event_date AS DATE), 'yyyy-MM')
+    ) o 
+    ON r.customer_key = o.customer_key 
+    AND o.Contact_Month <= r.time_key
+    WHERE r.bill_type_key != 2 
+    AND to_date(r.time_key, 'yyyy-MM-dd') >= add_months(CURRENT_DATE, -13)
+    GROUP BY r.customer_key,
+             r.site_id,
+             r.time_key
 ),
 guid_data AS (
     SELECT 
@@ -443,104 +604,70 @@ guid_data AS (
         a.create_dt AS Registration_date,
         a.user_id,
         a.prim_customer_flag AS Primary_Flag,
-        a.household_member_guid AS User_GUID,
-        a.cox_email_address,
-        e.email_account_count as Email_Account_Count
+        a.household_member_guid AS User_GUID
     FROM
         edw.customer_guid_dtl_dim a
-    JOIN 
-    (SELECT cox_email_address, COUNT(DISTINCT customer_key) AS email_account_count
-     FROM edw.customer_guid_dtl_dim
-     GROUP BY cox_email_address) e ON a.cox_email_address = e.cox_email_address
 ),
-tsv_guid_data as (SELECT cast(t.`household member guid` as varchar(255)) AS tsv_guid FROM ciam_datamodel.tsv_guid_data t),
-latest_event_dates AS (
-    SELECT
-        a.user_id,
-        d.outcome_reason,
-        MAX(d.event_date) AS latest_event_date
+tsv_data AS (
+    SELECT 
+        a.customer_key,
+        a.household_member_guid AS User_GUID,
+        CASE WHEN (t.`household member guid`) IS NOT NULL THEN 'group.user_membership.add'
+             ELSE NULL
+        END AS TSV_Enrolled_Status
     FROM
-        edw.customer_guid_dtl_dim a
-        LEFT JOIN ciam.mfa_factors_enrolled d ON a.user_id = d.username
-    WHERE
-        d.outcome_result = 'SUCCESS'
-    GROUP BY
-        a.user_id, d.outcome_reason
+        edw.customer_guid_dtl_dim a 
+    INNER JOIN ciam_datamodel.tsv_guid_data t 
+        ON cast(a.household_member_guid AS varchar(255)) = cast(t.`household member guid` AS varchar(255))
 ),
 mfa_data AS (
     SELECT DISTINCT
-        a.user_id,
-        DATE_FORMAT(CAST(o.event_date as DATE), 'yyyy-MM') AS Contact_Month,
-        MAX(o.event_date) AS last_logged_in_date_okta,
-        MAX(CASE WHEN d.outcome_reason LIKE '%EMAIL%' AND d.event_date = e.latest_event_date THEN 1 ELSE 0 END) AS TSV_EMAIL_Flag,
-        MAX(CASE WHEN d.outcome_reason LIKE '%CALL%' AND d.event_date = e.latest_event_date THEN 1 ELSE 0 END) AS TSV_CALL_Flag,
-        MAX(CASE WHEN d.outcome_reason LIKE '%SMS%' AND d.event_date = e.latest_event_date THEN 1 ELSE 0 END) AS TSV_SMS_Flag
+        d.username,
+        MAX(CASE
+            WHEN d.outcome_reason LIKE '%EMAIL%'
+                 AND d.event_date = sub.latest_event_date THEN 1
+            ELSE 0
+        END) AS TSV_EMAIL_Flag,
+        MAX(CASE
+            WHEN d.outcome_reason LIKE '%CALL%'
+                 AND d.event_date = sub.latest_event_date THEN 1
+            ELSE 0
+        END) AS TSV_CALL_Flag,
+        MAX(CASE
+            WHEN d.outcome_reason LIKE '%SMS%'
+                 AND d.event_date = sub.latest_event_date THEN 1
+            ELSE 0
+        END) AS TSV_SMS_Flag
     FROM
-        edw.customer_guid_dtl_dim a
-        LEFT JOIN ciam.mfa_factors_enrolled d ON a.user_id = d.username
-        LEFT JOIN latest_event_dates e ON a.user_id = e.user_id AND d.outcome_reason = e.outcome_reason
-        LEFT JOIN ciam.successful_authentications_okta o ON a.user_id = o.actor_alternateid
-    GROUP BY
-        a.user_id, DATE_FORMAT(CAST(o.event_date as DATE), 'yyyy-MM')
-),
-account_details AS (
-    SELECT ac.account_nbr,
-           ac.vndr_cust_account_key,
-           ac.do_not_email AS Email_Opt_Out,
-           ac.do_not_call AS Phone_Opt_Out
-    FROM camp_mgmt.accounts ac
-    LEFT JOIN camp_mgmt.email_addresses em ON em.vndr_cust_account_key = ac.vndr_cust_account_key
-),
-notification_flags AS (
-    SELECT
-    cmcnbr AS customer_number,
-    MAX(CASE WHEN cmmeth = 'EMAIL' THEN 'Y' ELSE 'N' END) AS Email_Flag,
-    MAX(CASE WHEN cmmeth = 'PHONE' THEN 'Y' ELSE 'N' END) AS Phone_Flag,
-    MAX(CASE WHEN cmmeth = 'EMAIL' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Email_Verified_Flag,
-    MAX(CASE WHEN cmmeth = 'PHONE' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Phone_Verified_Flag,
-    MAX(CASE 
-        WHEN cmmeth = 'EMAIL' THEN 
-            CASE 
-                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
-                    CONCAT('20', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
-                    )
-                ELSE NULL 
-            END
-    END) AS email_verified_date,
-    MAX(CASE 
-        WHEN cmmeth = 'PHONE' THEN 
-            CASE 
-                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
-                    CONCAT('20', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
-                    )
-                ELSE NULL 
-            END
-    END) AS phone_verified_date
-FROM pstage.stg_all_cust_notification_methods n 
-GROUP BY cmcnbr
-),
-web_data AS (
-    SELECT distinct
-        d.customer_key,
-        DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM') AS Contact_Month,
-        MAX(CAST(d.dt AS DATE)) AS Last_Logged_In_Date_Cox_com
-    FROM webanalytics.web_contact_history d
-    GROUP BY d.customer_key, DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM')
+        ciam.mfa_factors_enrolled d
+    LEFT JOIN (
+        SELECT
+            username AS user_id,
+            outcome_reason,
+            MAX(event_date) AS latest_event_date
+        FROM
+            ciam.mfa_factors_enrolled
+        WHERE
+            outcome_result = 'SUCCESS'
+        GROUP BY
+            username, outcome_reason
+    ) sub
+    ON d.username = sub.user_id AND d.outcome_reason = sub.outcome_reason
+    WHERE
+        d.outcome_result = 'SUCCESS'
+    GROUP BY d.username
 ),
 mob_data AS (
-    SELECT distinct
+    SELECT
         mob.customer_key,
-        MAX(mob.post_mobileappid) AS Last_Logged_In_App_ID,
-        DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM') AS Contact_Month,
-        MAX(CAST(mob.dt AS DATE)) AS Last_Logged_In_Date_Cox_App
-    FROM mobile_data_temp.app_contact_history mob
-    GROUP BY mob.customer_key, DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM')
+        mob.post_mobileappid,
+        CASE
+            WHEN mob.post_mobileappid LIKE 'CoxAccount%' THEN 'iOS'
+            WHEN mob.post_mobileappid LIKE 'Cox %' THEN 'Android'
+            ELSE 'Null'
+        END AS Last_Logged_In_OS_Cox_App
+    FROM
+        mobile_data_temp.app_contact_history mob
 )
 SELECT DISTINCT a.User_GUID,
     b.Res_Com_Ind,
@@ -552,49 +679,26 @@ SELECT DISTINCT a.User_GUID,
     b.Inception_Date,
     a.Registration_date,
     CAST(NULL AS varchar(255)) AS User_Permission,
-    a.Email_Account_Count,
-    nf.Email_Flag,
-    nf.Phone_Flag,
-    nf.Email_Verified_Flag,
-    nf.Phone_Verified_Flag,
-    nf.Email_Verified_Date,
-    nf.Phone_Verified_Date,
-    ad.Email_Opt_Out, 
-    ad.Phone_Opt_Out,   
     CAST(NULL AS varchar(255)) AS Preferred_Contact_Method,
     CAST(NULL AS varchar(255)) AS Placeholder2,
-    CASE WHEN (t.tsv_guid) IS NOT NULL THEN 'group.user_membership.add'
-        ELSE NULL
-        END AS TSV_Enrolled_Status,
+    t.TSV_Enrolled_Status,
     mfa.TSV_EMAIL_Flag,
     mfa.TSV_CALL_Flag,
     mfa.TSV_SMS_Flag,
     CAST(NULL AS varchar(255)) AS Preference_Placeholder1,
     CAST(NULL AS varchar(255)) AS Preference_Placeholder2,
     CAST(NULL AS varchar(255)) AS Preferences_Last_Used_Date,
-    MAX(mfa.last_logged_in_date_okta) AS last_logged_in_date_okta,
-    MAX(w.Last_Logged_In_Date_Cox_com) AS Last_Logged_In_Date_Cox_com,
-    MAX(mob.Last_Logged_In_Date_Cox_App) AS Last_Logged_In_Date_Cox_App,
-    CASE 
-        WHEN mob.Last_Logged_In_App_ID LIKE 'CoxAccount%' THEN 'iOS'
-        WHEN mob.Last_Logged_In_App_ID LIKE 'Cox %' THEN 'Android'
-        ELSE 'Null'
-    END AS Last_Logged_In_OS_Cox_App,
+    MAX(r.last_logged_in_date_okta) AS Last_logged_in_date_okta,
+    MAX(mob.Last_Logged_In_OS_Cox_App) AS Last_Logged_In_OS_Cox_App,
     CAST(NULL AS varchar(255)) AS Last_Password_Change_Date,
     r.time_key
 FROM revenue_data r 
 LEFT JOIN customer_dim b ON r.customer_key = b.customer_key
 LEFT JOIN guid_data a ON r.customer_key = a.customer_key
-INNER JOIN tsv_guid_data t ON a.User_GUID = t.tsv_guid
-LEFT JOIN web_data w
-    ON r.customer_key = CAST(w.customer_key AS double) AND w.Contact_Month <= r.time_key
-LEFT JOIN mob_data mob
-    ON r.customer_key = CAST(mob.customer_key AS double) AND mob.Contact_Month <= r.time_key
-LEFT JOIN mfa_data mfa ON a.user_id = mfa.user_id AND mfa.Contact_Month <= r.time_key
-LEFT JOIN account_details ad ON b.account_nbr = ad.account_nbr
-LEFT JOIN notification_flags nf ON b.account_nbr = nf.customer_number
-GROUP BY
-    a.User_GUID,
+LEFT JOIN tsv_data t ON r.customer_key = t.customer_key
+LEFT JOIN mfa_data mfa ON a.user_id = mfa.username
+LEFT JOIN mob_data mob ON r.customer_key = CAST(mob.customer_key AS double)
+GROUP BY a.User_GUID,
     b.Res_Com_Ind,
     a.Primary_Flag,
     r.Customer_Key,
@@ -603,26 +707,10 @@ GROUP BY
     b.Customer_Status,
     b.Inception_Date,
     a.Registration_date,
-    a.Email_Account_Count,
-    nf.Email_Flag,
-    nf.Phone_Flag,
-    nf.Email_Verified_Flag,
-    nf.Phone_Verified_Flag,
-    nf.Email_Verified_Date,
-    nf.Phone_Verified_Date,
-    ad.Email_Opt_Out, 
-    ad.Phone_Opt_Out,   
-    CASE WHEN (t.tsv_guid) IS NOT NULL THEN 'group.user_membership.add'
-        ELSE NULL
-        END,
+    t.TSV_Enrolled_Status,
     mfa.TSV_EMAIL_Flag,
     mfa.TSV_CALL_Flag,
     mfa.TSV_SMS_Flag,
-    CASE 
-        WHEN mob.Last_Logged_In_App_ID LIKE 'CoxAccount%' THEN 'iOS'
-        WHEN mob.Last_Logged_In_App_ID LIKE 'Cox %' THEN 'Android'
-        ELSE 'Null'
-    END,
     r.time_key
 """
 
@@ -638,15 +726,34 @@ WITH customer_dim AS (
         b.test_account_key 
     FROM
         edw.customer_dim b
-    WHERE test_account_key=2
+        WHERE test_account_key=2
 ),
 revenue_data AS (
     SELECT r.customer_key,
            r.site_id,
+           MAX(last_logged_in_date_okta) AS last_logged_in_date_okta,
            r.time_key
-    FROM edw.customer_revenue_fact r
-    WHERE r.bill_type_key != 2 AND
-    to_date(r.time_key, 'yyyy-MM-dd') >= add_months(CURRENT_DATE, -13)
+    FROM edw.customer_revenue_fact r 
+    LEFT JOIN (
+        SELECT DISTINCT
+            a.Customer_Key,
+            a.household_member_guid AS User_GUID,
+            DATE_FORMAT(CAST(o.event_date AS DATE), 'yyyy-MM') AS Contact_Month,
+            MAX(o.event_date) AS last_logged_in_date_okta
+         FROM
+            edw.customer_guid_dtl_dim a 
+            LEFT JOIN ciam.successful_authentications_okta o 
+            ON a.user_id = o.actor_alternateid
+            GROUP BY
+            a.Customer_Key, a.household_member_guid, DATE_FORMAT(CAST(o.event_date AS DATE), 'yyyy-MM')
+    ) o 
+    ON r.customer_key = o.customer_key 
+    AND o.Contact_Month <= r.time_key
+    WHERE r.bill_type_key != 2 
+    AND to_date(r.time_key, 'yyyy-MM-dd') >= add_months(CURRENT_DATE, -1)
+    GROUP BY r.customer_key,
+             r.site_id,
+             r.time_key
 ),
 guid_data AS (
     SELECT 
@@ -654,104 +761,70 @@ guid_data AS (
         a.create_dt AS Registration_date,
         a.user_id,
         a.prim_customer_flag AS Primary_Flag,
-        a.household_member_guid AS User_GUID,
-        a.cox_email_address,
-        e.email_account_count as Email_Account_Count
+        a.household_member_guid AS User_GUID
     FROM
         edw.customer_guid_dtl_dim a
-    JOIN 
-    (SELECT cox_email_address, COUNT(DISTINCT customer_key) AS email_account_count
-     FROM edw.customer_guid_dtl_dim
-     GROUP BY cox_email_address) e ON a.cox_email_address = e.cox_email_address
 ),
-tsv_guid_data as (SELECT cast(t.`household member guid` as varchar(255)) AS tsv_guid FROM ciam_datamodel.tsv_guid_data t),
-latest_event_dates AS (
-    SELECT
-        a.user_id,
-        d.outcome_reason,
-        MAX(d.event_date) AS latest_event_date
+tsv_data AS (
+    SELECT 
+        a.customer_key,
+        a.household_member_guid AS User_GUID,
+        CASE WHEN (t.`household member guid`) IS NOT NULL THEN 'group.user_membership.add'
+             ELSE NULL
+        END AS TSV_Enrolled_Status
     FROM
-        edw.customer_guid_dtl_dim a
-        LEFT JOIN ciam.mfa_factors_enrolled d ON a.user_id = d.username
-    WHERE
-        d.outcome_result = 'SUCCESS'
-    GROUP BY
-        a.user_id, d.outcome_reason
+        edw.customer_guid_dtl_dim a 
+    INNER JOIN ciam_datamodel.tsv_guid_data t 
+        ON cast(a.household_member_guid AS varchar(255)) = cast(t.`household member guid` AS varchar(255))
 ),
 mfa_data AS (
     SELECT DISTINCT
-        a.user_id,
-        DATE_FORMAT(CAST(o.event_date as DATE), 'yyyy-MM') AS Contact_Month,
-        MAX(o.event_date) AS last_logged_in_date_okta,
-        MAX(CASE WHEN d.outcome_reason LIKE '%EMAIL%' AND d.event_date = e.latest_event_date THEN 1 ELSE 0 END) AS TSV_EMAIL_Flag,
-        MAX(CASE WHEN d.outcome_reason LIKE '%CALL%' AND d.event_date = e.latest_event_date THEN 1 ELSE 0 END) AS TSV_CALL_Flag,
-        MAX(CASE WHEN d.outcome_reason LIKE '%SMS%' AND d.event_date = e.latest_event_date THEN 1 ELSE 0 END) AS TSV_SMS_Flag
+        d.username,
+        MAX(CASE
+            WHEN d.outcome_reason LIKE '%EMAIL%'
+                 AND d.event_date = sub.latest_event_date THEN 1
+            ELSE 0
+        END) AS TSV_EMAIL_Flag,
+        MAX(CASE
+            WHEN d.outcome_reason LIKE '%CALL%'
+                 AND d.event_date = sub.latest_event_date THEN 1
+            ELSE 0
+        END) AS TSV_CALL_Flag,
+        MAX(CASE
+            WHEN d.outcome_reason LIKE '%SMS%'
+                 AND d.event_date = sub.latest_event_date THEN 1
+            ELSE 0
+        END) AS TSV_SMS_Flag
     FROM
-        edw.customer_guid_dtl_dim a
-        LEFT JOIN ciam.mfa_factors_enrolled d ON a.user_id = d.username
-        LEFT JOIN latest_event_dates e ON a.user_id = e.user_id AND d.outcome_reason = e.outcome_reason
-        LEFT JOIN ciam.successful_authentications_okta o ON a.user_id = o.actor_alternateid
-    GROUP BY
-        a.user_id, DATE_FORMAT(CAST(o.event_date as DATE), 'yyyy-MM')
-),
-account_details AS (
-    SELECT ac.account_nbr,
-           ac.vndr_cust_account_key,
-           ac.do_not_email AS Email_Opt_Out,
-           ac.do_not_call AS Phone_Opt_Out
-    FROM camp_mgmt.accounts ac
-    LEFT JOIN camp_mgmt.email_addresses em ON em.vndr_cust_account_key = ac.vndr_cust_account_key
-),
-notification_flags AS (
-    SELECT
-    cmcnbr AS customer_number,
-    MAX(CASE WHEN cmmeth = 'EMAIL' THEN 'Y' ELSE 'N' END) AS Email_Flag,
-    MAX(CASE WHEN cmmeth = 'PHONE' THEN 'Y' ELSE 'N' END) AS Phone_Flag,
-    MAX(CASE WHEN cmmeth = 'EMAIL' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Email_Verified_Flag,
-    MAX(CASE WHEN cmmeth = 'PHONE' AND cmcffl = 'Y' THEN 'Y' ELSE 'N' END) AS Phone_Verified_Flag,
-    MAX(CASE 
-        WHEN cmmeth = 'EMAIL' THEN 
-            CASE 
-                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
-                    CONCAT('20', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
-                    )
-                ELSE NULL 
-            END
-    END) AS email_verified_date,
-    MAX(CASE 
-        WHEN cmmeth = 'PHONE' THEN 
-            CASE 
-                WHEN cmcfdt IS NOT NULL AND cmcfdt != 0 THEN 
-                    CONCAT('20', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 2, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 4, 2), '-', 
-                        SUBSTRING(CAST(cmcfdt AS STRING), 6, 2)
-                    )
-                ELSE NULL 
-            END
-    END) AS phone_verified_date
-FROM pstage.stg_all_cust_notification_methods n 
-GROUP BY cmcnbr
-),
-web_data AS (
-    SELECT distinct
-        d.customer_key,
-        DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM') AS Contact_Month,
-        MAX(CAST(d.dt AS DATE)) AS Last_Logged_In_Date_Cox_com
-    FROM webanalytics.web_contact_history d
-    GROUP BY d.customer_key, DATE_FORMAT(CAST(d.dt AS DATE), 'yyyy-MM')
+        ciam.mfa_factors_enrolled d
+    LEFT JOIN (
+        SELECT
+            username AS user_id,
+            outcome_reason,
+            MAX(event_date) AS latest_event_date
+        FROM
+            ciam.mfa_factors_enrolled
+        WHERE
+            outcome_result = 'SUCCESS'
+        GROUP BY
+            username, outcome_reason
+    ) sub
+    ON d.username = sub.user_id AND d.outcome_reason = sub.outcome_reason
+    WHERE
+        d.outcome_result = 'SUCCESS'
+    GROUP BY d.username
 ),
 mob_data AS (
-    SELECT distinct
+    SELECT
         mob.customer_key,
-        MAX(mob.post_mobileappid) AS Last_Logged_In_App_ID,
-        DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM') AS Contact_Month,
-        MAX(CAST(mob.dt AS DATE)) AS Last_Logged_In_Date_Cox_App
-    FROM mobile_data_temp.app_contact_history mob
-    GROUP BY mob.customer_key, DATE_FORMAT(CAST(mob.dt AS DATE), 'yyyy-MM')
+        mob.post_mobileappid,
+        CASE
+            WHEN mob.post_mobileappid LIKE 'CoxAccount%' THEN 'iOS'
+            WHEN mob.post_mobileappid LIKE 'Cox %' THEN 'Android'
+            ELSE 'Null'
+        END AS Last_Logged_In_OS_Cox_App
+    FROM
+        mobile_data_temp.app_contact_history mob
 )
 SELECT DISTINCT a.User_GUID,
     b.Res_Com_Ind,
@@ -763,49 +836,26 @@ SELECT DISTINCT a.User_GUID,
     b.Inception_Date,
     a.Registration_date,
     CAST(NULL AS varchar(255)) AS User_Permission,
-    a.Email_Account_Count,
-    nf.Email_Flag,
-    nf.Phone_Flag,
-    nf.Email_Verified_Flag,
-    nf.Phone_Verified_Flag,
-    nf.Email_Verified_Date,
-    nf.Phone_Verified_Date,
-    ad.Email_Opt_Out, 
-    ad.Phone_Opt_Out,   
     CAST(NULL AS varchar(255)) AS Preferred_Contact_Method,
     CAST(NULL AS varchar(255)) AS Placeholder2,
-    CASE WHEN (t.tsv_guid) IS NOT NULL THEN 'group.user_membership.add'
-        ELSE NULL
-        END AS TSV_Enrolled_Status,
+    t.TSV_Enrolled_Status,
     mfa.TSV_EMAIL_Flag,
     mfa.TSV_CALL_Flag,
     mfa.TSV_SMS_Flag,
     CAST(NULL AS varchar(255)) AS Preference_Placeholder1,
     CAST(NULL AS varchar(255)) AS Preference_Placeholder2,
     CAST(NULL AS varchar(255)) AS Preferences_Last_Used_Date,
-    MAX(mfa.last_logged_in_date_okta) AS last_logged_in_date_okta,
-    MAX(w.Last_Logged_In_Date_Cox_com) AS Last_Logged_In_Date_Cox_com,
-    MAX(mob.Last_Logged_In_Date_Cox_App) AS Last_Logged_In_Date_Cox_App,
-    CASE 
-        WHEN mob.Last_Logged_In_App_ID LIKE 'CoxAccount%' THEN 'iOS'
-        WHEN mob.Last_Logged_In_App_ID LIKE 'Cox %' THEN 'Android'
-        ELSE 'Null'
-    END AS Last_Logged_In_OS_Cox_App,
+    MAX(r.last_logged_in_date_okta) AS Last_logged_in_date_okta,
+    MAX(mob.Last_Logged_In_OS_Cox_App) AS Last_Logged_In_OS_Cox_App,
     CAST(NULL AS varchar(255)) AS Last_Password_Change_Date,
     r.time_key
 FROM revenue_data r 
 LEFT JOIN customer_dim b ON r.customer_key = b.customer_key
 LEFT JOIN guid_data a ON r.customer_key = a.customer_key
-INNER JOIN tsv_guid_data t ON a.User_GUID = t.tsv_guid
-LEFT JOIN web_data w
-    ON r.customer_key = CAST(w.customer_key AS double) AND w.Contact_Month <= r.time_key
-LEFT JOIN mob_data mob
-    ON r.customer_key = CAST(mob.customer_key AS double) AND mob.Contact_Month <= r.time_key
-LEFT JOIN mfa_data mfa ON a.user_id = mfa.user_id AND mfa.Contact_Month <= r.time_key
-LEFT JOIN account_details ad ON b.account_nbr = ad.account_nbr
-LEFT JOIN notification_flags nf ON b.account_nbr = nf.customer_number
-GROUP BY
-    a.User_GUID,
+LEFT JOIN tsv_data t ON r.customer_key = t.customer_key
+LEFT JOIN mfa_data mfa ON a.user_id = mfa.username
+LEFT JOIN mob_data mob ON r.customer_key = CAST(mob.customer_key AS double)
+GROUP BY a.User_GUID,
     b.Res_Com_Ind,
     a.Primary_Flag,
     r.Customer_Key,
@@ -814,57 +864,49 @@ GROUP BY
     b.Customer_Status,
     b.Inception_Date,
     a.Registration_date,
-    a.Email_Account_Count,
-    nf.Email_Flag,
-    nf.Phone_Flag,
-    nf.Email_Verified_Flag,
-    nf.Phone_Verified_Flag,
-    nf.Email_Verified_Date,
-    nf.Phone_Verified_Date,
-    ad.Email_Opt_Out, 
-    ad.Phone_Opt_Out,   
-    CASE WHEN (t.tsv_guid) IS NOT NULL THEN 'group.user_membership.add'
-        ELSE NULL
-        END,
+    t.TSV_Enrolled_Status,
     mfa.TSV_EMAIL_Flag,
     mfa.TSV_CALL_Flag,
     mfa.TSV_SMS_Flag,
-    CASE 
-        WHEN mob.Last_Logged_In_App_ID LIKE 'CoxAccount%' THEN 'iOS'
-        WHEN mob.Last_Logged_In_App_ID LIKE 'Cox %' THEN 'Android'
-        ELSE 'Null'
-    END,
     r.time_key
 """
 
 transaction_adobe_fact = """
 WITH web_contact_history AS (
-    SELECT 
+    SELECT
+        customer_key,
         evar61_coxcust_guid AS User_guid,
         evar75_marketing_cloud_id AS Adobe_ECID,
         visits AS Adobe_Visit_Id,
         date_time AS Activity_Date,
         pagename AS Activity_Page,
+        prop10_custom_links as p10,
+        prop15_previous_page as previous_page,
         mvvar3 AS Server_Error,
-        CAST(NULL AS varchar(255)) AS Client_Error,  -- Specified length for varchar
+        evar46_page_name as activity_pagename,
+        CAST(NULL AS varchar(255)) AS Client_Error,
         campaign AS Traffic_Source_Detail_sc_id
     FROM webanalytics.web_contact_history
-    WHERE to_date(SUBSTRING(CAST(dt AS varchar(255)), 1, 19), 'yyyy-MM-dd') >= DATE_ADD(CURRENT_DATE, -365)
-    AND pagename LIKE 'cox:res:myprofile%'
+    WHERE to_date(SUBSTR(CAST(dt AS STRING), 1, 10), 'yyyy-MM-dd') >= DATE_ADD(CURRENT_DATE, -30)
+    AND (pagename LIKE 'cox:res:myprofile%' OR evar46_page_name LIKE 'cox:res:myprofile%')
 ),
 app_contact_history AS (
     SELECT
+        cast(customer_key as bigint) as customer_key,
         coxcust_guid_v61 AS User_guid,
-        CAST(NULL AS varchar(255)) AS Adobe_ECID,  -- Specified length for varchar
+        CAST(NULL AS varchar(255)) AS Adobe_ECID,
         visits AS Adobe_Visit_Id,
         date_time AS Activity_Date,
         pagename AS Activity_Page,
+        custom_link_clicks_p10 as p10,
+        previous_page_p15 as previous_page,
         server_form_error_p13 AS Server_Error,
-        CAST(NULL AS varchar(255)) AS Client_Error,  -- Specified length for varchar
+        page_name_v46 as activity_pagename,
+        CAST(NULL AS varchar(255)) AS Client_Error,
         post_evar40 AS Traffic_Source_Detail_sc_id
     FROM mobile_data_temp.app_contact_history
-    WHERE to_date(SUBSTRING(CAST(dt AS varchar(255)), 1, 19), 'yyyy-MM-dd') >= DATE_ADD(CURRENT_DATE, -365)
-    AND (pagename LIKE 'coxapp:reg:%' OR pagename LIKE 'coxapp:myaccount%')
+    WHERE to_date(SUBSTR(CAST(dt AS STRING), 1, 10), 'yyyy-MM-dd') >= DATE_ADD(CURRENT_DATE, -30)
+    AND ((pagename LIKE 'coxapp:reg:%' OR pagename LIKE 'coxapp:myaccount%') OR (page_name_v46 LIKE 'coxapp:reg:%' OR page_name_v46 LIKE 'coxapp:myaccount%'))
 ),
 union_cte AS (
     SELECT * FROM web_contact_history W
@@ -872,12 +914,13 @@ union_cte AS (
     SELECT * FROM app_contact_history a
 )
 SELECT DISTINCT 
-    User_guid,
-    Adobe_ECID,
-    Adobe_Visit_Id,
-    Activity_Date,
-    a2.create_dt AS Registration_Date,
-    b.inception_dt AS Inception_date,
+    u.customer_key,
+    u.User_guid,
+    u.Adobe_ECID,
+    u.Adobe_Visit_Id,
+    u.Activity_Date,
+    a2.create_dt as Registration_Date,
+    b.inception_dt as Inception_date,
     CASE 
         WHEN u.Activity_Page LIKE '%:communication%' THEN 'Manage Profile'
         WHEN u.Activity_Page LIKE '%:contacts%' THEN 'Manage Profile'
@@ -908,47 +951,108 @@ SELECT DISTINCT
         ELSE 'Unknown'        
     END AS Activity_Name,
     CASE
-        WHEN u.Activity_Page LIKE '%:email' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%phone' THEN 'Attempt'  
-        WHEN u.Activity_Page LIKE '%:phone:call' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%:phone:text' THEN 'Attempt'
-        WHEN u.Activity_Page LIKE '%lookup-account' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%lookup-email' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%lookup-phone' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%lookup-address' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%userid-exists' THEN 'Already Registered'
-        WHEN u.Activity_Page LIKE '%multi-address%' THEN 'Multiple Address' 
-        WHEN u.Activity_Page LIKE '%:notifications' THEN 'Prefrence Center'
-        WHEN u.Activity_Page LIKE '%:communication' THEN 'Prefrence Center'
-        WHEN u.Activity_Page LIKE '%:secret-question' THEN 'Secret Question'
-        WHEN u.Activity_Page LIKE '%:sendcode' THEN 'Send Code'
-        WHEN u.Activity_Page LIKE 'cox:res:myprofile:reg:userid-password' THEN 'Setup Credentials'
-        WHEN u.Activity_Page LIKE '%:landing' THEN 'Start page' 
-        WHEN u.Activity_Page LIKE '%:confirmation' THEN 'Success' 
-        WHEN u.Activity_Page LIKE '%:lookup-account-success' THEN 'Success'
-        WHEN u.Activity_Page LIKE '%:lookup-address-success' THEN 'Success'
-        WHEN u.Activity_Page LIKE '%:success' THEN 'Success' 
-        WHEN u.Activity_Page LIKE '%:verification%' THEN 'Verify Code' 
-        WHEN u.Activity_Page LIKE '%:verifycode' THEN 'Verify Code' 
+        WHEN u.Activity_Page LIKE '%:email' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%phone' then 'Attempt'  
+        WHEN u.Activity_Page LIKE '%:phone:call' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%:phone:text' then 'Attempt'
+        WHEN u.Activity_Page LIKE '%lookup-account' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%lookup-email' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%lookup-phone' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%lookup-address' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%userid-exists' then 'Already Registered'
+        WHEN u.Activity_Page LIKE '%multi-address%' then 'Multiple Address' 
+        WHEN u.Activity_Page LIKE '%:notifications' then 'Prefrence Center'
+        WHEN u.Activity_Page LIKE '%:communication' then 'Prefrence Center'
+        WHEN u.Activity_Page LIKE '%:secret-question' then 'Secret Question'
+        WHEN u.Activity_Page LIKE '%:sendcode' then 'Send Code'
+        WHEN u.Activity_Page LIKE 'cox:res:myprofile:reg:userid-password' then 'Setup Credentials'
+        WHEN u.Activity_Page LIKE '%:landing' then 'Start page' 
+        WHEN u.Activity_Page LIKE '%:confirmation' then 'Success' 
+        WHEN u.Activity_Page LIKE '%:lookup-account-success' then 'Success'
+        WHEN u.Activity_Page LIKE '%:lookup-address-success' then 'Success'
+        WHEN u.Activity_Page LIKE '%:success' then 'Success' 
+        WHEN u.Activity_Page LIKE '%:verification%' then 'Verify Code' 
+        WHEN u.Activity_Page LIKE '%:verifycode' then 'Verify Code' 
         ELSE 'Unknown'
     END AS Navigation_step,
-    Activity_Page,
-    Server_Error,
-    Client_Error,
-    Traffic_Source_Detail_sc_id
+    CASE 
+        WHEN u.activity_pagename LIKE '%:communication%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:contacts%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:disability%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:confirmation%' THEN 'Email Verification'
+        WHEN u.activity_pagename LIKE '%:forgot-password:%' THEN 'Forgot Password'
+        WHEN u.activity_pagename LIKE '%:forgot-userid:%' THEN 'Forgot UserID'
+        WHEN u.activity_pagename LIKE '%:forgotuserid:%' THEN 'Forgot UserID'
+        WHEN u.activity_pagename LIKE '%:fuid:%' THEN 'Forgot UserID'
+        WHEN u.activity_pagename LIKE '%:home%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:mailing-address%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:mailingaddress%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:manageusers%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:notifications%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:number-lock-protection%' THEN 'Number Lock Protection'
+        WHEN u.activity_pagename LIKE '%:password%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:privacy%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:reg:%' THEN 'Registration'
+        WHEN u.activity_pagename LIKE '%:security%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:updateprofile%' THEN 'Manage Profile'
+        WHEN u.activity_pagename LIKE '%:syncupaccount%' THEN 'Sync Account'
+        WHEN u.activity_pagename LIKE '%:tsv' THEN 'TSV Enrollment'
+        WHEN u.activity_pagename LIKE '%:tsv:email:%' THEN 'TSV Verification'
+        WHEN u.activity_pagename LIKE '%:tsv:call:%' THEN 'TSV Verification'
+        WHEN u.activity_pagename LIKE '%:tsv:text:%' THEN 'TSV Verification'
+        WHEN u.activity_pagename LIKE '%:tsv:reset:%' THEN 'TSV Reset'
+        WHEN u.activity_pagename LIKE '%:verify-identity:%' THEN 'Verify Contact'
+        ELSE 'Unknown'        
+    END AS methods,
+    CASE
+        WHEN u.activity_pagename LIKE '%:email' then 'Attempt' 
+        WHEN u.activity_pagename LIKE '%phone' then 'Attempt'  
+        WHEN u.activity_pagename LIKE '%:phone:call' then 'Attempt' 
+        WHEN u.activity_pagename LIKE '%:phone:text' then 'Attempt'
+        WHEN u.activity_pagename LIKE '%lookup-account' then 'Attempt' 
+        WHEN u.activity_pagename LIKE '%lookup-email' then 'Attempt' 
+        WHEN u.activity_pagename LIKE '%lookup-phone' then 'Attempt' 
+        WHEN u.activity_pagename LIKE '%lookup-address' then 'Attempt' 
+        WHEN u.activity_pagename LIKE '%userid-exists' then 'Already Registered'
+        WHEN u.activity_pagename LIKE '%multi-address%' then 'Multiple Address' 
+        WHEN u.activity_pagename LIKE '%:notifications' then 'Prefrence Center'
+        WHEN u.activity_pagename LIKE '%:communication' then 'Prefrence Center'
+        WHEN u.activity_pagename LIKE '%:secret-question' then 'Secret Question'
+        WHEN u.activity_pagename LIKE '%:sendcode' then 'Send Code'
+        WHEN u.activity_pagename LIKE 'cox:res:myprofile:reg:userid-password' then 'Setup Credentials'
+        WHEN u.activity_pagename LIKE '%:landing' then 'Start page' 
+        WHEN u.activity_pagename LIKE '%:confirmation' then 'Success' 
+        WHEN u.activity_pagename LIKE '%:lookup-account-success' then 'Success'
+        WHEN u.activity_pagename LIKE '%:lookup-address-success' then 'Success'
+        WHEN u.activity_pagename LIKE '%:success' then 'Success' 
+        WHEN u.activity_pagename LIKE '%:verification%' then 'Verify Code' 
+        WHEN u.activity_pagename LIKE '%:verifycode' then 'Verify Code' 
+        ELSE 'Unknown'
+    END AS Feature,
+    u.Activity_Page,
+    u.p10,
+    u.previous_page,
+    u.activity_pagename,
+    u.Server_Error,
+    u.Client_Error,
+    u.Traffic_Source_Detail_sc_id
 FROM union_cte u
 LEFT JOIN edw.customer_guid_dtl_dim a2 ON u.User_guid = a2.household_member_guid
 LEFT JOIN edw.customer_dim b ON a2.customer_key = b.customer_key
-GROUP BY User_guid,
-    Adobe_ECID,
-    Adobe_Visit_Id,
-    Activity_Page,
-    Activity_Date,
+GROUP BY u.customer_key,
+    u.User_guid,
+    u.Adobe_ECID,
+    u.Adobe_Visit_Id,
+    u.Activity_Date,
+    u.Activity_Page,
     a2.create_dt,
     b.inception_dt,
-    Server_Error,
-    Client_Error,
-    Traffic_Source_Detail_sc_id,
+    u.p10,
+    u.previous_page,
+    u.activity_pagename,
+    u.Server_Error,
+    u.Client_Error,
+    u.Traffic_Source_Detail_sc_id,
     CASE 
         WHEN u.Activity_Page LIKE '%:communication%' THEN 'Manage Profile'
         WHEN u.Activity_Page LIKE '%:contacts%' THEN 'Manage Profile'
@@ -979,28 +1083,28 @@ GROUP BY User_guid,
         ELSE 'Unknown'        
     END,
     CASE
-        WHEN u.Activity_Page LIKE '%:email' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%phone' THEN 'Attempt'  
-        WHEN u.Activity_Page LIKE '%:phone:call' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%:phone:text' THEN 'Attempt'
-        WHEN u.Activity_Page LIKE '%lookup-account' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%lookup-email' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%lookup-phone' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%lookup-address' THEN 'Attempt' 
-        WHEN u.Activity_Page LIKE '%userid-exists' THEN 'Already Registered'
-        WHEN u.Activity_Page LIKE '%multi-address%' THEN 'Multiple Address' 
-        WHEN u.Activity_Page LIKE '%:notifications' THEN 'Prefrence Center'
-        WHEN u.Activity_Page LIKE '%:communication' THEN 'Prefrence Center'
-        WHEN u.Activity_Page LIKE '%:secret-question' THEN 'Secret Question'
-        WHEN u.Activity_Page LIKE '%:sendcode' THEN 'Send Code'
-        WHEN u.Activity_Page LIKE 'cox:res:myprofile:reg:userid-password' THEN 'Setup Credentials'
-        WHEN u.Activity_Page LIKE '%:landing' THEN 'Start page' 
-        WHEN u.Activity_Page LIKE '%:confirmation' THEN 'Success' 
-        WHEN u.Activity_Page LIKE '%:lookup-account-success' THEN 'Success'
-        WHEN u.Activity_Page LIKE '%:lookup-address-success' THEN 'Success'
-        WHEN u.Activity_Page LIKE '%:success' THEN 'Success' 
-        WHEN u.Activity_Page LIKE '%:verification%' THEN 'Verify Code' 
-        WHEN u.Activity_Page LIKE '%:verifycode' THEN 'Verify Code' 
+        WHEN u.Activity_Page LIKE '%:email' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%phone' then 'Attempt'  
+        WHEN u.Activity_Page LIKE '%:phone:call' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%:phone:text' then 'Attempt'
+        WHEN u.Activity_Page LIKE '%lookup-account' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%lookup-email' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%lookup-phone' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%lookup-address' then 'Attempt' 
+        WHEN u.Activity_Page LIKE '%userid-exists' then 'Already Registered'
+        WHEN u.Activity_Page LIKE '%multi-address%' then 'Multiple Address' 
+        WHEN u.Activity_Page LIKE '%:notifications' then 'Prefrence Center'
+        WHEN u.Activity_Page LIKE '%:communication' then 'Prefrence Center'
+        WHEN u.Activity_Page LIKE '%:secret-question' then 'Secret Question'
+        WHEN u.Activity_Page LIKE '%:sendcode' then 'Send Code'
+        WHEN u.Activity_Page LIKE 'cox:res:myprofile:reg:userid-password' then 'Setup Credentials'
+        WHEN u.Activity_Page LIKE '%:landing' then 'Start page' 
+        WHEN u.Activity_Page LIKE '%:confirmation' then 'Success' 
+        WHEN u.Activity_Page LIKE '%:lookup-account-success' then 'Success'
+        WHEN u.Activity_Page LIKE '%:lookup-address-success' then 'Success'
+        WHEN u.Activity_Page LIKE '%:success' then 'Success' 
+        WHEN u.Activity_Page LIKE '%:verification%' then 'Verify Code' 
+        WHEN u.Activity_Page LIKE '%:verifycode' then 'Verify Code' 
         ELSE 'Unknown'
     END
 """
@@ -1016,7 +1120,7 @@ WITH filtered_auth AS (
     FROM
         ciam.successful_authentications_okta
     WHERE
-        CAST(event_date AS DATE) >= CURRENT_DATE - INTERVAL 90 DAY
+        CAST(event_date AS DATE) >= DATE_ADD(CURRENT_DATE, -90)
 ),
 filtered_signon AS (
     SELECT
@@ -1026,7 +1130,7 @@ filtered_signon AS (
     FROM
         ciam.single_signon_okta
     WHERE
-        CAST(event_date AS DATE) >= CURRENT_DATE - INTERVAL 90 DAY
+        CAST(event_date AS DATE) >= DATE_ADD(CURRENT_DATE, -90)
 ),
 aggregated_auth AS (
     SELECT
@@ -1054,17 +1158,17 @@ SELECT
     o.application AS Authentication_Channel,
     a.Authentication_Attempt,
     a.authentication_success_result,
-    CAST(NULL AS VARCHAR(255)) AS Authentication_Error, -- Corrected here
+    cast(NULL as varchar(255)) AS Authentication_Error,
     'Login Credentials' AS authentication_method,
     CASE
         WHEN m.eventtype = 'group.user_membership.add' THEN 'tsv enrolled'
         ELSE NULL
     END AS activity_type
 FROM
-    aggregated_auth a 
+    aggregated_auth a
 LEFT JOIN edw.customer_guid_dtl_dim g ON a.user_id = g.user_id
-LEFT JOIN aggregated_signon o ON g.user_id = o.user_id
-LEFT JOIN ciam.mfa_total_mfa_users m ON g.user_id = m.username
+LEFT JOIN aggregated_signon o ON o.user_id = g.user_id
+LEFT JOIN ciam.mfa_total_mfa_users m ON m.username = g.user_id
 GROUP BY 
     g.household_member_guid,
     a.host,
@@ -1089,7 +1193,7 @@ WITH filtered_auth AS (
     FROM
         ciam.successful_authentications_okta
     WHERE
-        CAST(event_date AS DATE) >= CURRENT_DATE - INTERVAL 1 YEAR
+        CAST(event_date AS DATE) >= CURRENT_DATE - INTERVAL 1 YEAR  -- Fixed: Subtract 1 year from current date
 ),
 filtered_signon AS (
     SELECT
@@ -1099,7 +1203,7 @@ filtered_signon AS (
     FROM
         ciam.single_signon_okta
     WHERE
-        CAST(event_date AS DATE) >= CURRENT_DATE - INTERVAL 1 YEAR
+        CAST(event_date AS DATE) >= CURRENT_DATE - INTERVAL 1 YEAR  -- Fixed: Subtract 1 year from current date
 ),
 aggregated_auth AS (
     SELECT
@@ -1129,7 +1233,7 @@ SELECT
     o.application AS Authentication_Channel,
     a.Authentication_Attempt,
     a.authentication_success_result,
-    CAST(NULL AS VARCHAR(255)) AS Authentication_Error,  -- Corrected here
+    cast(NULL as varchar(255)) AS Authentication_Error,  -- Fixed: Specify length for varchar
     'Login Credentials' AS Authentication_method,
     CASE
         WHEN m.eventtype = 'group.user_membership.add' THEN 'tsv enrolled'
@@ -1141,7 +1245,7 @@ LEFT JOIN
     aggregated_signon o ON g.user_id = o.user_id AND a.event_date = o.event_date
 LEFT JOIN
     ciam.mfa_total_mfa_users m ON g.user_id = m.username
-GROUP BY
+GROUP BY 
     a.event_date,
     a.host,
     o.application,
@@ -1155,11 +1259,11 @@ GROUP BY
 
 
 #Output s3 path
-account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_newprod/account_dim_sum/"
-profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_newprod/profile_dim_sum/"
-transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_newprod/transaction_adobe_fact/"
-transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_newprod/transaction_okta_user_agg_fact/"
-transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_newprod/transcation_okta_day_agg_fact/"
+account_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/account_dim_sum/"
+profile_dim_sum_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/profile_dim_sum/"
+transaction_adobe_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/transaction_adobe_fact/"
+transaction_okta_user_agg_fact_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/transaction_okta_user_agg_fact/"
+transcation_okta_day_agg_output = "s3://cci-dig-aicoe-data-sb/processed/ciam_prod/transcation_okta_day_agg_fact/"
 
 
 #PartitionKeys for the target files
@@ -1576,7 +1680,7 @@ except Exception as e:
 
 # Define S3 bucket name and folder paths to process
 bucket_name = "cci-dig-aicoe-data-sb"
-folder_paths = ["processed/ciam_newprod/account_dim_sum/", "processed/ciam_newprod/profile_dim_sum/"]
+folder_paths = ["processed/ciam_prod/account_dim_sum/", "processed/ciam_prod/profile_dim_sum/"]
 
 
 
