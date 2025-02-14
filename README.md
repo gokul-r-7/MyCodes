@@ -49,3 +49,66 @@ calc = sum(contained)/sum(sub_contact_id)
 -- Database : ota_data_assets_temp
 
 -- Table name: omni_intent_cntct_fact
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, when, round, countDistinct, date_add, to_date
+
+# Initialize Spark session (if not already initialized)
+spark = SparkSession.builder \
+    .appName("AthenaQueryExample") \
+    .getOrCreate()
+
+# Read the data from the table into a DataFrame (assuming it's a Hive table or a data source in your environment)
+df = spark.read.table("ota_data_assets_temp.omni_intent_cntct_fact")
+
+# Apply the filters
+start_date = '2024-05-29'  # Adjusted start date as per the SQL query
+end_date = '2024-08-27'  # End date
+
+filtered_df = df.filter(
+    (to_date(col('contact_dt')) >= date_add(to_date(lit(end_date)), -90)) & 
+    (to_date(col('contact_dt')) <= to_date(lit(end_date))) &
+    (col('primary_intent') == 'Equipment Support') &
+    (col('initial_channel') == 'CoxApp') &
+    (col('lob') == 'R') &
+    (col('primary_intent_detail').isin('PnP', 'SmartHelp'))
+)
+
+# Calculate the required columns as per the SQL query
+result_df = filtered_df.groupBy("primary_intent_detail", "contact_dt").agg(
+    countDistinct("sub_contact_id").alias("sub_contact_id"),
+    countDistinct(when(col('selfservice_containment') == 1, col('sub_contact_id'))).alias("contained"),
+    # Calculating containment rate
+    round(
+        when(countDistinct("sub_contact_id") > 0,
+             (sum(when(col('selfservice_containment') == 1, 1).otherwise(0)) / countDistinct("sub_contact_id")) * 100)
+        .otherwise(0), 2).alias("containment_rate")
+)
+
+# Show the final result
+result_df.orderBy(col("contact_dt").desc()).show()
+
