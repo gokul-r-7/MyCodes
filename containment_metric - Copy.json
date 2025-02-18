@@ -1,0 +1,108 @@
+{
+  "features": [
+    {
+      "feature_name": "SMART HELP",
+      "feature_id": "15",
+      "metrics": [
+        {
+          "Primary_intent": "Equipment Support",
+          "Primary_intent_detail": "SmartHelp",
+          "cont_display_metric_name": "Smarthelp_containment_rate",
+          "cont_metric_seq_num": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "PnP",
+          "cont_display_metric_name": "PnP_containment_rate",
+          "cont_metric_seq_num": "2"
+
+        }
+      ]
+    },
+    {
+      "feature_name": "BIL LING",
+      "feature_id": "1",
+      "metrics": [
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing Concern",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "1"
+        },
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing General",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "2"
+        },
+      	{
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing Preferences",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "3"
+        },
+
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "EasyPay",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "4"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Non-Pay Suspension/Disconnect",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "5"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Pay Bill",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "6"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Arrangement",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "7"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Concerns",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "8"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Method",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "9"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Statement Inquiry",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "10"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Usage Inquiry",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "11"
+        }
+	    ]
+    },
+    {
+	    "feature_name": "DATA USAGE",
+      "feature_id": "3",
+      "metrics": [
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Usage Inquiry",
+          "cont_display_metric_name": "Datausage_containment_rate",
+          "cont_metric_seq_num": "1"
+        }
+	    ]  
+    }
+  ]
+}
