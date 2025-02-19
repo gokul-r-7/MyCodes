@@ -1,0 +1,228 @@
+{
+  "features": [
+    {
+      "feature_name": "SMART HELP",
+      "feature_id": "15",
+      "metrics": [
+        {
+          "Primary_intent": "Equipment Support",
+          "Primary_intent_detail": "SmartHelp",
+          "cont_display_metric_name": "Smarthelp_containment_rate",
+          "cont_metric_seq_num": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "PnP",
+          "cont_display_metric_name": "PnP_containment_rate",
+          "cont_metric_seq_num": "2"
+
+        }
+      ]
+    },
+    {
+      "feature_name": "BIL LING",
+      "feature_id": "1",
+      "metrics": [
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing Concern",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "1"
+        },
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing General",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "2"
+        },
+      	{
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing Preferences",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "3"
+        },
+
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "EasyPay",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "4"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Non-Pay Suspension/Disconnect",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "5"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Pay Bill",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "6"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Arrangement",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "7"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Concerns",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "8"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Method",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "9"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Statement Inquiry",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "10"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Usage Inquiry",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_metric_seq_num": "11"
+        }
+	    ]
+    },
+    {
+	    "feature_name": "DATA USAGE",
+      "feature_id": "3",
+      "metrics": [
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Usage Inquiry",
+          "cont_display_metric_name": "Datausage_containment_rate",
+          "cont_metric_seq_num": "1"
+        }
+	    ]  
+    },
+    {
+	    "feature_name": "LOG IN",
+      "feature_id": "7",
+      "metrics": [
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Access/Authenticate",
+          "cont_display_metric_name": "Account_settings_containment_rate",
+          "cont_metric_seq_num": "1"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Contact Preferences",
+          "cont_display_metric_name": "Account_settings_containment_rate",
+          "cont_metric_seq_num": "2"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Identity Management - Profile",
+          "cont_display_metric_name": "Account_settings_containment_rate",
+          "cont_metric_seq_num": "3"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Identity Management - Users",
+          "cont_display_metric_name": "Account_settings_containment_rate",
+          "cont_metric_seq_num": "4"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Name/Business Change",
+          "cont_display_metric_name": "Account_settings_containment_rate",
+          "cont_metric_seq_num": "5"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Privacy",
+          "cont_display_metric_name": "Account_settings_containment_rate",
+          "cont_metric_seq_num": "6"
+        }
+	    ]  
+    },
+    {
+	    "feature_name": "E COMMERCE",
+      "feature_id": "4",
+      "metrics": [
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Add/Upgrade",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Campaign Rolloff",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "2"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Cox Complete Care",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "3"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Disconnect/Downgrade",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "4"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Move Address",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "5"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "None",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "6"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Offer/Deal Inquiry",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "7"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Order PPV",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "8"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Remote Replacement",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "9"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Repackage",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "10"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Restart/Reconnect Service",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "11"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "RSeasonal-Military, Suspend, or Restore",
+          "cont_display_metric_name": "Manage_services_containment_rate",
+          "cont_metric_seq_num": "12"
+        }
+	    ]  
+    }
+  ]
+}
