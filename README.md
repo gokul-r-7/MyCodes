@@ -1,3 +1,105 @@
+# Create an empty list to store the result DataFrames
+result_dfs = []
+
+# Loop over each unique cont_display_metric_name in the DataFrame
+for metric_name in df['cont_display_metric_name'].unique():
+    # Filter the DataFrame to get the corresponding primary_intent and primary_intent_detail values
+    filtered_df = df[df['cont_display_metric_name'] == metric_name]
+    
+    # Get unique primary_intent and primary_intent_detail for the current cont_display_metric_name
+    primary_intent_values = filtered_df['primary_intent'].unique()
+    primary_intent_detail_values = filtered_df['primary_intent_detail'].unique()
+    
+    # Convert arrays to strings formatted for SQL IN clauses
+    primary_intent_str = "', '".join(primary_intent_values)
+    primary_intent_detail_str = "', '".join(primary_intent_detail_values)
+    
+    # Create the query
+    second_table_query = f"""
+    SELECT 
+        primary_intent, initial_channel, lob,  
+        CAST(contact_dt AS DATE) AS contact_dt, 
+        COUNT(DISTINCT sub_contact_id) AS sub_contact_id, 
+        COUNT(DISTINCT CASE WHEN selfservice_containment = 1 THEN sub_contact_id END) AS selfservice_containment,
+        CASE 
+            WHEN COUNT(DISTINCT sub_contact_id) > 0 THEN
+                ROUND(CAST(SUM(CASE WHEN selfservice_containment = 1 THEN 1 ELSE 0 END) AS DOUBLE) 
+                / COUNT(DISTINCT sub_contact_id) * 100, 2)
+            ELSE
+                0
+        END AS containment_rate
+    FROM 
+        ota_data_assets_temp.omni_intent_cntct_fact 
+    WHERE 
+        CAST(contact_dt AS DATE) BETWEEN 
+            date_add((SELECT max(CAST(contact_dt AS DATE)) FROM ota_data_assets_temp.omni_intent_cntct_fact), -60) 
+            AND (SELECT max(CAST(contact_dt AS DATE)) FROM ota_data_assets_temp.omni_intent_cntct_fact)
+        AND primary_intent IN ('{primary_intent_str}')
+        AND initial_channel = 'CoxApp'
+        AND lob = 'R'
+        AND primary_intent_detail IN ('{primary_intent_detail_str}')
+    GROUP BY 
+        primary_intent, contact_dt, initial_channel, lob
+    ORDER BY 
+        contact_dt DESC
+    """
+    
+    # Execute the query (assuming using Spark SQL)
+    second_table_df = spark.sql(second_table_query)
+    
+    # Append the result DataFrame to the list
+    result_dfs.append(second_table_df)
+
+# Combine all the DataFrames into a single DataFrame
+final_df = result_dfs[0]
+
+for df in result_dfs[1:]:
+    final_df = final_df.union(df)
+
+# Show the final combined DataFrame
+final_df.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Get unique values from the columns
 primary_intent_values = df['primary_intent'].unique()
 primary_intent_detail_values = df['primary_intent_detail'].unique()
