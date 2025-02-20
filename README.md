@@ -1,3 +1,43 @@
+
+select 
+primary_intent,
+--primary_intent_detail,
+CAST(contact_dt AS DATE) AS contact_dt,
+COUNT(DISTINCT sub_contact_id) AS sub_contact_id, 		
+    COUNT(DISTINCT CASE WHEN selfservice_containment = 1 THEN sub_contact_id END) AS contained
+    from omni_intent_cntct_fact
+    where primary_intent = 'Billing', 
+    and primary_intent_detail IN ('Billing Concern', 'Billing General', 'Billing Preferences', 'EasyPay','Non-Pay Suspension/Disconnect','Pay Bill')
+    and initial_channel = 'CoxApp'		
+    and lob = 'R'
+    --and CAST(contact_dt AS DATE) BETWEEN date_add('day', -90, DATE '2024-08-27') AND DATE '2024-08-27' 
+   and CAST(contact_dt AS DATE) BETWEEN date_add('day', -60, (SELECT max(CAST(contact_dt AS DATE)) FROM  omni_intent_cntct_fact)) 
+                            AND (SELECT max(CAST(contact_dt AS DATE)) FROM  omni_intent_cntct_fact)
+    group by 1,2
+    order by contact_dt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 select da.*,count(ivr.customer_key) from digital_adoption_all_channels da JOIN "call"."call_ivr_fact" ivr
     ON da.customer_key = ivr.customer_key where month like '2024-11' and da.customer_key=7.0346127E7 
     group by 1,2,3--IVR_call_total_customers
