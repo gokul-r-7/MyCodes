@@ -41,7 +41,6 @@
           "cont_display_metric_name": "Billing_containment_rate",
           "cont_display_metric_seq": "1"
         },
-
 	      {
           "Primary_intent": "Billing",
 	        "Primary_intent_detail": "EasyPay",
@@ -540,7 +539,7 @@
           "cont_display_metric_name": "easyconnect_containment_rate",
           "cont_display_metric_seq": "1"
         }
-		]
+		  ]
 	  },
 		{
 	    "feature_name": "RESET MODEM",
