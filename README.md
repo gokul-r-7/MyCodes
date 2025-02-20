@@ -1,3 +1,101 @@
+# Get unique values from the columns
+primary_intent_values = df['primary_intent'].unique()
+primary_intent_detail_values = df['primary_intent_detail'].unique()
+
+# Convert arrays to strings formatted for SQL IN clauses
+primary_intent_str = "', '".join(primary_intent_values)
+primary_intent_detail_str = "', '".join(primary_intent_detail_values)
+
+second_table_query = f"""
+SELECT 
+    primary_intent,initial_channel,lob,  
+    CAST(contact_dt AS DATE) AS contact_dt, 
+    COUNT(DISTINCT sub_contact_id) AS sub_contact_id, 
+    COUNT(DISTINCT CASE WHEN selfservice_containment = 1 THEN sub_contact_id END) AS selfservice_containment,
+    CASE 
+        WHEN COUNT(DISTINCT sub_contact_id) > 0 THEN
+            ROUND(CAST(SUM(CASE WHEN selfservice_containment = 1 THEN 1 ELSE 0 END) AS DOUBLE) 
+            / COUNT(DISTINCT sub_contact_id) * 100, 2)
+        ELSE
+            0
+    END AS containment_rate
+FROM 
+    ota_data_assets_temp.omni_intent_cntct_fact 
+WHERE 
+    CAST(contact_dt AS DATE) BETWEEN 
+        date_add((SELECT max(CAST(contact_dt AS DATE)) FROM ota_data_assets_temp.omni_intent_cntct_fact), -60) 
+        AND (SELECT max(CAST(contact_dt AS DATE)) FROM ota_data_assets_temp.omni_intent_cntct_fact)
+    AND primary_intent IN ('{primary_intent_str}')
+    AND initial_channel = 'CoxApp'
+    AND lob = 'R'
+    AND primary_intent_detail IN ('{primary_intent_detail_str}')
+GROUP BY 
+    primary_intent, contact_dt,initial_channel,lob
+ORDER BY 
+    contact_dt DESC
+"""
+
+second_table_df = spark.sql(second_table_query)
+second_table_df.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 select 
 primary_intent,
