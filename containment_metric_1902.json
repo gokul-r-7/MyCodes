@@ -1,0 +1,594 @@
+{
+  "features": [
+    {
+      "feature_name": "SMART HELP",
+      "feature_id": "15",
+      "metrics": [
+        {
+          "Primary_intent": "Equipment Support",
+          "Primary_intent_detail": "SmartHelp",
+          "cont_display_metric_name": "Smarthelp_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "PnP",
+          "cont_display_metric_name": "PnP_containment_rate",
+          "cont_display_metric_seq": "2"
+
+        }
+      ]
+    },
+    {
+      "feature_name": "BIL LING",
+      "feature_id": "1",
+      "metrics": [
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing Concern",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing General",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+      	{
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Billing Preferences",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "EasyPay",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Non-Pay Suspension/Disconnect",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Pay Bill",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Arrangement",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Concerns",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Payment Method",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Statement Inquiry",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+	      {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Usage Inquiry",
+          "cont_display_metric_name": "Billing_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+	    ]
+    },
+    {
+	    "feature_name": "DATA USAGE",
+      "feature_id": "3",
+      "metrics": [
+        {
+          "Primary_intent": "Billing",
+	        "Primary_intent_detail": "Usage Inquiry",
+          "cont_display_metric_name": "Datausage_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+	    ]  
+    },
+    {
+	    "feature_name": "LOG IN",
+      "feature_id": "7",
+      "metrics": [
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Access/Authenticate",
+          "cont_display_metric_name": "Login_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Contact Preferences",
+          "cont_display_metric_name": "Login_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Identity Management - Profile",
+          "cont_display_metric_name": "Login_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Identity Management - Users",
+          "cont_display_metric_name": "Login_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Name/Business Change",
+          "cont_display_metric_name": "Login_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Privacy",
+          "cont_display_metric_name": "Login_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+	    ]  
+    },
+    {
+	    "feature_name": "E COMMERCE",
+      "feature_id": "4",
+      "metrics": [
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Add/Upgrade",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Campaign Rolloff",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Cox Complete Care",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Disconnect/Downgrade",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Move Address",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "None",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Offer/Deal Inquiry",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Order PPV",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Remote Replacement",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Repackage",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Restart/Reconnect Service",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Manage Services",
+	        "Primary_intent_detail": "Seasonal-Military, Suspend, or Restore",
+          "cont_display_metric_name": "Ecommerce_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+	    ]  
+    },
+    {
+	    "feature_name": "S UPPORT",
+      "feature_id": "16",
+      "metrics": [
+        {
+          "Primary_intent": "General Support",
+	        "Primary_intent_detail": "All Service Interruption",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "General Support",
+	        "Primary_intent_detail": "Complaint/Escalation",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "General Support",
+	        "Primary_intent_detail": "General Inquiry",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "General Support",
+	        "Primary_intent_detail": "Mobile App",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "General Support",
+	        "Primary_intent_detail": "Partial/Degraded Services",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Add/Upgrade",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Customer Education",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Device Swap",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Equipment Return",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Internet Pods",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Low/Dead Battery",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "None",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "PnP",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Reboot",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "SmartHelp",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Update Device",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Cox Business Cloud Services",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Internet Features",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Internet General Inquiry",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Internet General Support",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Internet Mobile App",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Internet Service Interruption",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Internet Service Quality",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Manage Equipment",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Internet Support",
+	        "Primary_intent_detail": "Speedtest",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Mobile Support",
+	        "Primary_intent_detail": "Mobile Device Issue",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Mobile Support",
+	        "Primary_intent_detail": "Mobile Feature",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Mobile Support",
+	        "Primary_intent_detail": "Mobile General Inquiry",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Mobile Support",
+	        "Primary_intent_detail": "Mobile General Support",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Mobile Support",
+	        "Primary_intent_detail": "Mobile Protection Plan",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Mobile Support",
+	        "Primary_intent_detail": "Mobile Service Interruption",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Phone Support",
+	        "Primary_intent_detail": "Phone Features",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Phone Support",
+	        "Primary_intent_detail": "Phone General Support",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Phone Support",
+	        "Primary_intent_detail": "Phone Service Interruption",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Phone Support",
+	        "Primary_intent_detail": "Phone Service Quality",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Phone Support",
+	        "Primary_intent_detail": "Voice Applications",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "TV Support",
+	        "Primary_intent_detail": "TV Features",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "TV Support",
+	        "Primary_intent_detail": "TV General Inquiry",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "TV Support",
+	        "Primary_intent_detail": "TV General Support",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "TV Support",
+	        "Primary_intent_detail": "TV Mobile App",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "TV Support",
+	        "Primary_intent_detail": "TV Service Interruption",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "TV Support",
+	        "Primary_intent_detail": "TV Service Quality",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Security Support",
+	        "Primary_intent_detail": "Security Features",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Security Support",
+	        "Primary_intent_detail": "Security General Inquiry",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Security Support",
+	        "Primary_intent_detail": "Security General Support",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Security Support",
+	        "Primary_intent_detail": "Security Mobile App",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Security Support",
+	        "Primary_intent_detail": "Security Service Interruption",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+        {
+          "Primary_intent": "Security Support",
+	        "Primary_intent_detail": "Security Service Quality",
+          "cont_display_metric_name": "Support_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+	    ]
+	  },		
+    {
+	    "feature_name": "EASY CON NECT",
+      "feature_id": "5",
+      "metrics": [
+        {
+          "Primary_intent": "Installation",
+	        "Primary_intent_detail": "Order Status",
+          "cont_display_metric_name": "easyconnect_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+		    {
+          "Primary_intent": "Installation",
+	        "Primary_intent_detail": "Pro-Install Support",
+          "cont_display_metric_name": "easyconnect_containment_rate",
+          "cont_display_metric_seq": "1"
+        },
+		    {
+          "Primary_intent": "Installation",
+	        "Primary_intent_detail": "Self-Install Support",
+          "cont_display_metric_name": "easyconnect_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+		]
+	  },
+		{
+	    "feature_name": "RESET MODEM",
+      "feature_id": "11",
+      "metrics": [
+        {
+          "Primary_intent": "Equipment Support",
+	        "Primary_intent_detail": "Reboot",
+          "cont_display_metric_name": "resetmodem_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+	    ]
+	  },
+		{
+	    "feature_name": "RESET TV BOX",
+      "feature_id": "12",
+      "metrics": [
+        {
+          "Primary_intent": "Equipment Support",
+	      "Primary_intent_detail": "Reboot",
+          "cont_display_metric_name": "resettvbox_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+		  ]
+		},
+		{
+	    "feature_name": "SERVICE ALERT",
+      "feature_id": "13",
+      "metrics": [
+        {
+          "Primary_intent": "General Support",
+	        "Primary_intent_detail": "All Service Interruption",
+          "cont_display_metric_name": "servicealert_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+		  ]
+		},	
+		{
+	    "feature_name": "TWO-STEP VERIFICATION",
+      "feature_id": "17",
+      "metrics": [
+        {
+          "Primary_intent": "Account Settings",
+	        "Primary_intent_detail": "Contact Preferences",
+          "cont_display_metric_name": "TSV_containment_rate",
+          "cont_display_metric_seq": "1"
+        }
+	    ]
+    }
+  ]
+}
