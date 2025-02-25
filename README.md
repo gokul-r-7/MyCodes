@@ -1,65 +1,34 @@
-# Create an empty list to store the result DataFrames
-result_dfs = []
+import pandas as pd
 
-# Loop over each unique cont_display_metric_name in the DataFrame
-for metric_name in df['cont_display_metric_name'].unique():
-    # Filter the DataFrame to get the corresponding primary_intent and primary_intent_detail values
-    filtered_df = df[df['cont_display_metric_name'] == metric_name]
-    
-    # Get unique primary_intent and primary_intent_detail for the current cont_display_metric_name
-    primary_intent_values = filtered_df['primary_intent'].unique()
-    primary_intent_detail_values = filtered_df['primary_intent_detail'].unique()
-    
-    # Convert arrays to strings formatted for SQL IN clauses
-    primary_intent_str = "', '".join(primary_intent_values)
-    primary_intent_detail_str = "', '".join(primary_intent_detail_values)
-    
-    # Create the query
-    second_table_query = f"""
-    SELECT 
-        primary_intent, initial_channel, lob,  
-        CAST(contact_dt AS DATE) AS contact_dt, 
-        COUNT(DISTINCT sub_contact_id) AS sub_contact_id, 
-        COUNT(DISTINCT CASE WHEN selfservice_containment = 1 THEN sub_contact_id END) AS selfservice_containment,
-        CASE 
-            WHEN COUNT(DISTINCT sub_contact_id) > 0 THEN
-                ROUND(CAST(SUM(CASE WHEN selfservice_containment = 1 THEN 1 ELSE 0 END) AS DOUBLE) 
-                / COUNT(DISTINCT sub_contact_id) * 100, 2)
-            ELSE
-                0
-        END AS containment_rate
-    FROM 
-        ota_data_assets_temp.omni_intent_cntct_fact 
-    WHERE 
-        CAST(contact_dt AS DATE) BETWEEN 
-            date_add((SELECT max(CAST(contact_dt AS DATE)) FROM ota_data_assets_temp.omni_intent_cntct_fact), -60) 
-            AND (SELECT max(CAST(contact_dt AS DATE)) FROM ota_data_assets_temp.omni_intent_cntct_fact)
-        AND primary_intent IN ('{primary_intent_str}')
-        AND initial_channel = 'CoxApp'
-        AND lob = 'R'
-        AND primary_intent_detail IN ('{primary_intent_detail_str}')
-    GROUP BY 
-        primary_intent, contact_dt, initial_channel, lob
-    ORDER BY 
-        contact_dt DESC
-    """
-    
-    # Execute the query (assuming using Spark SQL)
-    second_table_df = spark.sql(second_table_query)
-    
-    # Append the result DataFrame to the list
-    result_dfs.append(second_table_df)
+# Example data
+first_df = pd.DataFrame({
+    'metric_id': [1, 2, 3, 4, 5, 6, 7],
+    'display_name': ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+    'feature_name': ['X', 'Y', 'Z', 'X', 'Y', 'Z', 'X']
+})
 
-# Combine all the DataFrames into a single DataFrame
-final_df = result_dfs[0]
+second_df = pd.DataFrame({
+    'id': [10, 11, 12, 13],
+    'primary_intent': ['Intent1', 'Intent2', 'Intent3', 'Intent4'],
+    'feature_name': ['X', 'Y', 'Z', 'X']
+})
 
-for df in result_dfs[1:]:
-    final_df = final_df.union(df)
+# Step 1: Create a version of first_df where columns from second_df are null
+first_with_nulls = first_df.copy()
+first_with_nulls['id'] = None
+first_with_nulls['primary_intent'] = None
 
-# Show the final combined DataFrame
-final_df.show()
+# Step 2: Create a version of second_df where columns from first_df are null
+second_with_nulls = second_df.copy()
+second_with_nulls['metric_id'] = None
+second_with_nulls['display_name'] = None
+second_with_nulls['feature_name'] = None  # Remove if you don't want duplicate 'feature_name' column
 
+# Step 3: Concatenate both DataFrames
+final_result = pd.concat([first_with_nulls, second_with_nulls], ignore_index=True)
 
+# Display the result
+print(final_result)
 
 
 
