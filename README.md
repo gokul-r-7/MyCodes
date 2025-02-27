@@ -1,3 +1,12 @@
+https://www.credly.com/badges/69c40bc6-26f4-43fd-8436-2345d92e4a64/public_url
+
+
+
+
+
+
+
+
 import pandas as pd
 
 # Example data
