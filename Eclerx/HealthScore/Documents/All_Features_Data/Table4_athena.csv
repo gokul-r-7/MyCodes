@@ -1,0 +1,715 @@
+create_dt,metric_id,feature_name,metrics,display_names,operating_system_type,1st Quartile,3rd Quartile,IQR,Upper,Lower,Yesterday,last_7_days,last_30_days,% Change Last 7 Days,% Change Last 30 Days,metric_nature_indicator,colour_indicator
+2025-02-06,22,COX MOBILE,DR_Mobile Lock Enabled,,Apple iOS,0.0,143.0,143.0,321.75,-178.75,42.0,50.714,45.833,-17.1830985915493,-8.363636363636369,,
+2025-02-06,23,COX MOBILE,DR_Mobile Lock Disabled,,Apple iOS,0.0,143.0,143.0,321.75,-178.75,648.0,627.571,572.167,3.2551786933758278,13.25371395281096,,
+2025-02-06,74,EASY CON NECT,DR_Easy Connect - Self install success,,Apple iOS,0.0,143.0,143.0,321.75,-178.75,0.0,,,0,0,,
+2025-02-06,75,EASY CON NECT,DR_Easy Connect - Self install Timeout,,Apple iOS,0.0,143.0,143.0,321.75,-178.75,0.0,,,0,0,,
+2025-02-06,10000022,COX MOBILE,DR_Mobile Lock Enabled,,Both,805.0,930.75,125.75,1087.938,647.812,1023.0,971.286,868.433,5.324312398882183,17.79833416497141,,
+2025-02-06,258,COX MOBILE,DR_Mobile Lock Enabled,,Google Android,3.0,120.75,117.75,267.938,-144.188,37.0,20.286,20.4,82.39436619718312,81.37254901960786,,
+2025-02-06,259,COX MOBILE,DR_Mobile Lock Disabled,,Google Android,3.0,120.75,117.75,267.938,-144.188,196.0,180.714,174.267,8.45849802371541,12.471308339709248,,
+2025-02-06,310,EASY CON NECT,DR_Easy Connect - Self install success,,Google Android,3.0,120.75,117.75,267.938,-144.188,99.0,91.143,54.767,8.620689655172418,80.76688983566646,,
+2025-02-06,311,EASY CON NECT,DR_Easy Connect - Self install Timeout,,Google Android,3.0,120.75,117.75,267.938,-144.188,1.0,0.857,1.0,16.666666666666675,0.0,,
+2025-02-06,186,SMART HELP,DR_SmartHelp Result - Unknown,1st common reason (Unknown),Apple iOS,54.423,73.521,19.099,87.845,40.099,66.216,58.29,59.206,13.598364814093175,11.839638416246919,Negative Within,White
+2025-02-06,100000183,SMART HELP,DR_SmartHelp Result - Unknown,1st common reason (Unknown),Both,54.716,70.603,15.886,82.518,42.801,64.151,56.409,58.838,13.724184214858234,9.030743414351164,Negative Within,White
+2025-02-06,420,SMART HELP,DR_SmartHelp Result - Unknown,1st common reason (Unknown),Google Android,50.0,72.135,22.135,88.737,33.399,59.375,53.121,58.332,11.773722922185334,1.7883898662479107,Negative Within,White
+2025-02-06,187,SMART HELP,DR_SmartHelp Result - Disconnected,2nd common reason (Disconnected),Apple iOS,10.098,23.292,13.195,33.189,0.201,21.622,20.06,23.126,7.788175305160307,-6.50161581859013,Negative Within,White
+2025-02-06,100000184,SMART HELP,DR_SmartHelp Result - Disconnected,2nd common reason (Disconnected),Both,12.419,24.12,11.701,32.896,3.643,23.585,22.08,23.356,6.816814290982733,0.9786026119855586,Negative Within,White
+2025-02-06,421,SMART HELP,DR_SmartHelp Result - Disconnected,2nd common reason (Disconnected),Google Android,10.07,25.436,15.365,36.96,-1.453,28.125,25.846,23.867,8.817010551450059,17.84267252516426,Negative Within,White
+2025-02-06,188,SMART HELP,DR_SmartHelp Result - Incomplete Install,3rd common reason (Incomplete Install),Apple iOS,1.618,6.645,5.027,10.415,-2.152,6.757,9.258,6.236,-27.016726330082708,8.354135374516916,Negative Within,White
+2025-02-06,100000185,SMART HELP,DR_SmartHelp Result - Incomplete Install,3rd common reason (Incomplete Install),Both,2.532,7.189,4.657,10.682,-0.961,6.604,10.671,7.382,-38.11429871885835,-10.539957193559177,Negative Within,White
+2025-02-06,422,SMART HELP,DR_SmartHelp Result - Incomplete Install,3rd common reason (Incomplete Install),Google Android,2.174,9.661,7.487,15.276,-3.441,6.25,13.843,9.852,-54.851293058966796,-36.56046041880247,Negative Within,White
+2025-02-06,205,S UPPORT,DR_Support - Account,Account Support,Apple iOS,16.148,17.558,1.41,18.615,15.091,17.433,16.3,16.486,6.948108288125635,5.744054057879283,Positive Within,White
+2025-02-06,100000202,S UPPORT,DR_Support - Account,Account Support,Both,15.374,16.578,1.204,17.481,14.471,16.314,15.491,15.719,5.313733446456895,3.7874289591992487,Positive Within,White
+2025-02-06,439,S UPPORT,DR_Support - Account,Account Support,Google Android,12.684,13.801,1.117,14.638,11.846,12.588,12.815,13.193,-1.7680765200330142,-4.584077638503927,Positive Within,White
+2025-02-06,12,BIL LING,DR_Billing - Activity & Statements,Activity & Statements,Apple iOS,7.082,7.873,0.791,8.466,6.488,7.765,7.671,7.384,1.223509255465753,5.160754430791162,Positive Within,White
+2025-02-06,10000012,BIL LING,DR_Billing - Activity & Statements,Activity & Statements,Both,7.175,7.917,0.742,8.474,6.619,7.843,7.69,7.425,1.9952811785906763,5.625836109140864,Positive Within,White
+2025-02-06,248,BIL LING,DR_Billing - Activity & Statements,Activity & Statements,Google Android,7.198,8.031,0.833,8.656,6.573,8.109,7.752,7.562,4.599480347172305,7.233063417687463,Positive Within,White
+2025-02-06,9,BIL LING,DR_CoxApp | Billing - Additional time to pay (Link out),Additional time to pay - Linkout,Apple iOS,67.43,69.819,2.389,71.61,65.638,69.421,69.563,68.956,-0.20474633633435704,0.6745377236454735,Positive Within,White
+2025-02-06,1000009,BIL LING,DR_CoxApp | Billing - Additional time to pay (Link out),Additional time to pay - Linkout,Both,65.5,67.9,2.401,69.701,63.699,67.764,67.253,66.997,0.7591753155441825,1.1443744747922895,Positive Within,White
+2025-02-06,245,BIL LING,DR_CoxApp | Billing - Additional time to pay (Link out),Additional time to pay - Linkout,Google Android,61.18,63.98,2.8,66.08,59.08,64.245,62.637,63.069,2.566938831364319,1.865109000185508,Positive Within,White
+2025-02-06,17,BIL LING,DR_Billing - Edit Billing Address,Address Changes,Apple iOS,0.159,0.206,0.047,0.242,0.124,0.189,0.168,0.18,12.404418011894643,5.136287780456169,Positive Within,White
+2025-02-06,10000017,BIL LING,DR_Billing - Edit Billing Address,Address Changes,Both,0.162,0.206,0.044,0.239,0.129,0.18,0.173,0.181,4.046242774566461,-0.7535379525822395,Positive Within,White
+2025-02-06,253,BIL LING,DR_Billing - Edit Billing Address,Address Changes,Google Android,0.163,0.204,0.041,0.235,0.132,0.149,0.19,0.187,-21.51993980436419,-20.40598290598291,Positive Within,White
+2025-02-06,15,BIL LING,DR_Billing - Agreements & Discounts,Agreement & Discounts,Apple iOS,2.731,3.122,0.391,3.416,2.438,3.039,2.932,2.822,3.6645387651673973,7.6895818568391405,Positive Within,White
+2025-02-06,10000015,BIL LING,DR_Billing - Agreements & Discounts,Agreement & Discounts,Both,2.778,3.191,0.413,3.501,2.468,3.055,2.975,2.873,2.7038709057727277,6.3323742342677125,Positive Within,White
+2025-02-06,251,BIL LING,DR_Billing - Agreements & Discounts,Agreement & Discounts,Google Android,2.913,3.283,0.37,3.561,2.635,3.109,3.119,3.043,-0.311483670010552,2.1812245971143276,Positive Within,White
+2025-02-06,131,RE GISTRATION (NATIVE),DR_Native Registration - Already Registered,Already Registered,Apple iOS,21.548,23.684,2.135,25.285,19.947,23.785,25.251,23.631,-5.807309346005875,0.651118439798341,Positive Within,White
+2025-02-06,100000128,RE GISTRATION (NATIVE),DR_Native Registration - Already Registered,Already Registered,Both,24.364,26.213,1.849,27.599,22.978,26.216,27.975,26.385,-6.289192556733461,-0.6410175427071089,Positive Within,White
+2025-02-06,367,RE GISTRATION (NATIVE),DR_Native Registration - Already Registered,Already Registered,Google Android,29.417,32.109,2.692,34.128,27.398,31.884,33.497,31.949,-4.816574406564235,-0.2031368842119807,Positive Within,White
+2025-02-06,212,S UPPORT,DR_Support - App Feedback,App Feedback,Apple iOS,0.832,0.97,0.139,1.075,0.728,1.087,0.899,0.885,20.96979332273448,22.81560711057547,Positive Above,Green
+2025-02-06,100000209,S UPPORT,DR_Support - App Feedback,App Feedback,Both,0.633,0.746,0.112,0.83,0.549,0.836,0.69,0.679,21.234721359022153,23.19481284998524,Positive Above,Green
+2025-02-06,446,S UPPORT,DR_Support - App Feedback,App Feedback,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,118,OVER ALL,Average Time Spent on Page,Average Time Spent (mins),Apple iOS,3.4,3.6,0.2,3.85,3.15,3.7,3.814,3.617,-2.9962546816479296,2.3041474654377794,Negative Within,White
+2025-02-06,100000115,OVER ALL,Average Time Spent on Page,Average Time Spent (mins),Both,7.5,8.075,0.575,8.794,6.781,8.2,8.529,8.043,-3.8525963149078803,1.9477828429341024,Negative Within,White
+2025-02-06,354,OVER ALL,Average Time Spent on Page,Average Time Spent (mins),Google Android,4.1,4.4,0.3,4.775,3.725,4.5,4.714,4.427,-4.5454545454545485,1.656626506024115,Negative Within,White
+2025-02-06,16,BIL LING,DR_Billing - Bill Delivery,Bill Delivery Options,Apple iOS,1.071,1.205,0.134,1.305,0.971,1.103,1.129,1.149,-2.265822784810127,-4.036888811553872,Positive Within,White
+2025-02-06,10000016,BIL LING,DR_Billing - Bill Delivery,Bill Delivery Options,Both,1.086,1.223,0.137,1.326,0.983,1.104,1.144,1.171,-3.508552878012208,-5.700130972040315,Positive Within,White
+2025-02-06,252,BIL LING,DR_Billing - Bill Delivery,Bill Delivery Options,Google Android,1.116,1.297,0.181,1.433,0.98,1.109,1.197,1.242,-7.3517126148704985,-10.677369989529346,Positive Within,White
+2025-02-06,11,BIL LING,DR_Billing - View Bill Details,Bill Downloads,Apple iOS,8.489,9.632,1.143,10.49,7.631,9.805,9.114,8.917,7.58511505423537,9.963027899169735,Positive Within,White
+2025-02-06,10000011,BIL LING,DR_Billing - View Bill Details,Bill Downloads,Both,7.516,8.511,0.995,9.257,6.77,8.828,8.092,7.899,9.091551036260284,11.764283875541752,Positive Within,White
+2025-02-06,247,BIL LING,DR_Billing - View Bill Details,Bill Downloads,Google Android,4.278,4.896,0.619,5.361,3.814,5.477,4.713,4.529,16.19991513608535,20.92376305389354,Positive Above,Green
+2025-02-06,203,S UPPORT,DR_Support - Billing and Account,Billing & Account Support,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,100000200,S UPPORT,DR_Support - Billing and Account,Billing & Account Support,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,437,S UPPORT,DR_Support - Billing and Account,Billing & Account Support,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,1,BIL LING,DR_Visits to Billing Home,Billing Section Visits,Apple iOS,53851.25,68230.25,14379.0,86204.0,35877.5,59662.0,57673.571,59310.467,3.4477292149164653,0.5927003328248969,Positive Within,White
+2025-02-06,1000001,BIL LING,DR_Visits to Billing Home,Billing Section Visits,Both,70027.25,88986.0,18958.75,112684.438,46328.812,77062.0,75147.286,77268.7,2.547948695038891,-0.2675080595376874,Positive Within,White
+2025-02-06,237,BIL LING,DR_Visits to Billing Home,Billing Section Visits,Google Android,16142.25,20595.25,4453.0,26161.5,10576.0,17400.0,17473.714,17958.233,-0.4218581379378034,-3.108509188914278,Positive Within,White
+2025-02-06,204,S UPPORT,DR_Support - Billing,Billing Support,Apple iOS,17.26,19.72,2.46,21.564,15.416,19.212,18.866,18.428,1.8363004414693438,4.255149809346693,Positive Within,White
+2025-02-06,100000201,S UPPORT,DR_Support - Billing,Billing Support,Both,16.404,18.687,2.282,20.399,14.693,17.949,17.737,17.419,1.1968717027634488,3.043048942912712,Positive Within,White
+2025-02-06,438,S UPPORT,DR_Support - Billing,Billing Support,Google Android,13.615,15.37,1.755,16.687,12.299,13.741,13.945,14.089,-1.4649087761353006,-2.4732424222350278,Positive Within,White
+2025-02-06,19,BIL LING,DR_Billing visits to chat,Billing_Interacted with chat,Apple iOS,3.087,3.591,0.505,3.97,2.708,3.451,3.345,3.256,3.168908819133044,5.99219877760378,Negative Within,White
+2025-02-06,10000019,BIL LING,DR_Billing visits to chat,Billing_Interacted with chat,Both,3.068,3.573,0.505,3.952,2.689,3.4,3.34,3.247,1.7833468759355098,4.709892005091747,Negative Within,White
+2025-02-06,255,BIL LING,DR_Billing visits to chat,Billing_Interacted with chat,Google Android,3.036,3.576,0.54,3.981,2.631,3.224,3.326,3.218,-3.0542549078568624,0.1802249704803867,Negative Within,White
+2025-02-06,57,E COMMERCE,DR_CRO Ecomm Traffic sent from App to cox.com,CRO,Apple iOS,19.906,23.38,3.474,25.986,17.3,22.628,20.87,20.617,8.422832344223794,9.753554088596356,Positive Within,White
+2025-02-06,10000056,E COMMERCE,DR_CRO Ecomm Traffic sent from App to cox.com,CRO,Both,18.883,21.878,2.995,24.124,16.637,20.813,19.413,19.206,7.214029200518067,8.36792924384216,Positive Within,White
+2025-02-06,293,E COMMERCE,DR_CRO Ecomm Traffic sent from App to cox.com,CRO,Google Android,14.118,15.842,1.724,17.136,12.825,13.908,13.826,13.667,0.593085491103723,1.7663500797564906,Positive Within,White
+2025-02-06,196,SMART HELP,DR_SmartHelp - Billing & Account Support,Clicked Billing & Account Support,Apple iOS,16.842,18.939,2.098,20.512,15.269,19.132,17.74,17.552,7.848411151733813,8.999960119186651,Positive Within,White
+2025-02-06,100000193,SMART HELP,DR_SmartHelp - Billing & Account Support,Clicked Billing & Account Support,Both,16.732,18.462,1.73,19.76,15.435,18.025,17.379,17.363,3.7171298693825934,3.814299591846143,Positive Within,White
+2025-02-06,430,SMART HELP,DR_SmartHelp - Billing & Account Support,Clicked Billing & Account Support,Google Android,15.981,17.903,1.922,19.345,14.539,15.857,16.691,16.987,-4.997517930810166,-6.650680334849554,Positive Within,White
+2025-02-06,199,SMART HELP,DR_SmartHelp - Homelife Support,Clicked Homelife Support,Apple iOS,0.254,0.396,0.142,0.503,0.148,0.372,0.328,0.354,13.315926892950388,5.055069189494501,Positive Within,White
+2025-02-06,100000196,SMART HELP,DR_SmartHelp - Homelife Support,Clicked Homelife Support,Both,0.268,0.41,0.142,0.516,0.162,0.328,0.354,0.363,-7.419354838709667,-9.708203340062397,Positive Within,White
+2025-02-06,433,SMART HELP,DR_SmartHelp - Homelife Support,Clicked Homelife Support,Google Android,0.252,0.44,0.188,0.581,0.112,0.243,0.407,0.38,-40.23190442726634,-36.10867659947415,Positive Within,White
+2025-02-06,197,SMART HELP,DR_SmartHelp - Internet Support,Clicked Internet Support,Apple iOS,17.069,18.419,1.35,19.432,16.056,18.512,17.957,17.961,3.0898965791567137,3.0675666396328394,Positive Within,White
+2025-02-06,100000194,SMART HELP,DR_SmartHelp - Internet Support,Clicked Internet Support,Both,16.413,17.422,1.01,18.18,15.655,17.183,17.426,17.312,-1.392042892629051,-0.7440012014926339,Positive Within,White
+2025-02-06,431,SMART HELP,DR_SmartHelp - Internet Support,Clicked Internet Support,Google Android,14.666,16.35,1.684,17.613,13.403,14.581,16.415,15.999,-11.174253961899634,-8.865142578560386,Positive Within,White
+2025-02-06,198,SMART HELP,DR_SmartHelp - TV Support,Clicked TV Support,Apple iOS,1.149,1.491,0.342,1.747,0.893,1.333,1.478,1.406,-9.827986084267488,-5.165054069436555,Positive Within,White
+2025-02-06,100000195,SMART HELP,DR_SmartHelp - TV Support,Clicked TV Support,Both,1.091,1.422,0.331,1.67,0.843,1.15,1.421,1.36,-19.095477386934682,-15.439103899605367,Positive Within,White
+2025-02-06,432,SMART HELP,DR_SmartHelp - TV Support,Clicked TV Support,Google Android,0.885,1.372,0.487,1.737,0.52,0.79,1.308,1.268,-39.6090422627498,-37.68077833289508,Positive Within,White
+2025-02-06,3,BIL LING,DR_Client Errors on Make Payment,Client Errors on Payment Page,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.001,-100.0,-100.0,Negative Within,White
+2025-02-06,1000003,BIL LING,DR_Client Errors on Make Payment,Client Errors on Payment Page,Both,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.001,-100.0,-100.0,Negative Within,White
+2025-02-06,239,BIL LING,DR_Client Errors on Make Payment,Client Errors on Payment Page,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,194,SMART HELP,DR_Smarthelp P&P - Connect with a support agent,Connect with Agent,Apple iOS,4.045,5.031,0.986,5.77,3.306,5.207,4.986,4.855,4.441388005386976,7.245103221952917,Negative Within,White
+2025-02-06,100000191,SMART HELP,DR_Smarthelp P&P - Connect with a support agent,Connect with Agent,Both,3.879,4.795,0.916,5.482,3.192,4.77,4.855,4.633,-1.7594445098269975,2.957788026390573,Negative Within,White
+2025-02-06,428,SMART HELP,DR_Smarthelp P&P - Connect with a support agent,Connect with Agent,Google Android,3.252,4.379,1.126,5.223,2.408,3.866,4.585,4.131,-15.678943104630125,-6.424727495703657,Negative Within,White
+2025-02-06,122,OVER ALL,DR_continuing chat from new chat page,Continuing chat from new chat page,Apple iOS,3.625,4.018,0.393,4.313,3.331,4.056,3.984,3.822,1.8181818181818088,6.135408125883163,Positive Within,White
+2025-02-06,100000119,OVER ALL,DR_continuing chat from new chat page,Continuing chat from new chat page,Both,3.718,4.122,0.404,4.425,3.415,4.162,4.129,3.949,0.7922504756962622,5.404447145823825,Positive Within,White
+2025-02-06,358,OVER ALL,DR_continuing chat from new chat page,Continuing chat from new chat page,Google Android,4.042,4.501,0.458,4.845,3.699,4.502,4.594,4.35,-1.9965169797238447,3.4958390166898825,Positive Within,White
+2025-02-06,47,DATA USAGE,DR_Data Usage Courtesy Credits,Courtesy Credit,Apple iOS,40.901,41.585,0.684,42.098,40.388,41.436,41.453,41.451,-0.04066581659028763,-0.0371519417920737,Positive Within,White
+2025-02-06,10000046,DATA USAGE,DR_Data Usage Courtesy Credits,Courtesy Credit,Both,43.378,44.03,0.652,44.519,42.889,43.644,43.787,43.866,-0.3262557584141106,-0.507220772115404,Positive Within,White
+2025-02-06,283,DATA USAGE,DR_Data Usage Courtesy Credits,Courtesy Credit,Google Android,50.22,51.2,0.98,51.936,49.484,50.113,50.44,50.71,-0.6480136173491069,-1.176373147455522,Positive Within,White
+2025-02-06,28,COX MOBILE,DR_Change plan - Account Restrictions,Coxmob Account Restrictions,Apple iOS,0.0,0.0,0.0,0.0,0.0,0,,,0,0,Negative Within,White
+2025-02-06,10000027,COX MOBILE,DR_Change plan - Account Restrictions,Coxmob Account Restrictions,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,264,COX MOBILE,DR_Change plan - Account Restrictions,Coxmob Account Restrictions,Google Android,0.0,0.0,0.0,0.0,0.0,0,,,0,0,Negative Within,White
+2025-02-06,40,COX MOBILE,DR_Mobile Billing - Activity & Statements,Coxmob Activity & Statements,Apple iOS,4.719,5.311,0.592,5.754,4.276,5.195,4.973,5.024,4.473109629970149,3.408465095910789,Positive Within,White
+2025-02-06,10000039,COX MOBILE,DR_Mobile Billing - Activity & Statements,Coxmob Activity & Statements,Both,5.092,5.528,0.436,5.854,4.764,5.532,5.23,5.227,5.783046958232006,5.844536850429842,Positive Within,White
+2025-02-06,276,COX MOBILE,DR_Mobile Billing - Activity & Statements,Coxmob Activity & Statements,Google Android,5.392,6.4,1.008,7.156,4.637,6.41,5.874,5.717,9.119649805447484,12.113244287938068,Positive Within,White
+2025-02-06,25,COX MOBILE,DR_Add a Line,Coxmob Add a Line,Apple iOS,2.325,3.436,1.111,4.27,1.492,2.312,2.731,2.888,-15.355648535564843,-19.954761052959583,Positive Within,White
+2025-02-06,10000024,COX MOBILE,DR_Add a Line,Coxmob Add a Line,Both,2.36,3.247,0.886,3.912,1.696,2.294,2.736,2.866,-16.154970760233923,-19.96278420654764,Positive Within,White
+2025-02-06,261,COX MOBILE,DR_Add a Line,Coxmob Add a Line,Google Android,1.973,3.56,1.588,4.751,0.782,2.247,2.749,2.793,-18.248440748440757,-19.53734870729784,Positive Within,White
+2025-02-06,42,COX MOBILE,DR_Mobile Billing - Bill Delivery Confirmation,Coxmob Bill Delivery Changes,Apple iOS,0.026,0.083,0.057,0.125,-0.016,0.094,0.083,0.064,12.864493996569474,47.258485639686704,Positive Within,White
+2025-02-06,10000041,COX MOBILE,DR_Mobile Billing - Bill Delivery Confirmation,Coxmob Bill Delivery Changes,Both,0.063,0.108,0.045,0.142,0.029,0.085,0.116,0.096,-26.72413793103448,-11.396803335649759,Positive Within,White
+2025-02-06,278,COX MOBILE,DR_Mobile Billing - Bill Delivery Confirmation,Coxmob Bill Delivery Changes,Google Android,0.105,0.231,0.126,0.325,0.011,0.061,0.198,0.175,-69.1696750902527,-65.15613099771515,Positive Within,White
+2025-02-06,37,COX MOBILE,DR_Mobile Billing Home,Coxmob Billing Home,Apple iOS,16.63,17.96,1.33,18.958,15.633,18.137,16.483,17.143,10.03553475472353,5.800136501251255,Positive Within,White
+2025-02-06,10000036,COX MOBILE,DR_Mobile Billing Home,Coxmob Billing Home,Both,16.774,17.971,1.197,18.869,15.876,17.78,16.678,17.128,6.6075068953111895,3.804612240926344,Positive Within,White
+2025-02-06,273,COX MOBILE,DR_Mobile Billing Home,Coxmob Billing Home,Google Android,16.746,18.248,1.501,19.373,15.621,16.85,17.172,17.078,-1.8759618984235287,-1.3365915354407534,Positive Within,White
+2025-02-06,26,COX MOBILE,DR_Change your Plan,Coxmob Change  Plan - linkout,Apple iOS,8.381,11.929,3.548,14.59,5.72,9.393,11.159,11.038,-15.824713232281857,-14.90357610934282,Positive Within,White
+2025-02-06,10000025,COX MOBILE,DR_Change your Plan,Coxmob Change  Plan - linkout,Both,8.891,11.496,2.604,13.449,6.938,9.802,11.173,10.861,-12.271774152304008,-9.750206396606824,Positive Within,White
+2025-02-06,262,COX MOBILE,DR_Change your Plan,Coxmob Change  Plan - linkout,Google Android,6.021,11.259,5.238,15.187,2.093,10.861,11.187,10.409,-2.911617096811252,4.3467400250434745,Positive Within,White
+2025-02-06,27,COX MOBILE,DR_Change Plan - New,Coxmob Change Plan - Native,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,10000026,COX MOBILE,DR_Change Plan - New,Coxmob Change Plan - Native,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,263,COX MOBILE,DR_Change Plan - New,Coxmob Change Plan - Native,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,24,COX MOBILE,DR_Change Status Exit link,Coxmob Change Status External Link,Apple iOS,4.442,5.645,1.203,6.547,3.539,4.191,4.852,4.95,-13.615617914666817,-15.325350538097867,Positive Within,White
+2025-02-06,10000023,COX MOBILE,DR_Change Status Exit link,Coxmob Change Status External Link,Both,5.027,5.936,0.909,6.617,4.346,5.214,5.138,5.304,1.4848181514848224,-1.6888006184517115,Positive Within,White
+2025-02-06,260,COX MOBILE,DR_Change Status Exit link,Coxmob Change Status External Link,Google Android,5.237,7.872,2.635,9.848,3.261,7.865,5.955,6.234,32.07071918629755,26.169048879477668,Positive Within,White
+2025-02-06,33,COX MOBILE,DR_Device Payment Plan,Coxmob Device Payment Plan,Apple iOS,2.357,3.54,1.183,4.427,1.47,3.324,3.716,3.353,-10.559292715740929,-0.8727807709894927,Positive Within,White
+2025-02-06,10000032,COX MOBILE,DR_Device Payment Plan,Coxmob Device Payment Plan,Both,1.775,2.598,0.823,3.215,1.158,2.398,2.768,2.464,-13.380463388203728,-2.6719880944327974,Positive Within,White
+2025-02-06,269,COX MOBILE,DR_Device Payment Plan,Coxmob Device Payment Plan,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,41,COX MOBILE,DR_Mobile Billing - Easypay Confirmation,Coxmob Easypay Enrollment,Apple iOS,2.441,2.935,0.494,3.305,2.07,2.247,2.549,2.58,-11.857663210983462,-12.915977676725939,Positive Within,White
+2025-02-06,10000040,COX MOBILE,DR_Mobile Billing - Easypay Confirmation,Coxmob Easypay Enrollment,Both,2.405,2.83,0.425,3.149,2.086,2.064,2.536,2.558,-18.607402399864785,-19.297239527669884,Positive Below,Red
+2025-02-06,277,COX MOBILE,DR_Mobile Billing - Easypay Confirmation,Coxmob Easypay Enrollment,Google Android,2.294,2.903,0.609,3.359,1.838,1.587,2.495,2.499,-36.40006870097899,-36.48697322607756,Positive Below,Red
+2025-02-06,30,COX MOBILE,DR_Change Plan - Pay as Gig,Coxmob Gig Plan,Apple iOS,0.0,0.0,0.0,0.0,0.0,0,,,0,0,Positive Within,White
+2025-02-06,10000029,COX MOBILE,DR_Change Plan - Pay as Gig,Coxmob Gig Plan,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,266,COX MOBILE,DR_Change Plan - Pay as Gig,Coxmob Gig Plan,Google Android,0.0,0.0,0.0,0.0,0.0,0,,,0,0,Positive Within,White
+2025-02-06,36,COX MOBILE,DR_Opted for Gig Unlimited Plan,Coxmob Gig Unlimited Plan,Apple iOS,55.531,57.399,1.868,58.8,54.13,56.026,56.525,57.259,-0.8825447211593216,-2.15291757531018,Positive Within,White
+2025-02-06,10000035,COX MOBILE,DR_Opted for Gig Unlimited Plan,Coxmob Gig Unlimited Plan,Both,56.941,58.857,1.916,60.294,55.504,58.044,58.102,58.873,-0.09957881847889423,-1.4081157746335105,Positive Within,White
+2025-02-06,272,COX MOBILE,DR_Opted for Gig Unlimited Plan,Coxmob Gig Unlimited Plan,Google Android,60.427,63.416,2.989,65.657,58.186,63.309,62.065,62.828,2.0041154915572497,0.7654218415008317,Positive Within,White
+2025-02-06,21,COX MOBILE,DR_Mymobile HomePage Visits,Coxmob Line Detail Page,Apple iOS,15.616,17.398,1.782,18.735,14.28,16.195,16.869,16.173,-3.9971207181267636,0.13788668558742673,Positive Within,White
+2025-02-06,10000021,COX MOBILE,DR_Mymobile HomePage Visits,Coxmob Line Detail Page,Both,15.213,16.577,1.364,17.599,14.19,16.224,16.195,15.634,0.17818393521866438,3.772941256737388,Positive Within,White
+2025-02-06,257,COX MOBILE,DR_Mymobile HomePage Visits,Coxmob Line Detail Page,Google Android,13.958,15.163,1.205,16.067,13.054,16.3,14.507,14.306,12.357337692391019,13.94219006675753,Positive Above,Green
+2025-02-06,38,COX MOBILE,DR_Mobile Billing - Additional Payment,Coxmob Make Additional Payment,Apple iOS,5.405,6.528,1.122,7.369,4.564,6.319,5.614,6.183,12.557890986818688,2.2056405307339353,Positive Within,White
+2025-02-06,10000037,COX MOBILE,DR_Mobile Billing - Additional Payment,Coxmob Make Additional Payment,Both,5.51,6.766,1.256,7.708,4.567,6.192,5.908,6.359,4.812110073995251,-2.6190526117133706,Positive Within,White
+2025-02-06,274,COX MOBILE,DR_Mobile Billing - Additional Payment,Coxmob Make Additional Payment,Google Android,5.876,7.152,1.277,8.11,4.919,5.861,6.641,6.78,-11.747117535708147,-13.558822083476723,Positive Within,White
+2025-02-06,35,COX MOBILE,DR_Opted for Pay as you Gig Plan,Coxmob Pay as you Gig,Apple iOS,37.934,39.766,1.832,41.14,36.56,38.661,39.313,38.775,-1.6577697509711296,-0.2933181573567733,Positive Within,White
+2025-02-06,10000034,COX MOBILE,DR_Opted for Pay as you Gig Plan,Coxmob Pay as you Gig,Both,39.516,41.355,1.839,42.734,38.137,40.044,40.709,40.231,-1.633890596706945,-0.4637435714303406,Positive Within,White
+2025-02-06,271,COX MOBILE,DR_Opted for Pay as you Gig Plan,Coxmob Pay as you Gig,Google Android,43.346,45.44,2.094,47.01,41.776,43.651,44.249,43.803,-1.3523984167672687,-0.34662902323672284,Positive Within,White
+2025-02-06,39,COX MOBILE,DR_Mobile Billing - Payment Method,Coxmob Payment Method Changes,Apple iOS,2.84,3.27,0.43,3.592,2.518,3.089,3.024,3.063,2.163949917316323,0.8609148989431893,Positive Within,White
+2025-02-06,10000038,COX MOBILE,DR_Mobile Billing - Payment Method,Coxmob Payment Method Changes,Both,3.197,3.55,0.353,3.815,2.933,3.248,3.361,3.352,-3.366201972118309,-3.1064794558689015,Positive Within,White
+2025-02-06,275,COX MOBILE,DR_Mobile Billing - Payment Method,Coxmob Payment Method Changes,Google Android,3.702,4.58,0.878,5.239,3.044,3.663,4.213,4.063,-13.057778380577798,-9.835325779269258,Positive Within,White
+2025-02-06,29,COX MOBILE,DR_Change plan Confirmation,Coxmob Plan Purchased,Apple iOS,0.0,0.0,0.0,0.0,0.0,0,,,0,0,Positive Within,White
+2025-02-06,10000028,COX MOBILE,DR_Change plan Confirmation,Coxmob Plan Purchased,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,265,COX MOBILE,DR_Change plan Confirmation,Coxmob Plan Purchased,Google Android,0.0,0.0,0.0,0.0,0.0,0,,,0,0,Positive Within,White
+2025-02-06,43,COX MOBILE,DR_Wireless Support,Coxmob Support Section,Apple iOS,3.318,3.992,0.673,4.497,2.814,3.604,3.747,3.548,-3.8200533739992397,1.5640411441454227,Positive Within,White
+2025-02-06,10000042,COX MOBILE,DR_Wireless Support,Coxmob Support Section,Both,3.49,3.951,0.461,4.297,3.144,3.84,3.788,3.589,1.3612881330366677,6.995579002117604,Positive Within,White
+2025-02-06,279,COX MOBILE,DR_Wireless Support,Coxmob Support Section,Google Android,3.446,4.332,0.885,4.996,2.783,4.457,3.902,3.689,14.210930922136392,20.828476156911663,Positive Within,White
+2025-02-06,31,COX MOBILE,DR_Change Plan - Unlimited,Coxmob Unlimited Plan,Apple iOS,0.0,0.0,0.0,0.0,0.0,0,,,0,0,Positive Within,White
+2025-02-06,10000030,COX MOBILE,DR_Change Plan - Unlimited,Coxmob Unlimited Plan,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,267,COX MOBILE,DR_Change Plan - Unlimited,Coxmob Unlimited Plan,Google Android,0.0,0.0,0.0,0.0,0.0,0,,,0,0,Positive Within,White
+2025-02-06,32,COX MOBILE,DR_Welcome Guide,Coxmob Welcome Guide,Apple iOS,2.24,3.202,0.961,3.923,1.52,3.035,2.823,2.829,7.5097414098476865,7.296895990949599,Positive Within,White
+2025-02-06,10000031,COX MOBILE,DR_Welcome Guide,Coxmob Welcome Guide,Both,2.599,3.365,0.766,3.94,2.024,5.005,2.977,3.143,68.13840764025531,59.25289550719103,Positive Above,Green
+2025-02-06,268,COX MOBILE,DR_Welcome Guide,Coxmob Welcome Guide,Google Android,2.996,4.815,1.819,6.179,1.632,10.112,3.404,4.006,197.099685204617,152.4276691879478,Positive Above,Green
+2025-02-06,148,RESET MODEM,DR_Reset Modem Error -DMCA,DMCA Error,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,100000145,RESET MODEM,DR_Reset Modem Error -DMCA,DMCA Error,Both,0.152,0.231,0.08,0.291,0.092,0.341,0.217,0.211,56.83311432325892,61.25472887767973,Negative Above,Red
+2025-02-06,384,RESET MODEM,DR_Reset Modem Error -DMCA,DMCA Error,Google Android,0.578,0.896,0.318,1.135,0.34,1.291,0.82,0.813,57.384186694531515,58.82714783678487,Negative Above,Red
+2025-02-06,45,DATA USAGE,DR_Data Plan upgrade,Data Plan Upgrade,Apple iOS,0.434,0.588,0.154,0.704,0.318,0.349,0.612,0.583,-43.00046663555763,-40.15775034293553,Positive Within,White
+2025-02-06,10000044,DATA USAGE,DR_Data Plan upgrade,Data Plan Upgrade,Both,1.117,1.452,0.335,1.703,0.866,0.802,1.559,1.507,-48.561480667033166,-46.76873382154471,Positive Below,Red
+2025-02-06,281,DATA USAGE,DR_Data Plan upgrade,Data Plan Upgrade,Google Android,2.951,3.978,1.027,4.748,2.181,2.129,4.257,4.127,-49.98489780850422,-48.4108073179597,Positive Below,Red
+2025-02-06,55,E COMMERCE,DR_Data Plan Upgrade Ecomm Traffic sent from App to cox.com,Data Usage,Apple iOS,15.81,21.19,5.38,25.225,11.775,14.26,23.971,22.06,-40.5103877373446,-35.358407260166544,Positive Within,White
+2025-02-06,10000054,E COMMERCE,DR_Data Plan Upgrade Ecomm Traffic sent from App to cox.com,Data Usage,Both,15.578,20.795,5.217,24.708,11.665,13.732,23.387,21.753,-41.28254309554935,-36.874332480849745,Positive Within,White
+2025-02-06,291,E COMMERCE,DR_Data Plan Upgrade Ecomm Traffic sent from App to cox.com,Data Usage,Google Android,14.576,19.654,5.078,23.462,10.768,11.724,21.161,20.555,-44.59693915438571,-42.96269028247835,Positive Within,White
+2025-02-06,49,DATA USAGE,DR_Total Data Usage >=100%,Data usage >=100%,Apple iOS,14.668,20.319,5.651,24.557,10.43,11.931,23.144,20.209,-48.44884203249222,-40.962045026069205,Positive Within,White
+2025-02-06,10000048,DATA USAGE,DR_Total Data Usage >=100%,Data usage >=100%,Both,14.082,19.324,5.242,23.255,10.151,11.26,21.805,19.168,-48.360806100788814,-41.256464745183834,Positive Within,White
+2025-02-06,285,DATA USAGE,DR_Total Data Usage >=100%,Data usage >=100%,Google Android,11.852,16.578,4.727,20.124,8.306,9.294,17.989,16.211,-48.33550395476636,-42.66879415707788,Positive Within,White
+2025-02-06,48,DATA USAGE,DR_Total Data Usage >=75%,Data usage >=75%,Apple iOS,44.912,58.687,13.775,69.018,34.58,34.716,65.3,58.266,-46.83602458110824,-40.41794624182482,Positive Within,White
+2025-02-06,10000047,DATA USAGE,DR_Total Data Usage >=75%,Data usage >=75%,Both,43.305,56.143,12.838,65.771,33.677,32.972,62.037,55.409,-46.851072746909104,-40.49374383000687,Positive Below,Red
+2025-02-06,284,DATA USAGE,DR_Total Data Usage >=75%,Data usage >=75%,Google Android,37.811,48.656,10.845,56.789,29.678,27.861,52.74,47.304,-47.172923777019335,-41.10268889905161,Positive Below,Red
+2025-02-06,50,DATA USAGE,DR_Data Usage - Agent Chat Started,Data_usage Interacted with Chat,Apple iOS,2.759,3.039,0.28,3.249,2.549,2.703,2.866,2.836,-5.677966101694919,-4.679620552244605,Negative Within,White
+2025-02-06,10000049,DATA USAGE,DR_Data Usage - Agent Chat Started,Data_usage Interacted with Chat,Both,2.631,2.879,0.248,3.066,2.444,2.594,2.766,2.719,-6.213522028820836,-4.600787025118597,Negative Within,White
+2025-02-06,286,DATA USAGE,DR_Data Usage - Agent Chat Started,Data_usage Interacted with Chat,Google Android,2.212,2.53,0.318,2.769,1.974,2.272,2.48,2.389,-8.392373711191771,-4.886829840082647,Negative Within,White
+2025-02-06,183,SMART HELP,DR_SmartHelp - Landing Page,Devices Page Visits,Apple iOS,3158.25,3441.5,283.25,3795.562,2804.188,3225.0,3363.286,3333.333,-4.111625536252812,-3.2500000000000044,Positive Within,White
+2025-02-06,100000180,SMART HELP,DR_SmartHelp - Landing Page,Devices Page Visits,Both,4676.5,5158.25,481.75,5760.438,4074.312,4871.0,5098.714,4976.2,-4.466111904962028,-2.1140629395924564,Positive Within,White
+2025-02-06,417,SMART HELP,DR_SmartHelp - Landing Page,Devices Page Visits,Google Android,1491.25,1702.25,211.0,1966.0,1227.5,1646.0,1735.429,1642.867,-5.1531116233124745,0.1907235320375019,Positive Within,White
+2025-02-06,70,EASY CON NECT,DR_Visits who did not Start EC Flow,Did Not Start the Flow,Apple iOS,74.125,79.177,5.052,82.966,70.337,72.811,69.963,75.396,4.071148101335643,-3.4288200201070778,Negative Within,White
+2025-02-06,10000069,EASY CON NECT,DR_Visits who did not Start EC Flow,Did Not Start the Flow,Both,72.596,77.11,4.513,80.495,69.212,70.638,67.44,73.11,4.741992882562311,-3.381338556505869,Negative Within,White
+2025-02-06,306,EASY CON NECT,DR_Visits who did not Start EC Flow,Did Not Start the Flow,Google Android,62.706,66.822,4.116,69.908,59.618,61.516,56.734,61.975,8.428262073827872,-0.7409415379055119,Negative Within,White
+2025-02-06,189,SMART HELP,DR_SmartHelp - Reboot Flow Started,Did a Device Reboot,Apple iOS,0.663,1.239,0.576,1.671,0.231,0.651,0.96,0.935,-32.17740735228458,-30.401625031182057,Positive Within,White
+2025-02-06,100000186,SMART HELP,DR_SmartHelp - Reboot Flow Started,Did a Device Reboot,Both,0.671,1.232,0.561,1.652,0.25,0.616,0.99,0.944,-37.80470214914179,-34.715794679761196,Positive Within,White
+2025-02-06,423,SMART HELP,DR_SmartHelp - Reboot Flow Started,Did a Device Reboot,Google Android,0.634,1.279,0.645,1.763,0.15,0.547,1.053,0.958,-48.039082643506575,-42.93166405842461,Positive Within,White
+2025-02-06,132,RE GISTRATION (NATIVE),DR_Native Registration - Did not Registered,Did not Register,Apple iOS,41.988,44.512,2.524,46.405,40.095,42.373,43.08,43.188,-1.6408066083254094,-1.8863410078494653,Negative Within,White
+2025-02-06,100000129,RE GISTRATION (NATIVE),DR_Native Registration - Did not Registered,Did not Register,Both,42.829,45.168,2.338,46.921,41.076,42.863,43.38,43.939,-1.1927696163180963,-2.4484795150834886,Negative Within,White
+2025-02-06,368,RE GISTRATION (NATIVE),DR_Native Registration - Did not Registered,Did not Register,Google Android,44.215,47.512,3.297,49.985,41.743,44.005,44.033,45.464,-0.06391289677904122,-3.2082099439331033,Negative Within,White
+2025-02-06,72,EASY CON NECT,DR_Visits who did not Start EC Flow - Failure,Did_not Failure,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,2.139,0,-100.0,Negative Within,White
+2025-02-06,10000071,EASY CON NECT,DR_Visits who did not Start EC Flow - Failure,Did_not Failure,Both,0.0,0.0,0.0,0.0,0.0,0.0,,2.097,0,-100.0,Negative Within,White
+2025-02-06,308,EASY CON NECT,DR_Visits who did not Start EC Flow - Failure,Did_not Failure,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,1.866,0,-100.0,Negative Within,White
+2025-02-06,73,EASY CON NECT,DR_Visits who did not Start EC Flow - No Result,Did_not No Result,Apple iOS,71.288,77.183,5.895,81.604,66.866,67.337,70.656,72.233,-4.697599844720801,-6.778022408050986,Negative Within,White
+2025-02-06,10000072,EASY CON NECT,DR_Visits who did not Start EC Flow - No Result,Did_not No Result,Both,68.124,74.192,6.069,78.744,63.572,65.446,68.162,69.699,-3.9846248642938993,-6.102267026370918,Negative Within,White
+2025-02-06,309,EASY CON NECT,DR_Visits who did not Start EC Flow - No Result,Did_not No Result,Google Android,51.434,59.406,7.972,65.385,45.455,56.047,55.428,54.781,1.1167640903514466,2.3112070082820866,Negative Within,White
+2025-02-06,71,EASY CON NECT,DR_Visits who did not Start EC Flow - Success,Did_not Success,Apple iOS,22.54,27.903,5.363,31.925,18.518,32.663,29.344,25.628,11.311201663039723,27.448289855147834,Positive Above,Green
+2025-02-06,10000070,EASY CON NECT,DR_Visits who did not Start EC Flow - Success,Did_not Success,Both,24.938,30.198,5.26,34.144,20.992,34.554,31.838,28.204,8.530686600917146,22.51468174098445,Positive Above,Green
+2025-02-06,307,EASY CON NECT,DR_Visits who did not Start EC Flow - Success,Did_not Success,Google Android,39.688,47.622,7.935,53.574,33.736,43.953,44.572,43.353,-1.3887642466122223,1.3832077502690838,Positive Within,White
+2025-02-06,59,EASY CON NECT,DR_Visits where One EC Card was shown,Easy Connect Eligible Visits,Apple iOS,1981.75,2483.0,501.25,3109.562,1355.188,2935.0,2922.429,2478.733,0.43017060175000776,18.407251015303526,Positive Within,White
+2025-02-06,10000058,EASY CON NECT,DR_Visits where One EC Card was shown,Easy Connect Eligible Visits,Both,2359.75,2963.5,603.75,3718.188,1605.062,3634.0,3628.286,3005.5,0.15749271596188857,20.911661953086007,Positive Within,White
+2025-02-06,295,EASY CON NECT,DR_Visits where One EC Card was shown,Easy Connect Eligible Visits,Google Android,380.25,523.5,143.25,702.562,201.188,699.0,705.857,526.767,-0.9714632665452383,32.696323482883,Positive Within,White
+2025-02-06,13,BIL LING,DR_Billing - Automatic Payments,Easy Pay Enrollments,Apple iOS,3.24,3.588,0.348,3.848,2.98,3.486,3.394,3.378,2.723637129025498,3.189012116667288,Positive Within,White
+2025-02-06,10000013,BIL LING,DR_Billing - Automatic Payments,Easy Pay Enrollments,Both,3.212,3.554,0.342,3.81,2.956,3.373,3.374,3.331,-0.042335210194302676,1.2588560220950462,Positive Within,White
+2025-02-06,249,BIL LING,DR_Billing - Automatic Payments,Easy Pay Enrollments,Google Android,2.985,3.419,0.434,3.745,2.66,2.983,3.317,3.176,-10.07708539683905,-6.08668275789696,Positive Within,White
+2025-02-06,69,EASY CON NECT,DR_Easy Connect - Started Agent Chat,Easyconnect_Interacted with Chat,Apple iOS,35.77,40.193,4.423,43.51,32.452,34.461,40.116,41.603,-14.096619802572544,-17.166699383455448,Negative Within,White
+2025-02-06,10000068,EASY CON NECT,DR_Easy Connect - Started Agent Chat,Easyconnect_Interacted with Chat,Both,35.39,39.174,3.784,42.012,32.552,34.208,39.697,41.654,-13.827241353250885,-17.875439935852203,Negative Within,White
+2025-02-06,305,EASY CON NECT,DR_Easy Connect - Started Agent Chat,Easyconnect_Interacted with Chat,Google Android,34.032,39.859,5.827,44.23,29.662,33.457,38.579,41.674,-13.277616494356725,-19.717971893171647,Negative Within,White
+2025-02-06,139,RE GISTRATION (NATIVE),DR_Native Registration - Email Lookup,Email Lookup,Apple iOS,353.0,417.5,64.5,498.125,272.375,453.0,379.143,362.467,19.480030143180098,24.9770093801729,Positive Within,White
+2025-02-06,100000136,RE GISTRATION (NATIVE),DR_Native Registration - Email Lookup,Email Lookup,Both,569.25,659.75,90.5,772.875,456.125,694.0,605.714,581.167,14.575471698113216,19.414969888156016,Positive Within,White
+2025-02-06,375,RE GISTRATION (NATIVE),DR_Native Registration - Email Lookup,Email Lookup,Google Android,204.5,240.75,36.25,286.062,159.188,241.0,226.571,218.7,6.368221941992427,10.196616369455882,Positive Within,White
+2025-02-06,140,RE GISTRATION (NATIVE),DR_Native Registration - Email Lookup Success,Email Lookup Success Rate,Apple iOS,52.813,57.197,4.385,60.486,49.524,55.188,55.778,55.072,-1.0582715239929619,0.21051204421843236,Positive Within,White
+2025-02-06,100000137,RE GISTRATION (NATIVE),DR_Native Registration - Email Lookup Success,Email Lookup Success Rate,Both,53.821,57.337,3.516,59.973,51.185,55.764,56.372,55.572,-1.0790510027723843,0.3454977326711425,Positive Within,White
+2025-02-06,376,RE GISTRATION (NATIVE),DR_Native Registration - Email Lookup Success,Email Lookup Success Rate,Google Android,52.666,58.218,5.552,62.382,48.502,56.846,57.384,56.425,-0.9370503328470522,0.7454089824794968,Positive Within,White
+2025-02-06,146,RESET MODEM,DR_Reset Modem - Error Outage,Error Outage,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,100000143,RESET MODEM,DR_Reset Modem - Error Outage,Error Outage,Both,1.162,1.755,0.594,2.201,0.716,1.428,1.713,1.584,-16.623571607306708,-9.85038193640707,Negative Within,White
+2025-02-06,382,RESET MODEM,DR_Reset Modem - Error Outage,Error Outage,Google Android,4.588,6.996,2.407,8.801,2.783,5.399,6.461,6.07,-16.440779146123063,-11.051923446552637,Negative Within,White
+2025-02-06,66,EASY CON NECT,DR_Easy Connect Started - Failure,Failure,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,9.014,0,-100.0,Negative Within,White
+2025-02-06,10000065,EASY CON NECT,DR_Easy Connect Started - Failure,Failure,Both,0.124,1.208,1.083,2.02,-0.688,0.187,1.233,9.567,-84.83373884833738,-98.0452689236087,Negative Within,White
+2025-02-06,302,EASY CON NECT,DR_Easy Connect Started - Failure,Failure,Google Android,0.527,4.665,4.138,7.769,-2.577,0.743,4.682,11.188,-84.12926062677367,-93.35889666514716,Negative Within,White
+2025-02-06,34,COX MOBILE,DR_Insurance Claim,File a Claim,Apple iOS,0.668,1.362,0.694,1.883,0.147,0.289,0.926,1.11,-68.77604568606267,-73.95301327885599,Negative Within,White
+2025-02-06,10000033,COX MOBILE,DR_Insurance Claim,File a Claim,Both,0.486,1.028,0.541,1.433,0.081,0.209,0.706,0.845,-70.4025895205341,-75.27894965106651,Negative Within,White
+2025-02-06,270,COX MOBILE,DR_Insurance Claim,File a Claim,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,0.058,0.122,-100.0,-100.0,Negative Within,White
+2025-02-06,136,RE GISTRATION (NATIVE),DR_Native Registration Success,Funnel Success Rate,Apple iOS,68.227,71.006,2.779,73.09,66.144,69.08,69.094,69.54,-0.020882394900554456,-0.6612517046584846,Positive Within,White
+2025-02-06,100000133,RE GISTRATION (NATIVE),DR_Native Registration Success,Funnel Success Rate,Both,67.758,70.214,2.456,72.056,65.916,68.496,68.989,68.939,-0.7141954895314342,-0.6421647057458528,Positive Within,White
+2025-02-06,372,RE GISTRATION (NATIVE),DR_Native Registration Success,Funnel Success Rate,Google Android,65.539,69.385,3.846,72.27,62.654,67.138,68.725,67.699,-2.3096094803950282,-0.8280821169123052,Positive Within,White
+2025-02-06,10,BIL LING,DR_CoxApp | Billing - Future date payment (Link out),Future date payment - Linkout,Apple iOS,8.457,9.685,1.228,10.606,7.536,9.617,8.962,8.913,7.310347026286011,7.904628330995784,Positive Within,White
+2025-02-06,10000010,BIL LING,DR_CoxApp | Billing - Future date payment (Link out),Future date payment - Linkout,Both,8.309,9.506,1.197,10.404,7.411,9.44,8.939,8.824,5.601278465840977,6.978940409859281,Positive Within,White
+2025-02-06,246,BIL LING,DR_CoxApp | Billing - Future date payment (Link out),Future date payment - Linkout,Google Android,7.788,9.254,1.467,10.354,6.687,9.065,8.913,8.652,1.7053741725569307,4.778306902769422,Positive Within,White
+2025-02-06,135,RE GISTRATION (NATIVE),DR_Native Registration - Intent to Register,Intent to Register,Apple iOS,1298.0,1496.5,198.5,1744.625,1049.875,1478.0,1357.429,1325.233,8.882340559882138,11.527529743189877,Positive Within,White
+2025-02-06,100000132,RE GISTRATION (NATIVE),DR_Native Registration - Intent to Register,Intent to Register,Both,1929.25,2207.75,278.5,2555.875,1581.125,2114.0,2017.857,1970.133,4.764601769911502,7.302382241472652,Positive Within,White
+2025-02-06,371,RE GISTRATION (NATIVE),DR_Native Registration - Intent to Register,Intent to Register,Google Android,622.0,702.0,80.0,802.0,522.0,636.0,660.429,644.9,-3.698896820246596,-1.3800589238641616,Positive Within,White
+2025-02-06,46,DATA USAGE,DR_Data Usage Learn More,Learn More,Apple iOS,6.036,6.679,0.643,7.161,5.554,5.777,6.002,6.42,-3.753332063975618,-10.012772983582046,Positive Within,White
+2025-02-06,10000045,DATA USAGE,DR_Data Usage Learn More,Learn More,Both,5.527,6.086,0.558,6.504,5.108,5.323,5.495,5.889,-3.132636614152758,-9.606022868787505,Positive Within,White
+2025-02-06,282,DATA USAGE,DR_Data Usage Learn More,Learn More,Google Android,3.986,4.49,0.504,4.868,3.608,3.992,4.05,4.382,-1.439051918735902,-8.894501414965154,Positive Within,White
+2025-02-06,96,LOG IN,DR_Login Page Visits,Login Page Visits,Apple iOS,107521.0,126676.0,19155.0,150619.75,83577.25,114145.0,115054.429,115948.033,-0.7904333476950607,-1.5550357185877293,Positive Within,White
+2025-02-06,10000093,LOG IN,DR_Login Page Visits,Login Page Visits,Both,141110.5,167086.25,25975.75,199555.938,108640.812,149621.0,150968.429,152532.733,-0.8925234131261179,-1.9089235927938553,Positive Within,White
+2025-02-06,332,LOG IN,DR_Login Page Visits,Login Page Visits,Google Android,33942.5,39998.75,6056.25,47569.062,26372.188,35476.0,35914.0,36584.7,-1.2195801080358635,-3.030501821799816,Positive Within,White
+2025-02-06,97,LOG IN,DR_Successful logins,Login Success Rate,Apple iOS,85.057,86.352,1.295,87.323,84.086,86.328,86.113,85.674,0.24950563378412297,0.7632411662334443,Positive Within,White
+2025-02-06,10000094,LOG IN,DR_Successful logins,Login Success Rate,Both,84.691,86.026,1.335,87.027,83.69,86.031,85.938,85.32,0.10771831660210616,0.8330181809089898,Positive Within,White
+2025-02-06,333,LOG IN,DR_Successful logins,Login Success Rate,Google Android,83.494,84.907,1.413,85.967,82.435,85.074,85.376,84.2,-0.35372938530733755,1.038524743001443,Positive Within,White
+2025-02-06,2,BIL LING,DR_Billing Make a Payment,Make Payments,Apple iOS,35.274,40.05,4.776,43.631,31.692,36.827,38.059,38.476,-3.23816887874602,-4.28545685780523,Positive Within,White
+2025-02-06,1000002,BIL LING,DR_Billing Make a Payment,Make Payments,Both,35.226,40.201,4.975,43.933,31.495,36.827,38.097,38.607,-3.333233337583149,-4.611221721644792,Positive Within,White
+2025-02-06,238,BIL LING,DR_Billing Make a Payment,Make Payments,Google Android,35.26,41.375,6.115,45.962,30.673,36.828,38.208,39.029,-3.6128901999932586,-5.640605183258789,Positive Within,White
+2025-02-06,18,BIL LING,DR_Billing - Move My Service,Move Service,Apple iOS,0.788,0.941,0.153,1.056,0.673,0.922,0.827,0.843,11.5258337653361,9.332384679236347,Positive Within,White
+2025-02-06,10000018,BIL LING,DR_Billing - Move My Service,Move Service,Both,0.737,0.888,0.151,1.001,0.624,0.889,0.784,0.793,13.413522872243478,12.105926860025233,Positive Within,White
+2025-02-06,254,BIL LING,DR_Billing - Move My Service,Move Service,Google Android,0.569,0.715,0.146,0.825,0.459,0.776,0.642,0.626,20.926090828138925,23.895689196381042,Positive Within,White
+2025-02-06,130,RE GISTRATION (NATIVE),DR_Native Registration Confirmation,New Registrations,Apple iOS,32.869,36.467,3.598,39.166,30.17,34.011,32.143,33.568,5.812940559471647,1.3186025335360583,Positive Within,White
+2025-02-06,100000127,RE GISTRATION (NATIVE),DR_Native Registration Confirmation,New Registrations,Both,29.219,32.675,3.456,35.267,26.627,31.159,29.068,30.066,7.192950554608138,3.634876006669726,Positive Within,White
+2025-02-06,366,RE GISTRATION (NATIVE),DR_Native Registration Confirmation,New Registrations,Google Android,21.979,25.18,3.201,27.581,19.578,24.506,22.787,22.981,7.541752344651191,6.635916626778653,Positive Within,White
+2025-02-06,119,OVER ALL,DR_New Visitors,New Visitors,Apple iOS,3.108,3.42,0.312,3.654,2.874,3.985,3.792,3.407,5.10154101201913,16.95019711806538,Positive Above,Green
+2025-02-06,100000116,OVER ALL,DR_New Visitors,New Visitors,Both,3.513,3.819,0.306,4.048,3.284,4.303,4.153,3.769,3.6189755409542825,14.159127689491408,Positive Above,Green
+2025-02-06,355,OVER ALL,DR_New Visitors,New Visitors,Google Android,4.734,5.128,0.395,5.424,4.437,5.326,5.304,4.912,0.4093724750875235,8.422452635578953,Positive Within,White
+2025-02-06,68,EASY CON NECT,DR_Easy Connect Started - No Result,No Result,Apple iOS,15.419,18.226,2.807,20.331,13.314,14.787,16.084,15.467,-8.066364096597411,-4.398723333642201,Negative Within,White
+2025-02-06,10000067,EASY CON NECT,DR_Easy Connect Started - No Result,No Result,Both,17.234,19.961,2.727,22.006,15.189,15.933,17.349,16.937,-8.161853709147502,-5.929701645280653,Negative Within,White
+2025-02-06,304,EASY CON NECT,DR_Easy Connect Started - No Result,No Result,Google Android,21.693,27.146,5.453,31.235,17.604,19.331,21.109,21.558,-8.42480678911251,-10.329994526377009,Negative Within,White
+2025-02-06,147,RESET MODEM,DR_Reset Modem Error - Non Pay,Non Pay Error,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,100000144,RESET MODEM,DR_Reset Modem Error - Non Pay,Non Pay Error,Both,0.041,0.079,0.038,0.107,0.013,0.062,0.066,0.054,-5.856832971800444,15.170278637770904,Negative Within,White
+2025-02-06,383,RESET MODEM,DR_Reset Modem Error - Non Pay,Non Pay Error,Google Android,0.147,0.309,0.162,0.43,0.026,0.235,0.247,0.207,-4.968226458694408,13.76472486687104,Negative Within,White
+2025-02-06,128,OVER ALL,DR_CoxApp | Visits not logged in,Not Logged-in Visits,Apple iOS,13.509,14.792,1.282,15.753,12.547,13.549,13.763,14.179,-1.553871704380327,-4.4407194863632915,Negative Within,White
+2025-02-06,100000125,OVER ALL,DR_CoxApp | Visits not logged in,Not Logged-in Visits,Both,13.89,15.21,1.32,16.2,12.9,13.891,13.988,14.584,-0.6954798913376508,-4.752653568718507,Negative Within,White
+2025-02-06,364,OVER ALL,DR_CoxApp | Visits not logged in,Not Logged-in Visits,Google Android,15.128,16.578,1.449,17.665,14.042,14.988,14.711,15.865,1.8829447352321216,-5.527097611913955,Negative Within,White
+2025-02-06,108,NOTIFICATION CENTER,DR_Notification accepted with new notifications,Notifi_center Accepted,Apple iOS,5.652,14.998,9.346,22.007,-1.357,15.243,15.679,15.712,-2.782561158944926,-2.987449403019251,Positive Within,White
+2025-02-06,100000105,NOTIFICATION CENTER,DR_Notification accepted with new notifications,Notifi_center Accepted,Both,5.248,15.3,10.052,22.838,-2.291,15.187,15.253,15.747,-0.4345667912299897,-3.5586827031763844,Positive Within,White
+2025-02-06,344,NOTIFICATION CENTER,DR_Notification accepted with new notifications,Notifi_center Accepted,Google Android,4.583,15.48,10.897,23.653,-3.59,15.068,14.319,15.76,5.23291197334159,-4.38884071152097,Positive Within,White
+2025-02-06,105,NOTIFICATION CENTER,DR_Notification page Visits,Notifi_center Clicked bell with new notifications,Apple iOS,4.277,4.676,0.399,4.975,3.978,4.721,4.861,4.512,-2.8800658300761097,4.627454456806015,Positive Within,White
+2025-02-06,100000102,NOTIFICATION CENTER,DR_Notification page Visits,Notifi_center Clicked bell with new notifications,Both,5.517,5.966,0.449,6.303,5.181,5.876,6.037,5.797,-2.6691907240889856,1.3610253402563344,Positive Within,White
+2025-02-06,341,NOTIFICATION CENTER,DR_Notification page Visits,Notifi_center Clicked bell with new notifications,Google Android,12.172,12.963,0.79,13.556,11.579,12.037,12.161,12.26,-1.0208157128089461,-1.8223934444948575,Positive Within,White
+2025-02-06,107,NOTIFICATION CENTER,DR_Notification Declined with new notifications,Notifi_center Declined,Apple iOS,20.933,22.332,1.399,23.382,19.884,20.916,21.417,20.943,-2.339263202129155,-0.1274907246916669,Negative Within,White
+2025-02-06,100000104,NOTIFICATION CENTER,DR_Notification Declined with new notifications,Notifi_center Declined,Both,22.629,24.224,1.595,25.421,21.433,22.358,22.904,22.442,-2.3832542241793258,-0.3751860334548269,Negative Within,White
+2025-02-06,343,NOTIFICATION CENTER,DR_Notification Declined with new notifications,Notifi_center Declined,Google Android,25.155,28.271,3.116,30.608,22.818,25.375,25.993,25.224,-2.3764901153620093,0.6000985847928525,Negative Within,White
+2025-02-06,109,NOTIFICATION CENTER,DR_No action on new notifications,Notifi_center No Action,Apple iOS,52.752,54.943,2.19,56.586,51.109,51.309,51.799,52.196,-0.9467837483039013,-1.6990500518879261,Negative Within,White
+2025-02-06,100000106,NOTIFICATION CENTER,DR_No action on new notifications,Notifi_center No Action,Both,50.379,52.428,2.049,53.965,48.842,49.399,49.717,50.191,-0.6387637350006711,-1.5788218839469843,Negative Within,White
+2025-02-06,345,NOTIFICATION CENTER,DR_No action on new notifications,Notifi_center No Action,Google Android,45.335,48.34,3.004,50.593,43.082,45.401,45.421,46.482,-0.043403733350093725,-2.3252111579155783,Negative Within,White
+2025-02-06,106,NOTIFICATION CENTER,DR_Notification Viewed with new notifications,Notifi_center Viewed,Apple iOS,8.51,18.569,10.059,26.113,0.965,19.108,19.039,18.88,0.36015486659264856,1.210307476363234,Positive Within,White
+2025-02-06,100000103,NOTIFICATION CENTER,DR_Notification Viewed with new notifications,Notifi_center Viewed,Both,7.91,14.583,6.673,19.588,2.905,15.271,15.264,14.897,0.04398689751988159,2.5098844741594175,Positive Within,White
+2025-02-06,342,NOTIFICATION CENTER,DR_Notification Viewed with new notifications,Notifi_center Viewed,Google Android,6.114,7.605,1.491,8.723,4.996,7.241,7.464,7.52,-2.982103550579001,-3.713947581878384,Positive Within,White
+2025-02-06,103,NOTIFICATION CENTER,DR_Notification status Exists,Notifi_center Visits with Bell icon,Apple iOS,87496.0,104987.0,17491.0,126850.75,65632.25,94408.0,95344.286,94717.033,-0.9820050643532419,-0.3262700725072049,Positive Within,White
+2025-02-06,100000100,NOTIFICATION CENTER,DR_Notification status Exists,Notifi_center Visits with Bell icon,Both,115320.5,138880.5,23560.0,168330.5,85870.5,124182.0,125527.429,124892.867,-1.0718203875760741,-0.5691811595324648,Positive Within,White
+2025-02-06,339,NOTIFICATION CENTER,DR_Notification status Exists,Notifi_center Visits with Bell icon,Google Android,28014.5,33504.5,5490.0,40367.0,21152.0,29774.0,30183.143,30175.833,-1.3555343095957113,-1.3316395570406743,Positive Within,White
+2025-02-06,104,NOTIFICATION CENTER,DR_Notification received visits,Notifi_center Visits with new notifications,Apple iOS,68.125,74.321,6.196,78.968,63.478,71.972,73.161,74.793,-1.6253749062734288,-3.7719577768913872,Positive Within,White
+2025-02-06,100000101,NOTIFICATION CENTER,DR_Notification received visits,Notifi_center Visits with new notifications,Both,60.781,67.504,6.723,72.546,55.739,64.972,66.26,67.997,-1.9440689403886646,-4.448725679074105,Positive Within,White
+2025-02-06,340,NOTIFICATION CENTER,DR_Notification received visits,Notifi_center Visits with new notifications,Google Android,37.698,45.42,7.722,51.211,31.907,42.776,44.468,46.659,-3.805292392306541,-8.322277969356458,Positive Within,White
+2025-02-06,110,NOTIFICATION CENTER,DR_Notifications not received visits,Notifi_center Visits with no new notifications,Apple iOS,26.871,33.075,6.204,37.728,22.218,29.49,28.428,26.537,3.7373173930741195,11.127300863946644,Negative Within,White
+2025-02-06,100000107,NOTIFICATION CENTER,DR_Notifications not received visits,Notifi_center Visits with no new notifications,Both,34.794,41.232,6.439,46.061,29.964,37.453,36.432,34.381,2.803690676454098,8.935801377513036,Negative Within,White
+2025-02-06,346,NOTIFICATION CENTER,DR_Notifications not received visits,Notifi_center Visits with no new notifications,Google Android,59.685,66.783,7.098,72.106,54.362,62.702,61.715,59.011,1.5997574090920619,6.255306241071507,Negative Within,White
+2025-02-06,54,E COMMERCE,DR_Direct Ecomm order Traffic sent from App to cox.com,Orders generated,Apple iOS,469.5,546.75,77.25,643.312,372.938,434.0,476.571,498.7,-8.932853717026376,-12.973731702426306,Positive Within,White
+2025-02-06,10000053,E COMMERCE,DR_Direct Ecomm order Traffic sent from App to cox.com,Orders generated,Both,587.0,676.75,89.75,788.938,474.812,548.0,604.0,624.5,-9.271523178807946,-12.249799839871898,Positive Within,White
+2025-02-06,290,E COMMERCE,DR_Direct Ecomm order Traffic sent from App to cox.com,Orders generated,Google Android,115.25,134.75,19.5,159.125,90.875,114.0,127.429,125.8,-10.538116591928253,-9.379968203497613,Positive Within,White
+2025-02-06,61,EASY CON NECT,DR_EC>Failure,Overall Failure,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,3.598,0,-100.0,Negative Within,White
+2025-02-06,10000060,EASY CON NECT,DR_EC>Failure,Overall Failure,Both,0.034,0.312,0.278,0.521,-0.175,0.055,0.41,3.887,-86.57132891524242,-98.58505128117174,Negative Within,White
+2025-02-06,297,EASY CON NECT,DR_EC>Failure,Overall Failure,Google Android,0.204,1.687,1.483,2.8,-0.908,0.286,2.085,5.248,-86.28391340093175,-94.55033949225425,Negative Within,White
+2025-02-06,63,EASY CON NECT,DR_EC>No Result,Overall No Result,Apple iOS,57.137,64.363,7.226,69.782,51.718,52.743,53.914,58.094,-2.1711999364061385,-9.210204692891816,Negative Within,White
+2025-02-06,10000062,EASY CON NECT,DR_EC>No Result,Overall No Result,Both,54.553,60.935,6.382,65.721,49.766,50.55,51.281,55.33,-1.426028431424462,-8.638909522699297,Negative Within,White
+2025-02-06,299,EASY CON NECT,DR_EC>No Result,Overall No Result,Google Android,41.119,47.584,6.465,52.432,36.27,41.345,40.241,41.852,2.742376371188202,-1.211096916425855,Negative Within,White
+2025-02-06,60,EASY CON NECT,DR_EC Flow>Success,Overall Success,Apple iOS,27.32,32.752,5.431,36.825,23.247,39.523,35.894,30.994,10.111201324545483,27.5198750709824,Positive Above,Green
+2025-02-06,10000059,EASY CON NECT,DR_EC Flow>Success,Overall Success,Both,29.495,34.976,5.481,39.087,25.385,42.102,38.458,33.497,9.475678386359828,25.690493652583292,Positive Above,Green
+2025-02-06,296,EASY CON NECT,DR_EC Flow>Success,Overall Success,Google Android,40.819,47.311,6.492,52.18,35.95,52.933,49.174,45.651,7.6449090106212285,15.952219790715127,Positive Above,Green
+2025-02-06,62,EASY CON NECT,DR_EC Flow>Timeout,Overall Timeout,Apple iOS,7.696,9.798,2.102,11.374,6.119,7.734,10.193,7.314,-24.121208723440038,5.735665393694694,Negative Within,White
+2025-02-06,10000061,EASY CON NECT,DR_EC Flow>Timeout,Overall Timeout,Both,7.695,9.814,2.119,11.404,6.106,7.32,9.871,7.31,-25.840159782325518,0.13360266658153835,Negative Within,White
+2025-02-06,298,EASY CON NECT,DR_EC Flow>Timeout,Overall Timeout,Google Android,7.786,10.782,2.995,13.028,5.54,5.579,8.605,7.389,-35.16344860790597,-24.497575279124852,Negative Within,White
+2025-02-06,117,OVER ALL,Page Views,Page Views,Apple iOS,1417112.25,1629945.5,212833.25,1895987.062,1151070.688,1532116.0,1528094.571,1503311.067,0.2631662101691207,1.9160993337994463,Positive Within,White
+2025-02-06,100000114,OVER ALL,Page Views,Page Views,Both,2116142.25,2447410.25,331268.0,2861495.25,1702057.25,2286689.0,2298728.0,2263178.567,-0.5237244249863403,1.0388236120475711,Positive Within,White
+2025-02-06,353,OVER ALL,Page Views,Page Views,Google Android,700522.25,809236.5,108714.25,945129.312,564629.438,754573.0,770633.429,759867.5,-2.0840555283464335,-0.6967662125304741,Positive Within,White
+2025-02-06,101,LOG IN,Clicks on Forgot Password,Password Reset,Apple iOS,1.054,1.143,0.089,1.209,0.988,1.144,1.117,1.107,2.390998593530237,3.326810176125219,Negative Within,White
+2025-02-06,10000098,LOG IN,Clicks on Forgot Password,Password Reset,Both,1.244,1.319,0.075,1.375,1.187,1.314,1.299,1.296,1.132490379329299,1.3967127093140252,Negative Within,White
+2025-02-06,337,LOG IN,Clicks on Forgot Password,Password Reset,Google Android,1.798,1.941,0.143,2.048,1.691,1.86,1.881,1.894,-1.1239368165248846,-1.7743979721165957,Negative Within,White
+2025-02-06,14,BIL LING,DR_Billing - Manage Payment Methods,Payment Method Changes,Apple iOS,3.706,4.066,0.361,4.336,3.435,3.972,3.867,3.805,2.703900709219869,4.386218496228784,Positive Within,White
+2025-02-06,10000014,BIL LING,DR_Billing - Manage Payment Methods,Payment Method Changes,Both,3.696,4.017,0.321,4.258,3.455,3.95,3.848,3.794,2.6507276507276587,4.099865592578613,Positive Within,White
+2025-02-06,250,BIL LING,DR_Billing - Manage Payment Methods,Payment Method Changes,Google Android,3.598,3.982,0.384,4.27,3.31,3.874,3.783,3.759,2.3938982026884204,3.0648079174204588,Positive Within,White
+2025-02-06,5,BIL LING,DR_Payment Submit,Payment Submit,Apple iOS,32.997,37.828,4.83,41.45,29.375,34.265,36.02,36.446,-4.87267045026394,-5.984367768995665,Positive Within,White
+2025-02-06,1000005,BIL LING,DR_Payment Submit,Payment Submit,Both,32.339,37.444,5.105,41.272,28.51,33.805,35.425,35.955,-4.573041637261814,-5.9803941564425065,Positive Within,White
+2025-02-06,241,BIL LING,DR_Payment Submit,Payment Submit,Google Android,30.402,36.467,6.064,41.015,25.854,32.23,33.452,34.323,-3.652995336601702,-6.096857464178135,Positive Within,White
+2025-02-06,6,BIL LING,DR_Payments,Payment Success Rate,Apple iOS,97.4,97.964,0.565,98.388,96.976,97.383,97.669,97.687,-0.29297160676570505,-0.31143612420182737,Positive Within,White
+2025-02-06,1000006,BIL LING,DR_Payments,Payment Success Rate,Both,97.624,98.162,0.538,98.565,97.22,97.635,97.879,97.891,-0.24957856251504626,-0.2616512084512979,Positive Within,White
+2025-02-06,242,BIL LING,DR_Payments,Payment Success Rate,Google Android,98.395,98.85,0.455,99.191,98.054,98.556,98.633,98.61,-0.07806717832775276,-0.054693610988509174,Positive Within,White
+2025-02-06,137,RE GISTRATION (NATIVE),DR_Native Registration - Phone Lookup,Phone Lookup,Apple iOS,1172.25,1338.75,166.5,1546.875,964.125,1313.0,1219.857,1192.033,7.635554514580159,10.147926512122147,Positive Within,White
+2025-02-06,100000134,RE GISTRATION (NATIVE),DR_Native Registration - Phone Lookup,Phone Lookup,Both,1721.25,1946.25,225.0,2227.5,1440.0,1851.0,1790.0,1749.233,3.4078212290502794,5.817786839948929,Positive Within,White
+2025-02-06,373,RE GISTRATION (NATIVE),DR_Native Registration - Phone Lookup,Phone Lookup,Google Android,536.5,606.0,69.5,692.875,449.625,538.0,570.143,557.2,-5.6376847907792484,-3.4458004307250616,Positive Within,White
+2025-02-06,138,RE GISTRATION (NATIVE),DR_Native Registration - Phone Lookup Success,Phone Lookup Success Rate,Apple iOS,75.984,78.267,2.282,79.978,74.272,75.476,76.462,77.218,-1.2891605883056252,-2.255444354654886,Positive Within,White
+2025-02-06,100000135,RE GISTRATION (NATIVE),DR_Native Registration - Phone Lookup Success,Phone Lookup Success Rate,Both,75.426,77.592,2.165,79.216,73.802,74.716,76.041,76.491,-1.7419272418483405,-2.3211303744557217,Positive Within,White
+2025-02-06,374,RE GISTRATION (NATIVE),DR_Native Registration - Phone Lookup Success,Phone Lookup Success Rate,Google Android,73.153,76.58,3.428,79.151,70.582,72.862,75.077,74.928,-2.950489020816676,-2.757876071077605,Positive Within,White
+2025-02-06,56,E COMMERCE,DR_Service Plan Upgrade Ecomm Traffic sent from App to cox.com,Plan Changes,Apple iOS,61.694,64.808,3.114,67.144,59.358,65.166,62.363,62.102,4.494891647958942,4.934269145466677,Positive Within,White
+2025-02-06,10000055,E COMMERCE,DR_Service Plan Upgrade Ecomm Traffic sent from App to cox.com,Plan Changes,Both,62.551,65.834,3.283,68.296,60.089,65.813,63.089,62.86,4.317709901884645,4.697963088266175,Positive Within,White
+2025-02-06,292,E COMMERCE,DR_Service Plan Upgrade Ecomm Traffic sent from App to cox.com,Plan Changes,Google Android,65.995,70.303,4.308,73.533,62.765,68.276,65.893,65.834,3.6162444824087343,3.708541873941482,Positive Within,White
+2025-02-06,7,BIL LING,DR_Promise to Pay,Promise to Pay - Linkout,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,1000007,BIL LING,DR_Promise to Pay,Promise to Pay - Linkout,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,243,BIL LING,DR_Promise to Pay,Promise to Pay - Linkout,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,8,BIL LING,DR_Promise to Pay (Native),Promise to Pay - Native,Apple iOS,4.446,5.131,0.685,5.644,3.932,4.95,4.778,4.759,3.602930183883969,4.021462744905779,Positive Within,White
+2025-02-06,1000008,BIL LING,DR_Promise to Pay (Native),Promise to Pay - Native,Both,5.119,5.933,0.814,6.543,4.509,5.636,5.493,5.472,2.6006449599500745,2.9876656007309434,Positive Within,White
+2025-02-06,244,BIL LING,DR_Promise to Pay (Native),Promise to Pay - Native,Google Android,7.317,8.527,1.21,9.434,6.41,7.989,7.865,7.839,1.5802953517519516,1.9182765703205078,Positive Within,White
+2025-02-06,209,S UPPORT,DR_Support - Read an Article,Read an Article,Apple iOS,22.301,24.268,1.967,25.743,20.826,23.875,24.352,24.292,-1.959921626600008,-1.7185025810470707,Positive Within,White
+2025-02-06,100000206,S UPPORT,DR_Support - Read an Article,Read an Article,Both,23.056,24.89,1.834,26.266,21.681,24.767,25.344,25.123,-2.2755712884570105,-1.417028221151939,Positive Within,White
+2025-02-06,443,S UPPORT,DR_Support - Read an Article,Read an Article,Google Android,25.504,27.754,2.25,29.442,23.816,27.739,28.582,27.844,-2.950378856034691,-0.3759083454046874,Positive Within,White
+2025-02-06,134,RE GISTRATION (NATIVE),DR_CoxApp | Chat from Registration Flow,Reg_native Interacted with Chat,Apple iOS,12.635,13.822,1.186,14.711,11.746,12.825,14.642,14.079,-12.412070597188212,-8.906882591093138,Negative Within,White
+2025-02-06,100000131,RE GISTRATION (NATIVE),DR_CoxApp | Chat from Registration Flow,Reg_native Interacted with Chat,Both,8.508,9.406,0.897,10.078,7.835,8.976,9.812,9.413,-8.516183515091495,-4.644204040439769,Negative Within,White
+2025-02-06,370,RE GISTRATION (NATIVE),DR_CoxApp | Chat from Registration Flow,Reg_native Interacted with Chat,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,133,RE GISTRATION (NATIVE),DR_Native Registration - Server Form Errors,Reg_native Server Errors,Apple iOS,20.522,23.106,2.584,25.045,18.584,23.503,21.466,20.743,9.49015379905631,13.306239725400044,Negative Within,White
+2025-02-06,100000130,RE GISTRATION (NATIVE),DR_Native Registration - Server Form Errors,Reg_native Server Errors,Both,26.588,28.702,2.114,30.287,25.002,28.47,27.493,26.786,3.554708000561198,6.286337209302341,Negative Within,White
+2025-02-06,369,RE GISTRATION (NATIVE),DR_Native Registration - Server Form Errors,Reg_native Server Errors,Google Android,37.983,40.667,2.684,42.68,35.97,40.053,39.733,38.95,0.8061007661912166,2.831571677607993,Negative Within,White
+2025-02-06,102,LOG IN,DR_Need to Register,Registration,Apple iOS,0.731,0.861,0.13,0.959,0.633,0.871,0.804,0.79,8.391111111111107,10.313674167264733,Positive Within,White
+2025-02-06,10000099,LOG IN,DR_Need to Register,Registration,Both,1.054,1.197,0.142,1.303,0.948,1.167,1.143,1.12,2.0869782554361356,4.159228846840412,Positive Within,White
+2025-02-06,338,LOG IN,DR_Need to Register,Registration,Google Android,2.03,2.285,0.255,2.476,1.839,2.12,2.229,2.169,-4.902274911887221,-2.2515945592868745,Positive Within,White
+2025-02-06,141,RESET MODEM,DR_Reset Modem - Home Page,Reset Modem Start Page Visits,Apple iOS,4866.5,5387.25,520.75,6038.188,4215.562,4739.0,5007.143,5106.433,-5.3552068473609085,-7.195498488834347,Positive Within,White
+2025-02-06,100000138,RESET MODEM,DR_Reset Modem - Home Page,Reset Modem Start Page Visits,Both,6552.75,7198.5,645.75,8005.688,5745.562,6443.0,6809.714,6902.6,-5.3851640513552015,-6.658360617738249,Positive Within,White
+2025-02-06,377,RESET MODEM,DR_Reset Modem - Home Page,Reset Modem Start Page Visits,Google Android,1691.75,1830.0,138.25,2002.812,1518.938,1704.0,1802.571,1796.167,-5.468378506894918,-5.131298134916957,Positive Within,White
+2025-02-06,143,RESET MODEM,DR_Reset Modem - Rebooting Complete,Reset Process Complete,Apple iOS,30.857,32.534,1.677,33.792,29.599,28.513,30.428,31.784,-6.2922255660983915,-10.291811960881986,Positive Below,Red
+2025-02-06,100000140,RESET MODEM,DR_Reset Modem - Rebooting Complete,Reset Process Complete,Both,30.472,31.968,1.496,33.09,29.349,28.436,29.825,31.204,-4.658080152507215,-8.870365563278941,Positive Below,Red
+2025-02-06,379,RESET MODEM,DR_Reset Modem - Rebooting Complete,Reset Process Complete,Google Android,28.755,30.718,1.963,32.19,27.283,28.22,28.18,29.565,0.1414369794333197,-4.549298156604112,Positive Within,White
+2025-02-06,144,RESET MODEM,DR_Reset Modem - Rebooting Incomplete,Reset Process Incomplete,Apple iOS,44.426,46.622,2.196,48.269,42.779,47.402,47.793,46.028,-0.8178149753400101,2.9840953496894134,Negative Within,White
+2025-02-06,100000141,RESET MODEM,DR_Reset Modem - Rebooting Incomplete,Reset Process Incomplete,Both,41.927,43.972,2.044,45.505,40.394,45.075,45.669,43.483,-1.3000459833396236,3.6616777208459563,Negative Within,White
+2025-02-06,380,RESET MODEM,DR_Reset Modem - Rebooting Incomplete,Reset Process Incomplete,Google Android,34.008,36.634,2.626,38.603,32.039,38.573,39.747,36.201,-2.952635627152026,6.55122596660718,Negative Within,White
+2025-02-06,149,RESET TV BOX,DR_Reset Tvbox - Home Page,Reset TV Box Start Page Visits,Apple iOS,641.0,758.75,117.75,905.938,493.812,625.0,737.571,726.867,-15.262444315320547,-14.014491424378612,Positive Within,White
+2025-02-06,100000146,RESET TV BOX,DR_Reset Tvbox - Home Page,Reset TV Box Start Page Visits,Both,871.25,1009.5,138.25,1182.312,698.438,841.0,1006.429,990.6,-16.437189496096526,-15.101958409045025,Positive Within,White
+2025-02-06,385,RESET TV BOX,DR_Reset Tvbox - Home Page,Reset TV Box Start Page Visits,Google Android,233.0,269.75,36.75,315.688,187.062,216.0,268.857,263.733,-19.659936238044626,-18.099089989888782,Positive Within,White
+2025-02-06,145,RESET MODEM,DR_Reset Modem - Agent Chat,Reset_Modem Interacted with Chat,Apple iOS,13.97,15.276,1.306,16.255,12.99,15.612,15.564,14.845,0.3084040092521091,5.170265081343234,Negative Within,White
+2025-02-06,100000142,RESET MODEM,DR_Reset Modem - Agent Chat,Reset_Modem Interacted with Chat,Both,13.704,14.869,1.165,15.742,12.831,15.374,15.714,14.68,-2.166343942327774,4.729660687888705,Negative Within,White
+2025-02-06,381,RESET MODEM,DR_Reset Modem - Agent Chat,Reset_Modem Interacted with Chat,Google Android,12.823,14.066,1.243,14.999,11.891,14.71,16.121,14.205,-8.754984492689397,3.5553292393035987,Negative Within,White
+2025-02-06,156,RESET TV BOX,DR_Reset Tvbox Error - DMCA,Reset_TV DMCA Error,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,100000153,RESET TV BOX,DR_Reset Tvbox Error - DMCA,Reset_TV DMCA Error,Both,0.0,0.119,0.119,0.208,-0.089,0.119,0.018,0.056,561.1111111111111,111.36767317939606,Negative Within,White
+2025-02-06,392,RESET TV BOX,DR_Reset Tvbox Error - DMCA,Reset_TV DMCA Error,Google Android,0.0,0.459,0.459,0.803,-0.344,0.463,0.075,0.212,516.1596958174905,118.39622641509435,Negative Within,White
+2025-02-06,154,RESET TV BOX,DR_Reset Tvbox - Error Outage,Reset_TV Error Outage,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,100000151,RESET TV BOX,DR_Reset Tvbox - Error Outage,Reset_TV Error Outage,Both,1.242,2.233,0.99,2.975,0.5,1.546,1.77,1.705,-12.648317055452413,-9.332603510966873,Negative Within,White
+2025-02-06,390,RESET TV BOX,DR_Reset Tvbox - Error Outage,Reset_TV Error Outage,Google Android,4.913,8.626,3.713,11.41,2.128,6.019,6.662,6.414,-9.657568025387565,-6.15450179822465,Negative Within,White
+2025-02-06,153,RESET TV BOX,DR_Reset Tvbox - Agent Chat,Reset_TV Interacted with Chat,Apple iOS,16.084,18.654,2.569,20.581,14.157,18.596,18.001,17.454,3.303732273091625,6.542709326020146,Negative Within,White
+2025-02-06,100000150,RESET TV BOX,DR_Reset Tvbox - Agent Chat,Reset_TV Interacted with Chat,Both,15.793,17.885,2.092,19.454,14.224,17.386,17.576,16.837,-1.0794115256441656,3.2629246939708914,Negative Within,White
+2025-02-06,389,RESET TV BOX,DR_Reset Tvbox - Agent Chat,Reset_TV Interacted with Chat,Google Android,13.386,17.443,4.057,20.486,10.343,13.846,16.29,15.099,-15.001578559652016,-8.297145682980727,Negative Within,White
+2025-02-06,155,RESET TV BOX,DR_Reset Tvbox Error - Non Pay,Reset_TV Non Pay Error,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,100000152,RESET TV BOX,DR_Reset Tvbox Error - Non Pay,Reset_TV Non Pay Error,Both,0.0,0.107,0.107,0.187,-0.08,0.0,0.111,0.067,-100.0,-100.0,Negative Within,White
+2025-02-06,391,RESET TV BOX,DR_Reset Tvbox Error - Non Pay,Reset_TV Non Pay Error,Google Android,0.0,0.411,0.411,0.719,-0.308,0.0,0.401,0.246,-100.0,-100.0,Negative Within,White
+2025-02-06,151,RESET TV BOX,DR_Reset Tvbox - Complete,Reset_TV Process Complete,Apple iOS,32.329,36.219,3.889,39.136,29.413,38.07,34.303,34.492,10.981546803486562,10.372779932854396,Positive Within,White
+2025-02-06,100000148,RESET TV BOX,DR_Reset Tvbox - Complete,Reset_TV Process Complete,Both,31.788,34.736,2.948,36.947,29.578,36.471,33.917,33.571,7.529241305528997,8.637221600550449,Positive Within,White
+2025-02-06,387,RESET TV BOX,DR_Reset Tvbox - Complete,Reset_TV Process Complete,Google Android,29.464,32.919,3.455,35.51,26.873,31.795,32.788,31.034,-3.0272795005076025,2.4507187178112884,Positive Within,White
+2025-02-06,152,RESET TV BOX,DR_Reset Tvbox - Incomplete,Reset_TV Process Incomplete,Apple iOS,38.772,42.217,3.444,44.8,36.189,45.439,42.3,40.547,7.421892150207523,12.066208647341297,Negative Above,Red
+2025-02-06,100000149,RESET TV BOX,DR_Reset Tvbox - Incomplete,Reset_TV Process Incomplete,Both,34.69,38.019,3.328,40.515,32.194,39.085,37.693,36.454,3.692207403364774,7.216530666734937,Negative Within,White
+2025-02-06,388,RESET TV BOX,DR_Reset Tvbox - Incomplete,Reset_TV Process Incomplete,Google Android,22.004,26.951,4.947,30.661,18.294,20.513,25.003,25.185,-17.95690753575326,-18.550940239718784,Negative Within,White
+2025-02-06,150,RESET TV BOX,DR_Reset Tvbox - Rebooting,Reset_TV Started Reset Process,Apple iOS,91.43,93.286,1.856,94.678,90.038,91.2,91.443,91.726,-0.26527188024333226,-0.573808321129133,Positive Within,White
+2025-02-06,100000147,RESET TV BOX,DR_Reset Tvbox - Rebooting,Reset_TV Started Reset Process,Both,91.758,93.372,1.615,94.583,90.547,90.963,91.582,91.814,-0.6760519440003016,-0.9263703317521068,Positive Within,White
+2025-02-06,386,RESET TV BOX,DR_Reset Tvbox - Rebooting,Reset_TV Started Reset Process,Google Android,91.736,94.367,2.631,96.34,89.763,90.278,91.921,92.021,-1.787557036466045,-1.8941328609773802,Positive Within,White
+2025-02-06,185,SMART HELP,DR_SmartHelp - Result,Saw a Result,Apple iOS,93.128,97.314,4.186,100.454,89.989,92.5,94.626,94.462,-2.2471825297976302,-2.077060236899415,Positive Within,White
+2025-02-06,100000182,SMART HELP,DR_SmartHelp - Result,Saw a Result,Both,86.288,92.56,6.272,97.264,81.584,86.179,86.479,87.393,-0.346575788261672,-1.3889768272467633,Positive Within,White
+2025-02-06,419,SMART HELP,DR_SmartHelp - Result,Saw a Result,Google Android,70.906,85.124,14.218,95.788,60.243,74.419,73.681,74.756,1.0016150703709228,-0.450711158712952,Positive Within,White
+2025-02-06,193,SMART HELP,DR_Smarthelp P&P - Let's schedule a technician visit,Schedule Tech,Apple iOS,21.182,22.79,1.609,23.997,19.976,23.66,22.966,22.596,3.020576746037671,4.70926141468144,Positive Within,White
+2025-02-06,100000190,SMART HELP,DR_Smarthelp P&P - Let's schedule a technician visit,Schedule Tech,Both,19.78,21.201,1.421,22.267,18.714,21.601,21.448,21.0,0.7120116159799645,2.8632109614090377,Positive Within,White
+2025-02-06,427,SMART HELP,DR_Smarthelp P&P - Let's schedule a technician visit,Schedule Tech,Google Android,15.856,17.953,2.097,19.525,14.283,17.346,18.299,17.46,-5.205714731829179,-0.6555762159850548,Positive Within,White
+2025-02-06,120,OVER ALL,DR_Server Errors,Server Errors,Apple iOS,1.493,1.807,0.314,2.043,1.257,1.64,1.711,1.906,-4.133611691022965,-13.939372736972826,Negative Within,White
+2025-02-06,100000117,OVER ALL,DR_Server Errors,Server Errors,Both,4.687,5.302,0.614,5.762,4.227,4.837,5.274,5.552,-8.28841517917603,-12.883472414000124,Negative Within,White
+2025-02-06,356,OVER ALL,DR_Server Errors,Server Errors,Google Android,14.813,16.572,1.759,17.891,13.494,15.1,16.659,17.082,-9.35675022081965,-11.603201798377226,Negative Within,White
+2025-02-06,4,BIL LING,DR_Server Errors on Make Payment,Server Errors on Payment Page,Apple iOS,0.001,0.012,0.011,0.02,-0.008,0.018,0.007,0.006,157.14285714285714,199.9999999999999,Negative Within,White
+2025-02-06,1000004,BIL LING,DR_Server Errors on Make Payment,Server Errors on Payment Page,Both,0.31,0.36,0.049,0.397,0.273,0.296,0.316,0.325,-6.244343891402723,-9.007070396557054,Negative Within,White
+2025-02-06,240,BIL LING,DR_Server Errors on Make Payment,Server Errors on Payment Page,Google Android,1.324,1.495,0.171,1.623,1.195,1.248,1.331,1.366,-6.256036055370741,-8.656192056211564,Negative Within,White
+2025-02-06,159,SERVICE ALERT,Dr_Campaign Rolloff Alert,Service_alert Campaign Rolloff,Apple iOS,25.776,30.402,4.626,33.872,22.306,27.476,24.903,26.37,10.333987310547377,4.1940283225530015,Negative Within,White
+2025-02-06,100000156,SERVICE ALERT,Dr_Campaign Rolloff Alert,Service_alert Campaign Rolloff,Both,25.729,30.55,4.821,34.166,22.114,27.608,24.866,26.37,11.02774314751726,4.695919938414146,Negative Within,White
+2025-02-06,395,SERVICE ALERT,Dr_Campaign Rolloff Alert,Service_alert Campaign Rolloff,Google Android,24.926,31.218,6.292,35.936,20.207,28.088,24.746,26.379,13.507178773691116,6.479041961567765,Negative Within,White
+2025-02-06,162,SERVICE ALERT,Dr_DMCA Termination Alert,Service_alert DMCA Termination,Apple iOS,0.0,0.0,0.0,0.0,0.0,0.0,0.001,0.001,-100.0,-100.0,Negative Within,White
+2025-02-06,100000159,SERVICE ALERT,Dr_DMCA Termination Alert,Service_alert DMCA Termination,Both,0.0,0.0,0.0,0.0,0.0,0.0,0.001,0.001,-100.0,-100.0,Negative Within,White
+2025-02-06,398,SERVICE ALERT,Dr_DMCA Termination Alert,Service_alert DMCA Termination,Google Android,0.0,0.0,0.0,0.0,0.0,0.0,,0.001,0,-100.0,Negative Within,White
+2025-02-06,161,SERVICE ALERT,Dr_Network Construction Alert,Service_alert Network Construction,Apple iOS,0.44,1.494,1.055,2.286,-0.352,0.641,0.913,0.965,-29.769917044920973,-33.57283498566444,Negative Within,White
+2025-02-06,100000158,SERVICE ALERT,Dr_Network Construction Alert,Service_alert Network Construction,Both,0.428,1.549,1.121,2.39,-0.412,0.567,0.933,1.002,-39.23759951010411,-43.40940847694456,Negative Within,White
+2025-02-06,397,SERVICE ALERT,Dr_Network Construction Alert,Service_alert Network Construction,Google Android,0.403,1.746,1.343,2.753,-0.605,0.297,1.005,1.137,-70.44355985214672,-73.87326628155881,Negative Within,White
+2025-02-06,160,SERVICE ALERT,Dr_NonPay Suspension Alert,Service_alert NonPay Suspension,Apple iOS,17.664,22.62,4.956,26.337,13.947,21.287,20.155,21.399,5.61497515717252,-0.5254033206487037,Negative Within,White
+2025-02-06,100000157,SERVICE ALERT,Dr_NonPay Suspension Alert,Service_alert NonPay Suspension,Both,16.98,21.746,4.766,25.32,13.406,20.561,19.413,20.527,5.912783681158578,0.16612347699845142,Negative Within,White
+2025-02-06,396,SERVICE ALERT,Dr_NonPay Suspension Alert,Service_alert NonPay Suspension,Google Android,14.256,18.662,4.406,21.967,10.951,17.904,16.72,17.357,7.080424808400474,3.1508719774616565,Negative Within,White
+2025-02-06,158,SERVICE ALERT,DR_Outage Alert,Service_alert Outage,Apple iOS,49.729,57.7,7.971,63.679,43.751,53.006,56.834,54.298,-6.735639291271093,-2.3799409189243543,Negative Within,White
+2025-02-06,100000155,SERVICE ALERT,DR_Outage Alert,Service_alert Outage,Both,50.181,58.342,8.161,64.463,44.06,53.476,57.576,55.094,-7.120561744783277,-2.935976757102746,Negative Within,White
+2025-02-06,394,SERVICE ALERT,DR_Outage Alert,Service_alert Outage,Google Android,53.258,61.503,8.245,67.687,47.074,55.196,60.253,57.967,-8.393594673924902,-4.779867993251323,Negative Within,White
+2025-02-06,83,KEY WORDS,Setup,Setup,Apple iOS,9.0,17.0,8.0,27.0,-1.0,19.0,10.571,12.5,79.72972972972974,52.0,,
+2025-02-06,10000080,KEY WORDS,Setup,Setup,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,98,LOG IN,DR_Auto Logins,Share of Auto Login (Remember/Biometrics),Apple iOS,83.78,84.533,0.753,85.098,83.216,83.916,84.295,83.915,-0.4492740605664087,0.0009533433752146638,Positive Within,White
+2025-02-06,10000095,LOG IN,DR_Auto Logins,Share of Auto Login (Remember/Biometrics),Both,76.015,76.678,0.663,77.176,75.518,76.384,76.472,76.178,-0.11451501118061742,0.27037540568344326,Positive Within,White
+2025-02-06,334,LOG IN,DR_Auto Logins,Share of Auto Login (Remember/Biometrics),Google Android,50.797,51.611,0.814,52.221,50.187,51.791,51.207,51.227,1.141315567756363,1.1013108364431232,Positive Within,White
+2025-02-06,192,SMART HELP,DR_Smarthelp P&P - Reset Complete,Smarthelp Reset Complete,Apple iOS,18.517,20.928,2.411,22.736,16.709,18.504,17.527,19.783,5.576838433073071,-6.466880426486196,Positive Within,White
+2025-02-06,100000189,SMART HELP,DR_Smarthelp P&P - Reset Complete,Smarthelp Reset Complete,Both,16.779,18.967,2.188,20.608,15.138,15.945,15.472,17.579,3.0542808867386273,-9.297589612123225,Positive Within,White
+2025-02-06,426,SMART HELP,DR_Smarthelp P&P - Reset Complete,Smarthelp Reset Complete,Google Android,12.417,14.575,2.158,16.194,10.799,10.658,11.202,12.712,-4.859915579529953,-16.161258603736485,Positive Below,Red
+2025-02-06,200,SMART HELP,DR_SmartHelp - Agent Chat,Smarthelp_Interacted with Chat,Apple iOS,1.136,1.555,0.42,1.87,0.821,1.116,1.283,1.239,-13.026052104208407,-9.939475453934076,Negative Within,White
+2025-02-06,100000197,SMART HELP,DR_SmartHelp - Agent Chat,Smarthelp_Interacted with Chat,Both,1.13,1.489,0.359,1.758,0.861,1.047,1.416,1.23,-26.059322033898308,-14.905721716514956,Negative Within,White
+2025-02-06,434,SMART HELP,DR_SmartHelp - Agent Chat,Smarthelp_Interacted with Chat,Google Android,0.984,1.414,0.43,1.737,0.661,0.911,1.671,1.21,-45.48640793298,-24.69829723921309,Negative Within,White
+2025-02-06,195,SMART HELP,DR_Smarthelp P&P - Interacted with Chat Agent,Smarthelp_P&P Interacted with Chat,Apple iOS,13.686,15.266,1.58,16.451,12.501,17.745,15.376,14.751,15.408200239707897,20.29964747356053,Negative Above,Red
+2025-02-06,100000192,SMART HELP,DR_Smarthelp P&P - Interacted with Chat Agent,Smarthelp_P&P Interacted with Chat,Both,13.815,15.233,1.418,16.297,12.751,17.206,15.596,15.098,10.321138732665279,13.963623839234856,Negative Above,Red
+2025-02-06,429,SMART HELP,DR_Smarthelp P&P - Interacted with Chat Agent,Smarthelp_P&P Interacted with Chat,Google Android,13.387,15.799,2.412,17.608,11.578,16.092,16.086,15.866,0.03818793794014711,1.4271997848590412,Negative Within,White
+2025-02-06,191,SMART HELP,DR_Smarthelp P&P - Let's troubleshoot together,Started P&P troubleshooting,Apple iOS,53.177,55.748,2.571,57.677,51.249,58.797,57.563,55.245,2.1439916612895087,6.430311740876042,Positive Above,Green
+2025-02-06,100000188,SMART HELP,DR_Smarthelp P&P - Let's troubleshoot together,Started P&P troubleshooting,Both,52.982,55.555,2.573,57.485,51.053,58.569,57.88,55.442,1.1906436732245942,5.639620313743787,Positive Above,Green
+2025-02-06,425,SMART HELP,DR_Smarthelp P&P - Let's troubleshoot together,Started P&P troubleshooting,Google Android,52.032,56.274,4.242,59.455,48.85,58.098,58.555,55.869,-0.7802207453816254,3.989566080693452,Positive Within,White
+2025-02-06,190,SMART HELP,DR_SmartHelp - P&P,Started Proactive and Preventive (P&P),Apple iOS,59.581,61.735,2.154,63.351,57.965,61.333,62.051,61.203,-1.1566575727227748,0.2127353650486613,Positive Within,White
+2025-02-06,100000187,SMART HELP,DR_SmartHelp - P&P,Started Proactive and Preventive (P&P),Both,58.026,60.204,2.178,61.837,56.392,60.255,60.61,59.58,-0.5850089684090507,1.132251545810388,Positive Within,White
+2025-02-06,424,SMART HELP,DR_SmartHelp - P&P,Started Proactive and Preventive (P&P),Google Android,54.519,57.454,2.934,59.654,52.318,58.141,57.85,56.29,0.5037696291119647,3.287777823177344,Positive Within,White
+2025-02-06,142,RESET MODEM,DR_Reset Modem - Started Rebooting Process,Started Reset Process,Apple iOS,91.086,93.581,2.495,95.453,89.214,93.395,93.364,92.787,0.03335643802205122,0.65486644913227,Positive Within,White
+2025-02-06,100000139,RESET MODEM,DR_Reset Modem - Started Rebooting Process,Started Reset Process,Both,91.214,93.586,2.372,95.366,89.435,93.28,93.354,92.738,-0.07896234903805498,0.5843698847866288,Positive Within,White
+2025-02-06,378,RESET MODEM,DR_Reset Modem - Started Rebooting Process,Started Reset Process,Google Android,91.448,93.358,1.911,94.792,90.015,92.958,93.319,92.596,-0.3873025981421919,0.39130700860730516,Positive Within,White
+2025-02-06,184,SMART HELP,DR_SmartHelp - Started,Started Troubleshooting (Solution Center),Apple iOS,2.477,3.052,0.575,3.484,2.046,2.481,2.883,2.705,-13.935279250706193,-8.278700645733728,Positive Within,White
+2025-02-06,100000181,SMART HELP,DR_SmartHelp - Started,Started Troubleshooting (Solution Center),Both,2.515,3.071,0.556,3.489,2.097,2.525,3.102,2.807,-18.61214716581481,-10.05699358822134,Positive Within,White
+2025-02-06,418,SMART HELP,DR_SmartHelp - Started,Started Troubleshooting (Solution Center),Google Android,2.568,3.342,0.774,3.922,1.987,2.612,3.525,3.013,-25.897706087379436,-13.29844322242998,Positive Within,White
+2025-02-06,64,EASY CON NECT,DR_Easy Connect - Started,Started the Flow,Apple iOS,20.823,25.874,5.052,29.663,17.034,27.189,30.037,24.604,-9.48250032102957,10.507320007478521,Positive Within,White
+2025-02-06,10000063,EASY CON NECT,DR_Easy Connect - Started,Started the Flow,Both,22.89,27.404,4.513,30.788,19.505,29.362,32.56,26.89,-9.821867321867314,9.193414627797074,Positive Within,White
+2025-02-06,300,EASY CON NECT,DR_Easy Connect - Started,Started the Flow,Google Android,33.178,37.294,4.116,40.382,30.092,38.484,43.266,38.025,-11.051971207818797,1.2076329132565997,Positive Within,White
+2025-02-06,65,EASY CON NECT,DR_Easy Connect Started - Success,Success,Apple iOS,43.848,48.94,5.091,52.758,40.03,57.895,51.312,47.777,12.82998591243438,21.17679316328045,Positive Above,Green
+2025-02-06,10000064,EASY CON NECT,DR_Easy Connect Started - Success,Success,Both,43.718,49.132,5.413,53.192,39.659,60.262,52.334,48.081,15.147908642494281,25.334852997454316,Positive Above,Green
+2025-02-06,301,EASY CON NECT,DR_Easy Connect Started - Success,Success,Google Android,42.015,49.621,7.606,55.325,36.31,67.286,55.215,49.089,21.8611823330496,37.06875302595204,Positive Above,Green
+2025-02-06,201,S UPPORT,DR_Support Home,Support Home Visits,Apple iOS,9609.25,10950.25,1341.0,12626.5,7933.0,10400.0,10147.286,9949.267,2.490461910996612,4.530317142301947,Positive Within,White
+2025-02-06,100000198,S UPPORT,DR_Support Home,Support Home Visits,Both,12541.25,14309.5,1768.25,16519.812,10330.938,13522.0,13210.143,12974.767,2.360740123930748,4.2176737924638354,Positive Within,White
+2025-02-06,435,S UPPORT,DR_Support Home,Support Home Visits,Google Android,2961.25,3309.75,348.5,3745.375,2525.625,3122.0,3062.857,3025.5,1.9309701492537377,3.189555445380929,Positive Within,White
+2025-02-06,207,S UPPORT,DR_Support - Homelife,Support Homelife Support,Apple iOS,0.315,0.394,0.08,0.454,0.255,0.288,0.308,0.342,-6.363214119832793,-15.830491962980972,Positive Within,White
+2025-02-06,100000204,S UPPORT,DR_Support - Homelife,Support Homelife Support,Both,0.307,0.396,0.089,0.463,0.24,0.348,0.32,0.335,8.74999999999999,3.8599283724631803,Positive Within,White
+2025-02-06,441,S UPPORT,DR_Support - Homelife,Support Homelife Support,Google Android,0.252,0.404,0.152,0.518,0.138,0.545,0.362,0.311,50.730936388779156,74.99732419993579,Positive Above,Green
+2025-02-06,213,S UPPORT,DR_Support - Agent chat started,Support Interacted with Chat,Apple iOS,26.52,27.949,1.429,29.02,25.448,27.99,27.264,27.159,2.6639279838194203,3.0581148600302415,Negative Within,White
+2025-02-06,100000210,S UPPORT,DR_Support - Agent chat started,Support Interacted with Chat,Both,27.734,28.958,1.224,29.877,26.816,28.834,28.381,28.289,1.5956268749874098,1.9270242945988139,Negative Within,White
+2025-02-06,447,S UPPORT,DR_Support - Agent chat started,Support Interacted with Chat,Google Android,31.006,32.374,1.367,33.399,29.981,31.646,32.067,31.997,-1.312876165528423,-1.0976990718989457,Negative Within,White
+2025-02-06,202,S UPPORT,DR_Support - Internet,Support Internet Support,Apple iOS,28.973,30.926,1.953,32.391,27.508,29.452,29.96,30.253,-1.6960628644723235,-2.6472422448120536,Positive Within,White
+2025-02-06,100000199,S UPPORT,DR_Support - Internet,Support Internet Support,Both,28.251,30.13,1.878,31.538,26.843,28.309,29.42,29.51,-3.774940879977848,-4.070456994530693,Positive Within,White
+2025-02-06,436,S UPPORT,DR_Support - Internet,Support Internet Support,Google Android,25.498,27.313,1.815,28.674,24.136,24.504,27.65,27.075,-11.378396391648717,-9.495844875346277,Positive Within,White
+2025-02-06,208,S UPPORT,DR_Support - Mobile,Support Mobile Support,Apple iOS,0.628,0.763,0.135,0.864,0.526,0.731,0.746,0.716,-2.0107238605897995,2.147282127719033,Positive Within,White
+2025-02-06,100000205,S UPPORT,DR_Support - Mobile,Support Mobile Support,Both,0.686,0.787,0.102,0.864,0.609,0.821,0.799,0.748,2.7718168812589257,9.822981227984146,Positive Within,White
+2025-02-06,442,S UPPORT,DR_Support - Mobile,Support Mobile Support,Google Android,0.745,0.999,0.254,1.189,0.555,1.121,0.972,0.853,15.346170806996899,31.48531884114637,Positive Within,White
+2025-02-06,210,S UPPORT,DR_Support - Search,Support Search,Apple iOS,9.107,9.877,0.77,10.455,8.529,8.635,9.108,9.292,-5.194723716611511,-7.06959825224122,Negative Within,White
+2025-02-06,100000207,S UPPORT,DR_Support - Search,Support Search,Both,11.374,12.336,0.962,13.057,10.653,11.137,11.698,11.682,-4.7991793769615105,-4.665841089761489,Negative Within,White
+2025-02-06,444,S UPPORT,DR_Support - Search,Support Search,Google Android,18.478,20.261,1.784,21.599,17.14,19.475,20.246,19.529,-3.8101958017286863,-0.2783841769915552,Negative Within,White
+2025-02-06,206,S UPPORT,DR_Support - TV,Support TV Support,Apple iOS,2.286,2.884,0.598,3.332,1.837,2.49,2.798,2.632,-11.021491653478973,-5.385550714358088,Positive Within,White
+2025-02-06,100000203,S UPPORT,DR_Support - TV,Support TV Support,Both,2.306,2.914,0.607,3.369,1.851,2.544,2.791,2.66,-8.854539871020581,-4.375281912494348,Positive Within,White
+2025-02-06,440,S UPPORT,DR_Support - TV,Support TV Support,Google Android,2.358,2.965,0.608,3.421,1.902,2.723,2.77,2.758,-1.6815391757363074,-1.2857384537303207,Positive Within,White
+2025-02-06,222,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone call Success,TSV Call Success Rate,Apple iOS,20.798,63.988,43.19,96.381,-11.594,66.667,64.668,62.105,3.091401115590678,7.345624345865856,Positive Within,White
+2025-02-06,100000219,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone call Success,TSV Call Success Rate,Both,33.424,63.746,30.323,86.489,10.682,65.934,64.657,62.541,1.9757134398006186,5.4251848519718635,Positive Within,White
+2025-02-06,456,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone call Success,TSV Call Success Rate,Google Android,57.605,70.202,12.597,79.649,48.157,64.286,64.954,63.59,-1.0284201126951478,1.0943527372971493,Positive Within,White
+2025-02-06,224,TWO-STEP VERIFICATION,DR_TSV Enrollment - Email Success,TSV Email Success Rate,Apple iOS,51.543,64.087,12.544,73.495,42.135,63.924,66.007,64.589,-3.155516309993747,-1.0294849272424114,Positive Within,White
+2025-02-06,100000221,TWO-STEP VERIFICATION,DR_TSV Enrollment - Email Success,TSV Email Success Rate,Both,53.295,62.301,9.006,69.056,46.541,65.217,64.719,62.69,0.7697028024510335,4.030337462799954,Positive Within,White
+2025-02-06,458,TWO-STEP VERIFICATION,DR_TSV Enrollment - Email Success,TSV Email Success Rate,Google Android,53.722,61.861,8.139,67.965,47.618,68.056,61.763,57.799,10.189712678506167,17.745778048447125,Positive Above,Green
+2025-02-06,223,TWO-STEP VERIFICATION,DR_TSV Enrollment - Email,TSV Email Text,Apple iOS,153.25,181.5,28.25,216.812,117.938,158.0,165.571,161.767,-4.572907679033657,-2.328456624768193,Positive Within,White
+2025-02-06,100000220,TWO-STEP VERIFICATION,DR_TSV Enrollment - Email,TSV Email Text,Both,219.75,255.75,36.0,300.75,174.75,230.0,238.714,229.2,-3.650508677438663,0.34904013961606084,Positive Within,White
+2025-02-06,457,TWO-STEP VERIFICATION,DR_TSV Enrollment - Email,TSV Email Text,Google Android,61.0,76.75,15.75,96.438,41.312,72.0,73.143,67.433,-1.5624999999999944,6.772120612951056,Positive Within,White
+2025-02-06,215,TWO-STEP VERIFICATION,DR_TSV | Intent to Enrollment,TSV Enrollment Page,Apple iOS,59.348,61.454,2.107,63.034,57.767,59.347,60.353,60.67,-1.6675582402703844,-2.1810256210211834,Positive Within,White
+2025-02-06,100000212,TWO-STEP VERIFICATION,DR_TSV | Intent to Enrollment,TSV Enrollment Page,Both,60.491,62.506,2.015,64.017,58.98,59.974,61.806,61.915,-2.9645620879984516,-3.135151664590359,Positive Within,White
+2025-02-06,449,TWO-STEP VERIFICATION,DR_TSV | Intent to Enrollment,TSV Enrollment Page,Google Android,63.543,67.424,3.88,70.334,60.633,62.242,66.577,66.14,-6.511658845466381,-5.8942231029515835,Positive Within,White
+2025-02-06,216,TWO-STEP VERIFICATION,DR_TSV Enrollment - Success,TSV Overall Success Rate,Apple iOS,56.098,58.51,2.413,60.32,54.289,57.388,58.23,58.434,-1.4462318239694278,-1.789605547480549,Positive Within,White
+2025-02-06,100000213,TWO-STEP VERIFICATION,DR_TSV Enrollment - Success,TSV Overall Success Rate,Both,56.169,58.637,2.469,60.489,54.317,56.138,58.133,58.04,-3.432260347526497,-3.2774947048256204,Positive Within,White
+2025-02-06,450,TWO-STEP VERIFICATION,DR_TSV Enrollment - Success,TSV Overall Success Rate,Google Android,54.897,58.558,3.661,61.304,52.152,51.622,57.896,56.637,-10.836012623714126,-8.85468930517193,Positive Below,Red
+2025-02-06,221,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone call,TSV Phone Call,Apple iOS,60.25,76.0,15.75,95.688,40.562,63.0,67.286,65.233,-6.369426751592365,-3.423607562595812,Positive Within,White
+2025-02-06,100000218,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone call,TSV Phone Call,Both,83.0,101.75,18.75,125.188,59.562,91.0,94.857,89.967,-4.066265060240968,1.1485735457576858,Positive Within,White
+2025-02-06,455,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone call,TSV Phone Call,Google Android,22.0,29.0,7.0,37.75,13.25,28.0,27.571,24.733,1.5544041450777146,13.207547169811315,Positive Within,White
+2025-02-06,219,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone text,TSV Phone Text,Apple iOS,574.0,649.5,75.5,743.875,479.625,631.0,595.714,574.933,5.923261390887299,9.751855287569583,Positive Within,White
+2025-02-06,100000216,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone text,TSV Phone Text,Both,738.0,840.5,102.5,968.625,609.875,808.0,787.0,747.3,2.6683608640406606,8.12257460190018,Positive Within,White
+2025-02-06,453,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone text,TSV Phone Text,Google Android,160.0,193.0,33.0,234.25,118.75,177.0,191.286,172.367,-7.468259895444357,2.688068071939659,Positive Within,White
+2025-02-06,218,TWO-STEP VERIFICATION,DR_TSV Enrollment - Server Errors,TSV Server Errors,Apple iOS,8.354,10.907,2.553,12.821,6.439,8.98,8.289,8.244,8.336349378694665,8.934311882088934,Negative Within,White
+2025-02-06,100000215,TWO-STEP VERIFICATION,DR_TSV Enrollment - Server Errors,TSV Server Errors,Both,12.456,14.904,2.448,16.74,10.621,12.66,12.812,12.633,-1.1885913074504506,0.2163702570056299,Negative Within,White
+2025-02-06,452,TWO-STEP VERIFICATION,DR_TSV Enrollment - Server Errors,TSV Server Errors,Google Android,25.976,29.528,3.552,32.192,23.312,25.959,27.537,27.715,-5.731449826469066,-6.335581221653336,Negative Within,White
+2025-02-06,220,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone text Success,TSV Text Success Rate,Apple iOS,91.194,93.191,1.998,94.69,89.696,95.246,93.745,93.003,1.600997232618528,2.4113463992880355,Positive Above,Green
+2025-02-06,100000217,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone text Success,TSV Text Success Rate,Both,89.505,91.179,1.674,92.435,88.249,92.327,91.58,90.595,0.8156802795370167,1.9122927533917433,Positive Within,White
+2025-02-06,454,TWO-STEP VERIFICATION,DR_TSV Enrollment - Phone text Success,TSV Text Success Rate,Google Android,81.639,85.531,3.892,88.45,78.72,81.921,84.842,82.499,-3.4427076931366445,-0.7000127275041542,Positive Within,White
+2025-02-06,217,TWO-STEP VERIFICATION,DR_TSV Enrollment - Update,TSV Update,Apple iOS,10.612,12.344,1.732,13.643,9.313,10.041,11.098,11.646,-9.523073952500475,-13.78402358396061,Positive Within,White
+2025-02-06,100000214,TWO-STEP VERIFICATION,DR_TSV Enrollment - Update,TSV Update,Both,12.615,14.201,1.586,15.39,11.425,12.532,12.986,13.517,-3.497134307998623,-7.2843762484648416,Positive Within,White
+2025-02-06,451,TWO-STEP VERIFICATION,DR_TSV Enrollment - Update,TSV Update,Google Android,18.682,21.534,2.852,23.673,16.542,21.534,19.053,19.921,13.020723990042871,8.097706592417353,Positive Within,White
+2025-02-06,67,EASY CON NECT,DR_Easy Connect Started - Timeout,Timeout,Apple iOS,33.298,38.259,4.962,41.981,29.576,27.318,32.604,27.752,-16.21236751129358,-1.5636147871980046,Negative Below,Green
+2025-02-06,10000066,EASY CON NECT,DR_Easy Connect Started - Timeout,Timeout,Both,31.027,35.647,4.62,39.112,27.561,23.711,29.144,25.52,-18.64311238119513,-7.088193919255175,Negative Below,Green
+2025-02-06,303,EASY CON NECT,DR_Easy Connect Started - Timeout,Timeout,Google Android,21.54,30.148,8.608,36.604,15.084,13.011,19.228,18.55,-32.33305596005826,-29.859964312732572,Negative Below,Green
+2025-02-06,44,DATA USAGE,DR_Total Data Usage Visits,Total Data Usage Visits,Apple iOS,12665.75,14190.25,1524.5,16095.875,10760.125,14316.0,13631.714,13183.467,5.019806753159645,8.590557870464012,Positive Within,White
+2025-02-06,10000043,DATA USAGE,DR_Total Data Usage Visits,Total Data Usage Visits,Both,17187.25,19058.5,1871.25,21397.562,14848.188,19201.0,18415.143,17830.4,4.26745070051044,7.686871859296474,Positive Within,White
+2025-02-06,280,DATA USAGE,DR_Total Data Usage Visits,Total Data Usage Visits,Google Android,4505.0,4922.25,417.25,5443.812,3983.438,4885.0,4783.429,4646.933,2.1234022219567525,5.123091931596464,Positive Within,White
+2025-02-06,52,E COMMERCE,DR_Direct Ecomm order Traffic sent from cox.com,Total Orders from web ecomm,Apple iOS,898.75,1033.5,134.75,1201.938,730.312,878.0,914.143,945.733,-3.95374277230817,-7.161990695051461,Positive Within,White
+2025-02-06,10000051,E COMMERCE,DR_Direct Ecomm order Traffic sent from cox.com,Total Orders from web ecomm,Both,1206.75,1404.5,197.75,1651.688,959.562,1192.0,1252.286,1277.3,-4.814054300707273,-6.678149221013071,Positive Within,White
+2025-02-06,288,E COMMERCE,DR_Direct Ecomm order Traffic sent from cox.com,Total Orders from web ecomm,Google Android,311.5,363.0,51.5,427.375,247.125,314.0,338.143,331.567,-7.139839459231101,-5.298079823062229,Positive Within,White
+2025-02-06,51,E COMMERCE,DR_Direct Ecomm Visits Traffic from to Cox.com,Total Visits from web ecomm,Apple iOS,6781.0,7817.5,1036.5,9113.125,5485.375,7088.0,7150.286,6967.833,-0.871094062175343,1.7245915755734729,Positive Within,White
+2025-02-06,10000050,E COMMERCE,DR_Direct Ecomm Visits Traffic from to Cox.com,Total Visits from web ecomm,Both,9364.0,10771.75,1407.75,12531.438,7604.312,9893.0,9948.0,9624.467,-0.5528749497386409,2.7901113135273246,Positive Within,White
+2025-02-06,287,E COMMERCE,DR_Direct Ecomm Visits Traffic from to Cox.com,Total Visits from web ecomm,Google Android,2563.75,2945.0,381.25,3421.562,2087.188,2805.0,2797.714,2656.633,0.26041666666666435,5.584762669544165,Positive Within,White
+2025-02-06,58,E COMMERCE,DR_Transfer Ecomm Traffic sent from App to cox.com,Transfer,Apple iOS,18.33,22.248,3.918,25.187,15.392,22.719,18.415,19.846,23.372250882432812,14.473584763056472,Positive Within,White
+2025-02-06,10000057,E COMMERCE,DR_Transfer Ecomm Traffic sent from App to cox.com,Transfer,Both,18.381,22.32,3.938,25.274,15.427,22.847,18.438,19.803,23.91257186245798,15.373738801975515,Positive Within,White
+2025-02-06,294,E COMMERCE,DR_Transfer Ecomm Traffic sent from App to cox.com,Transfer,Google Android,18.015,21.804,3.789,24.646,15.174,23.333,18.499,19.63,26.129194177381347,18.861157995904293,Positive Within,White
+2025-02-06,100,LOG IN,DR_Clicks on Forgot User ID,User ID Recovery,Apple iOS,0.675,0.732,0.057,0.775,0.632,0.704,0.737,0.723,-4.422032583397985,-2.6907482491706705,Negative Within,White
+2025-02-06,10000097,LOG IN,DR_Clicks on Forgot User ID,User ID Recovery,Both,0.888,0.94,0.052,0.979,0.849,0.908,0.93,0.928,-2.3505914887079364,-2.151657746327109,Negative Within,White
+2025-02-06,336,LOG IN,DR_Clicks on Forgot User ID,User ID Recovery,Google Android,1.503,1.609,0.106,1.688,1.424,1.562,1.549,1.576,0.8578544414721927,-0.9029965952587383,Negative Within,White
+2025-02-06,116,OVER ALL,Unique Visitors,Visitors,Apple iOS,92226.5,108263.75,16037.25,128310.312,72179.938,99610.0,100176.143,100015.8,-0.5651473903823673,-0.40573589372879376,Positive Within,White
+2025-02-06,100000113,OVER ALL,Unique Visitors,Visitors,Both,123002.25,144296.25,21294.0,170913.75,96384.75,131829.0,132805.857,132876.3,-0.7355527563865958,-0.7881766725894598,Positive Within,White
+2025-02-06,352,OVER ALL,Unique Visitors,Visitors,Google Android,30750.25,35814.75,5064.5,42145.375,24419.625,32219.0,32629.714,32860.5,-1.2587124794227889,-1.952191841268392,Positive Within,White
+2025-02-06,115,OVER ALL,DR_Visits,Visits,Apple iOS,107921.5,127163.25,19241.75,151215.438,83869.312,114579.0,115515.143,116398.533,-0.8104070462004963,-1.5631926633668982,Positive Within,White
+2025-02-06,100000112,OVER ALL,DR_Visits,Visits,Both,141759.5,167826.75,26067.25,200410.812,109175.438,150275.0,151649.571,153223.833,-0.9064129991418131,-1.9245265368855864,Positive Within,White
+2025-02-06,351,OVER ALL,DR_Visits,Visits,Google Android,34170.75,40268.25,6097.5,47890.125,26548.875,35696.0,36134.429,36825.3,-1.2133264279021618,-3.066641683842366,Positive Within,White
+2025-02-06,20,COX MOBILE,DR_Wireless Service,Visits from 'Cox Mobile' users,Apple iOS,3617.25,4225.75,608.5,4986.375,2856.625,4273.0,4058.571,3892.2,5.283350932770155,9.78366990391039,Positive Within,White
+2025-02-06,10000020,COX MOBILE,DR_Wireless Service,Visits from 'Cox Mobile' users,Both,5134.0,5882.75,748.75,6818.688,4198.062,5911.0,5667.714,5481.433,4.2924837425013935,7.83675802557725,Positive Within,White
+2025-02-06,256,COX MOBILE,DR_Wireless Service,Visits from 'Cox Mobile' users,Google Android,1442.5,1688.0,245.5,1994.875,1135.625,1638.0,1609.143,1589.233,1.7933238636363658,3.0685655557186893,Positive Within,White
+2025-02-06,53,E COMMERCE,DR_Direct Ecomm Traffic sent from App to cox.com,Visits sent from app to cox.com,Apple iOS,3407.25,3863.0,455.75,4432.688,2837.562,3310.0,3543.286,3512.533,-6.583880982139256,-5.76601882781658,Positive Within,White
+2025-02-06,10000052,E COMMERCE,DR_Direct Ecomm Traffic sent from App to cox.com,Visits sent from app to cox.com,Both,4273.5,4817.0,543.5,5496.375,3594.125,4180.0,4467.143,4405.633,-6.427886152862163,-5.1214732652891355,Positive Within,White
+2025-02-06,289,E COMMERCE,DR_Direct Ecomm Traffic sent from App to cox.com,Visits sent from app to cox.com,Google Android,856.0,959.0,103.0,1087.75,727.25,870.0,923.857,893.1,-5.829596412556057,-2.5864964729593574,Positive Within,White
+2025-02-06,124,OVER ALL,DR_Agent Chat,Visits to Agent Chat (Skip bot),Apple iOS,1.525,1.718,0.193,1.863,1.38,1.753,1.776,1.671,-1.3029839942089596,4.928172386272948,Negative Within,White
+2025-02-06,100000121,OVER ALL,DR_Agent Chat,Visits to Agent Chat (Skip bot),Both,1.432,1.628,0.196,1.775,1.284,1.666,1.713,1.597,-2.7599433002584894,4.301007950917157,Negative Within,White
+2025-02-06,360,OVER ALL,DR_Agent Chat,Visits to Agent Chat (Skip bot),Google Android,1.162,1.388,0.226,1.558,0.993,1.387,1.513,1.366,-8.34513357877844,1.5571609879917903,Negative Within,White
+2025-02-06,121,OVER ALL,DR_Overall Chat,Visits to Chat,Apple iOS,4.228,4.73,0.502,5.107,3.851,4.746,4.643,4.437,2.227829404886469,6.976219993237908,Negative Within,White
+2025-02-06,100000118,OVER ALL,DR_Overall Chat,Visits to Chat,Both,4.182,4.64,0.457,4.983,3.839,4.686,4.621,4.407,1.400352406565886,6.334054430207401,Negative Within,White
+2025-02-06,357,OVER ALL,DR_Overall Chat,Visits to Chat,Google Android,4.02,4.472,0.452,4.811,3.681,4.494,4.552,4.313,-1.271066754542896,4.207084721395595,Negative Within,White
+2025-02-06,123,OVER ALL,DR_Message Us,Visits to Chat (Bot),Apple iOS,2.902,3.215,0.314,3.45,2.666,3.193,3.082,2.968,3.601557430240096,7.598989048020196,Negative Within,White
+2025-02-06,100000120,OVER ALL,DR_Message Us,Visits to Chat (Bot),Both,2.932,3.232,0.3,3.457,2.707,3.235,3.142,3.023,2.9598981540420106,7.015261115031748,Negative Within,White
+2025-02-06,359,OVER ALL,DR_Message Us,Visits to Chat (Bot),Google Android,3.044,3.367,0.323,3.609,2.802,3.37,3.333,3.198,1.1231138545953476,5.388247803108481,Negative Within,White
+2025-02-06,129,RE GISTRATION (NATIVE),DR_Native Registration Home Page,Visits to Registration Home Page,Apple iOS,1599.75,1825.5,225.75,2107.688,1317.562,1770.0,1641.286,1613.967,7.84228392375316,9.667692434787995,Positive Within,White
+2025-02-06,100000126,RE GISTRATION (NATIVE),DR_Native Registration Home Page,Visits to Registration Home Page,Both,2370.25,2697.25,327.0,3106.0,1961.5,2529.0,2446.857,2410.867,3.357076132648303,4.900035948344988,Positive Within,White
+2025-02-06,365,RE GISTRATION (NATIVE),DR_Native Registration Home Page,Visits to Registration Home Page,Google Android,760.5,874.5,114.0,1017.0,618.0,759.0,805.571,796.9,-5.7811668735591395,-4.755929225749778,Positive Within,White
+2025-02-06,125,OVER ALL,DR_Self Service Initiated,Visits to Self Service Features,Apple iOS,52.829,55.084,2.255,56.776,51.137,54.3,54.332,53.936,-0.059422705783996284,0.6742517412504742,Positive Within,White
+2025-02-06,100000122,OVER ALL,DR_Self Service Initiated,Visits to Self Service Features,Both,52.805,55.17,2.364,56.943,51.032,54.199,54.455,53.904,-0.4698518300873117,0.5467718077975142,Positive Within,White
+2025-02-06,361,OVER ALL,DR_Self Service Initiated,Visits to Self Service Features,Google Android,52.534,54.951,2.417,56.764,50.721,53.874,54.842,53.802,-1.7648146749224245,0.13369994461178084,Positive Within,White
+2025-02-06,214,TWO-STEP VERIFICATION,DR_TSV Enrollment Home Page,Visits to TSV Home Page,Apple iOS,1071.0,1197.5,126.5,1355.625,912.875,1225.0,1122.429,1076.167,9.1383479699631,13.829951990088269,Positive Within,White
+2025-02-06,100000211,TWO-STEP VERIFICATION,DR_TSV Enrollment Home Page,Visits to TSV Home Page,Both,1375.0,1547.0,172.0,1762.0,1160.0,1564.0,1467.429,1390.033,6.58099688473521,12.515287403179782,Positive Within,White
+2025-02-06,448,TWO-STEP VERIFICATION,DR_TSV Enrollment Home Page,Visits to TSV Home Page,Google Android,296.5,348.75,52.25,414.062,231.188,339.0,345.0,313.867,-1.7391304347826086,8.007646559048426,Positive Within,White
+2025-02-06,126,OVER ALL,DR_CoxApp | Visits with Chat and No Self Service Initiated,Visits with Chat but No Self Service,Apple iOS,1.089,1.227,0.137,1.329,0.986,1.245,1.146,1.109,8.665835411471335,12.243058059862955,Negative Within,White
+2025-02-06,100000123,OVER ALL,DR_CoxApp | Visits with Chat and No Self Service Initiated,Visits with Chat but No Self Service,Both,1.077,1.203,0.126,1.297,0.983,1.221,1.127,1.098,8.354462474645045,11.151570323167961,Negative Within,White
+2025-02-06,362,OVER ALL,DR_CoxApp | Visits with Chat and No Self Service Initiated,Visits with Chat but No Self Service,Google Android,1.011,1.145,0.134,1.246,0.91,1.146,1.067,1.065,7.432703897147438,7.652805611222481,Negative Within,White
+2025-02-06,127,OVER ALL,DR_CoxApp | Visits with No Self Service and No Chat,Visits with Neither Self Service nor Chat,Apple iOS,30.62,32.018,1.398,33.067,29.572,31.757,31.5,31.498,0.8163302327901684,0.8216342521159966,Negative Within,White
+2025-02-06,100000124,OVER ALL,DR_CoxApp | Visits with No Self Service and No Chat,Visits with Neither Self Service nor Chat,Both,30.605,31.965,1.36,32.985,29.585,31.818,31.474,31.429,1.092047930283232,1.2384620034936031,Negative Within,White
+2025-02-06,363,OVER ALL,DR_CoxApp | Visits with No Self Service and No Chat,Visits with Neither Self Service nor Chat,Google Android,30.481,31.905,1.424,32.973,29.413,32.015,31.395,31.212,1.9753007771973525,2.5742620783342978,Negative Within,White
+2025-02-06,157,SERVICE ALERT,DR_Alert Type Visits,Visits with Service Alert,Apple iOS,12637.25,16053.75,3416.5,20324.375,8366.625,12327.0,13831.571,13997.6,-10.877805434771387,-11.934903126250216,Negative Within,White
+2025-02-06,100000154,SERVICE ALERT,DR_Alert Type Visits,Visits with Service Alert,Both,16008.0,20640.0,4632.0,26430.0,10218.0,15695.0,17680.714,17865.367,-11.230961903607646,-12.148458563216344,Negative Within,White
+2025-02-06,393,SERVICE ALERT,DR_Alert Type Visits,Visits with Service Alert,Google Android,3457.75,4630.5,1172.75,6096.438,1991.812,3368.0,3849.143,3867.767,-12.500000000000005,-12.921324106073277,Negative Within,White
+2025-02-06,211,S UPPORT,DR_Support - Click on Exit Link,Went to External Link,Apple iOS,14.423,15.388,0.966,16.112,13.699,15.404,15.738,15.376,-2.1231403233273065,0.17971302279908535,Positive Within,White
+2025-02-06,100000208,S UPPORT,DR_Support - Click on Exit Link,Went to External Link,Both,15.041,16.174,1.134,17.024,14.191,16.359,16.774,16.358,-2.473236413807188,0.008151121798169151,Positive Within,White
+2025-02-06,445,S UPPORT,DR_Support - Click on Exit Link,Went to External Link,Google Android,17.092,19.229,2.136,20.831,15.49,19.539,20.173,19.576,-3.1421287444231947,-0.1907064652897177,Positive Within,White
+2025-02-06,100000236,KEY WORDS,activate,activate,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,322,KEY WORDS,activate,activate,Google Android,1.25,3.75,2.5,6.875,-1.875,6.0,3.143,2.467,90.90909090909092,143.24324324324323,,
+2025-02-06,79,KEY WORDS,bill,bill,Apple iOS,19.0,26.75,7.75,36.438,9.312,30.0,27.429,23.967,9.375000000000005,25.17385257301809,Positive Within,White
+2025-02-06,10000076,KEY WORDS,bill,bill,Both,24.25,33.75,9.5,45.625,12.375,38.0,35.857,31.433,5.976095617529889,20.890774125132555,Positive Within,White
+2025-02-06,317,KEY WORDS,bill,bill,Google Android,5.0,9.0,4.0,14.0,0.0,8.0,8.429,7.467,-5.084745762711868,7.1428571428571415,Positive Within,White
+2025-02-06,82,KEY WORDS,billing,billing,Apple iOS,10.0,16.0,6.0,23.5,2.5,19.0,18.571,14.533,2.307692307692299,30.73394495412844,,
+2025-02-06,10000079,KEY WORDS,billing,billing,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,89,KEY WORDS,call,call,Apple iOS,8.0,14.0,6.0,21.5,0.5,12.0,11.286,10.867,6.329113924050627,10.429447852760731,,
+2025-02-06,10000086,KEY WORDS,call,call,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,76,KEY WORDS,cancel,cancel,Apple iOS,73.0,98.75,25.75,130.938,40.812,89.0,81.429,82.767,9.298245614035086,7.531212243254129,Positive Within,White
+2025-02-06,10000073,KEY WORDS,cancel,cancel,Both,93.0,122.5,29.5,159.375,56.125,115.0,103.571,103.933,11.034482758620692,10.64785118665811,Positive Within,White
+2025-02-06,312,KEY WORDS,cancel,cancel,Google Android,17.25,25.0,7.75,34.688,7.562,26.0,22.143,21.167,17.41935483870968,22.83464566929133,Positive Within,White
+2025-02-06,77,KEY WORDS,cancel service,cancel service,Apple iOS,38.0,54.0,16.0,74.0,18.0,49.0,41.429,46.767,18.275862068965512,4.7754811119030665,Positive Within,White
+2025-02-06,10000074,KEY WORDS,cancel service,cancel service,Both,54.25,73.0,18.75,96.438,30.812,65.0,57.429,62.733,13.184079601990046,3.613177470775769,Positive Within,White
+2025-02-06,313,KEY WORDS,cancel service,cancel service,Google Android,14.0,19.0,5.0,25.25,7.75,16.0,16.0,15.967,0.0,0.2087682672233813,Positive Within,White
+2025-02-06,88,KEY WORDS,contact,contact,Apple iOS,8.0,14.0,6.0,21.5,0.5,13.0,10.0,10.167,30.0,27.868852459016402,,
+2025-02-06,10000085,KEY WORDS,contact,contact,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,94,KEY WORDS,customer service,customer service,Apple iOS,11.0,19.0,8.0,29.0,1.0,11.0,15.714,14.767,-30.0,-25.507900677200908,,
+2025-02-06,10000091,KEY WORDS,customer service,customer service,Both,15.0,24.75,9.75,36.938,2.812,16.0,20.0,19.2,-20.0,-16.666666666666664,,
+2025-02-06,328,KEY WORDS,customer service,customer service,Google Android,2.25,6.0,3.75,10.688,-2.438,5.0,4.286,4.433,16.66666666666667,12.781954887218038,,
+2025-02-06,93,KEY WORDS,disconnect,disconnect,Apple iOS,6.0,10.0,4.0,15.0,1.0,11.0,6.857,7.433,60.41666666666667,47.982062780269054,,
+2025-02-06,10000090,KEY WORDS,disconnect,disconnect,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,100000235,KEY WORDS,email,email,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,321,KEY WORDS,email,email,Google Android,5.0,9.75,4.75,15.688,-0.938,6.0,6.0,5.467,0.0,9.756097560975608,,
+2025-02-06,100000237,KEY WORDS,fiber,fiber,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,323,KEY WORDS,fiber,fiber,Google Android,1.0,3.0,2.0,5.5,-1.5,5.0,3.571,2.667,39.99999999999999,87.50000000000001,,
+2025-02-06,100000234,KEY WORDS,hotspot,hotspot,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,319,KEY WORDS,hotspot,hotspot,Google Android,2.25,5.0,2.75,8.438,-1.188,7.0,2.571,3.6,172.2222222222222,94.44444444444444,,
+2025-02-06,95,KEY WORDS,install,install,Apple iOS,7.0,13.0,6.0,20.5,-0.5,11.0,10.0,9.767,10.0,12.627986348122858,,
+2025-02-06,10000092,KEY WORDS,install,install,Both,11.0,18.75,7.75,28.438,1.312,19.0,16.0,14.133,18.75,34.43396226415095,,
+2025-02-06,318,KEY WORDS,install,install,Google Android,2.0,5.0,3.0,8.75,-1.75,8.0,6.0,4.367,33.33333333333333,83.20610687022902,,
+2025-02-06,81,KEY WORDS,modem,modem,Apple iOS,4.0,8.0,4.0,13.0,-1.0,20.0,19.286,9.567,3.703703703703709,109.05923344947736,Positive Above,Green
+2025-02-06,10000078,KEY WORDS,modem,modem,Both,7.0,10.75,3.75,15.438,2.312,33.0,26.857,13.467,22.872340425531913,145.04950495049505,Positive Above,Green
+2025-02-06,314,KEY WORDS,modem,modem,Google Android,1.0,4.0,3.0,7.75,-2.75,13.0,7.571,3.9,71.69811320754718,233.33333333333334,Positive Above,Green
+2025-02-06,100000238,KEY WORDS,moving,moving,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,324,KEY WORDS,moving,moving,Google Android,2.25,6.0,3.75,10.688,-2.438,5.0,4.286,3.5,16.66666666666667,42.857142857142854,,
+2025-02-06,84,KEY WORDS,new modem,new modem,Apple iOS,5.0,8.0,3.0,11.75,1.25,17.0,15.714,9.467,8.181818181818187,79.57746478873239,,
+2025-02-06,10000081,KEY WORDS,new modem,new modem,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,78,KEY WORDS,outage,outage,Apple iOS,34.25,48.75,14.5,66.875,16.125,35.0,40.714,40.5,-14.035087719298248,-13.580246913580247,Positive Within,White
+2025-02-06,10000075,KEY WORDS,outage,outage,Both,49.25,70.75,21.5,97.625,22.375,44.0,60.0,60.633,-26.666666666666668,-27.432655305112696,Positive Within,White
+2025-02-06,316,KEY WORDS,outage,outage,Google Android,15.0,23.75,8.75,34.688,4.062,9.0,19.286,20.133,-53.333333333333336,-55.298013245033104,Positive Within,White
+2025-02-06,91,KEY WORDS,outage map,outage map,Apple iOS,10.0,18.0,8.0,28.0,0.0,11.0,11.429,13.067,-3.7500000000000018,-15.816326530612242,,
+2025-02-06,10000088,KEY WORDS,outage map,outage map,Both,15.25,25.0,9.75,37.188,3.062,17.0,16.857,19.367,0.8474576271186411,-12.220309810671258,,
+2025-02-06,320,KEY WORDS,outage map,outage map,Google Android,4.0,8.0,4.0,13.0,-1.0,6.0,5.429,6.3,10.52631578947368,-4.761904761904759,,
+2025-02-06,90,KEY WORDS,outages,outages,Apple iOS,8.0,14.0,6.0,21.5,0.5,12.0,10.714,10.533,12.000000000000007,13.924050632911394,,
+2025-02-06,10000087,KEY WORDS,outages,outages,Both,15.0,20.75,5.75,27.938,7.812,17.0,16.143,16.967,5.30973451327434,0.19646365422397835,,
+2025-02-06,327,KEY WORDS,outages,outages,Google Android,4.0,8.0,4.0,13.0,-1.0,5.0,5.429,6.433,-7.894736842105267,-22.279792746113994,,
+2025-02-06,92,KEY WORDS,password,password,Apple iOS,12.0,23.75,11.75,38.438,-2.688,11.0,13.429,12.267,-18.085106382978726,-10.326086956521745,,
+2025-02-06,10000089,KEY WORDS,password,password,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,80,KEY WORDS,pay bill,pay bill,Apple iOS,15.0,22.75,7.75,32.438,5.312,22.0,23.857,20.1,-7.784431137724552,9.452736318407952,Positive Within,White
+2025-02-06,10000077,KEY WORDS,pay bill,pay bill,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,87,KEY WORDS,phone number,phone number,Apple iOS,13.0,20.75,7.75,30.438,3.312,15.0,21.429,17.367,-29.999999999999993,-13.627639155470254,,
+2025-02-06,10000084,KEY WORDS,phone number,phone number,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,100000240,KEY WORDS,plans,plans,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,326,KEY WORDS,plans,plans,Google Android,3.0,5.0,2.0,7.5,0.5,5.0,3.857,3.767,29.629629629629626,32.743362831858406,,
+2025-02-06,168,SERVER ERRORS,server:error:CC-ACCOUNT_NOT_FOUND,server:error:CC-ACCOUNT_NOT_FOUND,Apple iOS,219.25,261.75,42.5,314.875,166.125,289.0,240.571,232.1,20.130641330166267,24.51529513140888,,
+2025-02-06,100000165,SERVER ERRORS,server:error:CC-ACCOUNT_NOT_FOUND,server:error:CC-ACCOUNT_NOT_FOUND,Both,333.0,391.0,58.0,463.5,260.5,403.0,364.286,349.433,10.62745098039216,15.329581226748068,,
+2025-02-06,405,SERVER ERRORS,server:error:CC-ACCOUNT_NOT_FOUND,server:error:CC-ACCOUNT_NOT_FOUND,Google Android,108.25,130.75,22.5,158.875,80.125,114.0,123.714,117.333,-7.852193995381058,-2.840909090909087,,
+2025-02-06,178,SERVER ERRORS,server:error:CC-APPOINTMENT-SLOT-ERROR,server:error:CC-APPOINTMENT-SLOT-ERROR,Apple iOS,5.0,9.0,4.0,14.0,0.0,7.0,9.714,8.267,-27.941176470588232,-15.322580645161299,,
+2025-02-06,100000175,SERVER ERRORS,server:error:CC-APPOINTMENT-SLOT-ERROR,server:error:CC-APPOINTMENT-SLOT-ERROR,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,163,SERVER ERRORS,server:error:CC-CLIENT_ERROR,server:error:CC-CLIENT_ERROR,Apple iOS,78779.0,94890.75,16111.75,115030.438,58639.312,84280.0,85748.143,85835.7,-1.712157031305965,-1.8124160460041652,Negative Within,White
+2025-02-06,100000160,SERVER ERRORS,server:error:CC-CLIENT_ERROR,server:error:CC-CLIENT_ERROR,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,100000248,SERVER ERRORS,server:error:CC-CURRENT_PIN_INVALID,server:error:CC-CURRENT_PIN_INVALID,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,412,SERVER ERRORS,server:error:CC-CURRENT_PIN_INVALID,server:error:CC-CURRENT_PIN_INVALID,Google Android,3.0,6.0,3.0,9.75,-0.75,4.0,3.714,3.767,7.692307692307689,6.194690265486727,,
+2025-02-06,173,SERVER ERRORS,server:error:CC-DUPLICATE_PAYMENT,server:error:CC-DUPLICATE_PAYMENT,Apple iOS,38.0,52.0,14.0,69.5,20.5,43.0,41.857,42.967,2.7303754266211677,0.07757951900697774,,
+2025-02-06,100000170,SERVER ERRORS,server:error:CC-DUPLICATE_PAYMENT,server:error:CC-DUPLICATE_PAYMENT,Both,58.0,80.0,22.0,107.5,30.5,68.0,63.429,65.767,7.207207207207205,3.395843892549419,,
+2025-02-06,410,SERVER ERRORS,server:error:CC-DUPLICATE_PAYMENT,server:error:CC-DUPLICATE_PAYMENT,Google Android,18.25,29.0,10.75,42.438,4.812,25.0,21.571,22.8,15.89403973509933,9.649122807017541,,
+2025-02-06,100000243,SERVER ERRORS,server:error:CC-EACCES,server:error:CC-EACCES,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,399,SERVER ERRORS,server:error:CC-EACCES,server:error:CC-EACCES,Google Android,3282.75,3598.75,316.0,3993.75,2887.75,3130.0,3343.429,3353.167,-6.383524183900191,-6.6554003678115174,Negative Within,White
+2025-02-06,100000251,SERVER ERRORS,server:error:CC-ICOMS_API_ERROR,server:error:CC-ICOMS_API_ERROR,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,416,SERVER ERRORS,server:error:CC-ICOMS_API_ERROR,server:error:CC-ICOMS_API_ERROR,Google Android,0.0,1.0,1.0,2.25,-1.25,1.0,0.286,0.667,250.0,50.000000000000014,,
+2025-02-06,165,SERVER ERRORS,server:error:CC-INTERNAL_ERROR,server:error:CC-INTERNAL_ERROR,Apple iOS,809.25,2314.25,1505.0,4195.5,-1072.0,1559.0,2848.571,3954.7,-45.27081243731194,-60.57855210256151,Negative Within,White
+2025-02-06,100000162,SERVER ERRORS,server:error:CC-INTERNAL_ERROR,server:error:CC-INTERNAL_ERROR,Both,2896.25,4770.5,1874.25,7113.312,553.438,3668.0,5545.857,7006.8,-33.86053939877902,-47.650853456642125,Negative Within,White
+2025-02-06,401,SERVER ERRORS,server:error:CC-INTERNAL_ERROR,server:error:CC-INTERNAL_ERROR,Google Android,2032.75,2612.5,579.75,3337.188,1308.062,2109.0,2697.286,3052.1,-21.810285472167788,-30.90003604075882,Negative Within,White
+2025-02-06,177,SERVER ERRORS,server:error:CC-INVALID_CARD_NUMBER,server:error:CC-INVALID_CARD_NUMBER,Apple iOS,21.25,29.0,7.75,38.688,11.562,20.0,26.286,25.9,-23.913043478260867,-22.779922779922774,,
+2025-02-06,100000174,SERVER ERRORS,server:error:CC-INVALID_CARD_NUMBER,server:error:CC-INVALID_CARD_NUMBER,Both,48.0,61.75,13.75,78.938,30.812,47.0,51.286,54.833,-8.356545961002784,-14.28571428571429,,
+2025-02-06,409,SERVER ERRORS,server:error:CC-INVALID_CARD_NUMBER,server:error:CC-INVALID_CARD_NUMBER,Google Android,27.0,34.0,7.0,42.75,18.25,27.0,25.0,28.933,8.0,-6.682027649769585,,
+2025-02-06,100000244,SERVER ERRORS,server:error:CC-INVALID_CREDS,server:error:CC-INVALID_CREDS,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,400,SERVER ERRORS,server:error:CC-INVALID_CREDS,server:error:CC-INVALID_CREDS,Google Android,2124.25,2394.75,270.5,2732.875,1786.125,2166.0,2251.286,2275.333,-3.7883114410812846,-4.805156753589224,Negative Within,White
+2025-02-06,176,SERVER ERRORS,server:error:CC-INVALID_CVV,server:error:CC-INVALID_CVV,Apple iOS,23.0,33.0,10.0,45.5,10.5,27.0,27.571,27.233,-2.072538860103632,-0.8567931456548381,,
+2025-02-06,100000173,SERVER ERRORS,server:error:CC-INVALID_CVV,server:error:CC-INVALID_CVV,Both,58.25,78.75,20.5,104.375,32.625,62.0,70.286,69.733,-11.78861788617887,-11.089866156787764,,
+2025-02-06,408,SERVER ERRORS,server:error:CC-INVALID_CVV,server:error:CC-INVALID_CVV,Google Android,34.0,47.0,13.0,63.25,17.75,35.0,42.714,42.5,-18.06020066889632,-17.647058823529413,,
+2025-02-06,180,SERVER ERRORS,server:error:CC-INVALID_ROUTING_NUMBER,server:error:CC-INVALID_ROUTING_NUMBER,Apple iOS,1.0,2.0,1.0,3.25,-0.25,1.0,1.429,1.533,-30.0,-34.78260869565218,,
+2025-02-06,100000177,SERVER ERRORS,server:error:CC-INVALID_ROUTING_NUMBER,server:error:CC-INVALID_ROUTING_NUMBER,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,174,SERVER ERRORS,server:error:CC-INVALID_ZIPCODE,server:error:CC-INVALID_ZIPCODE,Apple iOS,34.0,46.0,12.0,61.0,19.0,32.0,35.714,39.333,-10.400000000000002,-18.644067796610177,,
+2025-02-06,100000171,SERVER ERRORS,server:error:CC-INVALID_ZIPCODE,server:error:CC-INVALID_ZIPCODE,Both,90.25,121.5,31.25,160.562,51.188,77.0,90.571,101.733,-14.984227129337539,-24.31192660550459,,
+2025-02-06,407,SERVER ERRORS,server:error:CC-INVALID_ZIPCODE,server:error:CC-INVALID_ZIPCODE,Google Android,54.0,76.0,22.0,103.5,26.5,45.0,54.857,62.4,-17.968749999999993,-27.884615384615387,,
+2025-02-06,164,SERVER ERRORS,server:error:CC-NO-INTERNET,server:error:CC-NO-INTERNET,Apple iOS,2251.0,2634.0,383.0,3112.75,1772.25,2153.0,2322.429,2495.967,-7.295318939533744,-13.74083521414549,Negative Within,White
+2025-02-06,100000161,SERVER ERRORS,server:error:CC-NO-INTERNET,server:error:CC-NO-INTERNET,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,170,SERVER ERRORS,server:error:CC-PASSWORD_DENIED,server:error:CC-PASSWORD_DENIED,Apple iOS,54.5,75.75,21.25,102.312,27.938,63.0,58.0,60.1,8.620689655172415,4.82529118136439,,
+2025-02-06,100000167,SERVER ERRORS,server:error:CC-PASSWORD_DENIED,server:error:CC-PASSWORD_DENIED,Both,81.0,104.0,23.0,132.75,52.25,85.0,80.286,83.733,5.871886120996433,1.5127388535031836,,
+2025-02-06,411,SERVER ERRORS,server:error:CC-PASSWORD_DENIED,server:error:CC-PASSWORD_DENIED,Google Android,19.5,28.0,8.5,38.625,8.875,22.0,22.286,23.633,-1.2820512820512775,-6.911142454160787,,
+2025-02-06,100000249,SERVER ERRORS,server:error:CC-PASSWORD_EXPIRED,server:error:CC-PASSWORD_EXPIRED,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,413,SERVER ERRORS,server:error:CC-PASSWORD_EXPIRED,server:error:CC-PASSWORD_EXPIRED,Google Android,3.0,7.0,4.0,12.0,-2.0,4.0,5.0,4.833,-20.0,-17.241379310344822,,
+2025-02-06,166,SERVER ERRORS,server:error:CC-PAYMENT_AUTH_FAILED,server:error:CC-PAYMENT_AUTH_FAILED,Apple iOS,799.25,1035.5,236.25,1330.812,503.938,872.0,920.286,927.8,-5.246817758460111,-6.014227204138818,Negative Within,White
+2025-02-06,100000163,SERVER ERRORS,server:error:CC-PAYMENT_AUTH_FAILED,server:error:CC-PAYMENT_AUTH_FAILED,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,179,SERVER ERRORS,server:error:CC-PAYMENT_METHOD_RESTRICTED,server:error:CC-PAYMENT_METHOD_RESTRICTED,Apple iOS,1.25,4.0,2.75,7.438,-2.188,5.0,2.429,2.1,105.88235294117649,138.0952380952381,,
+2025-02-06,100000176,SERVER ERRORS,server:error:CC-PAYMENT_METHOD_RESTRICTED,server:error:CC-PAYMENT_METHOD_RESTRICTED,Both,3.0,6.0,3.0,9.75,-0.75,7.0,4.429,4.6,58.06451612903225,52.17391304347827,,
+2025-02-06,414,SERVER ERRORS,server:error:CC-PAYMENT_METHOD_RESTRICTED,server:error:CC-PAYMENT_METHOD_RESTRICTED,Google Android,1.0,3.0,2.0,5.5,-1.5,2.0,2.0,2.5,0.0,-20.0,,
+2025-02-06,172,SERVER ERRORS,server:error:CC-PAYMENT_UNKNOWN_ERROR,server:error:CC-PAYMENT_UNKNOWN_ERROR,Apple iOS,34.0,52.75,18.75,76.188,10.562,49.0,32.286,44.9,51.76991150442478,9.131403118040092,,
+2025-02-06,100000169,SERVER ERRORS,server:error:CC-PAYMENT_UNKNOWN_ERROR,server:error:CC-PAYMENT_UNKNOWN_ERROR,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,175,SERVER ERRORS,server:error:CC-PRIMARY-IDENTITY-ALREADY-EXISTS,server:error:CC-PRIMARY-IDENTITY-ALREADY-EXISTS,Apple iOS,26.25,43.0,16.75,63.938,5.312,32.0,39.143,34.1,-18.248175182481756,-6.158357771261001,,
+2025-02-06,100000172,SERVER ERRORS,server:error:CC-PRIMARY-IDENTITY-ALREADY-EXISTS,server:error:CC-PRIMARY-IDENTITY-ALREADY-EXISTS,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,181,SERVER ERRORS,server:error:CC-SECURE_TOKEN_ALREADY_VERIFIED,server:error:CC-SECURE_TOKEN_ALREADY_VERIFIED,Apple iOS,3.0,5.0,2.0,7.5,0.5,1.0,3.286,5.2,-69.56521739130434,-80.76923076923077,,
+2025-02-06,100000178,SERVER ERRORS,server:error:CC-SECURE_TOKEN_ALREADY_VERIFIED,server:error:CC-SECURE_TOKEN_ALREADY_VERIFIED,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,171,SERVER ERRORS,server:error:CC-SECURITY_TOKEN_NOT_FOUND,server:error:CC-SECURITY_TOKEN_NOT_FOUND,Apple iOS,48.25,65.75,17.5,87.625,26.375,54.0,67.429,58.767,-19.91525423728814,-8.111174134997162,,
+2025-02-06,100000168,SERVER ERRORS,server:error:CC-SECURITY_TOKEN_NOT_FOUND,server:error:CC-SECURITY_TOKEN_NOT_FOUND,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,100000245,SERVER ERRORS,server:error:CC-TOKEN_EXPIRED,server:error:CC-TOKEN_EXPIRED,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,402,SERVER ERRORS,server:error:CC-TOKEN_EXPIRED,server:error:CC-TOKEN_EXPIRED,Google Android,842.0,996.5,154.5,1189.625,648.875,910.0,963.857,922.9,-5.587668593448943,-1.3977679055152212,Negative Within,White
+2025-02-06,169,SERVER ERRORS,server:error:CC-USERNAME-ALREADY-EXISTS,server:error:CC-USERNAME-ALREADY-EXISTS,Apple iOS,180.5,215.5,35.0,259.25,136.75,217.0,191.857,188.5,13.104988830975426,15.119363395225463,,
+2025-02-06,100000166,SERVER ERRORS,server:error:CC-USERNAME-ALREADY-EXISTS,server:error:CC-USERNAME-ALREADY-EXISTS,Both,250.25,296.5,46.25,354.312,192.438,290.0,267.857,260.833,8.266666666666676,11.18210862619809,,
+2025-02-06,406,SERVER ERRORS,server:error:CC-USERNAME-ALREADY-EXISTS,server:error:CC-USERNAME-ALREADY-EXISTS,Google Android,66.25,81.75,15.5,101.125,46.875,73.0,76.0,72.333,-3.9473684210526314,0.9216589861751218,,
+2025-02-06,182,SERVER ERRORS,server:error:CC-VALIDATION_ERROR,server:error:CC-VALIDATION_ERROR,Apple iOS,2.0,5.0,3.0,8.75,-1.75,1.0,3.857,3.7,-74.07407407407408,-72.97297297297297,,
+2025-02-06,100000179,SERVER ERRORS,server:error:CC-VALIDATION_ERROR,server:error:CC-VALIDATION_ERROR,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,100000250,SERVER ERRORS,server:error:MappingTemplate,server:error:MappingTemplate,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,415,SERVER ERRORS,server:error:MappingTemplate,server:error:MappingTemplate,Google Android,0.0,2.0,2.0,4.5,-2.5,2.0,1.571,1.067,27.272727272727277,87.5,,
+2025-02-06,100000246,SERVER ERRORS,server:error:null,server:error:null,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,403,SERVER ERRORS,server:error:null,server:error:null,Google Android,704.5,813.75,109.25,950.312,567.938,720.0,764.286,761.6,-5.794392523364492,-5.462184873949583,Negative Within,White
+2025-02-06,100000247,SERVER ERRORS,server:error:unable_to_retrieve_data_usage_information_at_this_time,server:error:unable_to_retrieve_data_usage_information_at_this_time,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,404,SERVER ERRORS,server:error:unable_to_retrieve_data_usage_information_at_this_time,server:error:unable_to_retrieve_data_usage_information_at_this_time,Google Android,134.0,161.75,27.75,196.438,99.312,151.0,153.286,148.7,-1.4911463187325205,1.5467383994620119,,
+2025-02-06,167,SERVER ERRORS,server:error:unable_to_retrieve_data_usage_information_at_this_time.,server:error:unable_to_retrieve_data_usage_information_at_this_time.,Apple iOS,408.5,594.25,185.75,826.438,176.312,485.0,424.286,409.067,14.309764309764311,18.5625814863103,Negative Within,White
+2025-02-06,100000164,SERVER ERRORS,server:error:unable_to_retrieve_data_usage_information_at_this_time.,server:error:unable_to_retrieve_data_usage_information_at_this_time.,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Negative Within,White
+2025-02-06,85,KEY WORDS,set up,set up,Apple iOS,12.0,18.75,6.75,27.188,3.562,15.0,12.0,15.233,25.0,-1.531728665207872,,
+2025-02-06,10000082,KEY WORDS,set up,set up,Both,15.0,23.75,8.75,34.688,4.062,20.0,14.429,19.133,38.61386138613861,4.529616724738679,,
+2025-02-06,329,KEY WORDS,set up,set up,Google Android,2.0,5.0,3.0,8.75,-1.75,5.0,2.429,3.9,105.88235294117649,28.20512820512821,,
+2025-02-06,100000242,KEY WORDS,set up new modem,set up new modem,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,331,KEY WORDS,set up new modem,set up new modem,Google Android,0.0,1.0,1.0,2.25,-1.25,4.0,1.571,1.033,154.54545454545456,287.09677419354836,,
+2025-02-06,100000241,KEY WORDS,speed,speed,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,330,KEY WORDS,speed,speed,Google Android,2.0,5.0,3.0,8.75,-1.75,5.0,2.429,3.0,105.88235294117649,66.66666666666666,,
+2025-02-06,86,KEY WORDS,speed test,speed test,Apple iOS,17.0,23.0,6.0,30.5,9.5,15.0,19.429,20.667,-22.79411764705882,-27.41935483870968,Positive Within,White
+2025-02-06,10000083,KEY WORDS,speed test,speed test,Both,24.25,32.75,8.5,43.375,13.625,24.0,27.286,28.367,-12.041884816753923,-15.393654524089309,Positive Within,White
+2025-02-06,315,KEY WORDS,speed test,speed test,Google Android,6.0,10.0,4.0,15.0,1.0,9.0,7.857,7.7,14.54545454545455,16.88311688311688,Positive Within,White
+2025-02-06,100000239,KEY WORDS,upgrade,upgrade,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,325,KEY WORDS,upgrade,upgrade,Google Android,1.0,3.0,2.0,5.5,-1.5,5.0,3.143,2.5,59.09090909090909,100.0,,
+2025-02-06,99,LOG IN,DR_Clicks to MFA Verification,with TSV,Apple iOS,14.925,15.661,0.736,16.213,14.373,16.293,16.208,15.809,0.5262044529060216,3.0639376374512413,Positive Above,Green
+2025-02-06,10000096,LOG IN,DR_Clicks to MFA Verification,with TSV,Both,12.865,13.46,0.595,13.907,12.418,13.965,13.961,13.598,0.0255806814693638,2.697415834448674,Positive Above,Green
+2025-02-06,335,LOG IN,DR_Clicks to MFA Verification,with TSV,Google Android,6.353,6.666,0.312,6.9,6.119,6.472,6.771,6.591,-4.419924470980376,-1.8069821425861947,Positive Within,White
+2025-02-06,113,NOTIFICATION CENTER,DR_Notification accepted with no new notifications,with no new notifi Accepted,Apple iOS,51.25,126.75,75.5,221.125,-43.125,140.0,158.429,140.567,-11.632100991884574,-0.40313018733696676,Positive Within,White
+2025-02-06,100000110,NOTIFICATION CENTER,DR_Notification accepted with no new notifications,with no new notifi Accepted,Both,111.25,377.5,266.25,710.312,-221.562,346.0,375.714,393.1,-7.908745247148291,-11.981684049860093,Positive Within,White
+2025-02-06,349,NOTIFICATION CENTER,DR_Notification accepted with no new notifications,with no new notifi Accepted,Google Android,58.0,242.75,184.75,473.688,-172.938,206.0,217.286,252.533,-5.193951347797498,-18.42661034846885,Positive Within,White
+2025-02-06,112,NOTIFICATION CENTER,DR_Notification Declined with no new notification,with no new notifi Declined,Apple iOS,151.0,183.0,32.0,223.0,111.0,175.0,207.429,177.233,-15.633608815426992,-1.260109084069957,Negative Within,White
+2025-02-06,100000109,NOTIFICATION CENTER,DR_Notification Declined with no new notification,with no new notifi Declined,Both,541.5,638.75,97.25,760.312,419.938,562.0,632.429,610.7,-11.136209622769371,-7.974455542819722,Negative Within,White
+2025-02-06,348,NOTIFICATION CENTER,DR_Notification Declined with no new notification,with no new notifi Declined,Google Android,387.0,461.0,74.0,553.5,294.5,387.0,425.0,433.467,-8.941176470588236,-10.719778529683168,Negative Within,White
+2025-02-06,114,NOTIFICATION CENTER,DR_No action on no new notifications,with no new notifi No Action,Apple iOS,668.0,787.75,119.75,937.438,518.312,742.0,789.571,689.233,-6.024968337253481,7.655849494607532,Negative Within,White
+2025-02-06,100000111,NOTIFICATION CENTER,DR_No action on no new notifications,with no new notifi No Action,Both,1518.0,1708.75,190.75,1947.188,1279.562,1554.0,1645.0,1587.467,-5.531914893617021,-2.1081807492020848,Negative Within,White
+2025-02-06,350,NOTIFICATION CENTER,DR_No action on no new notifications,with no new notifi No Action,Google Android,799.25,938.0,138.75,1111.438,625.812,812.0,855.429,898.233,-5.076820307281231,-9.600326566964783,Negative Within,White
+2025-02-06,111,NOTIFICATION CENTER,DR_Notification Viewed with no new notifications,with no new notifi Viewed,Apple iOS,74.25,153.0,78.75,251.438,-24.188,171.0,189.857,168.467,-9.932279909706548,1.5037593984962394,Positive Within,White
+2025-02-06,100000108,NOTIFICATION CENTER,DR_Notification Viewed with no new notifications,with no new notifi Viewed,Both,163.75,275.0,111.25,414.062,24.688,272.0,303.429,292.533,-10.357815442561211,-7.019143117593445,Positive Within,White
+2025-02-06,347,NOTIFICATION CENTER,DR_Notification Viewed with no new notifications,with no new notifi Viewed,Google Android,87.25,123.0,35.75,167.688,42.562,101.0,113.571,124.067,-11.069182389937106,-18.59215475550779,Positive Within,White
+2025-02-06,228,U R L,www.cox.com/mobile-shop/check-device-compatibility.html&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mob,www.cox.com/mobile-shop/check-device-compatibility.html&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mob,Apple iOS,83.0,144.5,61.5,221.375,6.125,54.0,96.143,76.9,-43.83358098068351,-29.778933680104036,Positive Within,White
+2025-02-06,100000225,U R L,www.cox.com/mobile-shop/check-device-compatibility.html&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mob,www.cox.com/mobile-shop/check-device-compatibility.html&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mob,Both,122.25,212.0,89.75,324.188,10.062,57.0,98.143,94.133,-41.92139737991266,-39.44759206798867,Positive Within,White
+2025-02-06,462,U R L,www.cox.com/mobile-shop/check-device-compatibility.html&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mob,www.cox.com/mobile-shop/check-device-compatibility.html&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mob,Google Android,30.25,70.75,40.5,121.375,-20.375,3.0,2.0,17.233,50.0,-82.59187620889749,Positive Within,White
+2025-02-06,229,U R L,www.cox.com/mobile-shop/device/motorola-moto-g-play-2024_sapphire-blue?storage=64gb&sc_id=cr_mobile_,www.cox.com/mobile-shop/device/motorola-moto-g-play-2024_sapphire-blue?storage=64gb&sc_id=cr_mobile_,Apple iOS,50.5,246.5,196.0,491.5,-194.5,24.0,34.571,44.033,-30.57851239669421,-45.495836487509465,Positive Within,White
+2025-02-06,100000226,U R L,www.cox.com/mobile-shop/device/motorola-moto-g-play-2024_sapphire-blue?storage=64gb&sc_id=cr_mobile_,www.cox.com/mobile-shop/device/motorola-moto-g-play-2024_sapphire-blue?storage=64gb&sc_id=cr_mobile_,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,231,U R L,www.cox.com/mobile-shop/devices/apple&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_PO,www.cox.com/mobile-shop/devices/apple&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_PO,Apple iOS,7.0,105.75,98.75,229.188,-116.438,7.0,7.0,9.2,0.0,-23.913043478260864,,
+2025-02-06,100000228,U R L,www.cox.com/mobile-shop/devices/apple&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_PO,www.cox.com/mobile-shop/devices/apple&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_PO,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,227,U R L,www.cox.com/mobile-shop/devices/apple?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_ga,www.cox.com/mobile-shop/devices/apple?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_ga,Apple iOS,0.0,626.0,626.0,1408.5,-782.5,70.0,87.571,253.333,-20.065252854812396,-72.36842105263158,Positive Within,White
+2025-02-06,100000224,U R L,www.cox.com/mobile-shop/devices/apple?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_ga,www.cox.com/mobile-shop/devices/apple?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_iphone16_ga,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,Positive Within,White
+2025-02-06,236,U R L,www.cox.com/mobile-shop/devices?brand=apple?intercept=false&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb,www.cox.com/mobile-shop/devices?brand=apple?intercept=false&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb,Apple iOS,1.0,3.0,2.0,5.5,-1.5,2.0,0.857,1.1,133.33333333333331,81.8181818181818,,
+2025-02-06,100000233,U R L,www.cox.com/mobile-shop/devices?brand=apple?intercept=false&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb,www.cox.com/mobile-shop/devices?brand=apple?intercept=false&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,234,U R L,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro00,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro00,Apple iOS,0.0,7.0,7.0,15.75,-8.75,3.0,3.857,4.633,-22.222222222222225,-35.25179856115109,,
+2025-02-06,100000231,U R L,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro00,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro00,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,235,U R L,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro21,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro21,Apple iOS,0.0,3.0,3.0,6.75,-3.75,3.0,2.286,1.7,31.250000000000007,76.47058823529413,,
+2025-02-06,100000232,U R L,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro21,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro21,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,232,U R L,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro45,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro45,Apple iOS,0.0,4.0,4.0,9.0,-5.0,4.0,1.143,1.6,250.0,149.99999999999997,,
+2025-02-06,100000229,U R L,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro45,www.cox.com/residential-shop/repackage-landing.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_push_cro45,Both,0.0,0.0,0.0,0.0,0.0,0.0,,,0,0,,
+2025-02-06,226,U R L,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_2,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_2,Apple iOS,0.0,137.5,137.5,309.375,-171.875,100.0,140.143,237.0,-28.644240570846076,-57.80590717299579,Positive Within,White
+2025-02-06,100000223,U R L,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_2,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_2,Both,0.0,181.0,181.0,407.25,-226.25,132.0,175.0,450.433,-24.571428571428573,-70.69488640568342,Positive Within,White
+2025-02-06,460,U R L,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_2,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_2,Google Android,0.0,37.25,37.25,83.812,-46.562,32.0,34.857,213.433,-8.196721311475402,-85.00702795564578,Positive Within,White
+2025-02-06,225,U R L,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_b,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_b,Apple iOS,0.0,0.0,0.0,0.0,0.0,1010.0,917.286,221.2,10.107459897212266,356.6003616636528,Positive Above,Green
+2025-02-06,100000222,U R L,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_b,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_b,Both,0.0,0.0,0.0,0.0,0.0,1470.0,1422.571,347.567,3.334002811809593,322.9404430804642,Positive Above,Green
+2025-02-06,459,U R L,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_b,www.cox.com/residential/mobile/deals.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_mobile_holidays_b,Google Android,0.0,0.0,0.0,0.0,0.0,460.0,505.286,126.367,-8.962397512015832,264.02004748087575,Positive Above,Green
+2025-02-06,233,U R L,www.cox.com/residential/move.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_inapp,www.cox.com/residential/move.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_inapp,Apple iOS,3.0,6.0,3.0,9.75,-0.75,3.0,4.0,3.967,-25.0,-24.369747899159666,Positive Within,White
+2025-02-06,100000230,U R L,www.cox.com/residential/move.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_inapp,www.cox.com/residential/move.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_inapp,Both,3.25,7.0,3.75,11.688,-1.438,5.0,4.857,5.067,2.941176470588243,-1.315789473684206,Positive Within,White
+2025-02-06,463,U R L,www.cox.com/residential/move.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_inapp,www.cox.com/residential/move.html?sc_id=cr_mobile_app_z_coxapp_z_swrve_inapp,Google Android,0.0,2.0,2.0,4.5,-2.5,2.0,0.857,1.1,133.33333333333331,81.8181818181818,Positive Within,White
+2025-02-06,230,U R L,www.cox.com/residential/refer-a-friend.html?&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_extole,www.cox.com/residential/refer-a-friend.html?&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_extole,Apple iOS,0.0,0.0,0.0,0.0,0.0,12.0,14.429,4.833,-16.831683168316832,148.27586206896552,Positive Above,Green
+2025-02-06,100000227,U R L,www.cox.com/residential/refer-a-friend.html?&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_extole,www.cox.com/residential/refer-a-friend.html?&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_extole,Both,0.0,0.0,0.0,0.0,0.0,19.0,25.143,8.4,-24.43181818181818,126.19047619047619,Positive Above,Green
+2025-02-06,461,U R L,www.cox.com/residential/refer-a-friend.html?&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_extole,www.cox.com/residential/refer-a-friend.html?&sc_id=cr_mobile_app_z_coxapp_z_swrve_emb_extole,Google Android,0.0,0.0,0.0,0.0,0.0,7.0,10.714,3.567,-34.666666666666664,96.26168224299064,Positive Above,Green
