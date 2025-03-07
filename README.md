@@ -1,3 +1,18 @@
+
+https://teams.microsoft.com/l/meetup-join/19%3ameeting_N2JiNWU1ZTctOWViMi00NWFkLTlhNjktM2Q1ZWFhZjdiOGFh%40thread.v2/0?context=%7b%22Tid%22%3a%229feebc97-ff04-42c9-a152-767073872118%22%2c%22Oid%22%3a%22d643c3ed-5ac2-4a06-9626-fce002cfd0c9%22%7d
+
+
+
+
+
+
+
+
+
+
+
+
+
 s3://cci-dig-aicoe-data-sb/processed/ciam_prod/
 
 
