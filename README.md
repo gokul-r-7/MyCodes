@@ -1,3 +1,25 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS your_table_name (
+    column1_name column1_type,
+    column2_name column2_type,
+    column3_name column3_type,
+    ...
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','  -- Assuming your CSV is comma-separated
+LINES TERMINATED BY '\n'  -- Adjust if line endings are different
+LOCATION 's3://your-bucket-name/your-folder-path/';
+
+
+
+
+
+
+
+
+
+
+
+
 
 chsi_tier_migration_desc column not able to check, since the file size is large
 
