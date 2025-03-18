@@ -24,5 +24,9 @@ lrp_psu_input_2025.csv                        February 11, 2025
 lrp_psu_input.csv                             February 17, 2025          #
 
 module ds_targets.py
-edw.cs_target_fact
-
+EDW.CS_TARGET_FACT
+cci_mkt_sale_prod.SLS_TARGET_GROUP_LKP
+cci_mkt_sale_prod.SLS_EMPLOYEE_TYPE_CD_XREF
+EDW.TIME_DIM (unable to read in athena)
+MSADMIN.CS_EMPLOYEE_TYPE_CD_XREF
+EDW.CS_TARGET_METRIC_DIM (unable to read in athena)
