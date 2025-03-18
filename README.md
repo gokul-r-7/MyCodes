@@ -30,3 +30,5 @@ cci_mkt_sale_prod.SLS_EMPLOYEE_TYPE_CD_XREF
 EDW.TIME_DIM (unable to read in athena)
 MSADMIN.CS_EMPLOYEE_TYPE_CD_XREF
 EDW.CS_TARGET_METRIC_DIM (unable to read in athena)
+
+
