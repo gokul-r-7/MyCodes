@@ -1,0 +1,239 @@
+date,Flow Name (v42),ALTRX - Res: NC Visits,ALTRX - Res: CC Visits,ALTRX - Res: Transfer Visits
+Mon. 17 Mar. 2025,WLS:Existing Customer C2C Downgrade,0,4,0
+Tue. 18 Mar. 2025,WLS:Existing Customer C2C Downgrade,1,5,0
+Wed. 19 Mar. 2025,WLS:Existing Customer C2C Downgrade,0,5,0
+Thu. 20 Mar. 2025,WLS:Existing Customer C2C Downgrade,0,6,0
+Sat. 22 Mar. 2025,WLS:Existing Customer C2C Downgrade,0,5,0
+Fri. 21 Mar. 2025,WLS:Existing Customer C2C Downgrade,0,12,0
+Sat. 22 Mar. 2025,transfer:transfer-as-is,0,0,0
+Sat. 22 Mar. 2025,WLS:lead-mobile-transfer-lead,0,0,1
+Sun. 23 Mar. 2025,transfer:transfer-as-is,0,0,2
+Sun. 23 Mar. 2025,WLS:lead-mobile-transfer-lead,0,0,0
+Mon. 17 Mar. 2025,transfer:transfer-as-is,0,0,0
+Mon. 17 Mar. 2025,WLS:lead-mobile-transfer-lead,0,0,0
+Tue. 18 Mar. 2025,transfer:transfer-as-is,0,0,0
+Tue. 18 Mar. 2025,WLS:lead-mobile-transfer-lead,0,0,0
+Wed. 19 Mar. 2025,transfer:transfer-as-is,0,0,0
+Wed. 19 Mar. 2025,WLS:lead-mobile-transfer-lead,0,0,0
+Thu. 20 Mar. 2025,transfer:transfer-as-is,0,0,0
+Thu. 20 Mar. 2025,WLS:lead-mobile-transfer-lead,0,0,0
+Fri. 21 Mar. 2025,transfer:transfer-as-is,0,0,0
+Fri. 21 Mar. 2025,WLS:lead-mobile-transfer-lead,0,0,0
+Mon. 17 Mar. 2025,main:StraightUp Internet Shop,0,0,0
+Mon. 17 Mar. 2025,equip-swap:upgrade-commitment,0,0,0
+Tue. 18 Mar. 2025,main:StraightUp Internet Shop,1,1,0
+Tue. 18 Mar. 2025,equip-swap:upgrade-commitment,0,0,0
+Wed. 19 Mar. 2025,main:StraightUp Internet Shop,1,0,0
+Wed. 19 Mar. 2025,equip-swap:upgrade-commitment,0,1,0
+Thu. 20 Mar. 2025,main:StraightUp Internet Shop,2,0,0
+Thu. 20 Mar. 2025,equip-swap:upgrade-commitment,0,0,0
+Fri. 21 Mar. 2025,main:StraightUp Internet Shop,0,0,0
+Fri. 21 Mar. 2025,equip-swap:upgrade-commitment,0,1,0
+Fri. 21 Mar. 2025,etailer:etailer,0,0,0
+Fri. 21 Mar. 2025,WLS:AllConnect Cart,0,0,0
+Sat. 22 Mar. 2025,etailer:etailer,0,0,0
+Sat. 22 Mar. 2025,WLS:AllConnect Cart,0,0,0
+Sun. 23 Mar. 2025,WLS:Existing Customer C2C Downgrade,0,4,0
+Mon. 17 Mar. 2025,WLS:StraightUp Internet Shop,2,1,0
+Tue. 18 Mar. 2025,WLS:StraightUp Internet Shop,1,3,0
+Wed. 19 Mar. 2025,WLS:StraightUp Internet Shop,1,1,0
+Thu. 20 Mar. 2025,WLS:StraightUp Internet Shop,2,2,0
+Fri. 21 Mar. 2025,WLS:StraightUp Internet Shop,3,2,0
+Sat. 22 Mar. 2025,WLS:StraightUp Internet Shop,1,5,0
+Mon. 17 Mar. 2025,etailer:etailer,0,1,0
+Mon. 17 Mar. 2025,WLS:AllConnect Cart,0,2,0
+Thu. 20 Mar. 2025,etailer:etailer,1,0,0
+Thu. 20 Mar. 2025,WLS:AllConnect Cart,0,0,0
+Sun. 23 Mar. 2025,etailer:etailer,0,0,0
+Sun. 23 Mar. 2025,WLS:AllConnect Cart,0,2,0
+Sat. 22 Mar. 2025,main:StraightUp Internet Shop,0,0,0
+Sat. 22 Mar. 2025,equip-swap:upgrade-commitment,0,1,0
+Sun. 23 Mar. 2025,main:StraightUp Internet Shop,1,0,0
+Sun. 23 Mar. 2025,equip-swap:upgrade-commitment,0,1,0
+Mon. 17 Mar. 2025,WLS:Connect 2 Compete Shop,8,8,0
+Mon. 17 Mar. 2025,WLS:cox-mobile-sales-agent,0,0,0
+Tue. 18 Mar. 2025,WLS:Connect 2 Compete Shop,6,6,0
+Tue. 18 Mar. 2025,WLS:cox-mobile-sales-agent,0,0,0
+Wed. 19 Mar. 2025,WLS:Connect 2 Compete Shop,4,9,0
+Mon. 17 Mar. 2025,main:Connect 2 Compete Shop,5,6,0
+Tue. 18 Mar. 2025,main:Connect 2 Compete Shop,5,2,0
+Wed. 19 Mar. 2025,main:Connect 2 Compete Shop,3,4,0
+Thu. 20 Mar. 2025,main:Connect 2 Compete Shop,1,2,0
+Fri. 21 Mar. 2025,main:Connect 2 Compete Shop,3,1,0
+Sat. 22 Mar. 2025,main:Connect 2 Compete Shop,0,3,0
+Sun. 23 Mar. 2025,main:Connect 2 Compete Shop,3,0,0
+Sun. 23 Mar. 2025,WLS:StraightUp Internet Shop,2,2,0
+Mon. 17 Mar. 2025,WLS:Transfer Lead-Default,0,0,1
+Tue. 18 Mar. 2025,WLS:Transfer Lead-Default,0,0,1
+Wed. 19 Mar. 2025,WLS:Transfer Lead-Default,0,0,2
+Thu. 20 Mar. 2025,WLS:Transfer Lead-Default,0,0,0
+Wed. 19 Mar. 2025,WLS:cox-mobile-sales-agent,1,0,0
+Thu. 20 Mar. 2025,WLS:Connect 2 Compete Shop,2,3,0
+Thu. 20 Mar. 2025,WLS:cox-mobile-sales-agent,0,0,0
+Fri. 21 Mar. 2025,WLS:Connect 2 Compete Shop,3,4,0
+Fri. 21 Mar. 2025,WLS:cox-mobile-sales-agent,1,0,0
+Sat. 22 Mar. 2025,WLS:Connect 2 Compete Shop,0,8,0
+Sat. 22 Mar. 2025,WLS:cox-mobile-sales-agent,0,1,0
+Sun. 23 Mar. 2025,WLS:Connect 2 Compete Shop,5,2,0
+Sun. 23 Mar. 2025,WLS:cox-mobile-sales-agent,0,0,0
+Mon. 17 Mar. 2025,main:Boost Mobile Store,0,0,0
+Tue. 18 Mar. 2025,etailer:etailer,1,1,0
+Tue. 18 Mar. 2025,WLS:AllConnect Cart,0,0,0
+Wed. 19 Mar. 2025,etailer:etailer,1,2,0
+Wed. 19 Mar. 2025,WLS:AllConnect Cart,2,1,0
+Mon. 17 Mar. 2025,WLS:cox-mobile-care-agent,0,2,0
+Tue. 18 Mar. 2025,WLS:cox-mobile-care-agent,1,6,0
+Wed. 19 Mar. 2025,WLS:cox-mobile-care-agent,1,2,0
+Thu. 20 Mar. 2025,WLS:cox-mobile-care-agent,1,3,0
+Fri. 21 Mar. 2025,WLS:cox-mobile-care-agent,0,2,0
+Sat. 22 Mar. 2025,WLS:cox-mobile-care-agent,0,3,0
+Sun. 23 Mar. 2025,WLS:cox-mobile-care-agent,0,1,0
+Fri. 21 Mar. 2025,WLS:Transfer Lead-Default,0,0,1
+Sat. 22 Mar. 2025,WLS:Transfer Lead-Default,0,0,1
+Sun. 23 Mar. 2025,WLS:Transfer Lead-Default,0,0,0
+Mon. 17 Mar. 2025,WLS:Connect Assist Lead,0,5,0
+Tue. 18 Mar. 2025,main:Boost Mobile Store,2,0,0
+Tue. 18 Mar. 2025,WLS:Connect Assist Lead,0,4,0
+Wed. 19 Mar. 2025,main:Boost Mobile Store,0,0,0
+Wed. 19 Mar. 2025,WLS:Connect Assist Lead,0,5,0
+Thu. 20 Mar. 2025,main:Boost Mobile Store,1,0,0
+Thu. 20 Mar. 2025,WLS:Connect Assist Lead,0,8,0
+Fri. 21 Mar. 2025,main:Boost Mobile Store,2,0,0
+Fri. 21 Mar. 2025,WLS:Connect Assist Lead,0,5,0
+Sat. 22 Mar. 2025,main:Boost Mobile Store,0,0,0
+Sat. 22 Mar. 2025,WLS:Connect Assist Lead,0,1,0
+Sun. 23 Mar. 2025,main:Boost Mobile Store,0,0,0
+Sun. 23 Mar. 2025,WLS:Connect Assist Lead,0,1,0
+Mon. 17 Mar. 2025,unknown:unknown,12333,7161,0
+Mon. 17 Mar. 2025,WLS:Boost Mobile Store,0,1,0
+Mon. 17 Mar. 2025,WLS:Transfer Lead-Bulk,0,0,1
+Tue. 18 Mar. 2025,unknown:unknown,10622,6435,0
+Tue. 18 Mar. 2025,WLS:Boost Mobile Store,2,1,0
+Tue. 18 Mar. 2025,WLS:Transfer Lead-Bulk,0,0,0
+Wed. 19 Mar. 2025,unknown:unknown,11037,6922,0
+Wed. 19 Mar. 2025,WLS:Boost Mobile Store,0,2,0
+Wed. 19 Mar. 2025,WLS:Transfer Lead-Bulk,0,0,1
+Thu. 20 Mar. 2025,unknown:unknown,11527,7397,0
+Thu. 20 Mar. 2025,WLS:Boost Mobile Store,1,1,0
+Thu. 20 Mar. 2025,WLS:Transfer Lead-Bulk,0,0,0
+Fri. 21 Mar. 2025,unknown:unknown,17004,9103,0
+Mon. 17 Mar. 2025,WLS:Connect Assist,18,6,0
+Mon. 17 Mar. 2025,main:Connect Assist,5,2,0
+Tue. 18 Mar. 2025,WLS:Connect Assist,11,4,0
+Tue. 18 Mar. 2025,main:Connect Assist,6,1,0
+Wed. 19 Mar. 2025,WLS:Connect Assist,12,4,0
+Wed. 19 Mar. 2025,main:Connect Assist,4,1,0
+Fri. 21 Mar. 2025,WLS:Boost Mobile Store,2,0,0
+Fri. 21 Mar. 2025,WLS:Transfer Lead-Bulk,0,0,1
+Sat. 22 Mar. 2025,unknown:unknown,20069,9580,0
+Sat. 22 Mar. 2025,WLS:Boost Mobile Store,0,0,0
+Sat. 22 Mar. 2025,WLS:Transfer Lead-Bulk,0,0,2
+Sun. 23 Mar. 2025,unknown:unknown,20349,9789,0
+Sun. 23 Mar. 2025,WLS:Boost Mobile Store,0,1,0
+Sun. 23 Mar. 2025,WLS:Transfer Lead-Bulk,0,0,3
+Mon. 17 Mar. 2025,transfer:transfer,0,0,20
+Tue. 18 Mar. 2025,transfer:transfer,0,0,18
+Wed. 19 Mar. 2025,transfer:transfer,0,0,13
+Thu. 20 Mar. 2025,transfer:transfer,0,0,16
+Fri. 21 Mar. 2025,transfer:transfer,0,0,17
+Sat. 22 Mar. 2025,WLS:Connect Assist,5,7,0
+Sat. 22 Mar. 2025,transfer:transfer,0,0,23
+Thu. 20 Mar. 2025,WLS:Connect Assist,11,2,0
+Thu. 20 Mar. 2025,main:Connect Assist,6,1,0
+Fri. 21 Mar. 2025,WLS:Connect Assist,11,4,0
+Fri. 21 Mar. 2025,main:Connect Assist,1,1,0
+Sat. 22 Mar. 2025,main:Connect Assist,3,4,0
+Sun. 23 Mar. 2025,WLS:Connect Assist,13,7,0
+Sun. 23 Mar. 2025,main:Connect Assist,6,2,0
+Mon. 17 Mar. 2025,mobile:mobile,794,451,0
+Mon. 17 Mar. 2025,repackage:unknown,0,0,0
+Tue. 18 Mar. 2025,mobile:mobile,736,453,0
+Tue. 18 Mar. 2025,repackage:unknown,0,0,0
+Wed. 19 Mar. 2025,mobile:mobile,715,402,0
+Wed. 19 Mar. 2025,repackage:unknown,0,0,0
+Thu. 20 Mar. 2025,mobile:mobile,801,460,0
+Thu. 20 Mar. 2025,repackage:unknown,0,0,0
+Fri. 21 Mar. 2025,mobile:mobile,729,458,0
+Fri. 21 Mar. 2025,repackage:unknown,0,0,0
+Sat. 22 Mar. 2025,mobile:mobile,832,501,0
+Sat. 22 Mar. 2025,repackage:unknown,0,0,0
+Sun. 23 Mar. 2025,mobile:mobile,774,477,0
+Sun. 23 Mar. 2025,transfer:transfer,0,0,19
+Mon. 17 Mar. 2025,::unspecified::,1,7,0
+Mon. 17 Mar. 2025,WLS:Centerfield,6,2,0
+Mon. 17 Mar. 2025,communities:mdu,1,0,0
+Tue. 18 Mar. 2025,::unspecified::,3,2,0
+Tue. 18 Mar. 2025,WLS:Centerfield,0,2,0
+Tue. 18 Mar. 2025,communities:mdu,1,1,0
+Mon. 17 Mar. 2025,main:Centerfield,1,0,0
+Tue. 18 Mar. 2025,main:Centerfield,0,0,0
+Wed. 19 Mar. 2025,main:Centerfield,2,1,0
+Thu. 20 Mar. 2025,main:Centerfield,0,0,0
+Fri. 21 Mar. 2025,main:Centerfield,1,0,0
+Sat. 22 Mar. 2025,main:Centerfield,0,0,0
+Sun. 23 Mar. 2025,main:Centerfield,0,0,0
+Sun. 23 Mar. 2025,repackage:unknown,0,1,0
+Wed. 19 Mar. 2025,::unspecified::,4,2,0
+Wed. 19 Mar. 2025,WLS:Centerfield,3,3,0
+Wed. 19 Mar. 2025,communities:mdu,0,0,0
+Thu. 20 Mar. 2025,::unspecified::,5,3,0
+Thu. 20 Mar. 2025,WLS:Centerfield,2,3,0
+Thu. 20 Mar. 2025,communities:mdu,0,1,0
+Fri. 21 Mar. 2025,::unspecified::,4,3,0
+Fri. 21 Mar. 2025,WLS:Centerfield,2,2,0
+Fri. 21 Mar. 2025,communities:mdu,0,0,0
+Sat. 22 Mar. 2025,::unspecified::,5,6,0
+Sat. 22 Mar. 2025,WLS:Centerfield,1,1,0
+Sat. 22 Mar. 2025,communities:mdu,0,0,0
+Sun. 23 Mar. 2025,::unspecified::,5,8,0
+Sun. 23 Mar. 2025,WLS:Centerfield,2,1,0
+Mon. 17 Mar. 2025,repackage:bm,1,83,0
+Tue. 18 Mar. 2025,repackage:bm,0,86,0
+Wed. 19 Mar. 2025,repackage:bm,0,83,0
+Fri. 21 Mar. 2025,repackage:cro,0,68,0
+Mon. 17 Mar. 2025,repackage:cro,0,49,0
+Tue. 18 Mar. 2025,repackage:cro,0,48,0
+Wed. 19 Mar. 2025,repackage:cro,0,46,0
+Thu. 20 Mar. 2025,repackage:bm,0,110,0
+Thu. 20 Mar. 2025,repackage:cro,0,54,0
+Fri. 21 Mar. 2025,repackage:bm,0,114,0
+Sat. 22 Mar. 2025,repackage:cro,0,57,0
+Sun. 23 Mar. 2025,repackage:bm,0,102,0
+Sun. 23 Mar. 2025,repackage:cro,0,58,0
+Sun. 23 Mar. 2025,communities:mdu,0,0,0
+Mon. 17 Mar. 2025,main:main,71,171,0
+Mon. 17 Mar. 2025,main:legacy,0,11,0
+Tue. 18 Mar. 2025,main:main,59,157,0
+Tue. 18 Mar. 2025,main:legacy,0,11,0
+Wed. 19 Mar. 2025,main:legacy,0,15,0
+Thu. 20 Mar. 2025,main:main,74,189,0
+Thu. 20 Mar. 2025,main:legacy,0,14,0
+Fri. 21 Mar. 2025,main:main,59,198,0
+Fri. 21 Mar. 2025,main:legacy,0,12,0
+Sat. 22 Mar. 2025,main:main,69,176,0
+Sat. 22 Mar. 2025,main:legacy,0,14,0
+Sun. 23 Mar. 2025,main:main,75,179,0
+Sun. 23 Mar. 2025,main:legacy,0,18,0
+Sat. 22 Mar. 2025,repackage:bm,0,86,0
+Mon. 17 Mar. 2025,WLS:Sitel,0,0,0
+Tue. 18 Mar. 2025,WLS:Sitel,0,0,0
+Wed. 19 Mar. 2025,WLS:Sitel,0,0,0
+Thu. 20 Mar. 2025,WLS:Sitel,0,0,0
+Fri. 21 Mar. 2025,WLS:Sitel,0,1,0
+Sat. 22 Mar. 2025,WLS:Sitel,0,0,0
+Mon. 17 Mar. 2025,fiber:fiber,0,0,0
+Tue. 18 Mar. 2025,fiber:fiber,0,1,0
+Wed. 19 Mar. 2025,fiber:fiber,0,0,0
+Thu. 20 Mar. 2025,fiber:fiber,0,0,0
+Fri. 21 Mar. 2025,fiber:fiber,0,0,0
+Sat. 22 Mar. 2025,fiber:fiber,0,2,0
+Sun. 23 Mar. 2025,fiber:fiber,0,2,0
+Wed. 19 Mar. 2025,main:main,64,143,0
+Mon. 17 Mar. 2025,WLS:main,0,1,0
+Tue. 18 Mar. 2025,WLS:main,1,0,0
+Wed. 19 Mar. 2025,WLS:main,0,0,0
+Thu. 20 Mar. 2025,WLS:main,0,0,0
+Fri. 21 Mar. 2025,WLS:main,0,0,0
+Sat. 22 Mar. 2025,WLS:main,0,0,0
+Sun. 23 Mar. 2025,WLS:main,0,0,0
+Sun. 23 Mar. 2025,WLS:Sitel,0,0,0

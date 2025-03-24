@@ -1,0 +1,85 @@
+date,Flow Name (v42),ALTRX - Res: NC Orders,ALTRX - Res: CC Orders,ALTRX - Res: Transfer Orders
+Mon. 17 Mar. 2025,WLS:StraightUp Internet Shop,0,0,0
+Tue. 18 Mar. 2025,WLS:StraightUp Internet Shop,1,0,0
+Wed. 19 Mar. 2025,WLS:StraightUp Internet Shop,0,0,0
+Thu. 20 Mar. 2025,WLS:StraightUp Internet Shop,1,0,0
+Fri. 21 Mar. 2025,WLS:StraightUp Internet Shop,0,0,0
+Mon. 17 Mar. 2025,WLS:Connect 2 Compete Shop,2,0,0
+Tue. 18 Mar. 2025,WLS:Connect 2 Compete Shop,1,0,0
+Wed. 19 Mar. 2025,WLS:Connect 2 Compete Shop,1,0,0
+Sat. 22 Mar. 2025,WLS:StraightUp Internet Shop,0,0,0
+Sun. 23 Mar. 2025,WLS:StraightUp Internet Shop,1,0,0
+Mon. 17 Mar. 2025,WLS:Boost Mobile Store,0,0,0
+Thu. 20 Mar. 2025,WLS:Connect 2 Compete Shop,0,0,0
+Fri. 21 Mar. 2025,WLS:Connect 2 Compete Shop,0,0,0
+Sat. 22 Mar. 2025,WLS:Connect 2 Compete Shop,0,0,0
+Sun. 23 Mar. 2025,WLS:Connect 2 Compete Shop,0,0,0
+Tue. 18 Mar. 2025,WLS:Boost Mobile Store,2,0,0
+Wed. 19 Mar. 2025,WLS:Boost Mobile Store,0,0,0
+Thu. 20 Mar. 2025,WLS:Boost Mobile Store,1,0,0
+Fri. 21 Mar. 2025,WLS:Boost Mobile Store,3,0,0
+Sat. 22 Mar. 2025,WLS:Boost Mobile Store,0,0,0
+Mon. 17 Mar. 2025,WLS:Connect Assist,2,0,0
+Tue. 18 Mar. 2025,WLS:Connect Assist,3,0,0
+Wed. 19 Mar. 2025,WLS:Connect Assist,1,0,0
+Thu. 20 Mar. 2025,WLS:Connect Assist,2,0,0
+Sun. 23 Mar. 2025,WLS:Boost Mobile Store,0,0,0
+Mon. 17 Mar. 2025,transfer:transfer,0,0,8
+Tue. 18 Mar. 2025,transfer:transfer,0,0,1
+Fri. 21 Mar. 2025,WLS:Connect Assist,0,0,0
+Sat. 22 Mar. 2025,WLS:Connect Assist,2,0,0
+Sun. 23 Mar. 2025,WLS:Connect Assist,4,0,0
+Wed. 19 Mar. 2025,transfer:transfer,0,0,3
+Thu. 20 Mar. 2025,transfer:transfer,0,0,5
+Fri. 21 Mar. 2025,transfer:transfer,0,0,6
+Sat. 22 Mar. 2025,transfer:transfer,0,0,6
+Sun. 23 Mar. 2025,transfer:transfer,0,0,5
+Mon. 17 Mar. 2025,unknown:unknown,1,0,0
+Mon. 17 Mar. 2025,WLS:Centerfield,1,0,0
+Tue. 18 Mar. 2025,unknown:unknown,2,0,0
+Tue. 18 Mar. 2025,WLS:Centerfield,0,0,0
+Wed. 19 Mar. 2025,unknown:unknown,1,0,0
+Wed. 19 Mar. 2025,WLS:Centerfield,2,0,0
+Thu. 20 Mar. 2025,unknown:unknown,1,0,0
+Thu. 20 Mar. 2025,WLS:Centerfield,0,0,0
+Fri. 21 Mar. 2025,unknown:unknown,1,0,0
+Fri. 21 Mar. 2025,WLS:Centerfield,1,0,0
+Mon. 17 Mar. 2025,repackage:cro,0,6,0
+Sat. 22 Mar. 2025,unknown:unknown,0,0,0
+Sat. 22 Mar. 2025,WLS:Centerfield,0,0,0
+Sun. 23 Mar. 2025,unknown:unknown,1,0,0
+Sun. 23 Mar. 2025,WLS:Centerfield,0,0,0
+Mon. 17 Mar. 2025,mobile:mobile,0,0,0
+Tue. 18 Mar. 2025,repackage:cro,0,3,0
+Tue. 18 Mar. 2025,mobile:mobile,0,0,0
+Wed. 19 Mar. 2025,repackage:cro,0,3,0
+Wed. 19 Mar. 2025,mobile:mobile,0,0,0
+Thu. 20 Mar. 2025,repackage:cro,0,1,0
+Thu. 20 Mar. 2025,mobile:mobile,0,1,0
+Fri. 21 Mar. 2025,repackage:cro,0,4,0
+Fri. 21 Mar. 2025,mobile:mobile,0,0,0
+Sat. 22 Mar. 2025,repackage:cro,0,3,0
+Mon. 17 Mar. 2025,repackage:bm,0,6,0
+Tue. 18 Mar. 2025,repackage:bm,0,7,0
+Sat. 22 Mar. 2025,mobile:mobile,0,2,0
+Sun. 23 Mar. 2025,repackage:cro,0,6,0
+Sun. 23 Mar. 2025,mobile:mobile,0,0,0
+Wed. 19 Mar. 2025,repackage:bm,0,6,0
+Thu. 20 Mar. 2025,repackage:bm,0,8,0
+Fri. 21 Mar. 2025,repackage:bm,0,6,0
+Sat. 22 Mar. 2025,repackage:bm,0,6,0
+Sun. 23 Mar. 2025,repackage:bm,0,9,0
+Mon. 17 Mar. 2025,main:main,28,14,0
+Mon. 17 Mar. 2025,main:legacy,0,3,0
+Tue. 18 Mar. 2025,main:main,16,11,0
+Tue. 18 Mar. 2025,main:legacy,0,3,0
+Wed. 19 Mar. 2025,main:legacy,0,6,0
+Thu. 20 Mar. 2025,main:legacy,0,4,0
+Fri. 21 Mar. 2025,main:main,12,13,0
+Fri. 21 Mar. 2025,main:legacy,0,3,0
+Sat. 22 Mar. 2025,main:main,19,10,0
+Sat. 22 Mar. 2025,main:legacy,0,3,0
+Wed. 19 Mar. 2025,main:main,12,6,0
+Thu. 20 Mar. 2025,main:main,17,6,0
+Sun. 23 Mar. 2025,main:main,22,14,0
+Sun. 23 Mar. 2025,main:legacy,0,7,0
