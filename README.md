@@ -1,12 +1,13 @@
-Existing Adobe Framework has Config tables, Audit tables to read Process IDs & adding entries of job status
-Existing Adobe Framework run completely based on scheduled time given in cloud watch
-Existing  Adobe Framework has used 2 lambda functions & 2 glue jobs to read the adobe API in one job, transform and process it in another job
-Crawlers has been used in Existing Adobe framework to create tables.
-SNS has been used to send the failure notifications to respective team in Existing Adobe Framework
-Secret Managers has been used to store the API endpoints & credentials in Existing Adobe Framework
-Two jobs has been created Historical load & Incremental Load in New Adobe Framework
-Historical load job run based on ON-Demand Trigger, Incremental Load job run based on Scheduled basis
-Config file has been used to store & pass the parameters while calling Adobe API
-Historical load & Incremental load date information has been added in the config file
-Without using crawler, the Athena table has been created by using query in the job itself
-![Uploading image.png…]()
+Here’s a comparison of the Existing and New Adobe Frameworks in a tabular form:
+
+| **Aspect**                                   | **Existing Adobe Framework**                                                                                   | **New Adobe Framework**                                                                                      |
+|----------------------------------------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| **Process ID & Job Status**                  | Uses Config and Audit tables to manage Process IDs and job status entries.                                        | Similar approach, but the management might differ in implementation.                                           |
+| **Job Scheduling**                           | Operates based on scheduled times in CloudWatch.                                                                  | Historical load runs on an on-demand trigger, while Incremental load runs on a scheduled basis.               |
+| **Job Architecture**                         | Utilizes 2 Lambda functions and 2 Glue jobs for reading Adobe API data, transforming it, and processing it.       | Similar job architecture with Historical Load and Incremental Load, but no specific mention of Lambda/Glue.    |
+| **Table Creation**                           | Crawlers are used to create tables.                                                                                | Athena tables are created directly through queries within the job, eliminating the need for crawlers.          |
+| **Failure Notification**                     | SNS is used to send failure notifications to the respective team.                                                 | Similar failure notification mechanism via SNS.                                                              |
+| **API Credentials Management**               | Secret Manager is used for securely storing API endpoints and credentials.                                       | Secret Manager is still used for API credentials, similar to the existing framework.                          |
+| **Load Types**                               | No specific differentiation between historical and incremental loads.                                             | Two distinct load types: Historical Load (on-demand) and Incremental Load (scheduled), with configurable dates. |
+
+This comparison clearly differentiates the existing and new frameworks across various aspects.
