@@ -1,9 +1,8 @@
-Historical job is designed & run based on On demand trigger
-Incremental job is designed & run based on scheduled time
-Both the jobs has a config file, it has written some lists of items to pass while calling Adobe API.
-Python module used to make Adobe API connection, get date & write data to s3
-Both the Glue jobs calling the API by passing the parameters used in config file
-Retrieving the Adobe data by applying various transformations .
-Transformed data is written to target s3 path & created Hive table directly in athena.
-Cloud Watch stores logs for both the Glue jobs and the lambda functions.
+Here’s a more concise and technical version of the architecture description:
+
+1. **Job Triggers**: Historical jobs are triggered on-demand, while incremental jobs are scheduled to run at defined intervals.
+2. **Configuration Files**: Both jobs reference configuration files containing parameter lists for Adobe API calls.
+3. **API Integration**: Python module establishes connection to Adobe API, retrieves data, and writes it to S3.
+4. **Data Transformation**: Adobe data is retrieved, transformed via Glue jobs, and written to designated S3 paths.
+5. **Logging & Monitoring**: CloudWatch monitors and logs activity for Glue jobs and Lambda functions..
 ![image](https://github.com/user-attachments/assets/7cd4c642-cef3-4ee6-af8f-c8c7b3b50519)
