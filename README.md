@@ -1,8 +1,12 @@
-Here’s a more concise and technical version of the architecture description:
-
-1. **Job Triggers**: Historical jobs are triggered on-demand, while incremental jobs are scheduled to run at defined intervals.
-2. **Configuration Files**: Both jobs reference configuration files containing parameter lists for Adobe API calls.
-3. **API Integration**: Python module establishes connection to Adobe API, retrieves data, and writes it to S3.
-4. **Data Transformation**: Adobe data is retrieved, transformed via Glue jobs, and written to designated S3 paths.
-5. **Logging & Monitoring**: CloudWatch monitors and logs activity for Glue jobs and Lambda functions..
-![image](https://github.com/user-attachments/assets/7cd4c642-cef3-4ee6-af8f-c8c7b3b50519)
+Existing Adobe Framework has Config tables, Audit tables to read Process IDs & adding entries of job status
+Existing Adobe Framework run completely based on scheduled time given in cloud watch
+Existing  Adobe Framework has used 2 lambda functions & 2 glue jobs to read the adobe API in one job, transform and process it in another job
+Crawlers has been used in Existing Adobe framework to create tables.
+SNS has been used to send the failure notifications to respective team in Existing Adobe Framework
+Secret Managers has been used to store the API endpoints & credentials in Existing Adobe Framework
+Two jobs has been created Historical load & Incremental Load in New Adobe Framework
+Historical load job run based on ON-Demand Trigger, Incremental Load job run based on Scheduled basis
+Config file has been used to store & pass the parameters while calling Adobe API
+Historical load & Incremental load date information has been added in the config file
+Without using crawler, the Athena table has been created by using query in the job itself
+![Uploading image.png…]()
