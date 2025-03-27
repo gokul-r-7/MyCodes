@@ -1,13 +1,4 @@
-Here’s a comparison of the Existing and New Adobe Frameworks in a tabular form:
 
-| **Aspect**                                   | **Existing Adobe Framework**                                                                                   | **New Adobe Framework**                                                                                      |
-|----------------------------------------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| **Process ID & Job Status**                  | Uses Config and Audit tables to manage Process IDs and job status entries.                                        | Similar approach, but the management might differ in implementation.                                           |
-| **Job Scheduling**                           | Operates based on scheduled times in CloudWatch.                                                                  | Historical load runs on an on-demand trigger, while Incremental load runs on a scheduled basis.               |
-| **Job Architecture**                         | Utilizes 2 Lambda functions and 2 Glue jobs for reading Adobe API data, transforming it, and processing it.       | Similar job architecture with Historical Load and Incremental Load, but no specific mention of Lambda/Glue.    |
-| **Table Creation**                           | Crawlers are used to create tables.                                                                                | Athena tables are created directly through queries within the job, eliminating the need for crawlers.          |
-| **Failure Notification**                     | SNS is used to send failure notifications to the respective team.                                                 | Similar failure notification mechanism via SNS.                                                              |
-| **API Credentials Management**               | Secret Manager is used for securely storing API endpoints and credentials.                                       | Secret Manager is still used for API credentials, similar to the existing framework.                          |
-| **Load Types**                               | No specific differentiation between historical and incremental loads.                                             | Two distinct load types: Historical Load (on-demand) and Incremental Load (scheduled), with configurable dates. |
-
-This comparison clearly differentiates the existing and new frameworks across various aspects.
+Url: ftp://ftp.cox.com/
+User id: _omniture
+Password: 0mn!turE
