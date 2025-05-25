@@ -1,1 +1,0 @@
-# document-control-domain-model

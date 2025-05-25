@@ -1,9 +1,0 @@
-aws_region         = "ap-southeast-2"
-stage              = "sydney"
-environment        = "dev"
-vpc_id             = "vpc-0ee8f96862c9a9684"
-vpc_subnet_ids     = ["subnet-06bfe1cc64e293321", "subnet-01f626477a37f14b6"]
-support_email      = "AUMEL-DG-AWS-DataPlatform-SUPPORT@Worley.com"
-glue_role_name     = "worley-datalake-sydney-dev-iam-service-role-glue"
-account_admin_role = "AWSReservedSSO_AccountAdminAccess_8737197ccffccbf1"
-root_account_id    = "637423194134"

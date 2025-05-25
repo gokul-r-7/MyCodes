@@ -1,4 +1,0 @@
-packages:
-  - local: packages/dbt-utils
-  #- package: dbt-labs/dbt_utils
-  #  version: 1.3.0
