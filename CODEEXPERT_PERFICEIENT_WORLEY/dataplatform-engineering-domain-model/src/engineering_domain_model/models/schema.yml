@@ -1,0 +1,5929 @@
+---
+models:
+  - name: transformed_e3d_elec_mto_equip
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: wbs
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: equipment
+        data_type: varchar(1000)
+      - name: type
+        data_type: varchar(500)
+      - name: refno
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(500)
+      - name: EFT
+        data_type: varchar(500)
+      - name: NFT
+        data_type: varchar(500)
+      - name: UFT
+        data_type: varchar(500)
+      - name: wbs_new
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(30)
+      - name: extracted_date
+        data_type: date
+      - name: PROJECT_CODE_WBS
+        data_type: varchar(300)
+      - name: Equipment_Category
+        data_type: varchar(500)                 
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+
+
+  - name: transformed_e3d_elec_mto_tray
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: wbs
+        data_type: varchar(500)
+      - name: SITE
+        data_type: varchar(1000)
+      - name: ZONE
+        data_type: varchar(1000)
+      - name: CWAY
+        data_type: varchar(1000)
+      - name: ctray
+        data_type: varchar(500)
+      - name: TYPE
+        data_type: varchar(500)
+      - name: refno
+        data_type: varchar(500)
+      - name: desc
+        data_type: varchar(500)
+      - name: length_ft
+        data_type: varchar(500)
+      - name: weight_lbs
+        data_type: varchar(500)
+      - name: WBS_NEW
+        data_type: varchar(500)
+      - name: ewp_ewp
+        data_type: varchar(500)
+      - name: cwa_cwarea
+        data_type: varchar(500)
+      - name: cwp_workpackno
+        data_type: varchar(500)
+      - name: cwpzone_areacode
+        data_type: varchar(500)
+      - name: WIDTH
+        data_type: varchar(50)
+      - name: WBS1
+        data_type: varchar(500)
+      - name: CWA1
+        data_type: varchar(500)
+      - name: CWPZONE1
+        data_type: varchar(500)
+      - name: CWP1
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(30)
+      - name: extracted_date
+        data_type: date
+      - name: PROJECT_CODE_WBS_CWA_CWPZONE
+        data_type: varchar(300)         
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+
+  - name: transformed_e3d_equip
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: acclass
+        data_type: varchar(500)
+      - name: acdivision
+        data_type: varchar(500)
+      - name: acgroup
+        data_type: varchar(500)
+      - name: area
+        data_type: varchar(500)
+      - name: areacode
+        data_type: varchar(500)
+      - name: areano
+        data_type: varchar(500)
+      - name: asd_autovol
+        data_type: varchar(500)
+      - name: asd_group
+        data_type: varchar(500)
+      - name: buil
+        data_type: varchar(500)
+      - name: cablename
+        data_type: varchar(500)
+      - name: cablesourceloc
+        data_type: varchar(500)
+      - name: cablesourcename
+        data_type: varchar(500)
+      - name: cabletrayname
+        data_type: varchar(500)
+      - name: cgflowmed
+        data_type: varchar(500)
+      - name: cgvolume
+        data_type: varchar(500)
+      - name: checked
+        data_type: varchar(500)
+      - name: chkby
+        data_type: varchar(500)
+      - name: chkdate
+        data_type: varchar(500)
+      - name: commcode
+        data_type: varchar(500)
+      - name: comment
+        data_type: varchar(500)
+      - name: comment0
+        data_type: varchar(500)
+      - name: ctllocation
+        data_type: varchar(500)
+      - name: cwarea
+        data_type: varchar(500)
+      - name: cwp
+        data_type: varchar(500)
+      - name: datumlocation
+        data_type: varchar(500)
+      - name: dcgpos
+        data_type: varchar(500)
+      - name: desc
+        data_type: varchar(500)
+      - name: designpress
+        data_type: varchar(500)
+      - name: designtemp
+        data_type: varchar(500)
+      - name: desp
+        data_type: varchar(500)
+      - name: discipline
+        data_type: varchar(500)
+      - name: dsco
+        data_type: varchar(500)
+      - name: dwgno
+        data_type: varchar(500)
+      - name: dwgnorev
+        data_type: varchar(500)
+      - name: esptable
+        data_type: varchar(500)
+      - name: esptag
+        data_type: varchar(500)
+      - name: ewp
+        data_type: varchar(500)
+      - name: fireproofing
+        data_type: varchar(500)
+      - name: firezone
+        data_type: varchar(500)
+      - name: fluidtype
+        data_type: varchar(500)
+      - name: fstat
+        data_type: varchar(500)
+      - name: fstatus
+        data_type: varchar(500)
+      - name: func
+        data_type: varchar(500)
+      - name: furntype
+        data_type: varchar(500)
+      - name: guid
+        data_type: varchar(500)
+      - name: hold
+        data_type: varchar(500)
+      - name: holdcomment
+        data_type: varchar(500)
+      - name: holdflag
+        data_type: varchar(500)
+      - name: inprtr
+        data_type: varchar(500)
+      - name: insc
+        data_type: varchar(500)
+      - name: insulation
+        data_type: varchar(500)
+      - name: insutype
+        data_type: varchar(500)
+      - name: ispe
+        data_type: varchar(500)
+      - name: issued
+        data_type: varchar(500)
+      - name: issuedby
+        data_type: varchar(500)
+      - name: issueddate
+        data_type: varchar(500)
+      - name: itemno
+        data_type: varchar(500)
+      - name: ithk
+        data_type: varchar(500)
+      - name: lock
+        data_type: varchar(500)
+      - name: locset
+        data_type: varchar(500)
+      - name: majorequip
+        data_type: varchar(500)
+      - name: material
+        data_type: varchar(500)
+      - name: mdsysf
+        data_type: varchar(500)
+      - name: mecheck
+        data_type: varchar(500)
+      - name: modulefabricator
+        data_type: varchar(500)
+      - name: mps_comment
+        data_type: varchar(500)
+      - name: mps_date_piping_placeholder_modeling_completed
+        data_type: varchar(500)
+      - name: mps_date_piping_stress_loads_to_stru
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_actual
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_complete
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_forecast
+        data_type: varchar(500)
+      - name: mps_date_structural_modeling_complete
+        data_type: varchar(500)
+      - name: mps_foundation_req
+        data_type: varchar(500)
+      - name: mps_isometric_number
+        data_type: varchar(500)
+      - name: mps_line_number
+        data_type: varchar(500)
+      - name: mps_structural_engineering_released_to_piping
+        data_type: varchar(500)
+      - name: NAME
+        data_type: varchar(500)
+      - name: numb
+        data_type: varchar(500)
+      - name: ocgpos
+        data_type: varchar(500)
+      - name: ori
+        data_type: varchar(500)
+      - name: ouprtr
+        data_type: varchar(500)
+      - name: owner
+        data_type: varchar(500)
+      - name: pidref
+        data_type: varchar(500)
+      - name: pidrev
+        data_type: varchar(500)
+      - name: pidstat
+        data_type: varchar(500)
+      - name: piecemark
+        data_type: varchar(500)
+      - name: pmg_design_ae
+        data_type: varchar(500)
+      - name: pmgdesignai
+        data_type: varchar(500)
+      - name: ponumber
+        data_type: varchar(500)
+      - name: pos
+        data_type: varchar(500)
+      - name: progress
+        data_type: varchar(500)
+      - name: propst
+        data_type: varchar(500)
+      - name: ptsp
+        data_type: varchar(500)
+      - name: purp
+        data_type: varchar(500)
+      - name: requisition
+        data_type: varchar(500)
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: section_name
+        data_type: varchar(500)
+      - name: serialno
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: skey
+        data_type: varchar(500)
+      - name: spre
+        data_type: varchar(500)
+      - name: status
+        data_type: varchar(500)
+      - name: steeltype
+        data_type: varchar(500)
+      - name: stlr
+        data_type: varchar(500)
+      - name: strucate
+        data_type: varchar(500)
+      - name: structural_mps_number
+        data_type: varchar(500)
+      - name: strutype
+        data_type: varchar(500)
+      - name: stvval
+        data_type: varchar(500)
+      - name: subsystem
+        data_type: varchar(500)
+      - name: tagno
+        data_type: varchar(500)
+      - name: tcgpos
+        data_type: varchar(500)
+      - name: track_id
+        data_type: varchar(500)
+      - name: transmittalno
+        data_type: varchar(500)
+      - name: type
+        data_type: varchar(500)
+      - name: type1
+        data_type: varchar(500)
+      - name: units
+        data_type: varchar(500)
+      - name: uom
+        data_type: varchar(500)
+      - name: usrcog
+        data_type: varchar(500)
+      - name: usrwco
+        data_type: varchar(500)
+      - name: usrwei
+        data_type: varchar(500)
+      - name: usrwwe
+        data_type: varchar(500)
+      - name: uwmtxt
+        data_type: varchar(500)
+      - name: venddrwgdate
+        data_type: varchar(500)
+      - name: venddrwgno
+        data_type: varchar(500)
+      - name: venddrwgrev
+        data_type: varchar(500)
+      - name: vendname
+        data_type: varchar(500)
+      - name: wcgcomnt
+        data_type: varchar(500)
+      - name: wcgdte
+        data_type: varchar(500)
+      - name: wcgloc
+        data_type: varchar(500)
+      - name: wcgstat
+        data_type: varchar(500)
+      - name: workpackno
+        data_type: varchar(500)
+      - name: worktype
+        data_type: varchar(500)
+      - name: wtbare_lb
+        data_type: varchar(500)
+      - name: wtoper_lb
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: PROGRESS_PERCENT
+        data_type: decimal(38,0)
+      - name: STATUS_LEVEL
+        data_type: varchar(500)
+      - name: WBS
+        data_type: varchar(500)
+      - name: Search_Key
+        data_type: varchar(2000)
+      - name: CWA
+        data_type: varchar(500)
+      - name: CWPZONE
+        data_type: varchar(500)
+      - name: CWP1
+        data_type: varchar(500)
+      - name: project_code
+        data_type: varchar(30)
+      - name: PROJECT_CODE_WBS_CWA_CWPZONE
+        data_type: varchar(300)
+      - name: ME_FUNC_CODE
+        data_type: varchar(100)                
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+
+
+  - name: transformed_e3d_gensec_floor_union
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: anty
+        data_type: varchar(500)
+      - name: bang_degree
+        data_type: varchar(500)
+      - name: bevcod
+        data_type: varchar(500)
+      - name: buil
+        data_type: varchar(500)
+      - name: commcode
+        data_type: varchar(500)
+      - name: ctye
+        data_type: varchar(500)
+      - name: ctys
+        data_type: varchar(500)
+      - name: cut_length_in
+        data_type: varchar(500)
+      - name: cwarea
+        data_type: varchar(500)
+      - name: cwarea_of_stru
+        data_type: varchar(500)
+      - name: cwp
+        data_type: varchar(500)
+      - name: desc
+        data_type: varchar(500)
+      - name: desp
+        data_type: varchar(500)
+      - name: discipline
+        data_type: varchar(500)
+      - name: drgp
+        data_type: varchar(500)
+      - name: erel
+        data_type: varchar(500)
+      - name: ewp
+        data_type: varchar(500)
+      - name: fire
+        data_type: varchar(500)
+      - name: fireproofing
+        data_type: varchar(500)
+      - name: frmw
+        data_type: varchar(500)
+      - name: func
+        data_type: varchar(500)
+      - name: grade
+        data_type: varchar(500)
+      - name: gridno
+        data_type: varchar(500)
+      - name: gtyp
+        data_type: varchar(500)
+      - name: guid
+        data_type: varchar(500)
+      - name: inre
+        data_type: varchar(500)
+      - name: insulation
+        data_type: varchar(500)
+      - name: insutype
+        data_type: varchar(500)
+      - name: ispe
+        data_type: varchar(500)
+      - name: itemno
+        data_type: varchar(500)
+      - name: jlne
+        data_type: varchar(500)
+      - name: jlns
+        data_type: varchar(500)
+      - name: joie
+        data_type: varchar(500)
+      - name: jois
+        data_type: varchar(500)
+      - name: jusl
+        data_type: varchar(500)
+      - name: lmirr
+        data_type: varchar(500)
+      - name: lock
+        data_type: varchar(500)
+      - name: material
+        data_type: varchar(500)
+      - name: matr
+        data_type: varchar(500)
+      - name: meml
+        data_type: varchar(500)
+      - name: mps_comment
+        data_type: varchar(500)
+      - name: mps_date_piping_placeholder_modeling_completed
+        data_type: varchar(500)
+      - name: mps_date_piping_stress_loads_to_stru
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_actual
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_complete
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_forecast
+        data_type: varchar(500)
+      - name: mps_date_structural_modeling_complete
+        data_type: varchar(500)
+      - name: mps_foundation_req
+        data_type: varchar(500)
+      - name: mps_isometric_number
+        data_type: varchar(500)
+      - name: mps_line_number
+        data_type: varchar(500)
+      - name: mps_structural_engineering_released_to_piping
+        data_type: varchar(500)
+      - name: NAME
+        data_type: varchar(500)
+      - name: nett_volume_in3
+        data_type: varchar(500)
+      - name: numb
+        data_type: varchar(500)
+      - name: ori
+        data_type: varchar(500)
+      - name: owner
+        data_type: varchar(500)
+      - name: parnam
+        data_type: varchar(500)
+      - name: piecemark
+        data_type: varchar(500)
+      - name: pipecompression
+        data_type: varchar(500)
+      - name: piletension
+        data_type: varchar(500)
+      - name: pos
+        data_type: varchar(500)
+      - name: posno
+        data_type: varchar(500)
+      - name: prodrf
+        data_type: varchar(500)
+      - name: purp
+        data_type: varchar(500)
+      - name: repcou
+        data_type: varchar(500)
+      - name: section_name
+        data_type: varchar(500)
+      - name: shop
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: spre
+        data_type: varchar(500)
+      - name: srel
+        data_type: varchar(500)
+      - name: steeltype
+        data_type: varchar(500)
+      - name: stru
+        data_type: varchar(500)
+      - name: strucate
+        data_type: varchar(500)
+      - name: strucl
+        data_type: varchar(500)
+      - name: structural_mps_number
+        data_type: varchar(500)
+      - name: strutype
+        data_type: varchar(500)
+      - name: STVVAL
+        data_type: varchar(500)
+      - name: subsystem
+        data_type: varchar(500)
+      - name: tagno
+        data_type: varchar(500)
+      - name: tekla_guid
+        data_type: varchar(500)
+      - name: tekla_ifcguid
+        data_type: varchar(500)
+      - name: tekla_material
+        data_type: varchar(500)
+      - name: tekla_profile
+        data_type: varchar(500)
+      - name: tekla_version
+        data_type: varchar(500)
+      - name: tekla_warning
+        data_type: varchar(500)
+      - name: tmrref
+        data_type: varchar(500)
+      - name: type
+        data_type: varchar(500)
+      - name: type1
+        data_type: varchar(500)
+      - name: units
+        data_type: varchar(500)
+      - name: uom
+        data_type: varchar(500)
+      - name: welddp_in
+        data_type: varchar(500)
+      - name: worktype
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: catalogue_reference
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: reference_of_the_element
+        data_type: varchar(500)
+      - name: nett_weight
+        data_type: varchar(500)
+      - name: stlweightclass
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(100)
+      - name: Site1
+        data_type: varchar(500)
+      - name: MTO_Type1
+        data_type: varchar(500)
+      - name: WBS 
+        data_type: varchar(100)
+      - name: CWA
+        data_type: varchar(100)
+      - name: CWPZONE
+        data_type: varchar(100)
+      - name: CWP1
+        data_type: varchar(500)
+      - name: PROJECT_CODE_WBS_CWA_CWPZONE
+        data_type: varchar(300)         
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+        
+  - name: transformed_e3d_pipe_support_attr
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: NAME
+        data_type: varchar(500)
+      - name: type
+        data_type: varchar(500)
+      - name: lock
+        data_type: varchar(500)
+      - name: owner
+        data_type: varchar(500)
+      - name: project
+        data_type: varchar(500)
+      - name: workpack_no
+        data_type: varchar(500)
+      - name: isometric
+        data_type: varchar(500)
+      - name: suppo
+        data_type: varchar(500)
+      - name: support_type
+        data_type: varchar(500)
+      - name: bore_inch
+        data_type: varchar(500)
+      - name: tag_name
+        data_type: varchar(500)
+      - name: profile
+        data_type: varchar(500)
+      - name: length_mm
+        data_type: varchar(500)
+      - name: quantity
+        data_type: varchar(500)
+      - name: client_doc_num
+        data_type: varchar(500)
+      - name: drawing_no
+        data_type: varchar(500)
+      - name: pid_line_no
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: site      
+        data_type: varchar(500)
+      - name: WBS      
+        data_type: varchar(100)
+      - name: CWA      
+        data_type: varchar(100)
+      - name: CWPZONE      
+        data_type: varchar(100)        
+      - name: PROJECT_CODE_WBS_CWA_CWPZONE
+        data_type: varchar(300)         
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(100)
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+
+  - name: transformed_e3d_pipes_mto_comps
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: PIPE_WS
+        data_type: varchar(500)
+      - name: WBS
+        data_type: varchar(500)
+      - name: SITE
+        data_type: varchar(500)
+      - name: ZONE
+        data_type: varchar(500)
+      - name: PIPE
+        data_type: varchar(500)
+      - name: BRANCH
+        data_type: varchar(500)
+      - name: TYPE
+        data_type: varchar(500)
+      - name: REF
+        data_type: varchar(500)
+      - name: TAG_NAME
+        data_type: varchar(500)
+      - name: SPREF
+        data_type: varchar(500)
+      - name: ISPEC
+        data_type: varchar(500)
+      - name: NB1
+        data_type: varchar(500)
+      - name: NB2
+        data_type: varchar(500)
+      - name: NB3
+        data_type: varchar(500)
+      - name: NB4
+        data_type: varchar(500)
+      - name: LENGTH
+        data_type: varchar(500)
+      - name: DESCRIPTION
+        data_type: varchar(500)
+      - name: MATERIAL
+        data_type: varchar(500)
+      - name: IDCODE
+        data_type: varchar(500)
+      - name: CMCODE
+        data_type: varchar(500)
+      - name: LINENO
+        data_type: varchar(500)
+      - name: DUTY
+        data_type: varchar(500)
+      - name: WGT
+        data_type: varchar(500)
+      - name: WGT_LBS_W_INSU
+        data_type: varchar(500)
+      - name: EWP
+        data_type: varchar(500)
+      - name: CWA
+        data_type: varchar(500)
+      - name: CWP
+        data_type: varchar(500)
+      - name: CWPZONE
+        data_type: varchar(500)
+      - name: ISO
+        data_type: varchar(500)
+      - name: DRAWING_NO
+        data_type: varchar(500)
+      - name: P_ID_LINE_NO
+        data_type: varchar(500)
+      - name: P_ID_REFERENCE
+        data_type: varchar(500)
+      - name: WBS1
+        data_type: varchar(500)
+      - name: CWA1
+        data_type: varchar(500)
+      - name: CWPZONE1
+        data_type: varchar(500)
+      - name: CWP1
+        data_type: varchar(500)
+      - name: STATUS_LEVEL
+        data_type: varchar(500)
+      - name: PIPING_SPECIFICATION
+        data_type: varchar(500)
+      - name: SEARCH_KEY
+        data_type: varchar(4000)
+      - name: PROJECT_CODE_WBS_CWA_CWPZONE
+        data_type: varchar(300)        
+      - name: project_code
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+        
+  - name: transformed_e3d_pipes
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: NAME_WS
+        data_type: varchar(500)
+      - name: facilitycode
+        data_type: varchar(500)
+      - name: insulation
+        data_type: varchar(500)
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: pipeplanref
+        data_type: varchar(500)
+      - name: piddesc
+        data_type: varchar(500)
+      - name: revdesc6
+        data_type: varchar(500)
+      - name: clientdocrev
+        data_type: varchar(500)
+      - name: revdata6
+        data_type: varchar(500)
+      - name: ouprtr
+        data_type: varchar(500)
+      - name: holdc1
+        data_type: varchar(500)
+      - name: wcgloc
+        data_type: varchar(500)
+      - name: fluidtype
+        data_type: varchar(500)
+      - name: duty
+        data_type: varchar(500)
+      - name: matlspec
+        data_type: varchar(500)
+      - name: processhold
+        data_type: varchar(500)
+      - name: flur
+        data_type: varchar(500)
+      - name: steeltype
+        data_type: varchar(500)
+      - name: mtorev
+        data_type: varchar(500)
+      - name: psisystem
+        data_type: varchar(4000)
+      - name: tspe
+        data_type: varchar(500)
+      - name: secdel
+        data_type: varchar(500)
+      - name: holdcomment
+        data_type: varchar(500)
+      - name: pidlineno
+        data_type: varchar(500)
+      - name: holdc3
+        data_type: varchar(500)
+      - name: checked
+        data_type: varchar(500)
+      - name: nsec
+        data_type: varchar(500)
+      - name: lock
+        data_type: varchar(500)
+      - name: design_level
+        data_type: varchar(500)
+      - name: asd_lmed
+        data_type: varchar(500)
+      - name: processremark
+        data_type: varchar(500)
+      - name: pidstat
+        data_type: varchar(500)
+      - name: chkdate
+        data_type: varchar(500)
+      - name: secto
+        data_type: varchar(500)
+      - name: secno
+        data_type: varchar(500)
+      - name: ispe
+        data_type: varchar(500)
+      - name: section_name
+        data_type: varchar(500)
+      - name: secfr
+        data_type: varchar(500)
+      - name: revdesc9
+        data_type: varchar(500)
+      - name: pwht
+        data_type: varchar(500)
+      - name: revdata5
+        data_type: varchar(500)
+      - name: fluidservicecode
+        data_type: varchar(500)
+      - name: mtoarea
+        data_type: varchar(500)
+      - name: requisition
+        data_type: varchar(500)
+      - name: pmax
+        data_type: varchar(500)
+      - name: testpress
+        data_type: varchar(500)
+      - name: designtemp
+        data_type: varchar(500)
+      - name: designpress
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: splp
+        data_type: varchar(500)
+      - name: deldsg
+        data_type: varchar(500)
+      - name: systemno
+        data_type: varchar(500)
+      - name: approv
+        data_type: varchar(500)
+      - name: cgflowmed
+        data_type: varchar(500)
+      - name: wcgdte
+        data_type: varchar(500)
+      - name: material
+        data_type: varchar(500)
+      - name: frev
+        data_type: varchar(500)
+      - name: revdata7
+        data_type: varchar(500)
+      - name: ctllocation
+        data_type: varchar(500)
+      - name: wcgstat
+        data_type: varchar(500)
+      - name: below_ground
+        data_type: varchar(500)
+      - name: buil
+        data_type: varchar(500)
+      - name: pipsta
+        data_type: varchar(500)
+      - name: tagno
+        data_type: varchar(500)
+      - name: liss
+        data_type: varchar(500)
+      - name: casn
+        data_type: varchar(500)
+      - name: transmittalno
+        data_type: varchar(500)
+      - name: erec
+        data_type: varchar(500)
+      - name: smax
+        data_type: varchar(500)
+      - name: holdc2
+        data_type: varchar(500)
+      - name: fabspec
+        data_type: varchar(500)
+      - name: wpdocrev
+        data_type: varchar(500)
+      - name: bendmacreference
+        data_type: varchar(500)
+      - name: mocno
+        data_type: varchar(500)
+      - name: areacode
+        data_type: varchar(500)
+      - name: comment
+        data_type: varchar(500)
+      - name: apprby
+        data_type: varchar(500)
+      - name: tcgpos
+        data_type: varchar(500)
+      - name: progress
+        data_type: varchar(500)
+      - name: revdesc8
+        data_type: varchar(500)
+      - name: fdra
+        data_type: varchar(500)
+      - name: pidref
+        data_type: varchar(500)
+      - name: cleaningcode
+        data_type: varchar(500)
+      - name: htemp
+        data_type: varchar(500)
+      - name: track_id
+        data_type: varchar(500)
+      - name: asd_dpres
+        data_type: varchar(500)
+      - name: tpress_psi
+        data_type: varchar(500)
+      - name: revdesc1
+        data_type: varchar(500)
+      - name: insc
+        data_type: varchar(500)
+      - name: cgvolume
+        data_type: varchar(500)
+      - name: care
+        data_type: varchar(500)
+      - name: stressrelieve
+        data_type: varchar(500)
+      - name: pres_psi
+        data_type: varchar(500)
+      - name: holdc4
+        data_type: varchar(500)
+      - name: proj
+        data_type: varchar(500)
+      - name: radiography
+        data_type: varchar(500)
+      - name: frdr
+        data_type: varchar(500)
+      - name: doctype
+        data_type: varchar(500)
+      - name: posafc
+        data_type: varchar(500)
+      - name: mecheck
+        data_type: varchar(500)
+      - name: temp_degf
+        data_type: varchar(500)
+      - name: revdesc3
+        data_type: varchar(500)
+      - name: from_name
+        data_type: varchar(500)
+      - name: workpackno
+        data_type: varchar(500)
+      - name: dcgpos
+        data_type: varchar(500)
+      - name: issuedby
+        data_type: varchar(500)
+      - name: piecemark
+        data_type: varchar(500)
+      - name: func
+        data_type: varchar(500)
+      - name: majortray
+        data_type: varchar(500)
+      - name: revdata3
+        data_type: varchar(500)
+      - name: wldc
+        data_type: varchar(500)
+      - name: revdata8
+        data_type: varchar(500)
+      - name: paintsystem
+        data_type: varchar(500)
+      - name: pidrev
+        data_type: varchar(500)
+      - name: uom
+        data_type: varchar(500)
+      - name: cnum
+        data_type: varchar(500)
+      - name: clash
+        data_type: varchar(500)
+      - name: clientdocno
+        data_type: varchar(500)
+      - name: drrf
+        data_type: varchar(500)
+      - name: stresscritical
+        data_type: varchar(500)
+      - name: drawn
+        data_type: varchar(500)
+      - name: mtoiss
+        data_type: varchar(500)
+      - name: commcode
+        data_type: varchar(500)
+      - name: ocgpos
+        data_type: varchar(500)
+      - name: ccla
+        data_type: varchar(500)
+      - name: pedcat
+        data_type: varchar(500)
+      - name: holdc5
+        data_type: varchar(500)
+      - name: planu
+        data_type: varchar(500)
+      - name: cdrg
+        data_type: varchar(500)
+      - name: strucate
+        data_type: varchar(500)
+      - name: sdrlcode
+        data_type: varchar(500)
+      - name: matr
+        data_type: varchar(500)
+      - name: model
+        data_type: varchar(500)
+      - name: drawnby
+        data_type: varchar(500)
+      - name: casr
+        data_type: varchar(500)
+      - name: rlstor
+        data_type: varchar(500)
+      - name: cladate
+        data_type: varchar(500)
+      - name: isohidden
+        data_type: varchar(500)
+      - name: revdesc5
+        data_type: varchar(500)
+      - name: jmax
+        data_type: varchar(500)
+      - name: heatt
+        data_type: varchar(500)
+      - name: purp
+        data_type: varchar(500)
+      - name: asd_dtemp
+        data_type: varchar(500)
+      - name: revdata1
+        data_type: varchar(500)
+      - name: pspe
+        data_type: varchar(500)
+      - name: fireproofing
+        data_type: varchar(500)
+      - name: prmodule
+        data_type: varchar(500)
+      - name: psidate
+        data_type: varchar(500)
+      - name: NAME
+        data_type: varchar(500)
+      - name: units
+        data_type: varchar(500)
+      - name: subsystem
+        data_type: varchar(500)
+      - name: hold
+        data_type: varchar(500)
+      - name: revdesc2
+        data_type: varchar(500)
+      - name: itemno
+        data_type: varchar(500)
+      - name: revdesc7
+        data_type: varchar(500)
+      - name: clientlineno
+        data_type: varchar(500)
+      - name: disccode
+        data_type: varchar(500)
+      - name: type
+        data_type: varchar(500)
+      - name: ccen
+        data_type: varchar(500)
+      - name: xray
+        data_type: varchar(500)
+      - name: revdata9
+        data_type: varchar(500)
+      - name: dsco
+        data_type: varchar(500)
+      - name: discipline
+        data_type: varchar(500)
+      - name: skey
+        data_type: varchar(500)
+      - name: worktype
+        data_type: varchar(500)
+      - name: critical
+        data_type: varchar(500)
+      - name: systemcode
+        data_type: varchar(500)
+      - name: strutype
+        data_type: varchar(500)
+      - name: testmedium
+        data_type: varchar(500)
+      - name: fpline
+        data_type: varchar(500)
+      - name: sloref
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: issued
+        data_type: varchar(500)
+      - name: chkby
+        data_type: varchar(500)
+      - name: traycat
+        data_type: varchar(500)
+      - name: dwgno
+        data_type: varchar(500)
+      - name: fstatus
+        data_type: varchar(500)
+      - name: areano
+        data_type: varchar(500)
+      - name: safc
+        data_type: varchar(500)
+      - name: ewp
+        data_type: varchar(500)
+      - name: jntc
+        data_type: varchar(500)
+      - name: serialno
+        data_type: varchar(500)
+      - name: STVVAL_WOR_STATUS_PROC_PIPE
+        data_type: varchar(500)
+      - name: revdesc4
+        data_type: varchar(500)
+      - name: fstat
+        data_type: varchar(500)
+      - name: insutype
+        data_type: varchar(500)
+      - name: cwp
+        data_type: varchar(500)
+      - name: owner
+        data_type: varchar(500)
+      - name: revdata2
+        data_type: varchar(500)
+      - name: modulefabricator
+        data_type: varchar(500)
+      - name: guid
+        data_type: varchar(500)
+      - name: fabwgt
+        data_type: varchar(500)
+      - name: isssta
+        data_type: varchar(500)
+      - name: mtodrwg
+        data_type: varchar(500)
+      - name: suffix
+        data_type: varchar(500)
+      - name: mdsysf
+        data_type: varchar(500)
+      - name: unitno
+        data_type: varchar(500)
+      - name: issueddate
+        data_type: varchar(500)
+      - name: wcgcomnt
+        data_type: varchar(500)
+      - name: ndegroup
+        data_type: varchar(500)
+      - name: stresssysno
+        data_type: varchar(500)
+      - name: BORE_IN
+        data_type: varchar(500)
+      - name: optemp
+        data_type: varchar(500)
+      - name: to_name
+        data_type: varchar(500)
+      - name: prdat
+        data_type: varchar(500)
+      - name: _type
+        data_type: varchar(500)
+      - name: cadarea
+        data_type: varchar(500)
+      - name: procrem
+        data_type: varchar(500)
+      - name: issdat
+        data_type: varchar(500)
+      - name: casdesc
+        data_type: varchar(500)
+      - name: holdflag
+        data_type: varchar(500)
+      - name: wmax
+        data_type: varchar(500)
+      - name: oppress
+        data_type: varchar(500)
+      - name: farea
+        data_type: varchar(500)
+      - name: mtoref
+        data_type: varchar(500)
+      - name: wpdocno
+        data_type: varchar(500)
+      - name: ptsp
+        data_type: varchar(500)
+      - name: inprtr
+        data_type: varchar(500)
+      - name: status
+        data_type: varchar(500)
+      - name: cwarea
+        data_type: varchar(500)
+      - name: shop
+        data_type: varchar(500)
+      - name: revdata4
+        data_type: varchar(500)
+      - name: dwgnorev
+        data_type: varchar(500)
+      - name: rev
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(500)
+      - name: lntp
+        data_type: varchar(500)
+      - name: ithk
+        data_type: varchar(500)
+      - name: pga
+        data_type: varchar(500)
+      - name: WBS
+        data_type: varchar(500)
+      - name: CWA
+        data_type: varchar(500)
+      - name: CWPZONE
+        data_type: varchar(500)
+      - name: CWP1
+        data_type: varchar(500)
+      - name: PROGRESS_PERCENT
+        data_type: decimal(38,0)
+      - name: STATUS_LEVEL
+        data_type: varchar(500)
+      - name: SEARCH_KEY1
+        data_type: varchar(4000)
+      - name: SEARCH_KEY2
+        data_type: varchar(4000)
+      - name: UNIQUE_LINE_ID      
+        data_type: varchar(500)
+      - name: PROJECT_CODE_WBS_CWA_CWPZONE
+        data_type: varchar(300)         
+      - name: source_system_name
+        data_type: varchar(100)		
+      - name: project_code
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+
+
+
+  - name: transformed_dim_memstatus
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: disc
+        data_type: varchar(500)
+      - name: status
+        data_type: decimal(38,0)
+      - name: percent_value
+        data_type: decimal(38,0)
+      - name: cumpercent
+        data_type: decimal(38,0)
+      - name: description
+        data_type: varchar(2000)
+      - name: project_code
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+
+
+  - name: transformed_e3d_struc
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: NAME
+        data_type: varchar(500)
+      - name: type
+        data_type: varchar(500)
+      - name: lock
+        data_type: varchar(500)
+      - name: owner
+        data_type: varchar(500)
+      - name: desc
+        data_type: varchar(500)
+      - name: func
+        data_type: varchar(500)
+      - name: purp
+        data_type: varchar(500)
+      - name: numb
+        data_type: varchar(500)
+      - name: buil
+        data_type: varchar(500)
+      - name: area
+        data_type: varchar(500)
+      - name: pos
+        data_type: varchar(500)
+      - name: ori
+        data_type: varchar(500)
+      - name: grdref
+        data_type: varchar(500)
+      - name: usrwei
+        data_type: varchar(500)
+      - name: usrwwe
+        data_type: varchar(500)
+      - name: usrcog
+        data_type: varchar(500)
+      - name: usrwco
+        data_type: varchar(500)
+      - name: uwmtxt
+        data_type: varchar(500)
+      - name: desp
+        data_type: varchar(500)
+      - name: dunion
+        data_type: varchar(500)
+      - name: propst
+        data_type: varchar(500)
+      - name: optblo
+        data_type: varchar(500)
+      - name: pdname
+        data_type: varchar(500)
+      - name: skey
+        data_type: varchar(500)
+      - name: mps_line_number
+        data_type: varchar(500)
+      - name: mps_isometric_number
+        data_type: varchar(500)
+      - name: mps_date_piping_placeholder_modeling_completed
+        data_type: varchar(500)
+      - name: mps_date_piping_stress_loads_to_stru
+        data_type: varchar(500)
+      - name: mps_date_structural_modeling_complete
+        data_type: varchar(500)
+      - name: mps_structural_engineering_released_to_piping
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_forecast
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_actual
+        data_type: varchar(500)
+      - name: mps_date_structural_engineering_complete
+        data_type: varchar(500)
+      - name: structural_mps_number
+        data_type: varchar(500)
+      - name: mps_foundation_req
+        data_type: varchar(500)
+      - name: mps_comment
+        data_type: varchar(500)
+      - name: constcat
+        data_type: varchar(500)
+      - name: deckimpact
+        data_type: varchar(500)
+      - name: fstat
+        data_type: varchar(500)
+      - name: drwgissue
+        data_type: varchar(500)
+      - name: furntype
+        data_type: varchar(500)
+      - name: mpstyp
+        data_type: varchar(500)
+      - name: wtbare_lb
+        data_type: varchar(500)
+      - name: wtoper_lb
+        data_type: varchar(500)
+      - name: wsupphori
+        data_type: varchar(500)
+      - name: inprtr
+        data_type: varchar(500)
+      - name: wsupphtag
+        data_type: varchar(500)
+      - name: ouprtr
+        data_type: varchar(500)
+      - name: wsuppudim
+        data_type: varchar(500)
+      - name: wsuppcod
+        data_type: varchar(500)
+      - name: track_id
+        data_type: varchar(500)
+      - name: requisition
+        data_type: varchar(500)
+      - name: serialno
+        data_type: varchar(500)
+      - name: fstatus
+        data_type: varchar(500)
+      - name: modulefabricator
+        data_type: varchar(500)
+      - name: comment0
+        data_type: varchar(500)
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: progress
+        data_type: varchar(500)
+      - name: hold
+        data_type: varchar(500)
+      - name: stvval_wor_status_strc_stru
+        data_type: varchar(500)
+      - name: areacode
+        data_type: varchar(500)
+      - name: areano
+        data_type: varchar(500)
+      - name: cgflowmed
+        data_type: varchar(500)
+      - name: cgvolume
+        data_type: varchar(500)
+      - name: ctllocation
+        data_type: varchar(500)
+      - name: comment
+        data_type: varchar(500)
+      - name: dcgpos
+        data_type: varchar(500)
+      - name: holdcomment
+        data_type: varchar(500)
+      - name: holdflag
+        data_type: varchar(500)
+      - name: issued
+        data_type: varchar(500)
+      - name: issuedby
+        data_type: varchar(500)
+      - name: issueddate
+        data_type: varchar(500)
+      - name: ocgpos
+        data_type: varchar(500)
+      - name: tcgpos
+        data_type: varchar(500)
+      - name: transmittalno
+        data_type: varchar(500)
+      - name: wcgcomnt
+        data_type: varchar(500)
+      - name: wcgdte
+        data_type: varchar(500)
+      - name: wcgloc
+        data_type: varchar(500)
+      - name: wcgstat
+        data_type: varchar(500)
+      - name: workpackno
+        data_type: varchar(500)
+      - name: worktype
+        data_type: varchar(500)
+      - name: cwarea
+        data_type: varchar(500)
+      - name: CWP
+        data_type: varchar(500)
+      - name: ewp
+        data_type: varchar(500)
+      - name: GUID
+        data_type: varchar(500)
+      - name: discipline
+        data_type: varchar(500)
+      - name: tagno
+        data_type: varchar(500)
+      - name: TYPE1
+        data_type: varchar(500)
+      - name: units
+        data_type: varchar(500)
+      - name: uom
+        data_type: varchar(500)
+      - name: MATERIAL
+        data_type: varchar(500)
+      - name: SUBSYSTEM
+        data_type: varchar(500)
+      - name: fireproofing
+        data_type: varchar(500)
+      - name: insulation
+        data_type: varchar(500)
+      - name: itemno
+        data_type: varchar(500)
+      - name: commcode
+        data_type: varchar(500)
+      - name: INSUTYPE
+        data_type: varchar(500)
+      - name: section_name
+        data_type: varchar(500)
+      - name: strutype
+        data_type: varchar(500)
+      - name: strucate
+        data_type: varchar(500)
+      - name: piecemark
+        data_type: varchar(500)
+      - name: steeltype
+        data_type: varchar(500)
+      - name: status
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(100)
+      - name: WBS
+        data_type: varchar(500)
+      - name: CWA
+        data_type: varchar(500)
+      - name: CWPZONE
+        data_type: varchar(500)
+      - name: CWP1
+        data_type: varchar(500)
+      - name: PROJECT_CODE_WBS_CWA_CWPZONE
+        data_type: varchar(300)         
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_e3d_wbs_cwa_cwpzone
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: WBS
+        data_type: varchar(100)
+      - name: CWA
+        data_type: varchar(100)
+      - name: CWPZone
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(100)
+      - name: PROJECT_CODE_WBS_CWA_CWPZONE
+        data_type: varchar(300)          
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_roc_status_projectname
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_id
+        data_type: varchar(500)
+      - name: maturity_step
+        data_type: varchar(500)
+      - name: activity
+        data_type: varchar(500)
+      - name: step_percent
+        data_type: decimal(38,0)
+      - name: cum_percent
+        data_type: decimal(38,0)
+      - name: phase
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(30)        
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+      - name: discipline
+        data_type: varchar(500)        
+  - name: transformed_dim_project
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: id
+        data_type: decimal(38,0)
+      - name: project_code
+        data_type: varchar(100)
+      - name: project_name
+        data_type: varchar(100)
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_me_function_code
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: id
+        data_type: decimal(38,0)
+      - name: designator
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(500)
+      - name: project_code
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(100)                 
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spel_codelists
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: codelist_number
+        data_type: decimal(38,0)
+      - name: codelist_index
+        data_type: decimal(38,0)
+      - name: codelist_text
+        data_type: varchar(500)
+      - name: codelist_short_text
+        data_type: varchar(500)
+      - name: codelist_constraint
+        data_type: decimal(38,0)
+      - name: codelist_sort_value
+        data_type: decimal(38,0)
+      - name: codelist_entry_disabled
+        data_type: decimal(38,0)		
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(100) 		
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spel_modelitem
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: sp_id
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(4000)
+      - name: isunchecked
+        data_type: decimal(38,0)
+      - name: modelitemtype
+        data_type: decimal(38,0)
+      - name: updatecount
+        data_type: decimal(38,0)		
+      - name: itemstatus
+        data_type: decimal(38,0)
+      - name: itemtypename
+        data_type: varchar(500)		
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(100) 		
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spel_plantitem
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: sp_id
+        data_type: varchar(500)	
+      - name: sp_id
+        data_type: varchar(500)
+      - name: tagsequenceno
+        data_type: varchar(500)
+      - name: tagsuffix
+        data_type: varchar(500)
+      - name: tagprefix
+        data_type: varchar(500)
+      - name: name
+        data_type: varchar(500)
+      - name: itemtag
+        data_type: varchar(500)
+      - name: plantitemtype
+        data_type: decimal(38,0)
+      - name: aabbcc_code
+        data_type: varchar(500)
+      - name: fabricationcategory
+        data_type: decimal(38,0)
+      - name: sp_plantgroupid
+        data_type: varchar(500)
+      - name: supplyby
+        data_type: decimal(38,0)
+      - name: requisitionby
+        data_type: decimal(38,0)
+      - name: isbulkitem
+        data_type: decimal(38,0)
+      - name: inventorytag
+        data_type: varchar(500)
+      - name: constructionstatus
+        data_type: decimal(38,0)
+      - name: constructionby
+        data_type: decimal(38,0)
+      - name: designby
+        data_type: decimal(38,0)
+      - name: erpassetno
+        data_type: varchar(500)
+      - name: requisitionno
+        data_type: varchar(500)
+      - name: sp_partno
+        data_type: varchar(500)
+      - name: sp_sourceapplication
+        data_type: varchar(500)
+      - name: itemtagfullname
+        data_type: varchar(500)
+      - name: sp_plantitemgroupid
+        data_type: varchar(500)
+      - name: referencedatachangedflag
+        data_type: decimal(38,0)
+      - name: sp_sameasuid
+        data_type: varchar(500)
+      - name: sp_isnew
+        data_type: decimal(38,0)
+      - name: sp_claimmode
+        data_type: decimal(38,0)
+      - name: sp_itemprojectstatus
+        data_type: decimal(38,0)
+      - name: sp_sameasuid1
+        data_type: varchar(500)
+      - name: sp_sameasuid2
+        data_type: varchar(500)
+      - name: sp_sameasuid3
+        data_type: varchar(500)
+      - name: sp_sameasuid4
+        data_type: varchar(500)
+      - name: sp_sameasuid5
+        data_type: varchar(500)
+      - name: sp_sameasuid6
+        data_type: varchar(500)
+      - name: sp_sameasuid7
+        data_type: varchar(500)
+      - name: sp_sameasuid8
+        data_type: varchar(500)
+      - name: sp_sameasuid9
+        data_type: varchar(500)
+      - name: sp_piddrawingnumber
+        data_type: varchar(500)
+      - name: sp_kkstotalplant
+        data_type: varchar(500)
+      - name: sp_kkssystemkey
+        data_type: varchar(500)
+      - name: sp_kkssystemsequence
+        data_type: varchar(500)
+      - name: sp_kkscomponentkey
+        data_type: varchar(500)
+      - name: sp_kksequipmentunitkey
+        data_type: varchar(500)
+      - name: sp_kksequipmentunitsequence
+        data_type: varchar(500)
+      - name: sp_kkssystemkeyprefix
+        data_type: varchar(500)
+      - name: sp_kksequipunitadditionalcode
+        data_type: varchar(500)
+      - name: sp_kkscomponentsequence
+        data_type: varchar(500)
+      - name: sp_allowpublishflag
+        data_type: decimal(38,0)
+      - name: sp_3pdbid
+        data_type: varchar(500)
+      - name: sp_3piid
+        data_type: varchar(500)
+      - name: sp_spiid
+        data_type: varchar(500)
+      - name: sp_fullitemtag
+        data_type: varchar(500)
+      - name: sp_sourceapplication1
+        data_type: varchar(500)
+      - name: sp_sourceapplication2
+        data_type: varchar(500)
+      - name: sp_sourceapplication3
+        data_type: varchar(500)
+      - name: sp_sourceapplication4
+        data_type: varchar(500)
+      - name: sp_sourceapplication5
+        data_type: varchar(500)
+      - name: sp_sourceapplication6
+        data_type: varchar(500)
+      - name: sp_sourceapplication7
+        data_type: varchar(500)
+      - name: sp_sourceapplication8
+        data_type: varchar(500)
+      - name: sp_sourceapplication9
+        data_type: varchar(500)
+      - name: sp_3pguid
+        data_type: varchar(500)
+      - name: sp_commissioningsystem
+        data_type: varchar(500)
+      - name: sp_commissioningsubsystem
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(500)      
+      - name: project_code
+        data_type: varchar(500) 	
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spel_t_equipments
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: sp_id
+        data_type: varchar(500)
+      - name: statustype
+        data_type: decimal(38,0)
+      - name: noofphases
+        data_type: decimal(38,0)
+      - name: gasgroup
+        data_type: decimal(38,0)
+      - name: issld
+        data_type: decimal(38,0)
+      - name: model
+        data_type: decimal(38,0)
+      - name: sp_circuitid
+        data_type: varchar(500)
+      - name: sp_busid
+        data_type: varchar(500)
+      - name: sp_cellid
+        data_type: varchar(500)
+      - name: sp_powerdistributionboardid
+        data_type: varchar(500)
+      - name: sequenceingroup
+        data_type: decimal(38,0)
+      - name: sp_reftypicalschematicid
+        data_type: varchar(500)
+      - name: sp_reflookuptableid
+        data_type: varchar(500)
+      - name: storespartnumber
+        data_type: varchar(500)
+      - name: manufacturer
+        data_type: decimal(38,0)
+      - name: sp_refequipmentid
+        data_type: varchar(500)
+      - name: note
+        data_type: varchar(4000)
+      - name: itemtypeidentifier
+        data_type: varchar(500)
+      - name: electricalequipmenttype
+        data_type: decimal(38,0)
+      - name: ingressionprotection
+        data_type: decimal(38,0)
+      - name: temperatureclass
+        data_type: decimal(38,0)
+      - name: explosionprotection
+        data_type: decimal(38,0)
+      - name: iselectricaltree
+        data_type: decimal(38,0)
+      - name: electricalequipmentclass
+        data_type: decimal(38,0)
+      - name: electricalequipmentsubclass
+        data_type: decimal(38,0)
+      - name: supplyacdcflag
+        data_type: decimal(38,0)
+      - name: complytonamingconvention
+        data_type: decimal(38,0)
+      - name: sp_powersourceid
+        data_type: varchar(500)
+      - name: fullloadcurrent
+        data_type: varchar(500)
+      - name: sp_fullloadcurrentsi
+        data_type: float
+      - name: erpcostcenter
+        data_type: decimal(38,0)
+      - name: erpcriticalityclass
+        data_type: decimal(38,0)
+      - name: erpequipmentclass
+        data_type: decimal(38,0)
+      - name: erpequipmenttype
+        data_type: decimal(38,0)
+      - name: erpfunctionallocation
+        data_type: varchar(500)
+      - name: erpplanner
+        data_type: decimal(38,0)
+      - name: erpworkcenter
+        data_type: decimal(38,0)
+      - name: sp_refsignalgroupid
+        data_type: varchar(500)
+      - name: iscircuitinternal
+        data_type: decimal(38,0)
+      - name: sp_alternatepowersourceid
+        data_type: varchar(500)
+      - name: sp_alternatecircuitid
+        data_type: varchar(500)
+      - name: sp_equipmenttypeidentifier
+        data_type: decimal(38,0)
+      - name: sp_procurementstatus
+        data_type: decimal(38,0)
+      - name: sp_isspare
+        data_type: decimal(38,0)
+      - name: vg_processsystemgroupid
+        data_type: varchar(500)
+      - name: vg_equipmentlocation
+        data_type: decimal(38,0)
+      - name: vg_lpsno1
+        data_type: decimal(38,0)
+      - name: vg_projectscopephase
+        data_type: decimal(38,0)
+      - name: vg_areaname
+        data_type: decimal(38,0)
+      - name: vg_loadtype
+        data_type: decimal(38,0)
+      - name: vg_cwa
+        data_type: decimal(38,0)
+      - name: vg_revisionnumber
+        data_type: varchar(500)
+      - name: vg_schematicdrawingnumber
+        data_type: varchar(500)
+      - name: vg_weighttransport
+        data_type: varchar(500)
+      - name: sp_vg_weighttransportsi
+        data_type: float
+      - name: vg_unitdepth
+        data_type: varchar(500)
+      - name: sp_vg_unitdepthsi
+        data_type: float
+      - name: vg_unitwidth
+        data_type: varchar(500)
+      - name: sp_vg_unitwidthsi
+        data_type: float
+      - name: vg_unitheight
+        data_type: varchar(500)
+      - name: sp_vg_unitheightsi
+        data_type: float
+      - name: vg_unitweight
+        data_type: varchar(500)
+      - name: sp_vg_unitweightsi
+        data_type: float
+      - name: vg_packagenumber
+        data_type: varchar(500)
+      - name: vg_weightmaximum
+        data_type: varchar(500)
+      - name: sp_vg_weightmaximumsi
+        data_type: float
+      - name: vg_weightoperational
+        data_type: varchar(500)
+      - name: sp_vg_weightoperationalsi
+        data_type: float
+      - name: vg_mainequipment
+        data_type: varchar(500)
+      - name: vg_installedby
+        data_type: decimal(38,0)
+      - name: source_system_name
+        data_type: varchar(500)      
+      - name: project_code
+        data_type: varchar(500) 	
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spel_t_cable
+    config:
+      contract: {enforced: true}
+    columns:
+      - name:	sp_id
+        data_type: varchar(500)	  
+      - name:	restartflag
+        data_type: decimal(38,0)   
+      - name:	noconductor
+        data_type: decimal(38,0)	  
+      - name:	noofsets
+        data_type: decimal(38,0)  
+      - name:	noofconductingroup
+        data_type: decimal(38,0)	  
+      - name:	routing
+        data_type: decimal(38,0)  
+      - name:	routingpath
+        data_type: varchar(500)	  
+      - name:	cablesizingflag
+        data_type: decimal(38,0)	  
+      - name:	bendingradius
+        data_type: varchar(500)	  
+      - name:	sp_bendingradiussi
+        data_type: float	  
+      - name:	pulltension
+        data_type: varchar(500)	  
+      - name:	sp_pulltensionsi
+        data_type: float	  
+      - name:	recommendconductorssize
+        data_type: decimal(38,0)	  
+      - name:	cableusage
+        data_type: decimal(38,0)	  
+      - name:	cablecategory
+        data_type: decimal(38,0)	  
+      - name:	cablespecification
+        data_type: decimal(38,0)	  
+      - name:	armortype
+        data_type: decimal(38,0)  
+      - name:	jacketinsulationmaterial
+        data_type: decimal(38,0)  
+      - name:	jacketcolor
+        data_type: decimal(38,0)  
+      - name:	jacketinsulationtemprating
+        data_type: decimal(38,0) 
+      - name:	innerinsulationtemprating
+        data_type: decimal(38,0)  
+      - name:	noofparalleledcable
+        data_type: decimal(38,0)  
+      - name:	calcvoltagedroppercent
+        data_type: float  
+      - name:	designlength
+        data_type: varchar(500)	  
+      - name:	sp_designlengthsi
+        data_type: float	  
+      - name:	deratedampacity
+        data_type: varchar(500)	  
+      - name:	weightperlength
+        data_type: varchar(500)	  
+      - name:	sp_weightperlengthsi
+        data_type: float	  
+      - name:	conductorarrangement
+        data_type: decimal(38,0)	  
+      - name:	actuallength
+        data_type: varchar(500)	  
+      - name:	sp_actuallengthsi
+        data_type: float	  
+      - name:	basicampacityinground
+        data_type: varchar(500)	  
+      - name:	sp_basicampacityingroundsi
+        data_type: float	  
+      - name:	basicampacityinair
+        data_type: varchar(500)	  
+      - name:	sp_basicampacityinairsi
+        data_type: float	  
+      - name:	calcstartingvoltagedrop
+        data_type: float  
+      - name:	noadditionalconductor
+        data_type: decimal(38,0)  
+      - name:	additionalconductorsize
+        data_type: decimal(38,0)
+      - name:	ratedvoltage
+        data_type: decimal(38,0)	  
+      - name:	customderatingfactor
+        data_type: float	  
+      - name:	customutilizationfactor
+        data_type: float	  
+      - name:	sp_connectionside2id
+        data_type: varchar(500)	  
+      - name:	sp_trayid
+        data_type: varchar(500)	  
+      - name:	powerfactoratstarting
+        data_type: float	  
+      - name:	loadchangingflag
+        data_type: decimal(38,0)  
+      - name:	sp_connectionside1id
+        data_type: varchar(500)	  
+      - name:	sp_deratedampacitysi
+        data_type: float  
+      - name:	sp_refcolorpatternid
+        data_type: varchar(500)	  
+      - name:	estimatedcablelength
+        data_type: varchar(500)	  
+      - name:	sp_estimatedcablelengthsi
+        data_type: float	  
+      - name:	allowvoltdroppercentrunning
+        data_type: float	  
+      - name:	allowvoltdroppercentstart
+        data_type: float	  
+      - name:	calcnoofparalleledcable
+        data_type: decimal(38,0)	  
+      - name:	sp_calcrefcableid
+        data_type: varchar(500)	  
+      - name:	systemcablecategory
+        data_type: decimal(38,0)  
+      - name:	cableformation
+        data_type: varchar(80)	  
+      - name:	length
+        data_type: varchar(500)	  
+      - name:	sp_lengthsi
+        data_type: float	  
+      - name:	startingcurrent
+        data_type: varchar(500)	  
+      - name:	sp_startingcurrentsi
+        data_type: float	  
+      - name:	powerfactorfullload
+        data_type: float  
+      - name:	systemnote
+        data_type: varchar(4000)	  
+      - name:	lastcalcmaxcablelength
+        data_type: varchar(500)	  
+      - name:	sp_lastcalcmaxcablelengthsi
+        data_type: float  
+      - name:	cablesettype
+        data_type: decimal(38,0)	  
+      - name:	shortcircuitduration
+        data_type: varchar(500)	  
+      - name:	sp_shortcircuitdurationsi
+        data_type: float  
+      - name:	shortcircuitfaultcurrent
+        data_type: varchar(500)	  
+      - name:	sp_shortcircuitfaultcurrentsi
+        data_type: float	  
+      - name:	shortcircuitminimumarea
+        data_type: decimal(38,0)	  
+      - name:	overallshieldflag
+        data_type: decimal(38,0)  
+      - name:	communicationwireflag
+        data_type: decimal(38,0)  
+      - name:	overallshieldsize
+        data_type: decimal(38,0)  
+      - name:	overallshieldmaterial
+        data_type: decimal(38,0)	  
+      - name:	enableshortcircuitsizing
+        data_type: decimal(38,0)  
+      - name:	sp_cabledrumid
+        data_type: varchar(500)	  
+      - name:	pullingarea
+        data_type: decimal(38,0)	  
+      - name:	tail1length
+        data_type: varchar(500)	  
+      - name:	sp_tail1lengthsi
+        data_type: float	  
+      - name:	tail2length
+        data_type: varchar(500)	  
+      - name:	sp_tail2lengthsi
+        data_type: float  
+      - name:	sparelength
+        data_type: varchar(500)	  
+      - name:	sp_sparelengthsi
+        data_type: float  
+      - name:	apply25percentfactorflag
+        data_type: decimal(38,0)  
+      - name:	ambienttemperaturefactor
+        data_type: float	  
+      - name:	neutralearthing
+        data_type: decimal(38,0)  
+      - name:	parallelcablesuffix
+        data_type: varchar(500)	  
+      - name:	sp_refglandside1id
+        data_type: varchar(500)	  
+      - name:	sp_refglandside2id
+        data_type: varchar(500)	  
+      - name:	protectiondevicesettingflag
+        data_type: decimal(38,0) 
+      - name:	protectiondevicesetting
+        data_type: varchar(500)	  
+      - name:	sp_protectiondevicesettingsi
+        data_type: float	  
+      - name:	routedlength
+        data_type: varchar(500)	  
+      - name:	sp_routedlengthsi
+        data_type: float	  
+      - name:	armorresistivity
+        data_type: varchar(500)	  
+      - name:	sp_armorresistivitysi
+        data_type: float	  
+      - name:	armorreactance
+        data_type: varchar(500)	  
+      - name:	sp_armorreactancesi
+        data_type: float  
+      - name:	externalearthimpedance
+        data_type: varchar(500)	  
+      - name:	sp_externalearthimpedancesi
+        data_type: float  
+      - name:	grandingforimpedancecalc
+        data_type: decimal(38,0)  
+      - name:	calcearthloopimpedance
+        data_type: varchar(500)	  
+      - name:	sp_calcearthloopimpedancesi
+        data_type: float	  
+      - name:	earthloopimpedancecalcrequired
+        data_type: decimal(38,0)  
+      - name:	routingstatus
+        data_type: decimal(38,0)  
+      - name:	segregationlevel
+        data_type: decimal(38,0)  
+      - name:	basicampacityinduct
+        data_type: varchar(500)	  
+      - name:	sp_basicampacityinductsi
+        data_type: float  
+      - name:	coresscreenmaterial
+        data_type: decimal(38,0)	  
+      - name:	cablescreenmaterial
+        data_type: decimal(38,0)  
+      - name:	sp_externalroutinglength
+        data_type: varchar(500)	  
+      - name:	sp_useexternalroutinglength
+        data_type: decimal(38,0)  
+      - name:	sp_externalroutinglengthsi
+        data_type: float  
+      - name:	sp_codefactor
+        data_type: float	  
+      - name:	sp_numberofsplice
+        data_type: decimal(38,0)  
+      - name:	sp_kkscableapplicationarea
+        data_type: decimal(38,0)  
+      - name:	sp_actualroutingpath
+        data_type: varchar(4000)	  
+      - name:	sp_externalroutingpath
+        data_type: varchar(4000)	  
+      - name:	sp_cableassemblyid
+        data_type: varchar(500)	  
+      - name:	sp_resistivityzerosequence
+        data_type: varchar(500)	  
+      - name:	sp_resistivityzerosequencesi
+        data_type: float	  
+      - name:	sp_reactancezerosequence
+        data_type: varchar(500)	  
+      - name:	sp_reactancezerosequencesi
+        data_type: float	  
+      - name:	sp_cableaccess
+        data_type: varchar(255)	  
+      - name:	sp_corephaseusage
+        data_type: decimal(38,0)	  
+      - name:	sp_phaselabel
+        data_type: decimal(38,0)  
+      - name:	sp_locktodrum
+        data_type: decimal(38,0)	  
+      - name:	sp_installedlength
+        data_type: varchar(500)	  
+      - name:	sp_sp_installedlengthsi
+        data_type: float	  
+      - name:	sp_cablemarkend1
+        data_type: varchar(500)	  
+      - name:	sp_sp_cablemarkend1si
+        data_type: float  
+      - name:	sp_cablemarkend2
+        data_type: varchar(500)	  
+      - name:	sp_sp_cablemarkend2si
+        data_type: float	  
+      - name:	sp_isinstalled
+        data_type: decimal(38,0)	  
+      - name:	sp_custombasicampacity
+        data_type: varchar(500)	  
+      - name:	sp_sp_custombasicampacitysi
+        data_type: float  
+      - name:	sp_toberoutedins3d
+        data_type: decimal(38,0)	  
+      - name:	sp_voltagedropfullload
+        data_type: float  
+      - name:	sp_voltagedropstarting
+        data_type: float  
+      - name:	sp_noadditionalgndconductor
+        data_type: decimal(38,0)  
+      - name:	sp_additionalgndconductorsize
+        data_type: decimal(38,0)	  
+      - name:	sp_retaincablecuts
+        data_type: decimal(38,0)	  
+      - name:	vg_installationtype
+        data_type: varchar(500)	  
+      - name:	vg_schem_wiringno
+        data_type: varchar(500)	  
+      - name:	vg_conduitlength
+        data_type: varchar(500)	  
+      - name:	vg_conduitsize
+        data_type: varchar(500)	  
+      - name:	vg_plandrawing
+        data_type: varchar(500)
+      - name:	WBS
+        data_type: varchar(500)	  
+      - name:	CWPZONE
+        data_type: varchar(500)	  
+      - name:	CWA
+        data_type: varchar(500)	  
+      - name:	CABLE_TAG
+        data_type: varchar(500)	  
+      - name:	CABLE_DESCRIPTION
+        data_type: varchar(4000)	  
+      - name:	CABLE_TYPE
+        data_type: varchar(4000)	  
+      - name:	FROM
+        data_type: varchar(500)
+      - name:	TO
+        data_type: varchar(500)
+      - name:	DESIGN_LENGTH
+        data_type: decimal(38,0)
+      - name:	ACTUAL_LENGTH
+        data_type: decimal(38,0)
+      - name:	SEARCH_KEY
+        data_type: varchar(4000)
+      - name: source_system_name
+        data_type: varchar(500)      
+      - name: project_code
+        data_type: varchar(500) 	
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_ado_modelreviewitemstracker
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: id
+        data_type: varchar(100)
+      - name: work_item_type
+        data_type: varchar(500)
+      - name: area_path
+        data_type: varchar(500)
+      - name: assigned_to
+        data_type: varchar(500)
+      - name: model_review_area
+        data_type: varchar(500)
+      - name: model_review_session
+        data_type: varchar(500)
+      - name: tagid
+        data_type: varchar(100)
+      - name: title
+        data_type: varchar(1000)
+      - name: tags
+        data_type: varchar(1000)
+      - name: date_raised
+        data_type: varchar(500)
+      - name: cwa
+        data_type: varchar(500)
+      - name: owner
+        data_type: varchar(500)
+      - name: responsibility
+        data_type: varchar(500)
+      - name: primary_discipline
+        data_type: varchar(500)
+      - name: secondary_discipline
+        data_type: varchar(500)
+      - name: target_date
+        data_type: varchar(500)
+      - name: state
+        data_type: varchar(500)
+      - name: worley_remarks
+        data_type: varchar(4000)
+      - name: parent
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_e3d_pipes_mto_lists
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: pipe
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: bore
+        data_type: varchar(500)
+      - name: pspec
+        data_type: varchar(500)
+      - name: ispec
+        data_type: varchar(500)
+      - name: tspec
+        data_type: varchar(500)
+      - name: status
+        data_type: varchar(500)
+      - name: duty
+        data_type: varchar(500)
+      - name: syscode
+        data_type: varchar(500)
+      - name: lsno
+        data_type: varchar(500)
+      - name: rev
+        data_type: varchar(500)
+      - name: lock
+        data_type: varchar(500)
+      - name: pid
+        data_type: varchar(500)
+      - name: cwa
+        data_type: varchar(500)
+      - name: cwp
+        data_type: varchar(500)
+      - name: isodwgno
+        data_type: varchar(500)
+      - name: clientdocno
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+
+  - name: transformed_isotracker_union
+    config:
+      contract: {enforced: true}
+    columns:
+    - name: object
+      data_type: varchar(500)    
+    - name: sr_no
+      data_type: varchar(500)
+    - name: dwg_no
+      data_type: varchar(500)
+    - name: doc_no
+      data_type: varchar(500)
+    - name: iso_id
+      data_type: varchar(500)
+    - name: cwp
+      data_type: varchar(500)
+    - name: line_id
+      data_type: varchar(500)
+    - name: line_size
+      data_type: varchar(500)
+    - name: spec
+      data_type: varchar(500)
+    - name: insulation
+      data_type: varchar(500)
+    - name: p_and_id_no
+      data_type: varchar(500)
+    - name: remarks_header
+      data_type: varchar(500)
+    - name: modeling_status
+      data_type: varchar(500)
+    - name: line_modelled
+      data_type: varchar(500)
+    - name: ifh_p_and_id_check_completed
+      data_type: varchar(500)
+    - name: prcnt30_review_comments_updated
+      data_type: varchar(500)
+    - name: issued_to_stress
+      data_type: varchar(500)
+    - name: returned_from_stress
+      data_type: varchar(500)
+    - name: stress_incorporation
+      data_type: varchar(500)
+    - name: supporting_completed
+      data_type: varchar(500)
+    - name: inline_component_data_updated
+      data_type: varchar(500)
+    - name: preliminary_vendor_data_updated
+      data_type: varchar(500)
+    - name: line_made_clash_free_data_consistency_check_cleared
+      data_type: varchar(500)
+    - name: prcnt60_model_review_comments_updated
+      data_type: varchar(500)
+    - name: iso_extn_desig_slfchk_aprvdmoc_availvndr_dt
+      data_type: varchar(500)
+    - name: piping_moc_prepared_if_applicable
+      data_type: varchar(500)
+    - name: piping_check_with_cut_off_p_and_id_date
+      data_type: varchar(500)
+    - name: piping_checker_comments_and_final_vendor_data_comments_received
+      data_type: varchar(500)
+    - name: issued_to_squad_check
+      data_type: varchar(500)
+    - name: check_squad_check_bb_session_num
+      data_type: varchar(500)
+    - name: internal_lot
+      data_type: varchar(500)
+    - name: squad_check_completed
+      data_type: varchar(500)
+    - name: prcnt90_model_review_applicable
+      data_type: varchar(500)
+    - name: prcnt90_review_comments_updated
+      data_type: varchar(500)
+    - name: comment_incorporation_of_final_comments_squad_and_piping
+      data_type: varchar(500)
+    - name: final_isometric_back_checking
+      data_type: varchar(500)
+    - name: afc_isometric_extracted_and_issued_to_dcc
+      data_type: varchar(500)
+    - name: afc_isometric_transmittal_issued
+      data_type: varchar(500)
+    - name: hold
+      data_type: varchar(500)
+    - name: hold_remarks1
+      data_type: varchar(500)
+    - name: process
+      data_type: varchar(500)
+    - name: hold_initiation_date
+      data_type: varchar(500)
+    - name: mechanical
+      data_type: varchar(500)
+    - name: hold_initiation_date_1
+      data_type: varchar(500)
+    - name: instrumentation
+      data_type: varchar(500)
+    - name: hold_initiation_date_2
+      data_type: varchar(500)
+    - name: structural
+      data_type: varchar(500)
+    - name: hold_initiation_date_3
+      data_type: varchar(500)
+    - name: piping_stress
+      data_type: varchar(500)
+    - name: hold_initiation_date_4
+      data_type: varchar(500)
+    - name: piping_spec
+      data_type: varchar(500)
+    - name: hold_initiation_date_5
+      data_type: varchar(500)
+    - name: hold_remarks2
+      data_type: varchar(500)
+    - name: target_to_stress_completion_date_me3
+      data_type: varchar(500)
+    - name: target_to_structural_completion_date_me4
+      data_type: varchar(500)
+    - name: target_iso_lock_date_me5
+      data_type: varchar(500)
+    - name: target_afc_date_me7
+      data_type: varchar(500)
+    - name: process_critical_lines
+      data_type: varchar(500)      
+    - name: process_critical_lines2
+      data_type: varchar(500)
+    - name: stress_calculation_number
+      data_type: varchar(500)
+    - name: piping_check_with_frozen_master_p_and_id
+      data_type: varchar(500)
+    - name: checker
+      data_type: varchar(500)
+    - name: stress_calculation_number2
+      data_type: varchar(500)                  
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(100)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(100)
+
+  - name: transformed_omie_combo
+    config:
+      contract: {enforced: true}
+    columns:      
+      - name: id
+        data_type: integer
+      - name: p01
+        data_type: varchar(2000)
+      - name: p02
+        data_type: varchar(2000)
+      - name: p03
+        data_type: varchar(2000)
+      - name: p04
+        data_type: varchar(2000)
+      - name: p05
+        data_type: varchar(2000)
+      - name: p06
+        data_type: varchar(2000)
+      - name: p07
+        data_type: varchar(2000)
+      - name: p08
+        data_type: varchar(2000)
+      - name: p09
+        data_type: varchar(2000)
+      - name: p10
+        data_type: varchar(2000)
+      - name: p11
+        data_type: varchar(2000)
+      - name: p12
+        data_type: varchar(2000)
+      - name: p13
+        data_type: varchar(2000)
+      - name: p14
+        data_type: varchar(2000)
+      - name: p15
+        data_type: varchar(2000)
+      - name: p16
+        data_type: varchar(2000)
+      - name: p17
+        data_type: varchar(2000)
+      - name: p18
+        data_type: varchar(2000)
+      - name: p19
+        data_type: varchar(2000)
+      - name: p20
+        data_type: varchar(2000)
+      - name: p21
+        data_type: varchar(2000)
+      - name: p22
+        data_type: varchar(2000)
+      - name: p23
+        data_type: varchar(2000)
+      - name: p24
+        data_type: varchar(2000)
+      - name: p25
+        data_type: varchar(2000)
+      - name: p26
+        data_type: varchar(2000)
+      - name: p27
+        data_type: varchar(2000)
+      - name: p28
+        data_type: varchar(2000)
+      - name: p29
+        data_type: varchar(2000)
+      - name: p30
+        data_type: varchar(2000)
+      - name: p31
+        data_type: varchar(2000)
+      - name: p32
+        data_type: varchar(2000)
+      - name: p33
+        data_type: varchar(2000)
+      - name: p34
+        data_type: varchar(2000)
+      - name: p35
+        data_type: varchar(2000)
+      - name: p36
+        data_type: varchar(2000)
+      - name: p37
+        data_type: varchar(2000)
+      - name: p38
+        data_type: varchar(2000)
+      - name: p39
+        data_type: varchar(2000)
+      - name: p40
+        data_type: varchar(2000)
+      - name: p41
+        data_type: varchar(2000)
+      - name: p42
+        data_type: varchar(2000)
+      - name: p43
+        data_type: varchar(2000)
+      - name: p44
+        data_type: varchar(2000)
+      - name: p45
+        data_type: varchar(2000)
+      - name: p46
+        data_type: varchar(2000)
+      - name: p47
+        data_type: varchar(2000)
+      - name: p48
+        data_type: varchar(2000)
+      - name: p49
+        data_type: varchar(2000)
+      - name: p50
+        data_type: varchar(2000)
+      - name: p51
+        data_type: varchar(2000)
+      - name: p52
+        data_type: varchar(2000)
+      - name: p53
+        data_type: varchar(2000)
+      - name: p54
+        data_type: varchar(2000)
+      - name: p55
+        data_type: varchar(2000)
+      - name: p56
+        data_type: varchar(2000)
+      - name: p57
+        data_type: varchar(2000)
+      - name: p58
+        data_type: varchar(2000)
+      - name: p59
+        data_type: varchar(2000)
+      - name: p60
+        data_type: varchar(2000)
+      - name: p61
+        data_type: varchar(2000)
+      - name: p62
+        data_type: varchar(2000)
+      - name: p63
+        data_type: varchar(2000)
+      - name: p64
+        data_type: varchar(2000)
+      - name: p65
+        data_type: varchar(2000)
+      - name: p66
+        data_type: varchar(2000)
+      - name: p67
+        data_type: varchar(2000)
+      - name: p68
+        data_type: varchar(2000)
+      - name: p69
+        data_type: varchar(2000)
+      - name: p70
+        data_type: varchar(2000)
+      - name: p71
+        data_type: varchar(2000)
+      - name: p72
+        data_type: varchar(2000)
+      - name: p73
+        data_type: varchar(2000)
+      - name: p74
+        data_type: varchar(2000)
+      - name: p75
+        data_type: varchar(2000)
+      - name: p76
+        data_type: varchar(2000)
+      - name: p77
+        data_type: varchar(2000)
+      - name: p78
+        data_type: varchar(2000)
+      - name: p79
+        data_type: varchar(2000)
+      - name: p80
+        data_type: varchar(2000)
+      - name: p81
+        data_type: varchar(2000)
+      - name: p82
+        data_type: varchar(2000)
+      - name: p83
+        data_type: varchar(2000)
+      - name: p84
+        data_type: varchar(2000)
+      - name: p85
+        data_type: varchar(2000)
+      - name: p86
+        data_type: varchar(2000)
+      - name: p87
+        data_type: varchar(2000)
+      - name: p88
+        data_type: varchar(2000)
+      - name: p89
+        data_type: varchar(2000)
+      - name: p90
+        data_type: varchar(2000)
+      - name: p91
+        data_type: varchar(2000)
+      - name: p92
+        data_type: varchar(2000)
+      - name: p93
+        data_type: varchar(2000)
+      - name: p94
+        data_type: varchar(2000)
+      - name: p95
+        data_type: varchar(2000)
+      - name: p96
+        data_type: varchar(2000)
+      - name: p97
+        data_type: varchar(2000)
+      - name: p98
+        data_type: varchar(2000)
+      - name: p99
+        data_type: varchar(2000)
+      - name: order
+        data_type: integer
+      - name: updated_by_id
+        data_type: integer
+      - name: mdate
+        data_type: timestamp
+      - name: created_by_id
+        data_type: integer
+      - name: cdate
+        data_type: timestamp
+      - name: disabled
+        data_type: integer
+      - name: deleted
+        data_type: integer
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)        
+
+  - name: transformed_omie_req
+    config:
+      contract: {enforced: true}
+    columns: 
+      - name: id
+        data_type: integer
+      - name: title
+        data_type: varchar(500)
+      - name: attributes
+        data_type: varchar(10000)
+      - name: description
+        data_type: varchar(4000)
+      - name: response
+        data_type: varchar(4000)
+      - name: comments
+        data_type: varchar(4000)
+      - name: log
+        data_type: varchar(10000)
+      - name: code
+        data_type: varchar(100)
+      - name: rev
+        data_type: varchar(500)
+      - name: wfstatus_id
+        data_type: integer
+      - name: reqpriority_id
+        data_type: integer
+      - name: probability_id
+        data_type: integer
+      - name: impact_id
+        data_type: integer
+      - name: text_id
+        data_type: integer
+      - name: combo_id
+        data_type: integer
+      - name: customdate_id
+        data_type: integer
+      - name: req_type_id
+        data_type: integer
+      - name: from
+        data_type: varchar(500)
+      - name: from_entity_id
+        data_type: integer
+      - name: to
+        data_type: varchar(500)
+      - name: to_entity_id
+        data_type: integer
+      - name: from_orgchart_id
+        data_type: integer
+      - name: from_orgchart
+        data_type: varchar(500)
+      - name: to_orgchart_id
+        data_type: integer
+      - name: to_orgchart
+        data_type: varchar(500)
+      - name: from_orgposition_id
+        data_type: integer
+      - name: from_orgposition
+        data_type: varchar(500)
+      - name: to_orgposition_id
+        data_type: integer
+      - name: to_orgposition
+        data_type: varchar(500)
+      - name: component1
+        data_type: varchar(500)
+      - name: component1_id
+        data_type: integer
+      - name: project
+        data_type: varchar(500)
+      - name: project_id
+        data_type: integer
+      - name: component2
+        data_type: varchar(500)
+      - name: component2_id
+        data_type: integer
+      - name: requireddate
+        data_type: timestamp
+      - name: closeddate
+        data_type: timestamp
+      - name: responsedate
+        data_type: timestamp
+      - name: converted_from
+        data_type: varchar(500)
+      - name: converted_to
+        data_type: varchar(500)
+      - name: last_comment
+        data_type: varchar(4000)
+      - name: historyjson
+        data_type: varchar(10000)
+      - name: documentjson
+        data_type: varchar(10000)
+      - name: documentcount
+        data_type: integer
+      - name: customvals
+        data_type: varchar(10000)
+      - name: commentsjson
+        data_type: varchar(10000)
+      - name: cc_ids
+        data_type: varchar(1000)
+      - name: cc_list
+        data_type: varchar(1000)
+      - name: resp_list
+        data_type: varchar(1000)
+      - name: resp_ids
+        data_type: varchar(1000)
+      - name: internal
+        data_type: integer
+      - name: import
+        data_type: varchar(500)
+      - name: order
+        data_type: integer
+      - name: updated_by_id
+        data_type: integer
+      - name: archivedate
+        data_type: timestamp
+      - name: mdate
+        data_type: timestamp
+      - name: created_by_id
+        data_type: integer
+      - name: cdate
+        data_type: timestamp
+      - name: disabled
+        data_type: integer
+      - name: deleted
+        data_type: integer
+      - name: confidential
+        data_type: integer
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100) 
+
+  - name: transformed_omie_wfstatus
+    config:
+      contract: {enforced: true}
+    columns: 
+      - name: id
+        data_type: integer
+      - name: name
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(4000)
+      - name: closed
+        data_type: integer
+      - name: onhold
+        data_type: integer
+      - name: fill
+        data_type: varchar(500)
+      - name: stroke
+        data_type: varchar(500)
+      - name: primary
+        data_type: integer
+      - name: order
+        data_type: integer
+      - name: updated_by_id
+        data_type: integer
+      - name: mdate
+        data_type: timestamp
+      - name: created_by_id
+        data_type: integer
+      - name: cdate
+        data_type: timestamp
+      - name: disabled
+        data_type: integer
+      - name: deleted
+        data_type: integer
+      - name: include_req_team
+        data_type: integer
+      - name: include_res_team
+        data_type: integer
+      - name: include_req_contact
+        data_type: integer
+      - name: include_res_contact
+        data_type: integer
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100) 
+
+  - name: transformed_spi_component_handle
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: cmpnt_handle_id
+        data_type: decimal(38, 0)
+      - name: proj_id
+        data_type: decimal(38, 0)
+      - name: site_id
+        data_type: decimal(38, 0)
+      - name: chg_num
+        data_type: decimal(38, 0)
+      - name: plant_id
+        data_type: decimal(38, 0)
+      - name: unit_id
+        data_type: decimal(38, 0)
+      - name: chg_status
+        data_type: varchar(100)
+      - name: user_name
+        data_type: varchar(100)
+      - name: chg_date
+        data_type: date
+      - name: cmpnt_handle_name
+        data_type: varchar(100)
+      - name: cmpnt_handle_desc
+        data_type: varchar(100)
+      - name: area_id
+        data_type: decimal(38, 0)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+
+  - name: transformed_spi_component_location
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: cmpnt_loc_id
+        data_type: decimal(38, 0)
+      - name: proj_id
+        data_type: decimal(38, 0)
+      - name: site_id
+        data_type: decimal(38, 0)
+      - name: chg_num
+        data_type: decimal(38, 0)
+      - name: plant_id
+        data_type: decimal(38, 0)
+      - name: unit_id
+        data_type: decimal(38, 0)
+      - name: chg_status
+        data_type: varchar(100)
+      - name: user_name
+        data_type: varchar(100)
+      - name: chg_date
+        data_type: date
+      - name: cmpnt_loc_name
+        data_type: varchar(100)
+      - name: cmpnt_loc_desc
+        data_type: varchar(100)
+      - name: area_id
+        data_type: decimal(38, 0)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spi_component_sys_io_type
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: cmpnt_sys_io_type_id
+        data_type: decimal(38, 0)
+      - name: proj_id
+        data_type: decimal(38, 0)
+      - name: site_id
+        data_type: decimal(38, 0)
+      - name: chg_num
+        data_type: decimal(38, 0)
+      - name: plant_id
+        data_type: decimal(38, 0)
+      - name: unit_id
+        data_type: decimal(38, 0)
+      - name: chg_status
+        data_type: varchar(100)
+      - name: user_name
+        data_type: varchar(100)
+      - name: chg_date
+        data_type: date
+      - name: cmpnt_sys_io_type_name
+        data_type: varchar(100)
+      - name: cmpnt_sys_io_type_desc
+        data_type: varchar(100)
+      - name: area_id
+        data_type: decimal(38, 0)
+      - name: cstag_sys_io_type_name
+        data_type: varchar(100)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spi_drawing
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: dwg_id
+        data_type: decimal(38, 0)
+      - name: proj_id
+        data_type: decimal(38, 0)
+      - name: site_id
+        data_type: decimal(38, 0)
+      - name: chg_num
+        data_type: decimal(38, 0)
+      - name: plant_id
+        data_type: decimal(38, 0)
+      - name: unit_id
+        data_type: decimal(38, 0)
+      - name: user_name
+        data_type: varchar(300)
+      - name: dwg_type_id
+        data_type: decimal(38, 0)
+      - name: chg_status
+        data_type: varchar(10)
+      - name: chg_date
+        data_type: timestamp
+      - name: dwg_num
+        data_type: decimal(38, 0)
+      - name: curr_rev_num
+        data_type: decimal(38, 0)
+      - name: dwg_title1
+        data_type: varchar(400)
+      - name: dwg_title2
+        data_type: varchar(400)
+      - name: dwg_title3
+        data_type: varchar(400)
+      - name: dwg_name
+        data_type: varchar(500)
+      - name: ven_prop_by
+        data_type: varchar(200)
+      - name: ven_prop_date
+        data_type: timestamp
+      - name: ven_dsgn_by
+        data_type: varchar(200)
+      - name: ven_dsgn_date
+        data_type: timestamp
+      - name: ven_drwn_by
+        data_type: varchar(200)
+      - name: ven_drwn_date
+        data_type: timestamp
+      - name: ven_ck_by
+        data_type: varchar(200)
+      - name: ven_ck_date
+        data_type: timestamp
+      - name: ven_appr_by
+        data_type: varchar(200)
+      - name: ven_appr_date
+        data_type: timestamp
+      - name: cl_ck_by
+        data_type: varchar(200)
+      - name: cl_ck_date
+        data_type: timestamp
+      - name: cl_engr_by
+        data_type: varchar(200)
+      - name: cl_engr_date
+        data_type: timestamp
+      - name: cl_appr_by
+        data_type: varchar(200)
+      - name: cl_appr_date
+        data_type: timestamp
+      - name: area_id
+        data_type: decimal(38, 0)
+      - name: bmp_file_name
+        data_type: varchar(200)
+      - name: bmp_file_path
+        data_type: varchar(100)
+      - name: dwg_desc
+        data_type: varchar(100)
+      - name: output_dwg_fmt_id
+        data_type: decimal(38, 0)
+      - name: parent_id
+        data_type: decimal(38, 0)
+      - name: ref_subj_desc
+        data_type: varchar(100)
+      - name: format_id
+        data_type: decimal(38, 0)
+      - name: rev_id
+        data_type: decimal(38, 0)
+      - name: eng_proj_id
+        data_type: decimal(38, 0)
+      - name: eng_ref_id
+        data_type: decimal(38, 0)
+      - name: dwg_key1_id
+        data_type: decimal(38, 0)
+      - name: dwg_key2_id
+        data_type: decimal(38, 0)
+      - name: dwg_key3_id
+        data_type: decimal(38, 0)
+      - name: dwg_style_id
+        data_type: decimal(38, 0)
+      - name: dwg_cond1
+        data_type: varchar(2000)
+      - name: dwg_cond2
+        data_type: varchar(255)
+      - name: report_type_id
+        data_type: decimal(38, 0)
+      - name: merge_release_flg
+        data_type: varchar(10)
+      - name: type_gen
+        data_type: varchar(10)
+      - name: document_type_id
+        data_type: decimal(38, 0)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spi_line
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: line_id
+        data_type: decimal(38, 0)
+      - name: proj_id
+        data_type: decimal(38, 0)
+      - name: site_id
+        data_type: decimal(38, 0)
+      - name: chg_num
+        data_type: decimal(38, 0)
+      - name: unit_id
+        data_type: decimal(38, 0)
+      - name: user_name
+        data_type: varchar(300)
+      - name: chg_status
+        data_type: varchar(500)
+      - name: chg_date
+        data_type: timestamp
+      - name: line_num
+        data_type: varchar(500)
+      - name: line_size
+        data_type: varchar(500)
+      - name: wall_thick
+        data_type: float
+      - name: rtg
+        data_type: varchar(500)
+      - name: plant_id
+        data_type: decimal(38, 0)
+      - name: area_id
+        data_type: decimal(38, 0)
+      - name: line_type_id
+        data_type: decimal(38, 0)
+      - name: line_sched
+        data_type: varchar(500)
+      - name: line_internal_dia
+        data_type: float
+      - name: temperature_rtg
+        data_type: varchar(500)
+      - name: press_rtg
+        data_type: varchar(500)
+      - name: pd_corros_allow
+        data_type: float
+      - name: pd_insul
+        data_type: varchar(500)
+      - name: pd_pump_drop_uid
+        data_type: varchar(500)
+      - name: pd_velocity_min
+        data_type: float
+      - name: pd_velocity_max
+        data_type: float
+      - name: pd_velocity_nor
+        data_type: float
+      - name: pd_velocity_uid
+        data_type: varchar(500)
+      - name: pd_line_from
+        data_type: varchar(500)
+      - name: pd_line_to
+        data_type: varchar(500)
+      - name: pd_piping_class
+        data_type: varchar(500)
+      - name: pd_pour_pnt_up
+        data_type: float
+      - name: pd_pour_pnt_low
+        data_type: float
+      - name: pd_pour_pnt_uid
+        data_type: varchar(500)
+      - name: pd_sys_fric_loss
+        data_type: float
+      - name: pd_sys_fric_loss_uid
+        data_type: varchar(500)
+      - name: pd_corros_allow_uid
+        data_type: varchar(500)
+      - name: pd_pump_drop
+        data_type: float
+      - name: pipe_std_id
+        data_type: decimal(38, 0)
+      - name: line_uom
+        data_type: varchar(500)
+      - name: pipe_material
+        data_type: varchar(500)
+      - name: ansi_din
+        data_type: varchar(500)
+      - name: pipe_size
+        data_type: float
+      - name: wall_thick_uom
+        data_type: varchar(500)
+      - name: line_internal_dia_uom
+        data_type: varchar(500)
+      - name: pd_insulation_id
+        data_type: decimal(38, 0)
+      - name: pipe_orif_mat_id
+        data_type: decimal(38, 0)
+      - name: line_isize_pipeschid_indx
+        data_type: decimal(38, 0)
+      - name: line_isize_sched_indx
+        data_type: decimal(38, 0)
+      - name: rev_id
+        data_type: decimal(38, 0)
+      - name: eng_proj_id
+        data_type: decimal(38, 0)
+      - name: eng_ref_id
+        data_type: decimal(38, 0)
+      - name: stream_num
+        data_type: varchar(400)
+      - name: dwg_id
+        data_type: decimal(38, 0)
+      - name: pipe_class_id
+        data_type: decimal(38, 0)
+      - name: kks_totalplant
+        data_type: varchar(500)
+      - name: kks_function_key_prefix
+        data_type: varchar(500)
+      - name: kks_function_key
+        data_type: varchar(500)
+      - name: kks_function_key_sequence
+        data_type: varchar(500)
+      - name: kks_equipment_unit_code
+        data_type: varchar(500)
+      - name: kks_equipment_unit_sequence
+        data_type: varchar(500)
+      - name: kks_equipment_unit_add_code
+        data_type: varchar(500)
+      - name: kks_component_key
+        data_type: varchar(500)
+      - name: kks_component_key_sequence
+        data_type: varchar(500)
+      - name: merge_release_flg
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(500)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(500)
+
+  - name: transformed_spi_loop
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: loop_id
+        data_type: decimal(38, 0)
+      - name: proj_id
+        data_type: decimal(38, 0)
+      - name: site_id
+        data_type: decimal(38, 0)
+      - name: chg_num
+        data_type: decimal(38, 0)
+      - name: plant_id
+        data_type: decimal(38, 0)
+      - name: area_id
+        data_type: decimal(38, 0)
+      - name: unit_id
+        data_type: decimal(38, 0)
+      - name: user_name
+        data_type: varchar(300)
+      - name: chg_status
+        data_type: varchar(500)
+      - name: chg_date
+        data_type: timestamp
+      - name: loop_name
+        data_type: varchar(500)
+      - name: loop_num
+        data_type: varchar(500)
+      - name: loop_proc_id
+        data_type: decimal(38, 0)
+      - name: loop_type_id
+        data_type: decimal(38, 0)
+      - name: loop_func_id
+        data_type: decimal(38, 0)
+      - name: loop_suff
+        data_type: varchar(500)
+      - name: name_lock_flg
+        data_type: varchar(500)
+      - name: loop_serv
+        data_type: varchar(500)
+      - name: loop_prefix
+        data_type: varchar(500)
+      - name: old_loop_name
+        data_type: varchar(500)
+      - name: loop_note
+        data_type: varchar(2000)
+      - name: serv_cmpnt_flg
+        data_type: varchar(500)
+      - name: loop_trans_name
+        data_type: varchar(500)
+      - name: loop_param
+        data_type: varchar(1000)
+      - name: loop_sheet_type_flg
+        data_type: varchar(500)
+      - name: loop_seq_no
+        data_type: decimal(38, 0)
+      - name: dwg_id
+        data_type: decimal(38, 0)
+      - name: dwg_cmpnt_flg
+        data_type: varchar(500)
+      - name: ext_macro_source
+        data_type: varchar(500)
+      - name: type_gen
+        data_type: varchar(500)
+      - name: loop_set_id
+        data_type: decimal(38, 0)
+      - name: loop_calib_error
+        data_type: float
+      - name: eng_proj_id
+        data_type: decimal(38, 0)
+      - name: eng_ref_id
+        data_type: decimal(38, 0)
+      - name: loop_equip_id
+        data_type: decimal(38, 0)
+      - name: loop_equip_flg
+        data_type: varchar(500)
+      - name: loop_error_calc
+        data_type: varchar(500)
+      - name: esl_loop_set_id
+        data_type: decimal(38, 0)
+      - name: ext_drawing_path
+        data_type: varchar(500)
+      - name: note_cmpnt_flg
+        data_type: varchar(500)
+      - name: loop_criticality_id
+        data_type: decimal(38, 0)
+      - name: generated_flg
+        data_type: varchar(500)
+      - name: kks_totalplant
+        data_type: varchar(500)
+      - name: kks_function_key_prefix
+        data_type: varchar(500)
+      - name: kks_function_key
+        data_type: varchar(500)
+      - name: kks_function_key_sequence
+        data_type: varchar(500)
+      - name: kks_equipment_unit_code
+        data_type: varchar(500)
+      - name: kks_equipment_unit_sequence
+        data_type: varchar(500)
+      - name: kks_equipment_unit_add_code
+        data_type: varchar(500)
+      - name: kks_component_key
+        data_type: varchar(500)
+      - name: kks_component_key_sequence
+        data_type: varchar(500)
+      - name: merge_release_flg
+        data_type: varchar(500)
+      - name: dwg_external_blk_id
+        data_type: decimal(38,0)       
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(500)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(500)
+  - name: transformed_spi_plant
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: plant_id
+        data_type: decimal(38, 0)
+      - name: proj_id
+        data_type: decimal(38, 0)
+      - name: site_id
+        data_type: decimal(38, 0)
+      - name: chg_num
+        data_type: decimal(38, 0)
+      - name: user_name
+        data_type: varchar(300)
+      - name: chg_status
+        data_type: varchar(500)
+      - name: chg_date
+        data_type: timestamp
+      - name: plant_name
+        data_type: varchar(500)
+      - name: addr1
+        data_type: varchar(500)
+      - name: addr2
+        data_type: varchar(500)
+      - name: city
+        data_type: varchar(500)
+      - name: state
+        data_type: varchar(500)
+      - name: zip
+        data_type: varchar(500)
+      - name: country
+        data_type: varchar(500)
+      - name: plant_note
+        data_type: varchar(2000)
+      - name: owner_id
+        data_type: decimal(38, 0)
+      - name: location
+        data_type: varchar(1000)
+      - name: hu_item_lib_id
+        data_type: decimal(38, 0)
+      - name: browse_dw_name
+        data_type: varchar(500)
+      - name: plant_type_flg
+        data_type: varchar(500)
+      - name: wire_tag_flg
+        data_type: varchar(500)
+      - name: routing_length_uom_id
+        data_type: decimal(38, 0)
+      - name: routing_width_uom_id
+        data_type: decimal(38, 0)
+      - name: routing_spare_length_percent
+        data_type: decimal(38, 0)
+      - name: routing_spare_length_fix
+        data_type: decimal(38, 0)
+      - name: extra_routing_length
+        data_type: decimal(38, 0)
+      - name: generic_terminology
+        data_type: varchar(500)
+      - name: parent_id
+        data_type: decimal(38, 0)
+      - name: plant_udf_c01
+        data_type: varchar(500)
+      - name: plant_udf_c02
+        data_type: varchar(500)
+      - name: plant_udf_c03
+        data_type: varchar(500)
+      - name: plant_udf_c04
+        data_type: varchar(500)
+      - name: plant_udf_c05
+        data_type: varchar(500)
+      - name: plant_udf_c06
+        data_type: varchar(500)
+      - name: plant_udf_c07
+        data_type: varchar(500)
+      - name: plant_udf_c08
+        data_type: varchar(500)
+      - name: plant_udf_c09
+        data_type: varchar(500)
+      - name: plant_udf_c10
+        data_type: varchar(500)
+      - name: plant_udf_c11
+        data_type: varchar(500)
+      - name: plant_udf_c12
+        data_type: varchar(500)
+      - name: plant_udf_c13
+        data_type: varchar(500)
+      - name: plant_udf_c14
+        data_type: varchar(500)
+      - name: plant_udf_c15
+        data_type: varchar(500)
+      - name: plant_udf_c16
+        data_type: varchar(500)
+      - name: plant_udf_c17
+        data_type: varchar(500)
+      - name: plant_udf_c18
+        data_type: varchar(500)
+      - name: plant_udf_c19
+        data_type: varchar(500)
+      - name: plant_udf_c20
+        data_type: varchar(500)
+      - name: plant_flg
+        data_type: varchar(500)
+      - name: pipe_standard
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(500)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(500)
+  - name: transformed_spi_tag_category
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: tag_category_id
+        data_type: decimal(38, 0)
+      - name: tag_category_name
+        data_type: varchar(500)
+      - name: tag_category_desc
+        data_type: varchar(2000)
+      - name: proj_id
+        data_type: decimal(38, 0)
+      - name: site_id
+        data_type: decimal(38, 0)
+      - name: chg_num
+        data_type: decimal(38, 0)
+      - name: chg_status
+        data_type: varchar(500)
+      - name: user_name
+        data_type: varchar(500)
+      - name: chg_date
+        data_type: timestamp
+      - name: extracted_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(500)
+      - name: project_code
+        data_type: varchar(500)        
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_spi_udf_component
+    config:
+      contract: {enforced: true}
+    columns:
+    - name: cmpnt_id
+      data_type: decimal(38,0)
+    - name: proj_id
+      data_type: decimal(38,0)
+    - name: site_id
+      data_type: decimal(38,0)
+    - name: chg_num
+      data_type: decimal(38,0)
+    - name: plant_id
+      data_type: decimal(38,0)
+    - name: area_id
+      data_type: decimal(38,0)
+    - name: unit_id
+      data_type: decimal(38,0)
+    - name: chg_status
+      data_type: varchar(100)
+    - name: user_name
+      data_type: varchar(100)
+    - name: chg_date
+      data_type: date
+    - name: udf_c01
+      data_type: varchar(500)
+    - name: udf_c02
+      data_type: varchar(500)
+    - name: udf_c03
+      data_type: varchar(500)
+    - name: udf_c04
+      data_type: varchar(500)
+    - name: udf_c05
+      data_type: varchar(500)
+    - name: udf_c06
+      data_type: varchar(500)
+    - name: udf_c07
+      data_type: varchar(500)
+    - name: udf_c08
+      data_type: varchar(500)
+    - name: udf_c09
+      data_type: varchar(500)
+    - name: udf_c10
+      data_type: varchar(500)
+    - name: udf_c11
+      data_type: varchar(500)
+    - name: udf_c12
+      data_type: varchar(500)
+    - name: udf_c13
+      data_type: varchar(500)
+    - name: udf_c14
+      data_type: varchar(500)
+    - name: udf_c15
+      data_type: varchar(500)
+    - name: udf_c16
+      data_type: varchar(500)
+    - name: udf_c17
+      data_type: varchar(500)
+    - name: udf_c18
+      data_type: varchar(500)
+    - name: udf_c19
+      data_type: varchar(500)
+    - name: udf_c20
+      data_type: varchar(500)
+    - name: udf_c21
+      data_type: varchar(500)
+    - name: udf_c22
+      data_type: varchar(500)
+    - name: udf_c23
+      data_type: varchar(500)
+    - name: udf_c24
+      data_type: varchar(500)
+    - name: udf_c25
+      data_type: varchar(500)
+    - name: udf_c26
+      data_type: varchar(500)
+    - name: udf_c27
+      data_type: varchar(500)
+    - name: udf_c28
+      data_type: varchar(500)
+    - name: udf_c29
+      data_type: varchar(500)
+    - name: udf_c30
+      data_type: varchar(500)
+    - name: udf_c31
+      data_type: varchar(500)
+    - name: udf_c32
+      data_type: varchar(500)
+    - name: udf_c33
+      data_type: varchar(500)
+    - name: udf_c34
+      data_type: varchar(500)
+    - name: udf_c35
+      data_type: varchar(500)
+    - name: udf_c36
+      data_type: varchar(500)
+    - name: udf_c37
+      data_type: varchar(500)
+    - name: udf_c38
+      data_type: varchar(500)
+    - name: udf_c39
+      data_type: varchar(500)
+    - name: udf_c40
+      data_type: varchar(500)
+    - name: udf_n01
+      data_type: decimal(38,0)
+    - name: udf_n02
+      data_type: decimal(38,0)
+    - name: udf_n03
+      data_type: decimal(38,0)
+    - name: udf_n04
+      data_type: decimal(38,0)
+    - name: udf_n05
+      data_type: decimal(38,0)
+    - name: udf_n06
+      data_type: decimal(38,0)
+    - name: udf_n07
+      data_type: float
+    - name: udf_n08
+      data_type: float
+    - name: udf_n09
+      data_type: float
+    - name: udf_n10
+      data_type: float
+    - name: udf_d01
+      data_type: date
+    - name: udf_d02
+      data_type: date
+    - name: udf_d03
+      data_type: date
+    - name: udf_d04
+      data_type: date
+    - name: udf_d05
+      data_type: date
+    - name: udf_c41
+      data_type: varchar(500)
+    - name: udf_c42
+      data_type: varchar(500)
+    - name: udf_c43
+      data_type: varchar(500)
+    - name: udf_c44
+      data_type: varchar(500)
+    - name: udf_c45
+      data_type: varchar(500)
+    - name: udf_c46
+      data_type: varchar(500)
+    - name: udf_c47
+      data_type: varchar(500)
+    - name: udf_c48
+      data_type: varchar(500)
+    - name: udf_c49
+      data_type: varchar(500)
+    - name: udf_c50
+      data_type: varchar(500)
+    - name: udf_c51
+      data_type: varchar(500)
+    - name: udf_c52
+      data_type: varchar(500)
+    - name: udf_c53
+      data_type: varchar(500)
+    - name: udf_c54
+      data_type: varchar(500)
+    - name: udf_c55
+      data_type: varchar(500)
+    - name: udf_c56
+      data_type: varchar(500)
+    - name: udf_c57
+      data_type: varchar(500)
+    - name: udf_c58
+      data_type: varchar(500)
+    - name: udf_c59
+      data_type: varchar(500)
+    - name: udf_c60
+      data_type: varchar(500)
+    - name: udf_c61
+      data_type: varchar(500)
+    - name: udf_c62
+      data_type: varchar(500)
+    - name: udf_c63
+      data_type: varchar(500)
+    - name: udf_c64
+      data_type: varchar(500)
+    - name: udf_c65
+      data_type: varchar(500)
+    - name: udf_c66
+      data_type: varchar(500)
+    - name: udf_c67
+      data_type: varchar(500)
+    - name: udf_c68
+      data_type: varchar(500)
+    - name: udf_c69
+      data_type: varchar(500)
+    - name: udf_c70
+      data_type: varchar(500)
+    - name: udf_c71
+      data_type: varchar(500)
+    - name: udf_c72
+      data_type: varchar(500)
+    - name: udf_c73
+      data_type: varchar(500)
+    - name: udf_c74
+      data_type: varchar(500)
+    - name: udf_c75
+      data_type: varchar(500)
+    - name: udf_c76
+      data_type: varchar(500)
+    - name: udf_c77
+      data_type: varchar(500)
+    - name: udf_c78
+      data_type: varchar(500)
+    - name: udf_c79
+      data_type: varchar(500)
+    - name: udf_c80
+      data_type: varchar(500)
+    - name: udf_c81
+      data_type: varchar(500)
+    - name: udf_c82
+      data_type: varchar(500)
+    - name: udf_c83
+      data_type: varchar(500)
+    - name: udf_c84
+      data_type: varchar(500)
+    - name: udf_c85
+      data_type: varchar(500)
+    - name: udf_c86
+      data_type: varchar(500)
+    - name: udf_c87
+      data_type: varchar(500)
+    - name: udf_c88
+      data_type: varchar(500)
+    - name: udf_c89
+      data_type: varchar(500)
+    - name: udf_c90
+      data_type: varchar(500)
+    - name: udf_c91
+      data_type: varchar(500)
+    - name: udf_c92
+      data_type: varchar(500)
+    - name: udf_c93
+      data_type: varchar(500)
+    - name: udf_c94
+      data_type: varchar(500)
+    - name: udf_c95
+      data_type: varchar(500)
+    - name: udf_c96
+      data_type: varchar(500)
+    - name: udf_c97
+      data_type: varchar(500)
+    - name: udf_c98
+      data_type: varchar(500)
+    - name: udf_c99
+      data_type: varchar(500)
+    - name: udf_c100
+      data_type: varchar(500)
+    - name: udf_c101
+      data_type: varchar(500)
+    - name: udf_c102
+      data_type: varchar(500)
+    - name: udf_c103
+      data_type: varchar(500)
+    - name: udf_c104
+      data_type: varchar(500)
+    - name: udf_c105
+      data_type: varchar(500)
+    - name: udf_c106
+      data_type: varchar(500)
+    - name: udf_c107
+      data_type: varchar(500)
+    - name: udf_c108
+      data_type: varchar(500)
+    - name: udf_c109
+      data_type: varchar(500)
+    - name: udf_c110
+      data_type: varchar(500)
+    - name: udf_c111
+      data_type: varchar(500)
+    - name: udf_c112
+      data_type: varchar(500)
+    - name: udf_c113
+      data_type: varchar(500)
+    - name: udf_c114
+      data_type: varchar(500)
+    - name: udf_c115
+      data_type: varchar(500)
+    - name: udf_c116
+      data_type: varchar(500)
+    - name: udf_c117
+      data_type: varchar(500)
+    - name: udf_c118
+      data_type: varchar(500)
+    - name: udf_c119
+      data_type: varchar(500)
+    - name: udf_c120
+      data_type: varchar(500)
+    - name: udf_c121
+      data_type: varchar(500)
+    - name: udf_c122
+      data_type: varchar(500)
+    - name: udf_c123
+      data_type: varchar(500)
+    - name: udf_c124
+      data_type: varchar(500)
+    - name: udf_c125
+      data_type: varchar(500)
+    - name: udf_c126
+      data_type: varchar(500)
+    - name: udf_c127
+      data_type: varchar(500)
+    - name: udf_c128
+      data_type: varchar(500)
+    - name: udf_c129
+      data_type: varchar(500)
+    - name: udf_c130
+      data_type: varchar(500)
+    - name: udf_c131
+      data_type: varchar(500)
+    - name: udf_c132
+      data_type: varchar(500)
+    - name: udf_c133
+      data_type: varchar(500)
+    - name: udf_c134
+      data_type: varchar(500)
+    - name: udf_c135
+      data_type: varchar(500)
+    - name: udf_c136
+      data_type: varchar(500)
+    - name: udf_c137
+      data_type: varchar(500)
+    - name: udf_c138
+      data_type: varchar(500)
+    - name: udf_c139
+      data_type: varchar(500)
+    - name: udf_c140
+      data_type: varchar(500)
+    - name: install_index1_id
+      data_type: decimal(38,0)
+    - name: install_index2_id
+      data_type: decimal(38,0)
+    - name: install_index3_id
+      data_type: decimal(38,0)
+    - name: install_index4_id
+      data_type: decimal(38,0)
+    - name: install_index5_id
+      data_type: decimal(38,0)
+    - name: eng_proj_id
+      data_type: decimal(38,0)
+    - name: eng_ref_id
+      data_type: decimal(38,0)
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(500)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(500)       
+  - name: transformed_spi_component
+    config:
+      contract: {enforced: true}
+    columns:
+    - name: cmpnt_id
+      data_type: decimal(38, 0)
+    - name: proj_id
+      data_type: decimal(38, 0)
+    - name: site_id
+      data_type: decimal(38, 0)
+    - name: chg_num
+      data_type: decimal(38, 0)
+    - name: plant_id
+      data_type: decimal(38, 0)
+    - name: area_id
+      data_type: decimal(38, 0)
+    - name: unit_id
+      data_type: decimal(38, 0)
+    - name: chg_status
+      data_type: varchar(500)
+    - name: user_name
+      data_type: varchar(500)
+    - name: chg_date
+      data_type: timestamp
+    - name: cmpnt_name
+      data_type: varchar(500)
+    - name: cmpnt_serv
+      data_type: varchar(500)
+    - name: spec_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_num
+      data_type: varchar(500)
+    - name: cmpnt_type_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_suff
+      data_type: varchar(500)
+    - name: cmpnt_func_type_id
+      data_type: decimal(38, 0)
+    - name: name_lock
+      data_type: varchar(500)
+    - name: cmpnt_name_parm
+      data_type: varchar(500)
+    - name: old_cmpnt_name
+      data_type: varchar(500)
+    - name: cmpnt_loc_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_sys_io_type_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_handle_id
+      data_type: decimal(38, 0)
+    - name: equip_id
+      data_type: decimal(38, 0)
+    - name: item_price
+      data_type: decimal(38, 2)
+    - name: cmpnt_note
+      data_type: varchar(2000)
+    - name: remark1
+      data_type: varchar(500)
+    - name: remark2
+      data_type: varchar(500)
+    - name: remark3
+      data_type: varchar(500)
+    - name: remark4
+      data_type: varchar(500)
+    - name: remark5
+      data_type: varchar(500)
+    - name: prefix
+      data_type: varchar(500)
+    - name: cmpnt_seq
+      data_type: decimal(38, 0)
+    - name: loop_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_drawing_seq
+      data_type: decimal(38, 0)
+    - name: inst_type_blk_flg
+      data_type: varchar(500)
+    - name: tag_trans_name
+      data_type: varchar(500)
+    - name: cmpnt_mod_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_mfr_id
+      data_type: decimal(38, 0)
+    - name: proc_func_id
+      data_type: decimal(38, 0)
+    - name: spec_cmpnt_type
+      data_type: varchar(500)
+    - name: spec_cmpnt_func
+      data_type: varchar(500)
+    - name: spec_cmpnt_price
+      data_type: varchar(500)
+    - name: spec_cmpnt_mounting
+      data_type: varchar(500)
+    - name: spec_cmpnt_sn
+      data_type: varchar(500)
+    - name: spec_cmpnt_po_no
+      data_type: varchar(500)
+    - name: spec_cmpnt_po_item_no
+      data_type: varchar(500)
+    - name: spec_cmpnt_power_supply
+      data_type: varchar(500)
+    - name: spec_enclosure_class
+      data_type: varchar(500)
+    - name: add_line_id
+      data_type: decimal(38, 0)
+    - name: dwg_id
+      data_type: decimal(38, 0)
+    - name: line_id
+      data_type: decimal(38, 0)
+    - name: loop_param
+      data_type: varchar(500)
+    - name: cmpnt_critical_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_quality_flg
+      data_type: varchar(500)
+    - name: inst_range_min
+      data_type: float
+    - name: inst_range_max
+      data_type: float
+    - name: inst_range_uom_min
+      data_type: varchar(500)
+    - name: inst_range_uom_max
+      data_type: varchar(500)
+    - name: inst_range_uflg_min
+      data_type: varchar(500)
+    - name: inst_range_uflg_max
+      data_type: varchar(500)
+    - name: calib_range_min
+      data_type: float
+    - name: calib_range_max
+      data_type: float
+    - name: calib_range_uom_min
+      data_type: varchar(500)
+    - name: calib_range_uom_max
+      data_type: varchar(500)
+    - name: calib_range_uflg_min
+      data_type: varchar(500)
+    - name: calib_range_uflg_max
+      data_type: varchar(500)
+    - name: dcs_range_min
+      data_type: float
+    - name: dcs_range_max
+      data_type: float
+    - name: dcs_range_uom
+      data_type: varchar(500)
+    - name: dry_weight
+      data_type: float
+    - name: full_weight
+      data_type: float
+    - name: uom_id
+      data_type: decimal(38, 0)
+    - name: instr_pd_flg
+      data_type: decimal(38, 0)
+    - name: dcs_range_uflg
+      data_type: varchar(500)
+    - name: rev_id
+      data_type: decimal(38, 0)
+    - name: eng_proj_id
+      data_type: decimal(38, 0)
+    - name: eng_ref_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_certif_id
+      data_type: decimal(38, 0)
+    - name: fb_tag_no
+      data_type: varchar(500)
+    - name: fb_dev_address
+      data_type: varchar(500)
+    - name: fb_dev_id
+      data_type: varchar(500)
+    - name: fb_min_volt
+      data_type: float
+    - name: fb_max_volt
+      data_type: float
+    - name: fb_dc_cur
+      data_type: float
+    - name: fb_min_transmit_level
+      data_type: float
+    - name: fb_standard
+      data_type: varchar(500)
+    - name: wire_group_id
+      data_type: decimal(38, 0)
+    - name: master_cmpnt_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_find_rem
+      data_type: decimal(38, 0)
+    - name: req_no
+      data_type: varchar(500)
+    - name: tc_line_number_id
+      data_type: decimal(38, 0)
+    - name: tc_location_layout
+      data_type: varchar(500)
+    - name: tc_fire_area
+      data_type: varchar(500)
+    - name: tc_field_equipment_id
+      data_type: decimal(38, 0)
+    - name: tc_signal_id
+      data_type: decimal(38, 0)
+    - name: udt_support_id1
+      data_type: decimal(38, 0)
+    - name: udt_support_id2
+      data_type: decimal(38, 0)
+    - name: udt_support_id3
+      data_type: decimal(38, 0)
+    - name: udt_support_id4
+      data_type: decimal(38, 0)
+    - name: panel_id
+      data_type: decimal(38, 0)
+    - name: strip_id
+      data_type: decimal(38, 0)
+    - name: load_watt
+      data_type: float
+    - name: capacitance
+      data_type: float
+    - name: capacitance_uom
+      data_type: varchar(500)
+    - name: pipe_class
+      data_type: varchar(500)
+    - name: backup_link_master
+      data_type: varchar(500)
+    - name: fieldbus_device_rev
+      data_type: decimal(38, 0)
+    - name: elect_equip_id
+      data_type: decimal(38, 0)
+    - name: elect_load_equip_id
+      data_type: decimal(38, 0)
+    - name: dwg_schematic_id
+      data_type: decimal(38, 0)
+    - name: typical_schematic
+      data_type: varchar(500)
+    - name: circuit
+      data_type: varchar(500)
+    - name: udt_support_id5
+      data_type: float
+    - name: udt_support_id6
+      data_type: float
+    - name: udt_support_id7
+      data_type: float
+    - name: udt_support_id8
+      data_type: float
+    - name: udt_support_id9
+      data_type: float
+    - name: udt_support_id10
+      data_type: float
+    - name: udt_support_id11
+      data_type: float
+    - name: udt_support_id12
+      data_type: float
+    - name: udt_support_id13
+      data_type: float
+    - name: udt_support_id14
+      data_type: float
+    - name: udt_support_id15
+      data_type: float
+    - name: udt_support_id16
+      data_type: float
+    - name: requires_power_supply
+      data_type: varchar(500)
+    - name: related_voltage_id
+      data_type: decimal(38, 0)
+    - name: frequency_id
+      data_type: decimal(38, 0)
+    - name: number_of_phases_id
+      data_type: decimal(38, 0)
+    - name: operating_mode_id
+      data_type: decimal(38, 0)
+    - name: rated_voltage_id
+      data_type: decimal(38, 0)
+    - name: full_load_current
+      data_type: float
+    - name: starting_current
+      data_type: float
+    - name: rated_active_load
+      data_type: float
+    - name: rated_apparent_load
+      data_type: float
+    - name: rated_reactive_load
+      data_type: float
+    - name: power_supply_type_flag
+      data_type: varchar(500)
+    - name: power_distribution_board
+      data_type: varchar(500)
+    - name: cell
+      data_type: varchar(500)
+    - name: zzcoincidencefactor
+      data_type: float
+    - name: zcoincidencefactor
+      data_type: float
+    - name: ycoincidencefactor
+      data_type: float
+    - name: xcoincidencefactor
+      data_type: float
+    - name: phase1
+      data_type: varchar(500)
+    - name: phase2
+      data_type: varchar(500)
+    - name: phase3
+      data_type: varchar(500)
+    - name: power_factor_full_load
+      data_type: float
+    - name: pipe_class_id
+      data_type: decimal(38, 0)
+    - name: analyzer_flg
+      data_type: varchar(500)
+    - name: cmpnt_is_circuite_type_id
+      data_type: decimal(38, 0)
+    - name: line_cmpnt_id
+      data_type: decimal(38, 0)
+    - name: circuit_id
+      data_type: decimal(38, 0)
+    - name: speaker_tag_id
+      data_type: varchar(500)
+    - name: cmpnt_cat_id
+      data_type: decimal(38, 0)
+    - name: cmpnt_profibus_node
+      data_type: varchar(500)
+    - name: hart_signal_id
+      data_type: decimal(38, 0)
+    - name: signal_type_id
+      data_type: decimal(38, 0)
+    - name: linear_type_id
+      data_type: decimal(38, 0)
+    - name: kks_totalplant
+      data_type: varchar(500)
+    - name: kks_function_key_prefix
+      data_type: varchar(500)
+    - name: kks_function_key
+      data_type: varchar(500)
+    - name: kks_function_key_sequence
+      data_type: varchar(500)
+    - name: kks_equipment_unit_code
+      data_type: varchar(500)
+    - name: kks_equipment_unit_sequence
+      data_type: varchar(500)
+    - name: kks_equipment_unit_add_code
+      data_type: varchar(500)
+    - name: kks_component_key
+      data_type: varchar(500)
+    - name: kks_component_key_sequence
+      data_type: varchar(500)
+    - name: use_symbol_flg
+      data_type: varchar(500)
+    - name: cmpnt_associated_id
+      data_type: decimal(38, 0)
+    - name: merge_release_flg
+      data_type: varchar(500)
+    - name: on_signal_state_desc
+      data_type: varchar(500)
+    - name: off_signal_state_desc
+      data_type: varchar(500)
+    - name: typical_tag_class_id
+      data_type: decimal(38, 0)
+    - name: project_code
+      data_type: varchar(500)
+    - name: source_system_name
+      data_type: varchar(500)      
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(500)
+    - name: extracted_date
+      data_type: date
+    - name: WBS
+      data_type: varchar(100)
+    - name: CWA
+      data_type: varchar(100)
+    - name: CWPZONE
+      data_type: varchar(100)
+    - name: PROJECT_CODE_WBS_CWA_CWPZONE
+      data_type: varchar(300)
+  - name: transformed_engreg_assumptions_index
+    config:
+      contract: {enforced: true}
+    columns:
+    - name: assumption_id
+      data_type: varchar(500)
+    - name: basis_for_assumption
+      data_type: varchar(2000)
+    - name: wbs_area
+      data_type: varchar(500)
+    - name: document_drawing_no
+      data_type: varchar(500)
+    - name: design_deliverable_drawing_description
+      data_type: varchar(500)
+    - name: design_deliverable_rev
+      data_type: varchar(500)
+    - name: key_document_to_close_assumption
+      data_type: varchar(500)
+    - name: assumption_added_by
+      data_type: varchar(500)
+    - name: responsible_engineer
+      data_type: varchar(500)
+    - name: lead_discipline
+      data_type: varchar(500)
+    - name: date_assumption_listed
+      data_type: date
+    - name: assumption_confirmed
+      data_type: varchar(500)
+    - name: date_assumption_confirmed
+      data_type: date
+    - name: date_design_deliverable_updated_and_issued
+      data_type: date
+    - name: update_to_assumption_if_invalid
+      data_type: varchar(500)
+    - name: status
+      data_type: varchar(500)
+    - name: remarks
+      data_type: varchar(500)
+    - name: error_code
+      data_type: varchar(100)      
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(100)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(100)     
+  - name: transformed_engreg_hold_index
+    config:
+      contract: {enforced: true}
+    columns:
+    - name: hold_id
+      data_type: varchar(500)
+    - name: document_drawing_no
+      data_type: varchar(500)
+    - name: hold_description
+      data_type: varchar(2000)
+    - name: reason_for_hold
+      data_type: varchar(500)
+    - name: impacts_risks_of_hold
+      data_type: varchar(500)
+    - name: responsible_engineer
+      data_type: varchar(500)
+    - name: lead_discipline
+      data_type: varchar(500)
+    - name: tag_no
+      data_type: varchar(500)
+    - name: date_hold_placed
+      data_type: date
+    - name: customer_approval
+      data_type: varchar(500)
+    - name: planned_hold_removal_date
+      data_type: date
+    - name: actual_hold_removed_date
+      data_type: date
+    - name: status
+      data_type: varchar(500)
+    - name: remarks
+      data_type: varchar(500)
+    - name: critical_level
+      data_type: varchar(500)
+    - name: date_listed_on_constr_plan
+      data_type: date
+    - name: area
+      data_type: varchar(500)
+    - name: area_lead
+      data_type: varchar(500)
+    - name: notes
+      data_type: varchar(500)
+    - name: error_code
+      data_type: varchar(100)
+    - name: wbs
+      data_type: varchar(1000)
+    - name: impacts_x002f_risksmitigation_x0
+      data_type: varchar(1000)
+    - name: forecast_hold_removal_date
+      data_type: date
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(100)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(100)
+  - name: transformed_engreg_seal_decision
+    config:
+      contract: {enforced: true} 
+    columns:
+    - name: decision_number
+      data_type: varchar(500)
+    - name: decision_owner
+      data_type: varchar(500)
+    - name: decision_title
+      data_type: varchar(500)
+    - name: studies_reviews_required_to_inform_decision
+      data_type: varchar(500)
+    - name: options_considered
+      data_type: varchar(500)
+    - name: key_safety_sustainability_implications
+      data_type: varchar(500)
+    - name: decision_outcome
+      data_type: varchar(500)
+    - name: approved_by_pm
+      data_type: date
+    - name: approved_by_customer
+      data_type: varchar(500)
+    - name: error_code
+      data_type: varchar(100)
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(100)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(100)
+  - name: transformed_engreg_td_index
+    config:
+      contract: {enforced: true}
+    columns:                                                                     
+    - name: td_id
+      data_type: varchar(500)
+    - name: td_proposal_number
+      data_type: varchar(500)
+    - name: rev
+      data_type: varchar(500)
+    - name: td_title
+      data_type: varchar(500)
+    - name: originator
+      data_type: varchar(500)
+    - name: discipline
+      data_type: varchar(500)
+    - name: td_recipient_name
+      data_type: varchar(500)
+    - name: td_recipient_company
+      data_type: varchar(500)
+    - name: date_issued
+      data_type: date
+    - name: due_date_for_response
+      data_type: date
+    - name: date_of_response
+      data_type: date
+    - name: pdn_no
+      data_type: varchar(500)
+    - name: status
+      data_type: varchar(500)
+    - name: error_code
+      data_type: varchar(100)
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(100)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(100)  
+  - name: transformed_spi_component_function_type
+    config:
+      contract: {enforced: true}
+    columns: 
+    - name: cmpnt_func_type_id
+      data_type: decimal(38, 0)
+    - name: proj_id
+      data_type: decimal(38, 0)
+    - name: site_id
+      data_type: decimal(38, 0)
+    - name: chg_num
+      data_type: decimal(38, 0)
+    - name: plant_id
+      data_type: decimal(38, 0)
+    - name: chg_status
+      data_type: varchar(500)
+    - name: user_name
+      data_type: varchar(300)
+    - name: chg_date
+      data_type: date
+    - name: cmpnt_func_type_name
+      data_type: varchar(500)
+    - name: cmpnt_func_type_desc
+      data_type: varchar(400)
+    - name: prf_spec
+      data_type: varchar(500)
+    - name: prf_wiring
+      data_type: varchar(500)
+    - name: prf_cs_point
+      data_type: varchar(500)
+    - name: prf_in_line_device
+      data_type: varchar(500)
+    - name: prf_hu_electrical
+      data_type: varchar(500)
+    - name: prf_hu_pneumatic
+      data_type: varchar(500)
+    - name: prf_hu_support
+      data_type: varchar(500)
+    - name: prf_hu_process
+      data_type: varchar(500)
+    - name: prf_hu_winterization
+      data_type: varchar(500)
+    - name: prf_f1
+      data_type: varchar(500)
+    - name: prf_f2
+      data_type: varchar(500)
+    - name: prf_f3
+      data_type: varchar(500)
+    - name: prf_f4
+      data_type: varchar(500)
+    - name: prf_f5
+      data_type: varchar(500)
+    - name: calc_pd_type_id
+      data_type: decimal(38, 0)
+    - name: dwg_external_blk_id
+      data_type: decimal(38, 0)
+    - name: panel_id
+      data_type: decimal(38, 0)
+    - name: cable_id
+      data_type: decimal(38, 0)
+    - name: landing_type_id
+      data_type: decimal(38, 0)
+    - name: proc_func_id
+      data_type: decimal(38, 0)
+    - name: spec_form_id
+      data_type: decimal(38, 0)
+    - name: hu_id
+      data_type: decimal(38, 0)
+    - name: hu_type_id
+      data_type: decimal(38, 0)
+    - name: bom_include_flg
+      data_type: varchar(500)
+    - name: spec_dwg_id
+      data_type: decimal(38, 0)
+    - name: prf_io_type
+      data_type: varchar(500)
+    - name: cmpnt_io_type_id
+      data_type: decimal(38, 0)
+    - name: prf_location
+      data_type: varchar(500)
+    - name: cmpnt_loc_id
+      data_type: decimal(38, 0)
+    - name: prf_pd_tag
+      data_type: varchar(500)
+    - name: prf_no_loop
+      data_type: varchar(500)
+    - name: prf_pm
+      data_type: varchar(500)
+    - name: prf_cs_tag
+      data_type: varchar(500)
+    - name: prf_dimension
+      data_type: varchar(500)
+    - name: dim_grp_id
+      data_type: decimal(38, 0)
+    - name: prf_pd_requir
+      data_type: varchar(100)
+    - name: spec_format_id
+      data_type: decimal(38, 0)
+    - name: cstag_func_type_name
+      data_type: varchar(200)
+    - name: proc_func_cat_id
+      data_type: decimal(38, 0)
+    - name: prf_udt
+      data_type: varchar(500)
+    - name: udt_support_id1
+      data_type: decimal(38, 0)
+    - name: udt_support_id2
+      data_type: decimal(38, 0)
+    - name: udt_support_id3
+      data_type: decimal(38, 0)
+    - name: udt_support_id4
+      data_type: decimal(38, 0)
+    - name: udt_support_id5
+      data_type: decimal(38, 0)
+    - name: udt_support_id6
+      data_type: decimal(38, 0)
+    - name: udt_support_id7
+      data_type: decimal(38, 0)
+    - name: udt_support_id8
+      data_type: decimal(38, 0)
+    - name: udt_support_id9
+      data_type: decimal(38, 0)
+    - name: udt_support_id10
+      data_type: decimal(38, 0)
+    - name: udt_support_id11
+      data_type: decimal(38, 0)
+    - name: udt_support_id12
+      data_type: decimal(38, 0)
+    - name: udt_support_id13
+      data_type: decimal(38, 0)
+    - name: udt_support_id14
+      data_type: decimal(38, 0)
+    - name: udt_support_id15
+      data_type: decimal(38, 0)
+    - name: udt_support_id16
+      data_type: decimal(38, 0)
+    - name: symbol_path
+      data_type: varchar(255)
+    - name: device_type_id
+      data_type: varchar(500)
+    - name: fb_tag_no
+      data_type: varchar(500)
+    - name: fb_dev_address
+      data_type: varchar(500)
+    - name: fb_dev_id
+      data_type: varchar(500)
+    - name: fb_dc_cur
+      data_type: float
+    - name: capacitance
+      data_type: float
+    - name: capacitance_uom
+      data_type: varchar(500)
+    - name: fb_min_transmit_level
+      data_type: float
+    - name: fb_min_volt
+      data_type: float
+    - name: fb_max_volt
+      data_type: float
+    - name: backup_link_master
+      data_type: varchar(500)
+    - name: prf_fieldbus
+      data_type: varchar(500)
+    - name: graphic_file_name
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c01
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c02
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c03
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c04
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c05
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c06
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c07
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c08
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c09
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c10
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c11
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c12
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c13
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c14
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c15
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c16
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c17
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c18
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c19
+      data_type: varchar(500)
+    - name: cmpnt_fun_type_udf_c20
+      data_type: varchar(500)
+    - name: prf_default
+      data_type: varchar(500)
+    - name: lop_class_uid
+      data_type: varchar(500)
+    - name: phy_instru
+      data_type: varchar(100)
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(500)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(500)
+  - name: transformed_isotracker_stress_calc
+    config:
+      contract: {enforced: true}
+    columns:  
+    - name: calc_tracking
+      data_type: varchar(500)
+    - name: sr_no
+      data_type: varchar(500)
+    - name: item
+      data_type: varchar(500)
+    - name: design_area
+      data_type: varchar(500)
+    - name: area_for_tracking
+      data_type: varchar(500)
+    - name: area_for_tracking_edited_by_hou
+      data_type: varchar(500)
+    - name: line_id_refldt
+      data_type: varchar(500)
+    - name: pipe_spec_refldt
+      data_type: varchar(500)
+    - name: size_refldt
+      data_type: varchar(500)
+    - name: flow_sheet_no_refldt
+      data_type: varchar(500)
+    - name: designer
+      data_type: varchar(500)
+    - name: work_share_comments
+      data_type: varchar(500)
+    - name: stress_level_refldt
+      data_type: varchar(500)
+    - name: stress_calc_no_refldt
+      data_type: varchar(500)
+    - name: module_cm
+      data_type: varchar(500)
+    - name: module_tm
+      data_type: varchar(500)
+    - name: module_bm
+      data_type: varchar(500)
+    - name: module_um
+      data_type: varchar(500)
+    - name: module_lm
+      data_type: varchar(500)
+    - name: module_pm
+      data_type: varchar(500)
+    - name: module_sm
+      data_type: varchar(500)
+    - name: module_nm
+      data_type: varchar(500)
+    - name: pre_isometric_from_designdate_yyyymmdd
+      data_type: varchar(500)
+    - name: pre_issued_to_designdate_yyyymmdd
+      data_type: varchar(500)
+    - name: pre_calc_in_analysis
+      data_type: varchar(500)
+    - name: pre_in_checking
+      data_type: varchar(500)
+    - name: pre_completed
+      data_type: varchar(500)
+    - name: pre_issued_to_ho_date_yyyymmdd
+      data_type: varchar(500)
+    - name: pre_received_from_ho_date_yyyymmdd
+      data_type: varchar(500)
+    - name: pre_ho_comments_picked_up
+      data_type: varchar(500)
+    - name: pre_final_issued_toho_date_yyyymmdd
+      data_type: varchar(500)
+    - name: pre_stress_analysis_engineer
+      data_type: varchar(500)
+    - name: pre_gid_checker
+      data_type: varchar(500)
+    - name: pre_ho_checker
+      data_type: varchar(500)
+    - name: pre_remarks
+      data_type: varchar(500)
+    - name: pre_unique_line_id_for_ref_only
+      data_type: varchar(500)
+    - name: reva_isometric_from_design_date_mmddyyyy
+      data_type: varchar(500)
+    - name: reva_calc_in_ho_scope_started
+      data_type: varchar(500)
+    - name: reva_calc_in_analysis_in_gid_scope_started
+      data_type: varchar(500)
+    - name: reva_issues_w_starting_calc
+      data_type: varchar(500)
+    - name: reva_analysis_started_but_now_on_hold
+      data_type: varchar(500)
+    - name: reva_lines_not_started_but_isometrics_available
+      data_type: varchar(500)
+    - name: reva_analysis_completed_yyyymmdd
+      data_type: varchar(500)
+    - name: reva_in_checking
+      data_type: varchar(500)
+    - name: reva_checking_completed_yyyymmdd
+      data_type: varchar(500)
+    - name: reva_issued_to_ho_date_yyyymmdd
+      data_type: varchar(500)
+    - name: reva_received_from_ho_date_yyyymmdd
+      data_type: varchar(500)
+    - name: reva_ho_comments_picked_up_yyyymmdd
+      data_type: varchar(500)
+    - name: reva_stress_analysis_engineer
+      data_type: varchar(500)
+    - name: reva_gid_checker
+      data_type: varchar(500)
+    - name: reva_ho_checker_reviewer
+      data_type: varchar(500)
+    - name: reva_ready_for_client_review_level_1
+      data_type: varchar(500)
+    - name: reva_issued_to_vg_date_yyyymmdd
+      data_type: varchar(500)
+    - name: reva_approved_from_vg_date_yyyymmdd
+      data_type: varchar(500)
+    - name: reva_final_issued_topiping_design_date_yyyymmdd
+      data_type: varchar(500)
+    - name: reva_remarks
+      data_type: varchar(500)
+    - name: reva_ageing_for_calc_pending_with_ho_for_review
+      data_type: varchar(500)
+    - name: reva_ageing_for_calc_pending_with_gid_for_comment
+      data_type: varchar(500)
+    - name: reva_ageing_calc_pending_vg_approval_piping_design
+      data_type: varchar(500)
+    - name: rev1_isometric_from_design_date
+      data_type: varchar(500)
+    - name: rev1_issued_to_design_date_yymmdd
+      data_type: varchar(500)
+    - name: rev1_calc_in_analysis
+      data_type: varchar(500)
+    - name: rev1_in_checking
+      data_type: varchar(500)
+    - name: rev1_completed
+      data_type: varchar(500)
+    - name: rev1_issued_to_ho_date_yymmdd
+      data_type: varchar(500)
+    - name: rev1_received_from_ho_date_yymmdd
+      data_type: varchar(500)
+    - name: rev1_final_issued_toho_date_yymmdd
+      data_type: varchar(500)
+    - name: rev1_issued_to_design_date
+      data_type: varchar(500)
+    - name: rev1_stress_analysis_engineer
+      data_type: varchar(500)
+    - name: rev1_gid_checker
+      data_type: varchar(500)
+    - name: rev1_ho_checker
+      data_type: varchar(500)
+    - name: rev1_remarks
+      data_type: varchar(500)
+    - name: revb_isometric_from_design_date_yymmdd
+      data_type: varchar(500)
+    - name: date_at_excel_cell_bv
+      data_type: varchar(500)
+    - name: vessel_number
+      data_type: varchar(500)
+    - name: vessel_clip
+      data_type: varchar(500)
+    - name: no_of_vessel_clips
+      data_type: varchar(500)
+    - name: nozzle_number
+      data_type: varchar(500)
+    - name: qualified_within_vendor_allowable_standard
+      data_type: varchar(500)
+    - name: nozzle_transmittal_for_loads_exceed_the_allowables
+      data_type: varchar(500)
+    - name: nozzle_transmittal_number
+      data_type: varchar(500)
+    - name: loading_to_csa
+      data_type: varchar(500)
+    - name: line_number
+      data_type: string
+    - name: cwa
+      data_type: varchar(500)
+    - name: cwz
+      data_type: varchar(500)
+    - name: search_key
+      data_type: string
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(100)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(100)         
+  - name: transformed_mel_cp2_mechanical_eqip
+    config:
+      contract: {enforced: true}
+    columns:  
+    - name: wbs_area
+      data_type: varchar(500)
+    - name: phase
+      data_type: varchar(500)
+    - name: ownership
+      data_type: varchar(500)
+    - name: construction_work_area_cwa
+      data_type: varchar(500)
+    - name: cwp_zone
+      data_type: varchar(500)
+    - name: first_lng_lps_1
+      data_type: varchar(500)
+    - name: area
+      data_type: varchar(500)
+    - name: unit
+      data_type: varchar(500)
+    - name: train
+      data_type: varchar(500)
+    - name: equipment_type_code
+      data_type: varchar(500)
+    - name: equipment_number
+      data_type: varchar(500)
+    - name: tag_suffix_a_b_c
+      data_type: varchar(500)
+    - name: description
+      data_type: varchar(500)
+    - name: p_and_id_no
+      data_type: varchar(500)
+    - name: tema_designation
+      data_type: varchar(500)
+    - name: mechanical_datasheet_no
+      data_type: varchar(500)
+    - name: operating_spare
+      data_type: varchar(500)
+    - name: equipment_load
+      data_type: varchar(500)
+    - name: continuous_intermittent
+      data_type: varchar(500)
+    - name: status
+      data_type: varchar(500)
+    - name: vertical_horizontal
+      data_type: varchar(500)
+    - name: internal_diameter
+      data_type: varchar(500)
+    - name: length_or_tan_to_tan
+      data_type: varchar(500)
+    - name: width
+      data_type: varchar(500)
+    - name: height
+      data_type: varchar(500)
+    - name: rated_flow
+      data_type: varchar(500)
+    - name: differential_head
+      data_type: varchar(500)
+    - name: nominal_capacity
+      data_type: varchar(500)
+    - name: thermal_duty
+      data_type: varchar(500)
+    - name: driver_type
+      data_type: varchar(500)
+    - name: driver_tag_number
+      data_type: varchar(500)
+    - name: required_power
+      data_type: varchar(500)
+    - name: installed_power
+      data_type: varchar(500)
+    - name: voltage
+      data_type: varchar(500)
+    - name: operating_pressure
+      data_type: varchar(500)
+    - name: operating_temperature
+      data_type: varchar(500)
+    - name: operating_pressure_tube
+      data_type: varchar(500)
+    - name: operating_temperature_tube
+      data_type: varchar(500)
+    - name: design_pressure_internal
+      data_type: varchar(500)
+    - name: design_pressure_external_vacuum
+      data_type: varchar(500)
+    - name: design_temp_max
+      data_type: varchar(500)
+    - name: design_temp_min
+      data_type: varchar(500)
+    - name: mdmt
+      data_type: varchar(500)
+    - name: design_pressure_internal_tube
+      data_type: varchar(500)
+    - name: design_pressure_external_tube
+      data_type: varchar(500)
+    - name: design_temp_max_tube
+      data_type: varchar(500)
+    - name: design_temp_min_tube
+      data_type: varchar(500)
+    - name: mdmt_tube
+      data_type: varchar(500)
+    - name: design_code_specification
+      data_type: varchar(500)
+    - name: gasliquid_atm_cond
+      data_type: varchar(500)
+    - name: fluid_group
+      data_type: varchar(500)
+    - name: table_detail
+      data_type: varchar(500)
+    - name: weight_operating
+      data_type: varchar(500)
+    - name: weight_bare
+      data_type: varchar(500)
+    - name: weight_test
+      data_type: varchar(500)
+    - name: material
+      data_type: varchar(500)
+    - name: materials_internals_tube
+      data_type: varchar(500)
+    - name: insulation_type
+      data_type: varchar(500)
+    - name: insulation_thickness
+      data_type: varchar(500)
+    - name: fireproofing
+      data_type: varchar(500)
+    - name: supplier
+      data_type: varchar(500)
+    - name: manufacturer
+      data_type: varchar(500)
+    - name: manufacturer_model_no
+      data_type: varchar(500)
+    - name: code_of_accounts
+      data_type: varchar(500)
+    - name: part_of_package
+      data_type: varchar(500)
+    - name: workpack_reference
+      data_type: varchar(500)
+    - name: completions_system
+      data_type: varchar(500)
+    - name: supplier_data_status_code_note1
+      data_type: varchar(500)
+    - name: requisition_no
+      data_type: varchar(500)
+    - name: re
+      data_type: varchar(500)
+    - name: gid_static_rotary
+      data_type: varchar(500)
+    - name: process_data_based_on_pq_data_sheets
+      data_type: varchar(500)
+    - name: notes
+      data_type: varchar(500)
+    - name: rev_no
+      data_type: varchar(500)
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(500)	  
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(100)
+    - name: project_code
+      data_type: varchar(100)
+    - name: line_number
+      data_type: varchar(500)
+    - name: insulation_quantity
+      data_type: varchar(500)
+    - name: fireproofing_type
+      data_type: varchar(500)
+    - name: fireproofing_quantity
+      data_type: varchar(500)
+    - name: fire_scenario_envelope_plan
+      data_type: varchar(500)
+    - name: vfd_vsd
+      data_type: varchar(500)
+    - name: PROJECT_CODE_WBS_CWA_CWPZONE
+      data_type: varchar(300)         
+  - name: transformed_mps_logs_all
+    config:
+      contract: {enforced: true}
+    columns:        
+      - name: sr_no
+        data_type: varchar(500)
+      - name: cwa
+        data_type: varchar(500)
+      - name: old_mps_number_1
+        data_type: varchar(500)
+      - name: old_mps_number_2
+        data_type: varchar(500)
+      - name: mps_number
+        data_type: varchar(500)
+      - name: mps_type
+        data_type: varchar(500)
+      - name: struct_frame_no
+        data_type: varchar(500)
+      - name: line_number
+        data_type: varchar(500)
+      - name: tos_elevation
+        data_type: varchar(500)
+      - name: design_area_wbs
+        data_type: varchar(500)
+      - name: cwp_area
+        data_type: varchar(500)
+      - name: issued_to_stress_team
+        data_type: varchar(500)
+      - name: loads_given_to_csa
+        data_type: varchar(500)
+      - name: uln_no
+        data_type: varchar(500)
+      - name: ope_load_fy
+        data_type: varchar(500)
+      - name: ope_load_fx
+        data_type: varchar(500)
+      - name: ope_load_fz
+        data_type: varchar(500)
+      - name: hydro_test_load_fy
+        data_type: varchar(500)
+      - name: hydro_test_load_fx
+        data_type: varchar(500)
+      - name: hydro_test_load_fz
+        data_type: varchar(500)
+      - name: mps_drawing_type
+        data_type: varchar(500)
+      - name: reviewed_by_csa
+        data_type: varchar(500)
+      - name: csa_engineer
+        data_type: varchar(500)
+      - name: designed_by_csa
+        data_type: varchar(500)
+      - name: model_updated_by_csa
+        data_type: varchar(500)
+      - name: csa_drawing_no
+        data_type: varchar(500)
+      - name: remarks
+        data_type: varchar(500)
+      - name: csa_modelled_support_checked_by_piping_design
+        data_type: varchar(500)
+      - name: pd_comments_on_csa_model
+        data_type: varchar(500)
+      - name: support_checked_and_magenta_steel_removed
+        data_type: varchar(500)
+      - name: mps_status
+        data_type: varchar(500)
+      - name: civil_model_name
+        data_type: varchar(500)
+      - name: converted_issued_to_stress_team
+        data_type: varchar(500)
+      - name: converted_loads_given_to_csa
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(500)		
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: timestamp
+      - name: model_updated_date
+        data_type: timestamp
+      - name: model_load_id
+        data_type: varchar(500)
+      - name: project_code
+        data_type: varchar(100)
+  - name: transformed_aim_tags_pwrbi
+    config:
+      contract: {enforced: true}
+    columns:  
+    - name: plant_item_number
+      data_type: varchar(500)
+    - name: loaded_via_interface_s_
+      data_type: varchar(500)
+    - name: removed_from_interface_s_
+      data_type: varchar(500)
+    - name: object_type
+      data_type: varchar(500)
+    - name: object_on_p_id
+      data_type: varchar(500)
+    - name: object_in_3d_system
+      data_type: varchar(500)
+    - name: object_in_procurement_syst
+      data_type: varchar(500)
+    - name: ism_tag_type_link
+      data_type: varchar(500)
+    - name: classid
+      data_type: varchar(500)
+    - name: classname
+      data_type: varchar(500)
+    - name: object_in_mtr
+      data_type: varchar(500)
+    - name: object_in_pdm
+      data_type: varchar(500)
+    - name: object_in_spel
+      data_type: varchar(500)
+    - name: object_in_mel
+      data_type: varchar(500)
+    - name: object_in_list_schedule
+      data_type: varchar(500)
+    - name: parentclassid
+      data_type: varchar(500)
+    - name: parent_classname
+      data_type: varchar(500)
+    - name: plant_item_type_name
+      data_type: varchar(500)
+    - name: link_to_lineid
+      data_type: varchar(500)
+    - name: da_00044_p_id_number
+      data_type: varchar(500)
+    - name: fa_00388_operational_statu
+      data_type: varchar(500)
+    - name: ga_00001_number
+      data_type: varchar(500)
+    - name: ga_00002_description
+      data_type: varchar(500)
+    - name: ga_00007_pbs_area
+      data_type: varchar(500)
+    - name: ga_00008_pbs_unit
+      data_type: varchar(500)
+    - name: fa_00097_equipment_type
+      data_type: varchar(500)
+    - name: pa_00120_location
+      data_type: varchar(500)
+    - name: fa_00250_related_equipment
+      data_type: varchar(500)
+    - name: fa_00390_parent_number
+      data_type: varchar(500)
+    - name: fa_00392_function_code
+      data_type: varchar(500)
+    - name: fa_00433_from_tag
+      data_type: varchar(500)
+    - name: fa_00434_to_tag
+      data_type: varchar(500)
+    - name: fa_00096_elect_load_l_flag
+      data_type: varchar(500)
+    - name: fa_00130_in_line_flag
+      data_type: varchar(500)
+    - name: fa_00439_hazardous_area_fl
+      data_type: varchar(500)
+    - name: ga_00010_purchase_order_nu
+      data_type: varchar(500)
+    - name: pa_00198_supplier
+      data_type: varchar(500)
+    - name: ga_00019_requisition
+      data_type: varchar(500)
+    - name: fa_00438_supply_responsibi
+      data_type: varchar(500)
+    - name: pa_00144_originating_contr
+      data_type: varchar(500)
+    - name: pa_00145_origin_contr_code
+      data_type: varchar(500)
+    - name: fa_00305_tag_criticality_r
+      data_type: varchar(500)
+    - name: pa_00196_original_equip_ma
+      data_type: varchar(500)
+    - name: pa_00136_original_equip_mo
+      data_type: varchar(500)
+    - name: pa_00139_original_equip_se
+      data_type: varchar(500)
+    - name: pa_00197_original_equip_pa
+      data_type: varchar(500)
+    - name: ga_00016_loop
+      data_type: varchar(500)
+    - name: pa_00018_route
+      data_type: varchar(500)
+    - name: fa_00068_temp_des_min
+      data_type: varchar(500)
+    - name: fa_00068_temp_des_min_uom
+      data_type: varchar(500)
+    - name: fa_00077_temp_des_max
+      data_type: varchar(500)
+    - name: fa_00077_temp_des_max_uom
+      data_type: varchar(500)
+    - name: fa_00078_temp_des_max_alt
+      data_type: varchar(500)
+    - name: fa_00078_temp_des_max_alt_uom
+      data_type: varchar(500)
+    - name: fa_00178_press_des_max_alt
+      data_type: varchar(500)
+    - name: fa_00178_press_des_max_alt_uom
+      data_type: varchar(500)
+    - name: fa_00361_press_des_min
+      data_type: varchar(500)
+    - name: fa_00361_press_des_min_uom
+      data_type: varchar(500)
+    - name: fa_00363_press_des_max
+      data_type: varchar(500)
+    - name: fa_00363_press_des_max_uom
+      data_type: varchar(500)
+    - name: pa_00019_segregation_level
+      data_type: varchar(500)
+    - name: pa_00037_arrangement___con
+      data_type: varchar(500)
+    - name: pa_00039_conductor_size
+      data_type: varchar(500)
+    - name: fa_00087___differential_he
+      data_type: varchar(500)
+    - name: fa_00087___differential_he_uom
+      data_type: varchar(500)
+    - name: fa_00104_failure_action
+      data_type: varchar(500)
+    - name: fa_00108_fluid_phase
+      data_type: varchar(500)
+    - name: fa_00109_fluid_service_cod
+      data_type: varchar(500)
+    - name: fa_00110_fluid_type
+      data_type: varchar(500)
+    - name: fa_00117_fullloadcurrent
+      data_type: varchar(500)
+    - name: fa_00117_fullloadcurrent_uom
+      data_type: varchar(500)
+    - name: pa_00097_voltage___insulat
+      data_type: varchar(500)
+    - name: pa_00102_diameter___intern
+      data_type: varchar(500)
+    - name: pa_00102_diameter___intern_uom
+      data_type: varchar(500)
+    - name: pa_00105_io_type
+      data_type: varchar(500)
+    - name: fa_00175_calib_range_max
+      data_type: varchar(500)
+    - name: fa_00177_calib_range_u_max
+      data_type: varchar(500)
+    - name: fa_00185_calib_range_min
+      data_type: varchar(500)
+    - name: fa_00187_calib_range_u_min
+      data_type: varchar(500)
+    - name: fa_00274_set_point
+      data_type: varchar(500)
+    - name: fa_00275_set_point_high
+      data_type: varchar(500)
+    - name: fa_00276_set_point_high_hi
+      data_type: varchar(500)
+    - name: fa_00277_set_point_low
+      data_type: varchar(500)
+    - name: fa_00278_set_point_low_low
+      data_type: varchar(500)
+    - name: fa_00285_signal___type
+      data_type: varchar(500)
+    - name: pa_00202_ingression_protec
+      data_type: varchar(500)
+    - name: pa_00213_additional_conduc
+      data_type: varchar(500)
+    - name: fa_00300_stress_criticalit
+      data_type: varchar(500)
+    - name: pa_00221_material
+      data_type: varchar(500)
+    - name: fa_00311_test_medium
+      data_type: varchar(500)
+    - name: fa_00327_temperature___tra
+      data_type: varchar(500)
+    - name: fa_00327_temperature___tra_uom
+      data_type: varchar(500)
+    - name: fa_00328_tracing_type
+      data_type: varchar(500)
+    - name: pa_00241_cleaning_code
+      data_type: varchar(500)
+    - name: pa_00246_diameter___nomina
+      data_type: varchar(500)
+    - name: pa_00246_diameter___nomina_uom
+      data_type: varchar(500)
+    - name: pa_00247_paint___specifica
+      data_type: varchar(500)
+    - name: pa_00248_piping_material_c
+      data_type: varchar(500)
+    - name: pa_00250_radiography
+      data_type: varchar(500)
+    - name: pa_00251_schedule
+      data_type: varchar(500)
+    - name: pa_00278_temp_oper_min
+      data_type: varchar(500)
+    - name: pa_00278_temp_oper_min_uom
+      data_type: varchar(500)
+    - name: pa_00283_press_oper_norm
+      data_type: varchar(500)
+    - name: pa_00283_press_oper_norm_uom
+      data_type: varchar(500)
+    - name: pa_00284_press_oper_max
+      data_type: varchar(500)
+    - name: pa_00284_press_oper_max_uom
+      data_type: varchar(500)
+    - name: pa_00286_temp_oper_norm
+      data_type: varchar(500)
+    - name: pa_00286_temp_oper_norm_uom
+      data_type: varchar(500)
+    - name: pa_00289_temp_oper_max
+      data_type: varchar(500)
+    - name: pa_00289_temp_oper_max_uom
+      data_type: varchar(500)
+    - name: pa_00008_atex_code
+      data_type: varchar(500)
+    - name: pa_00084_haz_area_cer_au
+      data_type: varchar(500)
+    - name: pa_00085_haz_area_cer_nu
+      data_type: varchar(500)
+    - name: pa_00086_haz_area_cer_st
+      data_type: varchar(500)
+    - name: pa_00087_haz_area_temp_ra
+      data_type: varchar(500)
+    - name: pa_00272_haz_area_class
+      data_type: varchar(500)
+    - name: pa_00273_haz_area_gas_gr
+      data_type: varchar(500)
+    - name: pa_00243_insulation_materi
+      data_type: varchar(500)
+    - name: pa_00244_insulation_thickn
+      data_type: varchar(500)
+    - name: pa_00244_insulation_thickn_uom
+      data_type: varchar(500)
+    - name: pa_00245_insulation_type
+      data_type: varchar(500)
+    - name: pa_00069_length___installe
+      data_type: varchar(500)
+    - name: pa_00069_length___installe_uom
+      data_type: varchar(500)
+    - name: fa_00141_length___estimate
+      data_type: varchar(500)
+    - name: fa_00141_length___estimate_uom
+      data_type: varchar(500)
+    - name: pa_00113_length___spare
+      data_type: varchar(500)
+    - name: pa_00113_length___spare_uom
+      data_type: varchar(500)
+    - name: pa_00116_length___tail_1
+      data_type: varchar(500)
+    - name: pa_00116_length___tail_1_uom
+      data_type: varchar(500)
+    - name: pa_00117_length___tail_2
+      data_type: varchar(500)
+    - name: pa_00117_length___tail_2_uom
+      data_type: varchar(500)
+    - name: pa_00123_bending_radius
+      data_type: varchar(500)
+    - name: pa_00123_bending_radius_uom
+      data_type: varchar(500)
+    - name: pa_00237_weight_per_length
+      data_type: varchar(500)
+    - name: pa_00237_weight_per_length_uom
+      data_type: varchar(500)
+    - name: pa_00206_cable_num_of_para
+      data_type: varchar(500)
+    - name: pa_00207_number_of_splices
+      data_type: varchar(500)
+    - name: pa_00216_outside_diameter
+      data_type: varchar(500)
+    - name: pa_00216_outside_diameter_uom
+      data_type: varchar(500)
+    - name: pa_00089_height
+      data_type: varchar(500)
+    - name: pa_00089_height_uom
+      data_type: varchar(500)
+    - name: pa_00112_length
+      data_type: varchar(500)
+    - name: pa_00112_length_uom
+      data_type: varchar(500)
+    - name: pa_00257_width
+      data_type: varchar(500)
+    - name: pa_00257_width_uom
+      data_type: varchar(500)
+    - name: pa_00114_length___tan_to_t
+      data_type: varchar(500)
+    - name: pa_00114_length___tan_to_t_uom
+      data_type: varchar(500)
+    - name: fa_00060_current___rating
+      data_type: varchar(500)
+    - name: fa_00060_current___rating_uom
+      data_type: varchar(500)
+    - name: fa_00193_nde
+      data_type: varchar(500)
+    - name: fa_00271_tagsequenceno
+      data_type: varchar(500)
+    - name: pa_00143_orifice_size
+      data_type: varchar(500)
+    - name: pa_00143_orifice_size_uom
+      data_type: varchar(500)
+    - name: pa_00160_capacity___rated
+      data_type: varchar(500)
+    - name: pa_00160_capacity___rated_uom
+      data_type: varchar(500)
+    - name: pa_00163_power___rated
+      data_type: varchar(500)
+    - name: pa_00163_power___rated_uom
+      data_type: varchar(500)
+    - name: pa_00165_voltage___rated
+      data_type: varchar(500)
+    - name: ga_00014_constr_work_pack
+      data_type: varchar(500)
+    - name: constr_work_pack_name
+      data_type: varchar(500)
+    - name: wbs_location_code
+      data_type: varchar(500)
+    - name: alt_wbs_location_code
+      data_type: varchar(500)
+    - name: const_zone_code
+      data_type: varchar(500)
+    - name: const_zone_description
+      data_type: varchar(500)
+    - name: ga_00015_eng_work_pack
+      data_type: varchar(500)
+    - name: fa_00040_commissioning_sub
+      data_type: varchar(500)
+    - name: fa_00042_commissioning_sys
+      data_type: varchar(500)
+    - name: pa_00305_constr_status
+      data_type: varchar(500)
+    - name: ga_00006_pbs_plant
+      data_type: varchar(500)
+    - name: pa_00186_warranty
+      data_type: varchar(500)
+    - name: pa_00301_weight___empty
+      data_type: varchar(500)
+    - name: pa_00301_weight___empty_uom
+      data_type: varchar(500)
+    - name: da_00044_p_id_number_link
+      data_type: varchar(500)
+    - name: da_00007_datasheet_no_link
+      data_type: varchar(500)
+    - name: pbs_plant_description
+      data_type: varchar(500)
+    - name: pbs_area_description
+      data_type: varchar(500)
+    - name: pbs_unit_description
+      data_type: varchar(500)
+    - name: tag_class_discipline
+      data_type: varchar(500)
+    - name: e3d_name
+      data_type: varchar(500)
+    - name: inspection
+      data_type: varchar(500)
+    - name: pa_00260_orientation
+      data_type: varchar(500)
+    - name: normal_operating_volume_fl
+      data_type: varchar(500)
+    - name: normal_operating_volume_fl_uom
+      data_type: varchar(500)
+    - name: fa_00027_capacity
+      data_type: varchar(500)
+    - name: fa_00027_capacity_uom
+      data_type: varchar(500)
+    - name: fa_00316_thermal_duty__pow
+      data_type: varchar(500)
+    - name: fa_00316_thermal_duty__pow_uom
+      data_type: varchar(500)
+    - name: pa_00071_driver_type
+      data_type: varchar(500)
+    - name: pa_00150_power___consumpti
+      data_type: varchar(500)
+    - name: pa_00150_power___consumpti_uom
+      data_type: varchar(500)
+    - name: pa_00165_voltage___rated__
+      data_type: varchar(500)
+    - name: pa_00165_voltage___rated___uom
+      data_type: varchar(500)
+    - name: normal_operating_pressure
+      data_type: varchar(500)
+    - name: normal_operating_pressure_uom
+      data_type: varchar(500)
+    - name: normal_operating_inlet_pre
+      data_type: varchar(500)
+    - name: normal_operating_inlet_pre_uom
+      data_type: varchar(500)
+    - name: normal_operating_outlet_pr
+      data_type: varchar(500)
+    - name: normal_operating_outlet_pr_uom
+      data_type: varchar(500)
+    - name: fa_00072_pressure___design
+      data_type: varchar(500)
+    - name: fa_00072_pressure___design_uom
+      data_type: varchar(500)
+    - name: pa_00189_weight___operatin
+      data_type: varchar(500)
+    - name: pa_00189_weight___operatin_uom
+      data_type: varchar(500)
+    - name: pa_00190_weight___test
+      data_type: varchar(500)
+    - name: pa_00190_weight___test_uom
+      data_type: varchar(500)
+    - name: outside_surface_area
+      data_type: varchar(500)
+    - name: outside_surface_area_uom
+      data_type: varchar(500)
+    - name: seal_type
+      data_type: varchar(500)
+    - name: pa_00176_supplier_model_nu
+      data_type: varchar(500)
+    - name: fa_00087_diff_head
+      data_type: varchar(500)
+    - name: fa_00087_diff_head_uom
+      data_type: varchar(500)
+    - name: fluid_service_code_descrip
+      data_type: varchar(500)
+    - name: molecular_weight
+      data_type: varchar(500)
+    - name: fa_00062_density
+      data_type: varchar(500)
+    - name: fa_00062_density_uom
+      data_type: varchar(500)
+    - name: norm_oper_dyn_visc
+      data_type: varchar(500)
+    - name: norm_oper_dyn_visc_uom
+      data_type: varchar(500)
+    - name: norm_oper_mass_flow_rate
+      data_type: varchar(500)
+    - name: norm_oper_mass_flow_rate_uom
+      data_type: varchar(500)
+    - name: norm_oper_flow_velocity
+      data_type: varchar(500)
+    - name: norm_oper_flow_velocity_uom
+      data_type: varchar(500)
+    - name: nominal_wall_thickness
+      data_type: varchar(500)
+    - name: nominal_wall_thickness_uom
+      data_type: varchar(500)
+    - name: pa_00214_corrosion_allowan
+      data_type: varchar(500)
+    - name: pa_00214_corrosion_allowan_uom
+      data_type: varchar(500)
+    - name: pa_00255_pressure___test
+      data_type: varchar(500)
+    - name: pa_00255_pressure___test_uom
+      data_type: varchar(500)
+    - name: fa_00239_post_weld_heat_tr
+      data_type: varchar(500)
+    - name: chemical_cleaning_required
+      data_type: varchar(500)
+    - name: pa_00254_test_medium
+      data_type: varchar(500)
+    - name: fa_00118_location___functi
+      data_type: varchar(500)
+    - name: fa_00049_control_system_ty
+      data_type: varchar(500)
+    - name: output_signal_range
+      data_type: varchar(500)
+    - name: calibration_range
+      data_type: varchar(500)
+    - name: fa_dac00003_sp_low_low_low
+      data_type: varchar(500)
+    - name: fa_dac00002_sp_high_hi_hi
+      data_type: varchar(500)
+    - name: pa_00170_size
+      data_type: varchar(500)
+    - name: pa_00170_size_uom
+      data_type: varchar(500)
+    - name: da_00007_datasheet_number
+      data_type: varchar(500)
+    - name: pa_00021_cable___specifica
+      data_type: varchar(500)
+    - name: da_00062_single_line_diagr
+      data_type: varchar(500)
+    - name: pa_00262_coating___externa
+      data_type: varchar(500)
+    - name: in_instrument_index
+      data_type: varchar(500)
+    - name: ga_00015_ewp_link
+      data_type: varchar(500)
+    - name: commodity_code
+      data_type: varchar(500)
+    - name: spi_name
+      data_type: varchar(500)
+    - name: name_as_it_appears_on_p_id
+      data_type: varchar(500)
+    - name: remarks
+      data_type: varchar(500)
+    - name: fa_00383_soft_tag_flag
+      data_type: varchar(500)
+    - name: da_00033_loop_drawing_doc_
+      data_type: varchar(500)
+    - name: da_00033_loop_drawing_docu
+      data_type: varchar(500)
+    - name: process_cell
+      data_type: varchar(500)
+    - name: process_unit_code
+      data_type: varchar(500)
+    - name: pa_00277_pressure___operat
+      data_type: varchar(500)
+    - name: pa_00277_pressure___operat_uom
+      data_type: varchar(500)
+    - name: client_property_tag
+      data_type: varchar(500)
+    - name: ga_00018_short_description
+      data_type: varchar(500)
+    - name: ga_00012__fire_zone
+      data_type: varchar(500)
+    - name: fa_00076_pressure___design
+      data_type: varchar(500)
+    - name: fa_00076_pressure___design_uom
+      data_type: varchar(500)
+    - name: fa_00074_pressure___design
+      data_type: varchar(500)
+    - name: fa_00074_pressure___design_uom
+      data_type: varchar(500)
+    - name: pa_00191_weight___transpor
+      data_type: varchar(500)
+    - name: pa_00191_weight___transpor_uom
+      data_type: varchar(500)
+    - name: number_of_cores
+      data_type: varchar(500)
+    - name: udf_01_loop_type
+      data_type: varchar(500)
+    - name: pa_000xx_contract_delivery
+      data_type: varchar(500)
+    - name: pa_000xx_contract_delivery_uom
+      data_type: varchar(500)
+    - name: pa_000xx_forecast_delivery
+      data_type: varchar(500)
+    - name: pa_000xx_forecast_delivery_uom
+      data_type: varchar(500)
+    - name: pa_000xx_actual_delivery_d
+      data_type: varchar(500)
+    - name: pa_000xx_actual_delivery_d_uom
+      data_type: varchar(500)
+    - name: pa_000xx_forecast_arrival_
+      data_type: varchar(500)
+    - name: pa_000xx_forecast_arrival__uom
+      data_type: varchar(500)
+    - name: pa_000xx_actual_arrival_on
+      data_type: varchar(500)
+    - name: pa_000xx_actual_arrival_on_uom
+      data_type: varchar(500)
+    - name: pa_000xx_received_status
+      data_type: varchar(500)
+    - name: fa_00015_applicable_design
+      data_type: varchar(500)
+    - name: ga_00025_tag_maturity_leve
+      data_type: varchar(500)
+    - name: object_in_spi
+      data_type: varchar(500)
+    - name: da_000xx_equipment_list
+      data_type: varchar(500)
+    - name: mtr_view_name
+      data_type: varchar(500)
+    - name: pa_00073_efficiency
+      data_type: varchar(500)
+    - name: fa_00090_discipline
+      data_type: varchar(500)
+    - name: pa_00299_power_factor___fu
+      data_type: varchar(500)
+    - name: pa_00074_efficiency___full
+      data_type: varchar(500)
+    - name: da_00xxx_datasht_num_rev
+      data_type: varchar(500)
+    - name: fa_00031_circuit_type
+      data_type: varchar(500)
+    - name: ga_00024_tag_engineering_s
+      data_type: varchar(500)
+    - name: udf_02_modifiedby
+      data_type: varchar(500)
+    - name: udf_date_01_modified
+      data_type: varchar(500)
+    - name: udf_date_01_modified_uom
+      data_type: varchar(500)
+    - name: ga_00014_cwp_link
+      data_type: varchar(500)
+    - name: fa_00024_cable___assembly
+      data_type: varchar(500)
+    - name: circuit_number
+      data_type: varchar(500)
+    - name: pa_00151_power_factor___at
+      data_type: varchar(500)
+    - name: pa_00315_load___rated___ac
+      data_type: varchar(500)
+    - name: pa_00315_load___rated___ac_uom
+      data_type: varchar(500)
+    - name: pa_00316_load___rated___ap
+      data_type: varchar(500)
+    - name: pa_00316_load___rated___ap_uom
+      data_type: varchar(500)
+    - name: pa_00317_load___rated___re
+      data_type: varchar(500)
+    - name: pa_00317_load___rated___re_uom
+      data_type: varchar(500)
+    - name: project
+      data_type: varchar(500)
+    - name: pa_000xx_expediter
+      data_type: varchar(500)
+    - name: scope_status
+      data_type: varchar(500)
+    - name: required_in_pid
+      data_type: varchar(500)
+    - name: required_in_list
+      data_type: varchar(500)
+    - name: required_in_3d
+      data_type: varchar(500)
+    - name: required_in_procurement
+      data_type: varchar(500)
+    - name: required_in_spi
+      data_type: varchar(500)
+    - name: required__in_equipment_lis
+      data_type: varchar(500)
+    - name: required_in_spel
+      data_type: varchar(500)
+    - name: required_in_line_list
+      data_type: varchar(500)
+    - name: required_in_mtr
+      data_type: varchar(500)
+    - name: tag_to_po
+      data_type: varchar(500)
+    - name: plant_area
+      data_type: varchar(500)
+    - name: unit
+      data_type: varchar(500)
+    - name: sub_unit
+      data_type: varchar(500)	  
+    - name: extracted_date
+      data_type: date
+    - name: source_system_name
+      data_type: varchar(100)
+    - name: project_code
+      data_type: varchar(500)        
+    - name: model_created_date
+      data_type: timestamp
+    - name: model_updated_date
+      data_type: timestamp
+    - name: model_load_id
+      data_type: varchar(100)
+    - name: WBS
+      data_type: varchar(100)  
+    - name: CWA
+      data_type: varchar(100)  
+    - name: CWP_ZONE
+      data_type: varchar(100)  
+    - name: PROJECT_CODE_WBS_CWA_CWPZONE
+      data_type: varchar(300)                      
+
