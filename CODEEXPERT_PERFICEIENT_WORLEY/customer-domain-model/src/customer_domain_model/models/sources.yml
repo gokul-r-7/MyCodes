@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: curated_salesforce
+    database: customer
+    schema: "{{ var('curated_schema')[target.name]}}"
+    tables:
+      - name: curated_opportunity
+      - name: curated_jacobs_project__c
+      - name: curated_account
+      - name: curated_account_group__c
+      - name: curated_multi_office_split__c
+      - name: curated_unit__c 
+      - name: curated_conv_country
+      - name: curated_conv_tier
+      - name: curated_b_p_request__c
+      - name: curated_user
+      - name: curated_conv_territory
+      - name: curated_conv_gbs_field
+      - name: curated_conv_recordtype_gbs
