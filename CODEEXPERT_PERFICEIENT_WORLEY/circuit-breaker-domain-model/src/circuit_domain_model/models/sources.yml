@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: curated_hexagon
+    database: circuit_breaker 
+    schema: "{{ var('curated_schema')[target.name]}}"
+    tables:
+      - name: curated_active_contract_masters
+      - name: curated_budget
+      - name: curated_gsr
+      - name: curated_gsr_flexera
+      - name: curated_gsr_openit_monthly_summary
+      - name: curated_gsr_openit_monthly_summary_by_location
+      - name: curated_total_headcount
+      - name: curated_worley_parsons
+      - name: curated_worley_parsons_gsr
+      - name: curated_entitlement_worley_parsons
+      - name: curated_entitlement_total_headcount
+      - name: curated_entitlement_global_software_register
+      - name: curated_consumption_openit_monthly_summary
+      - name: curated_consumption_region_country_mapping
+      - name: curated_consumption_openit_monthly_summary_by_location
+      - name: curated_consumption_flexera   
+      - name: curated_finance_budget
+      - name: curated_entitlement_active_contract_masters
+      - name: curated_entitlement_worley_functionalgroup_to_functionalmapping
