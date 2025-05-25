@@ -1,0 +1,15 @@
+1. Email by Age Bucket - Last Create or Modified Date for now till we get confirmation from Pradeep/Jennifer
+2. Month Filter should work across all the Metrics 
+3. Registration bucket 
+	1. Add more buckets for the registration buckets - 30-60 days, 60-2 Years & 2 Years +
+	2. Minus values in inception date will be clubbed in the same day
+4. One decimal places only through out
+5. Calculate the base of Churned customers, and show there tenure bucket
+	1. 2+ Years value looks wrong and needs to be checked 
+	2. Are short term customers are leaving or long term customers are leaving
+	3. Trend chart metrics are good but validate the trend charts for Profile Tower KPIs
+6. Use initials of the month instead of the whole month
+7. Registration source numbers still look off and need to be relooked at
+8. Tokenized link Metric & Auto registration
+	1. Email are of 2 types - Tokenized link on all emails, but sometime the link expires
+	2. Move these metrics to the activity level and we have to discuss them later on representation 
