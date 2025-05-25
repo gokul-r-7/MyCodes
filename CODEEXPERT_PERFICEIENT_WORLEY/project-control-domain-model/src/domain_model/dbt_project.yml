@@ -1,0 +1,60 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'domain_model'
+version: '1.0.0'
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'dbt_project_control'
+
+vars:
+  curated_p6_schema:
+    dev: "worley_datalake_sydney_dev_glue_catalog_database_project_control_oracle_p6_curated"
+    qa: "worley_datalake_sydney_qa_glue_catalog_database_project_control_oracle_p6_curated"
+    prd: "worley_datalake_sydney_prd_glue_catalog_database_project_control_oracle_p6_curated"
+
+  curated_ecosys_schema:
+      dev: "worley_datalake_sydney_dev_glue_catalog_database_project_control_ecosys_curated"
+      qa: "worley_datalake_sydney_qa_glue_catalog_database_project_control_ecosys_curated"
+      prd: "worley_datalake_sydney_prd_glue_catalog_database_project_control_ecosys_curated"
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+models:
+  domain_model:
+    # Config indicated by + and applies to all files under models/example/
+    transformed_audit_table:
+      +materialized: incremental
+      +depends_on:
+        - model.transformed_audit_table
+
+    p6:
+      +tags: ["p6"]
+    ecosys:
+      +tags: ["ecosys"]
+
+on-run-end:
+# add run results to audit table 
+  - "{{ print('on-run-end hook triggered') }}"
+  - "{{ print('Results being passed to log_audit_table: ' ~ results) }}"
+  - "{{ log_audit_table(results) }}" 
