@@ -1,0 +1,53 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'document_control_domain_model'
+version: '1.0.0'
+
+
+vars:
+  curated_schema:
+    dev: "worley_datalake_sydney_dev_glue_catalog_database_document_control_aconex_curated"
+    qa: "worley_datalake_sydney_qa_glue_catalog_database_document_control_aconex_curated"
+    prd: "worley_datalake_sydney_prd_glue_catalog_database_document_control_aconex_curated"
+  curated_hexagon_schema:
+    dev: "worley_datalake_sydney_dev_glue_catalog_database_document_control_hexagon_curated"
+    qa: "worley_datalake_sydney_qa_glue_catalog_database_document_control_hexagon_curated"
+    prd: "worley_datalake_sydney_dev_glue_catalog_database_document_control_hexagon_curated"
+
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'dbt_document_control'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+# Add the on-run-start hook here
+
+# models:
+#  document_control_domain_model:
+#    +materialized: table
+
+on-run-end:
+# add run results to audit table
+  - "{{ print('on-run-end hook triggered') }}"
+  - "{{ log_audit_table(results) }}"
