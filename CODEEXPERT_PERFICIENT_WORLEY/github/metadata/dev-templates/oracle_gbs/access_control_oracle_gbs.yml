@@ -1,0 +1,6 @@
+domain_name: finance
+source_name: oracle_gbs
+databases : 
+  - ${database_prefix}_finance_oracle_gbs_curated
+  - ${database_prefix}_finance_oracle_gbs_raw
+  - ${database_prefix}_finance_transformed

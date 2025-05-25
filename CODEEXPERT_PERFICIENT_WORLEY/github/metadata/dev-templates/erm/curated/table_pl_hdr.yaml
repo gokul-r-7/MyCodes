@@ -1,0 +1,451 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishPlHdr#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishPlHdr/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishPlHdr
+  name: erm_PublishPlHdr
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: pl_hdr_no
+    comment: pl_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pl_hdr_no
+  - column_data_type: decimal(38,2)
+    column_name: proj_no
+    comment: proj_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_no
+  - column_data_type: string
+    column_name: rev
+    comment: rev
+    data_classification: null
+    nullable: true
+    raw_column_name: rev
+  - column_data_type: decimal(38,2)
+    column_name: tech_pl_stat_no
+    comment: tech_pl_stat_no
+    data_classification: null
+    nullable: true
+    raw_column_name: tech_pl_stat_no
+  - column_data_type: decimal(38,2)
+    column_name: planning_pl_stat_no
+    comment: planning_pl_stat_no
+    data_classification: null
+    nullable: true
+    raw_column_name: planning_pl_stat_no
+  - column_data_type: decimal(38,2)
+    column_name: sister_pl_hdr_no
+    comment: sister_pl_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: sister_pl_hdr_no
+  - column_data_type: string
+    column_name: sister_is_active
+    comment: sister_is_active
+    data_classification: null
+    nullable: true
+    raw_column_name: sister_is_active
+  - column_data_type: decimal(38,2)
+    column_name: proj_sys_brkdwn_no
+    comment: proj_sys_brkdwn_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_sys_brkdwn_no
+  - column_data_type: decimal(38,2)
+    column_name: proj_cost_acc_no
+    comment: proj_cost_acc_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_cost_acc_no
+  - column_data_type: string
+    column_name: rem
+    comment: rem
+    data_classification: null
+    nullable: true
+    raw_column_name: rem
+  - column_data_type: decimal(38,2)
+    column_name: quan
+    comment: quan
+    data_classification: null
+    nullable: true
+    raw_column_name: quan
+  - column_data_type: decimal(38,2)
+    column_name: act_no
+    comment: act_no
+    data_classification: null
+    nullable: true
+    raw_column_name: act_no
+  - column_data_type: decimal(38,2)
+    column_name: draw_no
+    comment: draw_no
+    data_classification: null
+    nullable: true
+    raw_column_name: draw_no
+  - column_data_type: decimal(38,2)
+    column_name: fabricate_no
+    comment: fabricate_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricate_no
+  - column_data_type: decimal(38,2)
+    column_name: sec_no
+    comment: sec_no
+    data_classification: null
+    nullable: true
+    raw_column_name: sec_no
+  - column_data_type: decimal(38,2)
+    column_name: cons_area_no
+    comment: cons_area_no
+    data_classification: null
+    nullable: true
+    raw_column_name: cons_area_no
+  - column_data_type: decimal(38,2)
+    column_name: pipeline_list_no
+    comment: pipeline_list_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pipeline_list_no
+  - column_data_type: string
+    column_name: mto_line_section
+    comment: mto_line_section
+    data_classification: null
+    nullable: true
+    raw_column_name: mto_line_section
+  - column_data_type: decimal(38,2)
+    column_name: ref_draw_no
+    comment: ref_draw_no
+    data_classification: null
+    nullable: true
+    raw_column_name: ref_draw_no
+  - column_data_type: decimal(38,2)
+    column_name: pipe_routing_no
+    comment: pipe_routing_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_routing_no
+  - column_data_type: decimal(38,2)
+    column_name: mto_type_no
+    comment: mto_type_no
+    data_classification: null
+    nullable: true
+    raw_column_name: mto_type_no
+  - column_data_type: decimal(38,2)
+    column_name: approved_mto_type_no
+    comment: approved_mto_type_no
+    data_classification: null
+    nullable: true
+    raw_column_name: approved_mto_type_no
+  - column_data_type: string
+    column_name: mto_status
+    comment: mto_status
+    data_classification: null
+    nullable: true
+    raw_column_name: mto_status
+  - column_data_type: date
+    column_name: approved_date
+    comment: approved_date
+    data_classification: null
+    nullable: true
+    raw_column_name: approved_date
+  - column_data_type: date
+    column_name: confirmed_date
+    comment: confirmed_date
+    data_classification: null
+    nullable: true
+    raw_column_name: confirmed_date
+  - column_data_type: decimal(38,2)
+    column_name: no_of_mtos
+    comment: no_of_mtos
+    data_classification: null
+    nullable: true
+    raw_column_name: no_of_mtos
+  - column_data_type: decimal(38,2)
+    column_name: rev_seq
+    comment: rev_seq
+    data_classification: null
+    nullable: true
+    raw_column_name: rev_seq
+  - column_data_type: decimal(38,2)
+    column_name: sheet_no
+    comment: sheet_no
+    data_classification: null
+    nullable: true
+    raw_column_name: sheet_no
+  - column_data_type: string
+    column_name: model_status
+    comment: model_status
+    data_classification: null
+    nullable: true
+    raw_column_name: model_status
+  - column_data_type: decimal(38,2)
+    column_name: proj_planned_tmr_hdr_no
+    comment: proj_planned_tmr_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_planned_tmr_hdr_no
+  - column_data_type: string
+    column_name: customer_col_0
+    comment: customer_col_0
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_0
+  - column_data_type: string
+    column_name: customer_col_1
+    comment: customer_col_1
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_1
+  - column_data_type: string
+    column_name: customer_col_2
+    comment: customer_col_2
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_2
+  - column_data_type: string
+    column_name: customer_col_3
+    comment: customer_col_3
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_3
+  - column_data_type: string
+    column_name: customer_col_4
+    comment: customer_col_4
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_4
+  - column_data_type: string
+    column_name: customer_col_5
+    comment: customer_col_5
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_5
+  - column_data_type: string
+    column_name: customer_col_6
+    comment: customer_col_6
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_6
+  - column_data_type: string
+    column_name: customer_col_7
+    comment: customer_col_7
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_7
+  - column_data_type: string
+    column_name: customer_col_8
+    comment: customer_col_8
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_8
+  - column_data_type: string
+    column_name: customer_col_9
+    comment: customer_col_9
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_9
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: null
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: decimal(38,2)
+    column_name: def_appl_no
+    comment: def_appl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: def_appl_no
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_usr_id
+  - column_data_type: decimal(38,2)
+    column_name: upd_appl_no
+    comment: upd_appl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_appl_no
+  - column_data_type: decimal(38,2)
+    column_name: draw_discipline_no
+    comment: draw_discipline_no
+    data_classification: null
+    nullable: true
+    raw_column_name: draw_discipline_no
+  - column_data_type: decimal(38,2)
+    column_name: mat_cntrl_sect_no
+    comment: mat_cntrl_sect_no
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_cntrl_sect_no
+  - column_data_type: decimal(38,2)
+    column_name: ver
+    comment: ver
+    data_classification: null
+    nullable: true
+    raw_column_name: ver
+  - column_data_type: decimal(38,2)
+    column_name: pl_ext_stat_no
+    comment: pl_ext_stat_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pl_ext_stat_no
+  - column_data_type: decimal(38,2)
+    column_name: pl_hdr_dsg_type
+    comment: pl_hdr_dsg_type
+    data_classification: null
+    nullable: true
+    raw_column_name: pl_hdr_dsg_type
+  - column_data_type: string
+    column_name: lock_upd
+    comment: lock_upd
+    data_classification: null
+    nullable: true
+    raw_column_name: lock_upd
+  - column_data_type: decimal(38,2)
+    column_name: fab_templ_hdr_no
+    comment: fab_templ_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fab_templ_hdr_no
+  - column_data_type: string
+    column_name: insulate
+    comment: insulate
+    data_classification: null
+    nullable: true
+    raw_column_name: insulate
+  - column_data_type: string
+    column_name: paint
+    comment: paint
+    data_classification: null
+    nullable: true
+    raw_column_name: paint
+  - column_data_type: string
+    column_name: on_hold_reason
+    comment: on_hold_reason
+    data_classification: null
+    nullable: true
+    raw_column_name: on_hold_reason
+  - column_data_type: string
+    column_name: alw_incmp_spec
+    comment: alw_incmp_spec
+    data_classification: null
+    nullable: true
+    raw_column_name: alw_incmp_spec
+  - column_data_type: decimal(38,2)
+    column_name: total_weight
+    comment: total_weight
+    data_classification: null
+    nullable: true
+    raw_column_name: total_weight
+  - column_data_type: decimal(38,2)
+    column_name: proj_set_behaviour
+    comment: proj_set_behaviour
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_set_behaviour
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishPlHdr/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: pl_hdr
+  load_type: cdc
+  name: pl_hdr
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishPlHdr
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,15 @@
+name: Security (tfsec)
+
+on:
+  pull_request:
+    branches:
+      - main  # Trigger only when the PR targets the main branch
+    paths:
+      - '**/*.tf'  #  Trigger only when a .tf file is modified in the PR
+
+
+jobs:
+  tfsec:
+    uses: Worley-AWS/workflows/.github/workflows/rw-security-tfsec.yml@main
+    with:
+      working-directory: ./infra

@@ -1,0 +1,6 @@
+domain_name: health_safety_environment
+source_name: adt
+databases : 
+  - ${database_prefix}_health_safety_environment_adt_curated
+  - ${database_prefix}_health_safety_environment_adt_raw
+  - ${database_prefix}_health_safety_environment_transformed

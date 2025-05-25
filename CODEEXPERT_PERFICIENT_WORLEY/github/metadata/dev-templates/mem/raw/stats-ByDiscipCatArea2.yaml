@@ -1,0 +1,18 @@
+SourceSystemId: mem
+MetadataType: db#mem#Stats-ByDiscipCatArea2
+name: Stats-ByDiscipCatArea2
+is_active: y
+db_parameter:
+  partition_column: None # Mandatory (Key)
+  date_delta_column: None # Mandatory (Key)
+  connection_parms: /worley/dev/db/mem #Mandatory (Key and Value)
+  secret_key: ${secret_prefix}-db-mem  # This goes into SecretsManager (Mandatory) (Key and Value)
+  ssl_flag : False
+  db_name_nonprod : dbo  #Mandatory (Key and Value)
+  db_name_prod : dbo  #Mandatory (Key and Value)
+  db_type : MSSQL #Mandatory (Key and Value)
+job_parameter:
+  bucket_name: ${raw_bucket}
+  input_path : None
+  full_incr: f
+  table_prefix: Stats-ByDiscipCatArea2

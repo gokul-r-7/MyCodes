@@ -1,0 +1,116 @@
+version: 2
+
+sources:
+  - name: domain_integrated_model
+    database: construction
+    schema: domain_integrated_model
+    tables:
+      - name: o3_region
+      - name: o3_discipline
+      - name: o3_cwps
+      - name: o3_iwps
+      - name: o3_cwas
+      - name: o3_constraints
+      - name: o3_constraint_type
+      - name: o3_work_package_execution_tasks
+      - name: o3_change_history
+      - name: fts_timesheet
+
+  - name: global_standard_model
+    database: global_standard_reporting
+    schema: construction
+    tables:
+      - name: dim_date
+     
+
+  - name: Project_control_domain_integrated_model
+    database: project_control
+    schema: domain_integrated_model
+    tables:
+      - name: p6_activity
+
+  - name: supply_chain_dim
+    database: supply_chain
+    schema: domain_integrated_model
+    tables:
+      - name: erm_po_header
+      - name: erm_po_line_item
+      - name: erm_po_reciepts
+      - name: erm_supplier_country
+      - name: erm_project_location
+      - name: erm_taxonomy_master
+      - name: erm_suppl
+      - name: erm_dim_country
+      - name: erm_psr_project_details
+      - name: erm_user_project_access
+      - name: cext_w_psr_st_api_dh
+      - name: erm_support_info_criteria_calculations
+      - name: erm_esr_data
+      - name: erm_tmr_data
+      - name: erm_invoices_data
+      - name: erm_po_commitment
+      - name: erm_project_dim
+      - name: po_hdr_details_cext_w_exp_sch_api_nv
+      - name: erm_delivery_header_fact
+      - name: erm_delivery_item_fact
+      - name: erm_mat_grp_type_dim
+      - name: erm_pick_lst_stat_dim
+      - name: erm_picking_lst_fact
+      - name: erm_store_hdr_dim
+      - name: erm_site_dim
+      - name: erm_site_mto_hdr_dim
+      - name: erm_project_details_dim
+      - name: erm_business_unit
+
+      
+      
+  - name: finance
+    database: finance
+    schema: domain_integrated_model
+    tables:
+      - name: currency_exchange_rate
+      - name: gbs_ap_po
+      - name: gbs_suppliers
+      - name: master_listing_legal_entity
+
+  - name: document_control_domain_integrated_model
+    database: document_control
+    schema: domain_integrated_model
+    tables:
+      - name: custom_attribute
+      - name: document_management_security
+      - name: master
+      - name: package_to_document
+      - name: revision
+      - name: tag_to_document
+      - name: transmittal
+      - name: transmittal_to_document
+      - name: workflow_action
+      - name: people
+      - name: supplier_submission
+
+  - name: circuit_breaker_domain_integrated_model
+    database: circuit_breaker
+    schema: domain_integrated_model
+    tables:
+      - name: active_contract_masters
+      - name: budget
+      - name: gsr
+      - name: gsr_flexera
+      - name: gsr_openit_monthly_summary
+      - name: gsr_openit_monthly_summary_by_location
+      - name: total_headcount
+      - name: worley_parsons
+      - name: worley_parsons_gsr
+
+  - name: engineering_dim
+    database: engineering
+    schema: domain_integrated_model
+    tables:
+      - name: e3d_pipes
+      - name: e3d_pipes_mto_comps
+      - name: e3d_pipe_support_attr
+      - name: e3d_wbs_cwa_cwpzone
+      - name: curated_roc_status_projectname
+      - name: dim_project
+      

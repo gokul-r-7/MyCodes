@@ -1,0 +1,7 @@
+domain_name: construction
+source_name: fla
+databases :
+  - ${database_prefix}_construction_fla_curated
+  - ${database_prefix}_construction_fla_raw
+  - ${database_prefix}_construction_transformed
+  

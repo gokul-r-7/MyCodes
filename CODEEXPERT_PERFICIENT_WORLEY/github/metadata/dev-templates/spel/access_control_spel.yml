@@ -1,0 +1,5 @@
+domain_name: engineering
+source_name: spel
+databases : 
+  - ${database_prefix}_engineering_spel_curated
+  - ${database_prefix}_engineering_spel_raw

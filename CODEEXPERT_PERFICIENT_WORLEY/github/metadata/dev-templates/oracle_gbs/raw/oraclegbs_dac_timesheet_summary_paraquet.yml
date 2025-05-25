@@ -1,0 +1,31 @@
+SourceSystemId: oraclegbs
+MetadataType: dac_timesheet_summary_csv#oraclegbs
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}  
+  csv_files_path: finance/oracle_gbs/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: finance/oracle_gbs/parquet/
+  raw_files_path: finance/oracle_gbs/raw/csv/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: finance/oracle_gbs/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  csv_files:
+    - filename: BR_AWS_DAC_TIMESHEET_SUMMARY.CSV
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '`'
+      separator: ','
+      tablename: br_aws_dac_timesheet_summary
+      with_header: true
+name: DacTimesheet
+Namespace: DAC

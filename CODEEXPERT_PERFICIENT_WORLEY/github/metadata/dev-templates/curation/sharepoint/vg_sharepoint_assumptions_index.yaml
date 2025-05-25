@@ -1,0 +1,157 @@
+---
+SourceSystemId: sharepoint_curated
+MetadataType: curated#vg_sharepoint#assumptions_index#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/vg/sharepoint/parquet/assumptions_index.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_sharepoint-csv_xlsx_curated
+  name: vg_sharepoint_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: ASSUMPTION_ID
+    comment: ASSUMPTION_ID
+    data_classification: 
+    nullable: true
+    raw_column_name: assumption_id
+  - column_data_type: string
+    column_name: BASIS_FOR_ASSUMPTION
+    comment: BASIS_FOR_ASSUMPTION
+    data_classification: 
+    nullable: true
+    raw_column_name: basis_for_assumption
+  - column_data_type: string
+    column_name: ZONE
+    comment: ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: WBS_AREA
+    comment: WBS_AREA
+    data_classification: 
+    nullable: true
+    raw_column_name: wbs_area
+  - column_data_type: string
+    column_name: DOCUMENT_DRAWING_NO
+    comment: DOCUMENT_DRAWING_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: document_drawing_no
+  - column_data_type: string
+    column_name: DESIGN_DELIVERABLE_DRAWING_DESCRIPTION
+    comment: DESIGN_DELIVERABLE_DRAWING_DESCRIPTION
+    data_classification: 
+    nullable: true
+    raw_column_name: design_deliverable_drawing_description
+  - column_data_type: string
+    column_name: DESIGN_DELIVERABLE_REV
+    comment: DESIGN_DELIVERABLE_REV
+    data_classification: 
+    nullable: true
+    raw_column_name: design_deliverable_rev
+  - column_data_type: string
+    column_name: KEY_DOCUMENT_TO_CLOSE_ASSUMPTION
+    comment: KEY_DOCUMENT_TO_CLOSE_ASSUMPTION
+    data_classification: 
+    nullable: true
+    raw_column_name: key_document_to_close_assumption
+  - column_data_type: string
+    column_name: ASSUMPTION_ADDED_BY
+    comment: ASSUMPTION_ADDED_BY
+    data_classification: 
+    nullable: true
+    raw_column_name: assumption_added_by
+  - column_data_type: string
+    column_name: RESPONSIBLE_ENGINEER
+    comment: RESPONSIBLE_ENGINEER
+    data_classification: 
+    nullable: true
+    raw_column_name: responsible_engineer
+  - column_data_type: string
+    column_name: LEAD_DISCIPLINE
+    comment: LEAD_DISCIPLINE
+    data_classification: 
+    nullable: true
+    raw_column_name: lead_discipline
+  - column_data_type: timestamp
+    column_name: DATE_ASSUMPTION_LISTED
+    comment: DATE_ASSUMPTION_LISTED
+    data_classification: 
+    nullable: true
+    raw_column_name: date_assumption_listed
+  - column_data_type: string
+    column_name: ASSUMPTION_CONFIRMED
+    comment: ASSUMPTION_CONFIRMED
+    data_classification: 
+    nullable: true
+    raw_column_name: assumption_confirmed__yes_no
+  - column_data_type: timestamp
+    column_name: DATE_ASSUMPTION_CONFIRMED
+    comment: DATE_ASSUMPTION_CONFIRMED
+    data_classification: 
+    nullable: true
+    raw_column_name: date_assumption_confirmed
+  - column_data_type: timestamp
+    column_name: DATE_DESIGN_DELIVERABLE_UPDATED_AND_ISSUED
+    comment: DATE_DESIGN_DELIVERABLE_UPDATED_AND_ISSUED
+    data_classification: 
+    nullable: true
+    raw_column_name: date_design_deliverable_updated_and_issued_if_assumption_is_invalid
+  - column_data_type: string
+    column_name: UPDATE_TO_ASSUMPTION_IF_INVALID
+    comment: UPDATE_TO_ASSUMPTION_IF_INVALID
+    data_classification: 
+    nullable: true
+    raw_column_name: update_to_assumption_if_invalid
+  - column_data_type: string
+    column_name: STATUS
+    comment: STATUS
+    data_classification: 
+    nullable: true
+    raw_column_name: status_open_closed
+  - column_data_type: string
+    column_name: REMARKS
+    comment: REMARKS
+    data_classification: 
+    nullable: true
+    raw_column_name: remarks
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_vg_sharepoint
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/vg/sharepoint/assumptions_index/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_assumptions_index
+  name: curated_vg_sharepoint_assumptions_index
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/vg/sharepoint/assumptions_index
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_sharepoint' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

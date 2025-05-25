@@ -1,0 +1,145 @@
+version: 2
+
+sources:
+  - name: document_control_domain_integrated_model
+    database: global_standard_reporting
+    schema: dbt_document_control_product
+    tables:
+      - name: transformed_custom_attribute
+      - name: transformed_master
+      - name: transformed_package_to_document
+      - name: transformed_revision
+      - name: transformed_tag_to_document
+      - name: transformed_transmittal
+      - name: transformed_transmittal_to_document
+      - name: transformed_workflow_action
+      - name: transformed_people
+      - name: tranformed_supplier_submission
+      - name: transformed_sdr_to_document
+      - name: transformed_projects
+      - name: transformed_supplier_bot
+
+
+  - name: supply_chain_dim
+    database: global_standard_reporting
+    schema: dbt_supply_chain_product
+    tables:
+      - name: transformed_erm_po_header
+      - name: transformed_erm_po_line_item
+      - name: transformed_erm_po_reciepts
+      - name: transformed_erm_supplier_country
+      - name: transformed_erm_project_location
+      - name: transformed_erm_taxonomy_master
+      - name: transformed_erm_suppl
+      - name: transformed_erm_dim_country
+      - name: transformed_erm_psr_project_details
+      - name: transformed_erm_user_project_access
+      - name: transformed_cext_w_psr_st_api_dh
+      - name: transformed_erm_support_info_criteria_calculations
+      - name: transformed_erm_esr_data
+      - name: transformed_erm_tmr_data
+      - name: transformed_erm_invoices_data
+      - name: transformed_erm_po_commitment
+      - name: transformed_erm_project_dim
+      - name: transformed_po_hdr_details_cext_w_exp_sch_api_nv
+      - name: transformed_erm_delivery_header_fact
+      - name: transformed_erm_delivery_item_fact
+      - name: transformed_erm_mat_grp_type_dim
+      - name: transformed_erm_pick_lst_stat_dim
+      - name: transformed_erm_picking_lst_fact
+      - name: transformed_erm_store_hdr_dim
+      - name: transformed_erm_site_dim
+      - name: transformed_erm_site_mto_hdr_dim
+      - name: transformed_erm_project_details_dim
+      - name: transformed_erm_business_unit
+      - name: transformed_erm_dim_date
+
+      
+      
+  - name: finance
+    database: global_standard_reporting
+    schema: dbt_finance_product
+    tables:
+      - name: transformed_currency_exchange_rate
+      - name: transformed_gbs_ap_po
+      - name: transformed_gbs_suppliers
+      - name: transformed_master_listing_legal_entity
+      
+  
+  - name: domain_integrated_model
+    database: global_standard_reporting
+    schema: dbt_construction_product
+    tables:
+      - name: transformed_region
+      - name: transformed_discipline
+      - name: transformed_cwps
+      - name: transformed_iwps
+      - name: transformed_cwas
+      - name: transformed_constraints
+      - name: transformed_constraint_type
+      - name: transformed_work_package_execution_tasks
+      - name: transformed_change_history
+      - name: transformed_fts_timesheet
+
+  - name: global_standard_model
+    database: global_standard_reporting
+    schema: construction
+    tables:
+      - name: dim_date_new1
+     
+ 
+  - name: Project_control_domain_integrated_model
+    database: global_standard_reporting
+    schema: dbt_project_control_product
+    tables:
+      - name: transformed_p6_activity
+      - name: transformed_ecosys_calendar
+      - name: transformed_ecosys_cost_category
+      - name: transformed_ecosys_cost
+      - name: transformed_ecosys_ecodata
+      - name: transformed_ecosys_exchange_rates
+      - name: transformed_ecosys_finance_contingency
+      - name: transformed_ecosys_finance_outstanding  
+      - name: transformed_ecosys_costtypepcsmapping
+      - name: transformed_ecosys_findata
+      - name: transformed_ecosys_header
+      - name: transformed_ecosys_hours_category
+      - name: transformed_ecosys_gross_margin_category
+      - name: transformed_ecosys_org_hierarchy
+      - name: transformed_ecosys_progress_category
+      - name: transformed_ecosys_progress_type
+      - name: transformed_ecosys_projectkeymembers
+      - name: transformed_ecosys_revenue_category
+      - name: transformed_ecosys_revenue
+      - name: transformed_ecosys_secorg_findata_pcs
+      - name: transformed_ecosys_status
+      - name: transformed_ecosys_unallocated_actuals
+      - name: transformed_ecosys_work_hours
+      - name: transformed_project_list
+      - name: transformed_vw_ecosys_secorg_ecodata_latest
+      - name: transformed_ecosys_users
+      - name: transformed_ecosys_org_access
+      - name: transformed_ecosys_project_access
+      - name: transformed_ecosys_global_phases
+      - name: transformed_ecosys_global_locations
+
+  - name: engineering_dim
+    database: global_standard_reporting
+    schema: dbt_engineering_product
+    tables:
+      - name: transformed_e3d_pipes
+      - name: transformed_e3d_pipes_mto_comps
+      - name: transformed_e3d_pipe_support_attr
+      - name: transformed_e3d_wbs_cwa_cwpzone
+      - name: transformed_dim_project
+      - name: transformed_roc_status_projectname
+      - name: transformed_e3d_equip
+      - name: transformed_me_function_code
+      - name: transformed_e3d_gensec_floor_union
+      - name: transformed_e3d_struc
+      - name: transformed_spi_line
+      - name: transformed_spi_component
+      - name: transformed_spi_component_function_type
+      - name: transformed_spi_component_handle
+      - name: transformed_spi_component_sys_io_type
+      - name: transformed_spi_component_location

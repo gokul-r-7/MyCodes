@@ -1,0 +1,373 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_formal_root_cause_analysis#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_formal_root_cause_analysis.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_formal_root_cause_analysis
+  name: event_formal_root_cause_analysis
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_formal_root_cause_analysis/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_formal_root_cause_analysis
+  load_type: incremental
+  name: event_formal_root_cause_analysis
+  primary_key: dwi_event_formal_root_cause_analysis
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_formal_root_cause_analysis
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_event_formal_root_cause_analysis
+    rename_columns: true
+  columns:
+  - column_name: dwi_event_formal_root_cause_analysis
+    column_data_type: decimal(38,0)
+    comment: dwi_event_formal_root_cause_analysis
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_event_formal_root_cause_analysis
+  - column_name: environment_a_factor
+    column_data_type: string
+    comment: environment_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: environment_a_factor
+  - column_name: li_environment_a_factor
+    column_data_type: string
+    comment: li_environment_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: li_environment_a_factor
+  - column_name: lo_environment_a_factor
+    column_data_type: decimal(38,0)
+    comment: lo_environment_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: lo_environment_a_factor
+  - column_name: environment_further_reasons
+    column_data_type: string
+    comment: environment_further_reasons
+    data_classification:
+    nullable: true
+    raw_column_name: environment_further_reasons
+  - column_name: formal_root_cause_analysis_number
+    column_data_type: string
+    comment: formal_root_cause_analysis_number
+    data_classification:
+    nullable: true
+    raw_column_name: formal_root_cause_analysis_number
+  - column_name: humans_a_factor
+    column_data_type: string
+    comment: humans_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: humans_a_factor
+  - column_name: li_humans_a_factor
+    column_data_type: string
+    comment: li_humans_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: li_humans_a_factor
+  - column_name: lo_humans_a_factor
+    column_data_type: decimal(38,0)
+    comment: lo_humans_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: lo_humans_a_factor
+  - column_name: humans_further_reasons
+    column_data_type: string
+    comment: humans_further_reasons
+    data_classification:
+    nullable: true
+    raw_column_name: humans_further_reasons
+  - column_name: machines_a_factor
+    column_data_type: string
+    comment: machines_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: machines_a_factor
+  - column_name: li_machines_a_factor
+    column_data_type: string
+    comment: li_machines_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: li_machines_a_factor
+  - column_name: lo_machines_a_factor
+    column_data_type: decimal(38,0)
+    comment: lo_machines_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: lo_machines_a_factor
+  - column_name: machines_further_reasons
+    column_data_type: string
+    comment: machines_further_reasons
+    data_classification:
+    nullable: true
+    raw_column_name: machines_further_reasons
+  - column_name: management_systems_a_factor
+    column_data_type: string
+    comment: management_systems_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: management_systems_a_factor
+  - column_name: li_management_systems_a_factor
+    column_data_type: string
+    comment: li_management_systems_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: li_management_systems_a_factor
+  - column_name: lo_management_systems_a_factor
+    column_data_type: decimal(38,0)
+    comment: lo_management_systems_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: lo_management_systems_a_factor
+  - column_name: management_systems_further_reasons
+    column_data_type: string
+    comment: management_systems_further_reasons
+    data_classification:
+    nullable: true
+    raw_column_name: management_systems_further_reasons
+  - column_name: materials_a_factor
+    column_data_type: string
+    comment: materials_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: materials_a_factor
+  - column_name: li_materials_a_factor
+    column_data_type: string
+    comment: li_materials_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: li_materials_a_factor
+  - column_name: lo_materials_a_factor
+    column_data_type: decimal(38,0)
+    comment: lo_materials_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: lo_materials_a_factor
+  - column_name: materials_further_reasons
+    column_data_type: string
+    comment: materials_further_reasons
+    data_classification:
+    nullable: true
+    raw_column_name: materials_further_reasons
+  - column_name: methods_a_factor
+    column_data_type: string
+    comment: methods_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: methods_a_factor
+  - column_name: li_methods_a_factor
+    column_data_type: string
+    comment: li_methods_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: li_methods_a_factor
+  - column_name: lo_methods_a_factor
+    column_data_type: decimal(38,0)
+    comment: lo_methods_a_factor
+    data_classification:
+    nullable: true
+    raw_column_name: lo_methods_a_factor
+  - column_name: methods_further_reasons
+    column_data_type: string
+    comment: methods_further_reasons
+    data_classification:
+    nullable: true
+    raw_column_name: methods_further_reasons
+  - column_name: sys_legacy_frca_number
+    column_data_type: string
+    comment: sys_legacy_frca_number
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_frca_number
+  - column_name: zzznotused_materials_driven
+    column_data_type: string
+    comment: zzznotused_materials_driven
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_materials_driven
+  - column_name: li_zzznotused_materials_driven
+    column_data_type: string
+    comment: li_zzznotused_materials_driven
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_materials_driven
+  - column_name: lo_zzznotused_materials_driven
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_materials_driven
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_materials_driven
+  - column_name: zzznotused_asset_and_resources_driven
+    column_data_type: string
+    comment: zzznotused_asset_and_resources_driven
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_asset_and_resources_driven
+  - column_name: li_zzznotused_asset_and_resources_driven
+    column_data_type: string
+    comment: li_zzznotused_asset_and_resources_driven
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_asset_and_resources_driven
+  - column_name: lo_zzznotused_asset_and_resources_driven
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_asset_and_resources_driven
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_asset_and_resources_driven
+  - column_name: zzznotused_environment_driven
+    column_data_type: string
+    comment: zzznotused_environment_driven
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_environment_driven
+  - column_name: li_zzznotused_environment_driven
+    column_data_type: string
+    comment: li_zzznotused_environment_driven
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_environment_driven
+  - column_name: lo_zzznotused_environment_driven
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_environment_driven
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_environment_driven
+  - column_name: zzznotused_people_driven
+    column_data_type: string
+    comment: zzznotused_people_driven
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_people_driven
+  - column_name: li_zzznotused_people_driven
+    column_data_type: string
+    comment: li_zzznotused_people_driven
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_people_driven
+  - column_name: lo_zzznotused_people_driven
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_people_driven
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_people_driven
+  - column_name: zzznotused_process_driven
+    column_data_type: string
+    comment: zzznotused_process_driven
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_process_driven
+  - column_name: li_zzznotused_process_driven
+    column_data_type: string
+    comment: li_zzznotused_process_driven
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_process_driven
+  - column_name: lo_zzznotused_process_driven
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_process_driven
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_process_driven
+  - column_name: zzznotused_systems_driven
+    column_data_type: string
+    comment: zzznotused_systems_driven
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_systems_driven
+  - column_name: li_zzznotused_systems_driven
+    column_data_type: string
+    comment: li_zzznotused_systems_driven
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_systems_driven
+  - column_name: lo_zzznotused_systems_driven
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_systems_driven
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_systems_driven
+  - column_name: dwk_event_as_source_of_formal_root_cause_analysis
+    column_data_type: decimal(38,0)
+    comment: dwk_event_as_source_of_formal_root_cause_analysis
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_as_source_of_formal_root_cause_analysis
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

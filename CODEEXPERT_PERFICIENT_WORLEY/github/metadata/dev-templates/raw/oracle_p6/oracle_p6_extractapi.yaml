@@ -1,0 +1,81 @@
+---
+SourceSystemId: oracle_p6
+MetadataType: api#oracle_p6#extract_api
+name: Oracle_P6_ExtractAPI
+aws_region: ${region}
+is_active: "y"
+auth_api_parameter:
+  auth_method: post
+  endpoint: https://p6.oraclecloud.com/worley/p6ws/oauth/token
+  secret_key: ${secret_prefix}-db-p6
+  auth_retry: 3
+  auth_timeout: 600
+  auth_exponential_backoff: 5
+  auth_headers:
+    Content-Type: application/json
+    token_exp: '3600'
+  dynamic_auth_headers:
+  - AuthToken
+  auth_query_params: 
+  auth_body: 
+api_parameter:
+  api_method: post
+  endpoint: https://p6.oraclecloud.com/worley/p6ws/restapi/export/exportProject
+  api_response_type: binary
+  api_retry: 3
+  api_timeout: 360
+  api_exponential_backoff: 3
+  auth_type: Bearer
+  api_headers:
+    Content-Type: application/json
+  dynamic_api_headers:
+  - Authorization
+  api_query_params: 
+  dynamic_api_query_params: 
+  api_body: 
+  custom_config:
+    export_api_input_body: config/oracle_p6/P6ProjectExportInput.json
+job_parameter:
+  bucket_name: ${raw_bucket}
+  bucket_data_source_prefix: oracle_p6
+  kms_key_id: ${kms_key_id}
+  input_path: oracle_p6/temp/exportapi/project_gzip_data/
+  temp_output_path: s3://${raw_bucket}/oracle_p6/temp/exportapi/relationalized_data/
+  output_s3: oracle_p6
+  schema_output_s3: "/oracle_p6/data_sampling/"
+  export_api_root_node: APIBusinessObjects
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  activity_column: root_Project.Activity
+  activity_code_column: root_Project.Activity.val.Code
+  activity_code_join_condition: id
+  activity_join_condition: index
+  activitycodeassignment_table_name: activitycodeassignment
+  udf_column: root_Project.Activity.val.UDF
+  udf_join_condition": id
+  udf_table_name: udf
+  full_incr: i/f
+  source_tables:
+  - root
+  - root_Project.Activity
+  - root_ActivityCode
+  - root_ActivityCodeType
+  - root_Project.ResourceAssignment
+  - root_Project.ActivityCode
+  - root_Resource
+  - root_EPS
+  - root_Project.ActivityCodeType
+  - root_UDFType
+  - root_Project.Relationship
+  renamed_tables:
+  - project
+  - project_activity
+  - activitycode
+  - activitycodetype
+  - project_resourceassignment
+  - project_activitycode
+  - resource
+  - eps
+  - project_activitycodetype
+  - project_udftype
+  - project_relationship

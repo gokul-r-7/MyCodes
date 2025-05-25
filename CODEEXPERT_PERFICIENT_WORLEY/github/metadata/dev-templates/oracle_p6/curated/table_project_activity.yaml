@@ -1,0 +1,1749 @@
+SourceSystemId: curated_oracle_p6
+MetadataType: 'curated#oracle_p6#project_activity#job#iceberg' #Metadata
+source:
+  name: oracle_p6_project_activity
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: 's3://${raw_bucket}/project_control/oracle_p6/project_activity/'
+    format: parquet
+    transformation_ctx: oracle_p6-project_activity 
+transforms:
+  - transform: rename_columns
+    rename_column: true
+  - transform: select_columns_from_config_file
+    select_columns: true
+  - transform: change_data_types
+    change_types: true
+  - transform: add_run_date
+    column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+  - transform: custom_sql
+    sql: 'SELECT *, ''oracle_p6'' as SOURCE_SYSTEM_NAME FROM temp_df_static'
+    temp_view_name: temp_df_static
+target:
+  name: curated_oracle_p6_project_activity
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_oracle_p6_curated
+    table_name: curated_project_activity
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: >-
+        ${curated_bucket}/project_control/oracle_p6/project_activity/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: full_load
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: project_id
+    entity_table_attribute_name: project_id
+    entity_s3_raw_partition_prefix: Project      
+  spark_options:
+    format: iceberg
+    options:
+      path: >-
+        s3://${curated_bucket}/project_control/oracle_p6/project_activity
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: ACCOUNTINGVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: accountingvariance
+  - column_data_type: string
+    column_name: ACCOUNTINGVARIANCELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: accountingvariancelaborunits
+  - column_data_type: string
+    column_name: ACTUALDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualduration
+  - column_data_type: string
+    column_name: ACTUALEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualexpensecost
+  - column_data_type: string
+    column_name: ACTUALFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualfinishdate
+  - column_data_type: string
+    column_name: ACTUALLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actuallaborcost
+  - column_data_type: string
+    column_name: ACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actuallaborunits
+
+  - column_data_type: string
+    column_name: ACTIVITYID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityid
+
+  - column_data_type: string
+    column_name: ACTIVITYOWNERUSERID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityowneruserid
+
+  - column_data_type: string
+    column_name: CBSCODE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbscode
+
+  - column_data_type: string
+    column_name: CBSID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbsid
+
+  - column_data_type: string
+    column_name: EXTERNALEARLYSTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externalearlystartdate
+
+  - column_data_type: string
+    column_name: EXTERNALLATEFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallatefinishdate
+
+  - column_data_type: string
+    column_name: FEEDBACK
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: feedback
+
+  - column_data_type: string
+    column_name: FLOATPATH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: floatpath
+
+  - column_data_type: string
+    column_name: FLOATPATHORDER
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: floatpathorder
+
+  - column_data_type: string
+    column_name: HASFUTUREBUCKETDATA
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hasfuturebucketdata
+
+  - column_data_type: string
+    column_name: LOCATIONNAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationname
+
+  - column_data_type: string
+    column_name: LOCATIONOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationobjectid
+
+  - column_data_type: string
+    column_name: MAXIMUMDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: maximumduration
+
+  - column_data_type: string
+    column_name: MINIMUMDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: minimumduration
+
+  - column_data_type: string
+    column_name: MOSTLIKELYDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mostlikelyduration
+
+  - column_data_type: string
+    column_name: NOTESTORESOURCES
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: notestoresources
+
+  - column_data_type: string
+    column_name: OWNERIDARRAY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: owneridarray
+
+  - column_data_type: string
+    column_name: OWNERNAMESARRAY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ownernamesarray
+
+  - column_data_type: string
+    column_name: POSTRESPCRITICALITYINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postrespcriticalityindex
+
+  - column_data_type: string
+    column_name: POSTRESPONSEPESSIMISTICFINISH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postresponsepessimisticfinish
+
+  - column_data_type: string
+    column_name: POSTRESPONSEPESSIMISTICSTART
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postresponsepessimisticstart
+
+  - column_data_type: string
+    column_name: PRERESPCRITICALITYINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prerespcriticalityindex
+
+  - column_data_type: string
+    column_name: PRERESPONSEPESSIMISTICFINISH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preresponsepessimisticfinish
+
+  - column_data_type: string
+    column_name: PRERESPONSEPESSIMISTICSTART
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preresponsepessimisticstart
+
+  - column_data_type: string
+    column_name: PRIMARYCONSTRAINTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primaryconstraintdate
+
+  - column_data_type: string
+    column_name: PROJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+
+  - column_data_type: string
+    column_name: RESUMEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resumedate
+
+  - column_data_type: string
+    column_name: REVIEWFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reviewfinishdate
+
+  - column_data_type: string
+    column_name: SECONDARYCONSTRAINTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secondaryconstraintdate
+
+  - column_data_type: string
+    column_name: SUSPENDDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: suspenddate
+
+  - column_data_type: string
+    column_name: TASKSTATUSINDICATOR
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: taskstatusindicator
+
+  - column_data_type: string
+    column_name: WORKPACKAGEID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: workpackageid
+  - column_data_type: string
+    column_name: ACTUALMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualmaterialcost
+  - column_data_type: string
+    column_name: ACTUALNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualnonlaborcost
+  - column_data_type: string
+    column_name: ACTUALNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualnonlaborunits
+  - column_data_type: string
+    column_name: ACTUALSTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualstartdate
+  - column_data_type: string
+    column_name: ACTUALTHISPERIODLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualthisperiodlaborcost
+  - column_data_type: string
+    column_name: ACTUALTHISPERIODLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualthisperiodlaborunits
+  - column_data_type: string
+    column_name: ACTUALTHISPERIODMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualthisperiodmaterialcost
+  - column_data_type: string
+    column_name: ACTUALTHISPERIODNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualthisperiodnonlaborcost
+  - column_data_type: string
+    column_name: ACTUALTHISPERIODNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualthisperiodnonlaborunits
+  - column_data_type: string
+    column_name: ACTUALTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualtotalcost
+  - column_data_type: string
+    column_name: ACTUALTOTALUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualtotalunits
+  - column_data_type: string
+    column_name: ATCOMPLETIONDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionduration
+  - column_data_type: string
+    column_name: ATCOMPLETIONEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionexpensecost
+  - column_data_type: string
+    column_name: ATCOMPLETIONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionlaborcost
+  - column_data_type: string
+    column_name: ATCOMPLETIONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionlaborunits
+  - column_data_type: string
+    column_name: ATCOMPLETIONLABORUNITSVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionlaborunitsvariance
+  - column_data_type: string
+    column_name: ATCOMPLETIONMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionmaterialcost
+  - column_data_type: string
+    column_name: ATCOMPLETIONNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionnonlaborcost
+  - column_data_type: string
+    column_name: ATCOMPLETIONNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionnonlaborunits
+  - column_data_type: string
+    column_name: ATCOMPLETIONTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletiontotalcost
+  - column_data_type: string
+    column_name: ATCOMPLETIONTOTALUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletiontotalunits
+  - column_data_type: string
+    column_name: ATCOMPLETIONVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atcompletionvariance
+  - column_data_type: string
+    column_name: AUTOCOMPUTEACTUALS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: autocomputeactuals
+  - column_data_type: string
+    column_name: BASELINE1DURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1duration
+  - column_data_type: string
+    column_name: BASELINE1FINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1finishdate
+  - column_data_type: string
+    column_name: BASELINE1PLANNEDDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1plannedduration
+  - column_data_type: string
+    column_name: BASELINE1PLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1plannedexpensecost
+  - column_data_type: string
+    column_name: BASELINE1PLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1plannedlaborcost
+  - column_data_type: string
+    column_name: BASELINE1PLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1plannedlaborunits
+  - column_data_type: string
+    column_name: BASELINE1PLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1plannedmaterialcost
+  - column_data_type: string
+    column_name: BASELINE1PLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1plannednonlaborcost
+  - column_data_type: string
+    column_name: BASELINE1PLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1plannednonlaborunits
+  - column_data_type: string
+    column_name: BASELINE1PLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1plannedtotalcost
+  - column_data_type: string
+    column_name: BASELINE1STARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline1startdate
+  - column_data_type: string
+    column_name: BASELINE2DURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2duration
+  - column_data_type: string
+    column_name: BASELINE2FINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2finishdate
+  - column_data_type: string
+    column_name: BASELINE2PLANNEDDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2plannedduration
+  - column_data_type: string
+    column_name: BASELINE2PLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2plannedexpensecost
+  - column_data_type: string
+    column_name: BASELINE2PLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2plannedlaborcost
+  - column_data_type: string
+    column_name: BASELINE2PLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2plannedlaborunits
+  - column_data_type: string
+    column_name: BASELINE2PLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2plannedmaterialcost
+  - column_data_type: string
+    column_name: BASELINE2PLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2plannednonlaborcost
+  - column_data_type: string
+    column_name: BASELINE2PLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2plannednonlaborunits
+  - column_data_type: string
+    column_name: BASELINE2PLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2plannedtotalcost
+  - column_data_type: string
+    column_name: BASELINE2STARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline2startdate
+  - column_data_type: string
+    column_name: BASELINE3DURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3duration
+  - column_data_type: string
+    column_name: BASELINE3FINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3finishdate
+  - column_data_type: string
+    column_name: BASELINE3PLANNEDDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3plannedduration
+  - column_data_type: string
+    column_name: BASELINE3PLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3plannedexpensecost
+  - column_data_type: string
+    column_name: BASELINE3PLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3plannedlaborcost
+  - column_data_type: string
+    column_name: BASELINE3PLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3plannedlaborunits
+  - column_data_type: string
+    column_name: BASELINE3PLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3plannedmaterialcost
+  - column_data_type: string
+    column_name: BASELINE3PLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3plannednonlaborcost
+  - column_data_type: string
+    column_name: BASELINE3PLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3plannednonlaborunits
+  - column_data_type: string
+    column_name: BASELINE3PLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3plannedtotalcost
+  - column_data_type: string
+    column_name: BASELINE3STARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baseline3startdate
+  - column_data_type: string
+    column_name: BASELINEDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineduration
+  - column_data_type: string
+    column_name: BASELINEFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselinefinishdate
+  - column_data_type: string
+    column_name: BASELINEPLANNEDDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineplannedduration
+  - column_data_type: string
+    column_name: BASELINEPLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineplannedexpensecost
+  - column_data_type: string
+    column_name: BASELINEPLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineplannedlaborcost
+  - column_data_type: string
+    column_name: BASELINEPLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineplannedlaborunits
+  - column_data_type: string
+    column_name: BASELINEPLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineplannedmaterialcost
+  - column_data_type: string
+    column_name: BASELINEPLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineplannednonlaborcost
+  - column_data_type: string
+    column_name: BASELINEPLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineplannednonlaborunits
+  - column_data_type: string
+    column_name: BASELINEPLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineplannedtotalcost
+  - column_data_type: string
+    column_name: BASELINESTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselinestartdate
+  - column_data_type: string
+    column_name: BUDGETATCOMPLETION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgetatcompletion
+  - column_data_type: string
+    column_name: CBSOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbsobjectid
+  - column_data_type: string
+    column_name: CALENDARNAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calendarname
+  - column_data_type: string
+    column_name: CALENDAROBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calendarobjectid
+  - column_data_type: string
+    column_name: COSTPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costpercentcomplete
+  - column_data_type: string
+    column_name: COSTPERCENTOFPLANNED
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costpercentofplanned
+  - column_data_type: string
+    column_name: COSTPERFORMANCEINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costperformanceindex
+  - column_data_type: string
+    column_name: COSTPERFORMANCEINDEXLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costperformanceindexlaborunits
+  - column_data_type: string
+    column_name: COSTVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costvariance
+  - column_data_type: string
+    column_name: COSTVARIANCEINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costvarianceindex
+  - column_data_type: string
+    column_name: COSTVARIANCEINDEXLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costvarianceindexlaborunits
+  - column_data_type: string
+    column_name: COSTVARIANCELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costvariancelaborunits
+  - column_data_type: string
+    column_name: CREATEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdate
+  - column_data_type: string
+    column_name: CREATEUSER
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createuser
+  - column_data_type: string
+    column_name: DATADATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datadate
+  - column_data_type: string
+    column_name: DURATION1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: duration1variance
+  - column_data_type: string
+    column_name: DURATION2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: duration2variance
+  - column_data_type: string
+    column_name: DURATION3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: duration3variance
+  - column_data_type: string
+    column_name: DURATIONPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: durationpercentcomplete
+  - column_data_type: string
+    column_name: DURATIONPERCENTOFPLANNED
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: durationpercentofplanned
+  - column_data_type: string
+    column_name: DURATIONTYPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: durationtype
+  - column_data_type: string
+    column_name: DURATIONVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: durationvariance
+  - column_data_type: string
+    column_name: EARLYFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: earlyfinishdate
+  - column_data_type: string
+    column_name: EARLYSTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: earlystartdate
+  - column_data_type: string
+    column_name: EARNEDVALUECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: earnedvaluecost
+  - column_data_type: string
+    column_name: EARNEDVALUELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: earnedvaluelaborunits
+  - column_data_type: string
+    column_name: ESTIMATEATCOMPLETIONCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimateatcompletioncost
+  - column_data_type: string
+    column_name: ESTIMATEATCOMPLETIONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimateatcompletionlaborunits
+  - column_data_type: string
+    column_name: ESTIMATETOCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimatetocomplete
+  - column_data_type: string
+    column_name: ESTIMATETOCOMPLETELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimatetocompletelaborunits
+  - column_data_type: string
+    column_name: ESTIMATEDWEIGHT
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimatedweight
+  - column_data_type: string
+    column_name: EXPENSECOST1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: expensecost1variance
+  - column_data_type: string
+    column_name: EXPENSECOST2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: expensecost2variance
+  - column_data_type: string
+    column_name: EXPENSECOST3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: expensecost3variance
+  - column_data_type: string
+    column_name: EXPENSECOSTPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: expensecostpercentcomplete
+  - column_data_type: string
+    column_name: EXPENSECOSTVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: expensecostvariance
+  - column_data_type: string
+    column_name: FINANCIALPERIODTMPLID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: financialperiodtmplid
+  - column_data_type: string
+    column_name: FINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: finishdate
+  - column_data_type: string
+    column_name: FINISHDATE1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: finishdate1variance
+  - column_data_type: string
+    column_name: FINISHDATE2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: finishdate2variance
+  - column_data_type: string
+    column_name: FINISHDATE3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: finishdate3variance
+  - column_data_type: string
+    column_name: FINISHDATEVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: finishdatevariance
+  - column_data_type: string
+    column_name: GUID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: guid
+  - column_data_type: string
+    column_name: ID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: ISBASELINE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isbaseline
+  - column_data_type: string
+    column_name: ISCRITICAL
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: iscritical
+  - column_data_type: string
+    column_name: ISLONGESTPATH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: islongestpath
+  - column_data_type: string
+    column_name: ISNEWFEEDBACK
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isnewfeedback
+  - column_data_type: string
+    column_name: ISSTARRED
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isstarred
+  - column_data_type: string
+    column_name: ISTEMPLATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: istemplate
+  - column_data_type: string
+    column_name: ISWORKPACKAGE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isworkpackage
+  - column_data_type: string
+    column_name: LABORCOST1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborcost1variance
+  - column_data_type: string
+    column_name: LABORCOST2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborcost2variance
+  - column_data_type: string
+    column_name: LABORCOST3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborcost3variance
+  - column_data_type: string
+    column_name: LABORCOSTPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborcostpercentcomplete
+  - column_data_type: string
+    column_name: LABORCOSTVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborcostvariance
+  - column_data_type: string
+    column_name: LABORUNITS1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborunits1variance
+  - column_data_type: string
+    column_name: LABORUNITS2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborunits2variance
+  - column_data_type: string
+    column_name: LABORUNITS3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborunits3variance
+  - column_data_type: string
+    column_name: LABORUNITSPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborunitspercentcomplete
+  - column_data_type: string
+    column_name: LABORUNITSVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: laborunitsvariance
+  - column_data_type: string
+    column_name: LASTUPDATEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastupdatedate
+  - column_data_type: string
+    column_name: LASTUPDATEUSER
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastupdateuser
+  - column_data_type: string
+    column_name: LATEFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: latefinishdate
+  - column_data_type: string
+    column_name: LATESTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: latestartdate
+  - column_data_type: string
+    column_name: LEVELINGPRIORITY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: levelingpriority
+  - column_data_type: string
+    column_name: MATERIALCOST1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcost1variance
+  - column_data_type: string
+    column_name: MATERIALCOST2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcost2variance
+  - column_data_type: string
+    column_name: MATERIALCOST3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcost3variance
+  - column_data_type: string
+    column_name: MATERIALCOSTPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcostpercentcomplete
+  - column_data_type: string
+    column_name: MATERIALCOSTVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcostvariance
+  - column_data_type: string
+    column_name: NAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: NONLABORCOST1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborcost1variance
+  - column_data_type: string
+    column_name: NONLABORCOST2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborcost2variance
+  - column_data_type: string
+    column_name: NONLABORCOST3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborcost3variance
+  - column_data_type: string
+    column_name: NONLABORCOSTPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborcostpercentcomplete
+  - column_data_type: string
+    column_name: NONLABORCOSTVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborcostvariance
+  - column_data_type: string
+    column_name: NONLABORUNITS1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborunits1variance
+  - column_data_type: string
+    column_name: NONLABORUNITS2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborunits2variance
+  - column_data_type: string
+    column_name: NONLABORUNITS3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborunits3variance
+  - column_data_type: string
+    column_name: NONLABORUNITSPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborunitspercentcomplete
+  - column_data_type: string
+    column_name: NONLABORUNITSVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonlaborunitsvariance
+  - column_data_type: string
+    column_name: OBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: objectid
+  - column_data_type: string
+    column_name: PERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentcomplete
+  - column_data_type: string
+    column_name: PERCENTCOMPLETETYPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentcompletetype
+  - column_data_type: string
+    column_name: PERFORMANCEPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: performancepercentcomplete
+  - column_data_type: string
+    column_name: PERFORMANCEPERCENTCOMPLETEBYLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: performancepercentcompletebylaborunits
+  - column_data_type: string
+    column_name: PHYSICALPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: physicalpercentcomplete
+  - column_data_type: string
+    column_name: PLANNEDDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedduration
+  - column_data_type: string
+    column_name: PLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedexpensecost
+  - column_data_type: string
+    column_name: PLANNEDFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedfinishdate
+  - column_data_type: string
+    column_name: PLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedlaborcost
+  - column_data_type: string
+    column_name: PLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedlaborunits
+  - column_data_type: string
+    column_name: PLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedmaterialcost
+  - column_data_type: string
+    column_name: PLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannednonlaborcost
+  - column_data_type: string
+    column_name: PLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannednonlaborunits
+  - column_data_type: string
+    column_name: PLANNEDSTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedstartdate
+  - column_data_type: string
+    column_name: PLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedtotalcost
+  - column_data_type: string
+    column_name: PLANNEDTOTALUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedtotalunits
+  - column_data_type: string
+    column_name: PLANNEDVALUECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedvaluecost
+  - column_data_type: string
+    column_name: PLANNEDVALUELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedvaluelaborunits
+  - column_data_type: string
+    column_name: PRIMARYCONSTRAINTTYPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primaryconstrainttype
+  - column_data_type: string
+    column_name: PROJECTFLAG
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectflag
+  - column_data_type: string
+    column_name: PROJECTNAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectname
+  - column_data_type: string
+    column_name: PROJECTNAMESEPCHAR
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectnamesepchar
+  - column_data_type: string
+    column_name: PROJECTOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectobjectid
+  - column_data_type: string
+    column_name: PROJECTPROJECTFLAG
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectprojectflag
+  - column_data_type: string
+    column_name: REMAININGDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingduration
+  - column_data_type: string
+    column_name: REMAININGEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingexpensecost
+  - column_data_type: string
+    column_name: REMAININGLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remaininglaborcost
+  - column_data_type: string
+    column_name: REMAININGLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remaininglaborunits
+  - column_data_type: string
+    column_name: REMAININGMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingmaterialcost
+  - column_data_type: string
+    column_name: REMAININGNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingnonlaborcost
+  - column_data_type: string
+    column_name: REMAININGNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingnonlaborunits
+  - column_data_type: string
+    column_name: REMAININGTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingtotalcost
+  - column_data_type: string
+    column_name: REMAININGTOTALUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingtotalunits
+  - column_data_type: string
+    column_name: REVIEWREQUIRED
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reviewrequired
+  - column_data_type: string
+    column_name: REVIEWSTATUS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reviewstatus
+  - column_data_type: string
+    column_name: SCHEDULEPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: schedulepercentcomplete
+  - column_data_type: string
+    column_name: SCHEDULEPERFORMANCEINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scheduleperformanceindex
+  - column_data_type: string
+    column_name: SCHEDULEPERFORMANCEINDEXLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scheduleperformanceindexlaborunits
+  - column_data_type: string
+    column_name: SCHEDULEVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: schedulevariance
+  - column_data_type: string
+    column_name: SCHEDULEVARIANCEINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: schedulevarianceindex
+  - column_data_type: string
+    column_name: SCHEDULEVARIANCEINDEXLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: schedulevarianceindexlaborunits
+  - column_data_type: string
+    column_name: SCHEDULEVARIANCELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: schedulevariancelaborunits
+  - column_data_type: string
+    column_name: SCOPEPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scopepercentcomplete
+  - column_data_type: string
+    column_name: SECONDARYCONSTRAINTTYPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secondaryconstrainttype
+  - column_data_type: string
+    column_name: STARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startdate
+  - column_data_type: string
+    column_name: STARTDATE1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startdate1variance
+  - column_data_type: string
+    column_name: STARTDATE2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startdate2variance
+  - column_data_type: string
+    column_name: STARTDATE3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startdate3variance
+  - column_data_type: string
+    column_name: STARTDATEVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startdatevariance
+  - column_data_type: string
+    column_name: STATUS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: STATUSCODE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statuscode
+  - column_data_type: string
+    column_name: TASKSTATUSCOMPLETION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: taskstatuscompletion
+  - column_data_type: string
+    column_name: TASKSTATUSDATES
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: taskstatusdates
+  - column_data_type: string
+    column_name: TOCOMPLETEPERFORMANCEINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tocompleteperformanceindex
+  - column_data_type: string
+    column_name: TOTALCOST1VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalcost1variance
+  - column_data_type: string
+    column_name: TOTALCOST2VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalcost2variance
+  - column_data_type: string
+    column_name: TOTALCOST3VARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalcost3variance
+  - column_data_type: string
+    column_name: TOTALCOSTVARIANCE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalcostvariance
+  - column_data_type: string
+    column_name: TOTALPASTPERIODEARNEDVALUECOSTBCWP
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodearnedvaluecostbcwp
+  - column_data_type: string
+    column_name: TOTALPASTPERIODEARNEDVALUELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodearnedvaluelaborunits
+  - column_data_type: string
+    column_name: TOTALPASTPERIODEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodexpensecost
+  - column_data_type: string
+    column_name: TOTALPASTPERIODLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodlaborcost
+  - column_data_type: string
+    column_name: TOTALPASTPERIODLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodlaborunits
+  - column_data_type: string
+    column_name: TOTALPASTPERIODMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodmaterialcost
+  - column_data_type: string
+    column_name: TOTALPASTPERIODNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodnonlaborcost
+  - column_data_type: string
+    column_name: TOTALPASTPERIODNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodnonlaborunits
+  - column_data_type: string
+    column_name: TOTALPASTPERIODPLANNEDVALUECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodplannedvaluecost
+  - column_data_type: string
+    column_name: TOTALPASTPERIODPLANNEDVALUELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalpastperiodplannedvaluelaborunits
+  - column_data_type: string
+    column_name: TYPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: UNITSPERCENTCOMPLETE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitspercentcomplete
+  - column_data_type: string
+    column_name: UNREADCOMMENTCOUNT
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unreadcommentcount
+  - column_data_type: string
+    column_name: WBSCODE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wbscode
+  - column_data_type: string
+    column_name: WBSNAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wbsname
+  - column_data_type: string
+    column_name: WBSNAMEPATH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wbsnamepath
+  - column_data_type: string
+    column_name: WBSOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wbsobjectid
+  - column_data_type: string
+    column_name: WBSPATH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wbspath
+  - column_data_type: string
+    column_name: FREEFLOAT
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: freefloat
+  - column_data_type: string
+    column_name: REMAININGEARLYFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingearlyfinishdate
+  - column_data_type: string
+    column_name: REMAININGEARLYSTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingearlystartdate
+  - column_data_type: string
+    column_name: REMAININGFLOAT
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remainingfloat
+  - column_data_type: string
+    column_name: REMAININGLATEFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remaininglatefinishdate
+  - column_data_type: string
+    column_name: REMAININGLATESTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remaininglatestartdate
+  - column_data_type: string
+    column_name: TOTALFLOAT
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totalfloat
+  - column_data_type: string
+    column_name: EXPECTEDFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: expectedfinishdate
+  - column_data_type: string
+    column_name: PRIMARYRESOURCEID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primaryresourceid
+  - column_data_type: string
+    column_name: PRIMARYRESOURCENAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primaryresourcename
+  - column_data_type: string
+    column_name: PRIMARYRESOURCEOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primaryresourceobjectid
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id

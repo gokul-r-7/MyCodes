@@ -1,0 +1,659 @@
+SourceSystemId: database_pdm_curated
+MetadataType: curated#pdm#PDM_PIPE_DB#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/pdm/PDM_PIPE_DB/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: pdm-pdm_pipe_db
+  name: pdm_pdm_pipe_db
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size
+  - column_data_type: string
+    column_name: plant
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant
+  - column_data_type: string
+    column_name: area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area
+  - column_data_type: string
+    column_name: area/unit/system code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area/unit/system code
+  - column_data_type: string
+    column_name: service code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: service code
+  - column_data_type: string
+    column_name: line no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line no
+  - column_data_type: string
+    column_name: line id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line id
+  - column_data_type: string
+    column_name: line class
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line class
+  - column_data_type: string
+    column_name: flow sheet no.
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: flow sheet no.
+  - column_data_type: string
+    column_name: from
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: from
+  - column_data_type: string
+    column_name: to
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: to
+  - column_data_type: string
+    column_name: fluid description.
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fluid description.
+  - column_data_type: string
+    column_name: fluid cat.
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fluid cat.
+  - column_data_type: string
+    column_name: phase
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phase
+  - column_data_type: string
+    column_name: slug flow (y/n)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: slug flow (y/n)
+  - column_data_type: string
+    column_name: density (#/ft^3)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: density (#/ft^3)
+  - column_data_type: string
+    column_name: aiv
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: aiv
+  - column_data_type: string
+    column_name: "min op temp  \xB0f"
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: "min op temp  \xB0f"
+  - column_data_type: string
+    column_name: velocity (ft/s)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: velocity (ft/s)
+  - column_data_type: string
+    column_name: pv2 (#/ft-s2) (calculated)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pv2 (#/ft-s2) (calculated)
+  - column_data_type: string
+    column_name: iso's reqd for proc crit
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: iso's reqd for proc crit
+  - column_data_type: string
+    column_name: norm press psig
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: norm press psig
+  - column_data_type: string
+    column_name: "norm temp \xB0f"
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: "norm temp \xB0f"
+  - column_data_type: string
+    column_name: upset press (psig)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: upset press (psig)
+  - column_data_type: string
+    column_name: "temp @ upset press (\xB0f)"
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: "temp @ upset press (\xB0f)"
+  - column_data_type: string
+    column_name: upset press basis
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: upset press basis
+  - column_data_type: string
+    column_name: short term press basis
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: short term press basis
+  - column_data_type: string
+    column_name: press @ upset temp (psig)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: press @ upset temp (psig)
+  - column_data_type: string
+    column_name: upset temp (degf)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: upset temp (degf)
+  - column_data_type: string
+    column_name: upset temp basis
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: upset temp basis
+  - column_data_type: string
+    column_name: short term temp basis
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: short term temp basis
+  - column_data_type: string
+    column_name: upset minimum temp degf
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: upset minimum temp degf
+  - column_data_type: string
+    column_name: stm out temp degf
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stm out temp degf
+  - column_data_type: string
+    column_name: des press psig
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: des press psig
+  - column_data_type: string
+    column_name: des temp degf
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: des temp degf
+  - column_data_type: string
+    column_name: test medium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: test medium
+  - column_data_type: string
+    column_name: test pres psig
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: test pres psig
+  - column_data_type: string
+    column_name: nom. wall thk (in/sch)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nom. wall thk (in/sch)
+  - column_data_type: string
+    column_name: calc. wall (y/n)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calc. wall (y/n)
+  - column_data_type: string
+    column_name: nom. corr. allow (in)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nom. corr. allow (in)
+  - column_data_type: string
+    column_name: examination level
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: examination level
+  - column_data_type: string
+    column_name: insul type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insul type
+  - column_data_type: string
+    column_name: insul mat'l
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insul mat'l
+  - column_data_type: string
+    column_name: insul thick (in)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insul thick (in)
+  - column_data_type: string
+    column_name: paint spec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: paint spec
+  - column_data_type: string
+    column_name: tracing type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tracing type
+  - column_data_type: string
+    column_name: maint temp degf
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: maint temp degf
+  - column_data_type: string
+    column_name: pwht (y/n)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pwht (y/n)
+  - column_data_type: string
+    column_name: "stress temp \xB0f"
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: "stress temp \xB0f"
+  - column_data_type: string
+    column_name: stress level
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress level
+  - column_data_type: string
+    column_name: stress calc no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress calc no
+  - column_data_type: string
+    column_name: remarks
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remarks
+  - column_data_type: string
+    column_name: rev
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rev
+  - column_data_type: string
+    column_name: issue package
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issue package
+  - column_data_type: string
+    column_name: issue level (status)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issue level (status)
+  - column_data_type: string
+    column_name: isometric drawing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isometric drawing
+  - column_data_type: string
+    column_name: stress iso drawing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress iso drawing
+  - column_data_type: string
+    column_name: pip_sort_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pip_sort_1
+  - column_data_type: string
+    column_name: pip_sort_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pip_sort_2
+  - column_data_type: string
+    column_name: pr_sort_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pr_sort_1
+  - column_data_type: string
+    column_name: pr_sort_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pr_sort_2
+  - column_data_type: string
+    column_name: pe_sort_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pe_sort_1
+  - column_data_type: string
+    column_name: pe_sort_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pe_sort_2
+  - column_data_type: string
+    column_name: pe_sort_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pe_sort_3
+  - column_data_type: string
+    column_name: min op pressure psig
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: min op pressure psig
+  - column_data_type: string
+    column_name: max op pressure psig
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: max op pressure psig
+  - column_data_type: string
+    column_name: "max op temp  \xB0f"
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: "max op temp  \xB0f"
+  - column_data_type: string
+    column_name: sys_sort
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sys_sort
+  - column_data_type: string
+    column_name: size_sort
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size_sort
+  - column_data_type: string
+    column_name: paint color
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: paint color
+  - column_data_type: string
+    column_name: 'vg: pipe location'
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 'vg: pipe location'
+  - column_data_type: string
+    column_name: pdm push sort
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pdm push sort
+  - column_data_type: string
+    column_name: calc wall status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calc wall status
+  - column_data_type: string
+    column_name: 'vg: requisition'
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 'vg: requisition'
+  - column_data_type: string
+    column_name: 'vg: cwa'
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 'vg: cwa'
+  - column_data_type: string
+    column_name: 'vg: zone'
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 'vg: zone'
+  - column_data_type: string
+    column_name: stm out pres psig
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stm out pres psig
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: string
+    column_name: eng. status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng. status
+  - column_data_type: string
+    column_name: system no.
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: system no.
+  - column_data_type: string
+    column_name: pr_sort_br_remarks
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pr_sort_br_remarks
+  - column_data_type: string
+    column_name: trim line (y/n)
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: trim line (y/n)
+  - column_data_type: string
+    column_name: sub-unit code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sub-unit code
+  - column_data_type: string
+    column_name: sub-unit id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sub-unit id
+  - column_data_type: string
+    column_name: system code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: system code
+  - column_data_type: string
+    column_name: design code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: design code
+  - column_data_type: string
+    column_name: unit code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit code
+  - column_data_type: string
+    column_name: system/line
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: system/line
+  - column_data_type: string
+    column_name: 'sppid: insulation temp'
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 'sppid: insulation temp'
+  - column_data_type: string
+    column_name: pr_sort_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pr_sort_3
+  - column_data_type: string
+    column_name: pr_sort_4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pr_sort_4
+  - column_data_type: string
+    column_name: multi-ins. remarks
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: multi-ins. remarks
+  - column_data_type: string
+    column_name: sppid:flex hi temp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sppid:flex hi temp
+  - column_data_type: string
+    column_name: sppid:flex low temp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sppid:flex low temp
+  - column_data_type: string
+    column_name: upset minimum press psig
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: upset minimum press psig
+  - column_data_type: string
+    column_name: 'vg: serial no'
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 'vg: serial no'
+  - column_data_type: string
+    column_name: 'vg: tracking id'
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 'vg: tracking id'
+  - column_data_type: string
+    column_name: item id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: item id
+  - column_data_type: string
+    column_name: pdm_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pdm_status
+  - column_data_type: string
+    column_name: piping status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piping status
+  - column_data_type: string
+    column_name: process status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: process status
+  - column_data_type: string
+    column_name: piping eng status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piping eng status
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_pdm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/pdm/PDM_PIPE_DB/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_pdm_pipe_db
+  load_type: append
+  name: curated_pdm_pipe_db
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/pdm/curated_pdm_pipe_db
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'pdm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

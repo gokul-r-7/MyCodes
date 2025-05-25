@@ -1,0 +1,148 @@
+import datetime
+import pendulum
+import os
+import boto3
+import requests
+from airflow.models.dag import DAG
+from airflow.models.baseoperator import chain
+from airflow.decorators import task_group
+from airflow.utils.task_group import TaskGroup
+from airflow.providers.amazon.aws.operators.glue import GlueJobOperator
+from airflow.providers.amazon.aws.operators.glue_crawler import GlueCrawlerOperator
+from airflow.models import Variable
+from airflow.providers.amazon.aws.sensors.glue_crawler import GlueCrawlerSensor
+from airflow.datasets import Dataset
+from airflow.operators.bash import BashOperator
+
+# Setup Global Env Variables
+dag_config = Variable.get("env", deserialize_json=True)
+
+# Datasets for Downstream Construction
+construction_dataset = Dataset("//o3/construction/domain_integrated_model")
+
+
+environment = dag_config["environment"]
+source_system_id = "fts"
+
+# Create a session object
+session = boto3.Session()
+# Get the current region
+region = session.region_name
+#region = "ap-southeast-2"
+
+datasets = ["fts_timesheet"]
+
+default_args = {
+    "owner": "worley",
+    "depends_on_past": False,
+    "email_on_failure": False,
+    "email_on_retry": False,
+    "retries": 3,
+    "retry_delay": datetime.timedelta(minutes=3),
+}
+
+glue_job_names = {
+    "fts_csv_xlsx_parsing": f"worley-datalake-sydney-{environment}-glue-job-csvxlsx-data",
+    "schema_change_detection": f"worley-datalake-sydney-{environment}-glue-job-schema-change-detection-generic",
+    "fts_raw_curated": f"worley-datalake-sydney-{environment}-glue-job-raw-to-curated-generic"
+}
+
+# Create DAG
+with DAG(
+    dag_id=f"fts_csv_xlsx_{environment}_data_pipeline",
+    schedule="@once",
+    tags=["fts_csv_xlsx"],
+    start_date=datetime.datetime(2024, 5, 1),
+    catchup=False,
+) as dag:
+
+    # Gets current execution date
+    execution_date = "{{logical_date}}"
+
+    # Get the current date
+    today = datetime.datetime.now()
+
+    #p6 SpreadAPIs have specific dataformat
+    p6_execution_date = today.strftime('%Y-%m-%dT%H:%M:%S')
+
+    @task_group(group_id="fts_csv_xlsx_sourcing")
+    def fts_csv_xlsx_sourcing():
+        """Task Group that runs the required steps to source fts"""
+
+        csv_xlsx_task = GlueJobOperator(
+            task_id="fts_csv_xlsx_parsing",
+            job_name=glue_job_names["fts_csv_xlsx_parsing"],
+            region_name=region,
+            verbose=True,
+            wait_for_completion=True,
+            script_args={
+                "--source_name": source_system_id,
+                "--metadata_type": f"csv#{source_system_id}",
+                "--function_name": "csv",
+                "--start_date": execution_date,
+                "--end_date": execution_date,
+                "--connector_file_path" : '""'
+            },
+        )
+
+        csv_xlsx_task
+        
+    sourcing_tasks = fts_csv_xlsx_sourcing()
+
+    raw_crawler = GlueCrawlerOperator(
+        task_id=f"fts_csv_xlsx_raw_crawler",
+        config={
+            "Name": f"worley-datalake-sydney-{environment}-glue-crawler-construction-fts-raw",
+        },
+        poll_interval=5,
+        wait_for_completion=False,
+    )
+
+    raw_crawler_sensor = GlueCrawlerSensor(
+        task_id="fts_csv_xlsx_raw_crawler_sensor",
+        crawler_name=f"worley-datalake-sydney-{environment}-glue-crawler-construction-fts-raw",
+    )
+
+    @task_group(group_id=f"schema_detection")
+    def detect_schema_change():
+        for table in datasets:
+            schema_change = GlueJobOperator(
+                task_id=f"cur_{source_system_id}_{table}",
+                job_name=glue_job_names["schema_change_detection"],
+                region_name=region,
+                verbose=True,
+                wait_for_completion=True,
+                script_args={
+                    "--catalog_db": f"worley_datalake_sydney_{environment}_glue_catalog_database_construction_fts_raw",
+                    "--table_name": f"raw_{table}"
+                },
+            )
+
+    @task_group(group_id=f"curation")
+    def raw_to_curated():
+        for table in datasets:
+            raw_curated = GlueJobOperator(
+                task_id=f"cur_{source_system_id}_{table}",
+                job_name=glue_job_names["fts_raw_curated"],
+                region_name=region,
+                verbose=True,
+                wait_for_completion=True,
+                script_args={
+                    "--source_system_id": f"{source_system_id}_curated",
+                    "--metadata_type": f"curated#{table}#job#iceberg",
+                    "--start_date": execution_date,
+                    "--end_date": execution_date,
+                },
+            )        
+
+    run_construction_models_dag = BashOperator(
+        task_id='run_construction_models_dag',
+        bash_command=(
+            'echo "run construction models dag"'
+            f"--conf '{{\"source\": \"{source_system_id}\"}}'"
+        ),
+        outlets=[construction_dataset]
+    )
+
+
+    sourcing_tasks >> raw_crawler >> raw_crawler_sensor >> detect_schema_change() >> raw_to_curated() >> run_construction_models_dag

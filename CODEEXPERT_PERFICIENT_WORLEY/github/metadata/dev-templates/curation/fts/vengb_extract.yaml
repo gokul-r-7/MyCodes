@@ -1,0 +1,150 @@
+SourceSystemId: fts_curated
+MetadataType: curated#vengb_extract#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/fts/parquet/vengb_extract.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: fts-csv_xlsx_curated
+  name: fts_csv-xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: SITE_ID
+    comment: SITE_ID
+    data_classification: 
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: string
+    column_name: JACOBS_BADGE_ID
+    comment: JACOBS_BADGE_ID
+    data_classification: 
+    nullable: true
+    raw_column_name: jacobs_badge_id
+  - column_data_type: string
+    column_name: EMPLOYEE_NAME
+    comment: EMPLOYEE_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: employee_name
+  - column_data_type: string
+    column_name: EMPLOYEE_NUMBER
+    comment: EMPLOYEE_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: employee_number
+  - column_data_type: string
+    column_name: POSITION
+    comment: POSITION
+    data_classification: 
+    nullable: true
+    raw_column_name: position
+  - column_data_type: string
+    column_name: PRIMARY_SKILL
+    comment: PRIMARY_SKILL
+    data_classification: 
+    nullable: true
+    raw_column_name: primary_skill
+  - column_data_type: string
+    column_name: CLASS
+    comment: CLASS
+    data_classification: 
+    nullable: true
+    raw_column_name: class
+  - column_data_type: string
+    column_name: CREW_CODE
+    comment: CREW_CODE
+    data_classification: 
+    nullable: true
+    raw_column_name: crew_code
+  - column_data_type: string
+    column_name: TIMECARD_DATE
+    comment: TIMECARD_DATE
+    data_classification: 
+    nullable: true
+    raw_column_name: timecard_date
+  - column_data_type: string
+    column_name: WEEK_ENDING_DATE
+    comment: WEEK_ENDING_DATE
+    data_classification: 
+    nullable: true
+    raw_column_name: week_ending_date
+  - column_data_type: string
+    column_name: PROJECT_NUM
+    comment: PROJECT_NUM
+    data_classification: 
+    nullable: true
+    raw_column_name: project_num
+  - column_data_type: string
+    column_name: TASK_NUMBER
+    comment: TASK_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: task_number
+  - column_data_type: string
+    column_name: TASK_NAME
+    comment: TASK_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: task_name
+  - column_data_type: string
+    column_name: ST_HOURS
+    comment: ST_HOURS
+    data_classification: 
+    nullable: true
+    raw_column_name: st_hours
+  - column_data_type: string
+    column_name: OT_HOURS
+    comment: OT_HOURS
+    data_classification: 
+    nullable: true
+    raw_column_name: ot_hours
+  - column_data_type: string
+    column_name: DT_HOURS
+    comment: DT_HOURS
+    data_classification: 
+    nullable: true
+    raw_column_name: dt_hours
+  - column_data_type: string
+    column_name: IWP
+    comment: IWP
+    data_classification: 
+    nullable: true
+    raw_column_name: iwp
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_fts
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/fts/vengb_extract/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_vengb_extract
+  name: curated_fts_vengb_extract
+  load_type: full_load
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/fts/vengb_extract
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'fts' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

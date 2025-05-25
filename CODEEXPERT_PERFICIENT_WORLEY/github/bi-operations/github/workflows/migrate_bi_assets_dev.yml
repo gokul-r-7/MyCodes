@@ -1,0 +1,107 @@
+name: Migrate BI Assets from QuickSight DEV
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [main]
+        paths:
+            - "metadata/**"
+    pull_request_target:
+        types: [closed]
+        branches: [main]
+        paths:
+            - "metadata/**"
+
+permissions:
+    id-token: write # This is required for requesting the JWT
+    contents: write # This is required for actions/checkout
+    pull-requests: write
+
+jobs:
+    dev-export-bi-assets:
+        # Only run if the PR was merged (not just closed)
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+        environment: dev
+        defaults:
+            run:
+                shell: bash
+        steps:
+          - uses: actions/checkout@v4
+            with:
+              ref: main  # Explicitly checkout main branch to get latest merged changes
+              fetch-depth: 0 # to get previous commit information
+          
+          - name: Retrieve updated BI Assets Data
+            id: changed-files
+            env:
+              GH_TOKEN: ${{ github.token }}
+            run: |
+              # Get the list of files changed in the PR
+              CHANGED_FILES=$(gh api /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files \
+                --jq '[.[] | select(.filename | startswith("metadata/")) | .filename] | join("\n")')
+
+              if [ -z "$CHANGED_FILES" ]; then
+                echo "No files changed in metadata directory"
+                exit 1
+              fi
+              
+              # Extract dashboard ID and domain from the first changed file
+              METADATA_FILE=$(echo "$CHANGED_FILES" | head -n 1)
+              echo "Changed file: $METADATA_FILE"
+
+              # Extract domain from path (metadata/{domain}/file.json)
+              DOMAIN=$(echo "$METADATA_FILE" | cut -d'/' -f2)
+              echo "Extracted domain: $DOMAIN"
+              
+              # Parse the JSON file to get dashboard ID and domain
+              DASHBOARD_ID=$(jq -r '.dashboard_id' "$METADATA_FILE")
+              echo "Extracted Dashboard ID : $DASHBOARD_ID"
+              
+              # Set outputs
+              echo "dashboard_id=$DASHBOARD_ID" >> $GITHUB_OUTPUT
+              echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
+              echo "metadata_file=$METADATA_FILE" >> $GITHUB_OUTPUT
+
+          - name: Assume AWS IAM Role
+            uses: aws-actions/configure-aws-credentials@v4.0.2
+            with:
+              aws-region: ap-southeast-2
+              role-to-assume: arn:aws:iam::891377181979:role/GitHubActions
+              role-session-name: Worley_AWS_Data_Platform_${{ github.run_id }}
+              role-duration-seconds: 3600 # 1 hour
+
+          - run: aws sts get-caller-identity
+
+          - name: Execute Dev BI Asset Export Workflow
+            id: export-dev-bi-assets
+            working-directory: src
+            run: |
+              chmod +x bi_asset_export.sh
+              chmod +x dev_config.sh
+              sh bi_asset_export.sh "${{ steps.changed-files.outputs.domain }}" "${{ steps.changed-files.outputs.dashboard_id }}"
+            continue-on-error: false
+          
+          - name: Push Assets to Feature Branch
+            env:
+              GITHUB_TOKEN: ${{ secrets.PR_WRITE_ACCESS_PAT }}
+            run: |
+              git config --global user.email "github-actions[bot]@users.noreply.github.com"
+              git config --global user.name "github-actions[bot]"
+
+              BRANCH_NAME="bi-assets-update/$(date +%Y-%m-%d-%H-%M)"
+              git checkout -b $BRANCH_NAME
+
+              git add artifacts/
+              git commit -m "Updated BI Assets for domain: ${{ steps.changed-files.outputs.domain }} from ${{ steps.changed-files.outputs.metadata_file }}"
+              git push "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $BRANCH_NAME
+
+              # Create PR and store PR number
+              pr_url=$(gh pr create \
+                --title "BI Assets Update ${BRANCH_NAME}" \
+                --body "Automated PR for BI Assets update" \
+                --base main \
+                --head $BRANCH_NAME)
+              
+              echo "PR_URL=$pr_url" >> $GITHUB_ENV
+              echo "PR created and pending review at ${pr_url}"

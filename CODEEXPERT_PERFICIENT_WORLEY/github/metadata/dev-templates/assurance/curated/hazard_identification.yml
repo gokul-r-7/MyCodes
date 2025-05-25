@@ -1,0 +1,559 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#hazard_identification#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/hazard_identification.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: hazard_identification
+  name: hazard_identification
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/hazard_identification/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: hazard_identification
+  load_type: incremental
+  name: hazard_identification
+  primary_key: dwi_hazard_identification
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/hazard_identification
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_hazard_identification
+    rename_columns: true
+  columns:
+  - column_name: dwi_hazard_identification
+    column_data_type: decimal(38,0)
+    comment: dwi_hazard_identification
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_hazard_identification
+  - column_name: customer
+    column_data_type: string
+    comment: customer
+    data_classification:
+    nullable: true
+    raw_column_name: customer
+  - column_name: date_identified
+    column_data_type: timestamp
+    comment: date_identified
+    data_classification:
+    nullable: true
+    raw_column_name: date_identified
+  - column_name: detailed_description
+    column_data_type: string
+    comment: detailed_description
+    data_classification:
+    nullable: true
+    raw_column_name: detailed_description
+  - column_name: entered_date
+    column_data_type: timestamp
+    comment: entered_date
+    data_classification:
+    nullable: true
+    raw_column_name: entered_date
+  - column_name: entered_time
+    column_data_type: timestamp
+    comment: entered_time
+    data_classification:
+    nullable: true
+    raw_column_name: entered_time
+  - column_name: exact_location
+    column_data_type: string
+    comment: exact_location
+    data_classification:
+    nullable: true
+    raw_column_name: exact_location
+  - column_name: hazard_number
+    column_data_type: string
+    comment: hazard_number
+    data_classification:
+    nullable: true
+    raw_column_name: hazard_number
+  - column_name: immediate_action_taken
+    column_data_type: string
+    comment: immediate_action_taken
+    data_classification:
+    nullable: true
+    raw_column_name: immediate_action_taken
+  - column_name: involved_stakeholders
+    column_data_type: string
+    comment: involved_stakeholders
+    data_classification:
+    nullable: true
+    raw_column_name: involved_stakeholders
+  - column_name: links_to_supporting_documentation
+    column_data_type: string
+    comment: links_to_supporting_documentation
+    data_classification:
+    nullable: true
+    raw_column_name: links_to_supporting_documentation
+  - column_name: location_category
+    column_data_type: string
+    comment: location_category
+    data_classification:
+    nullable: true
+    raw_column_name: location_category
+  - column_name: li_location_category
+    column_data_type: string
+    comment: li_location_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_location_category
+  - column_name: lo_location_category
+    column_data_type: decimal(38,0)
+    comment: lo_location_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_location_category
+  - column_name: location_type
+    column_data_type: string
+    comment: location_type
+    data_classification:
+    nullable: true
+    raw_column_name: location_type
+  - column_name: li_location_type
+    column_data_type: string
+    comment: li_location_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_location_type
+  - column_name: lo_location_type
+    column_data_type: decimal(38,0)
+    comment: lo_location_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_location_type
+  - column_name: project_name
+    column_data_type: string
+    comment: project_name
+    data_classification:
+    nullable: true
+    raw_column_name: project_name
+  - column_name: summary
+    column_data_type: string
+    comment: summary
+    data_classification:
+    nullable: true
+    raw_column_name: summary
+  - column_name: zzznotused_address
+    column_data_type: string
+    comment: zzznotused_address
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_address
+  - column_name: zzznotused_advisian_service_line
+    column_data_type: string
+    comment: zzznotused_advisian_service_line
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_advisian_service_line
+  - column_name: li_zzznotused_advisian_service_line
+    column_data_type: string
+    comment: li_zzznotused_advisian_service_line
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_advisian_service_line
+  - column_name: lo_zzznotused_advisian_service_line
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_advisian_service_line
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_advisian_service_line
+  - column_name: zzznotused_business_line
+    column_data_type: string
+    comment: zzznotused_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_business_line
+  - column_name: li_zzznotused_business_line
+    column_data_type: string
+    comment: li_zzznotused_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_business_line
+  - column_name: lo_zzznotused_business_line
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_business_line
+  - column_name: zzznotused_hazard_analysis_comments
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_comments
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_comments
+  - column_name: zzznotused_hazard_analysis_completion_date
+    column_data_type: timestamp
+    comment: zzznotused_hazard_analysis_completion_date
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_completion_date
+  - column_name: zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register
+  - column_name: li_zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register
+    column_data_type: string
+    comment: li_zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register      
+  - column_name: lo_zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_hazard_analysis_does_this_hazard_need_to_be_entered_into_the_hazard_register      
+  - column_name: zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+  - column_name: li_zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+    column_data_type: string
+    comment: li_zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+  - column_name: lo_zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_hazard_analysis_is_this_hazard_managed_by_physical_controls
+  - column_name: zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+  - column_name: li_zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+    column_data_type: string
+    comment: li_zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+  - column_name: lo_zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_hazard_analysis_is_this_hazard_managed_by_standard_operating_procedures
+  - column_name: zzznotused_hazard_analysis_risk_assessment
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_risk_assessment
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_risk_assessment
+  - column_name: zzznotused_hazard_analysis_risk_assessment_likelihood
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_risk_assessment_likelihood
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_risk_assessment_likelihood
+  - column_name: zzznotused_hazard_analysis_risk_assessment_consequence
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_risk_assessment_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_risk_assessment_consequence
+  - column_name: zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+  - column_name: li_zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+    column_data_type: string
+    comment: li_zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+  - column_name: lo_zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_hazard_analysis_risk_assessment_matrix_axis_consequence
+  - column_name: zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+    column_data_type: string
+    comment: zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+  - column_name: li_zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+    column_data_type: string
+    comment: li_zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+  - column_name: lo_zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_hazard_analysis_risk_assessment_matrix_axis_likelihood
+  - column_name: zzznotused_if_other_hazard_category_please_specify
+    column_data_type: string
+    comment: zzznotused_if_other_hazard_category_please_specify
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_if_other_hazard_category_please_specify
+  - column_name: zzznotused_latitude
+    column_data_type: decimal(38,16)
+    comment: zzznotused_latitude
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_latitude
+  - column_name: zzznotused_longitude
+    column_data_type: decimal(38,16)
+    comment: zzznotused_longitude
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_longitude
+  - column_name: zzznotused_subsector
+    column_data_type: string
+    comment: zzznotused_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_subsector
+  - column_name: li_zzznotused_subsector
+    column_data_type: string
+    comment: li_zzznotused_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_subsector
+  - column_name: lo_zzznotused_subsector
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_subsector
+  - column_name: sys_entered_from_mobile
+    column_data_type: string
+    comment: sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: sys_entered_from_mobile
+  - column_name: li_sys_entered_from_mobile
+    column_data_type: string
+    comment: li_sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_entered_from_mobile
+  - column_name: lo_sys_entered_from_mobile
+    column_data_type: decimal(38,0)
+    comment: lo_sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_entered_from_mobile
+  - column_name: sys_legacy_hazard_identification_id
+    column_data_type: string
+    comment: sys_legacy_hazard_identification_id
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_hazard_identification_id
+  - column_name: sysshowafterfirstsave
+    column_data_type: string
+    comment: sysshowafterfirstsave
+    data_classification:
+    nullable: true
+    raw_column_name: sysshowafterfirstsave
+  - column_name: li_sysshowafterfirstsave
+    column_data_type: string
+    comment: li_sysshowafterfirstsave
+    data_classification:
+    nullable: true
+    raw_column_name: li_sysshowafterfirstsave
+  - column_name: lo_sysshowafterfirstsave
+    column_data_type: decimal(38,0)
+    comment: lo_sysshowafterfirstsave
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sysshowafterfirstsave
+  - column_name: service_category
+    column_data_type: string
+    comment: service_category
+    data_classification:
+    nullable: true
+    raw_column_name: service_category
+  - column_name: li_service_category
+    column_data_type: string
+    comment: li_service_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_service_category
+  - column_name: lo_service_category
+    column_data_type: decimal(38,0)
+    comment: lo_service_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_service_category
+  - column_name: dwk_business_line
+    column_data_type: decimal(38,0)
+    comment: dwk_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_business_line
+  - column_name: dwk_business_line_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_business_line_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_business_line_archive
+  - column_name: dwk_completed_by
+    column_data_type: decimal(38,0)
+    comment: dwk_completed_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_completed_by
+  - column_name: dwk_customer
+    column_data_type: decimal(38,0)
+    comment: dwk_customer
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_customer
+  - column_name: dwk_sys_entered_by
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_entered_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_entered_by
+  - column_name: dwk_geography
+    column_data_type: decimal(38,0)
+    comment: dwk_geography
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_geography
+  - column_name: dwk_geography_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_geography_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_geography_archive
+  - column_name: dwk_sys_identified_by
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_identified_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_identified_by
+  - column_name: dwk_project
+    column_data_type: decimal(38,0)
+    comment: dwk_project
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_project
+  - column_name: dwk_project_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_project_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_project_archive
+  - column_name: dwk_responsible_supervisor
+    column_data_type: decimal(38,0)
+    comment: dwk_responsible_supervisor
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_responsible_supervisor
+  - column_name: dwk_subsector
+    column_data_type: decimal(38,0)
+    comment: dwk_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_subsector
+  - column_name: dwk_sys_business_line_unknown
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_business_line_unknown
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_business_line_unknown
+  - column_name: dwk_sys_subsector_unknown
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_subsector_unknown
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_subsector_unknown
+  - column_name: dwk_worley_reporting_region
+    column_data_type: decimal(38,0)
+    comment: dwk_worley_reporting_region
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_worley_reporting_region
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

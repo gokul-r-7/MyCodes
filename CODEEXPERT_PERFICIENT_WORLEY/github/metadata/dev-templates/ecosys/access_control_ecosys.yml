@@ -1,0 +1,6 @@
+domain_name: project_control
+source_name: ecosys
+databases : 
+  - ${database_prefix}_project_control_ecosys_curated
+  - ${database_prefix}_project_control_ecosys_raw
+  - ${database_prefix}_project_control_transformed

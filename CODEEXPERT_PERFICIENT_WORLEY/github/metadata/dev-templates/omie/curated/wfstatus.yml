@@ -1,0 +1,155 @@
+SourceSystemId: database_omie_curated
+MetadataType: curated#omie#wfstatus#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/omie/wfstatus/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: omie-project
+  name: omie_project
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: integer
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: integer
+    column_name: closed
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: closed
+  - column_data_type: integer
+    column_name: onhold
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: onhold
+  - column_data_type: string
+    column_name: fill
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fill
+  - column_data_type: string
+    column_name: stroke
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stroke
+  - column_data_type: integer
+    column_name: primary
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primary
+  - column_data_type: integer
+    column_name: order
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: order
+  - column_data_type: integer
+    column_name: updated_by_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: updated_by_id
+  - column_data_type: timestamp
+    column_name: mdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mdate
+  - column_data_type: integer
+    column_name: created_by_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: created_by_id
+  - column_data_type: timestamp
+    column_name: cdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cdate
+  - column_data_type: integer
+    column_name: disabled
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: disabled
+  - column_data_type: integer
+    column_name: deleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: deleted
+  - column_data_type: integer
+    column_name: include_req_team
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: include_req_team
+  - column_data_type: integer
+    column_name: include_res_team
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: include_res_team
+  - column_data_type: integer
+    column_name: include_req_contact
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: include_req_contact
+  - column_data_type: integer
+    column_name: include_res_contact
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: include_res_contact    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_omie_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/omie/wfstatus/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_wfstatus
+  load_type: append
+  name: curated_omie_wfstatus
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/omie/wfstatus
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'omie' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

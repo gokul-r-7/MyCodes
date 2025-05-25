@@ -1,0 +1,177 @@
+SourceSystemId: ecosys
+MetadataType: csv_xlsx#ecosys
+aws_region: ${region}
+Env: ${envn}
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: project_control/ecosys/onetimeload/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: project_control/ecosys/onetimeload/parquet/
+  raw_files_path: project_control/ecosys/onetimeload/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: project_control/ecosys/data_sampling/onetimeload
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  csv_files:
+    - filename: ECOSYS_HOURS_CATEGORY.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 26
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: hours_category
+      with_header: true
+    - filename: ECOSYS_COST_CATEGORY.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 26
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: cost_category
+      with_header: true
+    - filename: Ecosys_Global_Phases.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 26
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: global_phases
+      with_header: true
+    - filename: Ecosys_Global_Locations.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 26
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: global_locations
+      with_header: true
+    - filename: ECOSYS_GROSS_MARGIN_CATEGORY.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 26
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: gross_margin_category
+      with_header: true
+    - filename: ECOSYS_PROGRESS_CATEGORY.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 26
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: progress_category
+      with_header: true
+    - filename: ECOSYS_REVENUE_CATEGORY.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 26
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: revenue_category
+      with_header: true
+
+    - filename: budget_grid_cols.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 16
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: budget_grid_cols
+      with_header: true
+
+    - filename: budget_grid_rows.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 16
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: budget_grid_rows
+      with_header: true
+
+    - filename: data_type_switch.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 16
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: data_type_switch
+      with_header: true
+
+    - filename: invoice_due_categories.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 22
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: invoice_due_categories
+      with_header: true
+
+    - filename: progress_type.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 13
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: progress_type
+      with_header: true
+
+    - filename: project_risks.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 13
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_risks
+      with_header: true
+
+    - filename: project_sizes.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 13
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_sizes
+      with_header: true
+
+    - filename: revenue_at_risk.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 15
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: revenue_at_risk
+      with_header: true
+      
+    - filename: our_dates.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 9
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: our_dates
+      with_header: true
+
+name: ecosys
+Namespace: project_control
+

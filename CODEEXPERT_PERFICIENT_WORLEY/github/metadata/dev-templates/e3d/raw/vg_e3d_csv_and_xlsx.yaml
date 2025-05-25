@@ -1,0 +1,152 @@
+SourceSystemId: e3d
+MetadataType: csv_xlsx#vg#mto#e3d
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: engineering/e3d/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: engineering/e3d/parquet/
+  raw_files_path: engineering/e3d/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: engineering/e3d/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  csv_files:
+    - filename: PipeCompWbsRep.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: pipecompwbsrep
+      with_header: true
+    - filename: StrcBeamWbsRep.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: strcbeamwbsrep
+      with_header: true
+    - filename: ElecTrayWbsRep.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: electraywbsrep
+      with_header: true
+    - filename: ElecEquiListRepVglAIM.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: elecequilistrepvglaim
+      with_header: true
+    - filename: ElecEquiWbsRep.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: elecequiwbsrep
+      with_header: true
+    - filename: InstEquiWbsRep.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: instequiwbsrep
+      with_header: true
+    - filename: PipeListRep.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: pipelistrep
+      with_header: true
+    - filename: StrcFdnsWbsRep.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: strcfdnswbsrep
+      with_header: true
+    - filename: StrcPaneWbsRep.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: strcpanewbsrep
+      with_header: true
+  xls_files:   
+    - filename: MEM_Status_VGCP2.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Sheet1
+          tablename: dim_memstatus
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: Dim_Project.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Sheet1
+          tablename: dim_project
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: 3DModelProgressUsers.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Sheet1
+          tablename: dim_3dmodelusers
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+
+          
+name: e3d
+Namespace: engineering
+

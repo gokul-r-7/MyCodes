@@ -1,0 +1,5 @@
+domain_name: engineering
+source_name: mem
+databases : 
+  - ${database_prefix}_engineering_mem_curated
+  - ${database_prefix}_engineering_mem_raw

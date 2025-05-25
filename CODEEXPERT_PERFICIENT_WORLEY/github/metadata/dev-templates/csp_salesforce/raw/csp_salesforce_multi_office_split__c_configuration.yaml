@@ -1,0 +1,26 @@
+SourceSystemId: csp_salesforce
+MetadataType: api#csp_salesforce#multi_office_split__c
+api_parameter:
+  endpoint: '{instance_url}/services/data/v{api_version}/query?q={soql_query}'
+  sf_qualified_api_name: multi_office_split__c
+job_parameter:
+  bucket_data_source_prefix: multi_office_split__c
+  bucket_name: ${raw_bucket}
+  status_timeout: 60
+  input_path: null
+  output_s3: customer/csp_salesforce/multi_office_split__c
+  temp_output_path: temp/customer/csp_salesforce/multi_office_split__c/raw
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: customer/csp_salesforce/data_sampling/multi_office_split__c
+  full_incremental: I
+  index_key: LastModifiedDate
+  incremental_value_format: '{yyyy}-{MM}-{dd}T{HH}:{mm}:{ss}.{SSS}'
+  incremental_default: 2020-01-01T00:00:00.000%2B0000
+  job_process_folder: customer/csp_salesforce/audit_folder
+  job_process_file: multi_office_split__c/multi_office_split__c_process.json
+  is_named_col: true
+  named_columns: Id,IsDeleted,Name,CurrencyIsoCode,CreatedDate,CreatedById,LastModifiedDate,LastModifiedById,SystemModstamp,LastActivityDate,Opportunity__c,Auto_Adjust_Dates__c,Average_Gross_Margin__c,Contains_Legacy_PUs__c,Datasource__c,ECRMigrationExternalID__c,End_Date__c,Executing_BU__c,Executing_LOB__c,GM_Per_Day__c,Gross_Margin__c,Hours__c,Lag__c,Lead__c,Mean_Date__c,Number_of_Days__c,Number_of_Months__c,Performance_Unit_PU__c,Probable_GM_Per_Day__c,Probable_GM__c,Resource_Type__c,Revenue__c,Spreading_Formula__c,Standard_Deviation_Months__c,Standard_Deviation__c,Standard_Deviation_in_Days__c,Start_Date__c,Monthly_Revenue_Spread__c,Revenue_Spread_Total_GM__c,DNU_RSTrigger__c,Advisian_Service_Line__c,Business_Line__c,CRMT_Business_Line__c,CRMT_Id__c,CRMT_Office__c,Contract_Revenue__c,Global_Service_Line__c,Lead_Scope_of_Services__c,Scope_of_Services__c,Worley_Capability_Sector__c,Worley_Capability_Subsector__c,Global_service_Line_SL__c,PCG_Business_Line__c,Service_Line__c,GM_Per_Day_Contract__c,GM_Per_Day_Corp__c,Gross_Margin_Contract__c,Gross_Margin_Corp__c,Probable_GM_Contract__c,Probable_GM_Corp__c,Probable_GM_Per_Day_Contract__c,Probable_GM_Per_Day_Corp__c,Revenue_Contract__c,Revenue_Corp__c,Revenue_Spread_Total_GM_Corp__c,Revenue_Spread_Total_GM_Contract__c,SF_Id_18__c,Business_Segment__c,Fiscal_Values_Updated__c,Is_GID__c,MOS_Scope_of_Services__c,Probable_Revenue_Contract__c,Probable_Revenue_Corp__c,MOS_PCG_Name__c,MOS_PCG_Exclude__c
+is_active: Y
+name: multi_office_split__c
+aws_region: ${region}

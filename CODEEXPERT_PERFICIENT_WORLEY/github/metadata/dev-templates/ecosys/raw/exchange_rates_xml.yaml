@@ -1,0 +1,34 @@
+SourceSystemId: ecosys
+MetadataType: api_xml#ecosys#exchange_rates
+name: exchange_rates
+is_active: y
+api_parameter:
+  api_method: get # Mandatory (Key and Value)
+  api_response_type : xml
+  endpoint: https://ecosys-int.worley.com/ecosys/api/restxml/Exchange_Rates_API/ #Mandatory (Key and Value)
+  api_auth_type: Basic #Mandatory (Key and Value)
+  secret_key: ${secret_prefix}-api-ecosys # This goes into SecretsManager (Mandatory) (Key and Value)
+  api_ssl_verify : False
+  api_retry: 3 #Mandatory (Key and Value)
+  api_timeout: 300 #Mandatory (Key and Value)
+  api_headers: #Mandatory 
+    content_type: application/xml #Mandatory (Key and Value)
+  dynamic_api_headers: #Mandatory
+    Authorization : None #Optional (Key only)
+  api_query_params: None #Mandatory (Key only)
+  dynamic_api_query_param :  #Optional 
+  api_body: None #Mandatory (Key only)
+job_parameter:
+  bucket_name: ${raw_bucket}
+  input_path : project_control/ecosys/
+  full_incr: f
+  table_prefix: exchange_rates
+  secorg_id : None
+  s3_output_uri : project_control/ecosys/exchange_rates/{partition_uri}
+  s3_datasample_path : project_control/ecosys/data_sampling/exchange_rates/
+  raw_data_location: project_control/ecosys/raw_xml/exchange_rates/{partition_uri}
+  xml_api_root_node: Exchange_Rates_APIResult
+  xml_api_array_root_name: Exchange_Rates_API
+  xml_api_array_root_alias_name: exchange_rates
+  xml_api_read_context: exchange_rates_xml
+  kms_key_id: ${kms_key_id}

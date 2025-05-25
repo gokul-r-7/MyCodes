@@ -1,0 +1,19 @@
+SourceSystemId: e3d
+MetadataType: batch#$e3d#${envn}#$e3d
+is_active: true
+aws_region: ${region}
+Pattern: batch
+smb_configuration: 
+  host_url: houfil17.worley.com
+  host_port: 445
+  secret_credentials: worley-datalake-sydney-dev-dbt-smb 
+  destination_bucket: ${raw_bucket} 
+  destination_folder: engineering/e3d/raw
+  kms_key_arn: ${iceberg_snapshot_key}
+  file_archive_flag: false
+  file_delete_flag: false
+  archive_folder: ""
+  source: 
+    - SourcePath: /E3D_Integrated_Reporting/GPDS_E3DMainFiles
+      pattern: VGL-STRUC-10092024.xlsx
+ 

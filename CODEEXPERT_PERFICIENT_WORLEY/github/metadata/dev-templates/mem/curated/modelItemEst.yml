@@ -1,0 +1,126 @@
+---
+SourceSystemId: database_mem_curated
+MetadataType: curated#mem#ModelItemEst#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/mem/ModelItemEst/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: mem-modelItemEst
+  name: mem_modelItemEst
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: modelelementcat
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelelementcat
+  - column_data_type: string
+    column_name: area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area
+  - column_data_type: timestamp
+    column_name: modelitmdatadate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelitmdatadate
+  - column_data_type: short
+    column_name: origestqty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: origestqty
+  - column_data_type: short
+    column_name: currestqty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currestqty
+  - column_data_type: short
+    column_name: estqty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estqty
+  - column_data_type: short
+    column_name: origestqtyallphases
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: origestqtyallphases
+  - column_data_type: short
+    column_name: currestqtyallphases
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currestqtyallphases
+  - column_data_type: short
+    column_name: estqtyallphases
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estqtyallphases
+  - column_data_type: string
+    column_name: estimate change comment
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimate change comment
+  - column_data_type: timestamp
+    column_name: schcompldate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: schcompldate
+  - column_data_type: string
+    column_name: areaok
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areaok
+  - column_data_type: string
+    column_name: areaok1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areaok1
+  - column_data_type: string
+    column_name: areaok11
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areaok11    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_mem_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/mem/ModelItemEst/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_modelitemest
+  load_type: append
+  name: curated_modelitemest
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/mem/curated_modelitemest
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'mem' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

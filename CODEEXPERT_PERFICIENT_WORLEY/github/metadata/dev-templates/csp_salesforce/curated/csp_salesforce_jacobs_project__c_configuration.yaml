@@ -1,0 +1,1256 @@
+SourceSystemId: csp_salesforce_curated
+MetadataType: curated#csp_salesforce#jacobs_project__c#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/customer/csp_salesforce/jacobs_project__c/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: csp_salesforce-jacobs_project__c
+  name: csp_salesforce_jacobs_project__c
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_customer_csp_salesforce_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/customer/csp_salesforce/jacobs_project__c/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_jacobs_project__c
+  load_type: incremental_no_delete
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  db_load:
+    aurora_host: ${aurora_host}
+    aurora_port: '5432'
+    aurora_secret: Worley-datalake-sydney-${envn}-db-csp-salesforce-glueuser
+    aurora_db_name: ${aurora_db}
+    aurora_db_target_table_name: jacobs_project__c
+    aurora_db_target_schema: CSP_Salesforce
+    aurora_data_load_type: append
+    snapshot_s3_bucket: ${raw_bucket}
+    snapshot_s3_key: customer/csp_salesforce/iceberg-to-aurora/snapshot/csp_salesforce/jacobs_project__c/last_processed_snapshot.txt
+    snapshot_s3_kms_key_id: ${iceberg_snapshot_key}
+    primary_key: id
+  name: curated_jacobs_project__c
+  primary_key:
+  - id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/customer/csp_salesforce/jacobs_project__c
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, CAST(lastmodifieddate as timestamp) as lastmodifieddate_ts, 'csp_salesforce'
+    as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key:
+    - id
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: ownerid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ownerid
+  - column_data_type: boolean
+    column_name: isdeleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isdeleted
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: currencyisocode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currencyisocode
+  - column_data_type: string
+    column_name: recordtypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: recordtypeid
+  - column_data_type: string
+    column_name: createddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createddate
+  - column_data_type: string
+    column_name: createdbyid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyid
+  - column_data_type: string
+    column_name: lastmodifieddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastmodifieddate
+  - column_data_type: string
+    column_name: lastmodifiedbyid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastmodifiedbyid
+  - column_data_type: string
+    column_name: systemmodstamp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemmodstamp
+  - column_data_type: string
+    column_name: lastactivitydate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastactivitydate
+  - column_data_type: string
+    column_name: lastvieweddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastvieweddate
+  - column_data_type: string
+    column_name: lastreferenceddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastreferenceddate
+  - column_data_type: string
+    column_name: account_namec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: account_namec
+  - column_data_type: double
+    column_name: actual_cost_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_cost_localc
+  - column_data_type: string
+    column_name: actual_costc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_costc
+  - column_data_type: string
+    column_name: actual_gm_hrc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_gm_hrc
+  - column_data_type: double
+    column_name: actual_gross_margin_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_gross_margin_localc
+  - column_data_type: string
+    column_name: actual_gross_marginc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_gross_marginc
+  - column_data_type: double
+    column_name: actual_revenue_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_revenue_localc
+  - column_data_type: string
+    column_name: actual_revenuec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_revenuec
+  - column_data_type: boolean
+    column_name: actual_value_mismatchc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_value_mismatchc
+  - column_data_type: string
+    column_name: area_of_businessc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_of_businessc
+  - column_data_type: double
+    column_name: b_p_budget_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_budget_localc
+  - column_data_type: string
+    column_name: b_p_budgetc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_budgetc
+  - column_data_type: string
+    column_name: b_p_request_created_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_request_created_datec
+  - column_data_type: string
+    column_name: b_p_requestc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_requestc
+  - column_data_type: double
+    column_name: billable_hoursc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: billable_hoursc
+  - column_data_type: double
+    column_name: budgeted_cost_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_cost_localc
+  - column_data_type: string
+    column_name: budgeted_costc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_costc
+  - column_data_type: string
+    column_name: budgeted_gm_hrc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gm_hrc
+  - column_data_type: string
+    column_name: budgeted_gmc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gmc
+  - column_data_type: string
+    column_name: budgeted_gross_marginc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gross_marginc
+  - column_data_type: double
+    column_name: budgeted_hoursc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_hoursc
+  - column_data_type: double
+    column_name: budgeted_revenue_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_revenue_localc
+  - column_data_type: string
+    column_name: budgeted_revenuec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_revenuec
+  - column_data_type: string
+    column_name: ch2m_dynamics_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ch2m_dynamics_idc
+  - column_data_type: string
+    column_name: contract_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contract_typec
+  - column_data_type: string
+    column_name: controlling_performance_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: controlling_performance_unitc
+  - column_data_type: double
+    column_name: cost_current_month_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_current_month_localc
+  - column_data_type: string
+    column_name: cost_current_monthc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_current_monthc
+  - column_data_type: double
+    column_name: cost_ptd_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_ptd_localc
+  - column_data_type: string
+    column_name: cost_ptdc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_ptdc
+  - column_data_type: double
+    column_name: cost_ytd_localc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_ytd_localc
+  - column_data_type: string
+    column_name: cost_ytdc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_ytdc
+  - column_data_type: string
+    column_name: cost_budget_last_update_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_budget_last_update_datec
+  - column_data_type: boolean
+    column_name: cross_chargec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cross_chargec
+  - column_data_type: string
+    column_name: datasourcec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datasourcec
+  - column_data_type: string
+    column_name: ecrmigrationexternalidc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ecrmigrationexternalidc
+  - column_data_type: string
+    column_name: fiscal_yearc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fiscal_yearc
+  - column_data_type: string
+    column_name: govt_agencyc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: govt_agencyc
+  - column_data_type: string
+    column_name: jacobs_sales_lead_employee_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jacobs_sales_lead_employee_numberc
+  - column_data_type: string
+    column_name: jacobs_sales_leadc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jacobs_sales_leadc
+  - column_data_type: string
+    column_name: legacyvisionidc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: legacyvisionidc
+  - column_data_type: string
+    column_name: legal_entityc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: legal_entityc
+  - column_data_type: string
+    column_name: line_of_businessc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_of_businessc
+  - column_data_type: string
+    column_name: local_currencyc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: local_currencyc
+  - column_data_type: string
+    column_name: market_sectorc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: market_sectorc
+  - column_data_type: double
+    column_name: nonbillable_hoursc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonbillable_hoursc
+  - column_data_type: string
+    column_name: office_receiving_cross_chargec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: office_receiving_cross_chargec
+  - column_data_type: string
+    column_name: operating_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_unitc
+  - column_data_type: string
+    column_name: opportunityc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: opportunityc
+  - column_data_type: string
+    column_name: oracle_account_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: oracle_account_idc
+  - column_data_type: string
+    column_name: ptd_projectc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ptd_projectc
+  - column_data_type: string
+    column_name: pu_descriptionc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pu_descriptionc
+  - column_data_type: string
+    column_name: performance_unit_manual_entryc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: performance_unit_manual_entryc
+  - column_data_type: string
+    column_name: program_contract_newc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: program_contract_newc
+  - column_data_type: string
+    column_name: project_accountant_employee_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_accountant_employee_numberc
+  - column_data_type: string
+    column_name: project_accountantc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_accountantc
+  - column_data_type: string
+    column_name: project_codec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_codec
+  - column_data_type: string
+    column_name: project_estimated_completion_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_estimated_completion_datec
+  - column_data_type: string
+    column_name: project_id_fy_keyc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id_fy_keyc
+  - column_data_type: string
+    column_name: project_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_idc
+  - column_data_type: string
+    column_name: project_long_namec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_long_namec
+  - column_data_type: string
+    column_name: project_manager_employee_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_manager_employee_numberc
+  - column_data_type: string
+    column_name: project_managerc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_managerc
+  - column_data_type: string
+    column_name: project_start_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_start_datec
+  - column_data_type: string
+    column_name: project_statusc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_statusc
+  - column_data_type: string
+    column_name: project_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_typec
+  - column_data_type: string
+    column_name: reported_business_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reported_business_unitc
+  - column_data_type: string
+    column_name: reported_line_of_businessc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reported_line_of_businessc
+  - column_data_type: string
+    column_name: reported_performance_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reported_performance_unitc
+  - column_data_type: string
+    column_name: request_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: request_typec
+  - column_data_type: string
+    column_name: service_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: service_typec
+  - column_data_type: boolean
+    column_name: status_mismatchc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status_mismatchc
+  - column_data_type: string
+    column_name: sub_market_descriptionc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_market_descriptionc
+  - column_data_type: string
+    column_name: task_validationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: task_validationc
+  - column_data_type: string
+    column_name: variance_gmc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: variance_gmc
+  - column_data_type: string
+    column_name: variance_revenuec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: variance_revenuec
+  - column_data_type: string
+    column_name: work_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: work_typec
+  - column_data_type: boolean
+    column_name: cb_confidentialc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cb_confidentialc
+  - column_data_type: string
+    column_name: lr_clientc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lr_clientc
+  - column_data_type: double
+    column_name: nu_workhoursc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nu_workhoursc
+  - column_data_type: string
+    column_name: txt_business_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: txt_business_unitc
+  - column_data_type: string
+    column_name: txt_descriptionc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: txt_descriptionc
+  - column_data_type: string
+    column_name: txt_externally_communicated_project_namec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: txt_externally_communicated_project_namec
+  - column_data_type: string
+    column_name: txt_project_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: txt_project_numberc
+  - column_data_type: double
+    column_name: actual_cost_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_cost_contractc
+  - column_data_type: double
+    column_name: actual_cost_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_cost_corpc
+  - column_data_type: double
+    column_name: actual_gm_hr_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_gm_hr_contractc
+  - column_data_type: double
+    column_name: actual_gm_hr_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_gm_hr_corpc
+  - column_data_type: double
+    column_name: actual_gross_margin_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_gross_margin_contractc
+  - column_data_type: double
+    column_name: actual_gross_margin_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_gross_margin_corpc
+  - column_data_type: double
+    column_name: actual_revenue_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_revenue_contractc
+  - column_data_type: double
+    column_name: actual_revenue_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_revenue_corpc
+  - column_data_type: double
+    column_name: b_p_budget_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_budget_contractc
+  - column_data_type: double
+    column_name: b_p_budget_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_budget_corpc
+  - column_data_type: double
+    column_name: budgeted_cost_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_cost_contractc
+  - column_data_type: double
+    column_name: budgeted_cost_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_cost_corpc
+  - column_data_type: string
+    column_name: budgeted_gm_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gm_contractc
+  - column_data_type: double
+    column_name: budgeted_gm_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gm_corpc
+  - column_data_type: string
+    column_name: budgeted_gm_hr_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gm_hr_contractc
+  - column_data_type: double
+    column_name: budgeted_gm_hr_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gm_hr_corpc
+  - column_data_type: double
+    column_name: budgeted_gross_margin_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gross_margin_contractc
+  - column_data_type: double
+    column_name: budgeted_gross_margin_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_gross_margin_corpc
+  - column_data_type: double
+    column_name: budgeted_revenue_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_revenue_contractc
+  - column_data_type: double
+    column_name: budgeted_revenue_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgeted_revenue_corpc
+  - column_data_type: double
+    column_name: cost_current_month_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_current_month_contractc
+  - column_data_type: double
+    column_name: cost_current_month_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_current_month_corpc
+  - column_data_type: double
+    column_name: cost_ptd_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_ptd_contractc
+  - column_data_type: double
+    column_name: cost_ptd_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_ptd_corpc
+  - column_data_type: double
+    column_name: cost_ytd_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_ytd_contractc
+  - column_data_type: double
+    column_name: cost_ytd_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cost_ytd_corpc
+  - column_data_type: double
+    column_name: exchange_rate_lookupc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: exchange_rate_lookupc
+  - column_data_type: string
+    column_name: project_current_exchange_ratec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_current_exchange_ratec
+  - column_data_type: double
+    column_name: variance_gm_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: variance_gm_contractc
+  - column_data_type: double
+    column_name: variance_gm_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: variance_gm_corpc
+  - column_data_type: double
+    column_name: variance_revenue_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: variance_revenue_contractc
+  - column_data_type: double
+    column_name: variance_revenue_corpc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: variance_revenue_corpc
+  - column_data_type: string
+    column_name: accountidc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: accountidc
+  - column_data_type: string
+    column_name: advisian_service_line_reportingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: advisian_service_line_reportingc
+  - column_data_type: string
+    column_name: advisian_service_linec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: advisian_service_linec
+  - column_data_type: string
+    column_name: asset_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: asset_typec
+  - column_data_type: boolean
+    column_name: automated_finance_integrationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: automated_finance_integrationc
+  - column_data_type: double
+    column_name: b_p_labor_hoursc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_labor_hoursc
+  - column_data_type: string
+    column_name: b_p_project_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_project_numberc
+  - column_data_type: string
+    column_name: bill_to_addressc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: bill_to_addressc
+  - column_data_type: string
+    column_name: billing_locationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: billing_locationc
+  - column_data_type: string
+    column_name: billing_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: billing_typec
+  - column_data_type: string
+    column_name: business_linec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: business_linec
+  - column_data_type: string
+    column_name: business_segment_reportingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: business_segment_reportingc
+  - column_data_type: string
+    column_name: business_segmentc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: business_segmentc
+  - column_data_type: string
+    column_name: csp_project_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: csp_project_numberc
+  - column_data_type: string
+    column_name: capability_subsector_reportingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: capability_subsector_reportingc
+  - column_data_type: string
+    column_name: capability_subsectorc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: capability_subsectorc
+  - column_data_type: string
+    column_name: contract_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contract_numberc
+  - column_data_type: string
+    column_name: contractual_basis_definitionsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractual_basis_definitionsc
+  - column_data_type: string
+    column_name: contractual_basisc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractual_basisc
+  - column_data_type: string
+    column_name: country_of_assetc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: country_of_assetc
+  - column_data_type: string
+    column_name: currencyc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currencyc
+  - column_data_type: string
+    column_name: customer_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_idc
+  - column_data_type: string
+    column_name: customer_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_typec
+  - column_data_type: boolean
+    column_name: digital_projectc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: digital_projectc
+  - column_data_type: double
+    column_name: duration_monthsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: duration_monthsc
+  - column_data_type: string
+    column_name: ecr_project_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ecr_project_numberc
+  - column_data_type: string
+    column_name: final_approved_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: final_approved_datec
+  - column_data_type: string
+    column_name: first_doa_approverc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: first_doa_approverc
+  - column_data_type: string
+    column_name: gbs_advisian_business_linec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_advisian_business_linec
+  - column_data_type: string
+    column_name: gbs_business_line_reportingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_business_line_reportingc
+  - column_data_type: string
+    column_name: gbs_business_linec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_business_linec
+  - column_data_type: string
+    column_name: gbs_customer_subsector_reportingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_customer_subsector_reportingc
+  - column_data_type: string
+    column_name: gbs_customer_subsectorc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_customer_subsectorc
+  - column_data_type: string
+    column_name: gbs_legal_entityc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_legal_entityc
+  - column_data_type: string
+    column_name: gbs_location_reportingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_location_reportingc
+  - column_data_type: string
+    column_name: gbs_locationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_locationc
+  - column_data_type: string
+    column_name: gbs_project_accountantc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_project_accountantc
+  - column_data_type: string
+    column_name: gbs_project_controllerc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_project_controllerc
+  - column_data_type: string
+    column_name: gbs_project_initiatorc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_project_initiatorc
+  - column_data_type: string
+    column_name: gbs_project_managerc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_project_managerc
+  - column_data_type: string
+    column_name: gbs_project_orgc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_project_orgc
+  - column_data_type: string
+    column_name: getc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: getc
+  - column_data_type: string
+    column_name: goc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: goc
+  - column_data_type: string
+    column_name: integration_statusc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: integration_statusc
+  - column_data_type: string
+    column_name: location_operating_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: location_operating_unitc
+  - column_data_type: string
+    column_name: npis_project_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: npis_project_typec
+  - column_data_type: string
+    column_name: opportunity_primary_location_statusc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: opportunity_primary_location_statusc
+  - column_data_type: string
+    column_name: project_controller_employee_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_controller_employee_numberc
+  - column_data_type: string
+    column_name: project_controllerc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_controllerc
+  - column_data_type: string
+    column_name: project_phase_reportingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_phase_reportingc
+  - column_data_type: string
+    column_name: project_phasec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_phasec
+  - column_data_type: string
+    column_name: project_risk_classificationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_risk_classificationc
+  - column_data_type: double
+    column_name: proposal_budgetc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proposal_budgetc
+  - column_data_type: string
+    column_name: proposal_managerc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proposal_managerc
+  - column_data_type: string
+    column_name: purchase_order_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: purchase_order_numberc
+  - column_data_type: boolean
+    column_name: refresh_financial_detailsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: refresh_financial_detailsc
+  - column_data_type: string
+    column_name: refresh_instructionsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: refresh_instructionsc
+  - column_data_type: string
+    column_name: scope_of_servicesc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scope_of_servicesc
+  - column_data_type: string
+    column_name: second_doa_approverc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: second_doa_approverc
+  - column_data_type: string
+    column_name: ship_to_addressc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ship_to_addressc
+  - column_data_type: string
+    column_name: site_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_numberc
+  - column_data_type: string
+    column_name: technology_classificationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: technology_classificationc
+  - column_data_type: boolean
+    column_name: toastshownc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: toastshownc
+  - column_data_type: string
+    column_name: sf_id_18c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sf_id_18c
+  - column_data_type: string
+    column_name: oracle_account_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: oracle_account_numberc
+  - column_data_type: boolean
+    column_name: ped_record_updatedc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ped_record_updatedc
+  - column_data_type: string
+    column_name: market_segment_l3c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: market_segment_l3c
+  - column_data_type: string
+    column_name: project_classificationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_classificationc

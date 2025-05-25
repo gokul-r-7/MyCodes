@@ -1,0 +1,54 @@
+SourceSystemId: ecosys_curated
+MetadataType: curated#ecosys#data_type_switch#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/project_control/ecosys/onetimeload/parquet/data_type_switch.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: ecosys_data_type_switch
+  name: ecosys_data_type_switch
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: data_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: Data_Type
+  - column_data_type: string
+    column_name: display_order
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: Display_Order
+  schema_properties:
+    enforce: false
+    # primary_key: []
+    rename_columns: false
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_ecosys_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/project_control/ecosys/data_type_switch/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_ecosys_data_type_switch
+  load_type: full_load
+  name: ecosys_data_type_switch
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/project_control/ecosys/data_type_switch/
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'ecosys' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

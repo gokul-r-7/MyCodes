@@ -1,0 +1,199 @@
+SourceSystemId: hcm_extracts_curated
+MetadataType: curated#people#job_extract#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_people_bucket}/oracle/people/hcm_extracts/parquet/job_extract.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: hcm_extracts-job_extract
+  name: hcm_extracts_job_extract
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_people_oracle_hcm_extracts_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/people/oracle/hcm_extracts/job_extract/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_job_extract
+  load_type: incremental
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  name: curated_job_extract
+  primary_key: &id001
+  - job_id
+  - benchmark_job_id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/people/oracle/hcm_curated/job_extract
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'hcm_extracts' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: *id001
+    rename_columns: true
+  columns:
+  - column_data_type: int
+    column_name: action_occurrence_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ACTIONOCCURRENCEID
+  - column_data_type: string
+    column_name: active_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ACTIVESTATUS
+  - column_data_type: string
+    column_name: benchmark_job_flag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: BENCHMARKJOBFLAG
+  - column_data_type: int
+    column_name: benchmark_job_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: BENCHMARKJOBID
+  - column_data_type: int
+    column_name: business_group_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: BUSINESSGROUPID
+  - column_data_type: string
+    column_name: category_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: CATEGORYCODE
+  - column_data_type: string
+    column_name: source_created_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: CREATEDBY
+  - column_data_type: date
+    column_name: source_effective_end_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVEENDDATE
+  - column_data_type: date
+    column_name: source_effective_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVESTARTDATE
+  - column_data_type: string
+    column_name: full_part_time
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: FULLPARTTIME
+  - column_data_type: int
+    column_name: grade_ladder_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADELADDERID
+  - column_data_type: string
+    column_name: job_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: JOBCODE
+  - column_data_type: int
+    column_name: job_family_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: JOBFAMILYID
+  - column_data_type: string
+    column_name: job_function_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: JOBFUNCTIONCODE
+  - column_data_type: int
+    column_name: job_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: JOBID
+  - column_data_type: string
+    column_name: language
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: JOBTRANSLATIONPEOLANGUAGE
+  - column_data_type: timestamp
+    column_name: source_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LASTUPDATEDATE
+  - column_data_type: string
+    column_name: source_last_updated_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LASTUPDATEDBY
+  - column_data_type: string
+    column_name: manager_level
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: MANAGERLEVEL
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: JOBTRANSLATIONPEONAME
+  - column_data_type: int
+    column_name: progression_job_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PROGRESSIONJOBID
+  - column_data_type: string
+    column_name: regular_temporary
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: REGULARTEMPORARY
+  - column_data_type: int
+    column_name: set_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: SETID
+  - column_data_type: string
+    column_name: source_lang
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: JOBTRANSLATIONPEOSOURCELANG

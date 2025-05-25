@@ -1,0 +1,394 @@
+SourceSystemId: e3d
+MetadataType: csv_xlsx#vg#main#e3d
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: engineering/e3d/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: engineering/e3d/parquet/
+  raw_files_path: engineering/e3d/raw/GPDS_E3DMainFiles/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: engineering/e3d/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  xls_files:
+    - filename: VGL-EQUIP-18062024.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 9
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Sheet1
+          tablename: vg_e3d_vglequip_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: VGL-PIPES-18062024.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 9
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Sheet1
+          tablename: vg_e3d_vglpipes_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: VGL-STRUC-18062024.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 9
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Sheet1
+          tablename: vg_e3d_vglstruc_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: VGL-PIPESUPPORT-18062024.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 9
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Sheet1
+          tablename: vg_e3d_pipesupport_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: VGL-GENSEC-ALL-18062024.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 9
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: AS-AWB
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: BS-TNK
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: CS-MPR
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: ES-PIS
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: FS-BOP
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: KS-BOP
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: LS-LFM
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: MS-MAR
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: NS-NRU
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: OS-OEC
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: PS-PTM
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: SS-BOP
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: TS-TNK
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: US-BOP
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: WS-BOP
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: GS-GEN
+          tablename: vg_e3d_gensec_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: VGL-FLOOR-18062024.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 9
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: AS-AWB
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: BS-TNK
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: CS-MPR
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: ES-PIS
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: FS-BOP
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: KS-BOP
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: LS-LFM
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: MS-MAR
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: NS-NRU
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: OS-OEC
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: PS-PTM
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: SS-BOP
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: TS-TNK
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: US-BOP
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: WS-BOP
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: GS-GEN
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+
+          tablename: vg_e3d_floor_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+
+          
+name: e3d
+Namespace: engineering
+

@@ -1,0 +1,287 @@
+SourceSystemId: database_spel_curated
+MetadataType: curated#spel#T_ElectricalEquipment#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spel/T_ElectricalEquipment/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spel-electricalEquipment
+  name: spel_electricalEquipment
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: integer
+    column_name: ratedvoltage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ratedvoltage
+  - column_data_type: integer
+    column_name: numberofwires
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: numberofwires
+  - column_data_type: string
+    column_name: serialnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: serialnumber
+  - column_data_type: integer
+    column_name: contractornumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractornumber
+  - column_data_type: integer
+    column_name: contractorname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractorname
+  - column_data_type: integer
+    column_name: frequency
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: frequency
+  - column_data_type: integer
+    column_name: mounting
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mounting
+  - column_data_type: integer
+    column_name: criticality
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: criticality
+  - column_data_type: string
+    column_name: secondarytag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secondarytag
+  - column_data_type: integer
+    column_name: areaclassification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areaclassification
+  - column_data_type: integer
+    column_name: seasonalconditions
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: seasonalconditions
+  - column_data_type: integer
+    column_name: specialoperatingconditions
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: specialoperatingconditions
+  - column_data_type: double
+    column_name: seasonalfactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: seasonalfactor
+  - column_data_type: integer
+    column_name: designtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: designtype
+  - column_data_type: integer
+    column_name: indooroutdoorflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: indooroutdoorflag
+  - column_data_type: integer
+    column_name: buildingname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: buildingname
+  - column_data_type: string
+    column_name: sp_refprofileid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_refprofileid
+  - column_data_type: string
+    column_name: sp_refcircuitid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_refcircuitid
+  - column_data_type: integer
+    column_name: isload
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isload
+  - column_data_type: integer
+    column_name: framesize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: framesize
+  - column_data_type: string
+    column_name: processequipmentname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: processequipmentname
+  - column_data_type: integer
+    column_name: phasearrangement
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasearrangement
+  - column_data_type: double
+    column_name: voltagetolerance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: voltagetolerance
+  - column_data_type: integer
+    column_name: flacalculationflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: flacalculationflag
+  - column_data_type: integer
+    column_name: phase1usage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phase1usage
+  - column_data_type: integer
+    column_name: phase2usage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phase2usage
+  - column_data_type: integer
+    column_name: phase3usage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phase3usage
+  - column_data_type: string
+    column_name: sp_resistorid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_resistorid
+  - column_data_type: string
+    column_name: sp_refcontrolstationid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_refcontrolstationid
+  - column_data_type: integer
+    column_name: framematerial
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: framematerial
+  - column_data_type: string
+    column_name: sp_processequipmentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_processequipmentid
+  - column_data_type: integer
+    column_name: sp_alternateoperatingmode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_alternateoperatingmode
+  - column_data_type: integer
+    column_name: vg_location
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_location
+  - column_data_type: integer
+    column_name: vg_lpsno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_lpsno
+  - column_data_type: integer
+    column_name: vg_scopeprojphase
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_scopeprojphase
+  - column_data_type: integer
+    column_name: vg_arealimits
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_arealimits
+  - column_data_type: integer
+    column_name: vg_equptypecode_elecequip
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_equptypecode_elecequip
+  - column_data_type: string
+    column_name: vg_cwpzones_elecequip
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_cwpzones_elecequip
+  - column_data_type: integer
+    column_name: vg_owner_elecequip
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_owner_elecequip
+  - column_data_type: string
+    column_name: vg_parenttag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_parenttag    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spel_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spel/T_ElectricalEquipment/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_electricalequipment
+  load_type: append
+  name: curated_t_electricalequipment
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spel/curated_t_electricalequipment
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spel' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

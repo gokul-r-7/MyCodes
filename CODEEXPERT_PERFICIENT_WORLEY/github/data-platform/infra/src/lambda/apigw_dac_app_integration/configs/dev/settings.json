@@ -1,0 +1,7 @@
+{
+    "aws_account_id" : "891377181979",
+    "redshift_host": "worley-datawarehouse-sydney-dev-redshift",
+    "redshift_serverless_host": "worley-datalake-sydney-dev-redshift-serverless-workgroup",
+    "redshift_serverless_idc_application_arn": "arn:aws:sso::637423194134:application/ssoins-82599c89c0dd6c44/apl-9cd5a2ab2cdcdd8c",
+    "redshift_serverless_secret_arn": "arn:aws:secretsmanager:ap-southeast-2:891377181979:secret:redshift-worley-datalake-sydney-dev-redshift-serverless-namespace-api-dac-user-Owjgv6"
+}

@@ -1,0 +1,233 @@
+MetadataType: curated#o3#contracts#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/contracts/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_contracts
+  name: o3_contracts
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    primary_key: [projectid,name]
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: projectinfo
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectinfo
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: statusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statusid
+  - column_data_type: string
+    column_name: status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: constructionleaduserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionleaduserid
+  - column_data_type: string
+    column_name: constructionleaduser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionleaduser
+  - column_data_type: string
+    column_name: engineeringleaduserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: engineeringleaduserid
+  - column_data_type: string
+    column_name: engineeringleaduser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: engineeringleaduser
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: longdescription
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: longdescription
+  - column_data_type: string
+    column_name: externallink
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallink
+  - column_data_type: string
+    column_name: revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revision
+  - column_data_type: string
+    column_name: contractors
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractors
+  - column_data_type: string
+    column_name: projectteams
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectteams
+  - column_data_type: string
+    column_name: percentdocumented
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentdocumented
+  - column_data_type: string
+    column_name: percentdocumentedinclusive
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentdocumentedinclusive
+  - column_data_type: string
+    column_name: percentconstraintfree
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentconstraintfree
+  - column_data_type: string
+    column_name: percentdelayfree
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentdelayfree
+  - column_data_type: string
+    column_name: percentapproved
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentapproved
+  - column_data_type: string
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: createdbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuserid
+  - column_data_type: string
+    column_name: createdbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuser
+  - column_data_type: string
+    column_name: datemodified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datemodified
+  - column_data_type: string
+    column_name: modifiedbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuserid
+  - column_data_type: string
+    column_name: modifiedbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuser
+  - column_data_type: string
+    column_name: isdeleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isdeleted
+  - column_data_type: string
+    column_name: contractgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractgroupid
+  - column_data_type: string
+    column_name: contractgroup
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractgroup
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: datemodified_ts
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/contracts/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_contracts
+  load_type: incremental_no_delete
+  name: curated_o3_contracts
+  primary_key: [projectid,name]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/contracts
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, CAST(datemodified as timestamp) as datemodified_ts, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,127 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#ril_min_number#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/parquet/ril_min_number.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: ril_min_number
+    format_options:
+      mergeSchema: true
+  name: ril_min_number
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: project_id
+    comment: project_id
+    data_classification: 
+    nullable: false
+    raw_column_name: project_id
+  - column_data_type: string
+    column_name: sitemtohdrid
+    comment: sitemtohdrid
+    data_classification: 
+    nullable: true
+    raw_column_name: sitemtohdrid
+  - column_data_type: string
+    column_name: productiondate
+    comment: productiondate
+    data_classification: 
+    nullable: false
+    raw_column_name: productiondate
+  - column_data_type: string
+    column_name: materialid
+    comment: materialid
+    data_classification: 
+    nullable: true
+    raw_column_name: materialid
+  - column_data_type: string
+    column_name: quan
+    comment: quan
+    data_classification: 
+    nullable: true
+    raw_column_name: quan
+  - column_data_type: string
+    column_name: uom
+    comment: uom
+    data_classification: 
+    nullable: true
+    raw_column_name: uom
+  - column_data_type: string
+    column_name: sitemtolineitemid
+    comment: sitemtolineitemid
+    data_classification: 
+    nullable: true
+    raw_column_name: sitemtolineitemid
+  - column_data_type: string
+    column_name: store
+    comment: store
+    data_classification: 
+    nullable: true
+    raw_column_name: store
+  - column_data_type: string
+    column_name: fabcat
+    comment: fabcat
+    data_classification: 
+    nullable: true
+    raw_column_name: fabcat
+  - column_data_type: string
+    column_name: location
+    comment: location
+    data_classification: 
+    nullable: true
+    raw_column_name: location
+  - column_data_type: string
+    column_name: voucherno
+    comment: voucherno
+    data_classification: 
+    nullable: true
+    raw_column_name: voucherno
+  - column_data_type: string
+    column_name: voucheritemno
+    comment: voucheritemno
+    data_classification: 
+    nullable: true
+    raw_column_name: voucheritemno
+  - column_data_type: string
+    column_name: transtype
+    comment: transtype
+    data_classification: 
+    nullable: true
+    raw_column_name: transtype
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/ril_min_number/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: ril_min_number
+  name: ril_min_number
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/ril_min_number/
+  load_type: full_load
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

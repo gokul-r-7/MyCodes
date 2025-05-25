@@ -1,0 +1,9 @@
+databases:
+  - name: worley_datalake_sydney_dev_glue_catalog_database_vg_e3d
+    groups:
+      - a94eb478-b051-70e8-c9ec-95325e189b65
+
+  - name: worley_datalake_sydney_dev_glue_catalog_database_aconex
+    groups:
+      - a94eb478-b051-70e8-c9ec-95325e189b65
+      

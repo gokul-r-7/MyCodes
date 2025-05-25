@@ -1,0 +1,102 @@
+SourceSystemId: hcm_extracts_curated
+MetadataType: curated#people#person_types_translation#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_people_bucket}/oracle/people/hcm_extracts/parquet/person_types_translation.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: hcm_extracts-person_types_translation
+  name: hcm_extracts_person_types_translation
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_people_oracle_hcm_extracts_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/people/oracle/hcm_extracts/person_types_translation/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_person_types_translation
+  load_type: incremental
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  name: curated_person_types_translation
+  primary_key: &id001
+  - person_type_id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/people/oracle/hcm_curated/person_types_translation
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'hcm_extracts' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: *id001
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: source_created_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONTYPESTRANSLATIONPEOCREATEDBY
+  - column_data_type: timestamp
+    column_name: source_creation_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONTYPESTRANSLATIONPEOCREATIONDATE
+  - column_data_type: string
+    column_name: language
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LANGUAGE
+  - column_data_type: timestamp
+    column_name: source_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONTYPESTRANSLATIONPEOLASTUPDATEDATE
+  - column_data_type: string
+    column_name: source_last_updated_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONTYPESTRANSLATIONPEOLASTUPDATEDBY
+  - column_data_type: int
+    column_name: person_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONTYPEID
+  - column_data_type: string
+    column_name: source_lang
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONTYPESTRANSLATIONPEOSOURCELANG
+  - column_data_type: string
+    column_name: user_person_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONTYPESTRANSLATIONPEOUSERPERSONTYPE

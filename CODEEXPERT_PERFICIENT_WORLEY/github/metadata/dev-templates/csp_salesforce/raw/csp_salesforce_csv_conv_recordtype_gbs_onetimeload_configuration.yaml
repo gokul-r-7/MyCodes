@@ -1,0 +1,38 @@
+SourceSystemId: csp_salesforce
+MetadataType: conv_recordtype_gbs#csp_salesforce
+aws_region: ap-southeast-2
+Env: dev   
+is_active: y
+job_parameter:
+  archive:
+    archive_format: csv
+    archive_prefix: customer/snowflake_archive/
+    enabled: false
+    include_timestamp_in_name: false
+  bucket_name: ${raw_bucket}
+  csv_files:
+    - filename: Table_conv_RecordTypeGBS.csv
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: table_conv_recordtype_gbs
+      with_header: true
+  csv_files_path: customer/csp_salesforce/SalesforceOneTimeLoadFiles/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: customer/csp_salesforce/conv_tables/
+  raw_files_path: customer/csp_salesforce/SalesforceOneTimeLoadFiles/
+  replacement_char: _
+  kms_key_arn: ${iceberg_snapshot_key}
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: customer/csp_salesforce/data_sampling/conv_recordtype_gbs
+  sampling_fraction: 0.5
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+name: onetimeloads
+Namespace: salesforce
+    

@@ -1,0 +1,230 @@
+---
+SourceSystemId: people
+MetadataType: people#hcm_extracts
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${people_raw_bucket}
+  csv_files_path: people/oracle/hcm_extracts/csv
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: people/oracle/hcm_extracts/parquet
+  raw_files_path: people/oracle/hcm_extracts/raw
+  archive_raw_files_path: people/oracle/hcm_extracts/archive
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: people/oracle/hcm_extracts/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  pii_protected_table_names:
+    - person_legislative_info
+  csv_files:
+    - filename: file_hcmtopmodelanalyticsglobalam_locationam_hrlocationspvoviewall-batch1329357294-20250418_105013.csv
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_locationam_hrlocationspvoviewall
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: hr_location
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_actionam_actionreasonspvo-batch1783528623-20250418_044815.csv
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_actionam_actionreasonspvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: action_reasons
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_actionam_actionspvo-batch1657683069-20250418_052855.csv
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_actionam_actionspvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: action
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_assignmentam_assignmentstatustypespvo-batch2083489230-20250418_054309.csv
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_assignmentam_assignmentstatustypespvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: assignment_status_type
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_assignmentam_assignmentpvo-batch630152617-20250424_052002.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_assignmentam_assignmentpvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: assignment
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_assignmentam_assignmentworkmeasurepvo-batch630152617-20250424_052008.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_assignmentam_assignmentworkmeasurepvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: assignment_work_measure
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_gradeam_gradepvo-batch776425643-20250418_055404.csv
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_gradeam_gradepvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: grade
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_jobam_jobextractpvo-batch375270213-20250418_064102.csv
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_jobam_jobextractpvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: job_extract
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_assignmentam_workrelationshippvo-batch630152617-20250424_052008.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_assignmentam_workrelationshippvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: work_relationship
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_hcmpaycoream_payrollpvo-batch2057027237-20250424_051944.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_hcmpaycoream_payrollpvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: payroll
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_organizationam_organizationpvo-batch2057027237-20250424_052003.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_organizationam_organizationpvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: organization
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_personam_emailaddressespvoviewall-batch630152617-20250424_052008.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_personam_emailaddressespvoviewall
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person_email
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_personam_externalidentifierpvo-batch630152617-20250424_052013.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_personam_externalidentifierpvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: external_identifier
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_personam_persondetailspvoviewall-batch630152617-20250424_052015.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_personam_persondetailspvoviewall
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person_details
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_personam_personlegislativeinfopvoviewall-batch630152617-20250424_052018.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_personam_personlegislativeinfopvoviewall
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person_legislative
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_personam_personnamepvoviewall-batch630152617-20250424_052021.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_personam_personnamepvoviewall
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person_name
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+    - filename: file_hcmtopmodelanalyticsglobalam_personam_persontypestranslationpvo-batch2057027237-20250424_052001.zip
+      zipped_file_name: file_hcmtopmodelanalyticsglobalam_personam_persontypestranslationpvo
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 32
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person_types_translation
+      with_header: true
+      archive_source_file: true
+      delete_source_file: false
+name: oracle_oci_hcm_extracts
+Namespace: global

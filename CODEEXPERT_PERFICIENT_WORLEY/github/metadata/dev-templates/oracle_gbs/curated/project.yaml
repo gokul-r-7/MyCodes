@@ -1,0 +1,220 @@
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#project#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/project.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: project
+  name: project
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/project/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: project
+  load_type: incremental_no_delete
+  name: project
+  primary_key: br_key
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/project
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: br_key
+    rename_columns: true
+  columns:
+  - column_name: datasource_num_id
+    column_data_type: decimal(38,0)
+    comment: datasource_num_id
+    data_classification:
+    nullable: true
+    raw_column_name: datasource_num_id  
+  - column_name: br_key
+    column_data_type: decimal(38,0)
+    comment: br_key
+    data_classification:
+    nullable: true
+    raw_column_name: br_key
+  - column_name: project_id
+    column_data_type: decimal(38,0)
+    comment: project_id
+    data_classification:
+    nullable: true
+    raw_column_name: project_id
+  - column_name: project_organization_number
+    column_data_type: decimal(38,0)
+    comment: project_organization_number
+    data_classification:
+    nullable: true
+    raw_column_name: project_organization_number
+  - column_name: project_number
+    column_data_type: string
+    comment: project_number
+    data_classification:
+    nullable: true
+    raw_column_name: project_number
+  - column_name: project_type
+    column_data_type: string
+    comment: project_type
+    data_classification:
+    nullable: true
+    raw_column_name: project_type
+  - column_name: project_type_id
+    column_data_type: decimal(38,0)
+    comment: project_type_id
+    data_classification:
+    nullable: true
+    raw_column_name: project_type_id
+  - column_name: current_project_status
+    column_data_type: string
+    comment: current_project_status
+    data_classification:
+    nullable: true
+    raw_column_name: current_project_status
+  - column_name: project_curr_code
+    column_data_type: string
+    comment: project_curr_code
+    data_classification:
+    nullable: true
+    raw_column_name: project_curr_code
+  - column_name: project_start_date
+    column_data_type: string
+    comment: project_start_date
+    data_classification:
+    nullable: true
+    raw_column_name: project_start_date
+  - column_name: project_completion_date
+    column_data_type: string
+    comment: project_completion_date
+    data_classification:
+    nullable: true
+    raw_column_name: project_completion_date
+  - column_name: project_close_date
+    column_data_type: string
+    comment: project_close_date
+    data_classification:
+    nullable: true
+    raw_column_name: project_close_date
+  - column_name: project_size_class
+    column_data_type: string
+    comment: project_size_class
+    data_classification:
+    nullable: true
+    raw_column_name: project_size_class
+  - column_name: project_name
+    column_data_type: string
+    comment: project_name
+    data_classification:
+    nullable: true
+    raw_column_name: project_name
+  - column_name: project_description
+    column_data_type: string
+    comment: project_description
+    data_classification:
+    nullable: true
+    raw_column_name: project_description
+  - column_name: capability_subsector_id
+    column_data_type: string
+    comment: capability_subsector_id
+    data_classification:
+    nullable: true
+    raw_column_name: capability_subsector_id
+  - column_name: capability_subsector_type_id
+    column_data_type: string
+    comment: capability_subsector_type_id
+    data_classification:
+    nullable: true
+    raw_column_name: capability_subsector_type_id
+  - column_name: scope_of_service_type
+    column_data_type: string
+    comment: scope_of_service_type
+    data_classification:
+    nullable: true
+    raw_column_name: scope_of_service_type
+  - column_name: consulting_service_line_code
+    column_data_type: string
+    comment: consulting_service_line_code
+    data_classification:
+    nullable: true
+    raw_column_name: consulting_service_line_code
+  - column_name: project_billing_type
+    column_data_type: string
+    comment: project_billing_type
+    data_classification:
+    nullable: true
+    raw_column_name: project_billing_type
+  - column_name: service_type
+    column_data_type: string
+    comment: service_type
+    data_classification:
+    nullable: true
+    raw_column_name: service_type
+  - column_name: service_type_id
+    column_data_type: decimal(38,0)
+    comment: service_type_id
+    data_classification:
+    nullable: true
+    raw_column_name: service_type_id
+  - column_name: project_phase_type
+    column_data_type: string
+    comment: project_phase_type
+    data_classification:
+    nullable: true
+    raw_column_name: project_phase_type
+  - column_name: project_size_class_id
+    column_data_type: string
+    comment: project_size_class_id
+    data_classification:
+    nullable: true
+    raw_column_name: project_size_class_id
+  - column_name: scope_of_service_type_id
+    column_data_type: string
+    comment: scope_of_service_type_id
+    data_classification:
+    nullable: true
+    raw_column_name: scope_of_service_type_id
+  - column_name: consulting_service_line_id
+    column_data_type: string
+    comment: consulting_service_line_id
+    data_classification:
+    nullable: true
+    raw_column_name: consulting_service_line_id
+  - column_name: project_billing_type_id
+    column_data_type: string
+    comment: project_billing_type_id
+    data_classification:
+    nullable: true
+    raw_column_name: project_billing_type_id
+  - column_name: project_phase_type_id
+    column_data_type: string
+    comment: project_phase_type_id
+    data_classification:
+    nullable: true
+    raw_column_name: project_phase_type_id

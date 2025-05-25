@@ -1,0 +1,397 @@
+---
+SourceSystemId: isotracker_curated
+MetadataType: curated#isotracker#mar#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/isotracker/parquet/mar_iso_tracker.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: isotracker-mar-csv_xlsx_curated
+  name: isotracker_mar_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: sr_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sr_no
+  - column_data_type: string
+    column_name: dwg_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_no
+  - column_data_type: string
+    column_name: doc_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: doc_no
+  - column_data_type: string
+    column_name: iso_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: iso_id
+  - column_data_type: string
+    column_name: cwp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwp
+  - column_data_type: string
+    column_name: line_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_id
+  - column_data_type: string
+    column_name: line_size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_size
+  - column_data_type: string
+    column_name: spec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec
+  - column_data_type: string
+    column_name: insulation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulation
+  - column_data_type: string
+    column_name: p_id_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: p_id_no
+  - column_data_type: string
+    column_name: remarks
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remarks
+  - column_data_type: string
+    column_name: modeling_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modeling_status
+  - column_data_type: string
+    column_name: line_modelled
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_modelled
+  - column_data_type: string
+    column_name: ifh_p_id_check_completed
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ifh_p_id_check_completed
+  - column_data_type: string
+    column_name: 30_review_comments_updated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 30_review_comments_updated
+  - column_data_type: string
+    column_name: issued_to_stress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_stress
+  - column_data_type: string
+    column_name: returned_from_stress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: returned_from_stress
+  - column_data_type: string
+    column_name: stress_incorporation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress_incorporation
+  - column_data_type: string
+    column_name: supporting_completed
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: supporting_completed
+  - column_data_type: string
+    column_name: inline_component_data_updated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inline_component_data_updated
+  - column_data_type: string
+    column_name: preliminary_vendor_data_updated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preliminary_vendor_data_updated
+  - column_data_type: string
+    column_name: line_made_clash_free_data_consistency_check_cleared
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_made_clash_free_data_consistency_check_cleared
+  - column_data_type: string
+    column_name: 60_model_review_comments_updated_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 60_model_review_comments_updated_y_n
+  - column_data_type: string
+    column_name: iso_extraction_for_designer_self_check_with_approved_mocs__available_vendor_data__date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: iso_extraction_for_designer_self_check_with_approved_mocs__available_vendor_data__date
+  - column_data_type: string
+    column_name: piping_moc_prepared_if_applicable_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piping_moc_prepared_if_applicable_y_n
+  - column_data_type: string
+    column_name: piping_check_with_cut_off_p_id_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piping_check_with_cut_off_p_id_date
+  - column_data_type: string
+    column_name: piping_checker_comments_updated__final_vendor_data_comments_received_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piping_checker_comments_updated__final_vendor_data_comments_received_date
+  - column_data_type: string
+    column_name: issued_to_squad_check_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_squad_check_date
+  - column_data_type: string
+    column_name: check__squad_check_bb_session
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: check__squad_check_bb_session
+  - column_data_type: string
+    column_name: internal_lot
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: internal_lot
+  - column_data_type: string
+    column_name: squad_check_completed_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: squad_check_completed_date
+  - column_data_type: string
+    column_name: yes_if_90_model_review_applicable_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: yes_if_90_model_review_applicable_y_n
+  - column_data_type: string
+    column_name: 90_review_comments_updated_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 90_review_comments_updated_y_n
+  - column_data_type: string
+    column_name: comment_incorporation_of_final_comments_squad__piping__date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: comment_incorporation_of_final_comments_squad__piping__date
+  - column_data_type: string
+    column_name: final_isometric_back_checking_wrt_frozen_p_id_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: final_isometric_back_checking_wrt_frozen_p_id_date
+  - column_data_type: string
+    column_name: afc_isometric_extracted_and_issued_to_sign_off_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: afc_isometric_extracted_and_issued_to_sign_off_date
+  - column_data_type: string
+    column_name: afc_isometric_transmittal_issued
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: afc_isometric_transmittal_issued
+  - column_data_type: string
+    column_name: hold_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_y_n
+  - column_data_type: string
+    column_name: hold_remarks
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_remarks
+  - column_data_type: string
+    column_name: process
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: process
+  - column_data_type: string
+    column_name: hold_initiation_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_initiation_date
+  - column_data_type: string
+    column_name: mechanical
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mechanical
+  - column_data_type: string
+    column_name: hold_initiation_date_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_initiation_date_1
+  - column_data_type: string
+    column_name: instrumentation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: instrumentation
+  - column_data_type: string
+    column_name: hold_initiation_date_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_initiation_date_2
+  - column_data_type: string
+    column_name: structural
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: structural
+  - column_data_type: string
+    column_name: hold_initiation_date_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_initiation_date_3
+  - column_data_type: string
+    column_name: piping_stress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piping_stress
+  - column_data_type: string
+    column_name: hold_initiation_date_4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_initiation_date_4
+  - column_data_type: string
+    column_name: piping_spec_material_related
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piping_spec_material_related
+  - column_data_type: string
+    column_name: hold_initiation_date_5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_initiation_date_5
+  - column_data_type: string
+    column_name: remarks_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remarks_1
+  - column_data_type: string
+    column_name: target_to_stress_completion_date_me_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: target_to_stress_completion_date_me_3
+  - column_data_type: string
+    column_name: target_to_structural_completion_date_me_4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: target_to_structural_completion_date_me_4
+  - column_data_type: string
+    column_name: target_iso_lock_date__me_5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: target_iso_lock_date__me_5
+  - column_data_type: string
+    column_name: target_afc_date_me_7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: target_afc_date_me_7
+  - column_data_type: string
+    column_name: process_critical_lines_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: process_critical_lines_y_n
+  - column_data_type: string
+    column_name: stress_calculation_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress_calculation_number
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_isotracker_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/isotracker/mar/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_mar
+  name: curated_mar
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/isotracker/mar
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'isotracker' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

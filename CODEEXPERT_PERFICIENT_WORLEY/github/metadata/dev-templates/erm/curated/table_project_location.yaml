@@ -1,0 +1,121 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#project_location#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/parquet/project_location.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: project_location
+    format_options:
+      mergeSchema: true
+  name: project_location
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: project_id
+    comment: project_id
+    data_classification: 
+    nullable: false
+    raw_column_name: project_id
+  - column_data_type: string
+    column_name: description
+    comment: description
+    data_classification: 
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: project_type
+    comment: project_type
+    data_classification: 
+    nullable: false
+    raw_column_name: project_type
+  - column_data_type: string
+    column_name: worley_project_region
+    comment: worley_project_region
+    data_classification: 
+    nullable: true
+    raw_column_name: worley_project_region
+  - column_data_type: string
+    column_name: sub_region
+    comment: sub_region
+    data_classification: 
+    nullable: true
+    raw_column_name: sub_region
+  - column_data_type: string
+    column_name: country
+    comment: country
+    data_classification: 
+    nullable: true
+    raw_column_name: country
+  - column_data_type: string
+    column_name: worley_project_office
+    comment: worley_project_office
+    data_classification: 
+    nullable: true
+    raw_column_name: worley_project_office
+  - column_data_type: string
+    column_name: worley_csg
+    comment: worley_csg
+    data_classification: 
+    nullable: true
+    raw_column_name: worley_csg
+  - column_data_type: string
+    column_name: client
+    comment: client
+    data_classification: 
+    nullable: true
+    raw_column_name: client
+  - column_data_type: string
+    column_name: project_scope
+    comment: project_scope
+    data_classification: 
+    nullable: true
+    raw_column_name: project_scope
+  - column_data_type: string
+    column_name: buy_on_whose_paper
+    comment: buy_on_whose_paper
+    data_classification: 
+    nullable: true
+    raw_column_name: buy_on_whose_paper
+  - column_data_type: string
+    column_name: customer_category
+    comment: customer_category
+    data_classification: 
+    nullable: true
+    raw_column_name: customer_category                      
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/project_location/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: project_location
+  name: project_location
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/project_location/
+  load_type: full_load
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

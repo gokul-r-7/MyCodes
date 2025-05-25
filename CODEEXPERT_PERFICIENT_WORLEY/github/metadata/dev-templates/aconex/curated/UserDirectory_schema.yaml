@@ -1,0 +1,138 @@
+---
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#UserDirectory#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/aconex/UserDirectory/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: aconex-UserDirectory
+  name: aconex_UserDirectory
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: DivisionName
+    comment: DivisionName
+    data_classification: 
+    nullable: true
+    raw_column_name: DivisionName
+  - column_data_type: string
+    column_name: OrganizationId
+    comment: OrganizationId
+    data_classification: 
+    nullable: true
+    raw_column_name: OrganizationId
+  - column_data_type: string
+    column_name: OrganizationName
+    comment: OrganizationName
+    data_classification: 
+    nullable: true
+    raw_column_name: OrganizationName
+  - column_data_type: string
+    column_name: TradingName
+    comment: TradingName
+    data_classification: 
+    nullable: true
+    raw_column_name: TradingName
+  - column_data_type: string
+    column_name: JobTitle
+    comment: JobTitle
+    data_classification: 
+    nullable: true
+    raw_column_name: JobTitle
+  - column_data_type: string
+    column_name: ProjectAddress
+    comment: ProjectAddress
+    data_classification: 
+    nullable: true
+    raw_column_name: ProjectAddress
+  - column_data_type: string
+    column_name: ProjectPhone
+    comment: ProjectPhone
+    data_classification: 
+    nullable: true
+    raw_column_name: ProjectPhone
+  - column_data_type: string
+    column_name: ProjectFax
+    comment: ProjectFax
+    data_classification: 
+    nullable: true
+    raw_column_name: ProjectFax
+  - column_data_type: string
+    column_name: Mobile
+    comment: Mobile
+    data_classification: 
+    nullable: true
+    raw_column_name: Mobile
+  - column_data_type: string
+    column_name: SearchResultType
+    comment: SearchResultType
+    data_classification: 
+    nullable: true
+    raw_column_name: SearchResultType
+  - column_data_type: string
+    column_name: UserId
+    comment: UserId
+    data_classification: 
+    nullable: true
+    raw_column_name: UserId
+  - column_data_type: string
+    column_name: UserName
+    comment: UserName
+    data_classification: 
+    nullable: true
+    raw_column_name: UserName
+  - column_data_type: string
+    column_name: Email
+    comment: Email
+    data_classification: 
+    nullable: true
+    raw_column_name: Email
+  - column_name:  instance_name
+    column_data_type:   string 
+    nullable: true
+    comment:  instance_name
+    data_classification: null
+    raw_column_name:   instance_name
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/userdirectory/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_userdirectory
+  load_type: incremental
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: instance_name
+    entity_table_attribute_name: instance_name
+    entity_s3_raw_partition_prefix: Instance
+  name: curated_aconex_userdirectory
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/userdirectory
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

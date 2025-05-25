@@ -1,0 +1,140 @@
+MetadataType: curated#jplus#timecard#job#iceberg
+SourceSystemId: curated_jplus
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/jplus/parquet/timecard.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: jplus_timecard
+  name: jplus_timecard
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: false
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: siteid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: siteid
+  - column_data_type: string
+    column_name: employee_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: employee_name
+  - column_data_type: string
+    column_name: position
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: position
+  - column_data_type: string
+    column_name: primary_skill
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primary_skill
+  - column_data_type: string
+    column_name: class
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: class
+  - column_data_type: string
+    column_name: timecard_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: timecard_date
+  - column_data_type: string
+    column_name: weekending_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: weekending_date
+  - column_data_type: string
+    column_name: project_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_num
+  - column_data_type: string
+    column_name: task_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: task_number
+  - column_data_type: string
+    column_name: task_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: task_name
+  - column_data_type: string
+    column_name: st_hours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: st_hours
+  - column_data_type: string
+    column_name: ot_hours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ot_hours
+  - column_data_type: string
+    column_name: dt_hours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dt_hours
+  - column_data_type: string
+    column_name: empnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: empnumber
+  - column_data_type: string
+    column_name: fiwp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fiwp
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: false
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_jplus_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/jplus/timecard/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_timecard
+  load_type: append
+  name: curated_timecard
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/jplus/timecard/
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'jplus' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

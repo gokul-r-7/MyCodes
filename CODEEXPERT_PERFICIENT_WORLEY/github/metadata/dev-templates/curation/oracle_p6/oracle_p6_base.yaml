@@ -1,0 +1,42 @@
+SourceSystemId: curated_oracle_p6
+MetadataType: 'curated#oracle_p6#PLACEHOLDER#job#iceberg'
+source:
+  name: oracle_p6_PLACEHOLDER
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: 's3://worley-datalake-ohio-dev-bucket-raw-gtlvq/oracle_p6/PLACEHOLDER/'
+    format: parquet
+    transformation_ctx: oracle_p6-PLACEHOLDER
+transforms:
+  - transform: rename_columns
+    rename_column: true
+  - transform: select_columns_from_config_file
+    select_columns: true
+  - transform: change_data_types
+    change_types: true
+  - transform: add_run_date
+    column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+  - transform: custom_sql
+    sql: 'SELECT *, ''oracle_p6'' as SOURCE_SYSTEM_NAME FROM temp_df_static'
+    temp_view_name: temp_df_static
+target:
+  name: curated_oracle_p6_PLACEHOLDER
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: worley_datalake_ohio_dev_glue_catalog_database_PLACEHOLDER
+    table_name: curated_PLACEHOLDER
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/oracle_p6/PLACEHOLDER/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  spark_options:
+    format: iceberg
+    options:
+      path: 's3://${curated_bucket}/oracle_p6/PLACEHOLDER'

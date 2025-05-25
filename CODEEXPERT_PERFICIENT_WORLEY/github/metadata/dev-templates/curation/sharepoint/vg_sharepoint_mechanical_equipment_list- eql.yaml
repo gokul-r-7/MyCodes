@@ -1,0 +1,571 @@
+---
+SourceSystemId: sharepoint_curated
+MetadataType: curated#vg_sharepoint#mechanical_equipment_list_eql#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/vg/sharepoint/parquet/vg_sharepoint_mechanical_equipment_list.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_sharepoint-csv_xlsx_curated
+  name: vg_sharepoint_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: WBS_AREA
+    comment: WBS_AREA
+    data_classification: 
+    nullable: true
+    raw_column_name: wbs_area
+  - column_data_type: string
+    column_name: PHASE
+    comment: PHASE
+    data_classification: 
+    nullable: true
+    raw_column_name: phase
+  - column_data_type: string
+    column_name: OWNERSHIP
+    comment: OWNERSHIP
+    data_classification: 
+    nullable: true
+    raw_column_name: ownership
+  - column_data_type: string
+    column_name: CONSTRUCTION_WORK_AREA
+    comment: CONSTRUCTION_WORK_AREA
+    data_classification: 
+    nullable: true
+    raw_column_name: construction_work_area
+  - column_data_type: string
+    column_name: CWP_ZONE
+    comment: CWP_ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: cwp_zone
+  - column_data_type: string
+    column_name: FIRST_LNG
+    comment: FIRST_LNG
+    data_classification: 
+    nullable: true
+    raw_column_name: first_lng
+  - column_data_type: string
+    column_name: AREA
+    comment: AREA
+    data_classification: 
+    nullable: true
+    raw_column_name: area
+  - column_data_type: string
+    column_name: UNIT
+    comment: UNIT
+    data_classification: 
+    nullable: true
+    raw_column_name: unit
+  - column_data_type: string
+    column_name: SUB_UNIT_AND_TRAIN
+    comment: SUB_UNIT_AND_TRAIN
+    data_classification: 
+    nullable: true
+    raw_column_name: sub_unit_and_train
+  - column_data_type: string
+    column_name: EQUIPMENT_TYPE_CODE
+    comment: EQUIPMENT_TYPE_CODE
+    data_classification: 
+    nullable: true
+    raw_column_name: equipment_type_code
+  - column_data_type: string
+    column_name: EQUIPMENT_NUMBER
+    comment: EQUIPMENT_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: equipment_number
+  - column_data_type: string
+    column_name: TAG_SUFFIX
+    comment: TAG_SUFFIX
+    data_classification: 
+    nullable: true
+    raw_column_name: tag_suffix
+  - column_data_type: string
+    column_name: DESCRIPTION
+    comment: DESCRIPTION
+    data_classification: 
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: PID_N
+    comment: PID_N
+    data_classification: 
+    nullable: true
+    raw_column_name: pid_n
+  - column_data_type: string
+    column_name: TEMA_DESIGNATION
+    comment: TEMA_DESIGNATION
+    data_classification: 
+    nullable: true
+    raw_column_name: tema_designation
+  - column_data_type: string
+    column_name: MECHANICAL_DATASHEET_N
+    comment: MECHANICAL_DATASHEET_N
+    data_classification: 
+    nullable: true
+    raw_column_name: mechanical_datasheet_n
+  - column_data_type: string
+    column_name: OPERATING_SPARE
+    comment: OPERATING_SPARE
+    data_classification: 
+    nullable: true
+    raw_column_name: operating_spare
+  - column_data_type: string
+    column_name: EQUIPMENT_LOAD
+    comment: EQUIPMENT_LOAD
+    data_classification: 
+    nullable: true
+    raw_column_name: equipment_load
+  - column_data_type: string
+    column_name: CONTINUOUS_INTERMITTENT
+    comment: CONTINUOUS_INTERMITTENT
+    data_classification: 
+    nullable: true
+    raw_column_name: continuous_intermittent
+  - column_data_type: string
+    column_name: STATUS
+    comment: STATUS
+    data_classification: 
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: VERTICAL_HORIZONTAL
+    comment: VERTICAL_HORIZONTAL
+    data_classification: 
+    nullable: true
+    raw_column_name: vertical_horizontal
+  - column_data_type: string
+    column_name: INTERNAL_DIAMETER
+    comment: INTERNAL_DIAMETER
+    data_classification: 
+    nullable: true
+    raw_column_name: internal_diameter
+  - column_data_type: string
+    column_name: LENGTH_OR_TAN_TO_TAN
+    comment: LENGTH_OR_TAN_TO_TAN
+    data_classification: 
+    nullable: true
+    raw_column_name: length_or_tan_to_tan
+  - column_data_type: string
+    column_name: WIDTH
+    comment: WIDTH
+    data_classification: 
+    nullable: true
+    raw_column_name: width
+  - column_data_type: string
+    column_name: HEIGHT
+    comment: HEIGHT
+    data_classification: 
+    nullable: true
+    raw_column_name: height
+  - column_data_type: string
+    column_name: RATED_FLOW
+    comment: RATED_FLOW
+    data_classification: 
+    nullable: true
+    raw_column_name: rated_flow
+  - column_data_type: string
+    column_name: DIFFERENTIAL_HEAD
+    comment: DIFFERENTIAL_HEAD
+    data_classification: 
+    nullable: true
+    raw_column_name: differential_head
+  - column_data_type: string
+    column_name: NOMINAL_CAPACITY
+    comment: NOMINAL_CAPACITY
+    data_classification: 
+    nullable: true
+    raw_column_name: nominal_capacity
+  - column_data_type: string
+    column_name: THERMAL_DUTY
+    comment: THERMAL_DUTY
+    data_classification: 
+    nullable: true
+    raw_column_name: thermal_duty
+  - column_data_type: string
+    column_name: DRIVER_TYPE
+    comment: DRIVER_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: driver_type
+  - column_data_type: string
+    column_name: DRIVER_TAG_NUMBER
+    comment: DRIVER_TAG_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: driver_tag_number
+  - column_data_type: string
+    column_name: REQUIRED_POWER
+    comment: REQUIRED_POWER
+    data_classification: 
+    nullable: true
+    raw_column_name: required_power
+  - column_data_type: string
+    column_name: INSTALLED_POWER
+    comment: INSTALLED_POWER
+    data_classification: 
+    nullable: true
+    raw_column_name: installed_power
+  - column_data_type: string
+    column_name: VOLTAGE
+    comment: VOLTAGE
+    data_classification: 
+    nullable: true
+    raw_column_name: voltage
+  - column_data_type: string
+    column_name: OPERATING_PRESSURE
+    comment: OPERATING_PRESSURE
+    data_classification: 
+    nullable: true
+    raw_column_name: operating_pressure
+  - column_data_type: string
+    column_name: OPERATING_TEMPERATURE
+    comment: OPERATING_TEMPERATURE
+    data_classification: 
+    nullable: true
+    raw_column_name: operating_temperature
+  - column_data_type: string
+    column_name: OPERATING_PRESSURE_TUBE
+    comment: OPERATING_PRESSURE_TUBE
+    data_classification: 
+    nullable: true
+    raw_column_name: operating_pressure_tube
+  - column_data_type: string
+    column_name: OPERATING_TEMPERATURE_TUBE
+    comment: OPERATING_TEMPERATURE_TUBE
+    data_classification: 
+    nullable: true
+    raw_column_name: operating_temperature_tube  
+  - column_data_type: string
+    column_name: DESIGN_PRESSURE_INTERNAL
+    comment: DESIGN_PRESSURE_INTERNAL
+    data_classification: 
+    nullable: true
+    raw_column_name: design_pressure_internal
+  - column_data_type: string
+    column_name: DESIGN_PRESSURE_EXTERNAL
+    comment: DESIGN_PRESSURE_EXTERNAL
+    data_classification: 
+    nullable: true
+    raw_column_name: design_pressure_external
+  - column_data_type: string
+    column_name: DESIGN_TEMP_MAX
+    comment: DESIGN_TEMP_MAX
+    data_classification: 
+    nullable: true
+    raw_column_name: design_temp_max
+  - column_data_type: string
+    column_name: DESIGN_TEMP_MIN
+    comment: DESIGN_TEMP_MIN
+    data_classification: 
+    nullable: true
+    raw_column_name: design_temp_min
+  - column_data_type: string
+    column_name: MDMT
+    comment: MDMT
+    data_classification: 
+    nullable: true
+    raw_column_name: mdmt
+  - column_data_type: string
+    column_name: DESIGN_PRESSURE_INTERNAL_TUBE
+    comment: DESIGN_PRESSURE_INTERNAL_TUBE
+    data_classification: 
+    nullable: true
+    raw_column_name: design_pressure_internal_tube
+  - column_data_type: string
+    column_name: DESIGN_PRESSURE_EXTERNAL_TUBE
+    comment: DESIGN_PRESSURE_EXTERNAL_TUBE
+    data_classification: 
+    nullable: true
+    raw_column_name: design_pressure_external_tube
+  - column_data_type: string
+    column_name: DESIGN_TEMP_MAX_TUBE
+    comment: DESIGN_TEMP_MAX_TUBE
+    data_classification: 
+    nullable: true
+    raw_column_name: design_temp_max_tube
+  - column_data_type: string
+    column_name: DESIGN_TEMP_MIN_TUBE
+    comment: DESIGN_TEMP_MIN_TUBE
+    data_classification: 
+    nullable: true
+    raw_column_name: design_temp_min_tube
+  - column_data_type: string
+    column_name: MDMT_TUBE
+    comment: MDMT_TUBE
+    data_classification: 
+    nullable: true
+    raw_column_name: mdmt_tube
+  - column_data_type: string
+    column_name: DESIGN_CODE_SPECIFICATION
+    comment: DESIGN_CODE_SPECIFICATION
+    data_classification: 
+    nullable: true
+    raw_column_name: design_code_specification
+  - column_data_type: string
+    column_name: GAS_LIQUID
+    comment: GAS_LIQUID
+    data_classification: 
+    nullable: true
+    raw_column_name: gas_liquid
+  - column_data_type: string
+    column_name: FLUID_GROUP
+    comment: FLUID_GROUP
+    data_classification: 
+    nullable: true
+    raw_column_name: fluid_group
+  - column_data_type: string
+    column_name: TABLE
+    comment: TABLE
+    data_classification: 
+    nullable: true
+    raw_column_name: table
+  - column_data_type: string
+    column_name: WEIGHT_OPERATING
+    comment: WEIGHT_OPERATING
+    data_classification: 
+    nullable: true
+    raw_column_name: weight_operating
+  - column_data_type: string
+    column_name: WEIGHT_BARE
+    comment: WEIGHT_BARE
+    data_classification: 
+    nullable: true
+    raw_column_name: weight_bare
+  - column_data_type: string
+    column_name: WEIGHT_TEST
+    comment: WEIGHT_TEST
+    data_classification: 
+    nullable: true
+    raw_column_name: weight_test
+  - column_data_type: string
+    column_name: MATERIAL
+    comment: MATERIAL
+    data_classification: 
+    nullable: true
+    raw_column_name: material
+  - column_data_type: string
+    column_name: MATERIALS_INTERNALS_TUBE
+    comment: MATERIALS_INTERNALS_TUBE
+    data_classification: 
+    nullable: true
+    raw_column_name: materials_internals_tube
+  - column_data_type: string
+    column_name: INSULATION_TYPE
+    comment: INSULATION_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: insulation_type
+  - column_data_type: string
+    column_name: INSULATION_THICKNESS
+    comment: INSULATION_THICKNESS
+    data_classification: 
+    nullable: true
+    raw_column_name: insulation_thickness
+  - column_data_type: string
+    column_name: INSULATION_QUANTITY
+    comment: INSULATION_QUANTITY
+    data_classification: 
+    nullable: true
+    raw_column_name: insulation_quantity
+  - column_data_type: string
+    column_name: FIREPROOFING
+    comment: FIREPROOFING
+    data_classification: 
+    nullable: true
+    raw_column_name: fireproofing
+  - column_data_type: string
+    column_name: FIREPROOFING_TYPE
+    comment: FIREPROOFING_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: fireproofing_type
+  - column_data_type: string
+    column_name: FIREPROOFING_QUANTITY
+    comment: FIREPROOFING_QUANTITY
+    data_classification: 
+    nullable: true
+    raw_column_name: fireproofing_quantity
+  - column_data_type: string
+    column_name: SUPPLIER
+    comment: SUPPLIER
+    data_classification: 
+    nullable: true
+    raw_column_name: supplier
+  - column_data_type: string
+    column_name: MANUFACTURER
+    comment: MANUFACTURER
+    data_classification: 
+    nullable: true
+    raw_column_name: manufacturer
+  - column_data_type: string
+    column_name: MANUFACTURER_MODEL_N
+    comment: MANUFACTURER_MODEL_N
+    data_classification: 
+    nullable: true
+    raw_column_name: manufacturer_model_n
+  - column_data_type: string
+    column_name: CODE_OF_ACCOUNTS
+    comment: CODE_OF_ACCOUNTS
+    data_classification: 
+    nullable: true
+    raw_column_name: code_of_accounts
+  - column_data_type: string
+    column_name: PART_OF_PACKAGE
+    comment: PART_OF_PACKAGE
+    data_classification: 
+    nullable: true
+    raw_column_name: part_of_package
+  - column_data_type: string
+    column_name: WORKPACK_REFERENCE
+    comment: WORKPACK_REFERENCE
+    data_classification: 
+    nullable: true
+    raw_column_name: workpack_reference
+  - column_data_type: string
+    column_name: COMPLETIONS_SYSTEM
+    comment: COMPLETIONS_SYSTEM
+    data_classification: 
+    nullable: true
+    raw_column_name: completions_system
+  - column_data_type: string
+    column_name: SUPPLIER_DATA_STATUS_CODE
+    comment: SUPPLIER_DATA_STATUS_CODE
+    data_classification: 
+    nullable: true
+    raw_column_name: supplier_data_status_code
+  - column_data_type: string
+    column_name: REQUISITION_N
+    comment: REQUISITION_N
+    data_classification: 
+    nullable: true
+    raw_column_name: requisition_n
+  - column_data_type: string
+    column_name: RE
+    comment: RE
+    data_classification: 
+    nullable: true
+    raw_column_name: re
+  - column_data_type: string
+    column_name: GID_STATIC_ROTARY
+    comment: GID_STATIC_ROTARY
+    data_classification: 
+    nullable: true
+    raw_column_name: gid_static_rotary
+  - column_data_type: string
+    column_name: PROCESS_DATA_BASED_ON_PQ_DATA_SHEETS
+    comment: PROCESS_DATA_BASED_ON_PQ_DATA_SHEETS
+    data_classification: 
+    nullable: true
+    raw_column_name: process_data_based_on_pq_data_sheets
+  - column_data_type: string
+    column_name: NOTES
+    comment: NOTES
+    data_classification: 
+    nullable: true
+    raw_column_name: notes
+  - column_data_type: string
+    column_name: REV_N
+    comment: REV_N
+    data_classification: 
+    nullable: true
+    raw_column_name: rev_n
+  - column_data_type: string
+    column_name: PLAN_DRAWING_GENERAL_ARRANGEMENT
+    comment: PLAN_DRAWING_GENERAL_ARRANGEMENT
+    data_classification: 
+    nullable: true
+    raw_column_name: plan_drawing_general_arrangement
+  - column_data_type: string
+    column_name: COG_CENTER_OF_GRAVITY
+    comment: COG_CENTER_OF_GRAVITY
+    data_classification: 
+    nullable: true
+    raw_column_name: cog_center_of_gravity
+  - column_data_type: string
+    column_name: SKID_NUMBER
+    comment: SKID_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: skid_number
+  - column_data_type: string
+    column_name: MAX_LOAD_MAXIMUM_ALLOWABLE_LOAD
+    comment: MAX_LOAD_MAXIMUM_ALLOWABLE_LOAD
+    data_classification: 
+    nullable: true
+    raw_column_name: max_load_maximum_allowable_load
+  - column_data_type: string
+    column_name: MAWP_S_INTERNAL_OR_SHELL_SIDE
+    comment: MAWP_S_INTERNAL_OR_SHELL_SIDE
+    data_classification: 
+    nullable: true
+    raw_column_name: mawp_s_internal_or_shell_side
+  - column_data_type: string
+    column_name: MAWP_T_TUBE_SIDE
+    comment: MAWP_T_TUBE_SIDE
+    data_classification: 
+    nullable: true
+    raw_column_name: mawp_t_tube_side
+  - column_data_type: string
+    column_name: MAWP_E_EXTERNAL_AT_MAXIMUM_TEMP_FOR_VESSEL_OR_EXCHANGER_SHELL_SIDE
+    comment: MAWP_E_EXTERNAL_AT_MAXIMUM_TEMP_FOR_VESSEL_OR_EXCHANGER_SHELL_SIDE
+    data_classification: 
+    nullable: true
+    raw_column_name: mawp_e_external_at_maximum_temp_for_vessel_or_exchanger_shell_side
+  - column_data_type: string
+    column_name: PAINT_SPECIFICATION
+    comment: PAINT_SPECIFICATION
+    data_classification: 
+    nullable: true
+    raw_column_name: paint_specification
+  - column_data_type: string
+    column_name: LADDERS_PLATFORMS
+    comment: LADDERS_PLATFORMS
+    data_classification: 
+    nullable: true
+    raw_column_name: ladders_platforms
+  - column_data_type: string
+    column_name: LADDERS_PROVIDED_BY_VENDOR
+    comment: LADDERS_PROVIDED_BY_VENDOR
+    data_classification: 
+    nullable: true
+    raw_column_name: ladders_provided_by_vendor
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_vg_sharepoint
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/vg/sharepoint/mechanical_equipment_list_eql/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_mechanical_equipment_list_eql
+  name: curated_vg_sharepoint_mechanical_equipment_list_eql
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/vg/sharepoint/mechanical_equipment_list_eql
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_sharepoint' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

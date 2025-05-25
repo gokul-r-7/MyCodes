@@ -1,0 +1,18 @@
+SourceSystemId: spel
+MetadataType: db#spel#codelists
+name: codelists
+is_active: y
+db_parameter:
+  partition_column: None # Mandatory (Key)
+  date_delta_column: None # Mandatory (Key)
+  connection_parms: /worley/dev/db/spel #Mandatory (Key and Value)
+  secret_key: ${secret_prefix}-db-spel  # This goes into SecretsManager (Mandatory) (Key and Value)
+  ssl_flag : False
+  db_name_nonprod : SPEL_VG_PROD_PLANTeld  #Mandatory (Key and Value)
+  db_name_prod : SPEL_VG_PROD_PLANTeld  #Mandatory (Key and Value)
+  db_type : MSSQL #Mandatory (Key and Value)
+job_parameter:
+  bucket_name: ${raw_bucket}
+  input_path : None
+  full_incr: f
+  table_prefix: codelists

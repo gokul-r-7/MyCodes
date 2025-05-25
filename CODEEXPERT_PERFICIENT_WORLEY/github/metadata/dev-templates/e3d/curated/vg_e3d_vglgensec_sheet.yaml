@@ -1,0 +1,625 @@
+---
+SourceSystemId: e3d_curated
+MetadataType: curated#vg_E3D#vg_e3d_vglgensec_sheet#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/e3d/parquet/vg_e3d_gensec_sheet.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_E3D-vg_e3d_vglgensec_sheet
+  name: vg_E3D_vg_e3d_vglgensec_sheet
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: NAME
+    comment: name
+    data_classification: 
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: TYPE
+    comment: TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: LOCK
+    comment: LOCK
+    data_classification: 
+    nullable: true
+    raw_column_name: lock
+  - column_data_type: string
+    column_name: OWNER
+    comment: owner
+    data_classification: 
+    nullable: true
+    raw_column_name: owner
+  - column_data_type: string
+    column_name: DESC
+    comment: desc
+    data_classification: 
+    nullable: true
+    raw_column_name: desc
+  - column_data_type: string
+    column_name: FUNC
+    comment: func
+    data_classification: 
+    nullable: true
+    raw_column_name: func
+  - column_data_type: string
+    column_name: GTYPE
+    comment: GTYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: gtype
+  - column_data_type: string
+    column_name: NUMB
+    comment: NUMB
+    data_classification: 
+    nullable: true
+    raw_column_name: numb
+  - column_data_type: string
+    column_name: DESP
+    comment: DESP
+    data_classification: 
+    nullable: true
+    raw_column_name: desp
+  - column_data_type: string
+    column_name: STRUCL
+    comment: STRUCL
+    data_classification: 
+    nullable: true
+    raw_column_name: strucl
+  - column_data_type: string
+    column_name: BUIL
+    comment: BUIL
+    data_classification: 
+    nullable: true
+    raw_column_name: buil
+  - column_data_type: string
+    column_name: SHOP
+    comment: SHOP
+    data_classification: 
+    nullable: true
+    raw_column_name: shop
+  - column_data_type: string
+    column_name: BANG_DEGREE
+    comment: BANG_DEGREE
+    data_classification: 
+    nullable: true
+    raw_column_name: bang_degree
+  - column_data_type: string
+    column_name: LMIRR
+    comment: LMIRR
+    data_classification: 
+    nullable: true
+    raw_column_name: lmirr
+  - column_data_type: string
+    column_name: JOIS
+    comment: JOIS
+    data_classification: 
+    nullable: true
+    raw_column_name: jois
+  - column_data_type: string
+    column_name: JOIE
+    comment: JOIE
+    data_classification: 
+    nullable: true
+    raw_column_name: joie
+  - column_data_type: string
+    column_name: JLNS
+    comment: JLNS
+    data_classification: 
+    nullable: true
+    raw_column_name: jlns
+  - column_data_type: string
+    column_name: JLNE
+    comment: JLNE
+    data_classification: 
+    nullable: true
+    raw_column_name: jlne
+  - column_data_type: string
+    column_name: JUSL
+    comment: JUSL
+    data_classification: 
+    nullable: true
+    raw_column_name: jusl
+  - column_data_type: string
+    column_name: CTYS
+    comment: CTYS
+    data_classification: 
+    nullable: true
+    raw_column_name: ctys
+  - column_data_type: string
+    column_name: CTYE
+    comment: CTYE
+    data_classification: 
+    nullable: true
+    raw_column_name: ctye
+  - column_data_type: string
+    column_name: SREL
+    comment: SREL
+    data_classification: 
+    nullable: true
+    raw_column_name: srel
+  - column_data_type: string
+    column_name: EREL
+    comment: EREL
+    data_classification: 
+    nullable: true
+    raw_column_name: erel
+  - column_data_type: string
+    column_name: GRADE
+    comment: GRADE
+    data_classification: 
+    nullable: true
+    raw_column_name: grade
+  - column_data_type: string
+    column_name: MATR
+    comment: MATR
+    data_classification: 
+    nullable: true
+    raw_column_name: matr
+  - column_data_type: string
+    column_name: ISPE
+    comment: ISPE
+    data_classification: 
+    nullable: true
+    raw_column_name: ispe
+  - column_data_type: string
+    column_name: FIRE
+    comment: FIRE
+    data_classification: 
+    nullable: true
+    raw_column_name: fire
+  - column_data_type: string
+    column_name: WELDDP_IN
+    comment: WELDDP_IN
+    data_classification: 
+    nullable: true
+    raw_column_name: welddp_in
+  - column_data_type: string
+    column_name: POSNO
+    comment: POSNO
+    data_classification: 
+    nullable: true
+    raw_column_name: posno
+  - column_data_type: string
+    column_name: PARNAM
+    comment: PARNAM
+    data_classification: 
+    nullable: true
+    raw_column_name: parnam
+  - column_data_type: string
+    column_name: INRE
+    comment: INRE
+    data_classification: 
+    nullable: true
+    raw_column_name: inre
+  - column_data_type: string
+    column_name: SPRE
+    comment: SPRE
+    data_classification: 
+    nullable: true
+    raw_column_name: spre
+  - column_data_type: string
+    column_name: ANTY
+    comment: ANTY
+    data_classification: 
+    nullable: true
+    raw_column_name: anty
+  - column_data_type: string
+    column_name: DRGP
+    comment: DRGP
+    data_classification: 
+    nullable: true
+    raw_column_name: drgp
+  - column_data_type: string
+    column_name: MEML
+    comment: MEML
+    data_classification: 
+    nullable: true
+    raw_column_name: meml
+  - column_data_type: string
+    column_name: MPS_LINE_NUMBER
+    comment: MPS_LINE_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_line_number
+  - column_data_type: string
+    column_name: MPS_ISOMETRIC_NUMBER
+    comment: MPS_ISOMETRIC_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_isometric_number
+  - column_data_type: string
+    column_name: MPS_DATE_PIPING_PLACEHOLDER_MODELING_COMPLETED
+    comment: MPS_DATE_PIPING_PLACEHOLDER_MODELING_COMPLETED
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_date_piping_placeholder_modeling_completed
+  - column_data_type: string
+    column_name: MPS_DATE_PIPING_STRESS_LOADS_TO_STRU
+    comment: MPS_DATE_PIPING_STRESS_LOADS_TO_STRU
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_date_piping_stress_loads_to_stru
+  - column_data_type: string
+    column_name: MPS_DATE_STRUCTURAL_MODELING_COMPLETE
+    comment: MPS_DATE_STRUCTURAL_MODELING_COMPLETE
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_date_structural_modeling_complete
+  - column_data_type: string
+    column_name: MPS_STRUCTURAL_ENGINEERING_RELEASED_TO_PIPING
+    comment: MPS_STRUCTURAL_ENGINEERING_RELEASED_TO_PIPING
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_structural_engineering_released_to_piping
+  - column_data_type: string
+    column_name: MPS_DATE_STRUCTURAL_ENGINEERING_FORECAST
+    comment: MPS_DATE_STRUCTURAL_ENGINEERING_FORECAST
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_date_structural_engineering_forecast
+  - column_data_type: string
+    column_name: MPS_DATE_STRUCTURAL_ENGINEERING_ACTUAL
+    comment: MPS_DATE_STRUCTURAL_ENGINEERING_ACTUAL
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_date_structural_engineering_actual
+  - column_data_type: string
+    column_name: MPS_DATE_STRUCTURAL_ENGINEERING_COMPLETE
+    comment: MPS_DATE_STRUCTURAL_ENGINEERING_COMPLETE
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_date_structural_engineering_complete
+  - column_data_type: string
+    column_name: STRUCTURAL_MPS_NUMBER
+    comment: STRUCTURAL_MPS_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: structural_mps_number
+  - column_data_type: string
+    column_name: MPS_FOUNDATION_REQ
+    comment: MPS_FOUNDATION_REQ
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_foundation_req
+  - column_data_type: string
+    column_name: MPS_COMMENT
+    comment: MPS_COMMENT
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_comment
+  - column_data_type: string
+    column_name: PIPECOMPRESSION
+    comment: PIPECOMPRESSION
+    data_classification: 
+    nullable: true
+    raw_column_name: pilecompression
+  - column_data_type: string
+    column_name: PILETENSION
+    comment: PILETENSION
+    data_classification: 
+    nullable: true
+    raw_column_name: piletension
+  - column_data_type: string
+    column_name: TEKLA_GUID
+    comment: TEKLA_GUID
+    data_classification: 
+    nullable: true
+    raw_column_name: tekla_guid
+  - column_data_type: string
+    column_name: TEKLA_IFCGUID
+    comment: TEKLA_IFCGUID
+    data_classification: 
+    nullable: true
+    raw_column_name: tekla_ifcguid
+  - column_data_type: string
+    column_name: TEKLA_PROFILE
+    comment: TEKLA_PROFILE
+    data_classification: 
+    nullable: true
+    raw_column_name: tekla_profile
+  - column_data_type: string
+    column_name: TEKLA_MATERIAL
+    comment: TEKLA_MATERIAL
+    data_classification: 
+    nullable: true
+    raw_column_name: tekla_material
+  - column_data_type: string
+    column_name: TEKLA_WARNING
+    comment: TEKLA_WARNING
+    data_classification: 
+    nullable: true
+    raw_column_name: tekla_warning
+  - column_data_type: string
+    column_name: TEKLA_VERSION
+    comment: TEKLA_VERSION
+    data_classification: 
+    nullable: true
+    raw_column_name: tekla_version
+  - column_data_type: string
+    column_name: WORKTYPE
+    comment: WORKTYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: worktype
+  - column_data_type: string
+    column_name: GRIDNO
+    comment: GRIDNO
+    data_classification: 
+    nullable: true
+    raw_column_name: gridno
+  - column_data_type: string
+    column_name: CWAREA
+    comment: CWAREA
+    data_classification: 
+    nullable: true
+    raw_column_name: cwarea
+  - column_data_type: string
+    column_name: CWP
+    comment: CWP
+    data_classification: 
+    nullable: true
+    raw_column_name: cwp
+  - column_data_type: string
+    column_name: EWP
+    comment: EWP
+    data_classification: 
+    nullable: true
+    raw_column_name: ewp
+  - column_data_type: string
+    column_name: POS
+    comment: POS
+    data_classification: 
+    nullable: true
+    raw_column_name: pos
+  - column_data_type: string
+    column_name: ORI
+    comment: ORI
+    data_classification: 
+    nullable: true
+    raw_column_name: ori
+  - column_data_type: string
+    column_name: PURP
+    comment: PURP
+    data_classification: 
+    nullable: true
+    raw_column_name: purp
+  - column_data_type: string
+    column_name: TMRREF
+    comment: TMRREF
+    data_classification: 
+    nullable: true
+    raw_column_name: tmrref
+  - column_data_type: string
+    column_name: REPCOU
+    comment: REPCOU
+    data_classification: 
+    nullable: true
+    raw_column_name: repcou
+  - column_data_type: string
+    column_name: PRODRF
+    comment: PRODRF
+    data_classification: 
+    nullable: true
+    raw_column_name: prodrf
+  - column_data_type: string
+    column_name: BEVCOD
+    comment: BEVCOD
+    data_classification: 
+    nullable: true
+    raw_column_name: bevcod
+  - column_data_type: string
+    column_name: DISCIPLINE
+    comment: DISCIPLINE
+    data_classification: 
+    nullable: true
+    raw_column_name: discipline
+  - column_data_type: string
+    column_name: TAGNO
+    comment: TAGNO
+    data_classification: 
+    nullable: true
+    raw_column_name: tagno
+  - column_data_type: string
+    column_name: UNITS
+    comment: UNITS
+    data_classification: 
+    nullable: true
+    raw_column_name: units
+  - column_data_type: string
+    column_name: UOM
+    comment: UOM
+    data_classification: 
+    nullable: true
+    raw_column_name: uom
+  - column_data_type: string
+    column_name: MATERIAL
+    comment: MATERIAL
+    data_classification: 
+    nullable: true
+    raw_column_name: material
+  - column_data_type: string
+    column_name: SUBSYSTEM
+    comment: SUBSYSTEM
+    data_classification: 
+    nullable: true
+    raw_column_name: subsystem
+  - column_data_type: string
+    column_name: FIREPROOFING
+    comment: FIREPROOFING
+    data_classification: 
+    nullable: true
+    raw_column_name: fireproofing
+  - column_data_type: string
+    column_name: INSULATION
+    comment: INSULATION
+    data_classification: 
+    nullable: true
+    raw_column_name: insulation
+  - column_data_type: string
+    column_name: ITEMNO
+    comment: ITEMNO
+    data_classification: 
+    nullable: true
+    raw_column_name: itemno
+  - column_data_type: string
+    column_name: COMMCODE
+    comment: COMMCODE
+    data_classification: 
+    nullable: true
+    raw_column_name: commcode
+  - column_data_type: string
+    column_name: INSUTYPE
+    comment: INSUTYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: insutype
+  - column_data_type: string
+    column_name: PIECEMARK
+    comment: PIECEMARK
+    data_classification: 
+    nullable: true
+    raw_column_name: piecemark
+  - column_data_type: string
+    column_name: SECTION_NAME
+    comment: SECTION_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: section_name
+  - column_data_type: string
+    column_name: STRUTYPE
+    comment: STRUTYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: strutype
+  - column_data_type: string
+    column_name: STRUCATE
+    comment: STRUCATE
+    data_classification: 
+    nullable: true
+    raw_column_name: strucate
+  - column_data_type: string
+    column_name: STEELTYPE
+    comment: STEELTYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: steeltype
+  - column_data_type: string
+    column_name: SITE
+    comment: SITE
+    data_classification: 
+    nullable: true
+    raw_column_name: site
+  - column_data_type: string
+    column_name: ZONE
+    comment: ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: CUT_LENGTH_IN
+    comment: CUT_LENGTH_IN
+    data_classification: 
+    nullable: true
+    raw_column_name: cut_length_in
+  - column_data_type: string
+    column_name: NETT_VOLUME_IN3
+    comment: NETT_VOLUME_IN3
+    data_classification: 
+    nullable: true
+    raw_column_name: nett_volume_in3
+  - column_data_type: string
+    column_name: FRMW
+    comment: FRMW
+    data_classification: 
+    nullable: true
+    raw_column_name: frmw
+  - column_data_type: string
+    column_name: STRU
+    comment: STRU
+    data_classification: 
+    nullable: true
+    raw_column_name: stru
+  - column_data_type: string
+    column_name: CWAREA_OF_STRU
+    comment: CWAREA_OF_STRU
+    data_classification: 
+    nullable: true
+    raw_column_name: cwarea_of_stru
+  - column_data_type: string
+    column_name: STVVAL_WOR_STATUS_STRC_STRU_OF_STRU
+    comment: STVVAL_WOR_STATUS_STRC_STRU_OF_STRU
+    data_classification: 
+    nullable: true
+    raw_column_name: stvval__wor_status_strc_stru__of_stru
+  - column_data_type: string
+    column_name: CATALOGUE_REFERENCE
+    comment: CATALOGUE_REFERENCE
+    data_classification: 
+    nullable: true
+    raw_column_name: catalogue_reference
+  - column_data_type: string
+    column_name: REFERENCE_OF_THE_ELEMENT
+    comment: REFERENCE_OF_THE_ELEMENT
+    data_classification: 
+    nullable: true
+    raw_column_name: reference_of_the_element
+  - column_data_type: string
+    column_name: NETT_WEIGHT_KG
+    comment: NETT_WEIGHT_KG
+    data_classification: 
+    nullable: true
+    raw_column_name: nett_weight_kg
+  - column_data_type: string
+    column_name: STLWEIGHTCLASS
+    comment: STLWEIGHTCLASS
+    data_classification: 
+    nullable: true
+    raw_column_name: stlweightclass
+  - column_data_type: string
+    column_name: guid
+    comment: guid
+    data_classification: 
+    nullable: true
+    raw_column_name: guid   
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_e3d_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/e3d/vg_e3d_vglgensec_sheet/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_vg_e3d_vglgensec_sheet
+  name: curated_vg_e3d_vglgensec_sheet
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/e3d/vg_e3d_vglgensec_sheet
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_E3D' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

@@ -1,0 +1,1080 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#COMPONENT#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/COMPONENT/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-component
+  name: spi_component
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_id
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: decimal(38,0)
+    column_name: plant_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_id
+  - column_data_type: decimal(38,0)
+    column_name: area_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_id
+  - column_data_type: decimal(38,0)
+    column_name: unit_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit_id
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date
+  - column_data_type: string
+    column_name: cmpnt_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_name
+  - column_data_type: string
+    column_name: cmpnt_serv
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_serv
+  - column_data_type: decimal(38,0)
+    column_name: spec_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_id
+  - column_data_type: string
+    column_name: cmpnt_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_num
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_type_id
+  - column_data_type: string
+    column_name: cmpnt_suff
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_suff
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_func_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_func_type_id
+  - column_data_type: string
+    column_name: name_lock
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name_lock
+  - column_data_type: string
+    column_name: cmpnt_name_parm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_name_parm
+  - column_data_type: string
+    column_name: old_cmpnt_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: old_cmpnt_name
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_loc_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_loc_id
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_sys_io_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_sys_io_type_id
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_handle_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_handle_id
+  - column_data_type: decimal(38,0)
+    column_name: equip_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: equip_id
+  - column_data_type: decimal(15,2)
+    column_name: item_price
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: item_price
+  - column_data_type: string
+    column_name: cmpnt_note
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_note
+  - column_data_type: string
+    column_name: remark1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remark1
+  - column_data_type: string
+    column_name: remark2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remark2
+  - column_data_type: string
+    column_name: remark3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remark3
+  - column_data_type: string
+    column_name: remark4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remark4
+  - column_data_type: string
+    column_name: remark5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remark5
+  - column_data_type: string
+    column_name: prefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prefix
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_seq
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_seq
+  - column_data_type: decimal(38,0)
+    column_name: loop_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_id
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_drawing_seq
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_drawing_seq
+  - column_data_type: string
+    column_name: inst_type_blk_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inst_type_blk_flg
+  - column_data_type: string
+    column_name: tag_trans_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tag_trans_name
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_mod_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_mod_id
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_mfr_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_mfr_id
+  - column_data_type: decimal(38,0)
+    column_name: proc_func_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proc_func_id
+  - column_data_type: string
+    column_name: spec_cmpnt_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_cmpnt_type
+  - column_data_type: string
+    column_name: spec_cmpnt_func
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_cmpnt_func
+  - column_data_type: string
+    column_name: spec_cmpnt_price
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_cmpnt_price
+  - column_data_type: string
+    column_name: spec_cmpnt_mounting
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_cmpnt_mounting
+  - column_data_type: string
+    column_name: spec_cmpnt_sn
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_cmpnt_sn
+  - column_data_type: string
+    column_name: spec_cmpnt_po_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_cmpnt_po_no
+  - column_data_type: string
+    column_name: spec_cmpnt_po_item_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_cmpnt_po_item_no
+  - column_data_type: string
+    column_name: spec_cmpnt_power_supply
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_cmpnt_power_supply
+  - column_data_type: string
+    column_name: spec_enclosure_class
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_enclosure_class
+  - column_data_type: decimal(38,0)
+    column_name: add_line_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: add_line_id
+  - column_data_type: decimal(38,0)
+    column_name: dwg_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_id
+  - column_data_type: decimal(38,0)
+    column_name: line_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_id
+  - column_data_type: string
+    column_name: loop_param
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_param
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_critical_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_critical_id
+  - column_data_type: string
+    column_name: cmpnt_quality_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_quality_flg
+  - column_data_type: decimal(38,10)
+    column_name: inst_range_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inst_range_min
+  - column_data_type: decimal(38,10)
+    column_name: inst_range_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inst_range_max
+  - column_data_type: string
+    column_name: inst_range_uom_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inst_range_uom_min
+  - column_data_type: string
+    column_name: inst_range_uom_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inst_range_uom_max
+  - column_data_type: string
+    column_name: inst_range_uflg_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inst_range_uflg_min
+  - column_data_type: string
+    column_name: inst_range_uflg_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inst_range_uflg_max
+  - column_data_type: decimal(38,10)
+    column_name: calib_range_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calib_range_min
+  - column_data_type: decimal(38,10)
+    column_name: calib_range_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calib_range_max
+  - column_data_type: string
+    column_name: calib_range_uom_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calib_range_uom_min
+  - column_data_type: string
+    column_name: calib_range_uom_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calib_range_uom_max
+  - column_data_type: string
+    column_name: calib_range_uflg_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calib_range_uflg_min
+  - column_data_type: string
+    column_name: calib_range_uflg_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calib_range_uflg_max
+  - column_data_type: decimal(38,10)
+    column_name: dcs_range_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dcs_range_min
+  - column_data_type: decimal(38,10)
+    column_name: dcs_range_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dcs_range_max
+  - column_data_type: string
+    column_name: dcs_range_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dcs_range_uom
+  - column_data_type: decimal(38,10)
+    column_name: dry_weight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dry_weight
+  - column_data_type: decimal(38,10)
+    column_name: full_weight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: full_weight
+  - column_data_type: decimal(38,0)
+    column_name: uom_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: uom_id
+  - column_data_type: decimal(38,0)
+    column_name: instr_pd_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: instr_pd_flg
+  - column_data_type: string
+    column_name: dcs_range_uflg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dcs_range_uflg
+  - column_data_type: decimal(38,0)
+    column_name: rev_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rev_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_proj_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_ref_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_ref_id
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_certif_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_certif_id
+  - column_data_type: string
+    column_name: fb_tag_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_tag_no
+  - column_data_type: string
+    column_name: fb_dev_address
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_dev_address
+  - column_data_type: string
+    column_name: fb_dev_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_dev_id
+  - column_data_type: decimal(38,10)
+    column_name: fb_min_volt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_min_volt
+  - column_data_type: decimal(38,10)
+    column_name: fb_max_volt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_max_volt
+  - column_data_type: decimal(38,10)
+    column_name: fb_dc_cur
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_dc_cur
+  - column_data_type: decimal(38,10)
+    column_name: fb_min_transmit_level
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_min_transmit_level
+  - column_data_type: string
+    column_name: fb_standard
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_standard
+  - column_data_type: decimal(38,0)
+    column_name: wire_group_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wire_group_id
+  - column_data_type: decimal(38,0)
+    column_name: master_cmpnt_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: master_cmpnt_id
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_find_rem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_find_rem
+  - column_data_type: string
+    column_name: req_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: req_no
+  - column_data_type: decimal(38,0)
+    column_name: tc_line_number_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tc_line_number_id
+  - column_data_type: string
+    column_name: tc_location_layout
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tc_location_layout
+  - column_data_type: string
+    column_name: tc_fire_area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tc_fire_area
+  - column_data_type: decimal(38,0)
+    column_name: tc_field_equipment_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tc_field_equipment_id
+  - column_data_type: decimal(38,0)
+    column_name: tc_signal_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tc_signal_id
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id1
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id2
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id3
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id4
+  - column_data_type: decimal(38,0)
+    column_name: panel_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: panel_id
+  - column_data_type: decimal(38,0)
+    column_name: strip_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: strip_id
+  - column_data_type: decimal(38,10)
+    column_name: load_watt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: load_watt
+  - column_data_type: decimal(38,10)
+    column_name: capacitance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: capacitance
+  - column_data_type: string
+    column_name: capacitance_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: capacitance_uom
+  - column_data_type: string
+    column_name: pipe_class
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_class
+  - column_data_type: string
+    column_name: backup_link_master
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: backup_link_master
+  - column_data_type: decimal(38,0)
+    column_name: fieldbus_device_rev
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fieldbus_device_rev
+  - column_data_type: decimal(38,0)
+    column_name: elect_equip_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: elect_equip_id
+  - column_data_type: decimal(38,0)
+    column_name: elect_load_equip_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: elect_load_equip_id
+  - column_data_type: decimal(38,0)
+    column_name: dwg_schematic_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_schematic_id
+  - column_data_type: string
+    column_name: typical_schematic
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: typical_schematic
+  - column_data_type: string
+    column_name: circuit
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: circuit
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id5
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id6
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id7
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id8
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id9
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id10
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id11
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id11
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id12
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id12
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id13
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id13
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id14
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id14
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id15
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id15
+  - column_data_type: decimal(38,10)
+    column_name: udt_support_id16
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id16
+  - column_data_type: string
+    column_name: requires_power_supply
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: requires_power_supply
+  - column_data_type: decimal(38,0)
+    column_name: related_voltage_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: related_voltage_id
+  - column_data_type: decimal(38,0)
+    column_name: frequency_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: frequency_id
+  - column_data_type: decimal(38,0)
+    column_name: number_of_phases_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: number_of_phases_id
+  - column_data_type: decimal(38,0)
+    column_name: operating_mode_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_mode_id
+  - column_data_type: decimal(38,0)
+    column_name: rated_voltage_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rated_voltage_id
+  - column_data_type: decimal(38,10)
+    column_name: full_load_current
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: full_load_current
+  - column_data_type: decimal(38,10)
+    column_name: starting_current
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: starting_current
+  - column_data_type: decimal(38,10)
+    column_name: rated_active_load
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rated_active_load
+  - column_data_type: decimal(38,10)
+    column_name: rated_apparent_load
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rated_apparent_load
+  - column_data_type: decimal(38,10)
+    column_name: rated_reactive_load
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rated_reactive_load
+  - column_data_type: string
+    column_name: power_supply_type_flag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: power_supply_type_flag
+  - column_data_type: string
+    column_name: power_distribution_board
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: power_distribution_board
+  - column_data_type: string
+    column_name: cell
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cell
+  - column_data_type: decimal(38,10)
+    column_name: zzcoincidencefactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: zzcoincidencefactor
+  - column_data_type: decimal(38,10)
+    column_name: zcoincidencefactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: zcoincidencefactor
+  - column_data_type: decimal(38,10)
+    column_name: ycoincidencefactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ycoincidencefactor
+  - column_data_type: decimal(38,10)
+    column_name: xcoincidencefactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: xcoincidencefactor
+  - column_data_type: string
+    column_name: phase1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phase1
+  - column_data_type: string
+    column_name: phase2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phase2
+  - column_data_type: string
+    column_name: phase3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phase3
+  - column_data_type: decimal(38,10)
+    column_name: power_factor_full_load
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: power_factor_full_load
+  - column_data_type: decimal(38,0)
+    column_name: pipe_class_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_class_id
+  - column_data_type: string
+    column_name: analyzer_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: analyzer_flg
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_is_circuite_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_is_circuite_type_id
+  - column_data_type: decimal(38,0)
+    column_name: line_cmpnt_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_cmpnt_id
+  - column_data_type: decimal(38,0)
+    column_name: circuit_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: circuit_id
+  - column_data_type: string
+    column_name: speaker_tag_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: speaker_tag_id
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_cat_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_cat_id
+  - column_data_type: string
+    column_name: cmpnt_profibus_node
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_profibus_node
+  - column_data_type: decimal(38,0)
+    column_name: hart_signal_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hart_signal_id
+  - column_data_type: decimal(38,0)
+    column_name: signal_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: signal_type_id
+  - column_data_type: decimal(38,0)
+    column_name: linear_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: linear_type_id
+  - column_data_type: string
+    column_name: kks_totalplant
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_totalplant
+  - column_data_type: string
+    column_name: kks_function_key_prefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key_prefix
+  - column_data_type: string
+    column_name: kks_function_key
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key
+  - column_data_type: string
+    column_name: kks_function_key_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key_sequence
+  - column_data_type: string
+    column_name: kks_equipment_unit_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_code
+  - column_data_type: string
+    column_name: kks_equipment_unit_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_sequence
+  - column_data_type: string
+    column_name: kks_equipment_unit_add_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_add_code
+  - column_data_type: string
+    column_name: kks_component_key
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_component_key
+  - column_data_type: string
+    column_name: kks_component_key_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_component_key_sequence
+  - column_data_type: string
+    column_name: use_symbol_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: use_symbol_flg
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_associated_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_associated_id
+  - column_data_type: string
+    column_name: merge_release_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: merge_release_flg
+  - column_data_type: string
+    column_name: on_signal_state_desc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: on_signal_state_desc
+  - column_data_type: string
+    column_name: off_signal_state_desc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: off_signal_state_desc
+  - column_data_type: decimal(38,0)
+    column_name: typical_tag_class_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: typical_tag_class_id    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/COMPONENT/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_component
+  load_type: append
+  name: curated_component
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_component
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

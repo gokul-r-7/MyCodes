@@ -1,0 +1,18 @@
+SourceSystemId: e3d_ado
+MetadataType: batch#e3d#${envn}#ado
+is_active: true
+aws_region: ${region}
+Pattern: batch
+smb_configuration: 
+  host_url: houfil17.worley.com
+  host_port: 445
+  secret_credentials: ${secret_prefix}-dbt-smb 
+  destination_bucket: ${raw_bucket}
+  destination_folder: engineering/e3d/raw/ado
+  kms_key_arn: ${iceberg_snapshot_key}
+  file_archive_flag: false
+  file_delete_flag: true
+  archive_folder: ""
+  source: 
+    - SourcePath: /E3D_Integrated_Reporting/ModelReviewTagItemTracker
+      pattern: VGCP2_ModelReviewItemsTracker*.csv

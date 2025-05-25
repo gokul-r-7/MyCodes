@@ -1,0 +1,186 @@
+SourceSystemId: hcm_extracts_curated
+MetadataType: curated#people#grade#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_people_bucket}/oracle/people/hcm_extracts/parquet/grade.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: hcm_extracts-grade
+  name: hcm_extracts_grade
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_people_oracle_hcm_extracts_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/people/oracle/hcm_extracts/grade/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_grade
+  load_type: incremental
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  name: curated_grade
+  primary_key: &id001
+  - grade_id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/people/oracle/hcm_curated/grade
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'hcm_extracts' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: *id001
+    rename_columns: true
+  columns:
+  - column_data_type: int
+    column_name: action_occurrence_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOACTIONOCCURRENCEID
+  - column_data_type: string
+    column_name: action_reason
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ACTIONREASONSTLPEOACTIONREASON
+  - column_data_type: string
+    column_name: active_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOACTIVESTATUS
+  - column_data_type: int
+    column_name: business_group_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOBUSINESSGROUPID
+  - column_data_type: int
+    column_name: ceiling_step_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOCEILINGSTEPID
+  - column_data_type: string
+    column_name: source_created_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOCREATEDBY
+  - column_data_type: timestamp
+    column_name: source_creation_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOCREATIONDATE
+  - column_data_type: date
+    column_name: source_effective_end_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVEENDDATE
+  - column_data_type: date
+    column_name: source_effective_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVESTARTDATE
+  - column_data_type: string
+    column_name: grade_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOGRADECODE
+  - column_data_type: int
+    column_name: grade_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEID
+  - column_data_type: string
+    column_name: grade_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOGRADETYPE
+  - column_data_type: timestamp
+    column_name: grade_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOLASTUPDATEDATE
+  - column_data_type: timestamp
+    column_name: set_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: SETIDSETPEOLASTUPDATEDATE
+  - column_data_type: string
+    column_name: source_last_update_login
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOLASTUPDATELOGIN
+  - column_data_type: string
+    column_name: source_last_updated_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOLASTUPDATEDBY
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADETRANSLATIONPEONAME
+  - column_data_type: int
+    column_name: object_version_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOOBJECTVERSIONNUMBER
+  - column_data_type: int
+    column_name: pay_scale_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADEPEOPAYSCALEID
+  - column_data_type: string
+    column_name: grade_language
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADETRANSLATIONPEOLANGUAGE
+  - column_data_type: timestamp
+    column_name: grade_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADETRANSLATIONPEOLASTUPDATEDATE
+  - column_data_type: timestamp
+    column_name: grade_effeactive_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: GRADETRANSLATIONPEOEFFECTIVESTARTDATE

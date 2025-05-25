@@ -1,0 +1,248 @@
+SourceSystemId: hcm_extracts_curated
+MetadataType: curated#people#person_name#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_people_bucket}/oracle/people/hcm_extracts/parquet/person_name.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: hcm_extracts-person_name
+  name: hcm_extracts_person_name
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_people_oracle_hcm_extracts_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/people/oracle/hcm_extracts/person_name/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_person_name
+  load_type: incremental
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  name: curated_person_name
+  primary_key: &id001
+  - person_id
+  - person_name_id
+  - person_number
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/people/oracle/hcm_curated/person_name
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'hcm_extracts' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: *id001
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: source_created_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOCREATEDBY
+  - column_data_type: timestamp
+    column_name: source_creation_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOCREATIONDATE
+  - column_data_type: string
+    column_name: display_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEODISPLAYNAME
+  - column_data_type: date
+    column_name: source_effective_end_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVEENDDATE
+  - column_data_type: date
+    column_name: source_effective_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVESTARTDATE
+  - column_data_type: string
+    column_name: first_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOFIRSTNAME
+  - column_data_type: string
+    column_name: full_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOFULLNAME
+  - column_data_type: string
+    column_name: honors
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOHONORS
+  - column_data_type: string
+    column_name: known_as
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOKNOWNAS
+  - column_data_type: string
+    column_name: last_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOLASTNAME
+  - column_data_type: timestamp
+    column_name: source_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOLASTUPDATEDATE
+  - column_data_type: string
+    column_name: source_last_update_login
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOLASTUPDATELOGIN
+  - column_data_type: string
+    column_name: source_last_updated_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOLASTUPDATEDBY
+  - column_data_type: string
+    column_name: legislation_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOLEGISLATIONCODE
+  - column_data_type: string
+    column_name: list_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOLISTNAME
+  - column_data_type: string
+    column_name: middle_names
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOMIDDLENAMES
+  - column_data_type: string
+    column_name: military_rank
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOMILITARYRANK
+  - column_data_type: string
+    column_name: nam_information1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEONAMINFORMATION1
+  - column_data_type: string
+    column_name: nam_information2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEONAMINFORMATION2
+  - column_data_type: string
+    column_name: nam_information3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEONAMINFORMATION3
+  - column_data_type: string
+    column_name: nam_information4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEONAMINFORMATION4
+  - column_data_type: string
+    column_name: nam_information5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEONAMINFORMATION5
+  - column_data_type: string
+    column_name: name_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEONAMETYPE
+  - column_data_type: string
+    column_name: order_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOORDERNAME
+  - column_data_type: int
+    column_name: person_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOPERSONID
+  - column_data_type: int
+    column_name: person_name_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEID
+  - column_data_type: string
+    column_name: person_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOPERSONNUMBER
+  - column_data_type: string
+    column_name: pre_name_adjunct
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOPRENAMEADJUNCT
+  - column_data_type: string
+    column_name: previous_last_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOPREVIOUSLASTNAME
+  - column_data_type: string
+    column_name: suffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOSUFFIX
+  - column_data_type: string
+    column_name: title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONNAMEPEOTITLE
+  - column_data_type: string
+    column_name: username
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: USERPEOUSERNAME

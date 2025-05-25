@@ -1,0 +1,126 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#COMPONENT_MFR#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/COMPONENT_MFR/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-component_mfr
+  name: spi_component_mfr
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_mfr_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_mfr_id
+  - column_data_type: string
+    column_name: cmpnt_mfr_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_mfr_name
+  - column_data_type: string
+    column_name: cmpnt_mfr_desc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_mfr_desc
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: plant_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_id
+  - column_data_type: decimal(38,0)
+    column_name: area_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_id
+  - column_data_type: decimal(38,0)
+    column_name: unit_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date
+  - column_data_type: string
+    column_name: ip_adress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ip_adress
+  - column_data_type: string
+    column_name: mfr_company_identification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mfr_company_identification    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/COMPONENT_MFR/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_component_mfr
+  load_type: append
+  name: curated_component_mfr
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_component_mfr
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

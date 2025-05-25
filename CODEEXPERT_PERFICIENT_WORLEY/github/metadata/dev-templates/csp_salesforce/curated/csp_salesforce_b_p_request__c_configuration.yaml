@@ -1,0 +1,122 @@
+SourceSystemId: csp_salesforce_curated
+MetadataType: curated#csp_salesforce#b_p_request__c#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/customer/csp_salesforce/b_p_request__c/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: csp_salesforce-b_p_request__c
+  name: csp_salesforce_b_p_request__c
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_customer_csp_salesforce_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/customer/csp_salesforce/b_p_request__c/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_b_p_request__c
+  load_type: incremental_no_delete
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  db_load:
+    aurora_host: ${aurora_host}
+    aurora_port: '5432'
+    aurora_secret: Worley-datalake-sydney-${envn}-db-csp-salesforce-glueuser
+    aurora_db_name: ${aurora_db}
+    aurora_db_target_table_name: b_p_request__c
+    aurora_db_target_schema: CSP_Salesforce
+    aurora_data_load_type: append
+    snapshot_s3_bucket: ${raw_bucket}
+    snapshot_s3_key: customer/csp_salesforce/iceberg-to-aurora/snapshot/csp_salesforce/b_p_request__c/last_processed_snapshot.txt
+    snapshot_s3_kms_key_id: ${iceberg_snapshot_key}
+    primary_key: id
+  name: curated_b_p_request__c
+  primary_key:
+  - id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/customer/csp_salesforce/b_p_request__c
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, CAST(lastmodifieddate as timestamp) as lastmodifieddate_ts, 'csp_salesforce'
+    as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key:
+    - id
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: b_p_budget_corporatec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_budget_corporatec
+  - column_data_type: string
+    column_name: b_p_budget_contractc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: b_p_budget_contractc
+  - column_data_type: string
+    column_name: statusc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statusc
+  - column_data_type: string
+    column_name: sales_leadc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_leadc
+  - column_data_type: string
+    column_name: jacobs_sales_leadc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jacobs_sales_leadc
+  - column_data_type: string
+    column_name: lastmodifieddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastmodifieddate
+  - column_data_type: string
+    column_name: opportunityc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: opportunityc
+  - column_data_type: string
+    column_name: work_hoursc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: work_hoursc

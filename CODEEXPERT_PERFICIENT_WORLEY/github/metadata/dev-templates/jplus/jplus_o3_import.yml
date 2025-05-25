@@ -1,0 +1,31 @@
+SourceSystemId: jplus
+MetadataType: api#jplus#o3_import
+aws_region: ${region}
+Env: ${envn}
+is_active: true
+api_parameters:
+  api_host: ${o3_endpoint}/imports/create?ProjectID={}
+  import_status_api_host: ${o3_endpoint}/imports/{}
+  api_retry: 3
+  api_timeout: 300
+  api_pagecount: 500
+  secret_key: ${secret_prefix}-o3-api
+job_parameters:
+  jplus_curated_db: ${database_prefix}_finance_jplus_curated
+  jplus_timecard_table: curated_timecard
+  jplus_warehouse: s3://${curated_bucket}/finance/jplus/timecard/
+  o3_curated_db: ${database_prefix}_construction_o3_curated
+  o3_iwps_table: curated_iwps
+  o3_warehouse: s3://${curated_bucket}/construction/o3/iwps/
+  import_type: Installation Work Packages
+  update_only: true
+  file: temp_upload.csv;type=text/csv
+  raw_bucket: ${raw_bucket}
+  kms_key_id: ${kms_key_id}
+  audit_folder_location: finance/jplus/audit_folder
+receiver_email:
+  - tanuj.soni@worley.com
+  - Arunkumar.Kandaswami@Worley.com
+sender_email: Global-AWSSystemIntegrations@worley.com
+smtp_port: 25
+smtp_server: smtp.worley.com

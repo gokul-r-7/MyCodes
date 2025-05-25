@@ -1,0 +1,214 @@
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#df_person#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/df_person.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: df_person
+  name: df_person
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/df_person/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: df_person
+  load_type: incremental_no_delete
+  name: df_person
+  primary_key: person_id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/df_person
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: person_id
+    rename_columns: true
+  columns:
+  - column_name: recon_value
+    column_data_type: string
+    comment: recon_value
+    data_classification:
+    nullable: true
+    raw_column_name: recon_value  
+  - column_name: person_id
+    column_data_type: string
+    comment: person_id
+    data_classification:
+    nullable: true
+    raw_column_name: person_id
+  - column_name: effective_start_date
+    column_data_type: string
+    comment: effective_start_date
+    data_classification:
+    nullable: true
+    raw_column_name: effective_start_date
+  - column_name: effective_end_date
+    column_data_type: string
+    comment: effective_end_date
+    data_classification:
+    nullable: true
+    raw_column_name: effective_end_date
+  - column_name: business_group_id
+    column_data_type: decimal(38,0)
+    comment: business_group_id
+    data_classification:
+    nullable: true
+    raw_column_name: business_group_id
+  - column_name: person_type_id
+    column_data_type: decimal(38,0)
+    comment: person_type_id
+    data_classification:
+    nullable: true
+    raw_column_name: person_type_id
+  - column_name: last_name
+    column_data_type: string
+    comment: last_name
+    data_classification:
+    nullable: true
+    raw_column_name: last_name
+  - column_name: start_date
+    column_data_type: string
+    comment: start_date
+    data_classification:
+    nullable: true
+    raw_column_name: start_date
+  - column_name: current_emp_or_apl_flag
+    column_data_type: string
+    comment: current_emp_or_apl_flag
+    data_classification:
+    nullable: true
+    raw_column_name: current_emp_or_apl_flag
+  - column_name: current_employee_flag
+    column_data_type: string
+    comment: current_employee_flag
+    data_classification:
+    nullable: true
+    raw_column_name: current_employee_flag
+  - column_name: date_of_birth
+    column_data_type: string
+    comment: date_of_birth
+    data_classification:
+    nullable: true
+    raw_column_name: date_of_birth
+  - column_name: email_address
+    column_data_type: string
+    comment: email_address
+    data_classification:
+    nullable: true
+    raw_column_name: email_address
+  - column_name: employee_number
+    column_data_type: decimal(38,0)
+    comment: employee_number
+    data_classification:
+    nullable: true
+    raw_column_name: employee_number
+  - column_name: first_name
+    column_data_type: string
+    comment: first_name
+    data_classification:
+    nullable: true
+    raw_column_name: first_name
+  - column_name: marital_status
+    column_data_type: string
+    comment: marital_status
+    data_classification:
+    nullable: true
+    raw_column_name: marital_status
+  - column_name: middle_names
+    column_data_type: string
+    comment: middle_names
+    data_classification:
+    nullable: true
+    raw_column_name: middle_names
+  - column_name: nationality
+    column_data_type: string
+    comment: nationality
+    data_classification:
+    nullable: true
+    raw_column_name: nationality
+  - column_name: on_military_service
+    column_data_type: string
+    comment: on_military_service
+    data_classification:
+    nullable: true
+    raw_column_name: on_military_service
+  - column_name: resume_exists
+    column_data_type: string
+    comment: resume_exists
+    data_classification:
+    nullable: true
+    raw_column_name: resume_exists
+  - column_name: second_passport_exists
+    column_data_type: string
+    comment: second_passport_exists
+    data_classification:
+    nullable: true
+    raw_column_name: second_passport_exists
+  - column_name: sex
+    column_data_type: string
+    comment: sex
+    data_classification:
+    nullable: true
+    raw_column_name: sex
+  - column_name: title
+    column_data_type: string
+    comment: title
+    data_classification:
+    nullable: true
+    raw_column_name: title
+  - column_name: per_information_category
+    column_data_type: string
+    comment: per_information_category
+    data_classification:
+    nullable: true
+    raw_column_name: per_information_category
+  - column_name: per_information2
+    column_data_type: string
+    comment: per_information2
+    data_classification:
+    nullable: true
+    raw_column_name: per_information2
+  - column_name: country_of_birth
+    column_data_type: string
+    comment: country_of_birth
+    data_classification:
+    nullable: true
+    raw_column_name: country_of_birth
+  - column_name: original_date_of_hire
+    column_data_type: string
+    comment: original_date_of_hire
+    data_classification:
+    nullable: true
+    raw_column_name: original_date_of_hire
+  - column_name: party_id
+    column_data_type: string
+    comment: party_id
+    data_classification:
+    nullable: true
+    raw_column_name: party_id

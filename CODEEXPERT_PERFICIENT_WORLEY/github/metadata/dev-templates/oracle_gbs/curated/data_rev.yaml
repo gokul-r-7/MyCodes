@@ -1,0 +1,184 @@
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#data_rev#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/data_rev.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: data_rev
+  name: data_rev
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/data_rev/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: data_rev
+  load_type: incremental_no_delete
+  name: data_rev
+  primary_key: br_key
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/data_rev
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: br_key
+    rename_columns: true
+  columns:
+  - column_name: datasource_num_id
+    column_data_type: decimal(38,0)
+    comment: datasource_num_id
+    data_classification:
+    nullable: true
+    raw_column_name: datasource_num_id  
+  - column_name: br_key
+    column_data_type: string
+    comment: br_key
+    data_classification:
+    nullable: true
+    raw_column_name: br_key
+  - column_name: project_key
+    column_data_type: string
+    comment: project_key
+    data_classification:
+    nullable: true
+    raw_column_name: project_key
+  - column_name: expenditure_type_key
+    column_data_type: string
+    comment: expenditure_type_key
+    data_classification:
+    nullable: true
+    raw_column_name: expenditure_type_key
+  - column_name: expenditure_org_scd_key
+    column_data_type: string
+    comment: expenditure_org_scd_key
+    data_classification:
+    nullable: true
+    raw_column_name: expenditure_org_scd_key
+  - column_name: incurred_by_person_scd_key
+    column_data_type: string
+    comment: incurred_by_person_scd_key
+    data_classification:
+    nullable: true
+    raw_column_name: incurred_by_person_scd_key
+  - column_name: incurred_by_person_id
+    column_data_type: string
+    comment: incurred_by_person_id
+    data_classification:
+    nullable: true
+    raw_column_name: incurred_by_person_id
+  - column_name: task_key
+    column_data_type: string
+    comment: task_key
+    data_classification:
+    nullable: true
+    raw_column_name: task_key
+  - column_name: job_key
+    column_data_type: string
+    comment: job_key
+    data_classification:
+    nullable: true
+    raw_column_name: job_key
+  - column_name: code_of_account_code
+    column_data_type: string
+    comment: code_of_account_code
+    data_classification:
+    nullable: true
+    raw_column_name: code_of_account_code
+  - column_name: activity_detail_code
+    column_data_type: string
+    comment: activity_detail_code
+    data_classification:
+    nullable: true
+    raw_column_name: activity_detail_code
+  - column_name: activity_location_code
+    column_data_type: string
+    comment: activity_location_code
+    data_classification:
+    nullable: true
+    raw_column_name: activity_location_code
+  - column_name: pa_period_date
+    column_data_type: string
+    comment: pa_period_date
+    data_classification:
+    nullable: true
+    raw_column_name: pa_period_date
+  - column_name: expenditure_ending_date
+    column_data_type: string
+    comment: expenditure_ending_date
+    data_classification:
+    nullable: true
+    raw_column_name: expenditure_ending_date
+  - column_name: expenditure_date
+    column_data_type: string
+    comment: expenditure_date
+    data_classification:
+    nullable: true
+    raw_column_name: expenditure_date
+  - column_name: loc_revenue_amt
+    column_data_type: string
+    comment: loc_revenue_amt
+    data_classification:
+    nullable: true
+    raw_column_name: loc_revenue_amt
+  - column_name: loc_currency_code
+    column_data_type: string
+    comment: loc_currency_code
+    data_classification:
+    nullable: true
+    raw_column_name: loc_currency_code
+  - column_name: quantity
+    column_data_type: string
+    comment: quantity
+    data_classification:
+    nullable: true
+    raw_column_name: quantity
+  - column_name: uom
+    column_data_type: string
+    comment: uom
+    data_classification:
+    nullable: true
+    raw_column_name: uom
+  - column_name: bill_trans_curr_code
+    column_data_type: string
+    comment: bill_trans_curr_code
+    data_classification:
+    nullable: true
+    raw_column_name: bill_trans_curr_code
+  - column_name: effective_start_date
+    column_data_type: string
+    comment: effective_start_date
+    data_classification:
+    nullable: true
+    raw_column_name: effective_start_date
+  - column_name: effective_end_date
+    column_data_type: string
+    comment: effective_end_date
+    data_classification:
+    nullable: true
+    raw_column_name: effective_end_date

@@ -1,0 +1,360 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#LOOP#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/LOOP/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-loop
+  name: spi_loop
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: loop_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_id
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: decimal(38,0)
+    column_name: plant_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_id
+  - column_data_type: decimal(38,0)
+    column_name: area_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_id
+  - column_data_type: decimal(38,0)
+    column_name: unit_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit_id
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date
+  - column_data_type: string
+    column_name: loop_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_name
+  - column_data_type: string
+    column_name: loop_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_num
+  - column_data_type: decimal(38,0)
+    column_name: loop_proc_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_proc_id
+  - column_data_type: decimal(38,0)
+    column_name: loop_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_type_id
+  - column_data_type: decimal(38,0)
+    column_name: loop_func_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_func_id
+  - column_data_type: string
+    column_name: loop_suff
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_suff
+  - column_data_type: string
+    column_name: name_lock_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name_lock_flg
+  - column_data_type: string
+    column_name: loop_serv
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_serv
+  - column_data_type: string
+    column_name: loop_prefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_prefix
+  - column_data_type: string
+    column_name: old_loop_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: old_loop_name
+  - column_data_type: string
+    column_name: loop_note
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_note
+  - column_data_type: string
+    column_name: serv_cmpnt_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: serv_cmpnt_flg
+  - column_data_type: string
+    column_name: loop_trans_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_trans_name
+  - column_data_type: string
+    column_name: loop_param
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_param
+  - column_data_type: string
+    column_name: loop_sheet_type_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_sheet_type_flg
+  - column_data_type: decimal(38,0)
+    column_name: loop_seq_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_seq_no
+  - column_data_type: decimal(38,0)
+    column_name: dwg_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_id
+  - column_data_type: string
+    column_name: dwg_cmpnt_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_cmpnt_flg
+  - column_data_type: string
+    column_name: ext_macro_source
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ext_macro_source
+  - column_data_type: string
+    column_name: type_gen
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: type_gen
+  - column_data_type: decimal(38,0)
+    column_name: loop_set_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_set_id
+  - column_data_type: decimal(38,10)
+    column_name: loop_calib_error
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_calib_error
+  - column_data_type: decimal(38,0)
+    column_name: eng_proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_proj_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_ref_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_ref_id
+  - column_data_type: decimal(38,0)
+    column_name: loop_equip_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_equip_id
+  - column_data_type: string
+    column_name: loop_equip_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_equip_flg
+  - column_data_type: string
+    column_name: loop_error_calc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_error_calc
+  - column_data_type: decimal(38,0)
+    column_name: esl_loop_set_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: esl_loop_set_id
+  - column_data_type: string
+    column_name: ext_drawing_path
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ext_drawing_path
+  - column_data_type: string
+    column_name: note_cmpnt_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: note_cmpnt_flg
+  - column_data_type: decimal(38,0)
+    column_name: loop_criticality_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loop_criticality_id
+  - column_data_type: string
+    column_name: generated_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: generated_flg
+  - column_data_type: string
+    column_name: kks_totalplant
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_totalplant
+  - column_data_type: string
+    column_name: kks_function_key_prefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key_prefix
+  - column_data_type: string
+    column_name: kks_function_key
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key
+  - column_data_type: string
+    column_name: kks_function_key_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key_sequence
+  - column_data_type: string
+    column_name: kks_equipment_unit_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_code
+  - column_data_type: string
+    column_name: kks_equipment_unit_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_sequence
+  - column_data_type: string
+    column_name: kks_equipment_unit_add_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_add_code
+  - column_data_type: string
+    column_name: kks_component_key
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_component_key
+  - column_data_type: string
+    column_name: kks_component_key_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_component_key_sequence
+  - column_data_type: string
+    column_name: merge_release_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: merge_release_flg
+  - column_data_type: decimal(38,0)
+    column_name: dwg_external_blk_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_external_blk_id    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/LOOP/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_loop
+  load_type: append
+  name: curated_loop
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_loop
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,60 @@
+---
+SourceSystemId: erm
+MetadataType: api#erm#registerstatus
+api_parameter:
+  api_body: 
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/json
+    x-erm-env: ${erm_env_prefix}
+  api_method: get
+  api_query_params: 
+  api_request_body: 
+  api_response_type: json
+  api_retry: 3
+  api_ssl_verify: False
+  api_timeout: 30
+  auth_type: Bearer
+  dynamic_api_headers:
+  - Authorization
+  endpoint: https://api.erm.connect.aveva.com/api/erm/DataExtraction/Query?id={project_id}&format=json&parameters=
+auth_api_parameter:
+  api_name: erm_min_ril
+  auth_body:
+    client_id: 
+    client_secret: 
+    grant_type: client_credentials
+    scope: connect
+  auth_exponential_backoff: 5
+  auth_headers: 
+  auth_method: post
+  auth_ssl_verify: False
+  auth_query_params: 
+  auth_retry: 3
+  auth_timeout: 1200
+  dynamic_auth_headers:
+  - AuthToken
+  endpoint: https://signin.connect.aveva.com/oauth/token
+  secret_key: ${secret_prefix}-db-erm
+aws_region: ${region}
+is_active: "y"
+job_parameter:
+  bucket_data_source_prefix: erm
+  bucket_name: ${raw_bucket}
+  full_incremental: i
+  input_path: supply_chain/erm
+  kms_key_id: ${kms_key_id}
+  output_s3: erm
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: supply_chain/erm/data_sampling
+  status_timeout: 60
+  temp_output_path: temp/erm_win_ril/data
+  dependent_input_path: temp/erm_win_ril/input_data/
+  max_retry: 3
+  imported_raw_data_path: supply_chain/erm/registerprocess_status/raw_data/imported/{project_id}/{voucher_to_process}
+  un_imported_raw_data_path: supply_chain/erm/registerprocess_status/raw_data/not_imported/{project_id}/{voucher_to_process}
+  processed_status_path: supply_chain/erm/registerprocess_status/processed/{project_id}
+  status_check_delay: 20
+name: ERM_WIN_RIL
+

@@ -1,0 +1,307 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#hours#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/hours.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: hours
+  name: hours
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/hours/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: hours
+  load_type: incremental
+  name: hours
+  primary_key: dwi_hours
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/hours
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_hours
+    rename_columns: true
+  columns:
+  - column_name: dwi_hours
+    column_data_type: decimal(38,0)
+    comment: dwi_hours
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_hours
+  - column_name: employee_type
+    column_data_type: string
+    comment: employee_type
+    data_classification:
+    nullable: true
+    raw_column_name: employee_type
+  - column_name: li_employee_type
+    column_data_type: string
+    comment: li_employee_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_employee_type
+  - column_name: lo_employee_type
+    column_data_type: decimal(38,0)
+    comment: lo_employee_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_employee_type
+  - column_name: employment_category
+    column_data_type: string
+    comment: employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: employment_category
+  - column_name: li_employment_category
+    column_data_type: string
+    comment: li_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_employment_category
+  - column_name: lo_employment_category
+    column_data_type: decimal(38,0)
+    comment: lo_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_employment_category
+  - column_name: hours_reference_number02
+    column_data_type: string
+    comment: hours_reference_number02
+    data_classification:
+    nullable: true
+    raw_column_name: hours_reference_number02
+  - column_name: location_type
+    column_data_type: string
+    comment: location_type
+    data_classification:
+    nullable: true
+    raw_column_name: location_type
+  - column_name: li_location_type
+    column_data_type: string
+    comment: li_location_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_location_type
+  - column_name: lo_location_type
+    column_data_type: decimal(38,0)
+    comment: lo_location_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_location_type
+  - column_name: number_of_hours
+    column_data_type: decimal(38,0)
+    comment: number_of_hours
+    data_classification:
+    nullable: true
+    raw_column_name: number_of_hours
+  - column_name: sector
+    column_data_type: string
+    comment: sector
+    data_classification:
+    nullable: true
+    raw_column_name: sector
+  - column_name: li_sector
+    column_data_type: string
+    comment: li_sector
+    data_classification:
+    nullable: true
+    raw_column_name: li_sector
+  - column_name: lo_sector
+    column_data_type: decimal(38,0)
+    comment: lo_sector
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sector
+  - column_name: zzznotused_number_of_workers
+    column_data_type: decimal(38,0)
+    comment: zzznotused_number_of_workers
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_number_of_workers
+  - column_name: sys_legacy_hours_number
+    column_data_type: string
+    comment: sys_legacy_hours_number
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_hours_number
+  - column_name: sys_show_after_first_save
+    column_data_type: string
+    comment: sys_show_after_first_save
+    data_classification:
+    nullable: true
+    raw_column_name: sys_show_after_first_save
+  - column_name: li_sys_show_after_first_save
+    column_data_type: string
+    comment: li_sys_show_after_first_save
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_show_after_first_save
+  - column_name: lo_sys_show_after_first_save
+    column_data_type: decimal(38,0)
+    comment: lo_sys_show_after_first_save
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_show_after_first_save
+  - column_name: service_category
+    column_data_type: string
+    comment: service_category
+    data_classification:
+    nullable: true
+    raw_column_name: service_category
+  - column_name: li_service_category
+    column_data_type: string
+    comment: li_service_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_service_category
+  - column_name: lo_service_category
+    column_data_type: decimal(38,0)
+    comment: lo_service_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_service_category
+  - column_name: dwk_business_line
+    column_data_type: decimal(38,0)
+    comment: dwk_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_business_line
+  - column_name: dwk_business_line_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_business_line_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_business_line_archive
+  - column_name: dwk_customer
+    column_data_type: decimal(38,0)
+    comment: dwk_customer
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_customer
+  - column_name: dwk_employer
+    column_data_type: decimal(38,0)
+    comment: dwk_employer
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_employer
+  - column_name: dwk_zzznotused_employer
+    column_data_type: decimal(38,0)
+    comment: dwk_zzznotused_employer
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_zzznotused_employer
+  - column_name: dwk_geography
+    column_data_type: decimal(38,0)
+    comment: dwk_geography
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_geography
+  - column_name: dwk_geography_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_geography_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_geography_archive
+  - column_name: dwk_project_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_project_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_project_archive
+  - column_name: dwk_time_period
+    column_data_type: decimal(38,0)
+    comment: dwk_time_period
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_time_period
+  - column_name: dwk_sys_business_line_unknown
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_business_line_unknown
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_business_line_unknown
+  - column_name: dwk_worley_reporting_region
+    column_data_type: decimal(38,0)
+    comment: dwk_worley_reporting_region
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_worley_reporting_region
+  - column_name: dwk_project
+    column_data_type: decimal(38,0)
+    comment: dwk_project
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_project
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

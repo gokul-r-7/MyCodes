@@ -1,0 +1,31 @@
+SourceSystemId: ecosys
+MetadataType: api#ecosys#ecodata
+name: ecodata
+is_active: y
+api_parameter:
+  api_method: get # Mandatory (Key and Value)
+  api_response_type : raw
+  endpoint: https://ecosys-int.worley.com/ecosys/api/restjson/INTa_SnowFlake_ECODATA_SecOrg_Updated/ #Mandatory (Key and Value)
+  api_auth_type: Basic #Mandatory (Key and Value)
+  secret_key: ${secret_prefix}-api-ecosys  # This goes into SecretsManager (Mandatory) (Key and Value)
+  api_ssl_verify : False
+  api_retry: 2 #Mandatory (Key and Value)
+  api_timeout: 900 #Mandatory (Key and Value)
+  api_headers: #Mandatory 
+    content_type: application/json #Mandatory (Key and Value)
+  dynamic_api_headers: #Mandatory
+    Authorization : None #Optional (Key only)
+  api_query_params: None #Mandatory (Key only)
+  dynamic_api_query_param :  #Optional 
+  api_body: None #Mandatory (Key only)
+job_parameter:
+  bucket_name: ${raw_bucket}
+  input_path : s3://${raw_bucket}/project_control/ecosys/snapshotfull/
+  full_incr: f
+  table_prefix: ecodata
+  secorg_id : None #Optional
+  s3_output_uri : "project_control/ecosys/ecodata/{secorg_id}/{partition_uri}"
+  s3_datasample_path : "project_control/ecosys/data_sampling/ecodata/"
+  s3_ecodata_dependant_path : s3://${raw_bucket}/project_control/ecosys/snapshotfull/{secorg_id}
+  s3_snapshot_processed_path : s3://${raw_bucket}/project_control/ecosys/snapshot_processed/{secorg_id}
+  

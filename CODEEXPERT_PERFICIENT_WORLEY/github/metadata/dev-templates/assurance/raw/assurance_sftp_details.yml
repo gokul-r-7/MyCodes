@@ -1,0 +1,29 @@
+SourceSystemId: assurance_hse
+MetadataType: batch#assurance#${envn}#hse
+Ingest:
+  archival_folder: ${assurance_sftp_remote_folder}/archive
+  archive_flag: 'Y'
+  bucket_key: ${raw_bucket}
+  delete_flag: 'Y'
+  destination_bucket: ${raw_bucket}
+  host_protocol: sftp
+  host_url: ${assurance_sftp_server}
+  kms_key_arn: ${iceberg_snapshot_key}
+  patterns:
+    - '[r''^.*\.zip$'', r''.*\.json$'', r''.*\.csv$'']'
+  remote_folder: ${assurance_sftp_remote_folder}
+  rename_file_flag: 'True'
+  secret_credentials: ${assurance_sftp_host_user}
+  sftp_secret_name: ${assurance_sftp_host_user}
+  Source:
+    - pattern: 'Assurance_*.zip'
+      s3Path: health_safety_environment/assurance/raw/
+      SourcePath: ${assurance_sftp_remote_folder}/data-extract-AWS
+  temp_dir: /tmp/extracted_files
+  tmp_location: temp/sftp_files/
+  txt_file_delimiter: '|'
+  txt_file_flag: 'N'
+  zip_unzip_flag: 'Y'
+is_active: 'True'
+Pattern: batch
+aws_region: ${region}

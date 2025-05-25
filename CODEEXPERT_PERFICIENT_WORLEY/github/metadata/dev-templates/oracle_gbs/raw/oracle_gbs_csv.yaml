@@ -1,0 +1,381 @@
+---
+SourceSystemId: oraclegbs
+MetadataType: csv#oraclegbs
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: finance/oracle_gbs/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: finance/oracle_gbs/parquet/
+  raw_files_path: finance/oracle_gbs/raw
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: finance/oracle_gbs/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  csv_files:
+    - filename: EVA_Currency_Exchange_Rate_20240610_0229.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: currency_exchange_rate
+      with_header: true
+    - filename: EVA_Currency_Type_20240730_2358.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: currency_type
+      with_header: true      
+    - filename: EVA_ADC_COA_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: adc_coa
+      with_header: true      
+    - filename: EVA_Business_Line_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: business_line
+      with_header: true      
+    - filename: EVA_Capability_Subsector_Type_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: capability_subsector_type
+      with_header: true      
+    - filename: EVA_COA_Cost_Type_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: coa_cost_type
+      with_header: true      
+    - filename: EVA_Consulting_Service_Line_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: consulting_service_line
+      with_header: true      
+    - filename: EVA_Customer_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: customer
+      with_header: true      
+    - filename: EVA_Customer_Agreement_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: customer_agreement
+      with_header: true      
+    - filename: EVA_Data_Cost_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: data_cost
+      with_header: true      
+    - filename: EVA_Data_IC_Cost_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: data_ic_cost
+      with_header: true      
+    - filename: EVA_Data_Rev_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: data_rev
+      with_header: true      
+    - filename: EVA_Expenditure_Type_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: expenditure_type
+      with_header: true      
+    - filename: EVA_External_Organization_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: external_organization
+      with_header: true      
+    - filename: EVA_Global_Job_Code_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: global_job_code
+      with_header: true      
+    - filename: EVA_Group_Code_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: group_code
+      with_header: true      
+    - filename: EVA_HR_Discipline_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: hr_discipline
+      with_header: true      
+    - filename: EVA_HR_Person_Assignment_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: hr_person_assignment
+      with_header: true      
+    - filename: EVA_Internal_Organization_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: internal_organization
+      with_header: true      
+    - filename: EVA_Level_Code_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: level_code
+      with_header: true      
+    - filename: EVA_Location_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: location
+      with_header: true      
+    - filename: EVA_Person_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person
+      with_header: true      
+    - filename: EVA_Person_Bad_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person_bad
+      with_header: true      
+    - filename: EVA_Person_Type_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person_type
+      with_header: true      
+    - filename: EVA_Person_Type_Asgn_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: person_type_asgn
+      with_header: true      
+    - filename: EVA_Project_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project
+      with_header: true      
+    - filename: EVA_Project_Billing_Type_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_billing_type
+      with_header: true      
+    - filename: EVA_Project_Funding_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_funding
+      with_header: true      
+    - filename: EVA_Project_Phase_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_phase
+      with_header: true      
+    - filename: EVA_Project_Phase_Types_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_phase_types
+      with_header: true      
+    - filename: EVA_Project_Size_Classification_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_size_classification
+      with_header: true      
+    - filename: EVA_Project_Status_Type_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_status_type
+      with_header: true      
+    - filename: EVA_Project_Type_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: project_type
+      with_header: true      
+    - filename: EVA_RECON_BR_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: recon_br
+      with_header: true      
+    - filename: EVA_Scope_Of_Service_Type_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: scope_of_service_type
+      with_header: true      
+    - filename: EVA_Sector_Service_Unit_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: sector_service_unit
+      with_header: true      
+    - filename: EVA_Task_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: '|'
+      tablename: tasks
+      with_header: true      
+    - filename: EVA_Unit_Of_Measure_20200927_1837.CSV
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: unit_of_measure
+      with_header: true
+  xls_files:   
+    - filename: Master_Listing_of_Legal_Entity_OUs.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Master Listing
+          tablename: master_listing_of_legal_entity_ous
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+name: oracle_gbs
+Namespace: global

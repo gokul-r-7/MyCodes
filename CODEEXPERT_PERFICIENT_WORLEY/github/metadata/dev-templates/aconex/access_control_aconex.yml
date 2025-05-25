@@ -1,0 +1,16 @@
+#domain_name: supply_chain
+#table_definitions:
+# - table_name: erm_change_history
+    # column_definitions:
+    #   - column_name: id
+    #     data_classification: public
+    #   - column_name: password
+    #     data_classification: secret
+
+domain_name: document_control
+source_name: aconex
+databases : 
+  - ${database_prefix}_document_control_aconex_curated
+  - ${database_prefix}_document_control_aconex_raw
+  - ${database_prefix}_document_control_transformed
+  - ${database_prefix}_dac_document_control_transformed

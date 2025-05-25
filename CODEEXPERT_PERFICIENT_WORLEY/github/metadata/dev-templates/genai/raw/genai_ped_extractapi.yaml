@@ -1,0 +1,123 @@
+SourceSystemId: ped
+MetadataType: api#ped#extract_api
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+auth_api_parameter:
+  auth_method: post
+  endpoint: 'https://login.microsoftonline.com:443/{tenant_id}/oauth2/v2.0/token'
+  secret_key: ${secret_prefix}-genai-ped-api
+  auth_retry: 3
+  auth_timeout: 300
+  auth_exponential_backoff: 5
+  auth_headers:
+    Content-Type: application/x-www-form-urlencoded
+  dynamic_auth_headers:
+  - AuthToken
+  auth_query_params: 
+  auth_body:
+    client_id: 
+    client_secret: 
+    grant_type: client_credentials
+    scope: 'https://${genai_ped_api}.crm.dynamics.com/.default'
+api_parameter:
+  api_method: get
+  endpoint: https://${genai_ped_api}.api.crm.dynamics.com/api/data/v9.2/{api_obj_name}
+  api_response_type: json
+  max_retry: 3
+  api_timeout: 300
+  api_exponential_backoff: 3
+  auth_type: Bearer
+  api_headers:
+    Prefer: 'odata.maxpagesize=2000'
+    If-None-Match: 'null'
+    Accept: 'application/json'
+    odata.include-annotations: '*'
+    OData-MaxVersion: '4.0'
+    OData-Version: '4.0'
+  dynamic_api_headers:
+  - Authorization
+  api_query_params: 
+    $filter: 'modifiedon gt {incremental_value}'
+    $select: 'sds_pedprojectid,sds_energytransition,sds_customergroupsearch,sds_businesssegment,sds_capabilities,sds_oursolution,sds_projectsummary,sds_scopesofservice,sds_projectstartdate,sds_phases,sds_totalhours,sds_estimatedcompletiondate,sds_totalinstalledcostaud,sds_billingtype,sds_projectrole,sds_keywords,sds_successstorystatus,sds_customerchallenge,sds_valuedelivered,sds_awardsaccolades'
+    $expand: 'sds_LeadOffice($select=sds_officename),sds_EndClient($select=sds_customername),sds_ProjectLocationState($select=sds_name),sds_MarketSegment($select=sds_marketsegmentname,sds_marketsubsector),sds_ProjectLocation($select=sds_name),sds_CountryofAsset($select=sds_countryname),sds_Customer($select=sds_customername)'
+  dynamic_api_query_params: 
+  api_body:
+job_parameter:
+  tenant_id: '73ad6539-b4fe-429c-97b6-fbc1b6ada80b'
+  bucket_name: ${secret_prefix}-genai-landing-${bucket_suffix}
+  genai_project_name: 'SRG'
+  output_files_path: 'ped/pedprojects/{batch_foldername_format}'
+  raw_file_extension: '.json'
+  output_data_format: 'json'
+  batch_foldername_format: '%Y_%m_%d_%H_%M_%S'
+  drop_duplicate_columns: false
+  drop_duplicate_rows: false
+  temp_clean_up_path: 'temp/ped/'
+  temp_input_path: 'temp/ped/{ped_object_name}/raw/'
+  temp_output_path: 'temp/ped/{ped_object_name}/raw/output/'
+  entities_ouput_path: 'ped/{ped_object_name}/{batch_foldername_format}'
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: ped/pedprojects/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  output_s3: pedprojects
+  bucket_source_prefix: ped
+  kms_key_id: ${genai_kms_key_id}
+  api_obj_name: sds_pedprojects
+  job_process_folder: ped/job_process
+  job_process_file: pedprojects/pedprojects_process.json
+  is_named_col: false
+  named_columns:
+  ped_instance_id: ${genai_ped_api}
+  full_incremental: 'I'
+  incremental_default: '2020-01-01T00:00:00Z'
+  is_transform_step_rquired: true,
+  sourcing_entity_lists:
+    - projects
+    - mos
+  transformations:
+    join_entities_by_keys:
+      'projects': 'projectid'
+      'mos': 'mos_projectid'
+    source_delete_fields: 
+    - "projectid"
+    - "mos_projectid"
+  target_columns:
+    - 'energy_transition'
+    - 'customer_name'
+    - 'customer_group'
+    - 'lead_business_segment'
+    - 'lead_office'
+    - 'executing_offices'
+    - 'country_of_asset'
+    - 'state_or_territory_of_asset'
+    - 'city_of_asset'
+    - 'solutions'
+    - 'our_solution'
+    - 'market_segment'
+    - 'market_subsector'
+    - 'project_summary'
+    - 'end_client'
+    - 'scope_of_services'
+    - 'est_start_date'
+    - 'phases'
+    - 'est_hrs'
+    - 'est_end_date'
+    - 'tic_aud'
+    - 'billing_type'
+    - 'project_role'
+    - 'keywords'
+    - 'success_story'
+    - 'customer_challenge'
+    - 'value_delivered'
+    - 'awards_&_accolades'
+  do_notify: true
+  notification_parameter:
+    SourceSystemId: 'genai'
+    MetadataType: 'genai#notification_webhook#api'
+name: ped_pedprojects_ExtractAPI
+Namespace: genai_ped

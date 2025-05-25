@@ -1,0 +1,16 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# DBT Project Files
+/src/construction_domain_model/logs/
+/src/construction_domain_model/target/
+/src/construction_domain_model/dbt_packages/
+/logs
+
+

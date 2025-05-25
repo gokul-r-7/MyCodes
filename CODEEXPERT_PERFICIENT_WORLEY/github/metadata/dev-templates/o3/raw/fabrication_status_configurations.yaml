@@ -1,0 +1,38 @@
+SourceSystemId: o3
+MetadataType: fabrication_status#o3
+aws_region: ap-southeast-2
+Env: dev   
+is_active: y
+job_parameter:
+  archive:
+    archive_format: csv
+    archive_prefix: construction/export_csv_archieve/
+    enabled: false
+    include_timestamp_in_name: false
+  bucket_name: ${raw_bucket}
+  csv_files:
+    - filename: 1555 Fab Status Report 4.1.2025.csv
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: 1555 Fab Status Report 4.1.2025
+      with_header: true
+  csv_files_path: construction/export_csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: construction/o3/fabrication_status/
+  raw_files_path: construction/export_csv/
+  replacement_char: _
+  kms_key_arn: ${iceberg_snapshot_key}
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: construction/o3/data_sampling/fabrication_status
+  sampling_fraction: 0.5
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+name: onetimeloads
+Namespace: salesforce
+    

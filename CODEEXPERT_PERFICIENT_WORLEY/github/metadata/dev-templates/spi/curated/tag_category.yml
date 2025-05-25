@@ -1,0 +1,96 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#TAG_CATEGORY#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/TAG_CATEGORY/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-tag_category
+  name: spi_tag_category
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: tag_category_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tag_category_id
+  - column_data_type: string
+    column_name: tag_category_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tag_category_name
+  - column_data_type: string
+    column_name: tag_category_desc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tag_category_desc
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/TAG_CATEGORY/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_tag_category
+  load_type: append
+  name: curated_tag_category
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_tag_category
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

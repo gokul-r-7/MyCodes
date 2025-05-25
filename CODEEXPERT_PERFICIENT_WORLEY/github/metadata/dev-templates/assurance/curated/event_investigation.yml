@@ -1,0 +1,223 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_investigation#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_investigation.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_investigation
+  name: event_investigation
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_investigation/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_investigation
+  load_type: incremental
+  name: event_investigation
+  primary_key: dwi_event_investigation
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_investigation
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_event_investigation
+    rename_columns: true
+  columns:
+  - column_name: dwi_event_investigation
+    column_data_type: decimal(38,0)
+    comment: dwi_event_investigation
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_event_investigation
+  - column_name: detailed_description_of_investigation_findings
+    column_data_type: string
+    comment: detailed_description_of_investigation_findings
+    data_classification:
+    nullable: true
+    raw_column_name: detailed_description_of_investigation_findings
+  - column_name: final_risk_assessment
+    column_data_type: string
+    comment: final_risk_assessment
+    data_classification:
+    nullable: true
+    raw_column_name: final_risk_assessment
+  - column_name: final_risk_assessment_likelihood
+    column_data_type: string
+    comment: final_risk_assessment_likelihood
+    data_classification:
+    nullable: true
+    raw_column_name: final_risk_assessment_likelihood
+  - column_name: final_risk_assessment_consequence
+    column_data_type: string
+    comment: final_risk_assessment_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: final_risk_assessment_consequence
+  - column_name: final_risk_assessment_matrix_axis_consequence
+    column_data_type: string
+    comment: final_risk_assessment_matrix_axis_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: final_risk_assessment_matrix_axis_consequence
+  - column_name: li_final_risk_assessment_matrix_axis_consequence
+    column_data_type: string
+    comment: li_final_risk_assessment_matrix_axis_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_final_risk_assessment_matrix_axis_consequence
+  - column_name: lo_final_risk_assessment_matrix_axis_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_final_risk_assessment_matrix_axis_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_final_risk_assessment_matrix_axis_consequence
+  - column_name: final_risk_assessment_matrix_axis_likelihood
+    column_data_type: string
+    comment: final_risk_assessment_matrix_axis_likelihood
+    data_classification:
+    nullable: true
+    raw_column_name: final_risk_assessment_matrix_axis_likelihood
+  - column_name: li_final_risk_assessment_matrix_axis_likelihood
+    column_data_type: string
+    comment: li_final_risk_assessment_matrix_axis_likelihood
+    data_classification:
+    nullable: true
+    raw_column_name: li_final_risk_assessment_matrix_axis_likelihood
+  - column_name: lo_final_risk_assessment_matrix_axis_likelihood
+    column_data_type: decimal(38,0)
+    comment: lo_final_risk_assessment_matrix_axis_likelihood
+    data_classification:
+    nullable: true
+    raw_column_name: lo_final_risk_assessment_matrix_axis_likelihood
+  - column_name: investigation_completion_date
+    column_data_type: timestamp
+    comment: investigation_completion_date
+    data_classification:
+    nullable: true
+    raw_column_name: investigation_completion_date
+  - column_name: investigation_start_date
+    column_data_type: timestamp
+    comment: investigation_start_date
+    data_classification:
+    nullable: true
+    raw_column_name: investigation_start_date
+  - column_name: is_the_investigation_complete
+    column_data_type: string
+    comment: is_the_investigation_complete
+    data_classification:
+    nullable: true
+    raw_column_name: is_the_investigation_complete
+  - column_name: li_is_the_investigation_complete
+    column_data_type: string
+    comment: li_is_the_investigation_complete
+    data_classification:
+    nullable: true
+    raw_column_name: li_is_the_investigation_complete
+  - column_name: lo_is_the_investigation_complete
+    column_data_type: decimal(38,0)
+    comment: lo_is_the_investigation_complete
+    data_classification:
+    nullable: true
+    raw_column_name: lo_is_the_investigation_complete
+  - column_name: link_to_supporting_documents
+    column_data_type: string
+    comment: link_to_supporting_documents
+    data_classification:
+    nullable: true
+    raw_column_name: link_to_supporting_documents
+  - column_name: sys_legacy_investigation_number
+    column_data_type: string
+    comment: sys_legacy_investigation_number
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_investigation_number
+  - column_name: estimated_cost_of_event
+    column_data_type: decimal(38,0)
+    comment: estimated_cost_of_event
+    data_classification:
+    nullable: true
+    raw_column_name: estimated_cost_of_event
+  - column_name: dwk_event_as_source_of_event_investigation
+    column_data_type: decimal(38,0)
+    comment: dwk_event_as_source_of_event_investigation
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_as_source_of_event_investigation
+  - column_name: dwk_person_nominated_to_complete_incident_sign_off
+    column_data_type: decimal(38,0)
+    comment: dwk_person_nominated_to_complete_incident_sign_off
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_person_nominated_to_complete_incident_sign_off
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

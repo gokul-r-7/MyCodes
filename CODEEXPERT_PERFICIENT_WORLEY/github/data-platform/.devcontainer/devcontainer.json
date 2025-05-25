@@ -1,0 +1,34 @@
+{
+  "name": "Data Platform",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/pre-commit:latest": {},
+    "ghcr.io/devcontainers-contrib/features/terraform-asdf:2": {},
+    "ghcr.io/devcontainers-contrib/features/terraform-ls-asdf:2": {},
+    "ghcr.io/devcontainers-contrib/features/terraform-docs:1": {},
+    "ghcr.io/devcontainers-contrib/features/tfsec:1": {},
+    "ghcr.io/devcontainers-contrib/features/checkov": {},
+    "ghcr.io/devcontainers-contrib/features/terrascan": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.pythonPath": "/usr/bin/python3"
+      },
+      "extensions": [
+        "AmazonWebServices.amazon-q-vscode",
+        "github.vscode-github-actions",
+        "GitHub.vscode-pull-request-github",
+        "HashiCorp.terraform",
+        "kameshkotwani.google-search",
+        "ms-python.python",
+        "redhat.vscode-yaml",
+        "GrapeCity.gc-excelviewer",
+        "PKief.material-icon-theme"
+      ]
+    }
+  },
+  "postCreateCommand": "make devcon/post-create",
+  "postStartCommand": "make devcon/post-start"
+}

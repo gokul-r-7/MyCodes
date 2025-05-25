@@ -1,0 +1,340 @@
+---
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#br_aws_dac_timesheet_dtl#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/br_aws_dac_timesheet_dtl.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: br_aws_dac_timesheet_dtl
+  name: br_aws_dac_timesheet_dtl
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: TASK_NUMBER
+    comment: TASK_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: TASK_NUMBER
+  - column_data_type: string
+    column_name: TC_TASK
+    comment: TC_TASK
+    data_classification: 
+    nullable: true
+    raw_column_name: TC_TASK
+  - column_data_type: decimal(38,0)
+    column_name: TC_COST_TYPE
+    comment: TC_COST_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: TC_COST_TYPE
+  - column_data_type: string
+    column_name: TC_COST_TYPE_DESC
+    comment: TC_COST_TYPE_DESC
+    data_classification: 
+    nullable: true
+    raw_column_name: TC_COST_TYPE_DESC
+  - column_data_type: string
+    column_name: TC_CODE_OF_ACCOUNT
+    comment: TC_CODE_OF_ACCOUNT
+    data_classification: 
+    nullable: true
+    raw_column_name: TC_CODE_OF_ACCOUNT
+  - column_data_type: string
+    column_name: TC_CODE_OF_ACCOUNT_DESC
+    comment: TC_CODE_OF_ACCOUNT_DESC
+    data_classification: 
+    nullable: true
+    raw_column_name: TC_CODE_OF_ACCOUNT_DESC
+  - column_data_type: string
+    column_name: TC_TRANSFERRED_TO
+    comment: TC_TRANSFERRED_TO
+    data_classification: 
+    nullable: true
+    raw_column_name: TC_TRANSFERRED_TO
+  - column_data_type: string
+    column_name: TC_TYPE
+    comment: TC_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: TC_TYPE
+  - column_data_type: decimal(38,0)
+    column_name: EMPLOYEE_NUMBER
+    comment: EMPLOYEE_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: EMPLOYEE_NUMBER
+  - column_data_type: string
+    column_name: USER_STATUS
+    comment: USER_STATUS
+    data_classification: 
+    nullable: true
+    raw_column_name: USER_STATUS
+  - column_data_type: string
+    column_name: BILLABLE_FLG
+    comment: BILLABLE_FLG
+    data_classification: 
+    nullable: true
+    raw_column_name: BILLABLE_FLG
+  - column_data_type: string
+    column_name: SALARY_CODE
+    comment: SALARY_CODE
+    data_classification: 
+    nullable: true
+    raw_column_name: PAYROLL_NAME
+  - column_data_type: string
+    column_name: PAYROLL_NAME
+    comment: PAYROLL_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: PAYROLL_NAME
+  - column_data_type: string
+    column_name: PHYSICAL_LOCATION
+    comment: PHYSICAL_LOCATION
+    data_classification: 
+    nullable: true
+    raw_column_name: PHYSICAL_LOCATION
+  - column_data_type: string
+    column_name: TIMESHEET_GROUPING
+    comment: TIMESHEET_GROUPING
+    data_classification: 
+    nullable: true
+    raw_column_name: TIMESHEET_GROUPING
+  - column_data_type: string
+    column_name: EMAIL_ADDR
+    comment: EMAIL_ADDR
+    data_classification: 
+    nullable: true
+    raw_column_name: EMAIL_ADDR
+  - column_data_type: string
+    column_name: GLOBAL_DISPLAY_NAME
+    comment: GLOBAL_DISPLAY_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: GLOBAL_DISPLAY_NAME
+  - column_data_type: string
+    column_name: GLOBAL_FIRST_NAME
+    comment: GLOBAL_FIRST_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: GLOBAL_FIRST_NAME
+  - column_data_type: string
+    column_name: GLOBAL_LAST_NAME
+    comment: GLOBAL_LAST_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: GLOBAL_LAST_NAME
+  - column_data_type: string
+    column_name: BUSINESS_LINE
+    comment: BUSINESS_LINE
+    data_classification: 
+    nullable: true
+    raw_column_name: BUSINESS_LINE
+  - column_data_type: string
+    column_name: ORG_NAME
+    comment: ORG_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: ORG_NAME
+  - column_data_type: string
+    column_name: ENTITY
+    comment: ENTITY
+    data_classification: 
+    nullable: true
+    raw_column_name: ENTITY
+  - column_data_type: string
+    column_name: INT_ORG_ATTR11_CHAR
+    comment: INT_ORG_ATTR11_CHAR
+    data_classification: 
+    nullable: true
+    raw_column_name: INT_ORG_ATTR11_CHAR
+  - column_data_type: string
+    column_name: EXP_ORG_LOCATION
+    comment: EXP_ORG_LOCATION
+    data_classification: 
+    nullable: true
+    raw_column_name: EXP_ORG_LOCATION
+  - column_data_type: string
+    column_name: HR_ORG_SECTOR_SERVICE_UNIT
+    comment: HR_ORG_SECTOR_SERVICE_UNIT
+    data_classification: 
+    nullable: true
+    raw_column_name: HR_ORG_SECTOR_SERVICE_UNIT
+  - column_data_type: string
+    column_name: PERSON_SUBTYPE
+    comment: PERSON_SUBTYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: PERSON_SUBTYPE
+  - column_data_type: string
+    column_name: LOCAL_JOB_TITLE
+    comment: LOCAL_JOB_TITLE
+    data_classification: 
+    nullable: true
+    raw_column_name: LOCAL_JOB_TITLE
+  - column_data_type: string
+    column_name: APPROVER_NAME
+    comment: APPROVER_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: APPROVER_NAME
+  - column_data_type: string
+    column_name: APPROVER_MAIL_ID
+    comment: APPROVER_MAIL_ID
+    data_classification: 
+    nullable: true
+    raw_column_name: APPROVER_MAIL_ID
+  - column_data_type: string
+    column_name: APPROVAL_STATUS
+    comment: APPROVAL_STATUS
+    data_classification: 
+    nullable: true
+    raw_column_name: APPROVAL_STATUS
+  - column_data_type: string
+    column_name: APPROVAL_ACTION
+    comment: APPROVAL_ACTION
+    data_classification: 
+    nullable: true
+    raw_column_name: APPROVAL_ACTION
+  - column_data_type: decimal(38,0)
+    column_name: RECORDED_HOURS
+    comment: RECORDED_HOURS
+    data_classification: 
+    nullable: true
+    raw_column_name: RECORDED_HOURS
+  - column_data_type: string
+    column_name: SUBMISSION_DT
+    comment: SUBMISSION_DT
+    data_classification: 
+    nullable: true
+    raw_column_name: SUBMISSION_DT
+  - column_data_type: string
+    column_name: TC_END_DT
+    comment: TC_END_DT
+    data_classification: 
+    nullable: true
+    raw_column_name: TC_END_DT
+  - column_data_type: string
+    column_name: STOP_TIME
+    comment: STOP_TIME
+    data_classification: 
+    nullable: true
+    raw_column_name: STOP_TIME
+  - column_data_type: string
+    column_name: START_TIME
+    comment: START_TIME
+    data_classification: 
+    nullable: true
+    raw_column_name: START_TIME
+  - column_data_type: string
+    column_name: APPROVER_ID
+    comment: APPROVER_ID
+    data_classification: 
+    nullable: true
+    raw_column_name: APPROVER_ID
+  - column_data_type: string
+    column_name: PROJECT_NUMBER
+    comment: PROJECT_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: PROJECT_NUMBER
+  - column_data_type: string
+    column_name: PROJECT_NAME
+    comment: PROJECT_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: PROJECT_NAME
+  - column_data_type: string
+    column_name: PROJ_MGR_NAME
+    comment: PROJ_MGR_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: PROJ_MGR_NAME
+  - column_data_type: string
+    column_name: PROJ_MGR_EMAIL
+    comment: PROJ_MGR_EMAIL
+    data_classification: 
+    nullable: true
+    raw_column_name: PROJ_MGR_EMAIL
+  - column_data_type: string
+    column_name: PROJ_ORGANIZATION_NAME
+    comment: PROJ_ORGANIZATION_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: PROJ_ORGANIZATION_NAME
+  - column_data_type: string
+    column_name: PROJ_OU_NAME
+    comment: PROJ_OU_NAME
+    data_classification: 
+    nullable: true
+    raw_column_name: PROJ_OU_NAME
+  - column_data_type: string
+    column_name: ADVISIAN_SERVICE_LINE
+    comment: ADVISIAN_SERVICE_LINE
+    data_classification: 
+    nullable: true
+    raw_column_name: ADVISIAN_SERVICE_LINE
+  - column_data_type: string
+    column_name: DISCIPLINE
+    comment: DISCIPLINE
+    data_classification: 
+    nullable: true
+    raw_column_name: DISCIPLINE
+  - column_data_type: string
+    column_name: SUB_DISCIPLINE_CODE
+    comment: SUB_DISCIPLINE_CODE
+    data_classification: 
+    nullable: true
+    raw_column_name: SUB_DISCIPLINE_CODE
+  - column_data_type: string
+    column_name: BUSINESS_SEGMENT
+    comment: BUSINESS_SEGMENT
+    data_classification: 
+    nullable: true
+    raw_column_name: BUSINESS_SEGMENT
+  - column_data_type: string
+    column_name: INTEGRATION_ID
+    comment: INTEGRATION_ID
+    data_classification: 
+    nullable: true
+    raw_column_name: INTEGRATION_ID 
+  schema_properties:
+    enforce: true
+    primary_key: INTEGRATION_ID
+    rename_columns: true
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/br_aws_dac_timesheet_dtl/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: br_aws_dac_timesheet_dtl
+  load_type: incremental
+  name: br_aws_dac_timesheet_dtl
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/br_aws_dac_timesheet_dtl
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

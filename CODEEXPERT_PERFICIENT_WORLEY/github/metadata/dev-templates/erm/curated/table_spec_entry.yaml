@@ -1,0 +1,349 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishSpecEntry#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishSpecEntry/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishSpecEntry
+  name: erm_PublishSpecEntry
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: spec_entry_no
+    comment: spec_entry_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_entry_no
+  - column_data_type: decimal(38,2)
+    column_name: proj_no
+    comment: proj_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_hdr_no
+    comment: spec_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_hdr_no
+  - column_data_type: decimal(38,2)
+    column_name: component_class_no
+    comment: component_class_no
+    data_classification: null
+    nullable: true
+    raw_column_name: component_class_no
+  - column_data_type: decimal(38,2)
+    column_name: commodity_no
+    comment: commodity_no
+    data_classification: null
+    nullable: true
+    raw_column_name: commodity_no
+  - column_data_type: string
+    column_name: entry_changed
+    comment: entry_changed
+    data_classification: null
+    nullable: true
+    raw_column_name: entry_changed
+  - column_data_type: decimal(38,2)
+    column_name: spec_size_range_no
+    comment: spec_size_range_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_size_range_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_short_code_no
+    comment: spec_short_code_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_short_code_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_size_1_min_no
+    comment: spec_size_1_min_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_size_1_min_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_size_1_max_no
+    comment: spec_size_1_max_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_size_1_max_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_size_2_no
+    comment: spec_size_2_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_size_2_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_size_3_no
+    comment: spec_size_3_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_size_3_no
+  - column_data_type: decimal(38,2)
+    column_name: size_ref_class_no
+    comment: size_ref_class_no
+    data_classification: null
+    nullable: true
+    raw_column_name: size_ref_class_no
+  - column_data_type: decimal(38,2)
+    column_name: size_2_gen_method_no
+    comment: size_2_gen_method_no
+    data_classification: null
+    nullable: true
+    raw_column_name: size_2_gen_method_no
+  - column_data_type: decimal(38,2)
+    column_name: size_1_2_comb_table_no
+    comment: size_1_2_comb_table_no
+    data_classification: null
+    nullable: true
+    raw_column_name: size_1_2_comb_table_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_comp_group_no
+    comment: spec_comp_group_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_comp_group_no
+  - column_data_type: decimal(38,2)
+    column_name: model_usage_no
+    comment: model_usage_no
+    data_classification: null
+    nullable: true
+    raw_column_name: model_usage_no
+  - column_data_type: string
+    column_name: model_ref_mask
+    comment: model_ref_mask
+    data_classification: null
+    nullable: true
+    raw_column_name: model_ref_mask
+  - column_data_type: string
+    column_name: catref_gen_flag_no
+    comment: catref_gen_flag_no
+    data_classification: null
+    nullable: true
+    raw_column_name: catref_gen_flag_no
+  - column_data_type: string
+    column_name: model_data_changed
+    comment: model_data_changed
+    data_classification: null
+    nullable: true
+    raw_column_name: model_data_changed
+  - column_data_type: decimal(38,2)
+    column_name: pdms_selector_set_no
+    comment: pdms_selector_set_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pdms_selector_set_no
+  - column_data_type: decimal(38,2)
+    column_name: pdms_skey_no
+    comment: pdms_skey_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pdms_skey_no
+  - column_data_type: decimal(38,2)
+    column_name: bolt_short_code_no
+    comment: bolt_short_code_no
+    data_classification: null
+    nullable: true
+    raw_column_name: bolt_short_code_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_template_no
+    comment: spec_template_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_template_no
+  - column_data_type: decimal(38,2)
+    column_name: consol_table_no
+    comment: consol_table_no
+    data_classification: null
+    nullable: true
+    raw_column_name: consol_table_no
+  - column_data_type: string
+    column_name: entry_changed_rev
+    comment: entry_changed_rev
+    data_classification: null
+    nullable: true
+    raw_column_name: entry_changed_rev
+  - column_data_type: string
+    column_name: entry_changed_report_rev
+    comment: entry_changed_report_rev
+    data_classification: null
+    nullable: true
+    raw_column_name: entry_changed_report_rev
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: null
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_usr_id
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: decimal(38,2)
+    column_name: spec_option_code_no
+    comment: spec_option_code_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_option_code_no
+  - column_data_type: string
+    column_name: eng_number
+    comment: eng_number
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_number
+  - column_data_type: decimal(38,2)
+    column_name: branch_code_no
+    comment: branch_code_no
+    data_classification: null
+    nullable: true
+    raw_column_name: branch_code_no
+  - column_data_type: string
+    column_name: requires_expand
+    comment: requires_expand
+    data_classification: null
+    nullable: true
+    raw_column_name: requires_expand
+  - column_data_type: decimal(38,2)
+    column_name: modeller_no
+    comment: modeller_no
+    data_classification: null
+    nullable: true
+    raw_column_name: modeller_no
+  - column_data_type: decimal(38,2)
+    column_name: selection_basis
+    comment: selection_basis
+    data_classification: null
+    nullable: true
+    raw_column_name: selection_basis
+  - column_data_type: decimal(38,2)
+    column_name: seq_no
+    comment: seq_no
+    data_classification: null
+    nullable: true
+    raw_column_name: seq_no
+  - column_data_type: decimal(38,2)
+    column_name: deliv_desig_no
+    comment: deliv_desig_no
+    data_classification: null
+    nullable: true
+    raw_column_name: deliv_desig_no
+  - column_data_type: decimal(38,2)
+    column_name: manufacturer_no
+    comment: manufacturer_no
+    data_classification: null
+    nullable: true
+    raw_column_name: manufacturer_no
+  - column_data_type: decimal(38,2)
+    column_name: link_spec_entry_no
+    comment: link_spec_entry_no
+    data_classification: null
+    nullable: true
+    raw_column_name: link_spec_entry_no
+  - column_data_type: decimal(38,2)
+    column_name: fab_templ_hdr_no
+    comment: fab_templ_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fab_templ_hdr_no
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishSpecEntry/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: spec_entry
+  load_type: cdc
+  name: spec_entry
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishSpecEntry
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

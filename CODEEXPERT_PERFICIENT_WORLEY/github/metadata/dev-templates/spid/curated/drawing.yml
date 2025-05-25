@@ -1,0 +1,390 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_Drawing#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_Drawing/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-drawing
+  name: spid_drawing
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: integer
+    column_name: updatecount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: updatecount
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revision
+  - column_data_type: string
+    column_name: version
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: version
+  - column_data_type: integer
+    column_name: documenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: documenttype
+  - column_data_type: integer
+    column_name: documentcategory
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: documentcategory
+  - column_data_type: integer
+    column_name: itemstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: itemstatus
+  - column_data_type: integer
+    column_name: parenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: parenttype
+  - column_data_type: integer
+    column_name: depth
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: depth
+  - column_data_type: timestamp
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: path
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: path
+  - column_data_type: string
+    column_name: sp_plantgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_plantgroupid
+  - column_data_type: string
+    column_name: drawingnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingnumber
+  - column_data_type: string
+    column_name: template
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: template
+  - column_data_type: timestamp
+    column_name: lastpublishtime
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastpublishtime
+  - column_data_type: timestamp
+    column_name: lastarchivetime
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastarchivetime
+  - column_data_type: timestamp
+    column_name: sp_lastefpublishtime
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_lastefpublishtime
+  - column_data_type: string
+    column_name: sp_rulesuid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_rulesuid
+  - column_data_type: string
+    column_name: sp_formatsuid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_formatsuid
+  - column_data_type: string
+    column_name: sp_gappinguid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_gappinguid
+  - column_data_type: string
+    column_name: sp_symbologyuid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_symbologyuid
+  - column_data_type: string
+    column_name: sp_htraceuid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_htraceuid
+  - column_data_type: string
+    column_name: sp_selectlistversion
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_selectlistversion
+  - column_data_type: string
+    column_name: sp_defaultformatsuid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_defaultformatsuid
+  - column_data_type: integer
+    column_name: sp_arepropertiesmodified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_arepropertiesmodified
+  - column_data_type: string
+    column_name: sp_accessedby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_accessedby
+  - column_data_type: string
+    column_name: sp_drawingstorageid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_drawingstorageid
+  - column_data_type: string
+    column_name: sp_masterdocumentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_masterdocumentid
+  - column_data_type: string
+    column_name: wp_refdrawingno9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno9
+  - column_data_type: string
+    column_name: wp_refdrawingno8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno8
+  - column_data_type: string
+    column_name: wp_refdrawingno7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno7
+  - column_data_type: string
+    column_name: wp_refdrawingno6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno6
+  - column_data_type: string
+    column_name: wp_refdrawingno5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno5
+  - column_data_type: string
+    column_name: wp_refdrawingno4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno4
+  - column_data_type: string
+    column_name: wp_refdrawingno3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno3
+  - column_data_type: string
+    column_name: wp_refdrawingno2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno2
+  - column_data_type: string
+    column_name: wp_refdrawingno1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingno1
+  - column_data_type: string
+    column_name: wp_drawingstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_drawingstatus
+  - column_data_type: string
+    column_name: wp_altdrawingnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_altdrawingnumber
+  - column_data_type: string
+    column_name: wp_refdrawingtitle9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle9
+  - column_data_type: string
+    column_name: wp_refdrawingtitle8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle8
+  - column_data_type: string
+    column_name: wp_refdrawingtitle7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle7
+  - column_data_type: string
+    column_name: wp_refdrawingtitle6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle6
+  - column_data_type: string
+    column_name: wp_refdrawingtitle5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle5
+  - column_data_type: string
+    column_name: wp_refdrawingtitle4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle4
+  - column_data_type: string
+    column_name: wp_refdrawingtitle3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle3
+  - column_data_type: string
+    column_name: wp_refdrawingtitle2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle2
+  - column_data_type: string
+    column_name: wp_refdrawingtitle1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refdrawingtitle1
+  - column_data_type: string
+    column_name: wp_workpackage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_workpackage
+  - column_data_type: string
+    column_name: wp_title2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_title2
+  - column_data_type: string
+    column_name: wp_sheetnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_sheetnumber
+  - column_data_type: string
+    column_name: wp_title3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_title3
+  - column_data_type: integer
+    column_name: wor_securityclassification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_securityclassification
+  - column_data_type: string
+    column_name: wp_title4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_title4
+  - column_data_type: string
+    column_name: wor_ewpno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_ewpno    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_Drawing/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_drawing
+  load_type: append
+  name: curated_t_drawing
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_drawing
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

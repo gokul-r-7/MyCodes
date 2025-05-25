@@ -1,0 +1,215 @@
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#gbs_suppliers#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/gbs_suppliers.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: gbs_suppliers
+  name: gbs_suppliers
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/gbs_suppliers/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: gbs_suppliers
+  load_type: incremental_no_delete
+  name: gbs_suppliers
+  primary_key: [supplier_number,site_name,liability_account]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/gbs_suppliers
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [supplier_number,site_name,liability_account]
+    rename_columns: true
+  columns:
+    - column_data_type: string
+      column_name: supplier_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_number
+    - column_data_type: string
+      column_name: supplier_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_name
+    - column_data_type: string
+      column_name: vendor_name_alt
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: vendor_name_alt
+    - column_data_type: string
+      column_name: wcb_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: wcb_number
+    - column_data_type: string
+      column_name: tax_registration_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: tax_registration_number
+    - column_data_type: string
+      column_name: emp_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: emp_number
+    - column_data_type: string
+      column_name: supplier_type
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_type
+    - column_data_type: string
+      column_name: site_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: site_name
+    - column_data_type: string
+      column_name: address_line1
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: address_line1
+    - column_data_type: string
+      column_name: address_line2
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: address_line2
+    - column_data_type: string
+      column_name: city
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: city
+    - column_data_type: string
+      column_name: state
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: state
+    - column_data_type: string
+      column_name: province
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: province
+    - column_data_type: string
+      column_name: zip
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: zip
+    - column_data_type: string
+      column_name: country
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: country
+    - column_data_type: string
+      column_name: status
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: status
+    - column_data_type: string
+      column_name: pay_group_lookup_code
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: pay_group_lookup_code
+    - column_data_type: string
+      column_name: exclude_from_approval
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: exclude_from_approval
+    - column_data_type: string
+      column_name: auto_invoice_rcti_flag
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: auto_invoice_rcti_flag
+    - column_data_type: string
+      column_name: payment_terms
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_terms
+    - column_data_type: string
+      column_name: payment_method
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_method
+    - column_data_type: string
+      column_name: invoice_currency_code
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_currency_code
+    - column_data_type: string
+      column_name: payment_currency_code
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_currency_code
+    - column_data_type: string
+      column_name: payment_priority
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_priority
+    - column_data_type: string
+      column_name: liability_account
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: liability_account
+    - column_data_type: string
+      column_name: remittance_email
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: remittance_email
+    - column_data_type: string
+      column_name: bank_account_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: bank_account_name
+    

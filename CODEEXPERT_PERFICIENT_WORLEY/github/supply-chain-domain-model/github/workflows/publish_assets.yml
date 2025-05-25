@@ -1,0 +1,102 @@
+name: Publish Supply_Chain Model Assets MWAA
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - "src/**"
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  pull-requests: write
+
+jobs:
+  sync-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::891377181979:role/GitHubActions
+          role-session-name: Worley_AWS_SCD_Model_${{ github.run_id }} # Worley_AWS_Supply_Chain_Domain_Model
+          role-duration-seconds: 3600 # 1 hour
+
+      - run: aws sts get-caller-identity
+
+      - name: Publish Supply_Chain DBT Model files
+        id: dbt_model_files
+        working-directory: src/supply_chain_domain_model
+        run: aws s3 sync . s3://worley-datalake-sydney-dev-mwaa-airflow-s3/dags/dbt/supply_chain
+        continue-on-error: false
+
+      - name: Publish Supply_Chain DAG files
+        id: dag_file
+        working-directory: src/dags
+        run: aws s3 sync . s3://worley-datalake-sydney-dev-mwaa-airflow-s3/dags
+
+  sync-qa:
+    runs-on: ubuntu-latest
+    environment: qa
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::533267239288:role/GitHubActions
+          rrole-session-name: Worley_AWS_SCD_Model_${{ github.run_id }} # Worley_AWS_Supply_Chain_Domain_Model
+          role-duration-seconds: 3600 # 1 hour
+
+      - run: aws sts get-caller-identity
+
+      - name: Publish Supply_Chain DBT Model files
+        id: dbt_model_files
+        working-directory: src/supply_chain_domain_model
+        run: aws s3 sync . s3://worley-datalake-sydney-qa-mwaa-airflow-s3/dags/dbt/supply_chain
+        continue-on-error: false
+      
+      - name: Publish Supply_Chain DAG file
+        id: dag_file
+        working-directory: src/dags
+        run: aws s3 sync . s3://worley-datalake-sydney-qa-mwaa-airflow-s3/dags
+
+  # sync-prd:
+  #   runs-on: ubuntu-latest
+  #   environment: prd
+  #   defaults:
+  #     run:
+  #       shell: bash
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Assume AWS IAM Role
+  #       uses: aws-actions/configure-aws-credentials@v4.0.2
+  #       with:
+  #         aws-region: ap-southeast-2
+  #         role-to-assume: arn:aws:iam::471112986846:role/github-oidc-provider-aws
+  #         role-session-name: Worley_AWS_SCD_Model_${{ github.run_id }} # Worley_AWS_Supply_Chain_Domain_Model
+  #         role-duration-seconds: 3600 # 1 hour
+
+  #     - run: aws sts get-caller-identity
+
+  #     - name: Publish Supply_Chain DBT Model files
+  #       id: dbt_model_files
+  #       working-directory: src/supply_chain_domain_model
+  #       run: aws s3 sync . s3://worley-datalake-sydney-prd-mwaa-airflow-s3/dags/dbt/supply_chain
+  #       continue-on-error: false
+      
+  #     - name: Publish Supply_Chain DAG file
+  #       id: dag_file
+  #       working-directory: src/dags
+  #       run: aws s3 sync . s3://worley-datalake-sydney-prd-mwaa-airflow-s3/dags
+        

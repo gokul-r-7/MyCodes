@@ -1,0 +1,66 @@
+SourceSystemId: spi_curated
+MetadataType: curated#spi#dim_static_phyinstru#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/parquet/spi_dim_static_phyinstru.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-csv_xlsx_phyinstru_curated
+  name: spi_csv_xlsx_phyinstru_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: spi_dim_static_phyinstru_pk
+    comment: spi_dim_static_phyinstru_pk
+    data_classification: 
+    nullable: true
+    raw_column_name: spi_dim_static_phyinstru_pk
+  - column_data_type: string
+    column_name: instr_type_desc
+    comment: instr_type_desc
+    data_classification: 
+    nullable: true
+    raw_column_name: instr_type_desc
+  - column_data_type: boolean
+    column_name: phy_instru
+    comment: phy_instru
+    data_classification: 
+    nullable: true
+    raw_column_name: phy_instru    
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/curated_dim_static_phyinstru/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_dim_static_phyinstru
+  name: curated_dim_static_phyinstru
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_dim_static_phyinstru
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

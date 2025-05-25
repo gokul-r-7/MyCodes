@@ -1,0 +1,193 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishCalendar#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishCalendar/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishCalendar
+  name: erm_PublishCalendar
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: 
+    nullable: true
+    raw_column_name: tablename  
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: 
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: 
+    nullable: false
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: 
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: 
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: 
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: calendar_no
+    comment: calendar_no
+    data_classification: 
+    nullable: true
+    raw_column_name: calendar_no
+  - column_data_type: string
+    column_name: id
+    comment: id
+    data_classification: 
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: descr
+    comment: descr
+    data_classification: 
+    nullable: true
+    raw_column_name: descr
+  - column_data_type: decimal(38,2)
+    column_name: stat
+    comment: stat
+    data_classification: 
+    nullable: true
+    raw_column_name: stat
+  - column_data_type: decimal(38,2)
+    column_name: day1_workingdaymodel_no
+    comment: day1_workingdaymodel_no
+    data_classification: 
+    nullable: true
+    raw_column_name: day1_workingdaymodel_no
+  - column_data_type: decimal(38,2)
+    column_name: day2_workingdaymodel_no
+    comment: day2_workingdaymodel_no
+    data_classification: 
+    nullable: true
+    raw_column_name: day2_workingdaymodel_no
+  - column_data_type: decimal(38,2)
+    column_name: day3_workingdaymodel_no
+    comment: day3_workingdaymodel_no
+    data_classification: 
+    nullable: true
+    raw_column_name: day3_workingdaymodel_no
+  - column_data_type: decimal(38,2)
+    column_name: day4_workingdaymodel_no
+    comment: day4_workingdaymodel_no
+    data_classification: 
+    nullable: true
+    raw_column_name: day4_workingdaymodel_no
+  - column_data_type: decimal(38,2)
+    column_name: day5_workingdaymodel_no
+    comment: day5_workingdaymodel_no
+    data_classification: 
+    nullable: true
+    raw_column_name: day5_workingdaymodel_no
+  - column_data_type: decimal(38,2)
+    column_name: day6_workingdaymodel_no
+    comment: day6_workingdaymodel_no
+    data_classification: 
+    nullable: true
+    raw_column_name: day6_workingdaymodel_no
+  - column_data_type: decimal(38,2)
+    column_name: day7_workingdaymodel_no
+    comment: day7_workingdaymodel_no
+    data_classification: 
+    nullable: true
+    raw_column_name: day7_workingdaymodel_no
+  - column_data_type: decimal(38,2)
+    column_name: norm_workingdaymodel_no
+    comment: norm_workingdaymodel_no
+    data_classification: 
+    nullable: true
+    raw_column_name: norm_workingdaymodel_no
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: 
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: 
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: 
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: 
+    nullable: true
+    raw_column_name: upd_usr_id
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishCalendar/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: calendar
+  load_type: cdc
+  name: calendar
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishCalendar
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

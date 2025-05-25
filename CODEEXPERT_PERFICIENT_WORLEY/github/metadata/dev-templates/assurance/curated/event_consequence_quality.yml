@@ -1,0 +1,295 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_consequence_quality#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_consequence_quality.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_consequence_quality
+  name: event_consequence_quality
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_consequence_quality/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_consequence_quality
+  load_type: incremental
+  name: event_consequence_quality
+  primary_key: dwi_event_consequence_quality
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_consequence_quality
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_event_consequence_quality
+    rename_columns: true
+  columns:
+  - column_name: dwi_event_consequence_quality
+    column_data_type: decimal(38,0)
+    comment: dwi_event_consequence_quality
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_event_consequence_quality
+  - column_name: detection_of_quality_event
+    column_data_type: string
+    comment: detection_of_quality_event
+    data_classification:
+    nullable: true
+    raw_column_name: detection_of_quality_event
+  - column_name: li_detection_of_quality_event
+    column_data_type: string
+    comment: li_detection_of_quality_event
+    data_classification:
+    nullable: true
+    raw_column_name: li_detection_of_quality_event
+  - column_name: lo_detection_of_quality_event
+    column_data_type: decimal(38,0)
+    comment: lo_detection_of_quality_event
+    data_classification:
+    nullable: true
+    raw_column_name: lo_detection_of_quality_event
+  - column_name: employment_category
+    column_data_type: string
+    comment: employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: employment_category
+  - column_name: li_employment_category
+    column_data_type: string
+    comment: li_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_employment_category
+  - column_name: lo_employment_category
+    column_data_type: decimal(38,0)
+    comment: lo_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_employment_category
+  - column_name: explanation_of_deficiency_or_non_conformity
+    column_data_type: string
+    comment: explanation_of_deficiency_or_non_conformity
+    data_classification:
+    nullable: true
+    raw_column_name: explanation_of_deficiency_or_non_conformity
+  - column_name: if_other_product_ncr_causal_factor_please_specify
+    column_data_type: string
+    comment: if_other_product_ncr_causal_factor_please_specify
+    data_classification:
+    nullable: true
+    raw_column_name: if_other_product_ncr_causal_factor_please_specify
+  - column_name: immediate_control_measure
+    column_data_type: string
+    comment: immediate_control_measure
+    data_classification:
+    nullable: true
+    raw_column_name: immediate_control_measure
+  - column_name: product_ncr_classification
+    column_data_type: string
+    comment: product_ncr_classification
+    data_classification:
+    nullable: true
+    raw_column_name: product_ncr_classification
+  - column_name: li_product_ncr_classification
+    column_data_type: string
+    comment: li_product_ncr_classification
+    data_classification:
+    nullable: true
+    raw_column_name: li_product_ncr_classification
+  - column_name: lo_product_ncr_classification
+    column_data_type: decimal(38,0)
+    comment: lo_product_ncr_classification
+    data_classification:
+    nullable: true
+    raw_column_name: lo_product_ncr_classification
+  - column_name: purchase_order
+    column_data_type: string
+    comment: purchase_order
+    data_classification:
+    nullable: true
+    raw_column_name: purchase_order
+  - column_name: recommended_correction
+    column_data_type: string
+    comment: recommended_correction
+    data_classification:
+    nullable: true
+    raw_column_name: recommended_correction
+  - column_name: li_recommended_correction
+    column_data_type: string
+    comment: li_recommended_correction
+    data_classification:
+    nullable: true
+    raw_column_name: li_recommended_correction
+  - column_name: lo_recommended_correction
+    column_data_type: decimal(38,0)
+    comment: lo_recommended_correction
+    data_classification:
+    nullable: true
+    raw_column_name: lo_recommended_correction
+  - column_name: reference_number
+    column_data_type: string
+    comment: reference_number
+    data_classification:
+    nullable: true
+    raw_column_name: reference_number
+  - column_name: reputation_consequence
+    column_data_type: string
+    comment: reputation_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: reputation_consequence
+  - column_name: li_reputation_consequence
+    column_data_type: string
+    comment: li_reputation_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_reputation_consequence
+  - column_name: lo_reputation_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_reputation_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_reputation_consequence
+  - column_name: summary_of_deficiency_or_non_conformity
+    column_data_type: string
+    comment: summary_of_deficiency_or_non_conformity
+    data_classification:
+    nullable: true
+    raw_column_name: summary_of_deficiency_or_non_conformity
+  - column_name: suppliercontractor_name_if_not_in_list
+    column_data_type: string
+    comment: suppliercontractor_name_if_not_in_list
+    data_classification:
+    nullable: true
+    raw_column_name: suppliercontractor_name_if_not_in_list
+  - column_name: type_of_quality_event
+    column_data_type: string
+    comment: type_of_quality_event
+    data_classification:
+    nullable: true
+    raw_column_name: type_of_quality_event
+  - column_name: li_type_of_quality_event
+    column_data_type: string
+    comment: li_type_of_quality_event
+    data_classification:
+    nullable: true
+    raw_column_name: li_type_of_quality_event
+  - column_name: lo_type_of_quality_event
+    column_data_type: decimal(38,0)
+    comment: lo_type_of_quality_event
+    data_classification:
+    nullable: true
+    raw_column_name: lo_type_of_quality_event
+  - column_name: sys_legacy_id
+    column_data_type: string
+    comment: sys_legacy_id
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_id
+  - column_name: estimated_cost_of_quality_issue
+    column_data_type: string
+    comment: estimated_cost_of_quality_issue
+    data_classification:
+    nullable: true
+    raw_column_name: estimated_cost_of_quality_issue
+  - column_name: li_estimated_cost_of_quality_issue
+    column_data_type: string
+    comment: li_estimated_cost_of_quality_issue
+    data_classification:
+    nullable: true
+    raw_column_name: li_estimated_cost_of_quality_issue
+  - column_name: lo_estimated_cost_of_quality_issue
+    column_data_type: decimal(38,0)
+    comment: lo_estimated_cost_of_quality_issue
+    data_classification:
+    nullable: true
+    raw_column_name: lo_estimated_cost_of_quality_issue
+  - column_name: dwk_ems_business_process
+    column_data_type: decimal(38,0)
+    comment: dwk_ems_business_process
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_ems_business_process
+  - column_name: dwk_event_as_source_of_quality_consequence
+    column_data_type: decimal(38,0)
+    comment: dwk_event_as_source_of_quality_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_as_source_of_quality_consequence
+  - column_name: dwk_suppliercontractor_name
+    column_data_type: decimal(38,0)
+    comment: dwk_suppliercontractor_name
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_suppliercontractor_name
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

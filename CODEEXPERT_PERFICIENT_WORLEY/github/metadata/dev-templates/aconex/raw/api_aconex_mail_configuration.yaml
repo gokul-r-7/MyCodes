@@ -1,0 +1,40 @@
+---
+SourceSystemId: aconex
+MetadataType: api#aconex#Mail
+api_parameter:
+  api_body:
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/xml
+  api_method: get
+  api_query_params:
+  api_response_type: xml
+  api_retry: 4
+  api_ssl_verify: False
+  api_timeout: 180
+  auth_type: Basic
+  endpoint_prefix: https://
+  endpoint_suffix: "/api/projects"
+  secret_key: ${secret_prefix}-db-aconex
+aws_region: ${region}
+is_active: "y"
+job_parameter:
+  bucket_data_source_prefix: document_control/aconex
+  bucket_name: ${raw_bucket}
+  incremental_default_date: '19010101'
+  full_incr: i  
+  incremental_criteria_folder_location: "document_control/aconex/Mail_audit_folder"
+  input_path: temp/document_control/aconex/Mail
+  kms_key_id: ${kms_key_id}
+  output_s3: document_control/aconex
+  root_tag: SearchResults
+  row_tag: Mail
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: document_control/aconex/data_sampling
+mail_box:
+  - inbox
+  - sentbox
+name: Mail
+page_size: 500
+return_fields: attribute,closedoutdetails,confidential,tostatusid,mailRecipients,fromUserDetails,inreftomailno,subject,docno,responsedate,reasonforissueid,corrtypeid,sentdate,totalAttachmentsSize,attachedDocumentCount,secondaryattribute

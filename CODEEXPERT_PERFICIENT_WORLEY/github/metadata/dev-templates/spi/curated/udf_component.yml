@@ -1,0 +1,1074 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#UDF_COMPONENT#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/UDF_COMPONENT/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-udf_component
+  name: spi_udf_component
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_id
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: decimal(38,0)
+    column_name: plant_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_id
+  - column_data_type: decimal(38,0)
+    column_name: area_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_id
+  - column_data_type: decimal(38,0)
+    column_name: unit_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit_id
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date
+  - column_data_type: string
+    column_name: udf_c01
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c01
+  - column_data_type: string
+    column_name: udf_c02
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c02
+  - column_data_type: string
+    column_name: udf_c03
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c03
+  - column_data_type: string
+    column_name: udf_c04
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c04
+  - column_data_type: string
+    column_name: udf_c05
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c05
+  - column_data_type: string
+    column_name: udf_c06
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c06
+  - column_data_type: string
+    column_name: udf_c07
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c07
+  - column_data_type: string
+    column_name: udf_c08
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c08
+  - column_data_type: string
+    column_name: udf_c09
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c09
+  - column_data_type: string
+    column_name: udf_c10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c10
+  - column_data_type: string
+    column_name: udf_c11
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c11
+  - column_data_type: string
+    column_name: udf_c12
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c12
+  - column_data_type: string
+    column_name: udf_c13
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c13
+  - column_data_type: string
+    column_name: udf_c14
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c14
+  - column_data_type: string
+    column_name: udf_c15
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c15
+  - column_data_type: string
+    column_name: udf_c16
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c16
+  - column_data_type: string
+    column_name: udf_c17
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c17
+  - column_data_type: string
+    column_name: udf_c18
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c18
+  - column_data_type: string
+    column_name: udf_c19
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c19
+  - column_data_type: string
+    column_name: udf_c20
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c20
+  - column_data_type: string
+    column_name: udf_c21
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c21
+  - column_data_type: string
+    column_name: udf_c22
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c22
+  - column_data_type: string
+    column_name: udf_c23
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c23
+  - column_data_type: string
+    column_name: udf_c24
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c24
+  - column_data_type: string
+    column_name: udf_c25
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c25
+  - column_data_type: string
+    column_name: udf_c26
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c26
+  - column_data_type: string
+    column_name: udf_c27
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c27
+  - column_data_type: string
+    column_name: udf_c28
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c28
+  - column_data_type: string
+    column_name: udf_c29
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c29
+  - column_data_type: string
+    column_name: udf_c30
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c30
+  - column_data_type: string
+    column_name: udf_c31
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c31
+  - column_data_type: string
+    column_name: udf_c32
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c32
+  - column_data_type: string
+    column_name: udf_c33
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c33
+  - column_data_type: string
+    column_name: udf_c34
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c34
+  - column_data_type: string
+    column_name: udf_c35
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c35
+  - column_data_type: string
+    column_name: udf_c36
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c36
+  - column_data_type: string
+    column_name: udf_c37
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c37
+  - column_data_type: string
+    column_name: udf_c38
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c38
+  - column_data_type: string
+    column_name: udf_c39
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c39
+  - column_data_type: string
+    column_name: udf_c40
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c40
+  - column_data_type: decimal(38,0)
+    column_name: udf_n01
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n01
+  - column_data_type: decimal(38,0)
+    column_name: udf_n02
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n02
+  - column_data_type: decimal(38,0)
+    column_name: udf_n03
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n03
+  - column_data_type: decimal(38,0)
+    column_name: udf_n04
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n04
+  - column_data_type: decimal(38,0)
+    column_name: udf_n05
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n05
+  - column_data_type: decimal(38,0)
+    column_name: udf_n06
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n06
+  - column_data_type: decimal(38,10)
+    column_name: udf_n07
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n07
+  - column_data_type: decimal(38,10)
+    column_name: udf_n08
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n08
+  - column_data_type: decimal(38,10)
+    column_name: udf_n09
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n09
+  - column_data_type: decimal(38,10)
+    column_name: udf_n10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_n10
+  - column_data_type: timestamp
+    column_name: udf_d01
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_d01
+  - column_data_type: timestamp
+    column_name: udf_d02
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_d02
+  - column_data_type: timestamp
+    column_name: udf_d03
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_d03
+  - column_data_type: timestamp
+    column_name: udf_d04
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_d04
+  - column_data_type: timestamp
+    column_name: udf_d05
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_d05
+  - column_data_type: string
+    column_name: udf_c41
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c41
+  - column_data_type: string
+    column_name: udf_c42
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c42
+  - column_data_type: string
+    column_name: udf_c43
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c43
+  - column_data_type: string
+    column_name: udf_c44
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c44
+  - column_data_type: string
+    column_name: udf_c45
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c45
+  - column_data_type: string
+    column_name: udf_c46
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c46
+  - column_data_type: string
+    column_name: udf_c47
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c47
+  - column_data_type: string
+    column_name: udf_c48
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c48
+  - column_data_type: string
+    column_name: udf_c49
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c49
+  - column_data_type: string
+    column_name: udf_c50
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c50
+  - column_data_type: string
+    column_name: udf_c51
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c51
+  - column_data_type: string
+    column_name: udf_c52
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c52
+  - column_data_type: string
+    column_name: udf_c53
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c53
+  - column_data_type: string
+    column_name: udf_c54
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c54
+  - column_data_type: string
+    column_name: udf_c55
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c55
+  - column_data_type: string
+    column_name: udf_c56
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c56
+  - column_data_type: string
+    column_name: udf_c57
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c57
+  - column_data_type: string
+    column_name: udf_c58
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c58
+  - column_data_type: string
+    column_name: udf_c59
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c59
+  - column_data_type: string
+    column_name: udf_c60
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c60
+  - column_data_type: string
+    column_name: udf_c61
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c61
+  - column_data_type: string
+    column_name: udf_c62
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c62
+  - column_data_type: string
+    column_name: udf_c63
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c63
+  - column_data_type: string
+    column_name: udf_c64
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c64
+  - column_data_type: string
+    column_name: udf_c65
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c65
+  - column_data_type: string
+    column_name: udf_c66
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c66
+  - column_data_type: string
+    column_name: udf_c67
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c67
+  - column_data_type: string
+    column_name: udf_c68
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c68
+  - column_data_type: string
+    column_name: udf_c69
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c69
+  - column_data_type: string
+    column_name: udf_c70
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c70
+  - column_data_type: string
+    column_name: udf_c71
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c71
+  - column_data_type: string
+    column_name: udf_c72
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c72
+  - column_data_type: string
+    column_name: udf_c73
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c73
+  - column_data_type: string
+    column_name: udf_c74
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c74
+  - column_data_type: string
+    column_name: udf_c75
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c75
+  - column_data_type: string
+    column_name: udf_c76
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c76
+  - column_data_type: string
+    column_name: udf_c77
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c77
+  - column_data_type: string
+    column_name: udf_c78
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c78
+  - column_data_type: string
+    column_name: udf_c79
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c79
+  - column_data_type: string
+    column_name: udf_c80
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c80
+  - column_data_type: string
+    column_name: udf_c81
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c81
+  - column_data_type: string
+    column_name: udf_c82
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c82
+  - column_data_type: string
+    column_name: udf_c83
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c83
+  - column_data_type: string
+    column_name: udf_c84
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c84
+  - column_data_type: string
+    column_name: udf_c85
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c85
+  - column_data_type: string
+    column_name: udf_c86
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c86
+  - column_data_type: string
+    column_name: udf_c87
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c87
+  - column_data_type: string
+    column_name: udf_c88
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c88
+  - column_data_type: string
+    column_name: udf_c89
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c89
+  - column_data_type: string
+    column_name: udf_c90
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c90
+  - column_data_type: string
+    column_name: udf_c91
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c91
+  - column_data_type: string
+    column_name: udf_c92
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c92
+  - column_data_type: string
+    column_name: udf_c93
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c93
+  - column_data_type: string
+    column_name: udf_c94
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c94
+  - column_data_type: string
+    column_name: udf_c95
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c95
+  - column_data_type: string
+    column_name: udf_c96
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c96
+  - column_data_type: string
+    column_name: udf_c97
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c97
+  - column_data_type: string
+    column_name: udf_c98
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c98
+  - column_data_type: string
+    column_name: udf_c99
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c99
+  - column_data_type: string
+    column_name: udf_c100
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c100
+  - column_data_type: string
+    column_name: udf_c101
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c101
+  - column_data_type: string
+    column_name: udf_c102
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c102
+  - column_data_type: string
+    column_name: udf_c103
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c103
+  - column_data_type: string
+    column_name: udf_c104
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c104
+  - column_data_type: string
+    column_name: udf_c105
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c105
+  - column_data_type: string
+    column_name: udf_c106
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c106
+  - column_data_type: string
+    column_name: udf_c107
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c107
+  - column_data_type: string
+    column_name: udf_c108
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c108
+  - column_data_type: string
+    column_name: udf_c109
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c109
+  - column_data_type: string
+    column_name: udf_c110
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c110
+  - column_data_type: string
+    column_name: udf_c111
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c111
+  - column_data_type: string
+    column_name: udf_c112
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c112
+  - column_data_type: string
+    column_name: udf_c113
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c113
+  - column_data_type: string
+    column_name: udf_c114
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c114
+  - column_data_type: string
+    column_name: udf_c115
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c115
+  - column_data_type: string
+    column_name: udf_c116
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c116
+  - column_data_type: string
+    column_name: udf_c117
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c117
+  - column_data_type: string
+    column_name: udf_c118
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c118
+  - column_data_type: string
+    column_name: udf_c119
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c119
+  - column_data_type: string
+    column_name: udf_c120
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c120
+  - column_data_type: string
+    column_name: udf_c121
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c121
+  - column_data_type: string
+    column_name: udf_c122
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c122
+  - column_data_type: string
+    column_name: udf_c123
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c123
+  - column_data_type: string
+    column_name: udf_c124
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c124
+  - column_data_type: string
+    column_name: udf_c125
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c125
+  - column_data_type: string
+    column_name: udf_c126
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c126
+  - column_data_type: string
+    column_name: udf_c127
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c127
+  - column_data_type: string
+    column_name: udf_c128
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c128
+  - column_data_type: string
+    column_name: udf_c129
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c129
+  - column_data_type: string
+    column_name: udf_c130
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c130
+  - column_data_type: string
+    column_name: udf_c131
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c131
+  - column_data_type: string
+    column_name: udf_c132
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c132
+  - column_data_type: string
+    column_name: udf_c133
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c133
+  - column_data_type: string
+    column_name: udf_c134
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c134
+  - column_data_type: string
+    column_name: udf_c135
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c135
+  - column_data_type: string
+    column_name: udf_c136
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c136
+  - column_data_type: string
+    column_name: udf_c137
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c137
+  - column_data_type: string
+    column_name: udf_c138
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c138
+  - column_data_type: string
+    column_name: udf_c139
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c139
+  - column_data_type: string
+    column_name: udf_c140
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_c140
+  - column_data_type: decimal(38,0)
+    column_name: install_index1_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: install_index1_id
+  - column_data_type: decimal(38,0)
+    column_name: install_index2_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: install_index2_id
+  - column_data_type: decimal(38,0)
+    column_name: install_index3_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: install_index3_id
+  - column_data_type: decimal(38,0)
+    column_name: install_index4_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: install_index4_id
+  - column_data_type: decimal(38,0)
+    column_name: install_index5_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: install_index5_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_proj_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_ref_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_ref_id    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/UDF_COMPONENT/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_udf_component
+  load_type: append
+  name: curated_udf_component
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_udf_component
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

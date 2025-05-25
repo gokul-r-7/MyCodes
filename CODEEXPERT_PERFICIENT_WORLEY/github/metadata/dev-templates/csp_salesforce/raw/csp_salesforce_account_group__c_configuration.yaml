@@ -1,0 +1,26 @@
+SourceSystemId: csp_salesforce
+MetadataType: api#csp_salesforce#account_group__c
+api_parameter:
+  endpoint: '{instance_url}/services/data/v{api_version}/query?q={soql_query}'
+  sf_qualified_api_name: account_group__c
+job_parameter:
+  bucket_data_source_prefix: account_group__c
+  bucket_name: ${raw_bucket}
+  status_timeout: 60
+  input_path: null
+  output_s3: customer/csp_salesforce/account_group__c
+  temp_output_path: temp/customer/csp_salesforce/account_group__c/raw
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: customer/csp_salesforce/data_sampling/account_group__c
+  full_incremental: I
+  index_key: LastModifiedDate
+  incremental_value_format: '{yyyy}-{MM}-{dd}T{HH}:{mm}:{ss}.{SSS}'
+  incremental_default: 2020-01-01T00:00:00.000%2B0000
+  job_process_folder: customer/csp_salesforce/audit_folder
+  job_process_file: account_group__c/account_group__c_process.json
+  is_named_col: true
+  named_columns: Id,OwnerId,IsDeleted,Name,CurrencyIsoCode,CreatedDate,CreatedById,LastModifiedDate,LastModifiedById,SystemModstamp,LastViewedDate,LastReferencedDate,Account_Group_Customer_Type__c,Account_Group_LOB_Stewardship_new__c,Account_Group_Tier_New__c,Account_Group_SharePoint_URL__c,ECRMigrationExternalID__c,In_Perimeter__c,Account_Group_Lead__c,Current_FY_Account_Plan_Finalized__c,Regular_Account_Team_Meeting_Cadence__c
+is_active: Y
+name: account_group__c
+aws_region: ${region}

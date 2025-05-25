@@ -1,0 +1,151 @@
+---
+SourceSystemId: hexagon_curated
+MetadataType: curated#hexagon#hexagon_ofe#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/hexagon/parquet/c2_plant_c2_project_08_reviews.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_hexagon-csv_xlsx_curated
+  name: vg_hexagon_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: TRANSMITTAL_NUMBER
+    comment: TRANSMITTAL_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: transmittal_number
+  - column_data_type: DATE
+    column_name: TRANSMITTAL_CREATION_DATE
+    comment: TRANSMITTAL_CREATION_DATE
+    data_classification: 
+    nullable: true
+    raw_column_name: transmittal_creation_date
+  - column_data_type: DATE
+    column_name: TRANSMITTAL_SUGGESTED_DUE_DATE
+    comment: TRANSMITTAL_SUGGESTED_DUE_DATE
+    data_classification: 
+    nullable: true
+    raw_column_name: transmittal_suggested_due_date
+  - column_data_type: string
+    column_name: TRANSMITTAL_REASON_FOR_ISSUE
+    comment: TRANSMITTAL_REASON_FOR_ISSUE
+    data_classification: 
+    nullable: true
+    raw_column_name: transmittal_reason_for_issue
+  - column_data_type: string
+    column_name: DOCUMENT_NUMBER
+    comment: DOCUMENT_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: document_number
+  - column_data_type: string
+    column_name: DOCUMENT_TITLE
+    comment: DOCUMENT_TITLE
+    data_classification: 
+    nullable: true
+    raw_column_name: document_title
+  - column_data_type: string
+    column_name: DOCUMENT_REVISION
+    comment: DOCUMENT_REVISION
+    data_classification: 
+    nullable: true
+    raw_column_name: document_revision
+  - column_data_type: string
+    column_name: DOCUMENT_REVISION_STATE
+    comment: DOCUMENT_REVISION_STATE
+    data_classification: 
+    nullable: true
+    raw_column_name: document_revision_state
+  - column_data_type: string
+    column_name: DOCUMENT_ISSUE_PURPOSE
+    comment: DOCUMENT_ISSUE_PURPOSE
+    data_classification: 
+    nullable: true
+    raw_column_name: document_issue_purpose
+  - column_data_type: string
+    column_name: ORIGINATING_ORGANIZATION
+    comment: ORIGINATING_ORGANIZATION
+    data_classification: 
+    nullable: true
+    raw_column_name: originating_organization
+  - column_data_type: string
+    column_name: DOCUMENT_TYPE
+    comment: DOCUMENT_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: document_type
+  - column_data_type: string
+    column_name: WORKFLOW_STEP
+    comment: WORKFLOW_STEP
+    data_classification: 
+    nullable: true
+    raw_column_name: workflow_step
+  - column_data_type: string
+    column_name: WORKFLOW_STEP_STATUS
+    comment: WORKFLOW_STEP_STATUS
+    data_classification: 
+    nullable: true
+    raw_column_name: workflow_step_status
+  - column_data_type: string
+    column_name: RECIPIENT
+    comment: RECIPIENT
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient
+  - column_data_type: string
+    column_name: RECIPIENT_E_MAIL_ADDRESS
+    comment: RECIPIENT_E_MAIL_ADDRESS
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_e_mail_address
+  - column_data_type: string
+    column_name: DISCIPLINE
+    comment: DISCIPLINE
+    data_classification: 
+    nullable: true
+    raw_column_name: discipline 
+  - column_data_type: string
+    column_name: CONTRACT
+    comment: CONTRACT
+    data_classification: 
+    nullable: true
+    raw_column_name: contract
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/hexagon/hexagon_ofe/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_hexagon_ofe
+  name: curated_vg_hexagon_ofe
+  load_type: full_load
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/hexagon/hexagon_ofe
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'hexagon' as SOURCE_SYSTEM_NAME, 'VB_CP2-VentureGlobal' as CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

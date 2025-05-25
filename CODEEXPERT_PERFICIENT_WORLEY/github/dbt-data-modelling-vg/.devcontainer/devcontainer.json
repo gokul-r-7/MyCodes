@@ -1,0 +1,27 @@
+{
+  "name": "Data Modelling VG",
+  "image": "mcr.microsoft.com/devcontainers/python:3",
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/pre-commit:latest": {},
+    "ghcr.io/devcontainers-contrib/features/ansible:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.pythonPath": "/usr/bin/python3"
+      },
+      "extensions": [
+        "AmazonWebServices.amazon-q-vscode",
+        "github.vscode-github-actions",
+        "GitHub.vscode-pull-request-github",
+        "HashiCorp.terraform",
+        "kameshkotwani.google-search",
+        "ms-python.python",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+  "postCreateCommand": "make devcon/post-create",
+  "postStartCommand": "make devcon/post-start"
+}

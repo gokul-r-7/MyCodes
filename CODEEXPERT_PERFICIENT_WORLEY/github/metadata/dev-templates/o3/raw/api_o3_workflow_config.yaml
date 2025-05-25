@@ -1,0 +1,46 @@
+---
+SourceSystemId: o3
+MetadataType: raw#o3#extract_api
+api_parameter:
+  api_headers:
+    APIKey: d32309fdd673499cb95e2294a39865b7
+  api_host:  ${o3_endpoint}/
+  api_retry: 3
+  api_timeout: 300
+  api_pagecount: 500
+aws_region: ${region}
+is_active: y
+job_parameter:
+  endpoints:
+    type1:
+      - cwas
+      - cwps
+      - construction-components
+      - disciplines
+      - drawings
+      - documents
+      - ewps
+      - iwps
+      - work-package-execution-tasks
+      - change-history
+    type2:
+      - work-package-components
+      - work-package-execution-tasks/steps
+      - constraints
+    type3:
+      - projectsettings/get-crew-schedule
+  project_list:
+    - 41
+  bucket_data_source_prefix: o3
+  bucket_name: ${raw_bucket}
+  full_incr: i
+  incremental_criteria_folder_location: construction/o3/audit_folder
+  incremental_default_date: '19000101'
+  input_path: temp/o3/api
+  kms_key_id: ${kms_key_id}
+  output_s3: construction/o3
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: construction/o3/data_sampling
+  change_history_default_date: '20240901'
+name: o3_api

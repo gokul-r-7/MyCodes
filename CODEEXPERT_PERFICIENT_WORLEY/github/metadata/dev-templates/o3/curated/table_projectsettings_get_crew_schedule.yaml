@@ -1,0 +1,158 @@
+MetadataType: curated#o3#projectsettings_get-crew-schedule#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/projectsettings_get-crew-schedule/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_projectsettings_get_crew_schedule
+  name: o3_projectsettings_get_crew_schedule
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    primary_key: [projectid]
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sundayhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sundayhours
+  - column_data_type: string
+    column_name: mondayhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mondayhours
+  - column_data_type: string
+    column_name: tuesdayhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tuesdayhours
+  - column_data_type: string
+    column_name: wednesdayhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wednesdayhours
+  - column_data_type: string
+    column_name: thursdayhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: thursdayhours
+  - column_data_type: string
+    column_name: fridayhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fridayhours
+  - column_data_type: string
+    column_name: saturdayhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: saturdayhours
+  - column_data_type: string
+    column_name: entitytypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitytypeid
+  - column_data_type: string
+    column_name: usercanaddattachments
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: usercanaddattachments
+  - column_data_type: string
+    column_name: usercanupdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: usercanupdate
+  - column_data_type: string
+    column_name: usercandelete
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: usercandelete
+  - column_data_type: string
+    column_name: usercaneditconstraints
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: usercaneditconstraints
+  - column_data_type: string
+    column_name: usercaneditapprovals
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: usercaneditapprovals
+  - column_data_type: string
+    column_name: userisprojectadmin
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: userisprojectadmin
+  - column_data_type: string
+    column_name: usercandownload
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: usercandownload
+  - column_data_type: string
+    column_name: detailformconfigurationid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: detailformconfigurationid
+  - column_data_type: string
+    column_name: nonworkingday
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nonworkingday
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/projectsettings_get_crew_schedule/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_projectsettings_get_crew_schedule
+  load_type: incremental_no_delete
+  name: curated_o3_projectsettings_get_crew_schedule
+  primary_key: [projectid]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/projectsettings_get_crew_schedule
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

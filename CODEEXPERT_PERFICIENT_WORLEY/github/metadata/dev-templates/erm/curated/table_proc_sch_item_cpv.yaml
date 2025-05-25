@@ -1,0 +1,118 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishProcSchItemCpv#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishProcSchItemCpv/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishProcSchItemCpv
+  name: erm_PublishProcSchItemCpv
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: proc_sch_item_no
+    comment: proc_sch_item_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proc_sch_item_no
+  - column_data_type: string
+    column_name: milestone_comment
+    comment: milestone_comment
+    data_classification: null
+    nullable: true
+    raw_column_name: milestone_comment
+  - column_data_type: decimal(38,2)
+    column_name: ms_percent_progress
+    comment: ms_percent_progress
+    data_classification: null
+    nullable: true
+    raw_column_name: ms_percent_progress
+  - column_data_type: string
+    column_name: p6_activity_id
+    comment: p6_activity_id
+    data_classification: null
+    nullable: true
+    raw_column_name: p6_activity_id
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishProcSchItemCpv/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: proc_sch_item_cpv
+  load_type: cdc
+  name: proc_sch_item_cpv
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishProcSchItemCpv
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

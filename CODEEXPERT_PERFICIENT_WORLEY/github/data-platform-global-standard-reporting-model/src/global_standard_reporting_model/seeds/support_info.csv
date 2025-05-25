@@ -1,0 +1,9 @@
+Sr No,Metrics,Data fields calculation,Calculation Description
+1,CDD OTD,RECEIVED DATE - CONTRACT DELIVERY DATE,Ratio of order lines delivered on or before the contract delivery date versus total number of delivered order lines. (Percentage of order lines delivered on time)
+2,PDS OTD,RECEIVED DATE - PROMISED DATE,Ratio of order lines delivered on or before the promised delivery date versus total number of delivered order lines. (Percentage of order lines delivered on time)
+3,ROS OTD,RECEIVED DATE - REQUIRED ON SITE DATE,Ratio of order lines delivered on or before the required-on site date versus total number of delivered order lines. (Percentage of order lines delivered on time)
+4,REQ Processing,PO CREATION DATE - REQ CREATION DATE,Average number of days to process an order after it is placed
+5,PO Approval,PO ISSUE DATE  - PO CREATION DATE,Average number of days to approve an order after it is placed
+6,Delivery,"A) RECEIVED DATE - PO ISSUE DATE B) SUM OF ISSUE TO RECEIPT/COUNT OF PO
+",Average number of days to deliver an order after it is placed
+7,Total Lead Time,REQ PROCESSING+PO APPROVAL+DELIVERY,"Sum of Req processing time, PO Approval time & Delivery time"

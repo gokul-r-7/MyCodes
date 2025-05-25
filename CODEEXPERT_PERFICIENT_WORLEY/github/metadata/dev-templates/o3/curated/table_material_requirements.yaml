@@ -1,0 +1,605 @@
+MetadataType: curated#o3#material-requirements#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/material-requirements/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_material_requirements
+  name: o3_material_requirements
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [projectid, id] #projectid,entitytypeid,entityid,catalogcode]
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: entityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entityid
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: entitytypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitytypeid
+  - column_data_type: string
+    column_name: materialcatalogid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcatalogid
+  - column_data_type: string
+    column_name: catalogcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: catalogcode
+  - column_data_type: string
+    column_name: materialcategoryid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcategoryid
+  - column_data_type: string
+    column_name: materialcategory
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcategory
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: materialtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialtype
+  - column_data_type: string
+    column_name: materialrequirementsuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialrequirementsuom
+  - column_data_type: string
+    column_name: size1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size1
+  - column_data_type: string
+    column_name: size2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size2
+  - column_data_type: string
+    column_name: quantity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: quantity
+  - column_data_type: string
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: createdbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuserid
+  - column_data_type: string
+    column_name: createdbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuser
+  - column_data_type: string
+    column_name: datemodified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datemodified
+  - column_data_type: string
+    column_name: modifiedbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuserid
+  - column_data_type: string
+    column_name: modifiedbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuser
+  - column_data_type: string
+    column_name: providedby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: providedby
+  - column_data_type: string
+    column_name: fabricatedid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricatedid
+  - column_data_type: string
+    column_name: fabricated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricated
+  - column_data_type: string
+    column_name: sdsapprovedid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sdsapprovedid
+  - column_data_type: string
+    column_name: sdsapproved
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sdsapproved
+  - column_data_type: string
+    column_name: marapprovedid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: marapprovedid
+  - column_data_type: string
+    column_name: marapproved
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: marapproved
+  - column_data_type: string
+    column_name: purchasedid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: purchasedid
+  - column_data_type: string
+    column_name: purchased
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: purchased
+  - column_data_type: string
+    column_name: inwarehouseid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inwarehouseid
+  - column_data_type: string
+    column_name: inwarehouse
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inwarehouse
+  - column_data_type: string
+    column_name: mirraisedid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mirraisedid
+  - column_data_type: string
+    column_name: mirraised
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mirraised
+  - column_data_type: string
+    column_name: atsiteid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atsiteid
+  - column_data_type: string
+    column_name: atsite
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: atsite
+  - column_data_type: string
+    column_name: responsibilityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: responsibilityid
+  - column_data_type: string
+    column_name: responsibility
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: responsibility
+  - column_data_type: string
+    column_name: issuedquantity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issuedquantity
+  - column_data_type: string
+    column_name: entitystatusstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitystatusstate
+  - column_data_type: string
+    column_name: entityplannedstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entityplannedstartdate
+  - column_data_type: string
+    column_name: sheet
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sheet
+  - column_data_type: string
+    column_name: statusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statusid
+  - column_data_type: string
+    column_name: materialstatusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialstatusid
+  - column_data_type: string
+    column_name: materialstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialstatus
+  - column_data_type: string
+    column_name: materialavailabilityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialavailabilityid
+  - column_data_type: string
+    column_name: materialavailability
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialavailability
+  - column_data_type: string
+    column_name: materialavailabilitycolor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialavailabilitycolor
+  - column_data_type: string
+    column_name: clonedfromentityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: clonedfromentityid
+  - column_data_type: string
+    column_name: drawingid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingid
+  - column_data_type: string
+    column_name: drawing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawing
+  - column_data_type: string
+    column_name: drawingfilename
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingfilename
+  - column_data_type: string
+    column_name: componentidentifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: componentidentifier
+  - column_data_type: string
+    column_name: needsverification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: needsverification
+  - column_data_type: string
+    column_name: notes
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: notes
+  - column_data_type: string
+    column_name: sourceid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sourceid
+  - column_data_type: string
+    column_name: source
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: source
+  - column_data_type: string
+    column_name: sourceimportid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sourceimportid
+  - column_data_type: string
+    column_name: autocreatedfromconstructioncomponentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: autocreatedfromconstructioncomponentid
+  - column_data_type: string
+    column_name: trackingtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: trackingtag
+  - column_data_type: string
+    column_name: length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: length
+  - column_data_type: string
+    column_name: lengthuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lengthuom
+  - column_data_type: string
+    column_name: width
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: width
+  - column_data_type: string
+    column_name: widthuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: widthuom
+  - column_data_type: string
+    column_name: height
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: height
+  - column_data_type: string
+    column_name: heightuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: heightuom
+  - column_data_type: string
+    column_name: materialarea
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialarea
+  - column_data_type: string
+    column_name: materialareauom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialareauom
+  - column_data_type: string
+    column_name: volume
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: volume
+  - column_data_type: string
+    column_name: volumeuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: volumeuom
+  - column_data_type: string
+    column_name: weight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: weight
+  - column_data_type: string
+    column_name: weightuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: weightuom
+  - column_data_type: string
+    column_name: inchdia
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inchdia
+  - column_data_type: string
+    column_name: inchmeter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inchmeter
+  - column_data_type: string
+    column_name: autocreatedfrompipespoolid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: autocreatedfrompipespoolid
+  - column_data_type: string
+    column_name: autocreatedfrompipecomponentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: autocreatedfrompipecomponentid
+  - column_data_type: string
+    column_name: constructioncomponentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructioncomponentid
+  - column_data_type: string
+    column_name: clonedfromid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: clonedfromid
+  - column_data_type: string
+    column_name: clonedfromscopeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: clonedfromscopeid
+  - column_data_type: string
+    column_name: sourcekey
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sourcekey
+  - column_data_type: string
+    column_name: includeinpackageestimationscope
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: includeinpackageestimationscope
+  - column_data_type: string
+    column_name: forecastreceiptdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: forecastreceiptdate
+  - column_data_type: string
+    column_name: actualreceiptdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualreceiptdate
+  - column_data_type: string
+    column_name: sendoffshoredate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sendoffshoredate
+  - column_data_type: string
+    column_name: receiveoffshoredate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: receiveoffshoredate
+  - column_data_type: string
+    column_name: orderdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: orderdate
+  - column_data_type: string
+    column_name: orderingresponsibleparty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: orderingresponsibleparty
+  - column_data_type: string
+    column_name: shortquantity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: shortquantity
+  - column_data_type: string
+    column_name: sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sequence
+  - column_data_type: string
+    column_name: vendordrawing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vendordrawing
+  - column_data_type: string
+    column_name: weightrange
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: weightrange
+  - column_data_type: string
+    column_name: componentlookupkey
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: componentlookupkey
+  - column_data_type: string
+    column_name: isaddedtoiwp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isaddedtoiwp
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: datemodified_ts
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/material_requirements/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_material_requirements
+  load_type: incremental_no_delete
+  name: curated_o3_material_requirements
+  primary_key: [projectid, id]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/material_requirements
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, CAST(datemodified as timestamp) as datemodified_ts, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

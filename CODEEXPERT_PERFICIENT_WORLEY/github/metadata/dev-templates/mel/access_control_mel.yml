@@ -1,0 +1,5 @@
+domain_name: engineering
+source_name: mel
+databases : 
+  - ${database_prefix}_engineering_mel_curated
+  - ${database_prefix}_engineering_mel_raw

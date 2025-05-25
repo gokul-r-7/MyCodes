@@ -1,0 +1,877 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event
+  name: event
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event
+  load_type: incremental
+  name: event
+  primary_key: dwi_event
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_event
+    rename_columns: true
+  columns:
+  - column_name: dwi_event
+    column_data_type: decimal(38,0)
+    comment: dwi_event
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_event
+  - column_name: activity_at_time_of_event
+    column_data_type: string
+    comment: activity_at_time_of_event
+    data_classification:
+    nullable: true
+    raw_column_name: activity_at_time_of_event
+  - column_name: li_activity_at_time_of_event
+    column_data_type: string
+    comment: li_activity_at_time_of_event
+    data_classification:
+    nullable: true
+    raw_column_name: li_activity_at_time_of_event
+  - column_name: lo_activity_at_time_of_event
+    column_data_type: decimal(38,0)
+    comment: lo_activity_at_time_of_event
+    data_classification:
+    nullable: true
+    raw_column_name: lo_activity_at_time_of_event
+  - column_name: actual_consequence
+    column_data_type: string
+    comment: actual_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: actual_consequence
+  - column_name: li_actual_consequence
+    column_data_type: string
+    comment: li_actual_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_actual_consequence
+  - column_name: lo_actual_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_actual_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_actual_consequence
+  - column_name: address
+    column_data_type: string
+    comment: address
+    data_classification:
+    nullable: true
+    raw_column_name: address
+  - column_name: are_the_event_details_complete
+    column_data_type: string
+    comment: are_the_event_details_complete
+    data_classification:
+    nullable: true
+    raw_column_name: are_the_event_details_complete
+  - column_name: li_are_the_event_details_complete
+    column_data_type: string
+    comment: li_are_the_event_details_complete
+    data_classification:
+    nullable: true
+    raw_column_name: li_are_the_event_details_complete
+  - column_name: lo_are_the_event_details_complete
+    column_data_type: decimal(38,0)
+    comment: lo_are_the_event_details_complete
+    data_classification:
+    nullable: true
+    raw_column_name: lo_are_the_event_details_complete
+  - column_name: are_the_event_details_complete_ready_for_investigation
+    column_data_type: string
+    comment: are_the_event_details_complete_ready_for_investigation
+    data_classification:
+    nullable: true
+    raw_column_name: are_the_event_details_complete_ready_for_investigation
+  - column_name: li_are_the_event_details_complete_ready_for_investigation
+    column_data_type: string
+    comment: li_are_the_event_details_complete_ready_for_investigation
+    data_classification:
+    nullable: true
+    raw_column_name: li_are_the_event_details_complete_ready_for_investigation
+  - column_name: lo_are_the_event_details_complete_ready_for_investigation
+    column_data_type: decimal(38,0)
+    comment: lo_are_the_event_details_complete_ready_for_investigation
+    data_classification:
+    nullable: true
+    raw_column_name: lo_are_the_event_details_complete_ready_for_investigation
+  - column_name: close_this_record
+    column_data_type: string
+    comment: close_this_record
+    data_classification:
+    nullable: true
+    raw_column_name: close_this_record
+  - column_name: li_close_this_record
+    column_data_type: string
+    comment: li_close_this_record
+    data_classification:
+    nullable: true
+    raw_column_name: li_close_this_record
+  - column_name: lo_close_this_record
+    column_data_type: decimal(38,0)
+    comment: lo_close_this_record
+    data_classification:
+    nullable: true
+    raw_column_name: lo_close_this_record
+  - column_name: confirm_recordable
+    column_data_type: string
+    comment: confirm_recordable
+    data_classification:
+    nullable: true
+    raw_column_name: confirm_recordable
+  - column_name: li_confirm_recordable
+    column_data_type: string
+    comment: li_confirm_recordable
+    data_classification:
+    nullable: true
+    raw_column_name: li_confirm_recordable
+  - column_name: lo_confirm_recordable
+    column_data_type: decimal(38,0)
+    comment: lo_confirm_recordable
+    data_classification:
+    nullable: true
+    raw_column_name: lo_confirm_recordable
+  - column_name: customer
+    column_data_type: string
+    comment: customer
+    data_classification:
+    nullable: true
+    raw_column_name: customer
+  - column_name: days_open
+    column_data_type: decimal(38,0)
+    comment: days_open
+    data_classification:
+    nullable: true
+    raw_column_name: days_open
+  - column_name: detailed_description
+    column_data_type: string
+    comment: detailed_description
+    data_classification:
+    nullable: true
+    raw_column_name: detailed_description
+  - column_name: does_this_event_involve_a_confirmed_positive_covid19_case
+    column_data_type: string
+    comment: does_this_event_involve_a_confirmed_positive_covid19_case
+    data_classification:
+    nullable: true
+    raw_column_name: does_this_event_involve_a_confirmed_positive_covid19_case
+  - column_name: li_does_this_event_involve_a_confirmed_positive_covid19_case
+    column_data_type: string
+    comment: li_does_this_event_involve_a_confirmed_positive_covid19_case
+    data_classification:
+    nullable: true
+    raw_column_name: li_does_this_event_involve_a_confirmed_positive_covid19_case
+  - column_name: lo_does_this_event_involve_a_confirmed_positive_covid19_case
+    column_data_type: decimal(38,0)
+    comment: lo_does_this_event_involve_a_confirmed_positive_covid19_case
+    data_classification:
+    nullable: true
+    raw_column_name: lo_does_this_event_involve_a_confirmed_positive_covid19_case
+  - column_name: does_this_event_involve_a_suspected_covid19_case
+    column_data_type: string
+    comment: does_this_event_involve_a_suspected_covid19_case
+    data_classification:
+    nullable: true
+    raw_column_name: does_this_event_involve_a_suspected_covid19_case
+  - column_name: li_does_this_event_involve_a_suspected_covid19_case
+    column_data_type: string
+    comment: li_does_this_event_involve_a_suspected_covid19_case
+    data_classification:
+    nullable: true
+    raw_column_name: li_does_this_event_involve_a_suspected_covid19_case
+  - column_name: lo_does_this_event_involve_a_suspected_covid19_case
+    column_data_type: decimal(38,0)
+    comment: lo_does_this_event_involve_a_suspected_covid19_case
+    data_classification:
+    nullable: true
+    raw_column_name: lo_does_this_event_involve_a_suspected_covid19_case
+  - column_name: entered_date
+    column_data_type: timestamp
+    comment: entered_date
+    data_classification:
+    nullable: true
+    raw_column_name: entered_date
+  - column_name: entered_time
+    column_data_type: timestamp
+    comment: entered_time
+    data_classification:
+    nullable: true
+    raw_column_name: entered_time
+  - column_name: event_date
+    column_data_type: timestamp
+    comment: event_date
+    data_classification:
+    nullable: true
+    raw_column_name: event_date
+  - column_name: event_number
+    column_data_type: string
+    comment: event_number
+    data_classification:
+    nullable: true
+    raw_column_name: event_number
+  - column_name: event_status
+    column_data_type: string
+    comment: event_status
+    data_classification:
+    nullable: true
+    raw_column_name: event_status
+  - column_name: li_event_status
+    column_data_type: string
+    comment: li_event_status
+    data_classification:
+    nullable: true
+    raw_column_name: li_event_status
+  - column_name: lo_event_status
+    column_data_type: decimal(38,0)
+    comment: lo_event_status
+    data_classification:
+    nullable: true
+    raw_column_name: lo_event_status
+  - column_name: event_time
+    column_data_type: timestamp
+    comment: event_time
+    data_classification:
+    nullable: true
+    raw_column_name: event_time
+  - column_name: immediate_action_taken
+    column_data_type: string
+    comment: immediate_action_taken
+    data_classification:
+    nullable: true
+    raw_column_name: immediate_action_taken
+  - column_name: investigation_due_date
+    column_data_type: timestamp
+    comment: investigation_due_date
+    data_classification:
+    nullable: true
+    raw_column_name: investigation_due_date
+  - column_name: is_an_investigation_required
+    column_data_type: string
+    comment: is_an_investigation_required
+    data_classification:
+    nullable: true
+    raw_column_name: is_an_investigation_required
+  - column_name: li_is_an_investigation_required
+    column_data_type: string
+    comment: li_is_an_investigation_required
+    data_classification:
+    nullable: true
+    raw_column_name: li_is_an_investigation_required
+  - column_name: lo_is_an_investigation_required
+    column_data_type: decimal(38,0)
+    comment: lo_is_an_investigation_required
+    data_classification:
+    nullable: true
+    raw_column_name: lo_is_an_investigation_required
+  - column_name: is_this_a_covid19_related_event
+    column_data_type: string
+    comment: is_this_a_covid19_related_event
+    data_classification:
+    nullable: true
+    raw_column_name: is_this_a_covid19_related_event
+  - column_name: li_is_this_a_covid19_related_event
+    column_data_type: string
+    comment: li_is_this_a_covid19_related_event
+    data_classification:
+    nullable: true
+    raw_column_name: li_is_this_a_covid19_related_event
+  - column_name: lo_is_this_a_covid19_related_event
+    column_data_type: decimal(38,0)
+    comment: lo_is_this_a_covid19_related_event
+    data_classification:
+    nullable: true
+    raw_column_name: lo_is_this_a_covid19_related_event
+  - column_name: is_this_an_r3_event
+    column_data_type: string
+    comment: is_this_an_r3_event
+    data_classification:
+    nullable: true
+    raw_column_name: is_this_an_r3_event
+  - column_name: li_is_this_an_r3_event
+    column_data_type: string
+    comment: li_is_this_an_r3_event
+    data_classification:
+    nullable: true
+    raw_column_name: li_is_this_an_r3_event
+  - column_name: lo_is_this_an_r3_event
+    column_data_type: decimal(38,0)
+    comment: lo_is_this_an_r3_event
+    data_classification:
+    nullable: true
+    raw_column_name: lo_is_this_an_r3_event
+  - column_name: is_this_event_externally_reportable
+    column_data_type: string
+    comment: is_this_event_externally_reportable
+    data_classification:
+    nullable: true
+    raw_column_name: is_this_event_externally_reportable
+  - column_name: li_is_this_event_externally_reportable
+    column_data_type: string
+    comment: li_is_this_event_externally_reportable
+    data_classification:
+    nullable: true
+    raw_column_name: li_is_this_event_externally_reportable
+  - column_name: lo_is_this_event_externally_reportable
+    column_data_type: decimal(38,0)
+    comment: lo_is_this_event_externally_reportable
+    data_classification:
+    nullable: true
+    raw_column_name: lo_is_this_event_externally_reportable
+  - column_name: latitude
+    column_data_type: decimal(38,16)
+    comment: latitude
+    data_classification:
+    nullable: true
+    raw_column_name: latitude
+  - column_name: link_to_supporting_documents
+    column_data_type: string
+    comment: link_to_supporting_documents
+    data_classification:
+    nullable: true
+    raw_column_name: link_to_supporting_documents
+  - column_name: location_type
+    column_data_type: string
+    comment: location_type
+    data_classification:
+    nullable: true
+    raw_column_name: location_type
+  - column_name: li_location_type
+    column_data_type: string
+    comment: li_location_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_location_type
+  - column_name: lo_location_type
+    column_data_type: decimal(38,0)
+    comment: lo_location_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_location_type
+  - column_name: location_where_event_occurred
+    column_data_type: string
+    comment: location_where_event_occurred
+    data_classification:
+    nullable: true
+    raw_column_name: location_where_event_occurred
+  - column_name: longitude
+    column_data_type: decimal(38,16)
+    comment: longitude
+    data_classification:
+    nullable: true
+    raw_column_name: longitude
+  - column_name: potential_consequence
+    column_data_type: string
+    comment: potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: potential_consequence
+  - column_name: li_potential_consequence
+    column_data_type: string
+    comment: li_potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_potential_consequence
+  - column_name: lo_potential_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_potential_consequence
+  - column_name: project_name
+    column_data_type: string
+    comment: project_name
+    data_classification:
+    nullable: true
+    raw_column_name: project_name
+  - column_name: project_phase
+    column_data_type: string
+    comment: project_phase
+    data_classification:
+    nullable: true
+    raw_column_name: project_phase
+  - column_name: li_project_phase
+    column_data_type: string
+    comment: li_project_phase
+    data_classification:
+    nullable: true
+    raw_column_name: li_project_phase
+  - column_name: lo_project_phase
+    column_data_type: decimal(38,0)
+    comment: lo_project_phase
+    data_classification:
+    nullable: true
+    raw_column_name: lo_project_phase
+  - column_name: reported_date
+    column_data_type: timestamp
+    comment: reported_date
+    data_classification:
+    nullable: true
+    raw_column_name: reported_date
+  - column_name: reported_time
+    column_data_type: timestamp
+    comment: reported_time
+    data_classification:
+    nullable: true
+    raw_column_name: reported_time
+  - column_name: sector
+    column_data_type: string
+    comment: sector
+    data_classification:
+    nullable: true
+    raw_column_name: sector
+  - column_name: li_sector
+    column_data_type: string
+    comment: li_sector
+    data_classification:
+    nullable: true
+    raw_column_name: li_sector
+  - column_name: lo_sector
+    column_data_type: decimal(38,0)
+    comment: lo_sector
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sector
+  - column_name: sign_off_comments
+    column_data_type: string
+    comment: sign_off_comments
+    data_classification:
+    nullable: true
+    raw_column_name: sign_off_comments
+  - column_name: sign_off_date
+    column_data_type: timestamp
+    comment: sign_off_date
+    data_classification:
+    nullable: true
+    raw_column_name: sign_off_date
+  - column_name: stakeholders_involved
+    column_data_type: string
+    comment: stakeholders_involved
+    data_classification:
+    nullable: true
+    raw_column_name: stakeholders_involved
+  - column_name: summary
+    column_data_type: string
+    comment: summary
+    data_classification:
+    nullable: true
+    raw_column_name: summary
+  - column_name: was_alcohol_and_drug_testing_undertaken
+    column_data_type: string
+    comment: was_alcohol_and_drug_testing_undertaken
+    data_classification:
+    nullable: true
+    raw_column_name: was_alcohol_and_drug_testing_undertaken
+  - column_name: li_was_alcohol_and_drug_testing_undertaken
+    column_data_type: string
+    comment: li_was_alcohol_and_drug_testing_undertaken
+    data_classification:
+    nullable: true
+    raw_column_name: li_was_alcohol_and_drug_testing_undertaken
+  - column_name: lo_was_alcohol_and_drug_testing_undertaken
+    column_data_type: decimal(38,0)
+    comment: lo_was_alcohol_and_drug_testing_undertaken
+    data_classification:
+    nullable: true
+    raw_column_name: lo_was_alcohol_and_drug_testing_undertaken
+  - column_name: was_there_a_potential_for_injury_or_illness_asset
+    column_data_type: string
+    comment: was_there_a_potential_for_injury_or_illness_asset
+    data_classification:
+    nullable: true
+    raw_column_name: was_there_a_potential_for_injury_or_illness_asset
+  - column_name: li_was_there_a_potential_for_injury_or_illness_asset
+    column_data_type: string
+    comment: li_was_there_a_potential_for_injury_or_illness_asset
+    data_classification:
+    nullable: true
+    raw_column_name: li_was_there_a_potential_for_injury_or_illness_asset
+  - column_name: lo_was_there_a_potential_for_injury_or_illness_asset
+    column_data_type: decimal(38,0)
+    comment: lo_was_there_a_potential_for_injury_or_illness_asset
+    data_classification:
+    nullable: true
+    raw_column_name: lo_was_there_a_potential_for_injury_or_illness_asset
+  - column_name: was_there_a_potential_for_injury_or_illness_mva
+    column_data_type: string
+    comment: was_there_a_potential_for_injury_or_illness_mva
+    data_classification:
+    nullable: true
+    raw_column_name: was_there_a_potential_for_injury_or_illness_mva
+  - column_name: li_was_there_a_potential_for_injury_or_illness_mva
+    column_data_type: string
+    comment: li_was_there_a_potential_for_injury_or_illness_mva
+    data_classification:
+    nullable: true
+    raw_column_name: li_was_there_a_potential_for_injury_or_illness_mva
+  - column_name: lo_was_there_a_potential_for_injury_or_illness_mva
+    column_data_type: decimal(38,0)
+    comment: lo_was_there_a_potential_for_injury_or_illness_mva
+    data_classification:
+    nullable: true
+    raw_column_name: lo_was_there_a_potential_for_injury_or_illness_mva
+  - column_name: zzznotused_actual_severity
+    column_data_type: string
+    comment: zzznotused_actual_severity
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_actual_severity
+  - column_name: li_zzznotused_actual_severity
+    column_data_type: string
+    comment: li_zzznotused_actual_severity
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_actual_severity
+  - column_name: lo_zzznotused_actual_severity
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_actual_severity
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_actual_severity
+  - column_name: zzznotused_location_where_event_occurred
+    column_data_type: string
+    comment: zzznotused_location_where_event_occurred
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_location_where_event_occurred
+  - column_name: zzznotused_potential_severity
+    column_data_type: string
+    comment: zzznotused_potential_severity
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_potential_severity
+  - column_name: li_zzznotused_potential_severity
+    column_data_type: string
+    comment: li_zzznotused_potential_severity
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_potential_severity
+  - column_name: lo_zzznotused_potential_severity
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_potential_severity
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_potential_severity
+  - column_name: zzznotused_witnesses_details_if_witness_is_not_in_witnesses
+    column_data_type: string
+    comment: zzznotused_witnesses_details_if_witness_is_not_in_witnesses
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_witnesses_details_if_witness_is_not_in_witnesses
+  - column_name: zzznotuseddetails_detail_description
+    column_data_type: string
+    comment: zzznotuseddetails_detail_description
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotuseddetails_detail_description
+  - column_name: sys_entered_from_mobile
+    column_data_type: string
+    comment: sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: sys_entered_from_mobile
+  - column_name: li_sys_entered_from_mobile
+    column_data_type: string
+    comment: li_sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_entered_from_mobile
+  - column_name: lo_sys_entered_from_mobile
+    column_data_type: decimal(38,0)
+    comment: lo_sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_entered_from_mobile
+  - column_name: sys_legacy_incident_number
+    column_data_type: string
+    comment: sys_legacy_incident_number
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_incident_number
+  - column_name: sys_ready_for_submission
+    column_data_type: string
+    comment: sys_ready_for_submission
+    data_classification:
+    nullable: true
+    raw_column_name: sys_ready_for_submission
+  - column_name: li_sys_ready_for_submission
+    column_data_type: string
+    comment: li_sys_ready_for_submission
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_ready_for_submission
+  - column_name: lo_sys_ready_for_submission
+    column_data_type: decimal(38,0)
+    comment: lo_sys_ready_for_submission
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_ready_for_submission
+  - column_name: sys_recordable_email_sent
+    column_data_type: string
+    comment: sys_recordable_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: sys_recordable_email_sent
+  - column_name: li_sys_recordable_email_sent
+    column_data_type: string
+    comment: li_sys_recordable_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_recordable_email_sent
+  - column_name: lo_sys_recordable_email_sent
+    column_data_type: decimal(38,0)
+    comment: lo_sys_recordable_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_recordable_email_sent
+  - column_name: sys_send_new_verification_email
+    column_data_type: string
+    comment: sys_send_new_verification_email
+    data_classification:
+    nullable: true
+    raw_column_name: sys_send_new_verification_email
+  - column_name: li_sys_send_new_verification_email
+    column_data_type: string
+    comment: li_sys_send_new_verification_email
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_send_new_verification_email
+  - column_name: lo_sys_send_new_verification_email
+    column_data_type: decimal(38,0)
+    comment: lo_sys_send_new_verification_email
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_send_new_verification_email
+  - column_name: sys_set_recordable_email_sent
+    column_data_type: string
+    comment: sys_set_recordable_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: sys_set_recordable_email_sent
+  - column_name: li_sys_set_recordable_email_sent
+    column_data_type: string
+    comment: li_sys_set_recordable_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_set_recordable_email_sent
+  - column_name: lo_sys_set_recordable_email_sent
+    column_data_type: decimal(38,0)
+    comment: lo_sys_set_recordable_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_set_recordable_email_sent
+  - column_name: zzznotused_is_this_event_extremally_reportable
+    column_data_type: string
+    comment: zzznotused_is_this_event_extremally_reportable
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_is_this_event_extremally_reportable
+  - column_name: li_zzznotused_is_this_event_extremally_reportable
+    column_data_type: string
+    comment: li_zzznotused_is_this_event_extremally_reportable
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_is_this_event_extremally_reportable
+  - column_name: lo_zzznotused_is_this_event_extremally_reportable
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_is_this_event_extremally_reportable
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_is_this_event_extremally_reportable
+  - column_name: service_category
+    column_data_type: string
+    comment: service_category
+    data_classification:
+    nullable: true
+    raw_column_name: service_category
+  - column_name: li_service_category
+    column_data_type: string
+    comment: li_service_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_service_category
+  - column_name: lo_service_category
+    column_data_type: decimal(38,0)
+    comment: lo_service_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_service_category
+  - column_name: dwk_business_line
+    column_data_type: decimal(38,0)
+    comment: dwk_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_business_line
+  - column_name: dwk_business_line_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_business_line_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_business_line_archive
+  - column_name: dwk_customer
+    column_data_type: decimal(38,0)
+    comment: dwk_customer
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_customer
+  - column_name: dwk_entered_by
+    column_data_type: decimal(38,0)
+    comment: dwk_entered_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_entered_by
+  - column_name: dwk_event_owner
+    column_data_type: decimal(38,0)
+    comment: dwk_event_owner
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_owner
+  - column_name: dwk_geography
+    column_data_type: decimal(38,0)
+    comment: dwk_geography
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_geography
+  - column_name: dwk_geography_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_geography_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_geography_archive
+  - column_name: dwk_investigation_team_leader
+    column_data_type: decimal(38,0)
+    comment: dwk_investigation_team_leader
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_investigation_team_leader
+  - column_name: dwk_person_signing_off
+    column_data_type: decimal(38,0)
+    comment: dwk_person_signing_off
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_person_signing_off
+  - column_name: dwk_project
+    column_data_type: decimal(38,0)
+    comment: dwk_project
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_project
+  - column_name: dwk_project_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_project_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_project_archive
+  - column_name: dwk_reported_by
+    column_data_type: decimal(38,0)
+    comment: dwk_reported_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_reported_by
+  - column_name: dwk_subsector
+    column_data_type: decimal(38,0)
+    comment: dwk_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_subsector
+  - column_name: dwk_sys_business_line_unknown
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_business_line_unknown
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_business_line_unknown
+  - column_name: dwk_sys_subsector_unknown
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_subsector_unknown
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_subsector_unknown
+  - column_name: dwk_worley_reporting_region
+    column_data_type: decimal(38,0)
+    comment: dwk_worley_reporting_region
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_worley_reporting_region
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

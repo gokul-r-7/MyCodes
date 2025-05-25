@@ -1,0 +1,5 @@
+domain_name: finance
+source_name: jplus
+databases : 
+  - ${database_prefix}_finance_jplus_curated
+  - ${database_prefix}_finance_jplus_raw

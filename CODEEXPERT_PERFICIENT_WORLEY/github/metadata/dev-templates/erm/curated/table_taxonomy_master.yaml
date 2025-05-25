@@ -1,0 +1,85 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#taxonomy_master#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/parquet/taxonomy_master.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: taxonomy_master
+    format_options:
+      mergeSchema: true
+  name: taxonomy_master
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: group_l1
+    comment: group_l1
+    data_classification: 
+    nullable: false
+    raw_column_name: group_l1
+  - column_data_type: string
+    column_name: category_l2
+    comment: category_l2
+    data_classification: 
+    nullable: true
+    raw_column_name: category_l2
+  - column_data_type: string
+    column_name: sub_category_l3
+    comment: sub_category_l3
+    data_classification: 
+    nullable: false
+    raw_column_name: sub_category_l3
+  - column_data_type: string
+    column_name: family_l4
+    comment: family_l4
+    data_classification: 
+    nullable: true
+    raw_column_name: family_l4
+  - column_data_type: string
+    column_name: commodity_l5
+    comment: commodity_l5
+    data_classification: 
+    nullable: true
+    raw_column_name: commodity_l5
+  - column_data_type: string
+    column_name: unspsc
+    comment: unspsc
+    data_classification: 
+    nullable: true
+    raw_column_name: unspsc
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/taxonomy_master/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: taxonomy_master
+  name: taxonomy_master
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/taxonomy_master/
+  load_type: full_load
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

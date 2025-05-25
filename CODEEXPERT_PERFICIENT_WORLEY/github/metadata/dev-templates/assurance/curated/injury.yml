@@ -1,0 +1,763 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#injury#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/injury.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: injury
+  name: injury
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/injury/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: injury
+  load_type: incremental
+  name: injury
+  primary_key: dwi_injury
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/injury
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_injury
+    rename_columns: true
+  columns:
+  - column_name: dwi_injury
+    column_data_type: decimal(38,0)
+    comment: dwi_injury
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_injury
+  - column_name: actual_consequence
+    column_data_type: string
+    comment: actual_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: actual_consequence
+  - column_name: li_actual_consequence
+    column_data_type: string
+    comment: li_actual_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_actual_consequence
+  - column_name: lo_actual_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_actual_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_actual_consequence
+  - column_name: age_group
+    column_data_type: string
+    comment: age_group
+    data_classification:
+    nullable: true
+    raw_column_name: age_group
+  - column_name: li_age_group
+    column_data_type: string
+    comment: li_age_group
+    data_classification:
+    nullable: true
+    raw_column_name: li_age_group
+  - column_name: lo_age_group
+    column_data_type: decimal(38,0)
+    comment: lo_age_group
+    data_classification:
+    nullable: true
+    raw_column_name: lo_age_group
+  - column_name: classification
+    column_data_type: string
+    comment: classification
+    data_classification:
+    nullable: true
+    raw_column_name: classification
+  - column_name: li_classification
+    column_data_type: string
+    comment: li_classification
+    data_classification:
+    nullable: true
+    raw_column_name: li_classification
+  - column_name: lo_classification
+    column_data_type: decimal(38,0)
+    comment: lo_classification
+    data_classification:
+    nullable: true
+    raw_column_name: lo_classification
+  - column_name: days_lost
+    column_data_type: decimal(38,0)
+    comment: days_lost
+    data_classification:
+    nullable: true
+    raw_column_name: days_lost
+  - column_name: days_restricted_duty
+    column_data_type: decimal(38,0)
+    comment: days_restricted_duty
+    data_classification:
+    nullable: true
+    raw_column_name: days_restricted_duty
+  - column_name: detailed_description
+    column_data_type: string
+    comment: detailed_description
+    data_classification:
+    nullable: true
+    raw_column_name: detailed_description
+  - column_name: employee_type
+    column_data_type: string
+    comment: employee_type
+    data_classification:
+    nullable: true
+    raw_column_name: employee_type
+  - column_name: li_employee_type
+    column_data_type: string
+    comment: li_employee_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_employee_type
+  - column_name: lo_employee_type
+    column_data_type: decimal(38,0)
+    comment: lo_employee_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_employee_type
+  - column_name: employer_if_not_in_list
+    column_data_type: string
+    comment: employer_if_not_in_list
+    data_classification:
+    nullable: true
+    raw_column_name: employer_if_not_in_list
+  - column_name: employment_category
+    column_data_type: string
+    comment: employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: employment_category
+  - column_name: li_employment_category
+    column_data_type: string
+    comment: li_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_employment_category
+  - column_name: lo_employment_category
+    column_data_type: decimal(38,0)
+    comment: lo_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_employment_category
+  - column_name: experience_in_current_role
+    column_data_type: string
+    comment: experience_in_current_role
+    data_classification:
+    nullable: true
+    raw_column_name: experience_in_current_role
+  - column_name: li_experience_in_current_role
+    column_data_type: string
+    comment: li_experience_in_current_role
+    data_classification:
+    nullable: true
+    raw_column_name: li_experience_in_current_role
+  - column_name: lo_experience_in_current_role
+    column_data_type: decimal(38,0)
+    comment: lo_experience_in_current_role
+    data_classification:
+    nullable: true
+    raw_column_name: lo_experience_in_current_role
+  - column_name: how_did_it_occur_or_what_happened
+    column_data_type: string
+    comment: how_did_it_occur_or_what_happened
+    data_classification:
+    nullable: true
+    raw_column_name: how_did_it_occur_or_what_happened
+  - column_name: injured_or_ill_person_job_title
+    column_data_type: string
+    comment: injured_or_ill_person_job_title
+    data_classification:
+    nullable: true
+    raw_column_name: injured_or_ill_person_job_title
+  - column_name: injured_or_ill_person_if_not_in_list
+    column_data_type: string
+    comment: injured_or_ill_person_if_not_in_list
+    data_classification:
+    nullable: true
+    raw_column_name: injured_or_ill_person_if_not_in_list
+  - column_name: injury_number
+    column_data_type: string
+    comment: injury_number
+    data_classification:
+    nullable: true
+    raw_column_name: injury_number
+  - column_name: injury_or_illness
+    column_data_type: string
+    comment: injury_or_illness
+    data_classification:
+    nullable: true
+    raw_column_name: injury_or_illness
+  - column_name: li_injury_or_illness
+    column_data_type: string
+    comment: li_injury_or_illness
+    data_classification:
+    nullable: true
+    raw_column_name: li_injury_or_illness
+  - column_name: lo_injury_or_illness
+    column_data_type: decimal(38,0)
+    comment: lo_injury_or_illness
+    data_classification:
+    nullable: true
+    raw_column_name: lo_injury_or_illness
+  - column_name: length_of_time_on_current_assignment
+    column_data_type: string
+    comment: length_of_time_on_current_assignment
+    data_classification:
+    nullable: true
+    raw_column_name: length_of_time_on_current_assignment
+  - column_name: li_length_of_time_on_current_assignment
+    column_data_type: string
+    comment: li_length_of_time_on_current_assignment
+    data_classification:
+    nullable: true
+    raw_column_name: li_length_of_time_on_current_assignment
+  - column_name: lo_length_of_time_on_current_assignment
+    column_data_type: decimal(38,0)
+    comment: lo_length_of_time_on_current_assignment
+    data_classification:
+    nullable: true
+    raw_column_name: lo_length_of_time_on_current_assignment
+  - column_name: local_time_person_started_work
+    column_data_type: timestamp
+    comment: local_time_person_started_work
+    data_classification:
+    nullable: true
+    raw_column_name: local_time_person_started_work
+  - column_name: osha_city_of_the_treatment_facility
+    column_data_type: string
+    comment: osha_city_of_the_treatment_facility
+    data_classification:
+    nullable: true
+    raw_column_name: osha_city_of_the_treatment_facility
+  - column_name: osha_date_became_recordable
+    column_data_type: timestamp
+    comment: osha_date_became_recordable
+    data_classification:
+    nullable: true
+    raw_column_name: osha_date_became_recordable
+  - column_name: osha_date_of_death
+    column_data_type: timestamp
+    comment: osha_date_of_death
+    data_classification:
+    nullable: true
+    raw_column_name: osha_date_of_death
+  - column_name: osha_facility_where_the_treatment_was_given
+    column_data_type: string
+    comment: osha_facility_where_the_treatment_was_given
+    data_classification:
+    nullable: true
+    raw_column_name: osha_facility_where_the_treatment_was_given
+  - column_name: osha_physician_or_other_health_care_professional
+    column_data_type: string
+    comment: osha_physician_or_other_health_care_professional
+    data_classification:
+    nullable: true
+    raw_column_name: osha_physician_or_other_health_care_professional
+  - column_name: osha_privacy_case
+    column_data_type: string
+    comment: osha_privacy_case
+    data_classification:
+    nullable: true
+    raw_column_name: osha_privacy_case
+  - column_name: li_osha_privacy_case
+    column_data_type: string
+    comment: li_osha_privacy_case
+    data_classification:
+    nullable: true
+    raw_column_name: li_osha_privacy_case
+  - column_name: lo_osha_privacy_case
+    column_data_type: decimal(38,0)
+    comment: lo_osha_privacy_case
+    data_classification:
+    nullable: true
+    raw_column_name: lo_osha_privacy_case
+  - column_name: osha_state_of_the_treatment_facility
+    column_data_type: string
+    comment: osha_state_of_the_treatment_facility
+    data_classification:
+    nullable: true
+    raw_column_name: osha_state_of_the_treatment_facility
+  - column_name: osha_street_address_of_the_treatment_facility
+    column_data_type: string
+    comment: osha_street_address_of_the_treatment_facility
+    data_classification:
+    nullable: true
+    raw_column_name: osha_street_address_of_the_treatment_facility
+  - column_name: osha_time_injured_ill_person_began_work
+    column_data_type: timestamp
+    comment: osha_time_injured_ill_person_began_work
+    data_classification:
+    nullable: true
+    raw_column_name: osha_time_injured_ill_person_began_work
+  - column_name: osha_type_of_illness
+    column_data_type: string
+    comment: osha_type_of_illness
+    data_classification:
+    nullable: true
+    raw_column_name: osha_type_of_illness
+  - column_name: li_osha_type_of_illness
+    column_data_type: string
+    comment: li_osha_type_of_illness
+    data_classification:
+    nullable: true
+    raw_column_name: li_osha_type_of_illness
+  - column_name: lo_osha_type_of_illness
+    column_data_type: decimal(38,0)
+    comment: lo_osha_type_of_illness
+    data_classification:
+    nullable: true
+    raw_column_name: lo_osha_type_of_illness
+  - column_name: osha_was_the_employee_hospitalized_as_an_inpatient
+    column_data_type: string
+    comment: osha_was_the_employee_hospitalized_as_an_inpatient
+    data_classification:
+    nullable: true
+    raw_column_name: osha_was_the_employee_hospitalized_as_an_inpatient
+  - column_name: li_osha_was_the_employee_hospitalized_as_an_inpatient
+    column_data_type: string
+    comment: li_osha_was_the_employee_hospitalized_as_an_inpatient
+    data_classification:
+    nullable: true
+    raw_column_name: li_osha_was_the_employee_hospitalized_as_an_inpatient
+  - column_name: lo_osha_was_the_employee_hospitalized_as_an_inpatient
+    column_data_type: decimal(38,0)
+    comment: lo_osha_was_the_employee_hospitalized_as_an_inpatient
+    data_classification:
+    nullable: true
+    raw_column_name: lo_osha_was_the_employee_hospitalized_as_an_inpatient
+  - column_name: osha_was_the_employee_treated_in_an_emergency_room
+    column_data_type: string
+    comment: osha_was_the_employee_treated_in_an_emergency_room
+    data_classification:
+    nullable: true
+    raw_column_name: osha_was_the_employee_treated_in_an_emergency_room
+  - column_name: li_osha_was_the_employee_treated_in_an_emergency_room
+    column_data_type: string
+    comment: li_osha_was_the_employee_treated_in_an_emergency_room
+    data_classification:
+    nullable: true
+    raw_column_name: li_osha_was_the_employee_treated_in_an_emergency_room
+  - column_name: lo_osha_was_the_employee_treated_in_an_emergency_room
+    column_data_type: decimal(38,0)
+    comment: lo_osha_was_the_employee_treated_in_an_emergency_room
+    data_classification:
+    nullable: true
+    raw_column_name: lo_osha_was_the_employee_treated_in_an_emergency_room
+  - column_name: osha_what_object_or_substance_directly_caused_harm
+    column_data_type: string
+    comment: osha_what_object_or_substance_directly_caused_harm
+    data_classification:
+    nullable: true
+    raw_column_name: osha_what_object_or_substance_directly_caused_harm
+  - column_name: osha_what_was_the_injury_or_illness
+    column_data_type: string
+    comment: osha_what_was_the_injury_or_illness
+    data_classification:
+    nullable: true
+    raw_column_name: osha_what_was_the_injury_or_illness
+  - column_name: osha_zip_code_of_the_treatment_facility
+    column_data_type: decimal(38,0)
+    comment: osha_zip_code_of_the_treatment_facility
+    data_classification:
+    nullable: true
+    raw_column_name: osha_zip_code_of_the_treatment_facility
+  - column_name: osha_us_projects_or_us_citizens_mandatory
+    column_data_type: string
+    comment: osha_us_projects_or_us_citizens_mandatory
+    data_classification:
+    nullable: true
+    raw_column_name: osha_us_projects_or_us_citizens_mandatory
+  - column_name: li_osha_us_projects_or_us_citizens_mandatory
+    column_data_type: string
+    comment: li_osha_us_projects_or_us_citizens_mandatory
+    data_classification:
+    nullable: true
+    raw_column_name: li_osha_us_projects_or_us_citizens_mandatory
+  - column_name: lo_osha_us_projects_or_us_citizens_mandatory
+    column_data_type: decimal(38,0)
+    comment: lo_osha_us_projects_or_us_citizens_mandatory
+    data_classification:
+    nullable: true
+    raw_column_name: lo_osha_us_projects_or_us_citizens_mandatory
+  - column_name: potential_consequence
+    column_data_type: string
+    comment: potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: potential_consequence
+  - column_name: li_potential_consequence
+    column_data_type: string
+    comment: li_potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_potential_consequence
+  - column_name: lo_potential_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_potential_consequence
+  - column_name: recordablereportable
+    column_data_type: string
+    comment: recordablereportable
+    data_classification:
+    nullable: true
+    raw_column_name: recordablereportable
+  - column_name: li_recordablereportable
+    column_data_type: string
+    comment: li_recordablereportable
+    data_classification:
+    nullable: true
+    raw_column_name: li_recordablereportable
+  - column_name: lo_recordablereportable
+    column_data_type: decimal(38,0)
+    comment: lo_recordablereportable
+    data_classification:
+    nullable: true
+    raw_column_name: lo_recordablereportable
+  - column_name: riddor_date_illness_confirmeddiagnosed
+    column_data_type: timestamp
+    comment: riddor_date_illness_confirmeddiagnosed
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_date_illness_confirmeddiagnosed
+  - column_name: riddor_date_returned_to_work
+    column_data_type: timestamp
+    comment: riddor_date_returned_to_work
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_date_returned_to_work
+  - column_name: riddor_diagnosed_by_doctor
+    column_data_type: string
+    comment: riddor_diagnosed_by_doctor
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_diagnosed_by_doctor
+  - column_name: li_riddor_diagnosed_by_doctor
+    column_data_type: string
+    comment: li_riddor_diagnosed_by_doctor
+    data_classification:
+    nullable: true
+    raw_column_name: li_riddor_diagnosed_by_doctor
+  - column_name: lo_riddor_diagnosed_by_doctor
+    column_data_type: decimal(38,0)
+    comment: lo_riddor_diagnosed_by_doctor
+    data_classification:
+    nullable: true
+    raw_column_name: lo_riddor_diagnosed_by_doctor
+  - column_name: riddor_disease_category
+    column_data_type: string
+    comment: riddor_disease_category
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_disease_category
+  - column_name: li_riddor_disease_category
+    column_data_type: string
+    comment: li_riddor_disease_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_riddor_disease_category
+  - column_name: lo_riddor_disease_category
+    column_data_type: decimal(38,0)
+    comment: lo_riddor_disease_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_riddor_disease_category
+  - column_name: riddor_height_of_fall
+    column_data_type: decimal(38,0)
+    comment: riddor_height_of_fall
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_height_of_fall
+  - column_name: riddor_main_factor
+    column_data_type: string
+    comment: riddor_main_factor
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_main_factor
+  - column_name: li_riddor_main_factor
+    column_data_type: string
+    comment: li_riddor_main_factor
+    data_classification:
+    nullable: true
+    raw_column_name: li_riddor_main_factor
+  - column_name: lo_riddor_main_factor
+    column_data_type: decimal(38,0)
+    comment: lo_riddor_main_factor
+    data_classification:
+    nullable: true
+    raw_column_name: lo_riddor_main_factor
+  - column_name: riddor_onshore_or_offshore
+    column_data_type: string
+    comment: riddor_onshore_or_offshore
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_onshore_or_offshore
+  - column_name: li_riddor_onshore_or_offshore
+    column_data_type: string
+    comment: li_riddor_onshore_or_offshore
+    data_classification:
+    nullable: true
+    raw_column_name: li_riddor_onshore_or_offshore
+  - column_name: lo_riddor_onshore_or_offshore
+    column_data_type: decimal(38,0)
+    comment: lo_riddor_onshore_or_offshore
+    data_classification:
+    nullable: true
+    raw_column_name: lo_riddor_onshore_or_offshore
+  - column_name: riddor_specified_injury
+    column_data_type: string
+    comment: riddor_specified_injury
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_specified_injury
+  - column_name: li_riddor_specified_injury
+    column_data_type: string
+    comment: li_riddor_specified_injury
+    data_classification:
+    nullable: true
+    raw_column_name: li_riddor_specified_injury
+  - column_name: lo_riddor_specified_injury
+    column_data_type: decimal(38,0)
+    comment: lo_riddor_specified_injury
+    data_classification:
+    nullable: true
+    raw_column_name: lo_riddor_specified_injury
+  - column_name: riddor_specify_the_diagnosed_disease
+    column_data_type: string
+    comment: riddor_specify_the_diagnosed_disease
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_specify_the_diagnosed_disease
+  - column_name: riddor_start_date_of_absencerestriction
+    column_data_type: timestamp
+    comment: riddor_start_date_of_absencerestriction
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_start_date_of_absencerestriction
+  - column_name: riddor_work_process_involved
+    column_data_type: string
+    comment: riddor_work_process_involved
+    data_classification:
+    nullable: true
+    raw_column_name: riddor_work_process_involved
+  - column_name: li_riddor_work_process_involved
+    column_data_type: string
+    comment: li_riddor_work_process_involved
+    data_classification:
+    nullable: true
+    raw_column_name: li_riddor_work_process_involved
+  - column_name: lo_riddor_work_process_involved
+    column_data_type: decimal(38,0)
+    comment: lo_riddor_work_process_involved
+    data_classification:
+    nullable: true
+    raw_column_name: lo_riddor_work_process_involved
+  - column_name: role02
+    column_data_type: string
+    comment: role02
+    data_classification:
+    nullable: true
+    raw_column_name: role02
+  - column_name: li_role02
+    column_data_type: string
+    comment: li_role02
+    data_classification:
+    nullable: true
+    raw_column_name: li_role02
+  - column_name: lo_role02
+    column_data_type: decimal(38,0)
+    comment: lo_role02
+    data_classification:
+    nullable: true
+    raw_column_name: lo_role02
+  - column_name: summary
+    column_data_type: string
+    comment: summary
+    data_classification:
+    nullable: true
+    raw_column_name: summary
+  - column_name: what_was_employee_doing_or_what_was_the_work_activity
+    column_data_type: string
+    comment: what_was_employee_doing_or_what_was_the_work_activity
+    data_classification:
+    nullable: true
+    raw_column_name: what_was_employee_doing_or_what_was_the_work_activity
+  - column_name: zzznotused_agency
+    column_data_type: string
+    comment: zzznotused_agency
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_agency
+  - column_name: li_zzznotused_agency
+    column_data_type: string
+    comment: li_zzznotused_agency
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_agency
+  - column_name: lo_zzznotused_agency
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_agency
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_agency
+  - column_name: zzznotused_mechanism
+    column_data_type: string
+    comment: zzznotused_mechanism
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_mechanism
+  - column_name: li_zzznotused_mechanism
+    column_data_type: string
+    comment: li_zzznotused_mechanism
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_mechanism
+  - column_name: lo_zzznotused_mechanism
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_mechanism
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_mechanism
+  - column_name: sys_date_180_days_reached
+    column_data_type: ti'
+    comment: sys_date_180_days_reached
+    data_classification:
+    nullable: true
+    raw_column_name: sys_date_180_days_reached
+  - column_name: sys_exceeds_180_days
+    column_data_type: string
+    comment: sys_exceeds_180_days
+    data_classification:
+    nullable: true
+    raw_column_name: sys_exceeds_180_days
+  - column_name: li_sys_exceeds_180_days
+    column_data_type: string
+    comment: li_sys_exceeds_180_days
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_exceeds_180_days
+  - column_name: lo_sys_exceeds_180_days
+    column_data_type: decimal(38,0)
+    comment: lo_sys_exceeds_180_days
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_exceeds_180_days
+  - column_name: sys_injuryillness_grouping
+    column_data_type: string
+    comment: sys_injuryillness_grouping
+    data_classification:
+    nullable: true
+    raw_column_name: sys_injuryillness_grouping
+  - column_name: li_sys_injuryillness_grouping
+    column_data_type: string
+    comment: li_sys_injuryillness_grouping
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_injuryillness_grouping
+  - column_name: lo_sys_injuryillness_grouping
+    column_data_type: decimal(38,0)
+    comment: lo_sys_injuryillness_grouping
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_injuryillness_grouping
+  - column_name: sys_legacy_injury_number
+    column_data_type: string
+    comment: sys_legacy_injury_number
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_injury_number
+  - column_name: dwk_employer
+    column_data_type: decimal(38,0)
+    comment: dwk_employer
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_employer
+  - column_name: dwk_injured_or_ill_person
+    column_data_type: decimal(38,0)
+    comment: dwk_injured_or_ill_person
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_injured_or_ill_person
+  - column_name: dwk_event
+    column_data_type: decimal(38,0)
+    comment: dwk_event
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

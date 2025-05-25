@@ -1,0 +1,35 @@
+SourceSystemId: e3d_mto
+MetadataType: batch#e3d#${envn}#mto
+is_active: true
+aws_region: ${region}
+Pattern: batch
+smb_configuration: 
+  host_url: houfil17.worley.com
+  host_port: 445
+  secret_credentials: ${secret_prefix}-dbt-smb 
+  destination_bucket: ${raw_bucket}
+  destination_folder: engineering/e3d/raw/mto
+  kms_key_arn: ${iceberg_snapshot_key}
+  file_archive_flag: false
+  file_delete_flag: true
+  archive_folder: ""
+  source: 
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: ElecEquiListRepVglAIM.csv
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: InstEquiWbsRep.csv
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: PipeListRep.csv
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: ElecTrayWbsRep.csv
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: ElecEquiWbsRep.csv
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: StrcBeamWbsRep.csv
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: PipeCompWbsRep.csv
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: StrcPaneWbsRep.csv
+    - SourcePath: /E3D_Integrated_Reporting
+      pattern: StrcFdnsWbsRep.csv
+ 

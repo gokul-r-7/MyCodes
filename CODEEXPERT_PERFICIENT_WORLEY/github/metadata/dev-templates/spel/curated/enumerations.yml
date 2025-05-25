@@ -1,0 +1,71 @@
+SourceSystemId: database_spel_curated
+MetadataType: curated#spel#Enumerations#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spel/Enumerations/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spel-enumerations
+  name: spel_enumerations
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: integer
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: integer
+    column_name: dependsonid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dependsonid
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: integer
+    column_name: displayusage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: displayusage    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spel_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spel/Enumerations/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_enumerations
+  load_type: append
+  name: curated_enumerations
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spel/curated_enumerations
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spel' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,481 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishPipelineList#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishPipelineList/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishPipelineList 
+  name: erm_PublishPipelineList 
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: pipeline_list_no
+    comment: pipeline_list_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pipeline_list_no
+  - column_data_type: string
+    column_name: pipeline_list_id
+    comment: pipeline_list_id
+    data_classification: null
+    nullable: true
+    raw_column_name: pipeline_list_id
+  - column_data_type: string
+    column_name: descr
+    comment: descr
+    data_classification: null
+    nullable: true
+    raw_column_name: descr
+  - column_data_type: decimal(38,2)
+    column_name: proj_no
+    comment: proj_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_no
+  - column_data_type: decimal(38,2)
+    column_name: spec_no
+    comment: spec_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_no
+  - column_data_type: decimal(38,2)
+    column_name: insul_type_no
+    comment: insul_type_no
+    data_classification: null
+    nullable: true
+    raw_column_name: insul_type_no
+  - column_data_type: string
+    column_name: issue_purpose
+    comment: issue_purpose
+    data_classification: null
+    nullable: true
+    raw_column_name: issue_purpose
+  - column_data_type: string
+    column_name: line_service
+    comment: line_service
+    data_classification: null
+    nullable: true
+    raw_column_name: line_service
+  - column_data_type: string
+    column_name: line_from
+    comment: line_from
+    data_classification: null
+    nullable: true
+    raw_column_name: line_from
+  - column_data_type: string
+    column_name: line_to
+    comment: line_to
+    data_classification: null
+    nullable: true
+    raw_column_name: line_to
+  - column_data_type: string
+    column_name: main_size
+    comment: main_size
+    data_classification: null
+    nullable: true
+    raw_column_name: main_size
+  - column_data_type: string
+    column_name: pid_draw_no
+    comment: pid_draw_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pid_draw_no
+  - column_data_type: string
+    column_name: pid_draw_title
+    comment: pid_draw_title
+    data_classification: null
+    nullable: true
+    raw_column_name: pid_draw_title
+  - column_data_type: string
+    column_name: pid_line_no
+    comment: pid_line_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pid_line_no
+  - column_data_type: decimal(38,2)
+    column_name: process_area_no
+    comment: process_area_no
+    data_classification: null
+    nullable: true
+    raw_column_name: process_area_no
+  - column_data_type: string
+    column_name: process_rev_no
+    comment: process_rev_no
+    data_classification: null
+    nullable: true
+    raw_column_name: process_rev_no
+  - column_data_type: string
+    column_name: process_seq_no
+    comment: process_seq_no
+    data_classification: null
+    nullable: true
+    raw_column_name: process_seq_no
+  - column_data_type: string
+    column_name: process_sin
+    comment: process_sin
+    data_classification: null
+    nullable: true
+    raw_column_name: process_sin
+  - column_data_type: decimal(38,2)
+    column_name: proj_sys_brkdwn_no
+    comment: proj_sys_brkdwn_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_sys_brkdwn_no
+  - column_data_type: decimal(38,2)
+    column_name: design_temperature_1
+    comment: design_temperature_1
+    data_classification: null
+    nullable: true
+    raw_column_name: design_temperature_1
+  - column_data_type: string
+    column_name: temperature_unit_id
+    comment: temperature_unit_id
+    data_classification: null
+    nullable: true
+    raw_column_name: temperature_unit_id
+  - column_data_type: string
+    column_name: ped
+    comment: ped
+    data_classification: null
+    nullable: true
+    raw_column_name: ped
+  - column_data_type: decimal(38,2)
+    column_name: fluid_code_no
+    comment: fluid_code_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fluid_code_no
+  - column_data_type: string
+    column_name: customer_col_0
+    comment: customer_col_0
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_0
+  - column_data_type: string
+    column_name: customer_col_1
+    comment: customer_col_1
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_1
+  - column_data_type: string
+    column_name: customer_col_2
+    comment: customer_col_2
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_2
+  - column_data_type: string
+    column_name: customer_col_3
+    comment: customer_col_3
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_3
+  - column_data_type: string
+    column_name: customer_col_4
+    comment: customer_col_4
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_4
+  - column_data_type: string
+    column_name: customer_col_5
+    comment: customer_col_5
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_5
+  - column_data_type: string
+    column_name: customer_col_6
+    comment: customer_col_6
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_6
+  - column_data_type: string
+    column_name: customer_col_7
+    comment: customer_col_7
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_7
+  - column_data_type: string
+    column_name: customer_col_8
+    comment: customer_col_8
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_8
+  - column_data_type: string
+    column_name: customer_col_9
+    comment: customer_col_9
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_9
+  - column_data_type: decimal(38,2)
+    column_name: def_appl_no
+    comment: def_appl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: def_appl_no
+  - column_data_type: decimal(38,2)
+    column_name: upd_appl_no
+    comment: upd_appl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_appl_no
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: null
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_usr_id
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: decimal(38,2)
+    column_name: corr_allow
+    comment: corr_allow
+    data_classification: null
+    nullable: true
+    raw_column_name: corr_allow
+  - column_data_type: string
+    column_name: corr_allow_unit_id
+    comment: corr_allow_unit_id
+    data_classification: null
+    nullable: true
+    raw_column_name: corr_allow_unit_id
+  - column_data_type: decimal(38,2)
+    column_name: ver
+    comment: ver
+    data_classification: null
+    nullable: true
+    raw_column_name: ver
+  - column_data_type: string
+    column_name: pressure_unit_id
+    comment: pressure_unit_id
+    data_classification: null
+    nullable: true
+    raw_column_name: pressure_unit_id
+  - column_data_type: decimal(38,2)
+    column_name: design_pressure_1
+    comment: design_pressure_1
+    data_classification: null
+    nullable: true
+    raw_column_name: design_pressure_1
+  - column_data_type: decimal(38,2)
+    column_name: design_temperature_2
+    comment: design_temperature_2
+    data_classification: null
+    nullable: true
+    raw_column_name: design_temperature_2
+  - column_data_type: decimal(38,2)
+    column_name: design_pressure_2
+    comment: design_pressure_2
+    data_classification: null
+    nullable: true
+    raw_column_name: design_pressure_2
+  - column_data_type: decimal(38,2)
+    column_name: design_temperature_3
+    comment: design_temperature_3
+    data_classification: null
+    nullable: true
+    raw_column_name: design_temperature_3
+  - column_data_type: decimal(38,2)
+    column_name: design_pressure_3
+    comment: design_pressure_3
+    data_classification: null
+    nullable: true
+    raw_column_name: design_pressure_3
+  - column_data_type: decimal(38,2)
+    column_name: design_temperature_4
+    comment: design_temperature_4
+    data_classification: null
+    nullable: true
+    raw_column_name: design_temperature_4
+  - column_data_type: decimal(38,2)
+    column_name: design_pressure_4
+    comment: design_pressure_4
+    data_classification: null
+    nullable: true
+    raw_column_name: design_pressure_4
+  - column_data_type: decimal(38,2)
+    column_name: operating_temperature_1
+    comment: operating_temperature_1
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_temperature_1
+  - column_data_type: decimal(38,2)
+    column_name: operating_pressure_1
+    comment: operating_pressure_1
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_pressure_1
+  - column_data_type: decimal(38,2)
+    column_name: operating_temperature_3
+    comment: operating_temperature_3
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_temperature_3
+  - column_data_type: decimal(38,2)
+    column_name: operating_pressure_3
+    comment: operating_pressure_3
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_pressure_3
+  - column_data_type: decimal(38,2)
+    column_name: operating_temperature_2
+    comment: operating_temperature_2
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_temperature_2
+  - column_data_type: decimal(38,2)
+    column_name: operating_pressure_2
+    comment: operating_pressure_2
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_pressure_2
+  - column_data_type: decimal(38,2)
+    column_name: operating_temperature_4
+    comment: operating_temperature_4
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_temperature_4
+  - column_data_type: decimal(38,2)
+    column_name: operating_pressure_4
+    comment: operating_pressure_4
+    data_classification: null
+    nullable: true
+    raw_column_name: operating_pressure_4
+  - column_data_type: string
+    column_name: stat
+    comment: stat
+    data_classification: null
+    nullable: true
+    raw_column_name: stat
+  - column_data_type: decimal(38,2)
+    column_name: entry_changed_rev
+    comment: entry_changed_rev
+    data_classification: null
+    nullable: true
+    raw_column_name: entry_changed_rev
+  - column_data_type: date
+    column_name: issue_date
+    comment: issue_date
+    data_classification: null
+    nullable: true
+    raw_column_name: issue_date
+  - column_data_type: string
+    column_name: issue_by
+    comment: issue_by
+    data_classification: null
+    nullable: true
+    raw_column_name: issue_by
+  - column_data_type: decimal(38,2)
+    column_name: insul_spec_no
+    comment: insul_spec_no
+    data_classification: null
+    nullable: true
+    raw_column_name: insul_spec_no
+  - column_data_type: decimal(38,2)
+    column_name: zones_no
+    comment: zones_no
+    data_classification: null
+    nullable: true
+    raw_column_name: zones_no
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishPipelineList/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: pipeline_list
+  load_type: cdc
+  name: pipeline_list
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishPipelineList 
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,79 @@
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#recon_br#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/recon_br.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: recon_br
+  name: recon_br
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/recon_br/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: recon_br
+  load_type: append
+  name: recon_br
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/recon_br
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_name: entity_name
+    column_data_type: string
+    comment: entity_name
+    data_classification:
+    nullable: true
+    raw_column_name: entity_name  
+  - column_name: column_name
+    column_data_type: string
+    comment: column_name
+    data_classification:
+    nullable: true
+    raw_column_name: column_name
+  - column_name: source_value
+    column_data_type: string
+    comment: source_value
+    data_classification:
+    nullable: true
+    raw_column_name: source_value
+  - column_name: effective_start_date
+    column_data_type: string
+    comment: effective_start_date
+    data_classification:
+    nullable: true
+    raw_column_name: effective_start_date
+  - column_name: effective_end_date
+    column_data_type: string
+    comment: effective_end_date
+    data_classification:
+    nullable: true
+    raw_column_name: effective_end_date

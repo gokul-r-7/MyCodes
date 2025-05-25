@@ -1,0 +1,252 @@
+---
+SourceSystemId: database_mem_curated
+MetadataType: curated#mem#Stats_ByDiscipCatArea2#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/mem/Stats-ByDiscipCatArea2/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: mem-stats_ByDiscipCatArea2
+  name: mem_stats_ByDiscipCatArea2
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: discipline
+  - column_data_type: string
+    column_name: modelelementcat
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelelementcat
+  - column_data_type: string
+    column_name: area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area
+  - column_data_type: double
+    column_name: origestqty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: origestqty
+  - column_data_type: double
+    column_name: currestqty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currestqty
+  - column_data_type: double
+    column_name: estqty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estqty
+  - column_data_type: double
+    column_name: estqtyphase
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estqtyphase
+  - column_data_type: double
+    column_name: origestqtyallphases
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: origestqtyallphases
+  - column_data_type: double
+    column_name: currestqtyallphases
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currestqtyallphases
+  - column_data_type: double
+    column_name: estqtyallphases
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estqtyallphases
+  - column_data_type: double
+    column_name: cnttrack
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cnttrack
+  - column_data_type: double
+    column_name: phasecnttrack
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecnttrack
+  - column_data_type: double
+    column_name: overallstat
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: overallstat
+  - column_data_type: double
+    column_name: phasestat
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasestat
+  - column_data_type: timestamp
+    column_name: 3dmodelelementweekdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 3dmodelelementweekdate
+  - column_data_type: double
+    column_name: cntstat0
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat0
+  - column_data_type: double
+    column_name: cntstat1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat1
+  - column_data_type: double
+    column_name: cntstat2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat2
+  - column_data_type: double
+    column_name: cntstat3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat3
+  - column_data_type: double
+    column_name: cntstat4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat4
+  - column_data_type: double
+    column_name: cntstat5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat5
+  - column_data_type: double
+    column_name: cntstat6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat6
+  - column_data_type: double
+    column_name: cntstat7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat7
+  - column_data_type: double
+    column_name: cntstat8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat8
+  - column_data_type: double
+    column_name: cntstat9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cntstat9
+  - column_data_type: double
+    column_name: phasecntstat0
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat0
+  - column_data_type: double
+    column_name: phasecntstat1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat1
+  - column_data_type: double
+    column_name: phasecntstat2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat2
+  - column_data_type: double
+    column_name: phasecntstat3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat3
+  - column_data_type: double
+    column_name: phasecntstat4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat4
+  - column_data_type: double
+    column_name: phasecntstat5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat5
+  - column_data_type: double
+    column_name: phasecntstat6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat6
+  - column_data_type: double
+    column_name: phasecntstat7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat7
+  - column_data_type: double
+    column_name: phasecntstat8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat8
+  - column_data_type: double
+    column_name: phasecntstat9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phasecntstat9    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_mem_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/mem/Stats_ByDiscipCatArea2/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_stats_bydiscipcatarea2
+  load_type: append
+  name: curated_stats_bydiscipcatarea2
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/mem/curated_stats_bydiscipcatarea2
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'mem' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

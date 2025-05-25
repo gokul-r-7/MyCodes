@@ -1,0 +1,57 @@
+---
+SourceSystemId: SharePointList
+MetadataType: api#SharePointList#extract_api
+api_parameter:
+  api_exponential_backoff: 3
+  api_headers:
+    Accept: application/json;odata=verbose
+  api_method: get
+  api_query_params: 
+  api_request_body: 
+  api_response_type: json
+  api_retry: 3
+  api_ssl_verify: false
+  api_timeout: 300
+  auth_type: Bearer
+  dynamic_api_headers:
+  - Authorization
+  endpoint: https://worleyparsons.sharepoint.com/sites/CP2VG/_api/web/lists/
+  titles:
+  - Assumptions Index
+  - Holds Index
+  - Seal Decisions
+  - TD Index
+auth_api_parameter:
+  api_name: SharePoint
+  auth_body:
+    client_id: 
+    client_secret: 
+    grant_type: client_credentials
+    resource: 00000003-0000-0ff1-ce00-000000000000/worleyparsons.sharepoint.com@73ad6539-b4fe-429c-97b6-fbc1b6ada80b
+  auth_exponential_backoff: 5
+  auth_headers: 
+  auth_method: post
+  auth_query_params: 
+  auth_retry: 3
+  auth_ssl_verify: false
+  auth_timeout: 300
+  auth_type: Bearer
+  dynamic_auth_headers:
+  - AuthToken
+  endpoint: https://accounts.accesscontrol.windows.net/73ad6539-b4fe-429c-97b6-fbc1b6ada80b/tokens/OAuth/2
+  secret_key: sharepoint_secrets
+aws_region: ${region}
+is_active: "y"
+job_parameter:
+  bucket_data_source_prefix: SharePointList
+  bucket_name: ${raw_bucket}
+  full_incremental: f
+  kms_key_id: 3a4345c9-617f-4e55-8a27-70814760f56a
+  output_s3: SharePointList
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: SharePointList/data_sampling
+  status_check: 600
+  status_timeout: 7200
+  temp_path: temp/SharePointList
+name: SharePointList_API

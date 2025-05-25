@@ -1,0 +1,235 @@
+---
+SourceSystemId: sharepoint_curated
+MetadataType: curated#vg_sharepoint#mps_log_lfm#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/vg/sharepoint/parquet/vg_sharepoint_mps_log_lfm.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_sharepoint-csv_xlsx_curated
+  name: vg_sharepoint_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: SR_NO
+    comment: SR_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: sr_no
+  - column_data_type: string
+    column_name: CWA
+    comment: CWA
+    data_classification: 
+    nullable: true
+    raw_column_name: cwa
+  - column_data_type: string
+    column_name: OLD_MPS_NUMBER_1
+    comment: OLD_MPS_NUMBER_1
+    data_classification: 
+    nullable: true
+    raw_column_name: old_mps_number_1
+  - column_data_type: string
+    column_name: OLD_MPS_NUMBER_2
+    comment: OLD_MPS_NUMBER_2
+    data_classification: 
+    nullable: true
+    raw_column_name: old_mps_number_2
+  - column_data_type: string
+    column_name: MPS_NUMBER
+    comment: MPS_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_number
+  - column_data_type: string
+    column_name: MPS_TYPE
+    comment: MPS_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_type
+  - column_data_type: string
+    column_name: STRUCT_FRAME_NO
+    comment: STRUCT_FRAME_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: struct_frame_no
+  - column_data_type: string
+    column_name: LINE_NUMBER
+    comment: LINE_NUMBER
+    data_classification: 
+    nullable: true
+    raw_column_name: line_number
+  - column_data_type: string
+    column_name: TOS_ELEVATION
+    comment: TOS_ELEVATION
+    data_classification: 
+    nullable: true
+    raw_column_name: tos_elevation
+  - column_data_type: string
+    column_name: DESIGN_AREA_WBS
+    comment: DESIGN_AREA_WBS
+    data_classification: 
+    nullable: true
+    raw_column_name: design_area_wbs
+  - column_data_type: string
+    column_name: CWP_AREA
+    comment: CWP_AREA
+    data_classification: 
+    nullable: true
+    raw_column_name: cwp_area
+  - column_data_type: string
+    column_name: ISSUED_TO_STRESS_TEAM_DATE
+    comment: ISSUED_TO_STRESS_TEAM_DATE
+    data_classification: 
+    nullable: true
+    raw_column_name: issued_to_stress_team_date
+  - column_data_type: string
+    column_name: LOADS_GIVEN_TO_CSA
+    comment: LOADS_GIVEN_TO_CSA
+    data_classification: 
+    nullable: true
+    raw_column_name: loads_given_to_csa
+  - column_data_type: string
+    column_name: ULN_NO
+    comment: ULN_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: uln_no
+  - column_data_type: string
+    column_name: OPE_LOAD_FY
+    comment: OPE_LOAD_FY
+    data_classification: 
+    nullable: true
+    raw_column_name: ope_load_fy
+  - column_data_type: string
+    column_name: OPE_LOAD_FX
+    comment: OPE_LOAD_FX
+    data_classification: 
+    nullable: true
+    raw_column_name: ope_load_fx
+  - column_data_type: string
+    column_name: OPE_LOAD_FZ
+    comment: OPE_LOAD_FZ
+    data_classification: 
+    nullable: true
+    raw_column_name: ope_load_fz
+  - column_data_type: string
+    column_name: HYDRO_TEST_LOAD_FY
+    comment: HYDRO_TEST_LOAD_FY
+    data_classification: 
+    nullable: true
+    raw_column_name: hydro_test_load_fy
+  - column_data_type: string
+    column_name: HYDRO_TEST_LOAD_FX
+    comment: HYDRO_TEST_LOAD_FX
+    data_classification: 
+    nullable: true
+    raw_column_name: hydro_test_load_fx
+  - column_data_type: string
+    column_name: HYDRO_TEST_LOAD_FZ
+    comment: HYDRO_TEST_LOAD_FZ
+    data_classification: 
+    nullable: true
+    raw_column_name: hydro_test_load_fz
+  - column_data_type: string
+    column_name: MPS_DRAWING_TYPE
+    comment: MPS_DRAWING_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_drawing_type
+  - column_data_type: string
+    column_name: REVIEWED_BY_CSA
+    comment: REVIEWED_BY_CSA
+    data_classification: 
+    nullable: true
+    raw_column_name: reviewed_by_csa
+  - column_data_type: string
+    column_name: CSA_ENGINEER
+    comment: CSA_ENGINEER
+    data_classification: 
+    nullable: true
+    raw_column_name: csa_engineer
+  - column_data_type: string
+    column_name: DESIGNED_BY_CSA
+    comment: DESIGNED_BY_CSA
+    data_classification: 
+    nullable: true
+    raw_column_name: designed_by_csa
+  - column_data_type: string
+    column_name: MODEL_UPDATED_BY_CSA
+    comment: MODEL_UPDATED_BY_CSA
+    data_classification: 
+    nullable: true
+    raw_column_name: model_updated_by_csa
+  - column_data_type: string
+    column_name: CSA_DRAWING_NO
+    comment: CSA_DRAWING_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: csa_drawing_no
+  - column_data_type: string
+    column_name: REMARKS
+    comment: REMARKS
+    data_classification: 
+    nullable: true
+    raw_column_name: remarks
+  - column_data_type: string
+    column_name: CSA_MODELLED_SUPPORT_CHECKED_BY_PIPING_DESIGN
+    comment: CSA_MODELLED_SUPPORT_CHECKED_BY_PIPING_DESIGN
+    data_classification: 
+    nullable: true
+    raw_column_name: csa_modelled_support_checked_by_piping_design
+  - column_data_type: string
+    column_name: PD_COMMENTS_ON_CSA_MODEL
+    comment: PD_COMMENTS_ON_CSA_MODEL
+    data_classification: 
+    nullable: true
+    raw_column_name: pd_comments_on_csa_model
+  - column_data_type: string
+    column_name: SUPPORT_CHECKED_AND_MAGENTA_STEEL_REMOVED
+    comment: SUPPORT_CHECKED_AND_MAGENTA_STEEL_REMOVED
+    data_classification: 
+    nullable: true
+    raw_column_name: support_checked_and_magenta_steel_removed
+  - column_data_type: string
+    column_name: MPS_STATUS
+    comment: MPS_STATUS
+    data_classification: 
+    nullable: true
+    raw_column_name: mps_status
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_vg_sharepoint
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/vg/sharepoint/mps_log_lfm/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_mps_log_lfm
+  name: curated_vg_sharepoint_mps_log_lfm
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/vg/sharepoint/mps_log_lfm
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_sharepoint' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

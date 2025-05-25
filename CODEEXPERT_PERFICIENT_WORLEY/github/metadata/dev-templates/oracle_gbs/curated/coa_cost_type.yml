@@ -1,0 +1,94 @@
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#coa_cost_type#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/coa_cost_type.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: coa_cost_type
+  name: coa_cost_type
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/coa_cost_type/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: coa_cost_type
+  load_type: incremental_no_delete
+  name: coa_cost_type
+  primary_key: [br_key,coa_code]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/coa_cost_type
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [br_key,coa_code]
+    rename_columns: true
+  columns:
+  - column_name: datasource_num_id
+    column_data_type: decimal(38,0)
+    comment: datasource_num_id
+    data_classification:
+    nullable: true
+    raw_column_name: datasource_num_id  
+  - column_name: br_key
+    column_data_type: decimal(38,0)
+    comment: br_key
+    data_classification:
+    nullable: true
+    raw_column_name: br_key
+  - column_name: coa_code
+    column_data_type: string
+    comment: coa_code
+    data_classification:
+    nullable: true
+    raw_column_name: coa_code
+  - column_name: description
+    column_data_type: string
+    comment: description
+    data_classification:
+    nullable: true
+    raw_column_name: description
+  - column_name: start_date_active
+    column_data_type: string
+    comment: start_date_active
+    data_classification:
+    nullable: true
+    raw_column_name: start_date_active
+  - column_name: end_date_active
+    column_data_type: string
+    comment: end_date_active
+    data_classification:
+    nullable: true
+    raw_column_name: end_date_active
+  - column_name: hr_discipline
+    column_data_type: string
+    comment: hr_discipline
+    data_classification:
+    nullable: true
+    raw_column_name: hr_discipline    

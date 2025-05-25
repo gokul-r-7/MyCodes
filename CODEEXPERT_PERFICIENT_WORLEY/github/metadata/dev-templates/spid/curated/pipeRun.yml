@@ -1,0 +1,1890 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_PipeRun#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_PipeRun/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-pipeRun
+  name: spid_pipeRun
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: integer
+    column_name: nominaldiameter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nominaldiameter
+  - column_data_type: integer
+    column_name: insultype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insultype
+  - column_data_type: integer
+    column_name: insulpurpose
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulpurpose
+  - column_data_type: string
+    column_name: insulthick
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulthick
+  - column_data_type: double
+    column_name: sp_insulthicksi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insulthicksi
+  - column_data_type: string
+    column_name: insuldensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insuldensity
+  - column_data_type: double
+    column_name: sp_insuldensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insuldensitysi
+  - column_data_type: string
+    column_name: insultemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insultemp
+  - column_data_type: double
+    column_name: sp_insultempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insultempsi
+  - column_data_type: integer
+    column_name: htracereqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracereqmt
+  - column_data_type: integer
+    column_name: htracemedium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracemedium
+  - column_data_type: string
+    column_name: htracemediumtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracemediumtemp
+  - column_data_type: double
+    column_name: sp_htracemediumtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_htracemediumtempsi
+  - column_data_type: string
+    column_name: estimatedlength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimatedlength
+  - column_data_type: double
+    column_name: sp_estimatedlengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_estimatedlengthsi
+  - column_data_type: integer
+    column_name: operfluidcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: operfluidcode
+  - column_data_type: string
+    column_name: pipingmaterialsclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipingmaterialsclass
+  - column_data_type: integer
+    column_name: safetyclassification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: safetyclassification
+  - column_data_type: integer
+    column_name: piperuntype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piperuntype
+  - column_data_type: string
+    column_name: slope
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: slope
+  - column_data_type: double
+    column_name: sp_slopesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_slopesi
+  - column_data_type: integer
+    column_name: slopedirection
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: slopedirection
+  - column_data_type: string
+    column_name: streamno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: streamno
+  - column_data_type: integer
+    column_name: stressanalysisreqmts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stressanalysisreqmts
+  - column_data_type: integer
+    column_name: cleaningreqmts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cleaningreqmts
+  - column_data_type: integer
+    column_name: coatingreqmts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: coatingreqmts
+  - column_data_type: integer
+    column_name: materialofconstclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialofconstclass
+  - column_data_type: string
+    column_name: scheduleorthickness
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scheduleorthickness
+  - column_data_type: double
+    column_name: sp_scheduleorthicknesssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_scheduleorthicknesssi
+  - column_data_type: string
+    column_name: tagsequenceno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsequenceno
+  - column_data_type: string
+    column_name: tagsuffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsuffix
+  - column_data_type: integer
+    column_name: flowdirection
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: flowdirection
+  - column_data_type: string
+    column_name: sloperise
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sloperise
+  - column_data_type: double
+    column_name: sp_sloperisesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sloperisesi
+  - column_data_type: string
+    column_name: sloperun
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sloperun
+  - column_data_type: double
+    column_name: sp_sloperunsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sloperunsi
+  - column_data_type: integer
+    column_name: fluidsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fluidsystem
+  - column_data_type: integer
+    column_name: piperunclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piperunclass
+  - column_data_type: string
+    column_name: corrosionallowance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: corrosionallowance
+  - column_data_type: double
+    column_name: sp_corrosionallowancesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_corrosionallowancesi
+  - column_data_type: integer
+    column_name: stressreliefreqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stressreliefreqmt
+  - column_data_type: integer
+    column_name: codecategoryhazardclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: codecategoryhazardclass
+  - column_data_type: string
+    column_name: steamoutpressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: steamoutpressure
+  - column_data_type: double
+    column_name: sp_steamoutpressuresi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_steamoutpressuresi
+  - column_data_type: string
+    column_name: steamouttemperature
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: steamouttemperature
+  - column_data_type: double
+    column_name: sp_steamouttemperaturesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_steamouttemperaturesi
+  - column_data_type: integer
+    column_name: steamoutreqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: steamoutreqmt
+  - column_data_type: string
+    column_name: insulationspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationspec
+  - column_data_type: integer
+    column_name: insulationnomdia
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationnomdia
+  - column_data_type: integer
+    column_name: insulationthksource
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationthksource
+  - column_data_type: integer
+    column_name: sp_jcleaningreqmts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jcleaningreqmts
+  - column_data_type: integer
+    column_name: sp_jcoatingreqmts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jcoatingreqmts
+  - column_data_type: string
+    column_name: sp_jcorrosionallowance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jcorrosionallowance
+  - column_data_type: integer
+    column_name: sp_jflowdirection
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jflowdirection
+  - column_data_type: integer
+    column_name: sp_jfluidsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jfluidsystem
+  - column_data_type: integer
+    column_name: sp_jinsulationnomdia
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jinsulationnomdia
+  - column_data_type: string
+    column_name: sp_jinsulationspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jinsulationspec
+  - column_data_type: integer
+    column_name: sp_jinsulationthksource
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jinsulationthksource
+  - column_data_type: string
+    column_name: sp_jinsuldensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jinsuldensity
+  - column_data_type: integer
+    column_name: sp_jinsulpurpose
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jinsulpurpose
+  - column_data_type: string
+    column_name: sp_jinsulthick
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jinsulthick
+  - column_data_type: integer
+    column_name: sp_jinsultype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jinsultype
+  - column_data_type: string
+    column_name: sp_jitemtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jitemtag
+  - column_data_type: integer
+    column_name: sp_jmaterialofconstclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jmaterialofconstclass
+  - column_data_type: integer
+    column_name: sp_jnominaldiameter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jnominaldiameter
+  - column_data_type: integer
+    column_name: sp_joperfluidcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperfluidcode
+  - column_data_type: string
+    column_name: sp_jpipingmaterialsclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jpipingmaterialsclass
+  - column_data_type: string
+    column_name: sp_jscheduleorthickness
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jscheduleorthickness
+  - column_data_type: string
+    column_name: sp_jsteamoutpressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jsteamoutpressure
+  - column_data_type: integer
+    column_name: sp_jsteamoutreqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jsteamoutreqmt
+  - column_data_type: string
+    column_name: sp_jsteamouttemperature
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jsteamouttemperature
+  - column_data_type: string
+    column_name: sp_jstreamno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jstreamno
+  - column_data_type: string
+    column_name: sp_jtagsequenceno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtagsequenceno
+  - column_data_type: string
+    column_name: sp_jtagsuffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtagsuffix
+  - column_data_type: integer
+    column_name: sp_connectorszerolength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_connectorszerolength
+  - column_data_type: integer
+    column_name: sp_jaltdesignfluidsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignfluidsystem
+  - column_data_type: integer
+    column_name: sp_jaltdesignfluidtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignfluidtype
+  - column_data_type: integer
+    column_name: sp_jaltdesignmaxfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignmaxfluidstate
+  - column_data_type: integer
+    column_name: sp_jaltoperminfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltoperminfluidstate
+  - column_data_type: integer
+    column_name: sp_jdesignfluidsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignfluidsystem
+  - column_data_type: integer
+    column_name: sp_jdesignfluidtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignfluidtype
+  - column_data_type: integer
+    column_name: sp_jdesignmaxfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignmaxfluidstate
+  - column_data_type: integer
+    column_name: sp_jdesignminfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignminfluidstate
+  - column_data_type: integer
+    column_name: sp_joperfluidsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperfluidsystem
+  - column_data_type: integer
+    column_name: sp_joperfluidtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperfluidtype
+  - column_data_type: integer
+    column_name: sp_jopermaxfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxfluidstate
+  - column_data_type: integer
+    column_name: sp_joperminfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminfluidstate
+  - column_data_type: integer
+    column_name: sp_jopernormfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormfluidstate
+  - column_data_type: integer
+    column_name: sp_jtestfluidsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestfluidsystem
+  - column_data_type: integer
+    column_name: sp_jtestfluidtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestfluidtype
+  - column_data_type: integer
+    column_name: sp_jtestmaxfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestmaxfluidstate
+  - column_data_type: integer
+    column_name: sp_jtestminfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestminfluidstate
+  - column_data_type: integer
+    column_name: sp_jaltoperfluidsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltoperfluidsystem
+  - column_data_type: integer
+    column_name: sp_jaltoperfluidtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltoperfluidtype
+  - column_data_type: integer
+    column_name: sp_jaltopermaxfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltopermaxfluidstate
+  - column_data_type: integer
+    column_name: sp_jaltdesignminfluidstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignminfluidstate
+  - column_data_type: string
+    column_name: sp_jaltdesignmaxflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignmaxflowrate
+  - column_data_type: double
+    column_name: sp_sp_jaltdesignmaxflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltdesignmaxflowratesi
+  - column_data_type: string
+    column_name: sp_jaltoperminflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltoperminflowrate
+  - column_data_type: double
+    column_name: sp_sp_jaltoperminflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltoperminflowratesi
+  - column_data_type: string
+    column_name: sp_jdesignmaxflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignmaxflowrate
+  - column_data_type: double
+    column_name: sp_sp_jdesignmaxflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignmaxflowratesi
+  - column_data_type: string
+    column_name: sp_jdesignminflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignminflowrate
+  - column_data_type: double
+    column_name: sp_sp_jdesignminflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignminflowratesi
+  - column_data_type: string
+    column_name: sp_jopermaxflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxflowrate
+  - column_data_type: double
+    column_name: sp_sp_jopermaxflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxflowratesi
+  - column_data_type: string
+    column_name: sp_jopermaxmassflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxmassflowrate
+  - column_data_type: double
+    column_name: sp_sp_jopermaxmassflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxmassflowratesi
+  - column_data_type: string
+    column_name: sp_joperminflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminflowrate
+  - column_data_type: double
+    column_name: sp_sp_joperminflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperminflowratesi
+  - column_data_type: string
+    column_name: sp_joperminmassflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminmassflowrate
+  - column_data_type: double
+    column_name: sp_sp_joperminmassflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperminmassflowratesi
+  - column_data_type: string
+    column_name: sp_jopernormflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormflowrate
+  - column_data_type: double
+    column_name: sp_sp_jopernormflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormflowratesi
+  - column_data_type: string
+    column_name: sp_jopernormmassflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormmassflowrate
+  - column_data_type: double
+    column_name: sp_sp_jopernormmassflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormmassflowratesi
+  - column_data_type: string
+    column_name: sp_jtestmaxflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestmaxflowrate
+  - column_data_type: double
+    column_name: sp_sp_jtestmaxflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestmaxflowratesi
+  - column_data_type: string
+    column_name: sp_jtestminflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestminflowrate
+  - column_data_type: double
+    column_name: sp_sp_jtestminflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestminflowratesi
+  - column_data_type: string
+    column_name: sp_jaltdesignminflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignminflowrate
+  - column_data_type: double
+    column_name: sp_sp_jaltdesignminflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltdesignminflowratesi
+  - column_data_type: string
+    column_name: sp_jaltopermaxflowrate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltopermaxflowrate
+  - column_data_type: double
+    column_name: sp_sp_jaltopermaxflowratesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltopermaxflowratesi
+  - column_data_type: string
+    column_name: sp_jaltdesignmaxpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignmaxpress
+  - column_data_type: double
+    column_name: sp_sp_jaltdesignmaxpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltdesignmaxpresssi
+  - column_data_type: string
+    column_name: sp_jaltdesignminpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignminpress
+  - column_data_type: double
+    column_name: sp_sp_jaltdesignminpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltdesignminpresssi
+  - column_data_type: string
+    column_name: sp_jaltopermaxvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltopermaxvaporpress
+  - column_data_type: double
+    column_name: sp_sp_jaltopermaxvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltopermaxvaporpresssi
+  - column_data_type: string
+    column_name: sp_jaltopermaxpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltopermaxpress
+  - column_data_type: double
+    column_name: sp_sp_jaltopermaxpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltopermaxpresssi
+  - column_data_type: string
+    column_name: sp_jaltoperminpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltoperminpress
+  - column_data_type: double
+    column_name: sp_sp_jaltoperminpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltoperminpresssi
+  - column_data_type: string
+    column_name: sp_jaltoperminvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltoperminvaporpress
+  - column_data_type: double
+    column_name: sp_sp_jaltoperminvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltoperminvaporpresssi
+  - column_data_type: string
+    column_name: sp_jdesignmaxpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignmaxpress
+  - column_data_type: double
+    column_name: sp_sp_jdesignmaxpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignmaxpresssi
+  - column_data_type: string
+    column_name: sp_jdesignmaxvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignmaxvaporpress
+  - column_data_type: double
+    column_name: sp_sp_jdesignmaxvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignmaxvaporpresssi
+  - column_data_type: string
+    column_name: sp_jdesignminpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignminpress
+  - column_data_type: double
+    column_name: sp_sp_jdesignminpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignminpresssi
+  - column_data_type: string
+    column_name: sp_jdesignminvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignminvaporpress
+  - column_data_type: double
+    column_name: sp_sp_jdesignminvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignminvaporpresssi
+  - column_data_type: string
+    column_name: sp_joperbasepress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperbasepress
+  - column_data_type: double
+    column_name: sp_sp_joperbasepresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperbasepresssi
+  - column_data_type: string
+    column_name: sp_jopermaxcriticalpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxcriticalpress
+  - column_data_type: double
+    column_name: sp_sp_jopermaxcriticalpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxcriticalpresssi
+  - column_data_type: string
+    column_name: sp_jopermaxpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxpress
+  - column_data_type: double
+    column_name: sp_sp_jopermaxpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxpresssi
+  - column_data_type: string
+    column_name: sp_jopermaxvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxvaporpress
+  - column_data_type: double
+    column_name: sp_sp_jopermaxvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxvaporpresssi
+  - column_data_type: string
+    column_name: sp_jopermincriticalpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermincriticalpress
+  - column_data_type: double
+    column_name: sp_sp_jopermincriticalpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermincriticalpresssi
+  - column_data_type: string
+    column_name: sp_joperminpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminpress
+  - column_data_type: double
+    column_name: sp_sp_joperminpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperminpresssi
+  - column_data_type: string
+    column_name: sp_joperminvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminvaporpress
+  - column_data_type: double
+    column_name: sp_sp_joperminvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperminvaporpresssi
+  - column_data_type: string
+    column_name: sp_jopernormcriticalpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormcriticalpress
+  - column_data_type: double
+    column_name: sp_sp_jopernormcriticalpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormcriticalpresssi
+  - column_data_type: string
+    column_name: sp_jopernormpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormpress
+  - column_data_type: double
+    column_name: sp_sp_jopernormpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormpresssi
+  - column_data_type: string
+    column_name: sp_jopernormvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormvaporpress
+  - column_data_type: double
+    column_name: sp_sp_jopernormvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormvaporpresssi
+  - column_data_type: string
+    column_name: sp_jtestmaxpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestmaxpress
+  - column_data_type: double
+    column_name: sp_sp_jtestmaxpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestmaxpresssi
+  - column_data_type: string
+    column_name: sp_jtestmaxvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestmaxvaporpress
+  - column_data_type: double
+    column_name: sp_sp_jtestmaxvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestmaxvaporpresssi
+  - column_data_type: string
+    column_name: sp_jtestminpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestminpress
+  - column_data_type: double
+    column_name: sp_sp_jtestminpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestminpresssi
+  - column_data_type: string
+    column_name: sp_jtestminvaporpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestminvaporpress
+  - column_data_type: double
+    column_name: sp_sp_jtestminvaporpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestminvaporpresssi
+  - column_data_type: string
+    column_name: sp_joperbasecompress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperbasecompress
+  - column_data_type: double
+    column_name: sp_sp_joperbasecompresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperbasecompresssi
+  - column_data_type: string
+    column_name: sp_jopermaxcompress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxcompress
+  - column_data_type: double
+    column_name: sp_sp_jopermaxcompresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxcompresssi
+  - column_data_type: string
+    column_name: sp_jopermincompress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermincompress
+  - column_data_type: double
+    column_name: sp_sp_jopermincompresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermincompresssi
+  - column_data_type: string
+    column_name: sp_jopernormcompress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormcompress
+  - column_data_type: double
+    column_name: sp_sp_jopernormcompresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormcompresssi
+  - column_data_type: string
+    column_name: sp_jdesignmaxspecificgrav
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignmaxspecificgrav
+  - column_data_type: double
+    column_name: sp_sp_jdesignmaxspecificgravsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignmaxspecificgravsi
+  - column_data_type: string
+    column_name: sp_jdesignminspecificgrav
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignminspecificgrav
+  - column_data_type: double
+    column_name: sp_sp_jdesignminspecificgravsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignminspecificgravsi
+  - column_data_type: string
+    column_name: sp_joperbasespecificgrav
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperbasespecificgrav
+  - column_data_type: double
+    column_name: sp_sp_joperbasespecificgravsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperbasespecificgravsi
+  - column_data_type: string
+    column_name: sp_jopermaxspecificgrav
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxspecificgrav
+  - column_data_type: double
+    column_name: sp_sp_jopermaxspecificgravsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxspecificgravsi
+  - column_data_type: string
+    column_name: sp_joperminspecificgrav
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminspecificgrav
+  - column_data_type: double
+    column_name: sp_sp_joperminspecificgravsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperminspecificgravsi
+  - column_data_type: string
+    column_name: sp_jopernormspecificgrav
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormspecificgrav
+  - column_data_type: double
+    column_name: sp_sp_jopernormspecificgravsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormspecificgravsi
+  - column_data_type: string
+    column_name: sp_jtestmaxspecificgrav
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestmaxspecificgrav
+  - column_data_type: double
+    column_name: sp_sp_jtestmaxspecificgravsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestmaxspecificgravsi
+  - column_data_type: string
+    column_name: sp_jtestminspecificgrav
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestminspecificgrav
+  - column_data_type: double
+    column_name: sp_sp_jtestminspecificgravsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestminspecificgravsi
+  - column_data_type: string
+    column_name: sp_jaltdesignmaxtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignmaxtemp
+  - column_data_type: double
+    column_name: sp_sp_jaltdesignmaxtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltdesignmaxtempsi
+  - column_data_type: string
+    column_name: sp_jaltdesignmintemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignmintemp
+  - column_data_type: double
+    column_name: sp_sp_jaltdesignmintempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltdesignmintempsi
+  - column_data_type: string
+    column_name: sp_jaltopermaxtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltopermaxtemp
+  - column_data_type: double
+    column_name: sp_sp_jaltopermaxtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltopermaxtempsi
+  - column_data_type: string
+    column_name: sp_jaltopermintemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltopermintemp
+  - column_data_type: double
+    column_name: sp_sp_jaltopermintempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltopermintempsi
+  - column_data_type: string
+    column_name: sp_jdesignmaxtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignmaxtemp
+  - column_data_type: double
+    column_name: sp_sp_jdesignmaxtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignmaxtempsi
+  - column_data_type: string
+    column_name: sp_jdesignmintemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignmintemp
+  - column_data_type: double
+    column_name: sp_sp_jdesignmintempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignmintempsi
+  - column_data_type: string
+    column_name: sp_joperbasetemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperbasetemp
+  - column_data_type: double
+    column_name: sp_sp_joperbasetempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperbasetempsi
+  - column_data_type: string
+    column_name: sp_jopermaxtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxtemp
+  - column_data_type: double
+    column_name: sp_sp_jopermaxtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxtempsi
+  - column_data_type: string
+    column_name: sp_jopermintemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermintemp
+  - column_data_type: double
+    column_name: sp_sp_jopermintempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermintempsi
+  - column_data_type: string
+    column_name: sp_jopernormtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormtemp
+  - column_data_type: double
+    column_name: sp_sp_jopernormtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormtempsi
+  - column_data_type: string
+    column_name: sp_jtestmaxtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestmaxtemp
+  - column_data_type: double
+    column_name: sp_sp_jtestmaxtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestmaxtempsi
+  - column_data_type: string
+    column_name: sp_jtestmintemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestmintemp
+  - column_data_type: double
+    column_name: sp_sp_jtestmintempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestmintempsi
+  - column_data_type: string
+    column_name: sp_jopermaxpourpointtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxpourpointtemp
+  - column_data_type: double
+    column_name: sp_sp_jopermaxpourpointtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxpourpointtempsi
+  - column_data_type: string
+    column_name: sp_joperminpourpointtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminpourpointtemp
+  - column_data_type: double
+    column_name: sp_sp_joperminpourpointtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperminpourpointtempsi
+  - column_data_type: string
+    column_name: sp_jopernormpourpointtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormpourpointtemp
+  - column_data_type: double
+    column_name: sp_sp_jopernormpourpointtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormpourpointtempsi
+  - column_data_type: string
+    column_name: sp_jaltdesignmaxviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignmaxviscosity
+  - column_data_type: double
+    column_name: sp_sp_jaltdesignmaxviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltdesignmaxviscositysi
+  - column_data_type: string
+    column_name: sp_jaltdesignminviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltdesignminviscosity
+  - column_data_type: double
+    column_name: sp_sp_jaltdesignminviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltdesignminviscositysi
+  - column_data_type: string
+    column_name: sp_jaltopermaxviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltopermaxviscosity
+  - column_data_type: double
+    column_name: sp_sp_jaltopermaxviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltopermaxviscositysi
+  - column_data_type: string
+    column_name: sp_jaltoperminviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jaltoperminviscosity
+  - column_data_type: double
+    column_name: sp_sp_jaltoperminviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jaltoperminviscositysi
+  - column_data_type: string
+    column_name: sp_jdesignmaxviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignmaxviscosity
+  - column_data_type: double
+    column_name: sp_sp_jdesignmaxviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignmaxviscositysi
+  - column_data_type: string
+    column_name: sp_jdesignminviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jdesignminviscosity
+  - column_data_type: double
+    column_name: sp_sp_jdesignminviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jdesignminviscositysi
+  - column_data_type: string
+    column_name: sp_jopermaxviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxviscosity
+  - column_data_type: double
+    column_name: sp_sp_jopermaxviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxviscositysi
+  - column_data_type: string
+    column_name: sp_joperminviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminviscosity
+  - column_data_type: double
+    column_name: sp_sp_joperminviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperminviscositysi
+  - column_data_type: string
+    column_name: sp_jopernormviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormviscosity
+  - column_data_type: double
+    column_name: sp_sp_jopernormviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormviscositysi
+  - column_data_type: string
+    column_name: sp_jtestmaxviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestmaxviscosity
+  - column_data_type: double
+    column_name: sp_sp_jtestmaxviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestmaxviscositysi
+  - column_data_type: string
+    column_name: sp_jtestminviscosity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jtestminviscosity
+  - column_data_type: double
+    column_name: sp_sp_jtestminviscositysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jtestminviscositysi
+  - column_data_type: string
+    column_name: sp_joperbasemassdensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperbasemassdensity
+  - column_data_type: double
+    column_name: sp_sp_joperbasemassdensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperbasemassdensitysi
+  - column_data_type: string
+    column_name: sp_jopermaxmassdensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxmassdensity
+  - column_data_type: double
+    column_name: sp_sp_jopermaxmassdensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxmassdensitysi
+  - column_data_type: string
+    column_name: sp_joperminmassdensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_joperminmassdensity
+  - column_data_type: double
+    column_name: sp_sp_joperminmassdensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_joperminmassdensitysi
+  - column_data_type: string
+    column_name: sp_jopernormmassdensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormmassdensity
+  - column_data_type: double
+    column_name: sp_sp_jopernormmassdensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormmassdensitysi
+  - column_data_type: integer
+    column_name: sp_jopercorrosive
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopercorrosive
+  - column_data_type: integer
+    column_name: sp_jopererosive
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopererosive
+  - column_data_type: string
+    column_name: sp_jopermaxcpcvratio
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermaxcpcvratio
+  - column_data_type: double
+    column_name: sp_sp_jopermaxcpcvratiosi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermaxcpcvratiosi
+  - column_data_type: string
+    column_name: sp_jopermincpcvratio
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopermincpcvratio
+  - column_data_type: double
+    column_name: sp_sp_jopermincpcvratiosi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopermincpcvratiosi
+  - column_data_type: string
+    column_name: sp_jopernormcpcvratio
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopernormcpcvratio
+  - column_data_type: double
+    column_name: sp_sp_jopernormcpcvratiosi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jopernormcpcvratiosi
+  - column_data_type: integer
+    column_name: sp_jopertoxic
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jopertoxic
+  - column_data_type: double
+    column_name: sp_sp_jsteamouttemperaturesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jsteamouttemperaturesi
+  - column_data_type: double
+    column_name: sp_sp_jscheduleorthicknesssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jscheduleorthicknesssi
+  - column_data_type: double
+    column_name: sp_sp_jinsuldensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jinsuldensitysi
+  - column_data_type: double
+    column_name: sp_sp_jinsulthicksi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jinsulthicksi
+  - column_data_type: double
+    column_name: sp_sp_jsteamoutpressuresi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jsteamoutpressuresi
+  - column_data_type: string
+    column_name: sp_jinsultemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jinsultemp
+  - column_data_type: integer
+    column_name: sp_jhtracemedium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jhtracemedium
+  - column_data_type: string
+    column_name: sp_jhtracemediumtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jhtracemediumtemp
+  - column_data_type: integer
+    column_name: sp_jhtracereqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_jhtracereqmt
+  - column_data_type: string
+    column_name: sp_pipespecrevision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_pipespecrevision
+  - column_data_type: double
+    column_name: sp_sp_jinsultempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jinsultempsi
+  - column_data_type: double
+    column_name: sp_sp_jhtracemediumtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jhtracemediumtempsi
+  - column_data_type: double
+    column_name: sp_sp_jcorrosionallowancesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_jcorrosionallowancesi
+  - column_data_type: string
+    column_name: wp_trainno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_trainno
+  - column_data_type: string
+    column_name: wp_fullvacuum
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_fullvacuum
+  - column_data_type: integer
+    column_name: wp_nde
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_nde
+  - column_data_type: integer
+    column_name: wp_pipelocation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_pipelocation
+  - column_data_type: string
+    column_name: wp_piperunremark4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_piperunremark4
+  - column_data_type: integer
+    column_name: wp_piperunremark3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_piperunremark3
+  - column_data_type: integer
+    column_name: wp_piperunremark2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_piperunremark2
+  - column_data_type: integer
+    column_name: wp_piperunremark1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_piperunremark1
+  - column_data_type: integer
+    column_name: wp_stresscriticality
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_stresscriticality
+  - column_data_type: string
+    column_name: wp_xray
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_xray
+  - column_data_type: integer
+    column_name: wp_wallschthk
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_wallschthk
+  - column_data_type: string
+    column_name: wp_servicedescription
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_servicedescription
+  - column_data_type: string
+    column_name: wp_explosive
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_explosive
+  - column_data_type: string
+    column_name: wp_nace
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_nace
+  - column_data_type: string
+    column_name: wp_siterun
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_siterun
+  - column_data_type: string
+    column_name: wp_tracersize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_tracersize
+  - column_data_type: string
+    column_name: wp_tracernumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_tracernumber
+  - column_data_type: string
+    column_name: wor_scheduleorwallthk
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_scheduleorwallthk
+  - column_data_type: integer
+    column_name: wor_fluidphase
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_fluidphase
+  - column_data_type: string
+    column_name: wor_designcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_designcode
+  - column_data_type: string
+    column_name: wp_piperunremark5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_piperunremark5
+  - column_data_type: integer
+    column_name: wor_procgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_procgroupid
+  - column_data_type: string
+    column_name: wor_testmedium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_testmedium
+  - column_data_type: string
+    column_name: wor_flexlotemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_flexlotemp
+  - column_data_type: double
+    column_name: sp_wor_flexlotempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wor_flexlotempsi
+  - column_data_type: string
+    column_name: wor_flexhitemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_flexhitemp
+  - column_data_type: double
+    column_name: sp_wor_flexhitempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wor_flexhitempsi
+  - column_data_type: integer
+    column_name: isbranch
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isbranch
+  - column_data_type: integer
+    column_name: wor_linelabelassign
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_linelabelassign    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_PipeRun/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_piperun
+  load_type: append
+  name: curated_t_piperun
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_piperun
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

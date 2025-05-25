@@ -1,0 +1,684 @@
+---
+SourceSystemId: database_omie_curated
+MetadataType: curated#omie#combo#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/omie/combo/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: omie-project
+  name: omie_project
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: integer
+    column_name: id
+    comment: id
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: p01
+    comment: p01
+    data_classification: null
+    nullable: true
+    raw_column_name: p01
+  - column_data_type: string
+    column_name: p02
+    comment: p02
+    data_classification: null
+    nullable: true
+    raw_column_name: p02
+  - column_data_type: string
+    column_name: p03
+    comment: p03
+    data_classification: null
+    nullable: true
+    raw_column_name: p03
+  - column_data_type: string
+    column_name: p04
+    comment: p04
+    data_classification: null
+    nullable: true
+    raw_column_name: p04
+  - column_data_type: string
+    column_name: p05
+    comment: p05
+    data_classification: null
+    nullable: true
+    raw_column_name: p05
+  - column_data_type: string
+    column_name: p06
+    comment: p06
+    data_classification: null
+    nullable: true
+    raw_column_name: p06
+  - column_data_type: string
+    column_name: p07
+    comment: p07
+    data_classification: null
+    nullable: true
+    raw_column_name: p07
+  - column_data_type: string
+    column_name: p08
+    comment: p08
+    data_classification: null
+    nullable: true
+    raw_column_name: p08
+  - column_data_type: string
+    column_name: p09
+    comment: p09
+    data_classification: null
+    nullable: true
+    raw_column_name: p09
+  - column_data_type: string
+    column_name: p10
+    comment: p10
+    data_classification: null
+    nullable: true
+    raw_column_name: p10
+  - column_data_type: string
+    column_name: p11
+    comment: p11
+    data_classification: null
+    nullable: true
+    raw_column_name: p11
+  - column_data_type: string
+    column_name: p12
+    comment: p12
+    data_classification: null
+    nullable: true
+    raw_column_name: p12
+  - column_data_type: string
+    column_name: p13
+    comment: p13
+    data_classification: null
+    nullable: true
+    raw_column_name: p13
+  - column_data_type: string
+    column_name: p14
+    comment: p14
+    data_classification: null
+    nullable: true
+    raw_column_name: p14
+  - column_data_type: string
+    column_name: p15
+    comment: p15
+    data_classification: null
+    nullable: true
+    raw_column_name: p15
+  - column_data_type: string
+    column_name: p16
+    comment: p16
+    data_classification: null
+    nullable: true
+    raw_column_name: p16
+  - column_data_type: string
+    column_name: p17
+    comment: p17
+    data_classification: null
+    nullable: true
+    raw_column_name: p17
+  - column_data_type: string
+    column_name: p18
+    comment: p18
+    data_classification: null
+    nullable: true
+    raw_column_name: p18
+  - column_data_type: string
+    column_name: p19
+    comment: p19
+    data_classification: null
+    nullable: true
+    raw_column_name: p19
+  - column_data_type: string
+    column_name: p20
+    comment: p20
+    data_classification: null
+    nullable: true
+    raw_column_name: p20
+  - column_data_type: string
+    column_name: p21
+    comment: p21
+    data_classification: null
+    nullable: true
+    raw_column_name: p21
+  - column_data_type: string
+    column_name: p22
+    comment: p22
+    data_classification: null
+    nullable: true
+    raw_column_name: p22
+  - column_data_type: string
+    column_name: p23
+    comment: p23
+    data_classification: null
+    nullable: true
+    raw_column_name: p23
+  - column_data_type: string
+    column_name: p24
+    comment: p24
+    data_classification: null
+    nullable: true
+    raw_column_name: p24
+  - column_data_type: string
+    column_name: p25
+    comment: p25
+    data_classification: null
+    nullable: true
+    raw_column_name: p25
+  - column_data_type: string
+    column_name: p26
+    comment: p26
+    data_classification: null
+    nullable: true
+    raw_column_name: p26
+  - column_data_type: string
+    column_name: p27
+    comment: p27
+    data_classification: null
+    nullable: true
+    raw_column_name: p27
+  - column_data_type: string
+    column_name: p28
+    comment: p28
+    data_classification: null
+    nullable: true
+    raw_column_name: p28
+  - column_data_type: string
+    column_name: p29
+    comment: p29
+    data_classification: null
+    nullable: true
+    raw_column_name: p29
+  - column_data_type: string
+    column_name: p30
+    comment: p30
+    data_classification: null
+    nullable: true
+    raw_column_name: p30
+  - column_data_type: string
+    column_name: p31
+    comment: p31
+    data_classification: null
+    nullable: true
+    raw_column_name: p31
+  - column_data_type: string
+    column_name: p32
+    comment: p32
+    data_classification: null
+    nullable: true
+    raw_column_name: p32
+  - column_data_type: string
+    column_name: p33
+    comment: p33
+    data_classification: null
+    nullable: true
+    raw_column_name: p33
+  - column_data_type: string
+    column_name: p34
+    comment: p34
+    data_classification: null
+    nullable: true
+    raw_column_name: p34
+  - column_data_type: string
+    column_name: p35
+    comment: p35
+    data_classification: null
+    nullable: true
+    raw_column_name: p35
+  - column_data_type: string
+    column_name: p36
+    comment: p36
+    data_classification: null
+    nullable: true
+    raw_column_name: p36
+  - column_data_type: string
+    column_name: p37
+    comment: p37
+    data_classification: null
+    nullable: true
+    raw_column_name: p37
+  - column_data_type: string
+    column_name: p38
+    comment: p38
+    data_classification: null
+    nullable: true
+    raw_column_name: p38
+  - column_data_type: string
+    column_name: p39
+    comment: p39
+    data_classification: null
+    nullable: true
+    raw_column_name: p39
+  - column_data_type: string
+    column_name: p40
+    comment: p40
+    data_classification: null
+    nullable: true
+    raw_column_name: p40
+  - column_data_type: string
+    column_name: p41
+    comment: p41
+    data_classification: null
+    nullable: true
+    raw_column_name: p41
+  - column_data_type: string
+    column_name: p42
+    comment: p42
+    data_classification: null
+    nullable: true
+    raw_column_name: p42
+  - column_data_type: string
+    column_name: p43
+    comment: p43
+    data_classification: null
+    nullable: true
+    raw_column_name: p43
+  - column_data_type: string
+    column_name: p44
+    comment: p44
+    data_classification: null
+    nullable: true
+    raw_column_name: p44
+  - column_data_type: string
+    column_name: p45
+    comment: p45
+    data_classification: null
+    nullable: true
+    raw_column_name: p45
+  - column_data_type: string
+    column_name: p46
+    comment: p46
+    data_classification: null
+    nullable: true
+    raw_column_name: p46
+  - column_data_type: string
+    column_name: p47
+    comment: p47
+    data_classification: null
+    nullable: true
+    raw_column_name: p47
+  - column_data_type: string
+    column_name: p48
+    comment: p48
+    data_classification: null
+    nullable: true
+    raw_column_name: p48
+  - column_data_type: string
+    column_name: p49
+    comment: p49
+    data_classification: null
+    nullable: true
+    raw_column_name: p49
+  - column_data_type: string
+    column_name: p50
+    comment: p50
+    data_classification: null
+    nullable: true
+    raw_column_name: p50
+  - column_data_type: string
+    column_name: p51
+    comment: p51
+    data_classification: null
+    nullable: true
+    raw_column_name: p51
+  - column_data_type: string
+    column_name: p52
+    comment: p52
+    data_classification: null
+    nullable: true
+    raw_column_name: p52
+  - column_data_type: string
+    column_name: p53
+    comment: p53
+    data_classification: null
+    nullable: true
+    raw_column_name: p53
+  - column_data_type: string
+    column_name: p54
+    comment: p54
+    data_classification: null
+    nullable: true
+    raw_column_name: p54
+  - column_data_type: string
+    column_name: p55
+    comment: p55
+    data_classification: null
+    nullable: true
+    raw_column_name: p55
+  - column_data_type: string
+    column_name: p56
+    comment: p56
+    data_classification: null
+    nullable: true
+    raw_column_name: p56
+  - column_data_type: string
+    column_name: p57
+    comment: p57
+    data_classification: null
+    nullable: true
+    raw_column_name: p57
+  - column_data_type: string
+    column_name: p58
+    comment: p58
+    data_classification: null
+    nullable: true
+    raw_column_name: p58
+  - column_data_type: string
+    column_name: p59
+    comment: p59
+    data_classification: null
+    nullable: true
+    raw_column_name: p59
+  - column_data_type: string
+    column_name: p60
+    comment: p60
+    data_classification: null
+    nullable: true
+    raw_column_name: p60
+  - column_data_type: string
+    column_name: p61
+    comment: p61
+    data_classification: null
+    nullable: true
+    raw_column_name: p61
+  - column_data_type: string
+    column_name: p62
+    comment: p62
+    data_classification: null
+    nullable: true
+    raw_column_name: p62
+  - column_data_type: string
+    column_name: p63
+    comment: p63
+    data_classification: null
+    nullable: true
+    raw_column_name: p63
+  - column_data_type: string
+    column_name: p64
+    comment: p64
+    data_classification: null
+    nullable: true
+    raw_column_name: p64
+  - column_data_type: string
+    column_name: p65
+    comment: p65
+    data_classification: null
+    nullable: true
+    raw_column_name: p65
+  - column_data_type: string
+    column_name: p66
+    comment: p66
+    data_classification: null
+    nullable: true
+    raw_column_name: p66
+  - column_data_type: string
+    column_name: p67
+    comment: p67
+    data_classification: null
+    nullable: true
+    raw_column_name: p67
+  - column_data_type: string
+    column_name: p68
+    comment: p68
+    data_classification: null
+    nullable: true
+    raw_column_name: p68
+  - column_data_type: string
+    column_name: p69
+    comment: p69
+    data_classification: null
+    nullable: true
+    raw_column_name: p69
+  - column_data_type: string
+    column_name: p70
+    comment: p70
+    data_classification: null
+    nullable: true
+    raw_column_name: p70
+  - column_data_type: string
+    column_name: p71
+    comment: p71
+    data_classification: null
+    nullable: true
+    raw_column_name: p71
+  - column_data_type: string
+    column_name: p72
+    comment: p72
+    data_classification: null
+    nullable: true
+    raw_column_name: p72
+  - column_data_type: string
+    column_name: p73
+    comment: p73
+    data_classification: null
+    nullable: true
+    raw_column_name: p73
+  - column_data_type: string
+    column_name: p74
+    comment: p74
+    data_classification: null
+    nullable: true
+    raw_column_name: p74
+  - column_data_type: string
+    column_name: p75
+    comment: p75
+    data_classification: null
+    nullable: true
+    raw_column_name: p75
+  - column_data_type: string
+    column_name: p76
+    comment: p76
+    data_classification: null
+    nullable: true
+    raw_column_name: p76
+  - column_data_type: string
+    column_name: p77
+    comment: p77
+    data_classification: null
+    nullable: true
+    raw_column_name: p77
+  - column_data_type: string
+    column_name: p78
+    comment: p78
+    data_classification: null
+    nullable: true
+    raw_column_name: p78
+  - column_data_type: string
+    column_name: p79
+    comment: p79
+    data_classification: null
+    nullable: true
+    raw_column_name: p79
+  - column_data_type: string
+    column_name: p80
+    comment: p80
+    data_classification: null
+    nullable: true
+    raw_column_name: p80
+  - column_data_type: string
+    column_name: p81
+    comment: p81
+    data_classification: null
+    nullable: true
+    raw_column_name: p81
+  - column_data_type: string
+    column_name: p82
+    comment: p82
+    data_classification: null
+    nullable: true
+    raw_column_name: p82
+  - column_data_type: string
+    column_name: p83
+    comment: p83
+    data_classification: null
+    nullable: true
+    raw_column_name: p83
+  - column_data_type: string
+    column_name: p84
+    comment: p84
+    data_classification: null
+    nullable: true
+    raw_column_name: p84
+  - column_data_type: string
+    column_name: p85
+    comment: p85
+    data_classification: null
+    nullable: true
+    raw_column_name: p85
+  - column_data_type: string
+    column_name: p86
+    comment: p86
+    data_classification: null
+    nullable: true
+    raw_column_name: p86
+  - column_data_type: string
+    column_name: p87
+    comment: p87
+    data_classification: null
+    nullable: true
+    raw_column_name: p87
+  - column_data_type: string
+    column_name: p88
+    comment: p88
+    data_classification: null
+    nullable: true
+    raw_column_name: p88
+  - column_data_type: string
+    column_name: p89
+    comment: p89
+    data_classification: null
+    nullable: true
+    raw_column_name: p89
+  - column_data_type: string
+    column_name: p90
+    comment: p90
+    data_classification: null
+    nullable: true
+    raw_column_name: p90
+  - column_data_type: string
+    column_name: p91
+    comment: p91
+    data_classification: null
+    nullable: true
+    raw_column_name: p91
+  - column_data_type: string
+    column_name: p92
+    comment: p92
+    data_classification: null
+    nullable: true
+    raw_column_name: p92
+  - column_data_type: string
+    column_name: p93
+    comment: p93
+    data_classification: null
+    nullable: true
+    raw_column_name: p93
+  - column_data_type: string
+    column_name: p94
+    comment: p94
+    data_classification: null
+    nullable: true
+    raw_column_name: p94
+  - column_data_type: string
+    column_name: p95
+    comment: p95
+    data_classification: null
+    nullable: true
+    raw_column_name: p95
+  - column_data_type: string
+    column_name: p96
+    comment: p96
+    data_classification: null
+    nullable: true
+    raw_column_name: p96
+  - column_data_type: string
+    column_name: p97
+    comment: p97
+    data_classification: null
+    nullable: true
+    raw_column_name: p97
+  - column_data_type: string
+    column_name: p98
+    comment: p98
+    data_classification: null
+    nullable: true
+    raw_column_name: p98
+  - column_data_type: string
+    column_name: p99
+    comment: p99
+    data_classification: null
+    nullable: true
+    raw_column_name: p99
+  - column_data_type: integer
+    column_name: order
+    comment: order
+    data_classification: null
+    nullable: true
+    raw_column_name: order
+  - column_data_type: integer
+    column_name: updated_by_id
+    comment: updated_by_id
+    data_classification: null
+    nullable: true
+    raw_column_name: updated_by_id
+  - column_data_type: timestamp
+    column_name: mdate
+    comment: mdate
+    data_classification: null
+    nullable: true
+    raw_column_name: mdate
+  - column_data_type: integer
+    column_name: created_by_id
+    comment: created_by_id
+    data_classification: null
+    nullable: true
+    raw_column_name: created_by_id
+  - column_data_type: timestamp
+    column_name: cdate
+    comment: cdate
+    data_classification: null
+    nullable: true
+    raw_column_name: cdate
+  - column_data_type: integer
+    column_name: disabled
+    comment: disabled
+    data_classification: null
+    nullable: true
+    raw_column_name: disabled
+  - column_data_type: integer
+    column_name: deleted
+    comment: deleted
+    data_classification: null
+    nullable: true
+    raw_column_name: deleted
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_omie_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/omie/combo/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_combo
+  load_type: append
+  name: curated_omie_combo
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/omie/combo
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'omie' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

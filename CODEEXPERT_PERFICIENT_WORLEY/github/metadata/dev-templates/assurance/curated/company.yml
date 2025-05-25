@@ -1,0 +1,217 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#company#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/company.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: company
+  name: company
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/company/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: company
+  load_type: incremental
+  name: company
+  primary_key: dwi_company
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/company
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_company
+    rename_columns: true
+  columns:
+  - column_name: dwi_company
+    column_data_type: decimal(38,0)
+    comment: dwi_company
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_company
+  - column_name: abn
+    column_data_type: string
+    comment: abn
+    data_classification:
+    nullable: true
+    raw_column_name: abn
+  - column_name: is_this_company_still_active
+    column_data_type: string
+    comment: is_this_company_still_active
+    data_classification:
+    nullable: true
+    raw_column_name: is_this_company_still_active
+  - column_name: li_is_this_company_still_active
+    column_data_type: string
+    comment: li_is_this_company_still_active
+    data_classification:
+    nullable: true
+    raw_column_name: li_is_this_company_still_active
+  - column_name: lo_is_this_company_still_active
+    column_data_type: decimal(38,0)
+    comment: lo_is_this_company_still_active
+    data_classification:
+    nullable: true
+    raw_column_name: lo_is_this_company_still_active
+  - column_name: address_line_1
+    column_data_type: string
+    comment: address_line_1
+    data_classification:
+    nullable: true
+    raw_column_name: address_line_1
+  - column_name: address_line_2
+    column_data_type: string
+    comment: address_line_2
+    data_classification:
+    nullable: true
+    raw_column_name: address_line_2
+  - column_name: address_line_3
+    column_data_type: string
+    comment: address_line_3
+    data_classification:
+    nullable: true
+    raw_column_name: address_line_3
+  - column_name: company_name
+    column_data_type: string
+    comment: company_name
+    data_classification:
+    nullable: true
+    raw_column_name: company_name
+  - column_name: contact_email_address
+    column_data_type: string
+    comment: contact_email_address
+    data_classification:
+    nullable: true
+    raw_column_name: contact_email_address
+  - column_name: contact_first_name
+    column_data_type: string
+    comment: contact_first_name
+    data_classification:
+    nullable: true
+    raw_column_name: contact_first_name
+  - column_name: contact_last_name
+    column_data_type: string
+    comment: contact_last_name
+    data_classification:
+    nullable: true
+    raw_column_name: contact_last_name
+  - column_name: fax_number
+    column_data_type: string
+    comment: fax_number
+    data_classification:
+    nullable: true
+    raw_column_name: fax_number
+  - column_name: phone_number
+    column_data_type: string
+    comment: phone_number
+    data_classification:
+    nullable: true
+    raw_column_name: phone_number
+  - column_name: post_code
+    column_data_type: string
+    comment: post_code
+    data_classification:
+    nullable: true
+    raw_column_name: post_code
+  - column_name: business_type
+    column_data_type: string
+    comment: business_type
+    data_classification:
+    nullable: true
+    raw_column_name: business_type
+  - column_name: li_business_type
+    column_data_type: string
+    comment: li_business_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_business_type
+  - column_name: lo_business_type
+    column_data_type: decimal(38,0)
+    comment: lo_business_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_business_type
+  - column_name: dwk_parent_company
+    column_data_type: decimal(38,0)
+    comment: dwk_parent_company
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_parent_company
+  - column_name: dwk_contract_manager
+    column_data_type: decimal(38,0)
+    comment: dwk_contract_manager
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_contract_manager
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp 
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

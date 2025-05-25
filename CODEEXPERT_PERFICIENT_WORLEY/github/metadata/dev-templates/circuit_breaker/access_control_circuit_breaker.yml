@@ -1,0 +1,6 @@
+domain_name: circuit_breaker
+source_name: hexagon
+databases : 
+  - ${database_prefix}_circuit_breaker_hexagon_curated
+  - ${database_prefix}_circuit_breaker_hexagon_raw
+  - ${database_prefix}_circuit_breaker_transformed

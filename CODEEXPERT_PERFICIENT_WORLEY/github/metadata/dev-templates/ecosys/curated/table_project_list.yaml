@@ -1,0 +1,217 @@
+SourceSystemId: ecosys_curated
+MetadataType: curated#ecosys#project_list#job#iceberg
+source:
+  name: ecosys_project_list
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/project_control/ecosys/project_list/
+    format: parquet
+    transformation_ctx: ecosys-project_list
+transforms:
+- transform: rename_columns
+  rename_column: true
+- transform: select_columns_from_config_file
+  select_columns: true
+- transform: change_data_types
+  change_types: true
+- transform: add_run_date
+  column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+- transform: custom_sql
+  sql: SELECT *, 'ecosys' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+target:
+  name: curated_ecosys_project_list
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_ecosys_curated
+    table_name: curated_project_list
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/project_control/ecosys/project_list/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: incremental
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/project_control/ecosys/project_list
+table_schema:
+  schema_properties:
+    primary_key: [project_internal_id]
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_name: SecOrg
+    column_data_type: string
+    nullable: true
+    comment: SecOrg
+    data_classification: null
+    raw_column_name: projectlist_secorg
+  - column_name: Project
+    column_data_type: string
+    nullable: true
+    comment: Project
+    data_classification: null
+    raw_column_name: projectlist_project
+  - column_name: project_internal_id
+    column_data_type: string
+    nullable: true
+    comment: Project Internal ID
+    data_classification: null
+    raw_column_name: projectlist_projectinternalid
+  - column_name: SystemDate
+    column_data_type: date
+    nullable: true
+    comment: System Date
+    data_classification: null
+    raw_column_name: projectlist_systemdate
+  - column_name: LatestSnapshotDate
+    column_data_type: date
+    nullable: true
+    comment: Latest Snapshot Date
+    data_classification: null
+    raw_column_name: projectlist_latestsnapshotdate
+  - column_name: ProjectName
+    column_data_type: string
+    nullable: true
+    comment: Project Name
+    data_classification: null
+    raw_column_name: projectlist_projectname
+  - column_name: ProjectType
+    column_data_type: string
+    nullable: true
+    comment: Project Type
+    data_classification: null
+    raw_column_name: projectlist_projecttype
+  - column_name: Client
+    column_data_type: string
+    nullable: true
+    comment: Client
+    data_classification: null
+    raw_column_name: projectlist_client
+  - column_name: Scope
+    column_data_type: string
+    nullable: true
+    comment: Scope
+    data_classification: null
+    raw_column_name: projectlist_scope
+  - column_name: Status
+    column_data_type: string
+    nullable: true
+    comment: Project Approval Status (ID)
+    data_classification: null
+    raw_column_name: projectlist_status
+  - column_name: portfolio_project_grouping
+    column_data_type: string
+    nullable: true
+    comment: Portfolio Project Grouping
+    data_classification: null
+    raw_column_name: projectlist_portfolioprojectgrouping
+  - column_name: pm
+    column_data_type: string
+    nullable: true
+    comment: Project Manager (Name)
+    data_classification: null
+    raw_column_name: projectlist_pm
+  - column_name: pc
+    column_data_type: string
+    nullable: true
+    comment: Project Controller (Name)
+    data_classification: null
+    raw_column_name: projectlist_pc
+  - column_name: customer_pm
+    column_data_type: string
+    nullable: true
+    comment: Customer Project Manager
+    data_classification: null
+    raw_column_name: projectlist_customerpm
+  - column_name: customer_rep
+    column_data_type: string
+    nullable: true
+    comment: Customer Representative
+    data_classification: null
+    raw_column_name: projectlist_customerrep
+  - column_name: project_size_classification
+    column_data_type: string
+    nullable: true
+    comment: Project Size Classification (Name)
+    data_classification: null
+    raw_column_name: projectlist_project_size_classification
+  - column_name: ProjectApprovalStatus
+    column_data_type: string
+    nullable: true
+    comment: Project Approval Status (Name)
+    data_classification: null
+    raw_column_name: projectlist_projectapprovalstatus
+  - column_name: ProjectStartDate
+    column_data_type: date
+    nullable: true
+    comment: Project Start Date
+    data_classification: null
+    raw_column_name: projectlist_projectstartdate
+  - column_name: ProjectEndDate
+    column_data_type: date
+    nullable: true
+    comment: Project End Date
+    data_classification: null
+    raw_column_name: projectlist_projectenddate
+  - column_name: BillingType
+    column_data_type: string
+    nullable: true
+    comment: Billing Type (Name)
+    data_classification: null
+    raw_column_name: projectlist_billingtype
+  - column_name: ProjectRiskClassification
+    column_data_type: string
+    nullable: true
+    comment: Project Risk Classification (Name)
+    data_classification: null
+    raw_column_name: projectlist_projectriskclassification
+  - column_name: ScopeofService
+    column_data_type: string
+    nullable: true
+    comment: Service Type (Name)
+    data_classification: null
+    raw_column_name: projectlist_scopeofservice
+  - column_name: countryof_asset
+    column_data_type: string
+    nullable: true
+    comment: Country of Asset (Name)
+    data_classification: null
+    raw_column_name: projectlist_countryofasset
+  - column_name: project_execution_location
+    column_data_type: string
+    nullable: true
+    comment: Project Execution Location
+    data_classification: null
+    raw_column_name: projectlist_projectexecutionlocation
+  - column_name: AssetType
+    column_data_type: string
+    nullable: true
+    comment: AssetType (Name)
+    data_classification: null
+    raw_column_name: projectlist_assettype
+  - column_name: publishedto_powerBI
+    column_data_type: string
+    nullable: true
+    comment: Published to PowerBI
+    data_classification: null
+    raw_column_name: projectlist_publishedtopowerbi
+  - column_name: major_project
+    column_data_type: string
+    nullable: true
+    comment: Major Project
+    data_classification: null
+    raw_column_name: projectlist_majorproject
+  - column_name: h_wp_coa_ct_library
+    column_data_type: string
+    nullable: true
+    comment: H_WP COA & CT Library
+    data_classification: null
+    raw_column_name: projectlist_hwpcoactlibrary
+#Comment

@@ -1,0 +1,75 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_consequence_quality_product_ncr_causal_factor_category#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_consequence_quality_product_ncr_causal_factor_category.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_consequence_quality_product_ncr_causal_factor_category
+  name: event_consequence_quality_product_ncr_causal_factor_category
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_consequence_quality_product_ncr_causal_factor_category/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_consequence_quality_product_ncr_causal_factor_category
+  load_type: incremental
+  name: event_consequence_quality_product_ncr_causal_factor_category
+  primary_key: [dwk_event_consequence_quality, li_product_ncr_causal_factor_category]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_consequence_quality_product_ncr_causal_factor_category
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [dwk_event_consequence_quality, li_product_ncr_causal_factor_category]
+    rename_columns: true
+  columns:
+  - column_name: dwk_event_consequence_quality
+    column_data_type: decimal(38,0)
+    comment: dwk_event_consequence_quality
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_consequence_quality
+  - column_name: product_ncr_causal_factor_category
+    column_data_type: string
+    comment: product_ncr_causal_factor_category
+    data_classification:
+    nullable: true
+    raw_column_name: product_ncr_causal_factor_category
+  - column_name: li_product_ncr_causal_factor_category
+    column_data_type: string
+    comment: li_product_ncr_causal_factor_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_product_ncr_causal_factor_category
+  - column_name: lo_product_ncr_causal_factor_category
+    column_data_type: decimal(38,0)
+    comment: lo_product_ncr_causal_factor_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_product_ncr_causal_factor_category

@@ -1,0 +1,464 @@
+SourceSystemId: csp_salesforce_curated
+MetadataType: curated#csp_salesforce#unit__c#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/customer/csp_salesforce/unit__c/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: csp_salesforce-unit__c
+  name: csp_salesforce_unit__c
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_customer_csp_salesforce_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/customer/csp_salesforce/unit__c/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_unit__c
+  load_type: incremental_no_delete
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  db_load:
+    aurora_host: ${aurora_host}
+    aurora_port: '5432'
+    aurora_secret: Worley-datalake-sydney-${envn}-db-csp-salesforce-glueuser
+    aurora_db_name: ${aurora_db}
+    aurora_db_target_table_name: unit__c
+    aurora_db_target_schema: CSP_Salesforce
+    aurora_data_load_type: append
+    snapshot_s3_bucket: ${raw_bucket}
+    snapshot_s3_key: customer/csp_salesforce/iceberg-to-aurora/snapshot/csp_salesforce/unit__c/last_processed_snapshot.txt
+    snapshot_s3_kms_key_id: ${iceberg_snapshot_key}
+    primary_key: id
+  name: curated_unit__c
+  primary_key:
+  - id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/customer/csp_salesforce/unit__c
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, CAST(lastmodifieddate as timestamp) as lastmodifieddate_ts, 'csp_salesforce'
+    as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key:
+    - id
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: ownerid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ownerid
+  - column_data_type: boolean
+    column_name: isdeleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isdeleted
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: currencyisocode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currencyisocode
+  - column_data_type: string
+    column_name: recordtypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: recordtypeid
+  - column_data_type: string
+    column_name: createddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createddate
+  - column_data_type: string
+    column_name: createdbyid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyid
+  - column_data_type: string
+    column_name: lastmodifieddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastmodifieddate
+  - column_data_type: string
+    column_name: lastmodifiedbyid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastmodifiedbyid
+  - column_data_type: string
+    column_name: systemmodstamp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemmodstamp
+  - column_data_type: string
+    column_name: lastvieweddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastvieweddate
+  - column_data_type: string
+    column_name: lastreferenceddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastreferenceddate
+  - column_data_type: boolean
+    column_name: activec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activec
+  - column_data_type: string
+    column_name: business_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: business_unitc
+  - column_data_type: string
+    column_name: ecrmigrationexternalidc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ecrmigrationexternalidc
+  - column_data_type: boolean
+    column_name: legacyc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: legacyc
+  - column_data_type: string
+    column_name: line_of_businessc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_of_businessc
+  - column_data_type: string
+    column_name: sales_plan_gross_margin_q1c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_q1c
+  - column_data_type: string
+    column_name: sales_plan_gross_margin_q2c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_q2c
+  - column_data_type: string
+    column_name: sales_plan_gross_margin_q3c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_q3c
+  - column_data_type: string
+    column_name: sales_plan_gross_margin_q4c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_q4c
+  - column_data_type: string
+    column_name: sales_plan_gross_marginc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_marginc
+  - column_data_type: double
+    column_name: sales_plan_hours_q1c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_hours_q1c
+  - column_data_type: double
+    column_name: sales_plan_hours_q2c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_hours_q2c
+  - column_data_type: double
+    column_name: sales_plan_hours_q3c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_hours_q3c
+  - column_data_type: double
+    column_name: sales_plan_hours_q4c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_hours_q4c
+  - column_data_type: double
+    column_name: sales_plan_hoursc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_hoursc
+  - column_data_type: string
+    column_name: sales_plan_revenue_q1c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_q1c
+  - column_data_type: string
+    column_name: sales_plan_revenue_q2c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_q2c
+  - column_data_type: string
+    column_name: sales_plan_revenue_q3c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_q3c
+  - column_data_type: string
+    column_name: sales_plan_revenue_q4c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_q4c
+  - column_data_type: string
+    column_name: sales_plan_revenuec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenuec
+  - column_data_type: string
+    column_name: sales_regionc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_regionc
+  - column_data_type: string
+    column_name: sectorc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sectorc
+  - column_data_type: string
+    column_name: bl_shortc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: bl_shortc
+  - column_data_type: string
+    column_name: business_linec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: business_linec
+  - column_data_type: string
+    column_name: countryc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: countryc
+  - column_data_type: string
+    column_name: executing_officec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: executing_officec
+  - column_data_type: string
+    column_name: fin_systemc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fin_systemc
+  - column_data_type: string
+    column_name: l2c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: l2c
+  - column_data_type: string
+    column_name: legacy_ecr_puc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: legacy_ecr_puc
+  - column_data_type: string
+    column_name: officec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: officec
+  - column_data_type: double
+    column_name: sales_plan_gross_margin_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_audc
+  - column_data_type: double
+    column_name: sales_plan_gross_margin_q1_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_q1_audc
+  - column_data_type: double
+    column_name: sales_plan_gross_margin_q2_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_q2_audc
+  - column_data_type: double
+    column_name: sales_plan_gross_margin_q3_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_q3_audc
+  - column_data_type: double
+    column_name: sales_plan_gross_margin_q4_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_gross_margin_q4_audc
+  - column_data_type: double
+    column_name: sales_plan_revenue_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_audc
+  - column_data_type: double
+    column_name: sales_plan_revenue_q1_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_q1_audc
+  - column_data_type: double
+    column_name: sales_plan_revenue_q2_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_q2_audc
+  - column_data_type: double
+    column_name: sales_plan_revenue_q3_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_q3_audc
+  - column_data_type: double
+    column_name: sales_plan_revenue_q4_audc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sales_plan_revenue_q4_audc
+  - column_data_type: string
+    column_name: business_segmentc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: business_segmentc
+  - column_data_type: string
+    column_name: gbs_businessc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_businessc
+  - column_data_type: string
+    column_name: gbs_locationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_locationc
+  - column_data_type: string
+    column_name: gbs_performance_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_performance_unitc
+  - column_data_type: string
+    column_name: gbs_regionc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_regionc
+  - column_data_type: string
+    column_name: selling_businessc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: selling_businessc
+  - column_data_type: string
+    column_name: fiscal_yearc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fiscal_yearc
+  - column_data_type: string
+    column_name: descriptionc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: descriptionc
+  - column_data_type: string
+    column_name: ecr_l0c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ecr_l0c
+  - column_data_type: string
+    column_name: gbs_market_subsectorc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gbs_market_subsectorc
+  - column_data_type: string
+    column_name: market_sector_l1c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: market_sector_l1c
+  - column_data_type: string
+    column_name: market_segment_l3c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: market_segment_l3c
+  - column_data_type: string
+    column_name: market_subsector_l2c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: market_subsector_l2c

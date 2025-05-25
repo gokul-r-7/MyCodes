@@ -1,0 +1,273 @@
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#project#job#iceberg
+source:
+  name: aconex_project
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/document_control/aconex/project/
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: aconex-project
+transforms:
+- transform: rename_columns
+  rename_column: true
+- transform: select_columns_from_config_file
+  select_columns: true
+- transform: change_data_types
+  change_types: true
+- transform: add_run_date
+  column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+- transform: custom_sql
+  sql: SELECT *, 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+target:
+  name: curated_aconex_project
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    table_name: curated_project
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/project/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: incremental
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: instance_name
+    entity_table_attribute_name: ProjectInstance
+    entity_s3_raw_partition_prefix: Instance
+  primary_key: Project
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/project
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: Project
+    rename_columns: true
+  columns:
+  - column_name:  Project 
+    column_data_type:   string 
+    nullable: true
+    comment:  Project  
+    data_classification: null
+    raw_column_name:   projectid
+  - column_name:  ProjectName  
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectName  
+    data_classification: null
+    raw_column_name:   projectname
+  - column_name:  ProjectShortName
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectShortName
+    data_classification: null
+    raw_column_name:   projeprojectshortname
+  - column_name:  ProjectCode  
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectCode
+    data_classification: null
+    raw_column_name:   projectcode
+  - column_name:  ProjectDescription  
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectDescription  
+    data_classification: null
+    raw_column_name:   projectdescription
+  - column_name:  ProjectType
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectType
+    data_classification: null
+    raw_column_name:   projecttype
+  - column_name:  Active  
+    column_data_type:   string 
+    nullable: true
+    comment:  Active  
+    data_classification: null
+    raw_column_name:   _active
+  - column_name:  ProjectOwnerOrganizationId  
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectOwnerOrganizationId  
+    data_classification: null
+    raw_column_name:   projectownerorganizationid
+  - column_name:  ProjectOwnerOrganizationName
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectOwnerOrganizationName
+    data_classification: null
+    raw_column_name:   projectownerorganizationname
+  - column_name:  ProjectOwnerOrganizationTradingName
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectOwnerOrganizationTradingName
+    data_classification: null
+    raw_column_name:   projeprojectownerorganizationtradingname
+  - column_name:  ProjectInstance
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectInstance
+    data_classification: null
+    raw_column_name:   projectinstance
+  - column_name:  ProjectCountry
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectCountry
+    data_classification: null
+    raw_column_name:   projectcountry
+  - column_name:  ProjectState
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectState
+    data_classification: null
+    raw_column_name:   projectstate
+  - column_name:  ProjectCity
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectCity
+    data_classification: null
+    raw_column_name:   projectcity
+  - column_name:  ProjectAddressLine
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectAddressLine
+    data_classification: null
+    raw_column_name:   projectaddressline
+  - column_name:  ProjectPostCode
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectPostCode
+    data_classification: null
+    raw_column_name:   projectpostcode
+  - column_name:  PhoneNumber
+    column_data_type:   string 
+    nullable: true
+    comment:  PhoneNumber
+    data_classification: null
+    raw_column_name:   phonenumber
+  - column_name:  FaxNumber
+    column_data_type:   string 
+    nullable: true
+    comment:  FaxNumber
+    data_classification: null
+    raw_column_name:   faxnumber
+  - column_name:  PostalCountry
+    column_data_type:   string 
+    nullable: true
+    comment:  PostalCountry
+    data_classification: null
+    raw_column_name:   postalcountry
+  - column_name:  PostalState
+    column_data_type:   string 
+    nullable: true
+    comment:  PostalState
+    data_classification: null
+    raw_column_name:   postalstate
+  - column_name:  PostalCity
+    column_data_type:   string 
+    nullable: true
+    comment:  PostalCity
+    data_classification: null
+    raw_column_name:   postalcity
+  - column_name:  PostalAddressLine
+    column_data_type:   string 
+    nullable: true
+    comment:  PostalAddressLine
+    data_classification: null
+    raw_column_name:   postaladdressline
+  - column_name:  PostalPostCode
+    column_data_type:   string 
+    nullable: true
+    comment:  PostalPostCode
+    data_classification: null
+    raw_column_name:   postalpostcode
+  - column_name:  DeliveryCountry
+    column_data_type:   string 
+    nullable: true
+    comment:  DeliveryCountry
+    data_classification: null
+    raw_column_name:   deliverycountry
+  - column_name:  DeliveryState
+    column_data_type:   string 
+    nullable: true
+    comment:  DeliveryState
+    data_classification: null
+    raw_column_name:   deliverystate
+  - column_name:  DeliveryCity
+    column_data_type:   string 
+    nullable: true
+    comment:  DeliveryCity
+    data_classification: null
+    raw_column_name:   deliverycity
+  - column_name:  DeliveryAddressLine
+    column_data_type:   string 
+    nullable: true
+    comment:  DeliveryAddressLine
+    data_classification: null
+    raw_column_name:   deliveryaddressline
+  - column_name:  DeliveryPostCode
+    column_data_type:   string 
+    nullable: true
+    comment:  DeliveryPostCode
+    data_classification: null
+    raw_column_name:   deliverypostcode
+  - column_name:  ProjectValue
+    column_data_type:   string 
+    nullable: true
+    comment:  ProjectValue
+    data_classification: null
+    raw_column_name:   projectvalue
+  - column_name:  StartDate
+    column_data_type:   string 
+    nullable: true
+    comment:  StartDate
+    data_classification: null
+    raw_column_name:   startdate
+  - column_name:  StopDate
+    column_data_type:   string 
+    nullable: true
+    comment:  StopDate
+    data_classification: null
+    raw_column_name:   stopdate
+  - column_name:  CreationDate
+    column_data_type:   string 
+    nullable: true
+    comment:  CreationDate
+    data_classification: null
+    raw_column_name:   creationdate
+  - column_name:  Hidden
+    column_data_type:   string 
+    nullable: true
+    comment:  Hidden
+    data_classification: null
+    raw_column_name:   _hidden
+  - column_name:  AccessLevel
+    column_data_type:   string 
+    nullable: true
+    comment:  AccessLevel
+    data_classification: null
+    raw_column_name:   _accesslevel
+  - column_name:  DisconnectionStatus
+    column_data_type:   string 
+    nullable: true
+    comment:  DisconnectionStatus
+    data_classification: null
+    raw_column_name:   _disconnectionstatus
+  - column_name:  LogoPath
+    column_data_type:   string 
+    nullable: true
+    comment:  LogoPath
+    data_classification: null
+    raw_column_name:   _logopath

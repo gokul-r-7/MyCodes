@@ -1,0 +1,138 @@
+SourceSystemId: circuit_breaker_curated
+MetadataType: curated#circuit_breaker#consumption_flexera#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/circuit_breaker/parquet/consumption_flexera.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: consumption_flexera_curated
+  name: consumption_flexera_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: flexera_id
+    comment: flexera_gsr_id
+    data_classification: 
+    nullable: true
+    raw_column_name: gsr_id
+  - column_data_type: string
+    column_name: flexera_installation_publisher
+    comment: flexera_installation_publisher
+    data_classification: 
+    nullable: true
+    raw_column_name: installation__publisher
+  - column_data_type: string
+    column_name: flexera_installation_application_name
+    comment: flexera_installation_application_name
+    data_classification: 
+    nullable: true
+    raw_column_name: installation__application_name
+  - column_data_type: string
+    column_name: flexera_application_classification
+    comment: flexera_application_classification
+    data_classification: 
+    nullable: true
+    raw_column_name: application__classification
+  - column_data_type: string
+    column_name: flexera_inventory_device_inventory_device_name
+    comment: flexera_inventory_device_inventory_device_name
+    data_classification: 
+    nullable: true
+    raw_column_name: inventory_device__inventory_device_name
+  - column_data_type: string
+    column_name: flexera_inventory_device_operating_system
+    comment: flexera_inventory_device_operating_system
+    data_classification: 
+    nullable: true
+    raw_column_name: inventory_device__operating_system
+  - column_data_type: string
+    column_name: flexera_last_logged_on_user_account
+    comment: flexera_last_logged_on_user_account
+    data_classification: 
+    nullable: true
+    raw_column_name: last_logged_on_user__account
+  - column_data_type: string
+    column_name: flexera_calculated_user_account
+    comment: flexera_calculated_user_account
+    data_classification: 
+    nullable: true
+    raw_column_name: calculated_user__account
+  - column_data_type: string
+    column_name: flexera_inventory_device_inventory_device_type
+    comment: flexera_inventory_device_inventory_device_type
+    data_classification: 
+    nullable: true
+    raw_column_name: inventory_device__inventory_device_type
+  - column_data_type: string
+    column_name: flexera_installation_version
+    comment: flexera_installation_version
+    data_classification: 
+    nullable: true
+    raw_column_name: installation__version
+  - column_data_type: string
+    column_name: flexera_application_edition
+    comment: flexera_application_edition
+    data_classification: 
+    nullable: true
+    raw_column_name: application__edition
+  - column_data_type: string
+    column_name: flexera_installation_is_used
+    comment: flexera_installation_is_used
+    data_classification: 
+    nullable: true
+    raw_column_name: installation__is_used
+  - column_data_type: string
+    column_name: flexera_application_number_of_sessions_for_usage
+    comment: flexera_application_number_of_sessions_for_usage
+    data_classification: 
+    nullable: true
+    raw_column_name: application__number_of_sessions_for_usage
+  - column_data_type: string
+    column_name: flexera_inventory_device_location
+    comment: flexera_inventory_device_location
+    data_classification: 
+    nullable: true
+    raw_column_name: inventory_device__location
+  - column_data_type: string
+    column_name: flexera_installation_last_used_date
+    comment: flexera_installation_last_used_date
+    data_classification: 
+    nullable: true
+    raw_column_name: installation__last_used_date
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: worley_datalake_sydney_${envn}_glue_catalog_database_circuit_breaker_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/circuit_breaker/consumption/curated_consumption_flexera/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_consumption_flexera
+  load_type: full_load
+  name: curated_consumption_flexera
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/circuit_breaker/consumption/curated_consumption_flexera
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'circuit_breaker' as SOURCE_SYSTEM_NAME, 'consumption_flexera' as
+    CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,156 @@
+SourceSystemId: e3d_curated
+MetadataType: curated#vg_E3D#pipelistrep#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/e3d/parquet/pipelistrep.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_E3D-csv_xlsx_curated
+  name: vg_E3D_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: PIPE
+    comment: PIPE
+    data_classification: 
+    nullable: true
+    raw_column_name: pipe
+  - column_data_type: string
+    column_name: SITE
+    comment: SITE
+    data_classification: 
+    nullable: true
+    raw_column_name: site
+  - column_data_type: string
+    column_name: ZONE
+    comment: ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: BORE
+    comment: BORE
+    data_classification: 
+    nullable: true
+    raw_column_name: bore
+  - column_data_type: string
+    column_name: PSPEC
+    comment: PSPEC
+    data_classification: 
+    nullable: true
+    raw_column_name: pspec
+  - column_data_type: string
+    column_name: ISPEC_PIPE
+    comment: ISPEC_PIPE
+    data_classification: 
+    nullable: true
+    raw_column_name: ispec_pipe
+  - column_data_type: string
+    column_name: TSPEC
+    comment: TSPEC
+    data_classification: 
+    nullable: true
+    raw_column_name: tspec
+  - column_data_type: string
+    column_name: STATUS
+    comment: STATUS
+    data_classification: 
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: DUTY
+    comment: DUTY
+    data_classification: 
+    nullable: true
+    raw_column_name: duty
+  - column_data_type: string
+    column_name: SYSCODE
+    comment: SYSCODE
+    data_classification: 
+    nullable: true
+    raw_column_name: syscode
+  - column_data_type: string
+    column_name: LSNO
+    comment: LSNO
+    data_classification: 
+    nullable: true
+    raw_column_name: lsno
+  - column_data_type: string
+    column_name: REV
+    comment: REV
+    data_classification: 
+    nullable: true
+    raw_column_name: rev
+  - column_data_type: string
+    column_name: LOCK
+    comment: LOCK
+    data_classification: 
+    nullable: true
+    raw_column_name: lock
+  - column_data_type: string
+    column_name: PID
+    comment: PID
+    data_classification: 
+    nullable: true
+    raw_column_name: pid
+  - column_data_type: string
+    column_name: CWA
+    comment: CWA
+    data_classification: 
+    nullable: true
+    raw_column_name: cwa
+  - column_data_type: string
+    column_name: CWP
+    comment: CWP
+    data_classification: 
+    nullable: true
+    raw_column_name: cwp
+  - column_data_type: string
+    column_name: ISODWGNO
+    comment: ISODWGNO
+    data_classification: 
+    nullable: true
+    raw_column_name: isodwgno
+  - column_data_type: string
+    column_name: CLIENTDOCNO
+    comment: CLIENTDOCNO
+    data_classification: 
+    nullable: true
+    raw_column_name: clientdocno
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_e3d_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/e3d/pipelistrep/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_pipelistrep
+  name: curated_vg_E3D_pipelistrep
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/e3d/pipelistrep
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_E3D' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

@@ -1,0 +1,26 @@
+SourceSystemId: csp_salesforce
+MetadataType: api#csp_salesforce#unit__c
+api_parameter:
+  endpoint: '{instance_url}/services/data/v{api_version}/query?q={soql_query}'
+  sf_qualified_api_name: unit__c
+job_parameter:
+  bucket_data_source_prefix: unit__c
+  bucket_name: ${raw_bucket}
+  status_timeout: 60
+  input_path: null
+  output_s3: customer/csp_salesforce/unit__c
+  temp_output_path: temp/customer/csp_salesforce/unit__c/raw
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: customer/csp_salesforce/data_sampling/unit__c
+  full_incremental: I
+  index_key: LastModifiedDate
+  incremental_value_format: '{yyyy}-{MM}-{dd}T{HH}:{mm}:{ss}.{SSS}'
+  incremental_default: 2020-01-01T00:00:00.000%2B0000
+  job_process_folder: customer/csp_salesforce/audit_folder
+  job_process_file: unit__c/unit__c_process.json
+  is_named_col: true
+  named_columns: Id,OwnerId,IsDeleted,Name,CurrencyIsoCode,RecordTypeId,CreatedDate,CreatedById,LastModifiedDate,LastModifiedById,SystemModstamp,LastViewedDate,LastReferencedDate,Active__c,Business_Unit__c,ECRMigrationExternalID__c,Legacy__c,Line_of_Business__c,Sales_Plan_Gross_Margin_Q1__c,Sales_Plan_Gross_Margin_Q2__c,Sales_Plan_Gross_Margin_Q3__c,Sales_Plan_Gross_Margin_Q4__c,Sales_Plan_Gross_Margin__c,Sales_Plan_Hours_Q1__c,Sales_Plan_Hours_Q2__c,Sales_Plan_Hours_Q3__c,Sales_Plan_Hours_Q4__c,Sales_Plan_Hours__c,Sales_Plan_Revenue_Q1__c,Sales_Plan_Revenue_Q2__c,Sales_Plan_Revenue_Q3__c,Sales_Plan_Revenue_Q4__c,Sales_Plan_Revenue__c,Sales_Region__c,Sector__c,BL_Short__c,Business_Line__c,Country__c,Executing_Office__c,Fin_System__c,L2__c,Legacy_ECR_PU__c,Office__c,Sales_Plan_Gross_Margin_AUD__c,Sales_Plan_Gross_Margin_Q1_AUD__c,Sales_Plan_Gross_Margin_Q2_AUD__c,Sales_Plan_Gross_Margin_Q3_AUD__c,Sales_Plan_Gross_Margin_Q4_AUD__c,Sales_Plan_Revenue_AUD__c,Sales_Plan_Revenue_Q1_AUD__c,Sales_Plan_Revenue_Q2_AUD__c,Sales_Plan_Revenue_Q3_AUD__c,Sales_Plan_Revenue_Q4_AUD__c,Business_Segment__c,GBS_Business__c,GBS_Location__c,GBS_Performance_Unit__c,GBS_Region__c,Selling_Business__c,Fiscal_Year__c,Description__c,ECR_L0__c,GBS_Market_Subsector__c,Market_Sector_L1__c,Market_Segment_L3__c,Market_Subsector_L2__c
+is_active: Y
+name: unit__c
+aws_region: ${region}

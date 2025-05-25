@@ -1,0 +1,207 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishProcSchHdrCpv#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishProcSchHdrCpv/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishProcSchHdrCpv
+  name: erm_PublishProcSchHdrCpv
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: 
+    nullable: true
+    raw_column_name: tablename  
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: proc_sch_hdr_no
+    comment: proc_sch_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proc_sch_hdr_no
+  - column_data_type: string
+    column_name: criticality
+    comment: criticality
+    data_classification: null
+    nullable: true
+    raw_column_name: criticality
+  - column_data_type: decimal(38,2)
+    column_name: budget
+    comment: budget
+    data_classification: null
+    nullable: true
+    raw_column_name: budget
+  - column_data_type: string
+    column_name: budget_currency
+    comment: budget_currency
+    data_classification: null
+    nullable: true
+    raw_column_name: budget_currency
+  - column_data_type: decimal(38,2)
+    column_name: client_ref_no
+    comment: client_ref_no
+    data_classification: null
+    nullable: true
+    raw_column_name: client_ref_no
+  - column_data_type: string
+    column_name: expediter
+    comment: expediter
+    data_classification: null
+    nullable: true
+    raw_column_name: expediter
+  - column_data_type: string
+    column_name: originator
+    comment: originator
+    data_classification: null
+    nullable: true
+    raw_column_name: originator
+  - column_data_type: string
+    column_name: potential_suppliers
+    comment: potential_suppliers
+    data_classification: null
+    nullable: true
+    raw_column_name: potential_suppliers
+  - column_data_type: decimal(38,2)
+    column_name: template
+    comment: template
+    data_classification: null
+    nullable: true
+    raw_column_name: template
+  - column_data_type: string
+    column_name: sub_project
+    comment: sub_project
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_project
+  - column_data_type: string
+    column_name: lead_time
+    comment: lead_time
+    data_classification: null
+    nullable: true
+    raw_column_name: lead_time
+  - column_data_type: decimal(38,2)
+    column_name: print_tags
+    comment: print_tags
+    data_classification: null
+    nullable: true
+    raw_column_name: print_tags
+  - column_data_type: decimal(38,2)
+    column_name: spp_approved
+    comment: spp_approved
+    data_classification: null
+    nullable: true
+    raw_column_name: spp_approved
+  - column_data_type: decimal(38,2)
+    column_name: spp_required
+    comment: spp_required
+    data_classification: null
+    nullable: true
+    raw_column_name: spp_required
+  - column_data_type: string
+    column_name: package_lead
+    comment: package_lead
+    data_classification: null
+    nullable: true
+    raw_column_name: package_lead
+  - column_data_type: string
+    column_name: package_eng
+    comment: package_eng
+    data_classification: null
+    nullable: true
+    raw_column_name: package_eng
+  - column_data_type: string
+    column_name: client_lead
+    comment: client_lead
+    data_classification: null
+    nullable: true
+    raw_column_name: client_lead
+  - column_data_type: decimal(38,2)
+    column_name: cust_po_no
+    comment: cust_po_no
+    data_classification: null
+    nullable: true
+    raw_column_name: cust_po_no
+  - column_data_type: string
+    column_name: phase
+    comment: phase
+    data_classification: null
+    nullable: true
+    raw_column_name: phase
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishProcSchHdrCpv/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: proc_sch_hdr_cpv
+  load_type: cdc
+  name: proc_sch_hdr_cpv
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishProcSchHdrCpv
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

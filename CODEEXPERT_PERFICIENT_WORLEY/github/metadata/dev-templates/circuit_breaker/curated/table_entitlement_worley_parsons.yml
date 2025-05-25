@@ -1,0 +1,240 @@
+SourceSystemId: circuit_breaker_curated
+MetadataType: curated#circuit_breaker#entitlement_worley_parsons#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/circuit_breaker/parquet/entitlement_worley_parsons.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: entitlement_worley_parsons_curated
+  name: entitlement_worley_parsons_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: worley_parsons_id
+    comment: worley_parsons_id
+    data_classification: 
+    nullable: true
+    raw_column_name: gsr_number
+  - column_data_type: string
+    column_name: worley_parsons_application_name
+    comment: worley_parsons_application_name
+    data_classification: 
+    nullable: true
+    raw_column_name: application_name
+  - column_data_type: string
+    column_name: worley_parsons_component_name
+    comment: worley_parsons_component_name
+    data_classification: 
+    nullable: true
+    raw_column_name: component_name
+  - column_data_type: string
+    column_name: worley_parsons_versions
+    comment: worley_parsons_versions
+    data_classification: 
+    nullable: true
+    raw_column_name: version_s
+  - column_data_type: string
+    column_name: worley_parsons_publisher_name
+    comment: worley_parsons_publisher_name
+    data_classification: 
+    nullable: true
+    raw_column_name: publisher_name
+  - column_data_type: string
+    column_name: worley_parsons_application_maintenance_status
+    comment: worley_parsons_application_maintenance_status
+    data_classification: 
+    nullable: true
+    raw_column_name: application__maintenance_status
+  - column_data_type: string
+    column_name: worley_parsons_license_type
+    comment: worley_parsons_license_type
+    data_classification: 
+    nullable: true
+    raw_column_name: license_type
+  - column_data_type: string
+    column_name: worley_parsons_concurrent_named
+    comment: worley_parsons_concurrent_named
+    data_classification: 
+    nullable: true
+    raw_column_name: concurrent_named
+  - column_data_type: string
+    column_name: worley_parsons_all
+    comment: worley_parsons_all
+    data_classification: 
+    nullable: true
+    raw_column_name: all
+  - column_data_type: string
+    column_name: worley_parsons_network_license
+    comment: worley_parsons_network_license
+    data_classification: 
+    nullable: true
+    raw_column_name: network_license
+  - column_data_type: string
+    column_name: worley_parsons_standalone
+    comment: worley_parsons_standalone
+    data_classification: 
+    nullable: true
+    raw_column_name: standalone
+  - column_data_type: string
+    column_name: worley_parsons_dongle
+    comment: worley_parsons_dongle
+    data_classification: 
+    nullable: true
+    raw_column_name: dongle
+  - column_data_type: string
+    column_name: worley_parsons_others
+    comment: worley_parsons_others
+    data_classification: 
+    nullable: true
+    raw_column_name: others
+  - column_data_type: string
+    column_name: worley_parsons_support_maintenance
+    comment: worley_parsons_support_maintenance
+    data_classification: 
+    nullable: true
+    raw_column_name: support__maintenance
+  - column_data_type: string
+    column_name: worley_parsons_token_weight
+    comment: worley_parsons_token_weight
+    data_classification: 
+    nullable: true
+    raw_column_name: token_weight
+  - column_data_type: string
+    column_name: worley_parsons_token_unit
+    comment: worley_parsons_token_unit
+    data_classification: 
+    nullable: true
+    raw_column_name: token_unit
+  - column_data_type: string
+    column_name: worley_parsons_total_tokens
+    comment: worley_parsons_total_tokens
+    data_classification: 
+    nullable: true
+    raw_column_name: total_tokens
+  - column_data_type: string
+    column_name: worley_parsons_licensed_locations_local_licenses_usually_have_internal_restrictions
+    comment: worley_parsons_licensed_locations_local_licenses_usually_have_internal_restrictions
+    data_classification: 
+    nullable: true
+    raw_column_name: licensed_locations_local_licenses_usually_have_internal_restrictions
+  - column_data_type: string
+    column_name: worley_parsons_vendors_restrictions
+    comment: worley_parsons_vendors_restrictions
+    data_classification: 
+    nullable: true
+    raw_column_name: vendor_s_restrictions
+  - column_data_type: string
+    column_name: worley_parsons_evidence_of_entitlement_procon_contract_reference_number
+    comment: worley_parsons_evidence_of_entitlement_procon_contract_reference_number
+    data_classification: 
+    nullable: true
+    raw_column_name: evidence_of_entitlement__procon_contract_reference_number
+  - column_data_type: string
+    column_name: worley_parsons_license_start_date
+    comment: worley_parsons_license_start_date
+    data_classification: 
+    nullable: true
+    raw_column_name: license_start_date_dd_mm_yyyy
+  - column_data_type: string
+    column_name: worley_parsons_license_end_date
+    comment: worley_parsons_license_end_date
+    data_classification: 
+    nullable: true
+    raw_column_name: license_end_date_dd_mm_yyyy
+  - column_data_type: string
+    column_name: worley_parsons_application_owner
+    comment: worley_parsons_application_owner
+    data_classification: 
+    nullable: true
+    raw_column_name: application_owner_ie_action_party__who_is_alerted_when_expiry_is_due
+  - column_data_type: string
+    column_name: worley_parsons_license_manager
+    comment: worley_parsons_license_manager
+    data_classification: 
+    nullable: true
+    raw_column_name: license_manager
+  - column_data_type: string
+    column_name: worley_parsons_additional_info_free_text_field
+    comment: worley_parsons_additional_info_free_text_field
+    data_classification: 
+    nullable: true
+    raw_column_name: additional_info_free_text_field
+  - column_data_type: string
+    column_name: worley_parsons_installation_path
+    comment: worley_parsons_installation_path
+    data_classification: 
+    nullable: true
+    raw_column_name: installation_path
+  - column_data_type: string
+    column_name: worley_parsons_license_servers
+    comment: worley_parsons_license_servers
+    data_classification: 
+    nullable: true
+    raw_column_name: license_servers
+  - column_data_type: string
+    column_name: worley_parsons_deployment
+    comment: worley_parsons_deployment
+    data_classification: 
+    nullable: true
+    raw_column_name: deployment
+  - column_data_type: string
+    column_name: worley_parsons_citrix
+    comment: worley_parsons_citrix
+    data_classification: 
+    nullable: true
+    raw_column_name: citrix
+  - column_data_type: string
+    column_name: worley_parsons_software_category
+    comment: worley_parsons_software_category
+    data_classification: 
+    nullable: true
+    raw_column_name: software_category
+  - column_data_type: string
+    column_name: worley_parsons_status
+    comment: worley_parsons_status
+    data_classification: 
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: worley_parsons_entry_discontinued_date
+    comment: worley_parsons_entry_discontinued_date
+    data_classification: 
+    nullable: true
+    raw_column_name: entry_discontinued_date_dd_mm_yyyy
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: worley_datalake_sydney_${envn}_glue_catalog_database_circuit_breaker_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_worley_parsons/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_entitlement_worley_parsons
+  load_type: full_load
+  name: curated_entitlement_worley_parsons
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_worley_parsons
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'circuit_breaker' as SOURCE_SYSTEM_NAME, 'entitlement_worley_parsons'
+    as CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

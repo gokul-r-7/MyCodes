@@ -1,0 +1,18 @@
+SourceSystemId: spi
+MetadataType: db#spi#UDF_COMPONENT
+name: UDF_COMPONENT
+is_active: y
+db_parameter:
+  partition_column: None # Mandatory (Key)
+  date_delta_column: None # Mandatory (Key)
+  connection_parms: /worley/dev/db/spi #Mandatory (Key and Value)
+  secret_key: ${secret_prefix}-db-spi  # This goes into SecretsManager (Mandatory) (Key and Value)
+  ssl_flag : False
+  db_name_nonprod : IT_VGCP  #Mandatory (Key and Value)
+  db_name_prod : IT_VGCP  #Mandatory (Key and Value)
+  db_type : ORACLE #Mandatory (Key and Value)
+job_parameter:
+  bucket_name: ${raw_bucket}
+  input_path : None
+  full_incr: f
+  table_prefix: UDF_COMPONENT

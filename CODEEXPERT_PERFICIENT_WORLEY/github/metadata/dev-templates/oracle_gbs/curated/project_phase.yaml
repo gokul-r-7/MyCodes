@@ -1,0 +1,124 @@
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#project_phase#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/project_phase.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: project_phase
+  name: project_phase
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/project_phase/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: project_phase
+  load_type: incremental_no_delete
+  name: project_phase
+  primary_key: br_key
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/project_phase
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: br_key
+    rename_columns: true
+  columns:
+  - column_name: datasource_num_id
+    column_data_type: decimal(38,0)
+    comment: datasource_num_id
+    data_classification:
+    nullable: true
+    raw_column_name: datasource_num_id  
+  - column_name: br_key
+    column_data_type: string
+    comment: br_key
+    data_classification:
+    nullable: true
+    raw_column_name: br_key
+  - column_name: br_project_key
+    column_data_type: string
+    comment: br_project_key
+    data_classification:
+    nullable: true
+    raw_column_name: br_project_key
+  - column_name: br_project_phase_key
+    column_data_type: string
+    comment: br_project_phase_key
+    data_classification:
+    nullable: true
+    raw_column_name: br_project_phase_key
+  - column_name: project_phase_id
+    column_data_type: string
+    comment: project_phase_id
+    data_classification:
+    nullable: true
+    raw_column_name: project_phase_id
+  - column_name: project_number
+    column_data_type: string
+    comment: project_number
+    data_classification:
+    nullable: true
+    raw_column_name: project_number
+  - column_name: project_phase_type
+    column_data_type: string
+    comment: project_phase_type
+    data_classification:
+    nullable: true
+    raw_column_name: project_phase_type
+  - column_name: class_code_id
+    column_data_type: string
+    comment: class_code_id
+    data_classification:
+    nullable: true
+    raw_column_name: class_code_id
+  - column_name: start_date_active
+    column_data_type: string
+    comment: start_date_active
+    data_classification:
+    nullable: true
+    raw_column_name: start_date_active
+  - column_name: end_date_active
+    column_data_type: string
+    comment: end_date_active
+    data_classification:
+    nullable: true
+    raw_column_name: end_date_active
+  - column_name: effective_start_date
+    column_data_type: string
+    comment: effective_start_date
+    data_classification:
+    nullable: true
+    raw_column_name: effective_start_date
+  - column_name: effective_end_date
+    column_data_type: string
+    comment: effective_end_date
+    data_classification:
+    nullable: true
+    raw_column_name: effective_end_date

@@ -1,0 +1,18 @@
+SourceSystemId: ecosys
+MetadataType: api#ecosys#project_based_airflow_data_config
+name: ecosys_project_based_airflow_data_config
+dev:
+  region: "${region}"
+  Project:
+    - Project_VG
+    - Project_DAC
+qa:
+  region: "${region}"
+  Project:
+    - Project_VG
+    - Project_DAC
+prd:
+  region: "${region}"
+  Project:
+    - Project_VG
+    - Project_DAC

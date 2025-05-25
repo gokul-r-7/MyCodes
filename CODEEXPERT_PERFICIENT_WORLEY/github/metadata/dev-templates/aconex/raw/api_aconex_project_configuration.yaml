@@ -1,0 +1,134 @@
+---
+SourceSystemId: aconex
+MetadataType: api#aconex#project
+api_parameter:
+  api_body: 
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/xml
+  api_method: get
+  api_query_params: 
+  api_response_type: xml
+  api_retry: 6
+  api_ssl_verify: False
+  api_timeout: 60
+  auth_type: Basic
+  dynamic_api_headers:
+    Authorization: ''
+  dynamic_api_query_param: 
+  endpoint_prefix: https://
+  endpoint_suffix: "/api/projects"
+  secret_key: ${secret_prefix}-db-aconex
+aws_region: ${region}
+is_active: "y"
+job_parameter:
+  bucket_data_source_prefix: document_control/aconex
+  bucket_name: ${raw_bucket}
+  full_incr: f
+  incremental_criteria_folder_location: document_control/aconex/workflow_audit_folder
+  incremental_default_date: '19010101'
+  input_path: temp/document_control/aconex/project/raw_data/
+  kms_key_id: ${kms_key_id}
+  output_s3: document_control/aconex
+  root_tag: Project
+  row_tag: Project
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: document_control/aconex/data_sampling
+  temp_output_path: s3://${raw_bucket}/temp/document_control/aconex/project/relationalized_data/
+org_filter:
+  - instance_name: ASIA1
+    organisation: Worley
+    orgid: 805537003
+  - instance_name: ASIA2
+    organisation: Advisian Limited (Hong Kong)
+    orgid: 1074006092
+  - instance_name: ASIA2
+    organisation: Intecsea
+    orgid: 1074022596
+  - instance_name: ASIA2
+    organisation: Worley
+    orgid: 244324
+  - instance_name: AU1
+    organisation: Advisian
+    orgid: 234993
+  - instance_name: AU1
+    organisation: Intecsea
+    orgid: 1476464311
+  - instance_name: AU1
+    organisation: Worley
+    orgid: 244324
+  - instance_name: AU1
+    organisation: Worley Limited
+    orgid: 1476505919
+  - instance_name: CA1
+    organisation: Chemetics Inc
+    orgid: 1879055324
+  - instance_name: CA1
+    organisation: Chemetics Inc. Pickering
+    orgid: 1879055721
+  - instance_name: CA1
+    organisation: Advisian
+    orgid: 1879055501
+  - instance_name: CA1
+    organisation: Worley
+    orgid: 1879053229
+  - instance_name: CA1
+    organisation: Worley Canada Nuclear
+    orgid: 1879053414
+  - instance_name: KSA1
+    organisation: Advisian
+    orgid: 1342181800
+  - instance_name: KSA1
+    organisation: Worley
+    orgid: 1342180667
+  - instance_name: MEA
+    organisation: Advisian
+    orgid: 1744835757
+  - instance_name: MEA
+    organisation: Worley
+    orgid: 537131774
+  - instance_name: MEA
+    organisation: Worley OFF-PLOT
+    orgid: 1744844587
+  - instance_name: UK1
+    organisation: Advisian
+    orgid: 268482922
+  - instance_name: UK1
+    organisation: Chemetics Inc
+    orgid: 268556861
+  - instance_name: UK1
+    organisation: Deltaafrik Engineering Limited
+    orgid: 268526988
+  - instance_name: UK1
+    organisation: Intecsea
+    orgid: 268508464
+  - instance_name: UK1
+    organisation: Worley
+    orgid: 268459987
+  - instance_name: UK1
+    organisation: Worley Europe Ltd
+    orgid: 268534457
+  - instance_name: US1
+    organisation: Advisian
+    orgid: 1207984497
+  - instance_name: US1
+    organisation: Intecsea
+    orgid: 1207984397
+  - instance_name: US1
+    organisation: Nana Worley
+    orgid: 1207996276
+  - instance_name: US1
+    organisation: Worley
+    orgid: 1207959732
+  - instance_name: US1
+    organisation: Worley Canada ULC
+    orgid: 1207968297
+  - instance_name: US1
+    organisation: Worley Europe Ltd
+    orgid: 1208000857
+  - instance_name: US1
+    organisation: Worley Parsons
+    orgid: 1207967927
+name: project
+page_size: 500

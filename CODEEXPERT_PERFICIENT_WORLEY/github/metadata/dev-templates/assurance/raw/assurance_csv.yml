@@ -1,0 +1,833 @@
+---
+SourceSystemId: assurance
+MetadataType: csv#assurance
+aws_region: ${region}
+Env: {envn}
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: health_safety_environment/assurance/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: health_safety_environment/assurance/parquet/
+  raw_files_path: health_safety_environment/assurance/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true 
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: health_safety_environment/assurance/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: [] 
+  csv_files:
+    - filename: dataextract_rt_action_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: action
+      with_header: true
+    - filename: dataextract_rt_assessment_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: assessment
+      with_header: true
+    - filename: dataextract_rt_event_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event
+      with_header: true
+    - filename: dataextract_rt_geography_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: geography
+      with_header: true
+    - filename: dataextract_rt_hazard_identification_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: hazard_identification
+      with_header: true
+    - filename: dataextract_rt_hours_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: hours
+      with_header: true
+    - filename: dataextract_rt_injury_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury
+      with_header: true
+    - filename: dataextract_rt_leadership_activity_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: leadership_activity
+      with_header: true
+    - filename: dataextract_rt_person_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: person
+      with_header: true
+    - filename: dataextract_rt_project_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: project
+      with_header: true
+    - filename: dataextract_rt_system_time_period_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: system_time_period
+      with_header: true
+    - filename: dataextract_rt_worley_reporting_region_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: worley_reporting_region
+      with_header: true
+    - filename: dataextract_rt_action_action_team_members_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: action_action_team_members
+      with_header: true
+    - filename: dataextract_rt_action_plan_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: action_plan
+      with_header: true
+    - filename: dataextract_rt_action_plan_action_team_members_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: action_plan_action_team_members
+      with_header: true
+    - filename: dataextract_rt_action_progress_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: action_progress
+      with_header: true
+    - filename: dataextract_rt_assessment_assessment_team_members_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: assessment_assessment_team_members
+      with_header: true
+    - filename: dataextract_rt_assessment_engineering_discipline_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: assessment_engineering_discipline
+      with_header: true
+    - filename: dataextract_rt_assessment_finding_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: assessment_finding
+      with_header: true
+    - filename: dataextract_rt_assessment_plan_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: assessment_plan
+      with_header: true
+    - filename: dataextract_rt_assessment_plan_plan_team_members_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: assessment_plan_plan_team_members
+      with_header: true
+    - filename: dataextract_rt_assessment_questionnaire_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: assessment_questionnaire
+      with_header: true
+    - filename: dataextract_rt_business_line_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: business_line
+      with_header: true
+    - filename: dataextract_rt_business_process_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: business_process
+      with_header: true
+    - filename: dataextract_rt_company_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: company
+      with_header: true
+    - filename: dataextract_rt_ems_business_process_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: ems_business_process
+      with_header: true
+    - filename: dataextract_rt_entity_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: entity
+      with_header: true
+    - filename: dataextract_rt_entity_obligation_involved_persons_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: entity_obligation_involved_persons
+      with_header: true
+    - filename: dataextract_rt_event_all_consequences_of_the_event_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_all_consequences_of_the_event
+      with_header: true
+    - filename: dataextract_rt_event_company_involved_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_company_involved
+      with_header: true
+    - filename: dataextract_rt_event_consequence_asset_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_asset
+      with_header: true
+    - filename: dataextract_rt_event_consequence_environmental_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_environmental
+      with_header: true
+    - filename: dataextract_rt_event_consequence_environmental_contaminants_contaminant_type_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_environmental_contaminants_contaminant_type
+      with_header: true
+    - filename: dataextract_rt_event_consequence_environmental_flora_fauna_rarity_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_environmental_flora_fauna_rarity
+      with_header: true
+    - filename: dataextract_rt_event_consequence_environmental_type_of_ecological_loss_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_environmental_type_of_ecological_loss
+      with_header: true
+    - filename: dataextract_rt_event_consequence_motor_vehicle_accident_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_motor_vehicle_accident
+      with_header: true
+    - filename: dataextract_rt_event_consequence_motor_vehicle_accident_weather_conditions_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_motor_vehicle_accident_weather_conditions
+      with_header: true
+    - filename: dataextract_rt_event_consequence_near_miss_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_near_miss
+      with_header: true
+    - filename: dataextract_rt_event_consequence_near_miss_agency_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_near_miss_agency
+      with_header: true
+    - filename: dataextract_rt_event_consequence_near_miss_contributing_factors_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_near_miss_contributing_factors
+      with_header: true
+    - filename: dataextract_rt_event_consequence_near_miss_environmental_conditions_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_near_miss_environmental_conditions
+      with_header: true
+    - filename: dataextract_rt_event_consequence_near_miss_possible_consequences_of_the_event_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_near_miss_possible_consequences_of_the_event
+      with_header: true
+    - filename: dataextract_rt_event_consequence_quality_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_quality
+      with_header: true
+    - filename: dataextract_rt_event_consequence_quality_engineering_discipline_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_quality_engineering_discipline
+      with_header: true
+    - filename: dataextract_rt_event_consequence_quality_product_ncr_causal_factor_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_quality_product_ncr_causal_factor
+      with_header: true
+    - filename: dataextract_rt_event_consequence_quality_product_ncr_causal_factor_category_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_quality_product_ncr_causal_factor_category
+      with_header: true
+    - filename: dataextract_rt_event_consequence_quality_product_ncr_causal_factors_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_quality_product_ncr_causal_factors
+      with_header: true
+    - filename: dataextract_rt_event_consequence_quality_quality_event_management_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_quality_quality_event_management
+      with_header: true
+    - filename: dataextract_rt_event_consequence_security_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_security
+      with_header: true
+    - filename: dataextract_rt_event_consequence_security_type_of_security_event_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_consequence_security_type_of_security_event
+      with_header: true
+    - filename: dataextract_rt_event_employment_category_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_employment_category
+      with_header: true
+    - filename: dataextract_rt_event_formal_root_cause_analysis_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_formal_root_cause_analysis
+      with_header: true
+    - filename: dataextract_rt_event_formal_root_cause_analysis_asset_and_resources_driven_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_formal_root_cause_analysis_asset_and_resources_driven
+      with_header: true
+    - filename: dataextract_rt_event_formal_root_cause_analysis_environment_driven_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_formal_root_cause_analysis_environment_driven
+      with_header: true
+    - filename: dataextract_rt_event_formal_root_cause_analysis_materials_driven_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_formal_root_cause_analysis_materials_driven
+      with_header: true
+    - filename: dataextract_rt_event_formal_root_cause_analysis_people_driven_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_formal_root_cause_analysis_people_driven
+      with_header: true
+    - filename: dataextract_rt_event_formal_root_cause_analysis_process_driven_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_formal_root_cause_analysis_process_driven
+      with_header: true
+    - filename: dataextract_rt_event_formal_root_cause_analysis_systems_driven_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_formal_root_cause_analysis_systems_driven
+      with_header: true
+    - filename: dataextract_rt_event_investigation_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_investigation
+      with_header: true
+    - filename: dataextract_rt_event_investigation_investigation_team_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_investigation_investigation_team
+      with_header: true
+    - filename: dataextract_rt_event_investigation_sequence_of_events_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: event_investigation_sequence_of_events
+      with_header: true
+    - filename: dataextract_rt_geography_codes_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: geography_codes
+      with_header: true
+    - filename: dataextract_rt_geography_related_people_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: geography_related_people
+      with_header: true
+    - filename: dataextract_rt_hazard_category_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: hazard_category
+      with_header: true
+    - filename: dataextract_rt_hazard_identification_hazard_category_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: hazard_identification_hazard_category
+      with_header: true
+    - filename: dataextract_rt_hazard_identification_people_to_notify_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: hazard_identification_people_to_notify
+      with_header: true
+    - filename: dataextract_rt_injury_agency_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury_agency
+      with_header: true
+    - filename: dataextract_rt_injury_contributing_factors_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury_contributing_factors
+      with_header: true
+    - filename: dataextract_rt_injury_environmental_conditions_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury_environmental_conditions
+      with_header: true
+    - filename: dataextract_rt_injury_mechanism_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury_mechanism
+      with_header: true
+    - filename: dataextract_rt_injury_nature_and_body_part_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury_nature_and_body_part
+      with_header: true
+    - filename: dataextract_rt_injury_nature_and_body_part_side_of_body_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury_nature_and_body_part_side_of_body
+      with_header: true
+    - filename: dataextract_rt_injury_number_of_days_lost_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury_number_of_days_lost
+      with_header: true
+    - filename: dataextract_rt_injury_osha_recordable_criteria_met_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: injury_osha_recordable_criteria_met
+      with_header: true
+    - filename: dataextract_rt_leadership_activity_activity_delivery_method_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: leadership_activity_activity_delivery_method
+      with_header: true
+    - filename: dataextract_rt_leadership_activity_conversation_topics_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: leadership_activity_conversation_topics
+      with_header: true
+    - filename: dataextract_rt_person_business_line_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: person_business_line
+      with_header: true
+    - filename: dataextract_rt_person_geography_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: person_geography
+      with_header: true
+    - filename: dataextract_rt_person_obligation_business_processes_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: person_obligation_business_processes
+      with_header: true
+    - filename: dataextract_rt_person_project_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: person_project
+      with_header: true
+    - filename: dataextract_rt_person_subsector_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: person_subsector
+      with_header: true
+    - filename: dataextract_rt_product_ncr_causal_factor_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: product_ncr_causal_factor
+      with_header: true
+    - filename: dataextract_rt_project_hse_advisor_representative_team_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: project_hse_advisor_representative_team
+      with_header: true
+    - filename: dataextract_rt_project_project_manager_team_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: project_project_manager_team
+      with_header: true
+    - filename: dataextract_rt_project_recordable_and_hpi_email_group_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: project_recordable_and_hpi_email_group
+      with_header: true
+    - filename: dataextract_rt_questionnaire_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: questionnaire
+      with_header: true
+    - filename: dataextract_rt_scurve_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: scurve
+      with_header: true
+    - filename: dataextract_rt_subsector_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: subsector
+      with_header: true
+    - filename: dataextract_rt_unit_of_measure_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: unit_of_measure
+      with_header: true
+    - filename: dataextract_rt_unit_of_measure_conversion_20250123_2236.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 14
+      multiline: true
+      quote_character: ''
+      separator: '|'
+      tablename: unit_of_measure_conversion
+      with_header: true
+name: assurance
+Namespace: health_safety_environment

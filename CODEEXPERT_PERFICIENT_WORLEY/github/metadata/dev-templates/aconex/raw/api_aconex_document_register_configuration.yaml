@@ -1,0 +1,40 @@
+---
+SourceSystemId: aconex
+MetadataType: api#aconex#docregister
+api_parameter:
+  api_body: 
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/xml
+  api_method: get
+  api_query_params: 
+  api_response_type: xml
+  api_retry: 12
+  api_ssl_verify: false
+  api_timeout: 60
+  auth_type: Basic
+  dynamic_api_query_param: 
+  endpoint_prefix: https://
+  endpoint_suffix: "/api/projects"
+  secret_key: ${secret_prefix}-db-aconex
+aws_region: ${region}
+is_active: "y"
+job_parameter:
+  allAttributes: approved,asBuiltRequired,attribute1,attribute2,attribute3,attribute4,author,authorisedBy,category,check1,check2,comments,comments2,confidential,contractDeliverable,contractnumber,contractordocumentnumber,contractorrev,current,date1,date2,discipline,docno,doctype,filename,fileSize,fileType,forreview,markupLastModifiedDate,milestonedate,modifiedby,numberOfMarkups,packageNumber,percentComplete,plannedsubmissiondate,printSize,projectField1,projectField2,projectField3,received,reference,registered,reviewed,reviewSource,reviewstatus,revision,revisiondate,selectlist1,selectlist2,selectlist3,selectlist4,selectlist5,selectlist6,selectlist7,selectlist8,selectlist9,selectlist10,scale,statusid,tagNumber,title,toclient,trackingid,versionnumber,vdrcode,vendordocumentnumber,vendorrev
+  bucket_data_source_prefix: document_control/aconex
+  bucket_name: ${raw_bucket}
+  full_incr: i
+  incremental_criteria_folder_location: document_control/aconex/docregister_audit_folder
+  incremental_default_date: '19010101'
+  input_path: temp/document_control/aconex/docregister
+  kms_key_id: ${kms_key_id}
+  output_s3: document_control/aconex
+  root_tag: docregister
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: document_control/aconex/data_sampling
+  sources:
+    docregister_response: Document
+    docregister_schema: RegisterSchema
+name: docregister
+page_size: '500'

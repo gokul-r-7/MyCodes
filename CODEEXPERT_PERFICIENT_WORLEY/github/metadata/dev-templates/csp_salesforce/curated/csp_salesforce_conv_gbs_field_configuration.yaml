@@ -1,0 +1,70 @@
+SourceSystemId: csp_salesforce_curated
+MetadataType: curated#conv_gbs_field#csp_salesforce#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/customer/csp_salesforce/conv_tables/table_conv_gbs_field.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: csp_salesforce_conv_gbs_field_curated
+  name: conv_gbs_field_csv_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+    - column_data_type: string
+      column_name: attribute
+      comment: attribute
+      data_classification: null
+      nullable: true
+      raw_column_name: attribute
+    - column_data_type: string
+      column_name: metric
+      comment: metric
+      data_classification: null
+      nullable: true
+      raw_column_name: metric
+    - column_data_type: string
+      column_name: budget_actual
+      comment: budget_actual
+      data_classification: null
+      nullable: true
+      raw_column_name: budget_actual
+    - column_data_type: string
+      column_name: source
+      comment: source
+      data_classification: null
+      nullable: true
+      raw_column_name: source
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  deduplication_keys:
+    - attribute
+  iceberg_properties:
+    database_name: ${database_prefix}_customer_csp_salesforce_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: s3://${curated_bucket}/customer/csp_salesforce/conv_gbs_field
+      table_properties:
+        format-version: "2"
+        write.format.default: parquet
+    table_name: curated_conv_gbs_field
+  load_type: full_load
+  name: curated_conv_gbs_field
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/customer/csp_salesforce/conv_gbs_field
+transforms:
+  - rename_column: true
+    transform: rename_columns
+  - select_columns: true
+    transform: select_columns_from_config_file
+  - change_types: true
+    transform: change_data_types
+  - column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+    transform: add_run_date

@@ -1,0 +1,1191 @@
+SourceSystemId: curated_oracle_p6
+MetadataType: 'curated#oracle_p6#project_activitySpread#job#iceberg'
+source:
+  name: oracle_p6_project_activityspread
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: >-
+      s3://${raw_bucket}/project_control/oracle_p6/project_activitySpread/
+    format: parquet
+    transformation_ctx: oracle_p6-project_activityspread
+transforms:
+  - transform: rename_columns
+    rename_column: true
+  - transform: select_columns_from_config_file
+    select_columns: true
+  - transform: change_data_types
+    change_types: true
+  - transform: add_run_date
+    column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+  - transform: custom_sql
+    sql: 'SELECT *, ''oracle_p6'' as SOURCE_SYSTEM_NAME FROM temp_df_static'
+    temp_view_name: temp_df_static
+target:
+  name: curated_oracle_p6_project_activityspread
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_oracle_p6_curated
+    table_name: curated_project_activityspread
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: >-
+        ${curated_bucket}/project_control/oracle_p6/project_activityspread/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: full_load
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: project_id
+    entity_table_attribute_name: project_id
+    entity_s3_raw_partition_prefix: Project
+  spark_options:
+    format: iceberg
+    options:
+      path: >-
+        s3://${curated_bucket}/project_control/oracle_p6/project_activityspread
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: ACTIVITYID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityid
+  - column_data_type: integer
+    column_name: ACTIVITYOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityobjectid
+  - column_data_type: string
+    column_name: STARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startdate
+  - column_data_type: string
+    column_name: ENDDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: enddate
+  - column_data_type: string
+    column_name: PERIODTYPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: periodtype
+  - column_data_type: string
+    column_name: PERIOD_STARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_startdate
+  - column_data_type: string
+    column_name: PERIOD_ENDDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_enddate
+  - column_data_type: double
+    column_name: PERIOD_ACTUALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualcost
+  - column_data_type: double
+    column_name: PERIOD_ACTUALEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualexpensecost
+  - column_data_type: double
+    column_name: PERIOD_ACTUALLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actuallaborcost
+  - column_data_type: double
+    column_name: PERIOD_ACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actuallaborunits
+  - column_data_type: double
+    column_name: PERIOD_ACTUALMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualmaterialcost
+  - column_data_type: string
+    column_name: ACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actuallaborunits
+
+  - column_data_type: string
+    column_name: ACTIVITYOWNERUSERID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityowneruserid
+
+  - column_data_type: string
+    column_name: CBSCODE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbscode
+
+  - column_data_type: string
+    column_name: CBSID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbsid
+
+  - column_data_type: string
+    column_name: EXTERNALEARLYSTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externalearlystartdate
+
+  - column_data_type: string
+    column_name: EXTERNALLATEFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallatefinishdate
+
+  - column_data_type: string
+    column_name: FEEDBACK
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: feedback
+
+  - column_data_type: string
+    column_name: FLOATPATH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: floatpath
+
+  - column_data_type: string
+    column_name: FLOATPATHORDER
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: floatpathorder
+
+  - column_data_type: string
+    column_name: HASFUTUREBUCKETDATA
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hasfuturebucketdata
+
+  - column_data_type: string
+    column_name: LOCATIONNAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationname
+
+  - column_data_type: string
+    column_name: LOCATIONOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationobjectid
+
+  - column_data_type: string
+    column_name: MAXIMUMDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: maximumduration
+
+  - column_data_type: string
+    column_name: MINIMUMDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: minimumduration
+
+  - column_data_type: string
+    column_name: MOSTLIKELYDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mostlikelyduration
+
+  - column_data_type: string
+    column_name: NOTESTORESOURCES
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: notestoresources
+
+  - column_data_type: string
+    column_name: OWNERIDARRAY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: owneridarray
+
+  - column_data_type: string
+    column_name: OWNERNAMESARRAY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ownernamesarray
+
+  - column_data_type: string
+    column_name: POSTRESPCRITICALITYINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postrespcriticalityindex
+
+  - column_data_type: string
+    column_name: POSTRESPONSEPESSIMISTICFINISH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postresponsepessimisticfinish
+
+  - column_data_type: string
+    column_name: POSTRESPONSEPESSIMISTICSTART
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postresponsepessimisticstart
+
+  - column_data_type: string
+    column_name: PRERESPCRITICALITYINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prerespcriticalityindex
+
+  - column_data_type: string
+    column_name: PRERESPONSEPESSIMISTICFINISH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preresponsepessimisticfinish
+
+  - column_data_type: string
+    column_name: PRERESPONSEPESSIMISTICSTART
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preresponsepessimisticstart
+
+  - column_data_type: string
+    column_name: PRIMARYCONSTRAINTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primaryconstraintdate
+
+  - column_data_type: string
+    column_name: PROJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+
+  - column_data_type: string
+    column_name: RESUMEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resumedate
+
+  - column_data_type: string
+    column_name: REVIEWFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reviewfinishdate
+
+  - column_data_type: string
+    column_name: SECONDARYCONSTRAINTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secondaryconstraintdate
+
+  - column_data_type: string
+    column_name: SUSPENDDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: suspenddate
+
+  - column_data_type: string
+    column_name: TASKSTATUSINDICATOR
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: taskstatusindicator
+
+  - column_data_type: string
+    column_name: WORKPACKAGEID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: workpackageid
+  - column_data_type: double
+    column_name: PERIOD_ACTUALNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_ACTUALNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_ACTUALTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualtotalcost
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletionexpensecost
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletionlaborcost
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletionlaborunits
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletionmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletionnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletionnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletiontotalcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1ACTUALEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1actualexpensecost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1ACTUALLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1actuallaborcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1ACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1actuallaborunits
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1ACTUALMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1actualmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1ACTUALNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1actualnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1ACTUALNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1actualnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1ACTUALTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1actualtotalcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1PLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1plannedexpensecost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1PLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1plannedlaborcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1PLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1plannedlaborunits
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1PLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1plannedmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1PLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1plannednonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1PLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1plannednonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_BASELINE1PLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baseline1plannedtotalcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEACTUALEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineactualexpensecost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEACTUALLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineactuallaborcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineactuallaborunits
+  - column_data_type: double
+    column_name: PERIOD_BASELINEACTUALMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineactualmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEACTUALNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineactualnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEACTUALNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineactualnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_BASELINEACTUALTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineactualtotalcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEPLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineplannedexpensecost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEPLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineplannedlaborcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEPLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineplannedlaborunits
+  - column_data_type: double
+    column_name: PERIOD_BASELINEPLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineplannedmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEPLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineplannednonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_BASELINEPLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineplannednonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_BASELINEPLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_baselineplannedtotalcost
+  - column_data_type: double
+    column_name: PERIOD_EARNEDVALUECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_earnedvaluecost
+  - column_data_type: double
+    column_name: PERIOD_EARNEDVALUELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_earnedvaluelaborunits
+  - column_data_type: double
+    column_name: PERIOD_ESTIMATEATCOMPLETIONCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_estimateatcompletioncost
+  - column_data_type: double
+    column_name: PERIOD_ESTIMATEATCOMPLETIONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_estimateatcompletionlaborunits
+  - column_data_type: double
+    column_name: PERIOD_ESTIMATETOCOMPLETECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_estimatetocompletecost
+  - column_data_type: double
+    column_name: PERIOD_ESTIMATETOCOMPLETELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_estimatetocompletelaborunits
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedexpensecost
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedlaborcost
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedlaborunits
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannednonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannednonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedtotalcost
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDVALUECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedvaluecost
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDVALUELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedvaluelaborunits
+  - column_data_type: double
+    column_name: PERIOD_REMAININGEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remainingexpensecost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglaborcost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglaborunits
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATEEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglateexpensecost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATELABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglatelaborcost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglatelaborunits
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATEMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglatematerialcost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATENONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglatenonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATENONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglatenonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATETOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglatetotalcost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remainingmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remainingnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remainingnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_REMAININGTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remainingtotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactuallaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactuallaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualtotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletionexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletionlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletionlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletionmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletionnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletionnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletiontotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1ACTUALEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1actualexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1ACTUALLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1actuallaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1ACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1actuallaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1ACTUALMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1actualmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1ACTUALNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1actualnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1ACTUALNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1actualnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1ACTUALTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1actualtotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1PLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1plannedexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1PLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1plannedlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1PLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1plannedlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1PLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1plannedmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1PLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1plannednonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1PLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1plannednonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINE1PLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaseline1plannedtotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEACTUALEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineactualexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEACTUALLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineactuallaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineactuallaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEACTUALMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineactualmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEACTUALNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineactualnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEACTUALNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineactualnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEACTUALTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineactualtotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEPLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineplannedexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEPLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineplannedlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEPLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineplannedlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEPLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineplannedmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEPLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineplannednonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEPLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineplannednonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEBASELINEPLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativebaselineplannedtotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEEARNEDVALUECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeearnedvaluecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEEARNEDVALUELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeearnedvaluelaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEESTIMATEATCOMPLETIONCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeestimateatcompletioncost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEESTIMATEATCOMPLETIONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeestimateatcompletionlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEESTIMATETOCOMPLETECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeestimatetocompletecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEESTIMATETOCOMPLETELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeestimatetocompletelaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannednonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannednonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedtotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDVALUECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedvaluecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDVALUELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedvaluelaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremainingexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATEEXPENSECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglateexpensecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATELABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglatelaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATELABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglatelaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATEMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglatematerialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATENONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglatenonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATENONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglatenonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATETOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglatetotalcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGMATERIALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremainingmaterialcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGNONLABORCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremainingnonlaborcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGNONLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremainingnonlaborunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGTOTALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremainingtotalcost
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id

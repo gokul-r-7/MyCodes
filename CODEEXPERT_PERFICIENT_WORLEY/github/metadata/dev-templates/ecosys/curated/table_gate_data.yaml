@@ -1,0 +1,239 @@
+SourceSystemId: ecosys_curated
+MetadataType: curated#ecosys#gateData#job#iceberg
+source:
+  name: ecosys_gate_data
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/project_control/ecosys/gateData/
+    format: parquet
+    transformation_ctx: ecosys-gate_data
+transforms:
+- transform: rename_columns
+  rename_column: true
+- transform: select_columns_from_config_file
+  select_columns: true
+- transform: change_data_types
+  change_types: true
+- transform: add_run_date
+  column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+- transform: custom_sql
+  sql: SELECT *, 'ecosys' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+target:
+  name: curated_ecosys_gate_data
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_ecosys_curated
+    table_name: curated_gate_data
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/project_control/ecosys/gateData/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: full_load
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/project_control/ecosys/gateData
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_name: DeliverableHierarchyPathID
+    column_data_type: string
+    nullable: true
+    comment: Deliverable PathID
+    data_classification: null
+    raw_column_name: gatedata_deliverablehierarchypathid
+  - column_name: DeliverableName
+    column_data_type: string
+    nullable: true
+    comment: Deliverable Name
+    data_classification: null
+    raw_column_name: gatedata_deliverablename
+  - column_name: CostObjectHierarchyPathID
+    column_data_type: string
+    nullable: true
+    comment: Control Account PathID
+    data_classification: null
+    raw_column_name: gatedata_costobjecthierarchypathid
+  - column_name: CostObjectName
+    column_data_type: string
+    nullable: true
+    comment: Control Account Name
+    data_classification: null
+    raw_column_name: gatedata_costobjectname
+  - column_name: RelationshipTypetoCAID1
+    column_data_type: string
+    nullable: true
+    comment: Gate Method ID
+    data_classification: null
+    raw_column_name: gatedata_relationshiptypetocaid1
+  - column_name: ProgressMethodName
+    column_data_type: string
+    nullable: true
+    comment: Gate Sequence
+    data_classification: null
+    raw_column_name: gatedata_progressmethodname
+  - column_name: Sequence
+    column_data_type: string
+    nullable: true
+    comment: Sequence Order
+    data_classification: null
+    raw_column_name: gatedata_sequence
+  - column_name: CodeID
+    column_data_type: string
+    nullable: true
+    comment: Document Status Code
+    data_classification: null
+    raw_column_name: gatedata_codeid
+  - column_name: CodeName
+    column_data_type: string
+    nullable: true
+    comment: Document Status Code Name
+    data_classification: null
+    raw_column_name: gatedata_codename
+  - column_name: Gate
+    column_data_type: string
+    nullable: true
+    comment: Gate % Weight
+    data_classification: null
+    raw_column_name: gatedata_gate
+  - column_name: ActualQuantity
+    column_data_type: string
+    nullable: true
+    comment: Actual Quantity
+    data_classification: null
+    raw_column_name: gatedata_actualquantity
+  - column_name: Quantity
+    column_data_type: string
+    nullable: true
+    comment: Budgeted Quantity
+    data_classification: null
+    raw_column_name: gatedata_quantity
+  - column_name: AlternateUnits
+    column_data_type: string
+    nullable: true
+    comment: Assigned CA Budget
+    data_classification: null
+    raw_column_name: gatedata_alternateunits
+  - column_name: Max
+    column_data_type: string
+    nullable: true
+    comment: '%'
+    data_classification: null
+    raw_column_name: gatedata_max
+  - column_name: Complete
+    column_data_type: string
+    nullable: true
+    comment: Gate % Complete
+    data_classification: null
+    raw_column_name: gatedata_complete
+  - column_name: StatusName
+    column_data_type: string
+    nullable: true
+    comment: Dlv Status
+    data_classification: null
+    raw_column_name: gatedata_statusname
+  - column_name: PlannedStart
+    column_data_type: date
+    nullable: true
+    comment: Original Start
+    data_classification: null
+    raw_column_name: gatedata_plannedstart
+  - column_name: PlannedFinish
+    column_data_type: date
+    nullable: true
+    comment: Original Finish
+    data_classification: null
+    raw_column_name: gatedata_plannedfinish
+  - column_name: ActualStart
+    column_data_type: date
+    nullable: true
+    comment: Actual Start
+    data_classification: null
+    raw_column_name: gatedata_actualstart
+  - column_name: ActualFinish
+    column_data_type: date
+    nullable: true
+    comment: Actual Finish
+    data_classification: null
+    raw_column_name: gatedata_actualfinish
+  - column_name: ForecastStart
+    column_data_type: date
+    nullable: true
+    comment: Forecast Start
+    data_classification: null
+    raw_column_name: gatedata_forecaststart
+  - column_name: ForecastFinish
+    column_data_type: date
+    nullable: true
+    comment: Forecast Finish
+    data_classification: null
+    raw_column_name: gatedata_forecastfinish
+  - column_name: Target1StartDate
+    column_data_type: date
+    nullable: true
+    comment: Rebaseline 1 Start
+    data_classification: null
+    raw_column_name: gatedata_target1startdate
+  - column_name: Target1FinishDate
+    column_data_type: date
+    nullable: true
+    comment: Rebaseline 1 Finish
+    data_classification: null
+    raw_column_name: gatedata_target1finishdate
+  - column_name: Target2StartDate
+    column_data_type: date
+    nullable: true
+    comment: Rebaseline 2 Start
+    data_classification: null
+    raw_column_name: gatedata_target2startdate
+  - column_name: Target2FinishDate
+    column_data_type: date
+    nullable: true
+    comment: Rebaseline 2 Finish
+    data_classification: null
+    raw_column_name: gatedata_target2finishdate
+  - column_name: ProgressLinkToID
+    column_data_type: string
+    nullable: true
+    comment: Link
+    data_classification: null
+    raw_column_name: gatedata_progresslinktoid
+  - column_name: PlanningActivityLink
+    column_data_type: string
+    nullable: true
+    comment: Gate Planning Activity ID
+    data_classification: null
+    raw_column_name: gatedata_planningactivitylink
+  - column_name: DocumentStatus
+    column_data_type: string
+    nullable: true
+    comment: Document Status
+    data_classification: null
+    raw_column_name: gatedata_documentstatus
+  - column_name: GlobalDeliverableLibraryABCIDName
+    column_data_type: string
+    nullable: true
+    comment: Gate Sets
+    data_classification: null
+    raw_column_name: gatedata_globaldeliverablelibraryabcidname
+  - column_name: WorkingForecastTransactionInternalID
+    column_data_type: string
+    nullable: true
+    comment: Internal ID
+    data_classification: null
+    raw_column_name: gatedata_workingforecasttransactioninternalid
+  - column_name: projectinternalid
+    column_data_type: string
+    nullable: true
+    comment: Internal ID
+    data_classification: null
+    raw_column_name: gatedata_ProjectInternalID

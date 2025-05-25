@@ -1,0 +1,366 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_PlantItem#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_PlantItem/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-plantitem
+  name: spid_plantitem
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: itemtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: itemtag
+  - column_data_type: integer
+    column_name: plantitemtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plantitemtype
+  - column_data_type: integer
+    column_name: tagreqdflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagreqdflag
+  - column_data_type: string
+    column_name: aabbcc_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: aabbcc_code
+  - column_data_type: integer
+    column_name: fabricationcategory
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricationcategory
+  - column_data_type: string
+    column_name: sp_partofid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_partofid
+  - column_data_type: string
+    column_name: sp_plantgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_plantgroupid
+  - column_data_type: integer
+    column_name: supplyby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: supplyby
+  - column_data_type: integer
+    column_name: requisitionby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: requisitionby
+  - column_data_type: string
+    column_name: sp_relationimpliedid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_relationimpliedid
+  - column_data_type: integer
+    column_name: partoftype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: partoftype
+  - column_data_type: integer
+    column_name: isbulkitem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isbulkitem
+  - column_data_type: string
+    column_name: inventorytag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inventorytag
+  - column_data_type: integer
+    column_name: constructionstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionstatus
+  - column_data_type: integer
+    column_name: constructionby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionby
+  - column_data_type: integer
+    column_name: designby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: designby
+  - column_data_type: string
+    column_name: erpassetno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpassetno
+  - column_data_type: string
+    column_name: requisitionno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: requisitionno
+  - column_data_type: string
+    column_name: sp_partno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_partno
+  - column_data_type: string
+    column_name: sp_catalogname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_catalogname
+  - column_data_type: string
+    column_name: sp_designbasisuid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid
+  - column_data_type: string
+    column_name: sp_sourceapplication
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication
+  - column_data_type: string
+    column_name: sp_propertybreakfilter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_propertybreakfilter
+  - column_data_type: string
+    column_name: sp_propertybreakfilteruid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_propertybreakfilteruid
+  - column_data_type: string
+    column_name: sp_designbasisuid2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid2
+  - column_data_type: string
+    column_name: sp_sourceapplication2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication2
+  - column_data_type: string
+    column_name: sp_designbasisuid3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid3
+  - column_data_type: string
+    column_name: sp_sourceapplication3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication3
+  - column_data_type: string
+    column_name: sp_designbasisuid4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid4
+  - column_data_type: string
+    column_name: sp_sourceapplication4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication4
+  - column_data_type: string
+    column_name: sp_designbasisuid5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid5
+  - column_data_type: string
+    column_name: sp_sourceapplication5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication5
+  - column_data_type: string
+    column_name: sp_designbasisuid6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid6
+  - column_data_type: string
+    column_name: sp_sourceapplication6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication6
+  - column_data_type: string
+    column_name: sp_designbasisuid7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid7
+  - column_data_type: string
+    column_name: sp_sourceapplication7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication7
+  - column_data_type: string
+    column_name: sp_designbasisuid8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid8
+  - column_data_type: string
+    column_name: sp_sourceapplication8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication8
+  - column_data_type: string
+    column_name: sp_designbasisuid9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid9
+  - column_data_type: string
+    column_name: sp_sourceapplication9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication9
+  - column_data_type: string
+    column_name: sp_designbasisuid10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designbasisuid10
+  - column_data_type: string
+    column_name: sp_sourceapplication10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication10
+  - column_data_type: string
+    column_name: sp_roomid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_roomid
+  - column_data_type: string
+    column_name: wp_symbolname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_symbolname
+  - column_data_type: integer
+    column_name: wp_testresponsibility
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_testresponsibility
+  - column_data_type: integer
+    column_name: wp_commissioningsubsystemno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_commissioningsubsystemno
+  - column_data_type: integer
+    column_name: wp_commissioningsystemno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_commissioningsystemno
+  - column_data_type: string
+    column_name: wp_workpackagereference
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_workpackagereference
+  - column_data_type: string
+    column_name: vg_hold
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_hold
+  - column_data_type: string
+    column_name: vg_pidnote
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_pidnote
+  - column_data_type: string
+    column_name: vg_pidnote1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_pidnote1
+  - column_data_type: string
+    column_name: wor_parent_tag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_parent_tag    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_PlantItem/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_plantitem
+  load_type: append
+  name: curated_t_plantitem
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_plantitem
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

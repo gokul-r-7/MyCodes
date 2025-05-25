@@ -1,0 +1,461 @@
+SourceSystemId: database_spel_curated
+MetadataType: curated#spel#T_Equipment#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spel/T_Equipment/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spel-equipment
+  name: spel_equipment
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: integer
+    column_name: statustype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statustype
+  - column_data_type: integer
+    column_name: noofphases
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: noofphases
+  - column_data_type: integer
+    column_name: gasgroup
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gasgroup
+  - column_data_type: integer
+    column_name: issld
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issld
+  - column_data_type: integer
+    column_name: model
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: model
+  - column_data_type: string
+    column_name: sp_circuitid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_circuitid
+  - column_data_type: string
+    column_name: sp_busid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_busid
+  - column_data_type: string
+    column_name: sp_cellid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_cellid
+  - column_data_type: string
+    column_name: sp_powerdistributionboardid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_powerdistributionboardid
+  - column_data_type: integer
+    column_name: sequenceingroup
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sequenceingroup
+  - column_data_type: string
+    column_name: sp_reftypicalschematicid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_reftypicalschematicid
+  - column_data_type: string
+    column_name: sp_reflookuptableid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_reflookuptableid
+  - column_data_type: string
+    column_name: storespartnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: storespartnumber
+  - column_data_type: integer
+    column_name: manufacturer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: manufacturer
+  - column_data_type: string
+    column_name: sp_refequipmentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_refequipmentid
+  - column_data_type: string
+    column_name: note
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: note
+  - column_data_type: string
+    column_name: itemtypeidentifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: itemtypeidentifier
+  - column_data_type: integer
+    column_name: electricalequipmenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: electricalequipmenttype
+  - column_data_type: integer
+    column_name: ingressionprotection
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ingressionprotection
+  - column_data_type: integer
+    column_name: temperatureclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: temperatureclass
+  - column_data_type: integer
+    column_name: explosionprotection
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: explosionprotection
+  - column_data_type: integer
+    column_name: iselectricaltree
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: iselectricaltree
+  - column_data_type: integer
+    column_name: electricalequipmentclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: electricalequipmentclass
+  - column_data_type: integer
+    column_name: electricalequipmentsubclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: electricalequipmentsubclass
+  - column_data_type: integer
+    column_name: supplyacdcflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: supplyacdcflag
+  - column_data_type: integer
+    column_name: complytonamingconvention
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: complytonamingconvention
+  - column_data_type: string
+    column_name: sp_powersourceid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_powersourceid
+  - column_data_type: string
+    column_name: fullloadcurrent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fullloadcurrent
+  - column_data_type: double
+    column_name: sp_fullloadcurrentsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_fullloadcurrentsi
+  - column_data_type: integer
+    column_name: erpcostcenter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpcostcenter
+  - column_data_type: integer
+    column_name: erpcriticalityclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpcriticalityclass
+  - column_data_type: integer
+    column_name: erpequipmentclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpequipmentclass
+  - column_data_type: integer
+    column_name: erpequipmenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpequipmenttype
+  - column_data_type: string
+    column_name: erpfunctionallocation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpfunctionallocation
+  - column_data_type: integer
+    column_name: erpplanner
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpplanner
+  - column_data_type: integer
+    column_name: erpworkcenter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpworkcenter
+  - column_data_type: string
+    column_name: sp_refsignalgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_refsignalgroupid
+  - column_data_type: integer
+    column_name: iscircuitinternal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: iscircuitinternal
+  - column_data_type: string
+    column_name: sp_alternatepowersourceid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_alternatepowersourceid
+  - column_data_type: string
+    column_name: sp_alternatecircuitid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_alternatecircuitid
+  - column_data_type: integer
+    column_name: sp_equipmenttypeidentifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_equipmenttypeidentifier
+  - column_data_type: integer
+    column_name: sp_procurementstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_procurementstatus
+  - column_data_type: integer
+    column_name: sp_isspare
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_isspare
+  - column_data_type: string
+    column_name: vg_processsystemgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_processsystemgroupid
+  - column_data_type: integer
+    column_name: vg_equipmentlocation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_equipmentlocation
+  - column_data_type: integer
+    column_name: vg_lpsno1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_lpsno1
+  - column_data_type: integer
+    column_name: vg_projectscopephase
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_projectscopephase
+  - column_data_type: integer
+    column_name: vg_areaname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_areaname
+  - column_data_type: integer
+    column_name: vg_loadtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_loadtype
+  - column_data_type: integer
+    column_name: vg_cwa
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_cwa
+  - column_data_type: string
+    column_name: vg_revisionnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_revisionnumber
+  - column_data_type: string
+    column_name: vg_schematicdrawingnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_schematicdrawingnumber
+  - column_data_type: string
+    column_name: vg_weighttransport
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_weighttransport
+  - column_data_type: double
+    column_name: sp_vg_weighttransportsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_vg_weighttransportsi
+  - column_data_type: string
+    column_name: vg_unitdepth
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_unitdepth
+  - column_data_type: double
+    column_name: sp_vg_unitdepthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_vg_unitdepthsi
+  - column_data_type: string
+    column_name: vg_unitwidth
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_unitwidth
+  - column_data_type: double
+    column_name: sp_vg_unitwidthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_vg_unitwidthsi
+  - column_data_type: string
+    column_name: vg_unitheight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_unitheight
+  - column_data_type: double
+    column_name: sp_vg_unitheightsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_vg_unitheightsi
+  - column_data_type: string
+    column_name: vg_unitweight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_unitweight
+  - column_data_type: double
+    column_name: sp_vg_unitweightsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_vg_unitweightsi
+  - column_data_type: string
+    column_name: vg_packagenumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_packagenumber
+  - column_data_type: string
+    column_name: vg_weightmaximum
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_weightmaximum
+  - column_data_type: double
+    column_name: sp_vg_weightmaximumsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_vg_weightmaximumsi
+  - column_data_type: string
+    column_name: vg_weightoperational
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_weightoperational
+  - column_data_type: double
+    column_name: sp_vg_weightoperationalsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_vg_weightoperationalsi
+  - column_data_type: string
+    column_name: vg_mainequipment
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_mainequipment
+  - column_data_type: integer
+    column_name: vg_installedby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_installedby    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spel_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spel/T_Equipment/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_equipment
+  load_type: append
+  name: curated_t_equipment
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spel/curated_t_equipment
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spel' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

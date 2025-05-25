@@ -1,0 +1,79 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#supplier_country#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/parquet/supplier_country.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: supplier_country
+    format_options:
+      mergeSchema: true
+  name: supplier_country
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: project
+    comment: project
+    data_classification: 
+    nullable: false
+    raw_column_name: project
+  - column_data_type: string
+    column_name: supplier_no
+    comment: supplier_no
+    data_classification: 
+    nullable: true
+    raw_column_name: supplier_no
+  - column_data_type: string
+    column_name: supplier_name
+    comment: supplier_name
+    data_classification: 
+    nullable: false
+    raw_column_name: supplier_name
+  - column_data_type: string
+    column_name: state_province
+    comment: state_province
+    data_classification: 
+    nullable: true
+    raw_column_name: state_province
+  - column_data_type: string
+    column_name: country
+    comment: country
+    data_classification: 
+    nullable: true
+    raw_column_name: country
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/supplier_country/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: supplier_country
+  name: supplier_country
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/supplier_country/
+  load_type: full_load
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

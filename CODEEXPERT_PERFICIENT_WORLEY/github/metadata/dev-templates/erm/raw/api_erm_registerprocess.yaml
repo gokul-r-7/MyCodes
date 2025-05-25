@@ -1,0 +1,75 @@
+---
+SourceSystemId: erm
+MetadataType: api#erm#registerprocess
+api_parameter:
+  api_body: 
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: text/csv
+    x-erm-env: ${erm_env_prefix}
+  api_method: post
+  api_query_params: 
+  api_request_body: 
+  api_response_type: json
+  api_retry: 3
+  api_ssl_verify: False
+  api_timeout: 300
+  auth_type: Bearer
+  dynamic_api_headers:
+  - Authorization
+  endpoint: https://api.erm.connect.aveva.com/api/erm/DataImport/RegisterProcess?interfaceId={reg_interfaceid}&filename={reg_filename}{current_timestamp}.csv
+auth_api_parameter:
+  api_name: erm_min_ril
+  auth_body:
+    client_id: 
+    client_secret: 
+    grant_type: client_credentials
+    scope: connect
+  auth_exponential_backoff: 5
+  auth_headers: 
+  auth_method: post
+  auth_ssl_verify: False
+  auth_query_params: 
+  auth_retry: 3
+  auth_timeout: 1200
+  dynamic_auth_headers:
+  - AuthToken
+  endpoint: https://signin.connect.aveva.com/oauth/token
+  secret_key: ${secret_prefix}-db-erm
+aws_region: ${region}
+is_active: "y"
+job_parameter:
+  bucket_data_source_prefix: erm
+  bucket_name: ${raw_bucket}
+  full_incremental: i
+  input_path: supply_chain/erm
+  kms_key_id: ${kms_key_id}
+  output_s3: erm
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: supply_chain/erm/data_sampling
+  status_timeout: 86400
+  temp_output_path: temp/erm_win_ril/data
+  dependent_input_path: temp/erm_win_ril/input_data/
+  is_depenednt_from_redshift: False
+  depenedent_data_local_full_load_file_name: "ril_min_drl_list_full_data.csv"
+  depenedent_data_local_sample_file_name: "ril_min_drl_list_top_100_data.csv"
+  pick_api_interface_id: "PICKInterface"
+  pick_api_file_prefix: "PICK_dt"
+  pick_imported_raw_data_path: "supply_chain/erm/registerprocess_status/pick_raw_data/imported/{project_id}/{voucher_to_process}"
+  pick_un_imported_raw_data_path: "supply_chain/erm/registerprocess_status/pick_raw_data/un_imported/{project_id}/{voucher_to_process}"
+  pick_processed_status_path: "supply_chain/erm/registerprocess_status/pick_processed/{project_id}"
+  redshift_secret_key: worley-datalake-sydney-dev-dbt-supply_chain-user20241007233530981400000001
+  status_check: 10
+name: ERM_WIN_RIL
+receiver_email:
+  - chandragiri.sandeep@worley.com
+  - Vikash.Kumar1@Worley.com
+  - Sanjith.Nittur@Worley.com
+  - Kunal.Kadu@worley.com
+  - David.A.Taylor@worley.com
+  - Tejas.Desai@worley.com
+  - Global-AWSSystemIntegrations@worley.com
+sender_email: Global-AWSSystemIntegrations@worley.com
+smtp_port: 25
+smtp_server: smtp.worley.com

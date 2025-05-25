@@ -1,0 +1,163 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#product_ncr_causal_factor#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/product_ncr_causal_factor.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: product_ncr_causal_factor
+  name: product_ncr_causal_factor
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/product_ncr_causal_factor/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: product_ncr_causal_factor
+  load_type: incremental
+  name: product_ncr_causal_factor
+  primary_key: dwi_product_ncr_causal_factor
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/product_ncr_causal_factor
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_product_ncr_causal_factor
+    rename_columns: true
+  columns:
+  - column_name: dwi_product_ncr_causal_factor
+    column_data_type: decimal(38,0)
+    comment: dwi_product_ncr_causal_factor
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_product_ncr_causal_factor
+  - column_name: active
+    column_data_type: string
+    comment: active
+    data_classification:
+    nullable: true
+    raw_column_name: active
+  - column_name: li_active
+    column_data_type: string
+    comment: li_active
+    data_classification:
+    nullable: true
+    raw_column_name: li_active
+  - column_name: lo_active
+    column_data_type: decimal(38,0)
+    comment: lo_active
+    data_classification:
+    nullable: true
+    raw_column_name: lo_active
+  - column_name: category_or_type
+    column_data_type: string
+    comment: category_or_type
+    data_classification:
+    nullable: true
+    raw_column_name: category_or_type
+  - column_name: li_category_or_type
+    column_data_type: string
+    comment: li_category_or_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_category_or_type
+  - column_name: lo_category_or_type
+    column_data_type: decimal(38,0)
+    comment: lo_category_or_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_category_or_type
+  - column_name: description
+    column_data_type: string
+    comment: description
+    data_classification:
+    nullable: true
+    raw_column_name: description
+  - column_name: product_ncr_causal_factor_id
+    column_data_type: string
+    comment: product_ncr_causal_factor_id
+    data_classification:
+    nullable: true
+    raw_column_name: product_ncr_causal_factor_id
+  - column_name: code
+    column_data_type: string
+    comment: code
+    data_classification:
+    nullable: true
+    raw_column_name: code
+  - column_name: dwk_parent_category
+    column_data_type: decimal(38,0)
+    comment: dwk_parent_category
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_parent_category
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

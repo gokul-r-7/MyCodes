@@ -1,0 +1,235 @@
+SourceSystemId: mps_curated
+MetadataType: curated#mps#mps_log_new_tnk#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/mps/parquet/mps_log_all_tnk.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: mps_log_all_tnk
+  name: mps_log_all_tnk
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_mps_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/mps/mps_log_all_tnk/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: mps_log_all_tnk
+  load_type: append
+  name: mps_log_all_tnk
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/mps/mps_log_all_tnk
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'mps' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_name: sr_no
+    column_data_type: string
+    comment: sr_no
+    data_classification:
+    nullable: true
+    raw_column_name: sr_no  
+  - column_name: cwa
+    column_data_type: string
+    comment: cwa
+    data_classification:
+    nullable: true
+    raw_column_name: cwa
+  - column_name: old_mps_number_1
+    column_data_type: string
+    comment: old_mps_number_1
+    data_classification:
+    nullable: true
+    raw_column_name: old_mps_number_1
+  - column_name: old_mps_number_2
+    column_data_type: string
+    comment: old_mps_number_2
+    data_classification:
+    nullable: true
+    raw_column_name: old_mps_number_2
+  - column_name: mps_number
+    column_data_type: string
+    comment: mps_number
+    data_classification:
+    nullable: true
+    raw_column_name: mps_number
+  - column_name: mps_type
+    column_data_type: string
+    comment: mps_type
+    data_classification:
+    nullable: true
+    raw_column_name: mps_type
+  - column_name: struct_frame_no
+    column_data_type: string
+    comment: struct_frame_no
+    data_classification:
+    nullable: true
+    raw_column_name: struct_frame_no
+  - column_name: line_number
+    column_data_type: string
+    comment: line_number
+    data_classification:
+    nullable: true
+    raw_column_name: line_number
+  - column_name: tos_elevation
+    column_data_type: string
+    comment: tos_elevation
+    data_classification:
+    nullable: true
+    raw_column_name: tos_elevation  
+  - column_name: design_area_wbs
+    column_data_type: string
+    comment: design_area_wbs
+    data_classification:
+    nullable: true
+    raw_column_name: design_area_wbs
+  - column_name: cwp_area
+    column_data_type: string
+    comment: cwp_area
+    data_classification:
+    nullable: true
+    raw_column_name: cwp_area
+  - column_name: issued_to_stress_team_date
+    column_data_type: string
+    comment: issued_to_stress_team_date
+    data_classification:
+    nullable: true
+    raw_column_name: issued_to_stress_team_date
+  - column_name: loads_given_to_csa
+    column_data_type: string
+    comment: loads_given_to_csa
+    data_classification:
+    nullable: true
+    raw_column_name: loads_given_to_csa
+  - column_name: uln_no
+    column_data_type: string
+    comment: uln_no
+    data_classification:
+    nullable: true
+    raw_column_name: uln_no
+  - column_name: ope_load_fy
+    column_data_type: string
+    comment: ope_load_fy
+    data_classification:
+    nullable: true
+    raw_column_name: ope_load_fy
+  - column_name: ope_load_fx
+    column_data_type: string
+    comment: ope_load_fx
+    data_classification:
+    nullable: true
+    raw_column_name: ope_load_fx
+  - column_name: ope_load_fz
+    column_data_type: string
+    comment: ope_load_fz
+    data_classification:
+    nullable: true
+    raw_column_name: ope_load_fz
+  - column_name: hydro_test_load_fy
+    column_data_type: string
+    comment: hydro_test_load_fy
+    data_classification:
+    nullable: true
+    raw_column_name: hydro_test_load_fy
+  - column_name: hydro_test_load_fx
+    column_data_type: string
+    comment: hydro_test_load_fx
+    data_classification:
+    nullable: true
+    raw_column_name: hydro_test_load_fx
+  - column_name: hydro_test_load_fz
+    column_data_type: string
+    comment: hydro_test_load_fz
+    data_classification:
+    nullable: true
+    raw_column_name: hydro_test_load_fz
+  - column_name: mps_drawing_type
+    column_data_type: string
+    comment: mps_drawing_type
+    data_classification:
+    nullable: true
+    raw_column_name: mps_drawing_type
+  - column_name: reviewed_by_csa
+    column_data_type: string
+    comment: reviewed_by_csa
+    data_classification:
+    nullable: true
+    raw_column_name: reviewed_by_csa
+  - column_name: csa_engineer
+    column_data_type: string
+    comment: csa_engineer
+    data_classification:
+    nullable: true
+    raw_column_name: csa_engineer  
+  - column_name: designed_by_csa
+    column_data_type: string
+    comment: designed_by_csa
+    data_classification:
+    nullable: true
+    raw_column_name: designed_by_csa
+  - column_name: model_updated_by_csa
+    column_data_type: string
+    comment: model_updated_by_csa
+    data_classification:
+    nullable: true
+    raw_column_name: model_updated_by_csa
+  - column_name: csa_drawing_no
+    column_data_type: string
+    comment: csa_drawing_no
+    data_classification:
+    nullable: true
+    raw_column_name: csa_drawing_no
+  - column_name: remarks
+    column_data_type: string
+    comment: remarks
+    data_classification:
+    nullable: true
+    raw_column_name: remarks
+  - column_name: csa_modelled_support_checked_by_piping_design
+    column_data_type: string
+    comment: csa_modelled_support_checked_by_piping_design
+    data_classification:
+    nullable: true
+    raw_column_name: csa_modelled_support_checked_by_piping_design
+  - column_name: pd_commets_on_csa_model
+    column_data_type: string
+    comment: pd_commets_on_csa_model
+    data_classification:
+    nullable: true
+    raw_column_name: pd_commets_on_csa_model
+  - column_name: supt_checked_and_magenta_steel_removed
+    column_data_type: string
+    comment: supt_checked_and_magenta_steel_removed
+    data_classification:
+    nullable: true
+    raw_column_name: supt_checked_and_magenta_steel_removed
+  - column_name: mps_status
+    column_data_type: string
+    comment: mps_status
+    data_classification:
+    nullable: true
+    raw_column_name: mps_status

@@ -1,0 +1,126 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_Representation#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_Representation/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-representation
+  name: spid_representation
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: integer
+    column_name: representationtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: representationtype
+  - column_data_type: integer
+    column_name: graphicoid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: graphicoid
+  - column_data_type: integer
+    column_name: instockpile
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: instockpile
+  - column_data_type: string
+    column_name: filename
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: filename
+  - column_data_type: string
+    column_name: style
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: style
+  - column_data_type: string
+    column_name: sp_drawingid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_drawingid
+  - column_data_type: string
+    column_name: sp_modelitemid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_modelitemid
+  - column_data_type: string
+    column_name: radlayer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: radlayer
+  - column_data_type: string
+    column_name: exportlayer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: exportlayer
+  - column_data_type: integer
+    column_name: itemstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: itemstatus
+  - column_data_type: integer
+    column_name: representationclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: representationclass
+  - column_data_type: timestamp
+    column_name: sp_filelastmodifiedtime
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_filelastmodifiedtime
+  - column_data_type: timestamp
+    column_name: sp_modelitemtimestamp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_modelitemtimestamp    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_Representation/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_representation
+  load_type: append
+  name: curated_t_representation
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_representation
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

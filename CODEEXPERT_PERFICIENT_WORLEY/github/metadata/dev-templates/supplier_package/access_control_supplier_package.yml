@@ -1,0 +1,5 @@
+domain_name: document_control
+source_name: supplier_package
+databases : 
+  - ${database_prefix}_document_control_supplier_package_curated
+  - ${database_prefix}_document_control_supplier_package_raw

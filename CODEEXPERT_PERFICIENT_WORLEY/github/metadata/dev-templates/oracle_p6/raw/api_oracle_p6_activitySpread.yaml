@@ -1,0 +1,52 @@
+MetadataType: api#oracle_p6#activitySpread
+SourceSystemId: oracle_p6
+api_parameter:
+  Fields: ActualCost,ActualExpenseCost,ActualLaborCost,ActualLaborUnits,ActualMaterialCost,ActualNonLaborCost,ActualNonLaborUnits,ActualTotalCost,AtCompletionExpenseCost,AtCompletionLaborCost,AtCompletionLaborUnits,AtCompletionMaterialCost,AtCompletionNonLaborCost,AtCompletionNonLaborUnits,AtCompletionTotalCost,Baseline1ActualExpenseCost,Baseline1ActualLaborCost,Baseline1ActualLaborUnits,Baseline1ActualMaterialCost,Baseline1ActualNonLaborCost,Baseline1ActualNonLaborUnits,Baseline1ActualTotalCost,Baseline1PlannedExpenseCost,Baseline1PlannedLaborCost,Baseline1PlannedLaborUnits,Baseline1PlannedMaterialCost,Baseline1PlannedNonLaborCost,Baseline1PlannedNonLaborUnits,Baseline1PlannedTotalCost,BaselineActualExpenseCost,BaselineActualLaborCost,BaselineActualLaborUnits,BaselineActualMaterialCost,BaselineActualNonLaborCost,BaselineActualNonLaborUnits,BaselineActualTotalCost,BaselinePlannedExpenseCost,BaselinePlannedLaborCost,BaselinePlannedLaborUnits,BaselinePlannedMaterialCost,BaselinePlannedNonLaborCost,BaselinePlannedNonLaborUnits,BaselinePlannedTotalCost,EarnedValueCost,EarnedValueLaborUnits,EstimateAtCompletionCost,EstimateAtCompletionLaborUnits,EstimateToCompleteCost,EstimateToCompleteLaborUnits,PlannedExpenseCost,PlannedLaborCost,PlannedLaborUnits,PlannedMaterialCost,PlannedNonLaborCost,PlannedNonLaborUnits,PlannedTotalCost,PlannedValueCost,PlannedValueLaborUnits,RemainingExpenseCost,RemainingLaborCost,RemainingLaborUnits,RemainingLateExpenseCost,RemainingLateLaborCost,RemainingLateLaborUnits,RemainingLateMaterialCost,RemainingLateNonLaborCost,RemainingLateNonLaborUnits,RemainingLateTotalCost,RemainingMaterialCost,RemainingNonLaborCost,RemainingNonLaborUnits,RemainingTotalCost
+  api_body: null
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/json
+  api_method: get
+  api_query_params: {}
+  api_response_type: json
+  api_retry: 3
+  api_timeout: 900
+  auth_type: Bearer
+  batch_size: 500
+  dynamic_api_headers:
+  - Authorization
+  dynamic_api_query_params: null
+  endpoint: https://p6.oraclecloud.com/worley/p6ws/restapi/spread/
+  api_project_filters: '?SpreadField={}&PeriodType={}&IncludeCumulative={}&ActivityObjectId={}'
+  api_global_filters: null
+  IncludeCumulative: 'true'
+  PeriodType: Week
+  extract_type: spread
+  api_type: 8
+auth_api_parameter:
+  auth_body: null
+  auth_exponential_backoff: 5
+  auth_headers:
+    Content-Type: application/json
+    token_exp: '3600'
+  auth_method: post
+  auth_query_params: null
+  auth_retry: 3
+  auth_timeout: 600
+  dynamic_auth_headers:
+  - AuthToken
+  endpoint: https://p6.oraclecloud.com/worley/p6ws/oauth/token
+  secret_key: ${secret_prefix}-db-p6
+aws_region: ap-southeast-2
+is_active: y
+job_parameter:
+  bucket_data_source_prefix: project_control/oracle_p6/
+  bucket_name: ${raw_bucket}
+  kms_key_id: ${kms_key_id}
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: project_control/oracle_p6/data_sampling/
+  temp_path: temp/oracle_p6/
+  object_column: ObjectId
+  object_path: project_activity/
+name: Oracle_P6_ExtractAPI

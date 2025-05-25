@@ -1,0 +1,425 @@
+SourceSystemId: database_spel_curated
+MetadataType: curated#spel#T_PlantItem#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spel/T_PlantItem/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spel-plantItem
+  name: spel_plantItem
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: string
+    column_name: tagsequenceno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsequenceno
+  - column_data_type: string
+    column_name: tagsuffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsuffix
+  - column_data_type: string
+    column_name: tagprefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagprefix
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: itemtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: itemtag
+  - column_data_type: integer
+    column_name: plantitemtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plantitemtype
+  - column_data_type: string
+    column_name: aabbcc_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: aabbcc_code
+  - column_data_type: integer
+    column_name: fabricationcategory
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricationcategory
+  - column_data_type: string
+    column_name: sp_plantgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_plantgroupid
+  - column_data_type: integer
+    column_name: supplyby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: supplyby
+  - column_data_type: integer
+    column_name: requisitionby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: requisitionby
+  - column_data_type: integer
+    column_name: isbulkitem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isbulkitem
+  - column_data_type: string
+    column_name: inventorytag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inventorytag
+  - column_data_type: integer
+    column_name: constructionstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionstatus
+  - column_data_type: integer
+    column_name: constructionby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionby
+  - column_data_type: integer
+    column_name: designby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: designby
+  - column_data_type: string
+    column_name: erpassetno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: erpassetno
+  - column_data_type: string
+    column_name: requisitionno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: requisitionno
+  - column_data_type: string
+    column_name: sp_partno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_partno
+  - column_data_type: string
+    column_name: sp_sourceapplication
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication
+  - column_data_type: string
+    column_name: itemtagfullname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: itemtagfullname
+  - column_data_type: string
+    column_name: sp_plantitemgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_plantitemgroupid
+  - column_data_type: integer
+    column_name: referencedatachangedflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: referencedatachangedflag
+  - column_data_type: string
+    column_name: sp_sameasuid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid
+  - column_data_type: integer
+    column_name: sp_isnew
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_isnew
+  - column_data_type: integer
+    column_name: sp_claimmode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_claimmode
+  - column_data_type: integer
+    column_name: sp_itemprojectstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_itemprojectstatus
+  - column_data_type: string
+    column_name: sp_sameasuid1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid1
+  - column_data_type: string
+    column_name: sp_sameasuid2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid2
+  - column_data_type: string
+    column_name: sp_sameasuid3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid3
+  - column_data_type: string
+    column_name: sp_sameasuid4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid4
+  - column_data_type: string
+    column_name: sp_sameasuid5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid5
+  - column_data_type: string
+    column_name: sp_sameasuid6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid6
+  - column_data_type: string
+    column_name: sp_sameasuid7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid7
+  - column_data_type: string
+    column_name: sp_sameasuid8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid8
+  - column_data_type: string
+    column_name: sp_sameasuid9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sameasuid9
+  - column_data_type: string
+    column_name: sp_piddrawingnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_piddrawingnumber
+  - column_data_type: string
+    column_name: sp_kkstotalplant
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kkstotalplant
+  - column_data_type: string
+    column_name: sp_kkssystemkey
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kkssystemkey
+  - column_data_type: string
+    column_name: sp_kkssystemsequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kkssystemsequence
+  - column_data_type: string
+    column_name: sp_kkscomponentkey
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kkscomponentkey
+  - column_data_type: string
+    column_name: sp_kksequipmentunitkey
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kksequipmentunitkey
+  - column_data_type: string
+    column_name: sp_kksequipmentunitsequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kksequipmentunitsequence
+  - column_data_type: string
+    column_name: sp_kkssystemkeyprefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kkssystemkeyprefix
+  - column_data_type: string
+    column_name: sp_kksequipunitadditionalcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kksequipunitadditionalcode
+  - column_data_type: string
+    column_name: sp_kkscomponentsequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kkscomponentsequence
+  - column_data_type: integer
+    column_name: sp_allowpublishflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_allowpublishflag
+  - column_data_type: string
+    column_name: sp_3pdbid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_3pdbid
+  - column_data_type: string
+    column_name: sp_3piid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_3piid
+  - column_data_type: string
+    column_name: sp_spiid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_spiid
+  - column_data_type: string
+    column_name: sp_fullitemtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_fullitemtag
+  - column_data_type: string
+    column_name: sp_sourceapplication1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication1
+  - column_data_type: string
+    column_name: sp_sourceapplication2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication2
+  - column_data_type: string
+    column_name: sp_sourceapplication3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication3
+  - column_data_type: string
+    column_name: sp_sourceapplication4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication4
+  - column_data_type: string
+    column_name: sp_sourceapplication5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication5
+  - column_data_type: string
+    column_name: sp_sourceapplication6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication6
+  - column_data_type: string
+    column_name: sp_sourceapplication7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication7
+  - column_data_type: string
+    column_name: sp_sourceapplication8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication8
+  - column_data_type: string
+    column_name: sp_sourceapplication9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sourceapplication9
+  - column_data_type: string
+    column_name: sp_3pguid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_3pguid
+  - column_data_type: string
+    column_name: sp_commissioningsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_commissioningsystem
+  - column_data_type: string
+    column_name: sp_commissioningsubsystem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_commissioningsubsystem    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spel_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spel/T_PlantItem/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_plantitem
+  load_type: append
+  name: curated_t_plantitem
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spel/curated_t_plantitem
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spel' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

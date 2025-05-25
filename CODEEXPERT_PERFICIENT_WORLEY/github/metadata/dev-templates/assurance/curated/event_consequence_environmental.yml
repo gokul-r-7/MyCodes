@@ -1,0 +1,289 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_consequence_environmental#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_consequence_environmental.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_consequence_environmental
+  name: event_consequence_environmental
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_consequence_environmental/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_consequence_environmental
+  load_type: incremental
+  name: event_consequence_environmental
+  primary_key: dwi_event_consequence_environmental
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_consequence_environmental
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_event_consequence_environmental
+    rename_columns: true
+  columns:
+  - column_name: dwi_event_consequence_environmental
+    column_data_type: decimal(38,0)
+    comment: dwi_event_consequence_environmental
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_event_consequence_environmental
+  - column_name: area_distance_area_impacted
+    column_data_type: decimal(38,16)
+    comment: area_distance_area_impacted
+    data_classification:
+    nullable: true
+    raw_column_name: area_distance_area_impacted
+  - column_name: area_distance_distance_from_sensitive_area
+    column_data_type: decimal(38,16)
+    comment: area_distance_distance_from_sensitive_area
+    data_classification:
+    nullable: true
+    raw_column_name: area_distance_distance_from_sensitive_area
+  - column_name: area_distance_sensitivity_type_area
+    column_data_type: string
+    comment: area_distance_sensitivity_type_area
+    data_classification:
+    nullable: true
+    raw_column_name: area_distance_sensitivity_type_area
+  - column_name: li_area_distance_sensitivity_type_area
+    column_data_type: string
+    comment: li_area_distance_sensitivity_type_area
+    data_classification:
+    nullable: true
+    raw_column_name: li_area_distance_sensitivity_type_area
+  - column_name: lo_area_distance_sensitivity_type_area
+    column_data_type: decimal(38,0)
+    comment: lo_area_distance_sensitivity_type_area
+    data_classification:
+    nullable: true
+    raw_column_name: lo_area_distance_sensitivity_type_area
+  - column_name: area_distance_sensitivity_type_other
+    column_data_type: string
+    comment: area_distance_sensitivity_type_other
+    data_classification:
+    nullable: true
+    raw_column_name: area_distance_sensitivity_type_other
+  - column_name: comment02
+    column_data_type: string
+    comment: comment02
+    data_classification:
+    nullable: true
+    raw_column_name: comment02
+  - column_name: contaminants_volume_recovered
+    column_data_type: decimal(38,16)
+    comment: contaminants_volume_recovered
+    data_classification:
+    nullable: true
+    raw_column_name: contaminants_volume_recovered
+  - column_name: contaminants_volume_released
+    column_data_type: decimal(38,16)
+    comment: contaminants_volume_released
+    data_classification:
+    nullable: true
+    raw_column_name: contaminants_volume_released
+  - column_name: flora_fauna_common_name
+    column_data_type: string
+    comment: flora_fauna_common_name
+    data_classification:
+    nullable: true
+    raw_column_name: flora_fauna_common_name
+  - column_name: flora_fauna_listed_species
+    column_data_type: string
+    comment: flora_fauna_listed_species
+    data_classification:
+    nullable: true
+    raw_column_name: flora_fauna_listed_species
+  - column_name: li_flora_fauna_listed_species
+    column_data_type: string
+    comment: li_flora_fauna_listed_species
+    data_classification:
+    nullable: true
+    raw_column_name: li_flora_fauna_listed_species
+  - column_name: lo_flora_fauna_listed_species
+    column_data_type: decimal(38,0)
+    comment: lo_flora_fauna_listed_species
+    data_classification:
+    nullable: true
+    raw_column_name: lo_flora_fauna_listed_species
+  - column_name: flora_fauna_number_of_species_impacted
+    column_data_type: decimal(38,0)
+    comment: flora_fauna_number_of_species_impacted
+    data_classification:
+    nullable: true
+    raw_column_name: flora_fauna_number_of_species_impacted
+  - column_name: flora_fauna_species_impacted
+    column_data_type: string
+    comment: flora_fauna_species_impacted
+    data_classification:
+    nullable: true
+    raw_column_name: flora_fauna_species_impacted
+  - column_name: impact_initiating_event
+    column_data_type: string
+    comment: impact_initiating_event
+    data_classification:
+    nullable: true
+    raw_column_name: impact_initiating_event
+  - column_name: li_impact_initiating_event
+    column_data_type: string
+    comment: li_impact_initiating_event
+    data_classification:
+    nullable: true
+    raw_column_name: li_impact_initiating_event
+  - column_name: lo_impact_initiating_event
+    column_data_type: decimal(38,0)
+    comment: lo_impact_initiating_event
+    data_classification:
+    nullable: true
+    raw_column_name: lo_impact_initiating_event
+  - column_name: reference_number
+    column_data_type: string
+    comment: reference_number
+    data_classification:
+    nullable: true
+    raw_column_name: reference_number
+  - column_name: sys_legacy_id
+    column_data_type: string
+    comment: sys_legacy_id
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_id
+  - column_name: employment_category
+    column_data_type: string
+    comment: employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: employment_category
+  - column_name: li_employment_category
+    column_data_type: string
+    comment: li_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_employment_category
+  - column_name: lo_employment_category
+    column_data_type: decimal(38,0)
+    comment: lo_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_employment_category
+  - column_name: environmental_consequence
+    column_data_type: string
+    comment: environmental_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: environmental_consequence
+  - column_name: li_environmental_consequence
+    column_data_type: string
+    comment: li_environmental_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_environmental_consequence
+  - column_name: lo_environmental_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_environmental_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_environmental_consequence
+  - column_name: dwk_event_as_source_of_environmental_consequence
+    column_data_type: decimal(38,0)
+    comment: dwk_event_as_source_of_environmental_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_as_source_of_environmental_consequence
+  - column_name: dwk_area_impacted_uom
+    column_data_type: decimal(38,0)
+    comment: dwk_area_impacted_uom
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_area_impacted_uom
+  - column_name: dwk_distance_from_sensitive_area_uom
+    column_data_type: decimal(38,0)
+    comment: dwk_distance_from_sensitive_area_uom
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_distance_from_sensitive_area_uom
+  - column_name: dwk_volume_released_uom
+    column_data_type: decimal(38,0)
+    comment: dwk_volume_released_uom
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_volume_released_uom
+  - column_name: dwk_volume_recovered_uom
+    column_data_type: decimal(38,0)
+    comment: dwk_volume_recovered_uom
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_volume_recovered_uom
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

@@ -1,0 +1,90 @@
+---
+SourceSystemId: database_mem_curated
+MetadataType: curated#mem#ModelElementCats#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/mem/ModelElementCats/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: mem-modelElementCats
+  name: mem_modelElementCats
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: modelelementcat
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelelementcat
+  - column_data_type: string
+    column_name: 3dmodelelementtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 3dmodelelementtype
+  - column_data_type: string
+    column_name: discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: discipline
+  - column_data_type: string
+    column_name: ctrdiscipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ctrdiscipline
+  - column_data_type: boolean
+    column_name: excludefromrpts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: excludefromrpts
+  - column_data_type: double
+    column_name: wgtfactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wgtfactor
+  - column_data_type: string
+    column_name: modelelementcatcomment
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelelementcatcomment
+  - column_data_type: string
+    column_name: baselineest_discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselineest_discipline    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_mem_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/mem/ModelElementCats/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_modelelementcats
+  load_type: append
+  name: curated_modelelementcats
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/mem/curated_modelelementcats
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'mem' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,122 @@
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#mail_document#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/aconex/mail_document/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: aconex-mail_document
+  name: aconex_mail_document
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: documentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: documentid
+  - column_data_type: string
+    column_name: registeredas
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: registeredas
+  - column_data_type: string
+    column_name: documentno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: documentno
+  - column_data_type: string
+    column_name: filename
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: filename
+  - column_data_type: string
+    column_name: filesize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: filesize
+  - column_data_type: string
+    column_name: revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revision
+  - column_data_type: string
+    column_name: status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: mailid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailid
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id
+  schema_properties:
+    enforce: true
+    primary_key:
+    - projectid
+    - mailid
+    - documentid
+    - registeredas
+    - documentno
+    - revision
+    rename_columns: true
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/mail_document/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_mail_document
+  load_type: incremental_no_delete
+  name: aconex_mail_document
+  primary_key:
+  - projectid
+  - mailid
+  - documentid
+  - registeredas
+  - documentno
+  - revision
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/mail_document
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

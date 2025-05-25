@@ -1,0 +1,49 @@
+SourceSystemId: ped
+MetadataType: api#ped#mos
+api_parameter: #Optinal will be replaced with respective object API configs
+  endpoint: "https://{ped_instance_id}.api.crm.dynamics.com/api/data/v9.2/{api_obj_name}"
+  ped_qualified_api_name: 'sds_pedmultiofficesplits'
+  api_query_params: 
+    $filter: 'modifiedon gt {incremental_value}'
+    $select: 'sds_pedmultiofficesplitid'
+    $expand: 'sds_Project($select=sds_pedprojectid),sds_Office($select=sds_officename)'
+job_parameter:
+  bucket_data_source_prefix: mos
+  bucket_name: ${secret_prefix}-genai-landing-${bucket_suffix}
+  status_timeout: 120
+  input_path : 
+  output_s3: mos
+  temp_input_path: temp/ped/mos/raw
+  temp_relationlized_path: 'temp/ped/mos/raw/relationalized_data/'
+  temp_output_path: 'temp/ped/mos/raw/output/'
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: ped/data_sampling/mos/
+  full_incremental: F
+  index_key: "LastModifiedDate"
+  incremental_value_format: "{yyyy}-{MM}-{dd}T{HH}:{mm}:{ss}Z"
+  incremental_default: "2020-01-01T00:00:00Z"
+  job_process_folder: ped/audit_folder
+  job_process_file: mos/mos_process.json
+  is_named_col: false
+  is_rename_ordered: true
+  api_source_columns:
+    - 'sds_Project.sds_pedprojectid'
+    - 'sds_Office.sds_officename'
+  target_columns:
+    - 'mos_projectid'
+    - 'executing_offices'
+  transformation: 
+    is_combine_key: true
+    combine_by_key: 'mos_projectid'
+    combine_by_key_value_name: 
+      - 'executing_offices'
+  api_source_to_target_rename:
+    sds_Project.sds_pedprojectid: 'mos_projectid'
+    sds_Office.sds_officename: 'executing_offices'
+is_active: Y
+name: pedmos
+aws_region: ${region}
+Namespace: genai_ped
+
+

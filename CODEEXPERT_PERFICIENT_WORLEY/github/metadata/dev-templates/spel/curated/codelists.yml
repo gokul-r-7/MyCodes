@@ -1,0 +1,83 @@
+SourceSystemId: database_spel_curated
+MetadataType: curated#spel#codelists#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spel/codelists/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spel-codelists
+  name: spel_codelists
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: integer
+    column_name: codelist_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: codelist_number
+  - column_data_type: integer
+    column_name: codelist_index
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: codelist_index
+  - column_data_type: string
+    column_name: codelist_text
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: codelist_text
+  - column_data_type: string
+    column_name: codelist_short_text
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: codelist_short_text
+  - column_data_type: integer
+    column_name: codelist_constraint
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: codelist_constraint
+  - column_data_type: integer
+    column_name: codelist_sort_value
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: codelist_sort_value
+  - column_data_type: integer
+    column_name: codelist_entry_disabled
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: codelist_entry_disabled    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spel_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spel/codelists/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_codelists
+  load_type: append
+  name: curated_codelists
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spel/curated_codelists
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spel' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

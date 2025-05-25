@@ -1,0 +1,53 @@
+---
+SourceSystemId: oracle_p6
+MetadataType: api#oracle_p6#resource_assignment_spread
+name: OracleP6ResourceAssignmentSpreadAPI
+aws_region: ${region}
+is_active: "y"
+auth_api_parameter:
+  auth_method: post
+  endpoint: https://p6.oraclecloud.com/worley/p6ws/oauth/token
+  secret_key: ${secret_prefix}-db-p6
+  auth_retry: 3
+  auth_timeout: 600
+  auth_exponential_backoff: 5
+  auth_headers:
+    Content-Type: application/json
+    token_exp: '3600'
+  dynamic_auth_headers:
+  - AuthToken
+  auth_query_params: 
+  auth_body: 
+api_parameter:
+  api_method: get
+  endpoint: https://p6.oraclecloud.com/worley/p6ws/restapi/spread/resourceAssignmentSpread
+  api_response_type: binary
+  api_retry: 3
+  api_timeout: 30
+  api_exponential_backoff: 3
+  auth_type: Bearer
+  api_headers:
+    Content-Type: application/json
+  dynamic_api_headers:
+  - Authorization
+  api_request_body: ''
+  api_query_params:
+    PeriodType: Week
+    IncludeCumulative: 'true'
+    SpreadField: ActualCost,ActualOvertimeCost,ActualOvertimeUnits,ActualRegularCost,ActualRegularUnits,ActualUnits,AtCompletionCost,AtCompletionUnits,PlannedCost,PlannedUnits,RemainingCost,RemainingLateCost,RemainingLateUnits,RemainingUnits,StaffedRemainingCost,StaffedRemainingLateCost,StaffedRemainingLateUnits,StaffedRemainingUnits,UnstaffedRemainingCost,UnstaffedRemainingLateCost,UnstaffedRemainingLateUnits,UnstaffedRemainingUnits,PeriodActualCost,PeriodActualUnits,PeriodAtCompletionCost,PeriodAtCompletionUnits
+  dynamic_api_query_params:
+    dynamic_query_key: ResourceAssignmentObjectId
+  api_custom_attributes:
+    spread_id_attribute: Project_ResourceAssignment_val_ObjectId,Project_ResourceAssignment_val_ProjectObjectId
+    spread_id_batch_size: 250
+job_parameter:
+  full_incremental: full
+  kms_key_id: ${kms_key_id}
+  bucket_name: ${raw_bucket}
+  bucket_data_source_prefix: oracle_p6
+  input_path: oracle_p6/project_resourceassignment/
+  temp_output_path: oracle_p6/temp/resourcespread/raw
+  output_s3: oracle_p6/resourcespread
+  schema_output_s3: "/oracle_p6/data_sampling/resourcespread/"
+  sampling_fraction: '0.5'
+  sampling_seed: 42

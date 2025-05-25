@@ -1,0 +1,144 @@
+SourceSystemId: e3d_curated
+MetadataType: curated#vg_E3D#elecequilistrep#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/e3d/parquet/elecequilistrepvglaim.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_E3D-csv_xlsx_curated
+  name: vg_E3D_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: SITEPURP
+    comment: SITEPURP
+    data_classification: 
+    nullable: true
+    raw_column_name: SitePurp
+  - column_data_type: string
+    column_name: SITE
+    comment: SITE
+    data_classification: 
+    nullable: true
+    raw_column_name: site
+  - column_data_type: string
+    column_name: ZONE
+    comment: ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: PLANT
+    comment: PLANT
+    data_classification: 
+    nullable: true
+    raw_column_name: plant
+  - column_data_type: string
+    column_name: AREA
+    comment: AREA
+    data_classification: 
+    nullable: true
+    raw_column_name: area
+  - column_data_type: string
+    column_name: UNIT
+    comment: UNIT
+    data_classification: 
+    nullable: true
+    raw_column_name: unit
+  - column_data_type: string
+    column_name: REF
+    comment: REF
+    data_classification: 
+    nullable: true
+    raw_column_name: ref
+  - column_data_type: string
+    column_name: CWA_CWAREA
+    comment: CWA_CWAREA
+    data_classification: 
+    nullable: true
+    raw_column_name: cwa_cwarea
+  - column_data_type: string
+    column_name: CWP_WORKPACKNO
+    comment: CWP_WORKPACKNO
+    data_classification: 
+    nullable: true
+    raw_column_name: cwp_workpackno
+  - column_data_type: string
+    column_name: WBS
+    comment: WBS
+    data_classification: 
+    nullable: true
+    raw_column_name: wbs
+  - column_data_type: string
+    column_name: EQUIPMENT
+    comment: EQUIPMENT
+    data_classification: 
+    nullable: true
+    raw_column_name: equipment
+  - column_data_type: string
+    column_name: TYPE
+    comment: TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: DESCRIPTION
+    comment: DESCRIPTION
+    data_classification: 
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: MEM_STATUS
+    comment: MEM_STATUS
+    data_classification: 
+    nullable: true
+    raw_column_name: mem_status
+  - column_data_type: string
+    column_name: AREA1
+    comment: AREA1
+    data_classification: 
+    nullable: true
+    raw_column_name: area1
+  - column_data_type: string
+    column_name: AREA2
+    comment: AREA2
+    data_classification: 
+    nullable: true
+    raw_column_name: area2
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_e3d_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/e3d/elecequilistrep/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_elecequilistrep
+  name: curated_vg_E3D_elecequilistrep
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/e3d/elecequilistrep
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_E3D' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

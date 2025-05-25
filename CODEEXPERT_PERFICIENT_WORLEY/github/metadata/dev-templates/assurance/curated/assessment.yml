@@ -1,0 +1,985 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#assessment#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/assessment.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: assessment
+  name: assessment
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/assessment/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: assessment
+  load_type: incremental
+  name: assessment
+  primary_key: dwi_assessment
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/assessment
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_assessment
+    rename_columns: true
+  columns:
+  - column_name: dwi_assessment
+    column_data_type: decimal(38,0)
+    comment: dwi_assessment
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_assessment
+  - column_name: address
+    column_data_type: string
+    comment: address
+    data_classification:
+    nullable: true
+    raw_column_name: address
+  - column_name: advisian_service_line
+    column_data_type: string
+    comment: advisian_service_line
+    data_classification:
+    nullable: true
+    raw_column_name: advisian_service_line
+  - column_name: li_advisian_service_line
+    column_data_type: string
+    comment: li_advisian_service_line
+    data_classification:
+    nullable: true
+    raw_column_name: li_advisian_service_line
+  - column_name: lo_advisian_service_line
+    column_data_type: decimal(38,0)
+    comment: lo_advisian_service_line
+    data_classification:
+    nullable: true
+    raw_column_name: lo_advisian_service_line
+  - column_name: are_all_assessment_details_complete
+    column_data_type: string
+    comment: are_all_assessment_details_complete
+    data_classification:
+    nullable: true
+    raw_column_name: are_all_assessment_details_complete
+  - column_name: li_are_all_assessment_details_complete
+    column_data_type: string
+    comment: li_are_all_assessment_details_complete
+    data_classification:
+    nullable: true
+    raw_column_name: li_are_all_assessment_details_complete
+  - column_name: lo_are_all_assessment_details_complete
+    column_data_type: decimal(38,0)
+    comment: lo_are_all_assessment_details_complete
+    data_classification:
+    nullable: true
+    raw_column_name: lo_are_all_assessment_details_complete
+  - column_name: assessment_classification
+    column_data_type: string
+    comment: assessment_classification
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_classification
+  - column_name: li_assessment_classification
+    column_data_type: string
+    comment: li_assessment_classification
+    data_classification:
+    nullable: true
+    raw_column_name: li_assessment_classification
+  - column_name: lo_assessment_classification
+    column_data_type: decimal(38,0)
+    comment: lo_assessment_classification
+    data_classification:
+    nullable: true
+    raw_column_name: lo_assessment_classification
+  - column_name: assessment_number
+    column_data_type: string
+    comment: assessment_number
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_number
+  - column_name: assessment_plan_number
+    column_data_type: string
+    comment: assessment_plan_number
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_plan_number
+  - column_name: assessment_plan_type
+    column_data_type: string
+    comment: assessment_plan_type
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_plan_type
+  - column_name: li_assessment_plan_type
+    column_data_type: string
+    comment: li_assessment_plan_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_assessment_plan_type
+  - column_name: lo_assessment_plan_type
+    column_data_type: decimal(38,0)
+    comment: lo_assessment_plan_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_assessment_plan_type
+  - column_name: assessment_status
+    column_data_type: string
+    comment: assessment_status
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_status
+  - column_name: li_assessment_status
+    column_data_type: string
+    comment: li_assessment_status
+    data_classification:
+    nullable: true
+    raw_column_name: li_assessment_status
+  - column_name: lo_assessment_status
+    column_data_type: decimal(38,0)
+    comment: lo_assessment_status
+    data_classification:
+    nullable: true
+    raw_column_name: lo_assessment_status
+  - column_name: assessment_template
+    column_data_type: string
+    comment: assessment_template
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_template
+  - column_name: assessment_title
+    column_data_type: string
+    comment: assessment_title
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_title
+  - column_name: assessment_type
+    column_data_type: string
+    comment: assessment_type
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_type
+  - column_name: li_assessment_type
+    column_data_type: string
+    comment: li_assessment_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_assessment_type
+  - column_name: lo_assessment_type
+    column_data_type: decimal(38,0)
+    comment: lo_assessment_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_assessment_type
+  - column_name: attachments
+    column_data_type: string
+    comment: attachments
+    data_classification:
+    nullable: true
+    raw_column_name: attachments
+  - column_name: audit_end_date
+    column_data_type: timestamp
+    comment: audit_end_date
+    data_classification:
+    nullable: true
+    raw_column_name: audit_end_date
+  - column_name: auditor_other
+    column_data_type: string
+    comment: auditor_other
+    data_classification:
+    nullable: true
+    raw_column_name: auditor_other
+  - column_name: cancel_assessment
+    column_data_type: string
+    comment: cancel_assessment
+    data_classification:
+    nullable: true
+    raw_column_name: cancel_assessment
+  - column_name: li_cancel_assessment
+    column_data_type: string
+    comment: li_cancel_assessment
+    data_classification:
+    nullable: true
+    raw_column_name: li_cancel_assessment
+  - column_name: lo_cancel_assessment
+    column_data_type: decimal(38,0)
+    comment: lo_cancel_assessment
+    data_classification:
+    nullable: true
+    raw_column_name: lo_cancel_assessment
+  - column_name: close_this_record
+    column_data_type: string
+    comment: close_this_record
+    data_classification:
+    nullable: true
+    raw_column_name: close_this_record
+  - column_name: li_close_this_record
+    column_data_type: string
+    comment: li_close_this_record
+    data_classification:
+    nullable: true
+    raw_column_name: li_close_this_record
+  - column_name: lo_close_this_record
+    column_data_type: decimal(38,0)
+    comment: lo_close_this_record
+    data_classification:
+    nullable: true
+    raw_column_name: lo_close_this_record
+  - column_name: commentsfindings
+    column_data_type: string
+    comment: commentsfindings
+    data_classification:
+    nullable: true
+    raw_column_name: commentsfindings
+  - column_name: customer
+    column_data_type: string
+    comment: customer
+    data_classification:
+    nullable: true
+    raw_column_name: customer
+  - column_name: entered_date
+    column_data_type: timestamp
+    comment: entered_date
+    data_classification:
+    nullable: true
+    raw_column_name: entered_date
+  - column_name: entered_time
+    column_data_type: timestamp
+    comment: entered_time
+    data_classification:
+    nullable: true
+    raw_column_name: entered_time
+  - column_name: executive_summary
+    column_data_type: string
+    comment: executive_summary
+    data_classification:
+    nullable: true
+    raw_column_name: executive_summary
+  - column_name: finalize
+    column_data_type: string
+    comment: finalize
+    data_classification:
+    nullable: true
+    raw_column_name: finalize
+  - column_name: li_finalize
+    column_data_type: string
+    comment: li_finalize
+    data_classification:
+    nullable: true
+    raw_column_name: li_finalize
+  - column_name: lo_finalize
+    column_data_type: decimal(38,0)
+    comment: lo_finalize
+    data_classification:
+    nullable: true
+    raw_column_name: lo_finalize
+  - column_name: latitude
+    column_data_type: decimal(38,16)
+    comment: latitude
+    data_classification:
+    nullable: true
+    raw_column_name: latitude
+  - column_name: longitude
+    column_data_type: decimal(38,16)
+    comment: longitude
+    data_classification:
+    nullable: true
+    raw_column_name: longitude
+  - column_name: original_start_date
+    column_data_type: timestamp
+    comment: original_start_date
+    data_classification:
+    nullable: true
+    raw_column_name: original_start_date
+  - column_name: plan_item_status_fy_month_01
+    column_data_type: string
+    comment: plan_item_status_fy_month_01
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_01
+  - column_name: li_plan_item_status_fy_month_01
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_01
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_01
+  - column_name: lo_plan_item_status_fy_month_01
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_01
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_01
+  - column_name: plan_item_status_fy_month_02
+    column_data_type: string
+    comment: plan_item_status_fy_month_02
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_02
+  - column_name: li_plan_item_status_fy_month_02
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_02
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_02
+  - column_name: lo_plan_item_status_fy_month_02
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_02
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_02
+  - column_name: plan_item_status_fy_month_03
+    column_data_type: string
+    comment: plan_item_status_fy_month_03
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_03
+  - column_name: li_plan_item_status_fy_month_03
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_03
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_03
+  - column_name: lo_plan_item_status_fy_month_03
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_03
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_03
+  - column_name: plan_item_status_fy_month_04
+    column_data_type: string
+    comment: plan_item_status_fy_month_04
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_04
+  - column_name: li_plan_item_status_fy_month_04
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_04
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_04
+  - column_name: lo_plan_item_status_fy_month_04
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_04
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_04
+  - column_name: plan_item_status_fy_month_05
+    column_data_type: string
+    comment: plan_item_status_fy_month_05
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_05
+  - column_name: li_plan_item_status_fy_month_05
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_05
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_05
+  - column_name: lo_plan_item_status_fy_month_05
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_05
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_05
+  - column_name: plan_item_status_fy_month_06
+    column_data_type: string
+    comment: plan_item_status_fy_month_06
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_06
+  - column_name: li_plan_item_status_fy_month_06
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_06
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_06
+  - column_name: lo_plan_item_status_fy_month_06
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_06
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_06
+  - column_name: plan_item_status_fy_month_07
+    column_data_type: string
+    comment: plan_item_status_fy_month_07
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_07
+  - column_name: li_plan_item_status_fy_month_07
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_07
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_07
+  - column_name: lo_plan_item_status_fy_month_07
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_07
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_07
+  - column_name: plan_item_status_fy_month_08
+    column_data_type: string
+    comment: plan_item_status_fy_month_08
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_08
+  - column_name: li_plan_item_status_fy_month_08
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_08
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_08
+  - column_name: lo_plan_item_status_fy_month_08
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_08
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_08
+  - column_name: plan_item_status_fy_month_09
+    column_data_type: string
+    comment: plan_item_status_fy_month_09
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_09
+  - column_name: li_plan_item_status_fy_month_09
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_09
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_09
+  - column_name: lo_plan_item_status_fy_month_09
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_09
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_09
+  - column_name: plan_item_status_fy_month_10
+    column_data_type: string
+    comment: plan_item_status_fy_month_10
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_10
+  - column_name: li_plan_item_status_fy_month_10
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_10
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_10
+  - column_name: lo_plan_item_status_fy_month_10
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_10
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_10
+  - column_name: plan_item_status_fy_month_11
+    column_data_type: string
+    comment: plan_item_status_fy_month_11
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_11
+  - column_name: li_plan_item_status_fy_month_11
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_11
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_11
+  - column_name: lo_plan_item_status_fy_month_11
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_11
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_11
+  - column_name: plan_item_status_fy_month_12
+    column_data_type: string
+    comment: plan_item_status_fy_month_12
+    data_classification:
+    nullable: true
+    raw_column_name: plan_item_status_fy_month_12
+  - column_name: li_plan_item_status_fy_month_12
+    column_data_type: string
+    comment: li_plan_item_status_fy_month_12
+    data_classification:
+    nullable: true
+    raw_column_name: li_plan_item_status_fy_month_12
+  - column_name: lo_plan_item_status_fy_month_12
+    column_data_type: decimal(38,0)
+    comment: lo_plan_item_status_fy_month_12
+    data_classification:
+    nullable: true
+    raw_column_name: lo_plan_item_status_fy_month_12
+  - column_name: project_name
+    column_data_type: string
+    comment: project_name
+    data_classification:
+    nullable: true
+    raw_column_name: project_name
+  - column_name: project_risk_classification
+    column_data_type: string
+    comment: project_risk_classification
+    data_classification:
+    nullable: true
+    raw_column_name: project_risk_classification
+  - column_name: li_project_risk_classification
+    column_data_type: string
+    comment: li_project_risk_classification
+    data_classification:
+    nullable: true
+    raw_column_name: li_project_risk_classification
+  - column_name: lo_project_risk_classification
+    column_data_type: decimal(38,0)
+    comment: lo_project_risk_classification
+    data_classification:
+    nullable: true
+    raw_column_name: lo_project_risk_classification
+  - column_name: project_size
+    column_data_type: string
+    comment: project_size
+    data_classification:
+    nullable: true
+    raw_column_name: project_size
+  - column_name: li_project_size
+    column_data_type: string
+    comment: li_project_size
+    data_classification:
+    nullable: true
+    raw_column_name: li_project_size
+  - column_name: lo_project_size
+    column_data_type: decimal(38,0)
+    comment: lo_project_size
+    data_classification:
+    nullable: true
+    raw_column_name: lo_project_size
+  - column_name: ready_for_sign_off
+    column_data_type: string
+    comment: ready_for_sign_off
+    data_classification:
+    nullable: true
+    raw_column_name: ready_for_sign_off
+  - column_name: li_ready_for_sign_off
+    column_data_type: string
+    comment: li_ready_for_sign_off
+    data_classification:
+    nullable: true
+    raw_column_name: li_ready_for_sign_off
+  - column_name: lo_ready_for_sign_off
+    column_data_type: decimal(38,0)
+    comment: lo_ready_for_sign_off
+    data_classification:
+    nullable: true
+    raw_column_name: lo_ready_for_sign_off
+  - column_name: risk_comments
+    column_data_type: string
+    comment: risk_comments
+    data_classification:
+    nullable: true
+    raw_column_name: risk_comments
+  - column_name: scope_of_assessment
+    column_data_type: string
+    comment: scope_of_assessment
+    data_classification:
+    nullable: true
+    raw_column_name: scope_of_assessment
+  - column_name: service_category
+    column_data_type: string
+    comment: service_category
+    data_classification:
+    nullable: true
+    raw_column_name: service_category
+  - column_name: li_service_category
+    column_data_type: string
+    comment: li_service_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_service_category
+  - column_name: lo_service_category
+    column_data_type: decimal(38,0)
+    comment: lo_service_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_service_category
+  - column_name: sign_off_comment
+    column_data_type: string
+    comment: sign_off_comment
+    data_classification:
+    nullable: true
+    raw_column_name: sign_off_comment
+  - column_name: sign_off_date
+    column_data_type: timestamp
+    comment: sign_off_date
+    data_classification:
+    nullable: true
+    raw_column_name: sign_off_date
+  - column_name: start_date
+    column_data_type: timestamp
+    comment: start_date
+    data_classification:
+    nullable: true
+    raw_column_name: start_date
+  - column_name: zznotused_business_line
+    column_data_type: string
+    comment: zznotused_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: zznotused_business_line
+  - column_name: li_zznotused_business_line
+    column_data_type: string
+    comment: li_zznotused_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: li_zznotused_business_line
+  - column_name: lo_zznotused_business_line
+    column_data_type: decimal(38,0)
+    comment: lo_zznotused_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zznotused_business_line
+  - column_name: zznotused_subsector
+    column_data_type: string
+    comment: zznotused_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: zznotused_subsector
+  - column_name: li_zznotused_subsector
+    column_data_type: string
+    comment: li_zznotused_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: li_zznotused_subsector
+  - column_name: lo_zznotused_subsector
+    column_data_type: decimal(38,0)
+    comment: lo_zznotused_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zznotused_subsector
+  - column_name: assessment_plan_item_number
+    column_data_type: string
+    comment: assessment_plan_item_number
+    data_classification:
+    nullable: true
+    raw_column_name: assessment_plan_item_number
+  - column_name: sys_assessment_team_emails
+    column_data_type: string
+    comment: sys_assessment_team_emails
+    data_classification:
+    nullable: true
+    raw_column_name: sys_assessment_team_emails
+  - column_name: sys_entered_from_mobile
+    column_data_type: string
+    comment: sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: sys_entered_from_mobile
+  - column_name: li_sys_entered_from_mobile
+    column_data_type: string
+    comment: li_sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_entered_from_mobile
+  - column_name: lo_sys_entered_from_mobile
+    column_data_type: decimal(38,0)
+    comment: lo_sys_entered_from_mobile
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_entered_from_mobile
+  - column_name: sys_legacy_assessment_number03
+    column_data_type: string
+    comment: sys_legacy_assessment_number03
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_assessment_number03
+  - column_name: sys_send_new_assessment_email
+    column_data_type: string
+    comment: sys_send_new_assessment_email
+    data_classification:
+    nullable: true
+    raw_column_name: sys_send_new_assessment_email
+  - column_name: li_sys_send_new_assessment_email
+    column_data_type: string
+    comment: li_sys_send_new_assessment_email
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_send_new_assessment_email
+  - column_name: lo_sys_send_new_assessment_email
+    column_data_type: decimal(38,0)
+    comment: lo_sys_send_new_assessment_email
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_send_new_assessment_email
+  - column_name: sys_show_after_first_save
+    column_data_type: string
+    comment: sys_show_after_first_save
+    data_classification:
+    nullable: true
+    raw_column_name: sys_show_after_first_save
+  - column_name: li_sys_show_after_first_save
+    column_data_type: string
+    comment: li_sys_show_after_first_save
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_show_after_first_save
+  - column_name: lo_sys_show_after_first_save
+    column_data_type: decimal(38,0)
+    comment: lo_sys_show_after_first_save
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_show_after_first_save
+  - column_name: sys_show_findings_subform
+    column_data_type: string
+    comment: sys_show_findings_subform
+    data_classification:
+    nullable: true
+    raw_column_name: sys_show_findings_subform
+  - column_name: li_sys_show_findings_subform
+    column_data_type: string
+    comment: li_sys_show_findings_subform
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_show_findings_subform
+  - column_name: lo_sys_show_findings_subform
+    column_data_type: decimal(38,0)
+    comment: lo_sys_show_findings_subform
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_show_findings_subform
+  - column_name: sys_show_project_assessment_plan
+    column_data_type: string
+    comment: sys_show_project_assessment_plan
+    data_classification:
+    nullable: true
+    raw_column_name: sys_show_project_assessment_plan
+  - column_name: li_sys_show_project_assessment_plan
+    column_data_type: string
+    comment: li_sys_show_project_assessment_plan
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_show_project_assessment_plan
+  - column_name: lo_sys_show_project_assessment_plan
+    column_data_type: decimal(38,0)
+    comment: lo_sys_show_project_assessment_plan
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_show_project_assessment_plan
+  - column_name: sys_show_assessment_plan
+    column_data_type: string
+    comment: sys_show_assessment_plan
+    data_classification:
+    nullable: true
+    raw_column_name: sys_show_assessment_plan
+  - column_name: li_sys_show_assessment_plan
+    column_data_type: string
+    comment: li_sys_show_assessment_plan
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_show_assessment_plan
+  - column_name: lo_sys_show_assessment_plan
+    column_data_type: decimal(38,0)
+    comment: lo_sys_show_assessment_plan
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_show_assessment_plan
+  - column_name: sys_type_or_questionnaire
+    column_data_type: string
+    comment: sys_type_or_questionnaire
+    data_classification:
+    nullable: true
+    raw_column_name: sys_type_or_questionnaire
+  - column_name: sys_hide_finalize
+    column_data_type: string
+    comment: sys_hide_finalize
+    data_classification:
+    nullable: true
+    raw_column_name: sys_hide_finalize
+  - column_name: li_sys_hide_finalize
+    column_data_type: string
+    comment: li_sys_hide_finalize
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_hide_finalize
+  - column_name: lo_sys_hide_finalize
+    column_data_type: decimal(38,0)
+    comment: lo_sys_hide_finalize
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_hide_finalize
+  - column_name: dwk_assessment_plan
+    column_data_type: decimal(38,0)
+    comment: dwk_assessment_plan
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_assessment_plan
+  - column_name: dwk_assessor
+    column_data_type: decimal(38,0)
+    comment: dwk_assessor
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_assessor
+  - column_name: dwk_business_line
+    column_data_type: decimal(38,0)
+    comment: dwk_business_line
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_business_line
+  - column_name: dwk_business_line_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_business_line_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_business_line_archive
+  - column_name: dwk_customer
+    column_data_type: decimal(38,0)
+    comment: dwk_customer
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_customer
+  - column_name: dwk_department_in_charge_of_audit
+    column_data_type: decimal(38,0)
+    comment: dwk_department_in_charge_of_audit
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_department_in_charge_of_audit
+  - column_name: dwk_entered_by
+    column_data_type: decimal(38,0)
+    comment: dwk_entered_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_entered_by
+  - column_name: dwk_geography
+    column_data_type: decimal(38,0)
+    comment: dwk_geography
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_geography
+  - column_name: dwk_geography_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_geography_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_geography_archive
+  - column_name: dwk_person_asked_to_sign_off_audit
+    column_data_type: decimal(38,0)
+    comment: dwk_person_asked_to_sign_off_audit
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_person_asked_to_sign_off_audit
+  - column_name: dwk_person_signing_off
+    column_data_type: decimal(38,0)
+    comment: dwk_person_signing_off
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_person_signing_off
+  - column_name: dwk_project
+    column_data_type: decimal(38,0)
+    comment: dwk_project
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_project
+  - column_name: dwk_project_archive
+    column_data_type: decimal(38,0)
+    comment: dwk_project_archive
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_project_archive
+  - column_name: dwk_questionnaire
+    column_data_type: decimal(38,0)
+    comment: dwk_questionnaire
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_questionnaire
+  - column_name: dwk_subsector
+    column_data_type: decimal(38,0)
+    comment: dwk_subsector
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_subsector
+  - column_name: dwk_worley_reporting_region
+    column_data_type: decimal(38,0)
+    comment: dwk_worley_reporting_region
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_worley_reporting_region
+  - column_name: dwk_sys_business_line_unknown
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_business_line_unknown
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_business_line_unknown
+  - column_name: dwk_sys_subsector_unknown
+    column_data_type: decimal(38,0)
+    comment: dwk_sys_subsector_unknown
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_sys_subsector_unknown
+  - column_name: dwk_regional_assessment_plan
+    column_data_type: decimal(38,0)
+    comment: dwk_regional_assessment_plan
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_regional_assessment_plan
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

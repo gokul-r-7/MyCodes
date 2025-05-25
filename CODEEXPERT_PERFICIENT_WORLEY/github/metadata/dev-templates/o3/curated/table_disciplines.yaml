@@ -1,0 +1,155 @@
+MetadataType: curated#o3#disciplines#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/disciplines/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_disciplines
+  name: o3_disciplines
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    primary_key: [projectid,disciplinecode,description]
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: projectinfo
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectinfo
+  - column_data_type: string
+    column_name: disciplinecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: disciplinecode
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: createdbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuserid
+  - column_data_type: string
+    column_name: createdbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuser
+  - column_data_type: string
+    column_name: datemodified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datemodified
+  - column_data_type: string
+    column_name: modifiedbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuserid
+  - column_data_type: string
+    column_name: modifiedbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuser
+  - column_data_type: string
+    column_name: isdeleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isdeleted
+  - column_data_type: string
+    column_name: drawingidsjson
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingidsjson
+  - column_data_type: string
+    column_name: cwpstartoffsetpercentage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwpstartoffsetpercentage
+  - column_data_type: string
+    column_name: cwpdurationpercentage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwpdurationpercentage
+  - column_data_type: string
+    column_name: ewpdrawingidsjson
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ewpdrawingidsjson
+  - column_data_type: string
+    column_name: ewpdocumentidsjson
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ewpdocumentidsjson
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: datemodified_ts
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/disciplines/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_disciplines
+  load_type: incremental_no_delete
+  name: curated_o3_disciplines
+  primary_key: [projectid,disciplinecode,description]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/disciplines
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, CAST(datemodified as timestamp) as datemodified_ts, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

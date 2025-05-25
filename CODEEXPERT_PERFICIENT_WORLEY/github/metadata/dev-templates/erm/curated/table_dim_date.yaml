@@ -1,0 +1,79 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#dim_date#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/parquet/dim_date.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: dim_date
+    format_options:
+      mergeSchema: true
+  name: dim_date
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: date_pk
+    comment: date_pk
+    data_classification: 
+    nullable: false
+    raw_column_name: date_pk
+  - column_data_type: string
+    column_name: dim_week_pk
+    comment: dim_week_pk
+    data_classification: 
+    nullable: true
+    raw_column_name: dim_week_pk
+  - column_data_type: string
+    column_name: dim_month_pk
+    comment: dim_month_pk
+    data_classification: 
+    nullable: false
+    raw_column_name: dim_month_pk
+  - column_data_type: string
+    column_name: dim_year_pk
+    comment: dim_year_pk
+    data_classification: 
+    nullable: true
+    raw_column_name: dim_year_pk
+  - column_data_type: string
+    column_name: financial_year_pk
+    comment: financial_year_pk
+    data_classification: 
+    nullable: true
+    raw_column_name: financial_year_pk
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/dim_date/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: dim_date
+  name: dim_date
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/dim_date/
+  load_type: full_load
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,138 @@
+SourceSystemId: e3d_curated
+MetadataType: curated#vg_E3D#electraywbsrep#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/e3d/parquet/electraywbsrep.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_E3D-csv_xlsx_curated
+  name: vg_E3D_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: WBS
+    comment: WBS
+    data_classification: 
+    nullable: true
+    raw_column_name: area
+  - column_data_type: string
+    column_name: SITE
+    comment: SITE
+    data_classification: 
+    nullable: true
+    raw_column_name: site
+  - column_data_type: string
+    column_name: ZONE
+    comment: ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: CWAYTAGNO
+    comment: CWAYTAGNO
+    data_classification: 
+    nullable: true
+    raw_column_name: cwaytagno
+  - column_data_type: string
+    column_name: CTRAY
+    comment: CTRAY
+    data_classification: 
+    nullable: true
+    raw_column_name: ctray
+  - column_data_type: string
+    column_name: TYPE
+    comment: TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: REFNO
+    comment: REFNO
+    data_classification: 
+    nullable: true
+    raw_column_name: refno
+  - column_data_type: string
+    column_name: DESC
+    comment: DESC
+    data_classification: 
+    nullable: true
+    raw_column_name: desc
+  - column_data_type: string
+    column_name: LENGTH_FT
+    comment: LENGTH_FT
+    data_classification: 
+    nullable: true
+    raw_column_name: length_ft
+  - column_data_type: string
+    column_name: WEIGHT_LBS
+    comment: WEIGHT_LBS
+    data_classification: 
+    nullable: true
+    raw_column_name: weight_lbs
+  - column_data_type: string
+    column_name: EWP_EWP
+    comment: EWP_EWP
+    data_classification: 
+    nullable: true
+    raw_column_name: ewp_ewp
+  - column_data_type: string
+    column_name: CWA_CWAREA
+    comment: CWA_CWAREA
+    data_classification: 
+    nullable: true
+    raw_column_name: cwa_cwarea
+  - column_data_type: string
+    column_name: CWP_WORKPACKNO
+    comment: CWP_WORKPACKNO
+    data_classification: 
+    nullable: true
+    raw_column_name: cwp_workpack
+  - column_data_type: string
+    column_name: CWPZONE_AREACODE
+    comment: CWPZONE_AREACODE
+    data_classification: 
+    nullable: true
+    raw_column_name: cwpzone_areacode
+  - column_data_type: string
+    column_name: width
+    comment: width
+    data_classification: 
+    nullable: true
+    raw_column_name: width    
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_e3d_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/e3d/electraywbsrep/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_electraywbsrep
+  name: curated_vg_E3D_electraywbsrep
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/e3d/electraywbsrep
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_E3D' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

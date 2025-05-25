@@ -1,0 +1,43 @@
+SourceSystemId: contract_curated
+MetadataType: curated#contract#idd_contractmasters#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/contract/idd_contractmasters/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: contract_idd_contractmasters
+  name: contract_idd_contractmasters
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+   enforce: false
+   rename_columns: false
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_contract_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/contract/idd_contractmasters/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: idd_contractmasters
+  load_type: full_load
+  name: idd_contractmasters
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/contract/idd_contractmasters
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'contract' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

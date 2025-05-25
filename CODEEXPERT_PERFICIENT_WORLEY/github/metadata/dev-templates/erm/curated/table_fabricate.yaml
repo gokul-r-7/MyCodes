@@ -1,0 +1,343 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishFabricate#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishFabricate/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishFabricate
+  name: erm_PublishFabricate
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename   
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: fabricate_no
+    comment: fabricate_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricate_no
+  - column_data_type: decimal(38,2)
+    column_name: proj_no
+    comment: proj_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_no
+  - column_data_type: string
+    column_name: fabricate_id
+    comment: fabricate_id
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricate_id
+  - column_data_type: string
+    column_name: descr
+    comment: descr
+    data_classification: null
+    nullable: true
+    raw_column_name: descr
+  - column_data_type: string
+    column_name: stat
+    comment: stat
+    data_classification: null
+    nullable: true
+    raw_column_name: stat
+  - column_data_type: decimal(38,2)
+    column_name: mat_stat_ext_no
+    comment: mat_stat_ext_no
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_stat_ext_no
+  - column_data_type: decimal(38,2)
+    column_name: proj_comp_stat_no
+    comment: proj_comp_stat_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_comp_stat_no
+  - column_data_type: decimal(38,2)
+    column_name: fabricate_category_no
+    comment: fabricate_category_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricate_category_no
+  - column_data_type: string
+    column_name: buy_raw_mat
+    comment: buy_raw_mat
+    data_classification: null
+    nullable: true
+    raw_column_name: buy_raw_mat
+  - column_data_type: decimal(38,2)
+    column_name: proj_sys_brkdwn_no
+    comment: proj_sys_brkdwn_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_sys_brkdwn_no
+  - column_data_type: decimal(38,2)
+    column_name: proj_cost_acc_no
+    comment: proj_cost_acc_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_cost_acc_no
+  - column_data_type: decimal(38,2)
+    column_name: wgt
+    comment: wgt
+    data_classification: null
+    nullable: true
+    raw_column_name: wgt
+  - column_data_type: string
+    column_name: dim
+    comment: dim
+    data_classification: null
+    nullable: true
+    raw_column_name: dim
+  - column_data_type: decimal(38,2)
+    column_name: store_item_no
+    comment: store_item_no
+    data_classification: null
+    nullable: true
+    raw_column_name: store_item_no
+  - column_data_type: decimal(38,2)
+    column_name: proj_compartment_no
+    comment: proj_compartment_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_compartment_no
+  - column_data_type: decimal(38,2)
+    column_name: cons_area_no
+    comment: cons_area_no
+    data_classification: null
+    nullable: true
+    raw_column_name: cons_area_no
+  - column_data_type: decimal(38,2)
+    column_name: product_code_no
+    comment: product_code_no
+    data_classification: null
+    nullable: true
+    raw_column_name: product_code_no
+  - column_data_type: decimal(38,2)
+    column_name: fabricate_type_no
+    comment: fabricate_type_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricate_type_no
+  - column_data_type: decimal(38,2)
+    column_name: lead_time
+    comment: lead_time
+    data_classification: null
+    nullable: true
+    raw_column_name: lead_time
+  - column_data_type: string
+    column_name: mat_certificate
+    comment: mat_certificate
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_certificate
+  - column_data_type: string
+    column_name: planning_based_on_activity
+    comment: planning_based_on_activity
+    data_classification: null
+    nullable: true
+    raw_column_name: planning_based_on_activity
+  - column_data_type: decimal(38,2)
+    column_name: buyer_group_no
+    comment: buyer_group_no
+    data_classification: null
+    nullable: true
+    raw_column_name: buyer_group_no
+  - column_data_type: decimal(38,2)
+    column_name: insp_code_no
+    comment: insp_code_no
+    data_classification: null
+    nullable: true
+    raw_column_name: insp_code_no
+  - column_data_type: decimal(38,2)
+    column_name: std_mat_cls_no
+    comment: std_mat_cls_no
+    data_classification: null
+    nullable: true
+    raw_column_name: std_mat_cls_no
+  - column_data_type: decimal(38,2)
+    column_name: draw_no
+    comment: draw_no
+    data_classification: null
+    nullable: true
+    raw_column_name: draw_no
+  - column_data_type: string
+    column_name: txt
+    comment: txt
+    data_classification: null
+    nullable: true
+    raw_column_name: txt
+  - column_data_type: decimal(38,2)
+    column_name: steel_tape_hdr_no
+    comment: steel_tape_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: steel_tape_hdr_no
+  - column_data_type: string
+    column_name: model_tag_id
+    comment: model_tag_id
+    data_classification: null
+    nullable: true
+    raw_column_name: model_tag_id
+  - column_data_type: string
+    column_name: mto_related
+    comment: mto_related
+    data_classification: null
+    nullable: true
+    raw_column_name: mto_related
+  - column_data_type: decimal(38,2)
+    column_name: rel_mat_grp_type_no
+    comment: rel_mat_grp_type_no
+    data_classification: null
+    nullable: true
+    raw_column_name: rel_mat_grp_type_no
+  - column_data_type: decimal(38,2)
+    column_name: rel_mat_no
+    comment: rel_mat_no
+    data_classification: null
+    nullable: true
+    raw_column_name: rel_mat_no
+  - column_data_type: string
+    column_name: external_ref
+    comment: external_ref
+    data_classification: null
+    nullable: true
+    raw_column_name: external_ref
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: null
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: decimal(38,2)
+    column_name: def_appl_no
+    comment: def_appl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: def_appl_no
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_usr_id
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: decimal(38,2)
+    column_name: upd_appl_no
+    comment: upd_appl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_appl_no
+  - column_data_type: decimal(38,2)
+    column_name: deliv_desig_cat
+    comment: deliv_desig_cat
+    data_classification: null
+    nullable: true
+    raw_column_name: deliv_desig_cat
+  - column_data_type: decimal(38,2)
+    column_name: deliv_tolerance
+    comment: deliv_tolerance
+    data_classification: null
+    nullable: true
+    raw_column_name: deliv_tolerance
+  - column_data_type: decimal(38,2)
+    column_name: surplus_origin_proj_no
+    comment: surplus_origin_proj_no
+    data_classification: null
+    nullable: true
+    raw_column_name: surplus_origin_proj_no
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishFabricate/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: fabricate
+  load_type: cdc
+  name: fabricate
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishFabricate
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

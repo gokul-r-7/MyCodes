@@ -1,0 +1,39 @@
+SourceSystemId: hexagon
+MetadataType: csv_xlsx#vgcon#hexagon
+aws_region: ${region}
+Env: ${envn}
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: document_control/hexagon/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: document_control/hexagon/parquet/
+  raw_files_path: document_control/hexagon/raw/con/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: document_control/hexagon/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  xls_files:   
+    - filename: Hexagon OFE-CONSOLIDATE (2024-10-16).xlsx
+      file_prefix_length: 0
+      file_suffix_length: 18
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: C2 Plant  C2 Project-08-Consoli
+          tablename: c2_plant_c2_project_08_consoli
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+
+          
+name: hexagonCON
+Namespace: document_control

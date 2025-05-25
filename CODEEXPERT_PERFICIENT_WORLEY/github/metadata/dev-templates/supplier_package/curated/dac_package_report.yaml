@@ -1,0 +1,217 @@
+---
+SourceSystemId: supplier_package_curated
+MetadataType: curated#dac#packagereport#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/supplier_package/parquet/packagereport.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: dac_packagereport
+  name: supplier_package_packagereport
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: package_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: package_no
+  - column_data_type: string
+    column_name: package_title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: package_title
+  - column_data_type: string
+    column_name: package_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: package_type
+  - column_data_type: string
+    column_name: revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revision
+  - column_data_type: string
+    column_name: administrators
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: administrators
+  - column_data_type: string
+    column_name: distribution_list
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: distribution_list
+  - column_data_type: string
+    column_name: editors
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: editors
+  - column_data_type: string
+    column_name: hyperlink
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hyperlink
+  - column_data_type: string
+    column_name: state
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: state
+  - column_data_type: string
+    column_name: transmitted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: transmitted
+  - column_data_type: string
+    column_name: updates_available
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: updates_available
+  - column_data_type: string
+    column_name: action_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: action_status
+  - column_data_type: string
+    column_name: actionee
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actionee
+  - column_data_type: string
+    column_name: comments
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: comments
+  - column_data_type: string
+    column_name: coordinator
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: coordinator
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: due_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: due_date
+  - column_data_type: string
+    column_name: iaf_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: iaf_status
+  - column_data_type: string
+    column_name: interface_coordinator
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: interface_coordinator
+  - column_data_type: string
+    column_name: interface_description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: interface_description
+  - column_data_type: string
+    column_name: package_description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: package_description
+  - column_data_type: string
+    column_name: package_engineer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: package_engineer
+  - column_data_type: string
+    column_name: package_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: package_status
+  - column_data_type: string
+    column_name: receiver
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: receiver
+  - column_data_type: string
+    column_name: sub-project_number_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sub-project_number_name
+  - column_data_type: string
+    column_name: supplier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: supplier
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id
+  - column_data_type: string
+    column_name: project_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_code
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_supplier_package_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/supplier_package/packagereport/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_packagereport
+  name: curated_packagereport
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/supplier_package/packagereport
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'dac_supplier_package' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

@@ -1,0 +1,384 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_Instrument#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_Instrument/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-instrument
+  name: spid_instrument
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: integer
+    column_name: insultype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insultype
+  - column_data_type: integer
+    column_name: insulpurpose
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulpurpose
+  - column_data_type: string
+    column_name: insulthick
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulthick
+  - column_data_type: double
+    column_name: sp_insulthicksi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insulthicksi
+  - column_data_type: string
+    column_name: insuldensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insuldensity
+  - column_data_type: double
+    column_name: sp_insuldensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insuldensitysi
+  - column_data_type: string
+    column_name: insultemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insultemp
+  - column_data_type: double
+    column_name: sp_insultempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insultempsi
+  - column_data_type: integer
+    column_name: htracereqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracereqmt
+  - column_data_type: integer
+    column_name: htracemedium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracemedium
+  - column_data_type: string
+    column_name: htracemediumtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracemediumtemp
+  - column_data_type: double
+    column_name: sp_htracemediumtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_htracemediumtempsi
+  - column_data_type: string
+    column_name: pipingmaterialsclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipingmaterialsclass
+  - column_data_type: integer
+    column_name: safetyclassification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: safetyclassification
+  - column_data_type: string
+    column_name: tagsequenceno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsequenceno
+  - column_data_type: string
+    column_name: tagsuffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsuffix
+  - column_data_type: string
+    column_name: controlschemereference
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: controlschemereference
+  - column_data_type: string
+    column_name: instrumenttypemodifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: instrumenttypemodifier
+  - column_data_type: string
+    column_name: measuredvariablecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: measuredvariablecode
+  - column_data_type: integer
+    column_name: instrumenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: instrumenttype
+  - column_data_type: string
+    column_name: sp_piperunid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_piperunid
+  - column_data_type: string
+    column_name: sp_signalrunid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_signalrunid
+  - column_data_type: integer
+    column_name: instrumentclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: instrumentclass
+  - column_data_type: integer
+    column_name: isinline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isinline
+  - column_data_type: integer
+    column_name: location
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: location
+  - column_data_type: string
+    column_name: looptagsuffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: looptagsuffix
+  - column_data_type: integer
+    column_name: expansionqualifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: expansionqualifier
+  - column_data_type: string
+    column_name: insulationspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationspec
+  - column_data_type: integer
+    column_name: insulationnomdia
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationnomdia
+  - column_data_type: integer
+    column_name: insulationthksource
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationthksource
+  - column_data_type: integer
+    column_name: sp_expansiontype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_expansiontype
+  - column_data_type: string
+    column_name: sp_ductrunid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_ductrunid
+  - column_data_type: string
+    column_name: wp_trainno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_trainno
+  - column_data_type: string
+    column_name: wp_equipmentreference
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_equipmentreference
+  - column_data_type: string
+    column_name: wp_alarmll
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_alarmll
+  - column_data_type: string
+    column_name: wp_alarml
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_alarml
+  - column_data_type: string
+    column_name: wp_alarmhh
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_alarmhh
+  - column_data_type: string
+    column_name: wp_alarmh
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_alarmh
+  - column_data_type: integer
+    column_name: wp_instrdetail
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrdetail
+  - column_data_type: integer
+    column_name: wp_instrfunction
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrfunction
+  - column_data_type: string
+    column_name: wp_instrremark6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrremark6
+  - column_data_type: integer
+    column_name: wp_instrremark5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrremark5
+  - column_data_type: integer
+    column_name: wp_instrremark4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrremark4
+  - column_data_type: integer
+    column_name: wp_instrremark3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrremark3
+  - column_data_type: integer
+    column_name: wp_instrremark2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrremark2
+  - column_data_type: integer
+    column_name: wp_instrremark1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrremark1
+  - column_data_type: integer
+    column_name: wp_powersupply
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_powersupply
+  - column_data_type: integer
+    column_name: wp_psvcase
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_psvcase
+  - column_data_type: integer
+    column_name: wp_instrtypedef
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrtypedef
+  - column_data_type: integer
+    column_name: wp_instrclassification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_instrclassification
+  - column_data_type: integer
+    column_name: wor_procgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_procgroupid
+  - column_data_type: string
+    column_name: wor_interlockseqno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_interlockseqno
+  - column_data_type: string
+    column_name: wor_lineinstrument
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_lineinstrument
+  - column_data_type: string
+    column_name: wor_multiinst
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_multiinst
+  - column_data_type: string
+    column_name: wor_instrclose
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_instrclose
+  - column_data_type: string
+    column_name: wor_instropen
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_instropen    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_Instrument/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_instrument
+  load_type: append
+  name: curated_t_instrument
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_instrument
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Conditions:
+  SkipMonitoringAccount: !Not
+    - !Equals
+      - !Ref AWS::AccountId
+      - "235494781521"
+
+Resources:
+  Link:
+    Type: AWS::Oam::Link
+    Condition: SkipMonitoringAccount
+    Properties:
+      LabelTemplate: "$AccountName"
+      ResourceTypes: 
+        - "AWS::CloudWatch::Metric"
+        - "AWS::Logs::LogGroup"
+        - "AWS::XRay::Trace"
+        - "AWS::ApplicationInsights::Application"
+        - "AWS::InternetMonitor::Monitor"
+      SinkIdentifier: "arn:aws:oam:ap-southeast-2:235494781521:sink/2e710b21-065b-41f8-887b-a5638e028ebb"

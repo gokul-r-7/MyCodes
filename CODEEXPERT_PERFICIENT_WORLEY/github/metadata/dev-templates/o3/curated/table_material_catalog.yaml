@@ -1,0 +1,269 @@
+MetadataType: curated#o3#material-catalog#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/material-catalog/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_material_catalog
+  name: o3_material_catalog
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    primary_key: [projectid,catalogcode]
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: projectinfo
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectinfo
+  - column_data_type: string
+    column_name: catalogcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: catalogcode
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: materialtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialtype
+  - column_data_type: string
+    column_name: uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: uom
+  - column_data_type: string
+    column_name: size1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size1
+  - column_data_type: string
+    column_name: size2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size2
+  - column_data_type: string
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: createdbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuserid
+  - column_data_type: string
+    column_name: createdbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuser
+  - column_data_type: string
+    column_name: datemodified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datemodified
+  - column_data_type: string
+    column_name: modifiedbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuserid
+  - column_data_type: string
+    column_name: modifiedbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuser
+  - column_data_type: string
+    column_name: drawingidsjson
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingidsjson
+  - column_data_type: string
+    column_name: unitlength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitlength
+  - column_data_type: string
+    column_name: unitlengthuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitlengthuom
+  - column_data_type: string
+    column_name: unitwidth
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitwidth
+  - column_data_type: string
+    column_name: unitwidthuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitwidthuom
+  - column_data_type: string
+    column_name: unitheight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitheight
+  - column_data_type: string
+    column_name: unitheightuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitheightuom
+  - column_data_type: string
+    column_name: unitarea
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitarea
+  - column_data_type: string
+    column_name: unitareauom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitareauom
+  - column_data_type: string
+    column_name: unitvolume
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitvolume
+  - column_data_type: string
+    column_name: unitvolumeuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitvolumeuom
+  - column_data_type: string
+    column_name: unitweight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitweight
+  - column_data_type: string
+    column_name: unitweightuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitweightuom
+  - column_data_type: string
+    column_name: density
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: density
+  - column_data_type: string
+    column_name: densityuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: densityuom
+  - column_data_type: string
+    column_name: lineardensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lineardensity
+  - column_data_type: string
+    column_name: lineardensityuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lineardensityuom
+  - column_data_type: string
+    column_name: areadensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areadensity
+  - column_data_type: string
+    column_name: areadensityuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areadensityuom
+  - column_data_type: string
+    column_name: unitprice
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitprice
+  - column_data_type: string
+    column_name: currency
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currency
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: datemodified_ts
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/material_catalog/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_material_catalog
+  load_type: incremental_no_delete
+  name: curated_o3_material_catalog
+  primary_key: [projectid,catalogcode]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/material_catalog
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, CAST(datemodified as timestamp) as datemodified_ts, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,253 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishExpediteItemCpv#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishExpediteItemCpv/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishExpediteItemCpv
+  name: erm_PublishExpediteItemCpv
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: expedite_item_no
+    comment: expedite_item_no
+    data_classification: null
+    nullable: true
+    raw_column_name: expedite_item_no
+  - column_data_type: string
+    column_name: point_of_origin
+    comment: point_of_origin
+    data_classification: null
+    nullable: true
+    raw_column_name: point_of_origin
+  - column_data_type: string
+    column_name: gen_attr
+    comment: gen_attr
+    data_classification: null
+    nullable: true
+    raw_column_name: gen_attr
+  - column_data_type: string
+    column_name: client_po_no
+    comment: client_po_no
+    data_classification: null
+    nullable: true
+    raw_column_name: client_po_no
+  - column_data_type: string
+    column_name: client_po_pos
+    comment: client_po_pos
+    data_classification: null
+    nullable: true
+    raw_column_name: client_po_pos
+  - column_data_type: decimal(38,2)
+    column_name: released_for_fabrication
+    comment: released_for_fabrication
+    data_classification: null
+    nullable: true
+    raw_column_name: released_for_fabrication
+  - column_data_type: string
+    column_name: srn_item_comment
+    comment: srn_item_comment
+    data_classification: null
+    nullable: true
+    raw_column_name: srn_item_comment
+  - column_data_type: decimal(38,2)
+    column_name: vendor_data_complete
+    comment: vendor_data_complete
+    data_classification: null
+    nullable: true
+    raw_column_name: vendor_data_complete
+  - column_data_type: date
+    column_name: fat_date
+    comment: fat_date
+    data_classification: null
+    nullable: true
+    raw_column_name: fat_date
+  - column_data_type: date
+    column_name: last_auto_upd
+    comment: last_auto_upd
+    data_classification: null
+    nullable: true
+    raw_column_name: last_auto_upd
+  - column_data_type: date
+    column_name: proof_of_delv
+    comment: proof_of_delv
+    data_classification: null
+    nullable: true
+    raw_column_name: proof_of_delv
+  - column_data_type: string
+    column_name: track_trace_url
+    comment: track_trace_url
+    data_classification: null
+    nullable: true
+    raw_column_name: track_trace_url
+  - column_data_type: string
+    column_name: pwp_value
+    comment: pwp_value
+    data_classification: null
+    nullable: true
+    raw_column_name: pwp_value
+  - column_data_type: date
+    column_name: previous_fc_arrival_os
+    comment: previous_fc_arrival_os
+    data_classification: null
+    nullable: true
+    raw_column_name: previous_fc_arrival_os
+  - column_data_type: date
+    column_name: cons_bl_ros_date
+    comment: cons_bl_ros_date
+    data_classification: null
+    nullable: true
+    raw_column_name: cons_bl_ros_date
+  - column_data_type: string
+    column_name: sub_supplier
+    comment: sub_supplier
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_supplier
+  - column_data_type: string
+    column_name: sub_supplier_contact
+    comment: sub_supplier_contact
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_supplier_contact
+  - column_data_type: string
+    column_name: sub_supplier_location
+    comment: sub_supplier_location
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_supplier_location
+  - column_data_type: string
+    column_name: hs_code
+    comment: hs_code
+    data_classification: null
+    nullable: true
+    raw_column_name: hs_code
+  - column_data_type: string
+    column_name: ship_from
+    comment: ship_from
+    data_classification: null
+    nullable: true
+    raw_column_name: ship_from
+  - column_data_type: string
+    column_name: ship_to
+    comment: ship_to
+    data_classification: null
+    nullable: true
+    raw_column_name: ship_to
+  - column_data_type: string
+    column_name: length
+    comment: length
+    data_classification: null
+    nullable: true
+    raw_column_name: length
+  - column_data_type: string
+    column_name: width
+    comment: width
+    data_classification: null
+    nullable: true
+    raw_column_name: width
+  - column_data_type: string
+    column_name: height
+    comment: height
+    data_classification: null
+    nullable: true
+    raw_column_name: height
+  - column_data_type: string
+    column_name: weight
+    comment: weight
+    data_classification: null
+    nullable: true
+    raw_column_name: weight
+  - column_data_type: decimal(38,2)
+    column_name: dsu
+    comment: dsu
+    data_classification: null
+    nullable: true
+    raw_column_name: dsu
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: last_auto_upd
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishExpediteItemCpv/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: expedite_item_cpv
+  load_type: cdc
+  name: expedite_item_cpv
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishExpediteItemCpv
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

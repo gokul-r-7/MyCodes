@@ -1,0 +1,722 @@
+SourceSystemId: ecosys_curated
+MetadataType: curated#ecosys#header#job#iceberg
+source:
+  name: ecosys_header
+  compute_engine: spark
+  drop_duplicates: true
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/project_control/ecosys/header/
+    format: parquet
+    transformation_ctx: ecosys-header
+transforms:
+- transform: rename_columns
+  rename_column: true
+- transform: select_columns_from_config_file
+  select_columns: true
+- transform: change_data_types
+  change_types: true
+- transform: add_run_date
+  column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+- transform: custom_sql
+  sql: SELECT *, 'ecosys' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+target:
+  name: curated_ecosys_header
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_ecosys_curated
+    table_name: curated_header
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/project_control/ecosys/header/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: incremental_no_delete
+  primary_key: [header_projectinternalid]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/project_control/ecosys/header
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: header_advisianbusinesslineidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_advisianbusinesslineidname
+  - column_data_type: string
+    column_name: header_alternateid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_alternateid
+  - column_data_type: timestamp
+    column_name: header_approvaldate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_approvaldate
+  - column_data_type: string
+    column_name: header_approvedrejectedby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_approvedrejectedby
+  - column_data_type: string
+    column_name: header_assoldbasisattachedyesno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_assoldbasisattachedyesno
+  - column_data_type: string
+    column_name: header_assettype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_assettype
+  - column_data_type: string
+    column_name: header_authorizedsignatoryname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_authorizedsignatoryname
+  - column_data_type: timestamp
+    column_name: header_authorizedsignatorysignaturedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_authorizedsignatorysignaturedate
+  - column_data_type: string
+    column_name: header_billingtypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_billingtypeid
+  - column_data_type: string
+    column_name: header_billingtypename
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_billingtypename
+  - column_data_type: string
+    column_name: header_billtoaddressline1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_billtoaddressline1
+  - column_data_type: string
+    column_name: header_billtoaddressline2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_billtoaddressline2
+  - column_data_type: string
+    column_name: header_billtoaddressline3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_billtoaddressline3
+  - column_data_type: string
+    column_name: header_billtoaddressline4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_billtoaddressline4
+  - column_data_type: string
+    column_name: header_billtoaddressline5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_billtoaddressline5
+  - column_data_type: string
+    column_name: header_businesslineidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_businesslineidname
+  - column_data_type: string
+    column_name: header_crmtreference
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_crmtreference
+  - column_data_type: string
+    column_name: header_checklistcsocattachedyesno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_checklistcsocattachedyesno
+  - column_data_type: timestamp
+    column_name: header_closeddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_closeddate
+  - column_data_type: string
+    column_name: header_completedby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_completedby
+  - column_data_type: string
+    column_name: header_contractnumberifexisting
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_contractnumberifexisting
+  - column_data_type: string
+    column_name: header_contractualbasisforcommencementofbillableworkidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_contractualbasisforcommencementofbillableworkidname
+  - column_data_type: string
+    column_name: header_costobjectcurrencycodename
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_costobjectcurrencycodename
+  - column_data_type: string
+    column_name: header_countryofasset
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_countryofasset
+  - column_data_type: string
+    column_name: header_customer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_customer
+  - column_data_type: string
+    column_name: header_customercontactname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_customercontactname
+  - column_data_type: string
+    column_name: header_customerinternalentity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_customerinternalentity
+  - column_data_type: string
+    column_name: header_customerprojectmanager
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_customerprojectmanager
+  - column_data_type: string
+    column_name: header_customertypeidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_customertypeidname
+  - column_data_type: string
+    column_name: header_earnedvalueweightingid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_earnedvalueweightingid
+  - column_data_type: string
+    column_name: header_estimatedwphours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_estimatedwphours
+  - column_data_type: string
+    column_name: header_estimatedwprevenue
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_estimatedwprevenue
+  - column_data_type: string
+    column_name: header_existingcustomerreferenceno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_existingcustomerreferenceno
+  - column_data_type: string
+    column_name: header_existingwpcontractyesno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_existingwpcontractyesno
+  - column_data_type: timestamp
+    column_name: header_forecastperioddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_forecastperioddate
+  - column_data_type: string
+    column_name: header_gbsprojecttemplateidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_gbsprojecttemplateidname
+  - column_data_type: string
+    column_name: header_hwpcoactlibrary
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_hwpcoactlibrary
+  - column_data_type: string
+    column_name: header_homeofficelocationidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_homeofficelocationidname
+  - column_data_type: string
+    column_name: header_imagepath1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_imagepath1
+  - column_data_type: string
+    column_name: header_imagepath2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_imagepath2
+  - column_data_type: string
+    column_name: header_industrysectoridname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_industrysectoridname
+  - column_data_type: string
+    column_name: header_industrysubsectoridname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_industrysubsectoridname
+  - column_data_type: string
+    column_name: header_internalentity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_internalentity
+  - column_data_type: string
+    column_name: header_lastrequestmadefordocuments
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_lastrequestmadefordocuments
+  - column_data_type: string
+    column_name: header_legacywbs
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_legacywbs
+  - column_data_type: string
+    column_name: header_majorproject
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_majorproject
+  - column_data_type: string
+    column_name: header_ownerorganizationid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_ownerorganizationid
+  - column_data_type: string
+    column_name: header_pcac01
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac01
+  - column_data_type: string
+    column_name: header_pcac02
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac02
+  - column_data_type: string
+    column_name: header_pcac03
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac03
+  - column_data_type: string
+    column_name: header_pcac04
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac04
+  - column_data_type: string
+    column_name: header_pcac05
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac05
+  - column_data_type: string
+    column_name: header_pcac06
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac06
+  - column_data_type: string
+    column_name: header_pcac07
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac07
+  - column_data_type: string
+    column_name: header_pcac08
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac08
+  - column_data_type: string
+    column_name: header_pcac09
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac09
+  - column_data_type: string
+    column_name: header_pcac10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_pcac10
+  - column_data_type: string
+    column_name: header_portfolioprojectgrouping
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_portfolioprojectgrouping
+  - column_data_type: string
+    column_name: header_projectapprovalstatusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectapprovalstatusid
+  - column_data_type: string
+    column_name: header_projectcontroller
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectcontroller
+  - column_data_type: timestamp
+    column_name: header_projectcreatedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectcreatedate
+  - column_data_type: timestamp
+    column_name: header_projectenddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectenddate
+  - column_data_type: string
+    column_name: header_projectexecutionlocation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectexecutionlocation
+  - column_data_type: string
+    column_name: header_projectfunding
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectfunding
+  - column_data_type: string
+    column_name: header_projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectid
+  - column_data_type: string
+    column_name: header_projectinternalid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectinternalid
+  - column_data_type: string
+    column_name: header_projectmanager
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectmanager
+  - column_data_type: string
+    column_name: header_projectmanagername
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectmanagername
+  - column_data_type: timestamp
+    column_name: header_projectmanagersignaturedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectmanagersignaturedate
+  - column_data_type: string
+    column_name: header_projectname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectname
+  - column_data_type: string
+    column_name: header_projectriskclassificationid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectriskclassificationid
+  - column_data_type: string
+    column_name: header_projectsizeclassificationidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectsizeclassificationidname
+  - column_data_type: string
+    column_name: header_projectsponsor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectsponsor
+  - column_data_type: timestamp
+    column_name: header_projectstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projectstartdate
+  - column_data_type: string
+    column_name: header_projecttypeidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_projecttypeidname
+  - column_data_type: string
+    column_name: header_proposalbudget
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_proposalbudget
+  - column_data_type: string
+    column_name: header_proposalnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_proposalnumber
+  - column_data_type: string
+    column_name: header_purchaseordernumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_purchaseordernumber
+  - column_data_type: string
+    column_name: header_riskformattachedyesno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_riskformattachedyesno
+  - column_data_type: timestamp
+    column_name: header_rundate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_rundate
+  - column_data_type: string
+    column_name: header_secorgprojectcat01
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat01
+  - column_data_type: string
+    column_name: header_secorgprojectcat02
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat02
+  - column_data_type: string
+    column_name: header_secorgprojectcat03
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat03
+  - column_data_type: string
+    column_name: header_secorgprojectcat04
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat04
+  - column_data_type: string
+    column_name: header_secorgprojectcat05
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat05
+  - column_data_type: string
+    column_name: header_secorgprojectcat06
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat06
+  - column_data_type: string
+    column_name: header_secorgprojectcat07
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat07
+  - column_data_type: string
+    column_name: header_secorgprojectcat08
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat08
+  - column_data_type: string
+    column_name: header_secorgprojectcat09
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat09
+  - column_data_type: string
+    column_name: header_secorgprojectcat10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_secorgprojectcat10
+  - column_data_type: string
+    column_name: header_servicetypeidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_servicetypeidname
+  - column_data_type: string
+    column_name: header_serviceunitidname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_serviceunitidname
+  - column_data_type: string
+    column_name: header_shiptoaddressline1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_shiptoaddressline1
+  - column_data_type: string
+    column_name: header_shiptoaddressline2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_shiptoaddressline2
+  - column_data_type: string
+    column_name: header_shiptoaddressline3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_shiptoaddressline3
+  - column_data_type: string
+    column_name: header_shiptoaddressline4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_shiptoaddressline4
+  - column_data_type: string
+    column_name: header_shiptoaddressline5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_shiptoaddressline5
+  - column_data_type: string
+    column_name: header_smallprojectmoc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_smallprojectmoc
+  - column_data_type: timestamp
+    column_name: header_snapshotdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_snapshotdate
+  - column_data_type: string
+    column_name: header_sustainability
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_sustainability
+  - column_data_type: string
+    column_name: header_udf01
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf01
+  - column_data_type: string
+    column_name: header_udf02
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf02
+  - column_data_type: string
+    column_name: header_udf03
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf03
+  - column_data_type: string
+    column_name: header_udf04
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf04
+  - column_data_type: string
+    column_name: header_udf05
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf05
+  - column_data_type: string
+    column_name: header_udf06
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf06
+  - column_data_type: string
+    column_name: header_udf07
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf07
+  - column_data_type: string
+    column_name: header_udf08
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf08
+  - column_data_type: string
+    column_name: header_udf09
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf09
+  - column_data_type: string
+    column_name: header_udf10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_udf10
+  - column_data_type: string
+    column_name: header_wopocontractattachedyesno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_wopocontractattachedyesno
+  - column_data_type: string
+    column_name: header_worleycontractingentityorjvid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: header_worleycontractingentityorjvid
+  schema_properties:
+    primary_key: [header_projectinternalid]
+    enforce: true
+    rename_columns: true

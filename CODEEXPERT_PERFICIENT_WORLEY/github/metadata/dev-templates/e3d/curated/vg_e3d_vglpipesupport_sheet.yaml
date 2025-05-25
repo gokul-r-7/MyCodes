@@ -1,0 +1,162 @@
+SourceSystemId: e3d_curated
+MetadataType: curated#vg_E3D#vg_e3d_vglpipesupport_sheet#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/e3d/parquet/vg_e3d_pipesupport_sheet.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_E3D-vg_e3d_vglpipesupport_sheet
+  name: vg_E3D_vg_e3d_vglpipesupport_sheet
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: NAME
+    comment: name
+    data_classification: 
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: TYPE
+    comment: TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: LOCK
+    comment: LOCK
+    data_classification: 
+    nullable: true
+    raw_column_name: lock
+  - column_data_type: string
+    column_name: OWNER
+    comment: owner
+    data_classification: 
+    nullable: true
+    raw_column_name: owner
+  - column_data_type: string
+    column_name: PROJECT
+    comment: PROJECT
+    data_classification: 
+    nullable: true
+    raw_column_name: project
+  - column_data_type: string
+    column_name: WORKPACK_NO
+    comment: WORKPACK_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: workpack_no
+  - column_data_type: string
+    column_name: ISOMETRIC
+    comment: ISOMETRIC
+    data_classification: 
+    nullable: true
+    raw_column_name: isometric
+  - column_data_type: string
+    column_name: SUPPO
+    comment: SUPPO
+    data_classification: 
+    nullable: true
+    raw_column_name: suppo
+  - column_data_type: string
+    column_name: SUPPORT_TYPE
+    comment: SUPPORT_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: support_type
+  - column_data_type: string
+    column_name: BORE_INCH
+    comment: BORE_INCH
+    data_classification: 
+    nullable: true
+    raw_column_name: bore_inch
+  - column_data_type: string
+    column_name: TAG
+    comment: TAG
+    data_classification: 
+    nullable: true
+    raw_column_name: tag
+  - column_data_type: string
+    column_name: PROFILE
+    comment: PROFILE
+    data_classification: 
+    nullable: true
+    raw_column_name: profile
+  - column_data_type: string
+    column_name: LENGTH_MM
+    comment: LENGTH_MM
+    data_classification: 
+    nullable: true
+    raw_column_name: length_mm
+  - column_data_type: string
+    column_name: QUANTITY
+    comment: QUANTITY
+    data_classification: 
+    nullable: true
+    raw_column_name: quantity
+  - column_data_type: string
+    column_name: CLIENT_DOC_NUM
+    comment: CLIENT_DOC_NUM
+    data_classification: 
+    nullable: true
+    raw_column_name: client_doc_num
+  - column_data_type: string
+    column_name: DRAWING_NO
+    comment: DRAWING_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: drawing_no
+  - column_data_type: string
+    column_name: PID_LINE_NO
+    comment: PID_LINE_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: pid_line_no
+  - column_data_type: string
+    column_name: ZONE
+    comment: ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: SITE
+    comment: SITE
+    data_classification: 
+    nullable: true
+    raw_column_name: site
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_e3d_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/e3d/vg_e3d_vglpipesupport_sheet/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_vg_e3d_vglpipesupport_sheet
+  name: curated_vg_e3d_vglpipesupport_sheet
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/e3d/vg_e3d_vglpipesupport_sheet
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_E3D' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

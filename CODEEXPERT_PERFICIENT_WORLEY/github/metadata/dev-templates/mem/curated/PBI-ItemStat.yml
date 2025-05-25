@@ -1,0 +1,156 @@
+---
+SourceSystemId: database_mem_curated
+MetadataType: curated#mem#PBI_ItemStat#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/mem/PBI-ItemStat/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: mem-pbi_ItemStat
+  name: mem_pbi_ItemStat
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: discipline
+  - column_data_type: string
+    column_name: modelelementcat
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelelementcat
+  - column_data_type: string
+    column_name: 3dmodelitemtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 3dmodelitemtag
+  - column_data_type: string
+    column_name: 3dmodelitemsize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 3dmodelitemsize
+  - column_data_type: string
+    column_name: area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area
+  - column_data_type: short
+    column_name: currstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currstatus
+  - column_data_type: short
+    column_name: estqty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estqty
+  - column_data_type: short
+    column_name: stat0
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat0
+  - column_data_type: short
+    column_name: stat1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat1
+  - column_data_type: short
+    column_name: stat2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat2
+  - column_data_type: short
+    column_name: stat3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat3
+  - column_data_type: short
+    column_name: stat4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat4
+  - column_data_type: short
+    column_name: stat5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat5
+  - column_data_type: short
+    column_name: stat6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat6
+  - column_data_type: short
+    column_name: stat7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat7
+  - column_data_type: short
+    column_name: stat8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat8
+  - column_data_type: short
+    column_name: stat9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stat9
+  - column_data_type: string
+    column_name: hold
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hold
+  - column_data_type: timestamp
+    column_name: 3dmodelelementdatadate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: 3dmodelelementdatadate    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_mem_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/mem/PBI_ItemStat/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_pbi_itemstat
+  load_type: append
+  name: curated_pbi_itemstat
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/mem/curated_pbi_itemstat
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'mem' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

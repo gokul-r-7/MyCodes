@@ -1,0 +1,125 @@
+dev:
+  region: ap-southeast-2
+  envn: dev
+  raw_bucket: worley-datalake-sydney-dev-bucket-raw-xd5ydg
+  people_raw_bucket: worley-datalake-sydney-dev-bucket-raw-people-xd5ydg
+  people_curated_bucket: worley-datalake-sydney-dev-bucket-curated-people-xd5ydg
+  curated_bucket: worley-datalake-sydney-dev-bucket-curated-xd5ydg
+  database_prefix: worley_datalake_sydney_dev_glue_catalog_database
+  secret_prefix: worley-datalake-sydney-dev
+  genai_notification_env_prefix: dsgenai-nonprod.worley.com
+  aurora_host: worley-datalake-sydney-dev-auroradb-data.cluster-c7w8y46g04dt.ap-southeast-2.rds.amazonaws.com
+  aurora_db: dev
+  iceberg_snapshot_key: arn:aws:kms:ap-southeast-2:891377181979:key/mrk-3c56ea42a1144fae90bd5551d5e7d543
+  kms_key_id: mrk-3c56ea42a1144fae90bd5551d5e7d543
+  bucket_suffix: xd5ydg
+  erm_env_prefix: development
+  salesforce_login_url: Test.salesforce.com
+  salesforce_instance_url: worley--qa.sandbox.my.salesforce.com
+  gbs_sftp_server: worley-ftp-nonprod.opc.oracleoutsourcing.com
+  gbs_sftp_host_user: aws/transfer/sftp-host-user
+  gbs_secret_key: aws/transfer/gbs-nonprod
+  gbs_sftp_R2_remote_folder: /TWRL53/outgoing
+  gbs_sftp_txt_remote_folder: /EBSCR9/outgoing/AWS  
+  gbs_sftp_r4_remote_folder: /SWRL1I/outgoing/Data_Foundation
+  genai_ped_api: worleysalesdev
+  genai_sharepoint_gph: WGPH_Staging
+  genai_sharepoint_gph_prefix: WGPH_Staging
+  genai_sharepoint_gph_allotherpursuits: All Other Pursuits
+  genai_sharepoint_gph_gql: Global Qualifications Library
+  genai_sharepoint_gph_gql_doclib: Global Qualifications Library (GQL)
+  genai_sharepoint_gph_comprimo: Comprimo Pursuits
+  genai_sharepoint_gph_advisian: Consulting Pursuits
+  genai_ped_confidential_field: sds_confidentialproject
+  assurance_sftp_remote_folder: /dev-upload
+  assurance_sftp_host_user: aws/transfer/assurance-sftp-host-user
+  assurance_sftp_server : worleyparsons-clientimport
+  genai_kms_key_id: 3a4345c9-617f-4e55-8a27-70814760f56a
+  genai_sharepoint_v1: Knowledge_Management
+  genai_sharepoint_v1_go_bys: Go-Bys - Best Practice
+  jplus_source_secret: worley-datalake-sydney-dev-jplus-server
+  oraclegbs_dac_sftp_remote_folder: /TWRL53/outgoing
+  o3_endpoint: https://worley-test.o3solution.com/api
+
+qa:
+  region: ap-southeast-2
+  envn: qa
+  raw_bucket: worley-datalake-sydney-qa-bucket-raw-k7eatg
+  people_raw_bucket: worley-datalake-sydney-qa-bucket-raw-people-k7eatg
+  people_curated_bucket: worley-datalake-sydney-qa-bucket-curated-people-k7eatg
+  curated_bucket: worley-datalake-sydney-qa-bucket-curated-k7eatg
+  database_prefix: worley_datalake_sydney_qa_glue_catalog_database
+  secret_prefix: worley-datalake-sydney-qa
+  genai_notification_env_prefix: dsgenai-nonprod.worley.com
+  aurora_host: worley-datalake-sydney-qa-auroradb-data.cluster-cjcosac4e6ta.ap-southeast-2.rds.amazonaws.com
+  aurora_db: qa
+  iceberg_snapshot_key: arn:aws:kms:ap-southeast-2:533267239288:key/mrk-9853d2d670354d37bd9bb067993515b3
+  kms_key_id: mrk-9853d2d670354d37bd9bb067993515b3
+  genai_kms_key_id: 6deeaf78-78e9-4da1-b3d5-6de26a809ead
+  bucket_suffix: k7eatg
+  erm_env_prefix: testing
+  salesforce_login_url: Test.salesforce.com
+  salesforce_instance_url: worley--qa.sandbox.my.salesforce.com
+  gbs_sftp_server: worley-ftp-nonprod.opc.oracleoutsourcing.com
+  gbs_sftp_host_user: aws/transfer/sftp-host-user
+  gbs_secret_key: aws/transfer/gbs-nonprod
+  gbs_sftp_R2_remote_folder: /TWRL53/outgoing
+  gbs_sftp_txt_remote_folder: /EBSCR9/outgoing/AWS
+  gbs_sftp_r4_remote_folder: /SWRL1I/outgoing/Data_Foundation  
+  genai_ped_api: worleysalesdev
+  genai_sharepoint_gph: WGPH_Staging
+  genai_sharepoint_gph_prefix: WGPH_Staging
+  genai_sharepoint_gph_allotherpursuits: All Other Pursuits
+  genai_sharepoint_gph_gql: Global Qualifications Library
+  genai_sharepoint_gph_gql_doclib: Global Qualifications Library (GQL)
+  genai_sharepoint_gph_comprimo: Comprimo Pursuits
+  genai_sharepoint_gph_advisian: Consulting Pursuits
+  genai_ped_confidential_field: sds_confidentialproject
+  assurance_sftp_server: clientimport.ehs.saiglobal.com
+  assurance_sftp_host_user: aws/transfer/assurance-sftp-host-user 
+  assurance_sftp_remote_folder: /test-upload
+  assurance_sftp_port: 22
+  jplus_source_secret: worley-datalake-sydney-qa-jplus-server
+  oraclegbs_dac_sftp_remote_folder: /TWRL53/outgoing
+  o3_endpoint: https://worley.o3solution.com/api
+
+prd:
+  region: ap-southeast-2
+  envn: prd
+  raw_bucket: worley-datalake-sydney-prd-bucket-raw-cuyglg
+  people_raw_bucket: worley-datalake-sydney-prd-bucket-raw-people-cuyglg
+  people_curated_bucket: worley-datalake-sydney-prd-bucket-curated-people-cuyglg
+  curated_bucket: worley-datalake-sydney-prd-bucket-curated-cuyglg
+  database_prefix: worley_datalake_sydney_prd_glue_catalog_database
+  secret_prefix: worley-datalake-sydney-prd
+  genai_notification_env_prefix: dsgenai-prod.worley.com
+  aurora_host: worley-datalake-sydney-prd-auroradb-data.cluster-c780gcsywb2p.ap-southeast-2.rds.amazonaws.com
+  aurora_db: prd
+  iceberg_snapshot_key: arn:aws:kms:ap-southeast-2:471112986846:key/c9c087de-a14a-481e-b266-0fed50f001e1
+  kms_key_id: c9c087de-a14a-481e-b266-0fed50f001e1
+  genai_kms_key_id: c9c087de-a14a-481e-b266-0fed50f001e1
+  bucket_suffix: cuyglg
+  erm_env_prefix: production
+  salesforce_login_url: login.salesforce.com
+  salesforce_instance_url: worley.my.salesforce.com
+  gbs_sftp_server: worley-ftp.opc.oracleoutsourcing.com
+  gbs_sftp_host_user: aws/transfer/sftp-host-user
+  gbs_secret_key: gbs_prod_key
+  gbs_sftp_R2_remote_folder: /PWRL53/outgoing
+  gbs_sftp_txt_remote_folder: /EBSCR9/outgoing/AWS
+  gbs_sftp_r4_remote_folder: /PWRL1I/outgoing/Data_Foundation  
+  genai_ped_api: worleysales
+  genai_sharepoint_gph: worleygph
+  genai_sharepoint_gph_prefix: WorleyGPH
+  genai_ped_confidential_field: crf99_confidentialproject
+  genai_sharepoint_gph_allotherpursuits: All Other Pursuits
+  genai_sharepoint_gph_gql_doclib: Global Quals Library (GQL)
+  genai_sharepoint_gph_gql: Global Qualifications Library GQL
+  genai_sharepoint_gph_comprimo: Comprimo Pursuits
+  genai_sharepoint_gph_advisian: Advisian Pursuits
+  jplus_source_secret: worley-datalake-sydney-prd-jplus-server
+  oraclegbs_dac_sftp_remote_folder: /PWRL53/outgoing
+  o3_endpoint: https://worley.o3solution.com/api
+  assurance_sftp_server: clientimport.ehs.saiglobal.com
+  assurance_sftp_host_user: aws/transfer/assurance-sftp-host-user 
+  assurance_sftp_remote_folder: /prod-upload

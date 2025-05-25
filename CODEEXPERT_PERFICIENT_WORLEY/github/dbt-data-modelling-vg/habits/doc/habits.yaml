@@ -1,0 +1,183 @@
+url: https://github.com/awslabs/aws-code-habits
+
+logo: doc/logo.png
+
+badges:
+  custom:
+    - title: Test
+      icon: https://github.com/awslabs/aws-code-habits/actions/workflows/test.yaml/badge.svg
+      url: https://github.com/awslabs/aws-code-habits/actions/workflows/test.yaml
+    - title: GitHub Issues
+      icon: https://img.shields.io/github/issues/awslabs/aws-code-habits
+      url: https://github.com/awslabs/aws-code-habits/issues
+    - title: GitHub Stars
+      icon: https://img.shields.io/github/stars/awslabs/aws-code-habits
+      url: https://github.com/awslabs/aws-code-habits/stargazers
+  workflows:
+    - name: hygiene
+
+screenshots:
+  - label: screenshot-1
+    url: https://user-images.githubusercontent.com/3298422/198290134-fec4a14d-8542-4b92-9cbc-d33f476e7a74.gif
+    caption: Installing AWS Code Habits
+
+title: AWS Code Habits
+
+description: A library with Make targets, Ansible playbooks, Jinja templates (and more) designed to boost common software development tasks and enhance governance.
+
+getting_started: |-
+  AWS Code Habits was developed to be used as a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+
+  On a terminal, on your project's root directory, execute one of the following commands:
+
+  ```bash
+  git submodule add --name habits -b main https://github.com/awslabs/aws-code-habits.git habits
+  ```
+
+  This will clone AWS Code Habits on a folder named `habits` and track against the `main` branch.
+  Now, you will need to create, or add to your existing, `Makefile`.
+
+  ```bash
+  export WORKSPACE=$(shell pwd)
+  export HABITS = $(WORKSPACE)/habits
+
+  include $(WORKSPACE)/tools.env # pin the version of your tools
+
+  include $(HABITS)/lib/make/*/*.mk
+  include $(HABITS)/lib/make/*.mk
+  ```
+
+  Remember, next time you need to clone your repository, you will need to include `--recurse-submodules` parameters.
+  ```bash
+  git clone --recurse-submodules ...
+  ```
+  > If you already cloned the project and forgot `--recurse-submodules`, you can combine the `git submodule init` and `git submodule update` steps by running `git submodule update --init`. To also initialize, fetch and checkout any nested submodules, you can use the foolproof `git submodule update --init --recursive`. - [Git Tools Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
+  Check the [scripts](scripts/) directory, if you want to automate the initialization and installation of AWS Code Habits.`
+
+prerequisites:
+  content: |-
+    A list of things you need, or how to install them.
+    > At this stage, we are only supporting Linux (Ubuntu) environments (which can be obtained via WSL (Windows) or DevContainers (Mac/Linux/Windows))
+
+  references:
+    - name: Python 3
+      description: Whether you're new to programming or an experienced developer, it's easy to learn and use Python.
+      url: https://www.python.org
+    - name: Pip
+      description: pip is the package installer for Python.
+      url: https://pypi.org/project/pip/
+
+# required
+usage: |-
+
+  ```bash
+  make [tab][tab]
+  ```
+
+  ```bash
+  make help
+  ```
+  For more information about each [Make targets available](Makefile.md).
+
+how_tos:
+  - title: How to initialize pre-commit config
+    content: |-
+      ```bash
+      make pre-commit/init
+      ```
+
+      To run all `pre-commit` rules in all files, simply run:
+
+      ```bash
+      make pre-commit/run
+      ```
+
+  - title: How to maintain documentation
+    content: |-
+      1. First initialize all documentation files:
+      ```bash
+      make doc/init
+      ```
+
+      This will create a folder named `doc/` in the root directory of your project and create a file named `habits.yaml` inside of it.
+
+      2. Modify the contents of `doc/habits.yaml` accordingly and execute:
+
+      ```
+      make doc/build
+      ```
+
+      3. `README.md` will be rendered.
+
+  - title: How to expand Habits commands
+    content: |-
+      You can use [Habits][habits] to meet your needs, in your `Makefile` you can add the following to ensure code and documentation hygiene:
+      ```bash
+      .PHONY: hygiene
+      hygiene: doc/build pre-commit/run
+      ```
+
+      Another example, if you want to perform several tasks with `AWS CloudFormation`:
+      ```bash
+      .PHONY: hygiene
+      hygiene: aws/cloudformation/hygiene
+
+      .PHONY: plan
+      plan: aws/cloudformation/create-change-set
+
+      .PHONY: discard
+      discard: aws/cloudformation/delete-change-set
+
+      .PHONY: apply
+      apply: aws/cloudformation/execute-change-set
+      ```
+
+testing: |-
+  To perform habits checks:
+  ```bash
+  make habits/check
+  ```
+
+references:
+  - name: GNU Make
+    description: GNU Make is a tool which controls the generation of executables and other non-source files of a program from the program's source files.
+    url: https://www.gnu.org/software/make/
+  - name: Windows Subsystem for Linux (Ubuntu)
+    description: WSL enables you to use Linux tools, like Bash or Grep, completely integrated with Windows tools, like PowerShell or Visual Studio Code, with no need to dual-boot.
+    url: https://docs.microsoft.com/en-us/windows/wsl/install
+  - name: Visual Studio Code
+    description: Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.
+    url: https://code.visualstudio.com/
+  - name: VSCode Remote Development Extension Pack
+    description: An extension pack that lets you open any folder in a container, on a remote machine, or in WSL and take advantage of VS Code's full feature set.
+    url: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
+  - name: Git Submodules
+    description: Submodules allow you to keep a Git repository as a subdirectory of another Git repository.
+    url: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+  - name: Docker
+    description: The fastest way to containerize applications
+    url: https://www.docker.com/products/docker-desktop/
+  - name: Visual Studio Code
+    description: Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.
+    url: https://code.visualstudio.com/
+  - name: Visual Studio DevContainers
+    description: The Visual Studio Code Dev Containers extension lets you use a Docker container as a full-featured development environment.
+    url: https://code.visualstudio.com/docs/devcontainers/containers
+  - name: VSCode Remote Development Extension Pack
+    description: An extension pack that lets you open any folder in a container, on a remote machine, or in WSL and take advantage of VS Code's full feature set.
+    url: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
+  - name: Ansible
+    description: Ansible is an open source community project sponsored by Red Hat, it's the simplest way to automate IT.
+    url: https://www.ansible.com/
+  - name: Jinja2
+    description: Ansible uses Jinja2 templating to enable dynamic expressions and access to variables and facts.
+    url: https://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html
+
+license: MIT-0
+
+copyright: Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+anchors:
+  - name: habits
+    url: https://github.com/awslabs/aws-code-habits

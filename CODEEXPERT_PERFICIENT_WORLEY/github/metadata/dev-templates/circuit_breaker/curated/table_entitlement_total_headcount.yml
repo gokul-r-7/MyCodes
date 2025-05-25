@@ -1,0 +1,85 @@
+---
+SourceSystemId: circuit_breaker_curated
+MetadataType: curated#circuit_breaker#entitlement_total_headcount#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/circuit_breaker/parquet/entitlement_total_headcount.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: entitlement_total_headcount_curated
+  name: entitlement_total_headcount_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: total_headcount_month_year
+    comment: total_headcount_month_year
+    data_classification: 
+    nullable: true
+    raw_column_name: month_year
+  - column_data_type: string
+    column_name: total_headcount_total_headcount
+    comment: total_headcount_total_headcount
+    data_classification: 
+    nullable: true
+    raw_column_name: total_headcount
+  - column_data_type: string
+    column_name: total_headcount_region_headcount
+    comment: total_headcount_region_headcount
+    data_classification: 
+    nullable: true
+    raw_column_name: region_headcount
+  - column_data_type: string
+    column_name: total_headcount_americas
+    comment: total_headcount_americas
+    data_classification: 
+    nullable: true
+    raw_column_name: americas
+  - column_data_type: string
+    column_name: total_headcount_apac
+    comment: total_headcount_apac
+    data_classification: 
+    nullable: true
+    raw_column_name: apac
+  - column_data_type: string
+    column_name: total_headcount_emea
+    comment: total_headcount_emea
+    data_classification: 
+    nullable: true
+    raw_column_name: emea
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: worley_datalake_sydney_${envn}_glue_catalog_database_circuit_breaker_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_total_headcount/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_entitlement_total_headcount
+  load_type: full_load
+  name: curated_entitlement_total_headcount
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_total_headcount
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'circuit_breaker' as SOURCE_SYSTEM_NAME, 'entitlement_total_headcount'
+    as CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

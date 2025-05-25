@@ -1,0 +1,34 @@
+version: 3
+
+sources:
+  - name: curated_o3
+    database: construction
+    schema:  "{{ var('curated_schema')[target.name]['+o3'][0] }}"
+    tables:  
+      - name: curated_constraints
+      - name: curated_cwas
+      - name: curated_cwps
+      - name: curated_region
+      - name: curated_disciplines
+      - name: curated_iwps
+      - name: curated_change_history
+      - name: curated_work_package_execution_tasks
+      - name: curated_work_package_execution_tasks_steps
+      - name: curated_materials
+      - name: curated_material_requirements
+      - name: curated_material_catalog
+      - name: curated_contracts
+      - name: curated_projectsettings_get_crew_schedule
+      - name: curated_construction_components
+      - name: curated_ewps
+      - name: curated_twps
+      - name: curated_fabrication_status
+      - name: curated_work_package_components
+
+  - name: curated_fts
+    database: construction
+    schema: "{{ var('curated_schema')[target.name]['+fts'][0] }}"
+    tables:
+      - name: curated_fts_timesheet
+#pr commit
+         

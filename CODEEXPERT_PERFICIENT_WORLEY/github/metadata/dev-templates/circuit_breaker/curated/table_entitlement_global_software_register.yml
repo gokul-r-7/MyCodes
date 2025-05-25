@@ -1,0 +1,390 @@
+SourceSystemId: circuit_breaker_curated
+MetadataType: curated#circuit_breaker#entitlement_global_software_register#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/circuit_breaker/parquet/global_software_register.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: entitlement_global_software_register_curated
+  name: entitlement_global_software_register_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: gsr_id
+    comment: gsr_id
+    data_classification: 
+    nullable: true
+    raw_column_name: gsr_number
+  - column_data_type: string
+    column_name: gsr_name
+    comment: gsr_name
+    data_classification: 
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: gsr_publisher_gsr
+    comment: gsr_publisher_gsr
+    data_classification: 
+    nullable: true
+    raw_column_name: publisher_gsr
+  - column_data_type: string
+    column_name: gsr_publisher_website
+    comment: gsr_publisher_website
+    data_classification: 
+    nullable: true
+    raw_column_name: publisher_website
+  - column_data_type: string
+    column_name: gsr_gsr_status
+    comment: gsr_gsr_status
+    data_classification: 
+    nullable: true
+    raw_column_name: gsr_status
+  - column_data_type: string
+    column_name: gsr_target_retirement_date
+    comment: gsr_target_retirement_date
+    data_classification: 
+    nullable: true
+    raw_column_name: target_retirement_date
+  - column_data_type: string
+    column_name: gsr_decommissioned_date
+    comment: gsr_decommissioned_date
+    data_classification: 
+    nullable: true
+    raw_column_name: decommissioned_date
+  - column_data_type: string
+    column_name: gsr_global_agreement
+    comment: gsr_global_agreement
+    data_classification: 
+    nullable: true
+    raw_column_name: global_agreement
+  - column_data_type: string
+    column_name: gsr_worley_category
+    comment: gsr_worley_category
+    data_classification: 
+    nullable: true
+    raw_column_name: worley_category
+  - column_data_type: string
+    column_name: gsr_function
+    comment: gsr_function
+    data_classification: 
+    nullable: true
+    raw_column_name: function
+  - column_data_type: string
+    column_name: gsr_software_function
+    comment: gsr_software_function
+    data_classification: 
+    nullable: true
+    raw_column_name: software_function
+  - column_data_type: string
+    column_name: gsr_software_origin
+    comment: gsr_software_origin
+    data_classification: 
+    nullable: true
+    raw_column_name: software_origin
+  - column_data_type: string
+    column_name: gsr_software_type
+    comment: gsr_software_type
+    data_classification: 
+    nullable: true
+    raw_column_name: software_type
+  - column_data_type: string
+    column_name: gsr_software_long_description
+    comment: gsr_software_long_description
+    data_classification: 
+    nullable: true
+    raw_column_name: software_long_description
+  - column_data_type: string
+    column_name: gsr_product_manager
+    comment: gsr_product_manager
+    data_classification: 
+    nullable: true
+    raw_column_name: product_manager
+  - column_data_type: string
+    column_name: gsr_functional_sme
+    comment: gsr_functional_sme
+    data_classification: 
+    nullable: true
+    raw_column_name: functional_sme
+  - column_data_type: string
+    column_name: gsr_technical_sme
+    comment: gsr_technical_sme
+    data_classification: 
+    nullable: true
+    raw_column_name: technical_sme
+  - column_data_type: string
+    column_name: gsr_technical_product_manager
+    comment: gsr_technical_product_manager
+    data_classification: 
+    nullable: true
+    raw_column_name: technical_product_manager
+  - column_data_type: string
+    column_name: gsr_level_3_resolver_group
+    comment: gsr_level_3_resolver_group
+    data_classification: 
+    nullable: true
+    raw_column_name: level_3_resolver_group
+  - column_data_type: string
+    column_name: gsr_installation_resolver_group
+    comment: gsr_installation_resolver_group
+    data_classification: 
+    nullable: true
+    raw_column_name: installation_resolver_group
+  - column_data_type: string
+    column_name: gsr_supported_by_it_team
+    comment: gsr_supported_by_it_team
+    data_classification: 
+    nullable: true
+    raw_column_name: supported_by_it_team
+  - column_data_type: string
+    column_name: gsr_application_packaged
+    comment: gsr_application_packaged
+    data_classification: 
+    nullable: true
+    raw_column_name: application_packaged
+  - column_data_type: string
+    column_name: gsr_available_in_software_center
+    comment: gsr_available_in_software_center
+    data_classification: 
+    nullable: true
+    raw_column_name: available_in_software_center
+  - column_data_type: string
+    column_name: gsr_architecture_review
+    comment: gsr_architecture_review
+    data_classification: 
+    nullable: true
+    raw_column_name: architecture_review
+  - column_data_type: string
+    column_name: gsr_architecture_review_date
+    comment: gsr_architecture_review_date
+    data_classification: 
+    nullable: true
+    raw_column_name: architecture_review_date
+  - column_data_type: string
+    column_name: gsr_architecture_reference
+    comment: gsr_architecture_reference
+    data_classification: 
+    nullable: true
+    raw_column_name: architecture_reference
+  - column_data_type: string
+    column_name: gsr_legal_review
+    comment: gsr_legal_review
+    data_classification: 
+    nullable: true
+    raw_column_name: legal_review
+  - column_data_type: string
+    column_name: gsr_legal_review_date
+    comment: gsr_legal_review_date
+    data_classification: 
+    nullable: true
+    raw_column_name: legal_review_date
+  - column_data_type: string
+    column_name: gsr_legal_reference
+    comment: gsr_legal_reference
+    data_classification: 
+    nullable: true
+    raw_column_name: legal_reference
+  - column_data_type: string
+    column_name: gsr_security_review
+    comment: gsr_security_review
+    data_classification: 
+    nullable: true
+    raw_column_name: security_review
+  - column_data_type: string
+    column_name: gsr_security_review_date
+    comment: gsr_security_review_date
+    data_classification: 
+    nullable: true
+    raw_column_name: security_review_date
+  - column_data_type: string
+    column_name: gsr_security_reference
+    comment: gsr_security_reference
+    data_classification: 
+    nullable: true
+    raw_column_name: security_reference
+  - column_data_type: string
+    column_name: gsr_security_compliance
+    comment: gsr_security_compliance
+    data_classification: 
+    nullable: true
+    raw_column_name: security_compliance
+  - column_data_type: string
+    column_name: gsr_pia_review
+    comment: gsr_pia_review
+    data_classification: 
+    nullable: true
+    raw_column_name: pia_review
+  - column_data_type: string
+    column_name: gsr_pia_review_date
+    comment: gsr_pia_review_date
+    data_classification: 
+    nullable: true
+    raw_column_name: pia_review_date
+  - column_data_type: string
+    column_name: gsr_pia_reference
+    comment: gsr_pia_reference
+    data_classification: 
+    nullable: true
+    raw_column_name: pia_reference
+  - column_data_type: string
+    column_name: gsr_superseded_by
+    comment: gsr_superseded_by
+    data_classification: 
+    nullable: true
+    raw_column_name: superseded_by
+  - column_data_type: string
+    column_name: gsr_sso_enabled
+    comment: gsr_sso_enabled
+    data_classification: 
+    nullable: true
+    raw_column_name: sso_enabled
+  - column_data_type: string
+    column_name: gsr_mobile_app_included
+    comment: gsr_mobile_app_included
+    data_classification: 
+    nullable: true
+    raw_column_name: mobile_app_included
+  - column_data_type: string
+    column_name: gsr_ecr
+    comment: gsr_ecr
+    data_classification: 
+    nullable: true
+    raw_column_name: ecr
+  - column_data_type: string
+    column_name: gsr_additional_information
+    comment: gsr_additional_information
+    data_classification: 
+    nullable: true
+    raw_column_name: additional_information
+  - column_data_type: string
+    column_name: gsr_core
+    comment: gsr_core
+    data_classification: 
+    nullable: true
+    raw_column_name: core
+  - column_data_type: string
+    column_name: gsr_applicable_project_delivery_phase
+    comment: gsr_applicable_project_delivery_phase
+    data_classification: 
+    nullable: true
+    raw_column_name: applicable_project_delivery_phase
+  - column_data_type: string
+    column_name: gsr_installations
+    comment: gsr_installations
+    data_classification: 
+    nullable: true
+    raw_column_name: installations
+  - column_data_type: string
+    column_name: gsr_used_installations
+    comment: gsr_used_installations
+    data_classification: 
+    nullable: true
+    raw_column_name: used_installations
+  - column_data_type: string
+    column_name: gsr_application_support_partner
+    comment: gsr_application_support_partner
+    data_classification: 
+    nullable: true
+    raw_column_name: application_support_partner
+  - column_data_type: string
+    column_name: gsr_level_2_resolver_group
+    comment: gsr_level_2_resolver_group
+    data_classification: 
+    nullable: true
+    raw_column_name: level_2_resolver_group
+  - column_data_type: string
+    column_name: gsr_access_method
+    comment: gsr_access_method
+    data_classification: 
+    nullable: true
+    raw_column_name: access_method
+  - column_data_type: string
+    column_name: gsr_application_url
+    comment: gsr_application_url
+    data_classification: 
+    nullable: true
+    raw_column_name: application_url
+  - column_data_type: string
+    column_name: gsr_number_of_versions_and_editons
+    comment: gsr_number_of_versions_and_editons
+    data_classification: 
+    nullable: true
+    raw_column_name: number_of_versions_and_editons
+  - column_data_type: string
+    column_name: gsr_function2
+    comment: gsr_function2
+    data_classification: 
+    nullable: true
+    raw_column_name: function2
+  - column_data_type: string
+    column_name: gsr_windows_11_ready
+    comment: gsr_windows_11_ready
+    data_classification: 
+    nullable: true
+    raw_column_name: windows_11_ready
+  - column_data_type: string
+    column_name: gsr_servicenow_reference
+    comment: gsr_servicenow_reference
+    data_classification: 
+    nullable: true
+    raw_column_name: servicenow_reference
+  - column_data_type: string
+    column_name: gsr_exception_request_reference
+    comment: gsr_exception_request_reference
+    data_classification: 
+    nullable: true
+    raw_column_name: exception_request_reference
+  - column_data_type: string
+    column_name: gsr_it_standard
+    comment: gsr_it_standard
+    data_classification: 
+    nullable: true
+    raw_column_name: it_standard
+  - column_data_type: string
+    column_name: gsr_item_type
+    comment: gsr_item_type
+    data_classification: 
+    nullable: true
+    raw_column_name: item_type
+  - column_data_type: string
+    column_name: gsr_path
+    comment: gsr_path
+    data_classification: 
+    nullable: true
+    raw_column_name: path
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: worley_datalake_sydney_${envn}_glue_catalog_database_circuit_breaker_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_global_software_register/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_entitlement_global_software_register
+  load_type: full_load
+  name: curated_entitlement_global_software_register
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_global_software_register
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'circuit_breaker' as SOURCE_SYSTEM_NAME, 'entitlement_global_software_register'
+    as CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

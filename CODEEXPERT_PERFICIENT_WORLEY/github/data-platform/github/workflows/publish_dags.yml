@@ -1,0 +1,81 @@
+name: Publish DAGs MWAA Full Manual
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - "infra/src/data_pipelines/z_dags/**"
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+  pull-requests: write
+
+jobs:
+  sync-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::891377181979:role/GitHubActions
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Publish DAG Files
+        id: mwaa_files
+        working-directory: infra/src/data_pipelines/z_dags
+        run: |
+          aws s3 sync . s3://worley-datalake-sydney-dev-mwaa-airflow-s3/dags
+        continue-on-error: false
+  sync-qa:
+    runs-on: ubuntu-latest
+    environment: qa
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::533267239288:role/GitHubActions
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Publish DAG Files
+        id: mwaa_files
+        working-directory: infra/src/data_pipelines/z_dags
+        run: |
+          aws s3 sync . s3://worley-datalake-sydney-qa-mwaa-airflow-s3/dags
+        continue-on-error: false
+  sync-prd:
+    runs-on: ubuntu-latest
+    environment: prd
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::471112986846:role/github-oidc-provider-aws
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Publish DAG Files
+        id: mwaa_files
+        working-directory: infra/src/data_pipelines/z_dags
+        run: |
+          aws s3 sync . s3://worley-datalake-sydney-prd-mwaa-airflow-s3/dags
+        continue-on-error: false

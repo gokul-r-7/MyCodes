@@ -1,0 +1,929 @@
+SourceSystemId: database_spel_curated
+MetadataType: curated#spel#T_Cable#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spel/T_Cable/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spel-cable
+  name: spel_cable
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: integer
+    column_name: restartflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: restartflag
+  - column_data_type: integer
+    column_name: noconductor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: noconductor
+  - column_data_type: integer
+    column_name: noofsets
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: noofsets
+  - column_data_type: integer
+    column_name: noofconductingroup
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: noofconductingroup
+  - column_data_type: integer
+    column_name: routing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: routing
+  - column_data_type: string
+    column_name: routingpath
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: routingpath
+  - column_data_type: integer
+    column_name: cablesizingflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cablesizingflag
+  - column_data_type: string
+    column_name: bendingradius
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: bendingradius
+  - column_data_type: double
+    column_name: sp_bendingradiussi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_bendingradiussi
+  - column_data_type: string
+    column_name: pulltension
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pulltension
+  - column_data_type: double
+    column_name: sp_pulltensionsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_pulltensionsi
+  - column_data_type: integer
+    column_name: recommendconductorssize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: recommendconductorssize
+  - column_data_type: integer
+    column_name: cableusage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cableusage
+  - column_data_type: integer
+    column_name: cablecategory
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cablecategory
+  - column_data_type: integer
+    column_name: cablespecification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cablespecification
+  - column_data_type: integer
+    column_name: armortype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: armortype
+  - column_data_type: integer
+    column_name: jacketinsulationmaterial
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jacketinsulationmaterial
+  - column_data_type: integer
+    column_name: jacketcolor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jacketcolor
+  - column_data_type: integer
+    column_name: jacketinsulationtemprating
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jacketinsulationtemprating
+  - column_data_type: integer
+    column_name: innerinsulationtemprating
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: innerinsulationtemprating
+  - column_data_type: integer
+    column_name: noofparalleledcable
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: noofparalleledcable
+  - column_data_type: double
+    column_name: calcvoltagedroppercent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calcvoltagedroppercent
+  - column_data_type: string
+    column_name: designlength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: designlength
+  - column_data_type: double
+    column_name: sp_designlengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_designlengthsi
+  - column_data_type: string
+    column_name: deratedampacity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: deratedampacity
+  - column_data_type: string
+    column_name: weightperlength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: weightperlength
+  - column_data_type: double
+    column_name: sp_weightperlengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_weightperlengthsi
+  - column_data_type: integer
+    column_name: conductorarrangement
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: conductorarrangement
+  - column_data_type: string
+    column_name: actuallength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actuallength
+  - column_data_type: double
+    column_name: sp_actuallengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_actuallengthsi
+  - column_data_type: string
+    column_name: basicampacityinground
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: basicampacityinground
+  - column_data_type: double
+    column_name: sp_basicampacityingroundsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_basicampacityingroundsi
+  - column_data_type: string
+    column_name: basicampacityinair
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: basicampacityinair
+  - column_data_type: double
+    column_name: sp_basicampacityinairsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_basicampacityinairsi
+  - column_data_type: double
+    column_name: calcstartingvoltagedrop
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calcstartingvoltagedrop
+  - column_data_type: integer
+    column_name: noadditionalconductor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: noadditionalconductor
+  - column_data_type: integer
+    column_name: additionalconductorsize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: additionalconductorsize
+  - column_data_type: integer
+    column_name: ratedvoltage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ratedvoltage
+  - column_data_type: double
+    column_name: customderatingfactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customderatingfactor
+  - column_data_type: double
+    column_name: customutilizationfactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customutilizationfactor
+  - column_data_type: string
+    column_name: sp_connectionside2id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_connectionside2id
+  - column_data_type: string
+    column_name: sp_trayid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_trayid
+  - column_data_type: double
+    column_name: powerfactoratstarting
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: powerfactoratstarting
+  - column_data_type: integer
+    column_name: loadchangingflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loadchangingflag
+  - column_data_type: string
+    column_name: sp_connectionside1id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_connectionside1id
+  - column_data_type: double
+    column_name: sp_deratedampacitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_deratedampacitysi
+  - column_data_type: string
+    column_name: sp_refcolorpatternid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_refcolorpatternid
+  - column_data_type: string
+    column_name: estimatedcablelength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimatedcablelength
+  - column_data_type: double
+    column_name: sp_estimatedcablelengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_estimatedcablelengthsi
+  - column_data_type: double
+    column_name: allowvoltdroppercentrunning
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: allowvoltdroppercentrunning
+  - column_data_type: double
+    column_name: allowvoltdroppercentstart
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: allowvoltdroppercentstart
+  - column_data_type: integer
+    column_name: calcnoofparalleledcable
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calcnoofparalleledcable
+  - column_data_type: string
+    column_name: sp_calcrefcableid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_calcrefcableid
+  - column_data_type: integer
+    column_name: systemcablecategory
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemcablecategory
+  - column_data_type: string
+    column_name: cableformation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cableformation
+  - column_data_type: string
+    column_name: length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: length
+  - column_data_type: double
+    column_name: sp_lengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_lengthsi
+  - column_data_type: string
+    column_name: startingcurrent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startingcurrent
+  - column_data_type: double
+    column_name: sp_startingcurrentsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_startingcurrentsi
+  - column_data_type: double
+    column_name: powerfactorfullload
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: powerfactorfullload
+  - column_data_type: string
+    column_name: systemnote
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemnote
+  - column_data_type: string
+    column_name: lastcalcmaxcablelength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastcalcmaxcablelength
+  - column_data_type: double
+    column_name: sp_lastcalcmaxcablelengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_lastcalcmaxcablelengthsi
+  - column_data_type: integer
+    column_name: cablesettype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cablesettype
+  - column_data_type: string
+    column_name: shortcircuitduration
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: shortcircuitduration
+  - column_data_type: double
+    column_name: sp_shortcircuitdurationsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_shortcircuitdurationsi
+  - column_data_type: string
+    column_name: shortcircuitfaultcurrent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: shortcircuitfaultcurrent
+  - column_data_type: double
+    column_name: sp_shortcircuitfaultcurrentsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_shortcircuitfaultcurrentsi
+  - column_data_type: integer
+    column_name: shortcircuitminimumarea
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: shortcircuitminimumarea
+  - column_data_type: integer
+    column_name: overallshieldflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: overallshieldflag
+  - column_data_type: integer
+    column_name: communicationwireflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: communicationwireflag
+  - column_data_type: integer
+    column_name: overallshieldsize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: overallshieldsize
+  - column_data_type: integer
+    column_name: overallshieldmaterial
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: overallshieldmaterial
+  - column_data_type: integer
+    column_name: enableshortcircuitsizing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: enableshortcircuitsizing
+  - column_data_type: string
+    column_name: sp_cabledrumid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_cabledrumid
+  - column_data_type: integer
+    column_name: pullingarea
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pullingarea
+  - column_data_type: string
+    column_name: tail1length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tail1length
+  - column_data_type: double
+    column_name: sp_tail1lengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_tail1lengthsi
+  - column_data_type: string
+    column_name: tail2length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tail2length
+  - column_data_type: double
+    column_name: sp_tail2lengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_tail2lengthsi
+  - column_data_type: string
+    column_name: sparelength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sparelength
+  - column_data_type: double
+    column_name: sp_sparelengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sparelengthsi
+  - column_data_type: integer
+    column_name: apply25percentfactorflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: apply25percentfactorflag
+  - column_data_type: double
+    column_name: ambienttemperaturefactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ambienttemperaturefactor
+  - column_data_type: integer
+    column_name: neutralearthing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: neutralearthing
+  - column_data_type: string
+    column_name: parallelcablesuffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: parallelcablesuffix
+  - column_data_type: string
+    column_name: sp_refglandside1id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_refglandside1id
+  - column_data_type: string
+    column_name: sp_refglandside2id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_refglandside2id
+  - column_data_type: integer
+    column_name: protectiondevicesettingflag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: protectiondevicesettingflag
+  - column_data_type: string
+    column_name: protectiondevicesetting
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: protectiondevicesetting
+  - column_data_type: double
+    column_name: sp_protectiondevicesettingsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_protectiondevicesettingsi
+  - column_data_type: string
+    column_name: routedlength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: routedlength
+  - column_data_type: double
+    column_name: sp_routedlengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_routedlengthsi
+  - column_data_type: string
+    column_name: armorresistivity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: armorresistivity
+  - column_data_type: double
+    column_name: sp_armorresistivitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_armorresistivitysi
+  - column_data_type: string
+    column_name: armorreactance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: armorreactance
+  - column_data_type: double
+    column_name: sp_armorreactancesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_armorreactancesi
+  - column_data_type: string
+    column_name: externalearthimpedance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externalearthimpedance
+  - column_data_type: double
+    column_name: sp_externalearthimpedancesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_externalearthimpedancesi
+  - column_data_type: integer
+    column_name: grandingforimpedancecalc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: grandingforimpedancecalc
+  - column_data_type: string
+    column_name: calcearthloopimpedance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calcearthloopimpedance
+  - column_data_type: double
+    column_name: sp_calcearthloopimpedancesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_calcearthloopimpedancesi
+  - column_data_type: integer
+    column_name: earthloopimpedancecalcrequired
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: earthloopimpedancecalcrequired
+  - column_data_type: integer
+    column_name: routingstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: routingstatus
+  - column_data_type: integer
+    column_name: segregationlevel
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: segregationlevel
+  - column_data_type: string
+    column_name: basicampacityinduct
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: basicampacityinduct
+  - column_data_type: double
+    column_name: sp_basicampacityinductsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_basicampacityinductsi
+  - column_data_type: integer
+    column_name: coresscreenmaterial
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: coresscreenmaterial
+  - column_data_type: integer
+    column_name: cablescreenmaterial
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cablescreenmaterial
+  - column_data_type: string
+    column_name: sp_externalroutinglength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_externalroutinglength
+  - column_data_type: integer
+    column_name: sp_useexternalroutinglength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_useexternalroutinglength
+  - column_data_type: double
+    column_name: sp_externalroutinglengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_externalroutinglengthsi
+  - column_data_type: double
+    column_name: sp_codefactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_codefactor
+  - column_data_type: integer
+    column_name: sp_numberofsplice
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_numberofsplice
+  - column_data_type: integer
+    column_name: sp_kkscableapplicationarea
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_kkscableapplicationarea
+  - column_data_type: string
+    column_name: sp_actualroutingpath
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_actualroutingpath
+  - column_data_type: string
+    column_name: sp_externalroutingpath
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_externalroutingpath
+  - column_data_type: string
+    column_name: sp_cableassemblyid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_cableassemblyid
+  - column_data_type: string
+    column_name: sp_resistivityzerosequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_resistivityzerosequence
+  - column_data_type: double
+    column_name: sp_resistivityzerosequencesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_resistivityzerosequencesi
+  - column_data_type: string
+    column_name: sp_reactancezerosequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_reactancezerosequence
+  - column_data_type: double
+    column_name: sp_reactancezerosequencesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_reactancezerosequencesi
+  - column_data_type: string
+    column_name: sp_cableaccess
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_cableaccess
+  - column_data_type: integer
+    column_name: sp_corephaseusage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_corephaseusage
+  - column_data_type: integer
+    column_name: sp_phaselabel
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_phaselabel
+  - column_data_type: integer
+    column_name: sp_locktodrum
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_locktodrum
+  - column_data_type: string
+    column_name: sp_installedlength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_installedlength
+  - column_data_type: double
+    column_name: sp_sp_installedlengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_installedlengthsi
+  - column_data_type: string
+    column_name: sp_cablemarkend1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_cablemarkend1
+  - column_data_type: double
+    column_name: sp_sp_cablemarkend1si
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_cablemarkend1si
+  - column_data_type: string
+    column_name: sp_cablemarkend2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_cablemarkend2
+  - column_data_type: double
+    column_name: sp_sp_cablemarkend2si
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_cablemarkend2si
+  - column_data_type: integer
+    column_name: sp_isinstalled
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_isinstalled
+  - column_data_type: string
+    column_name: sp_custombasicampacity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_custombasicampacity
+  - column_data_type: double
+    column_name: sp_sp_custombasicampacitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sp_custombasicampacitysi
+  - column_data_type: integer
+    column_name: sp_toberoutedins3d
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_toberoutedins3d
+  - column_data_type: double
+    column_name: sp_voltagedropfullload
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_voltagedropfullload
+  - column_data_type: double
+    column_name: sp_voltagedropstarting
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_voltagedropstarting
+  - column_data_type: integer
+    column_name: sp_noadditionalgndconductor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_noadditionalgndconductor
+  - column_data_type: integer
+    column_name: sp_additionalgndconductorsize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_additionalgndconductorsize
+  - column_data_type: integer
+    column_name: sp_retaincablecuts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_retaincablecuts
+  - column_data_type: string
+    column_name: vg_installationtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_installationtype
+  - column_data_type: string
+    column_name: vg_schem_wiringno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_schem_wiringno
+  - column_data_type: string
+    column_name: vg_conduitlength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_conduitlength
+  - column_data_type: string
+    column_name: vg_conduitsize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_conduitsize
+  - column_data_type: string
+    column_name: vg_plandrawing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_plandrawing
+  - column_data_type: string
+    column_name: vg_commoditycode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_commoditycode    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spel_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spel/T_Cable/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_cable
+  load_type: append
+  name: curated_t_cable
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spel/curated_t_cable
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spel' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

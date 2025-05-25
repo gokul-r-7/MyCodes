@@ -1,0 +1,14 @@
+{
+  "name": "AWS Code Habits",
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/ansible": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/pre-commit": {
+      "version": "latest"
+    }
+  },
+  "postCreateCommand": "sudo apt -qq update && sudo apt -qq install --yes bash-completion make",
+  "postStartCommand": "sudo apt -qq update"
+}

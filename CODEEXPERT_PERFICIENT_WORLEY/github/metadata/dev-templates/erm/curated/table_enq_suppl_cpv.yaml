@@ -1,0 +1,211 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishEnqSupplCpv#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishEnqSupplCpv/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishEnqSupplCpv 
+  name: erm_PublishEnqSupplCpv 
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: enq_suppl_no
+    comment: enq_suppl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: enq_suppl_no
+  - column_data_type: date
+    column_name: quote_recvd_date
+    comment: quote_recvd_date
+    data_classification: null
+    nullable: true
+    raw_column_name: quote_recvd_date
+  - column_data_type: string
+    column_name: quote_ref_num
+    comment: quote_ref_num
+    data_classification: null
+    nullable: true
+    raw_column_name: quote_ref_num
+  - column_data_type: date
+    column_name: rfq_acknw
+    comment: rfq_acknw
+    data_classification: null
+    nullable: true
+    raw_column_name: rfq_acknw
+  - column_data_type: decimal(38,2)
+    column_name: bidder_lead_time
+    comment: bidder_lead_time
+    data_classification: null
+    nullable: true
+    raw_column_name: bidder_lead_time
+  - column_data_type: decimal(38,2)
+    column_name: delta_ros_eos_bidder
+    comment: delta_ros_eos_bidder
+    data_classification: null
+    nullable: true
+    raw_column_name: delta_ros_eos_bidder
+  - column_data_type: string
+    column_name: bid_validity_supplier
+    comment: bid_validity_supplier
+    data_classification: null
+    nullable: true
+    raw_column_name: bid_validity_supplier
+  - column_data_type: date
+    column_name: pre_bid_meeting
+    comment: pre_bid_meeting
+    data_classification: null
+    nullable: true
+    raw_column_name: pre_bid_meeting
+  - column_data_type: string
+    column_name: supplier_shortlisted_reason
+    comment: supplier_shortlisted_reason
+    data_classification: null
+    nullable: true
+    raw_column_name: supplier_shortlisted_reason
+  - column_data_type: string
+    column_name: fabrication_location
+    comment: fabrication_location
+    data_classification: null
+    nullable: true
+    raw_column_name: fabrication_location
+  - column_data_type: string
+    column_name: itp_vdr_spares_info_submit
+    comment: itp_vdr_spares_info_submit
+    data_classification: null
+    nullable: true
+    raw_column_name: itp_vdr_spares_info_submit
+  - column_data_type: string
+    column_name: sub_supplier_list_submit
+    comment: sub_supplier_list_submit
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_supplier_list_submit
+  - column_data_type: string
+    column_name: tnc_markup_recv
+    comment: tnc_markup_recv
+    data_classification: null
+    nullable: true
+    raw_column_name: tnc_markup_recv
+  - column_data_type: string
+    column_name: tnc_markup_negotiated
+    comment: tnc_markup_negotiated
+    data_classification: null
+    nullable: true
+    raw_column_name: tnc_markup_negotiated
+  - column_data_type: date
+    column_name: short_list_meet
+    comment: short_list_meet
+    data_classification: null
+    nullable: true
+    raw_column_name: short_list_meet
+  - column_data_type: date
+    column_name: spares_submit
+    comment: spares_submit
+    data_classification: null
+    nullable: true
+    raw_column_name: spares_submit
+  - column_data_type: string
+    column_name: clarrifications
+    comment: clarrifications
+    data_classification: null
+    nullable: true
+    raw_column_name: clarrifications
+  - column_data_type: string
+    column_name: bid_weight
+    comment: bid_weight
+    data_classification: null
+    nullable: true
+    raw_column_name: bid_weight
+  - column_data_type: decimal(38,2)
+    column_name: supplier_shortlisted
+    comment: supplier_shortlisted
+    data_classification: null
+    nullable: true
+    raw_column_name: supplier_shortlisted
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: quote_recvd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishEnqSupplCpv/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: enq_suppl_cpv
+  load_type: cdc
+  name: enq_suppl_cpv
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishEnqSupplCpv 
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

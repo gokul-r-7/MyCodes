@@ -1,0 +1,153 @@
+name: Publish Wheels
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "infra/src/worley_helper/**"
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+  pull-requests: write
+
+jobs:
+  sync-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      BUCKET_NAME_GLUE_JOB_SCRIPTS: worley-datalake-sydney-dev-bucket-glue-job-scripts-xd5ydg
+      BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN: arn:aws:kms:ap-southeast-2:891377181979:key/3a4345c9-617f-4e55-8a27-70814760f56a
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::891377181979:role/GitHubActions
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Create and activate virtual environment
+        id: python_venv 
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          
+      - name: Build Package
+        id: python_setup
+        working-directory: infra/src/worley_helper
+        run: |
+          pip install --upgrade setuptools wheel
+          python setup.py bdist_wheel
+        continue-on-error: false
+
+      - name: Publish Python Wheel
+        id: wheel_main
+        working-directory: infra/src/worley_helper/dist
+        if: github.ref_name == 'main'
+        run: |
+          aws s3 sync . s3://${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS }}/wheel --sse-kms-key-id ${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN }} --sse aws:kms
+        continue-on-error: false
+
+      - name: Publish Python Wheel Branch
+        id: wheel_branch
+        working-directory: infra/src/worley_helper/dist
+        if: github.ref_name != 'main'
+        run: |
+          aws s3 sync . s3://${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS }}/wheel/${{ github.ref_name }} --sse-kms-key-id ${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN }} --sse aws:kms
+        continue-on-error: false
+  sync-qa:
+    runs-on: ubuntu-latest
+    environment: qa
+    env:
+      BUCKET_NAME_GLUE_JOB_SCRIPTS: worley-datalake-sydney-qa-bucket-glue-job-scripts-k7eatg
+      BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN: arn:aws:kms:ap-southeast-2:533267239288:key/6deeaf78-78e9-4da1-b3d5-6de26a809ead
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::533267239288:role/GitHubActions
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Build Package
+        id: python_setup
+        working-directory: infra/src/worley_helper
+        run: |
+          pip install --upgrade setuptools wheel
+          python setup.py bdist_wheel
+        continue-on-error: false
+
+      - name: Publish Python Wheel
+        id: wheel_main
+        working-directory: infra/src/worley_helper/dist
+        if: github.ref_name == 'main'
+        run: |
+          aws s3 sync . s3://${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS }}/wheel --sse-kms-key-id ${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN }} --sse aws:kms
+        continue-on-error: false
+
+      - name: Publish Python Wheel Branch
+        id: wheel_branch
+        working-directory: infra/src/worley_helper/dist
+        if: github.ref_name != 'main'
+        run: |
+          aws s3 sync . s3://${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS }}/wheel/${{ github.ref_name }} --sse-kms-key-id ${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN }} --sse aws:kms
+        continue-on-error: false
+  sync-prd:
+    runs-on: ubuntu-latest
+    environment: prd
+    env:
+      BUCKET_NAME_GLUE_JOB_SCRIPTS: worley-datalake-sydney-prd-bucket-glue-job-scripts-cuyglg
+      BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN: arn:aws:kms:ap-southeast-2:471112986846:key/c9c087de-a14a-481e-b266-0fed50f001e1
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::471112986846:role/github-oidc-provider-aws
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Build Package
+        id: python_setup
+        working-directory: infra/src/worley_helper
+        run: |
+          pip install --upgrade setuptools wheel
+          python setup.py bdist_wheel
+        continue-on-error: false
+
+      - name: Publish Python Wheel
+        id: wheel_main
+        working-directory: infra/src/worley_helper/dist
+        if: github.ref_name == 'main'
+        run: |
+          aws s3 sync . s3://${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS }}/wheel --sse-kms-key-id ${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN }} --sse aws:kms
+        continue-on-error: false
+
+      - name: Publish Python Wheel Branch
+        id: wheel_branch
+        working-directory: infra/src/worley_helper/dist
+        if: github.ref_name != 'main'
+        run: |
+          aws s3 sync . s3://${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS }}/wheel/${{ github.ref_name }} --sse-kms-key-id ${{ env.BUCKET_NAME_GLUE_JOB_SCRIPTS_KMS_KEY_ARN }} --sse aws:kms
+        continue-on-error: false

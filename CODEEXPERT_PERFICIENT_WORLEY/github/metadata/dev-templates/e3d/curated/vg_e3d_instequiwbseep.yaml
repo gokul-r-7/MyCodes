@@ -1,0 +1,108 @@
+SourceSystemId: e3d_curated
+MetadataType: curated#vg_E3D#instequiwbseep#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/e3d/parquet/instequiwbsrep.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_E3D-csv_xlsx_curated
+  name: vg_E3D_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: WBS
+    comment: WBS
+    data_classification: 
+    nullable: true
+    raw_column_name: wbs
+  - column_data_type: string
+    column_name: SITE
+    comment: SITE
+    data_classification: 
+    nullable: true
+    raw_column_name: site
+  - column_data_type: string
+    column_name: ZONE
+    comment: ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: EQUIPMENT
+    comment: EQUIPMENT
+    data_classification: 
+    nullable: true
+    raw_column_name: equipment
+  - column_data_type: string
+    column_name: DESCRIPTION
+    comment: DESCRIPTION
+    data_classification: 
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: TYPE
+    comment: TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: REFNO
+    comment: REFNO
+    data_classification: 
+    nullable: true
+    raw_column_name: refno
+  - column_data_type: string
+    column_name: EFT
+    comment: EFT
+    data_classification: 
+    nullable: true
+    raw_column_name: eft
+  - column_data_type: string
+    column_name: NFT
+    comment: NFT
+    data_classification: 
+    nullable: true
+    raw_column_name: nft
+  - column_data_type: string
+    column_name: UFT
+    comment: UFT
+    data_classification: 
+    nullable: true
+    raw_column_name: uft
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_e3d_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/e3d/instequiwbseep/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_instequiwbseep
+  name: curated_vg_E3D_instequiwbseep
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/e3d/instequiwbseep
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_E3D' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

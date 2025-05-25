@@ -1,0 +1,295 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishSite#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishSite/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishSite
+  name: erm_PublishSite
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: site_no
+    comment: site_no
+    data_classification: null
+    nullable: true
+    raw_column_name: site_no
+  - column_data_type: string
+    column_name: site_id
+    comment: site_id
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: string
+    column_name: descr
+    comment: descr
+    data_classification: null
+    nullable: true
+    raw_column_name: descr
+  - column_data_type: string
+    column_name: stat
+    comment: stat
+    data_classification: null
+    nullable: true
+    raw_column_name: stat
+  - column_data_type: string
+    column_name: addr_addr_1
+    comment: addr_addr_1
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_addr_1
+  - column_data_type: string
+    column_name: addr_addr_2
+    comment: addr_addr_2
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_addr_2
+  - column_data_type: string
+    column_name: addr_addr_3
+    comment: addr_addr_3
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_addr_3
+  - column_data_type: string
+    column_name: addr_addr_4
+    comment: addr_addr_4
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_addr_4
+  - column_data_type: string
+    column_name: addr_postal_code
+    comment: addr_postal_code
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_postal_code
+  - column_data_type: string
+    column_name: addr_city
+    comment: addr_city
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_city
+  - column_data_type: string
+    column_name: addr_country_id
+    comment: addr_country_id
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_country_id
+  - column_data_type: string
+    column_name: addr_county
+    comment: addr_county
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_county
+  - column_data_type: string
+    column_name: addr_region
+    comment: addr_region
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_region
+  - column_data_type: string
+    column_name: addr_state_province
+    comment: addr_state_province
+    data_classification: null
+    nullable: true
+    raw_column_name: addr_state_province
+  - column_data_type: string
+    column_name: proj_spec
+    comment: proj_spec
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_spec
+  - column_data_type: decimal(38,2)
+    column_name: default_proc_calendar_no
+    comment: default_proc_calendar_no
+    data_classification: null
+    nullable: true
+    raw_column_name: default_proc_calendar_no
+  - column_data_type: decimal(38,2)
+    column_name: default_prod_calendar_no
+    comment: default_prod_calendar_no
+    data_classification: null
+    nullable: true
+    raw_column_name: default_prod_calendar_no
+  - column_data_type: decimal(38,2)
+    column_name: deliv_addr_no
+    comment: deliv_addr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: deliv_addr_no
+  - column_data_type: string
+    column_name: customer_col_0
+    comment: customer_col_0
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_0
+  - column_data_type: string
+    column_name: customer_col_1
+    comment: customer_col_1
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_1
+  - column_data_type: string
+    column_name: customer_col_2
+    comment: customer_col_2
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_2
+  - column_data_type: string
+    column_name: customer_col_3
+    comment: customer_col_3
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_3
+  - column_data_type: string
+    column_name: customer_col_4
+    comment: customer_col_4
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_4
+  - column_data_type: string
+    column_name: customer_col_5
+    comment: customer_col_5
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_5
+  - column_data_type: string
+    column_name: customer_col_6
+    comment: customer_col_6
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_6
+  - column_data_type: string
+    column_name: customer_col_7
+    comment: customer_col_7
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_7
+  - column_data_type: string
+    column_name: customer_col_8
+    comment: customer_col_8
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_8
+  - column_data_type: string
+    column_name: customer_col_9
+    comment: customer_col_9
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_9
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: null
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_usr_id
+  - column_data_type: string
+    column_name: usr_spec
+    comment: usr_spec
+    data_classification: null
+    nullable: true
+    raw_column_name: usr_spec
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishSite/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: site
+  load_type: cdc
+  name: site
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishSite
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

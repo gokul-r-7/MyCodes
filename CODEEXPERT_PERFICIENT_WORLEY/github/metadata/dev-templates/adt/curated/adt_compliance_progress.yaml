@@ -1,0 +1,319 @@
+SourceSystemId: adt
+MetadataType: curated#adt#adt_compliance_progress#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/adt/adt_compliance_progress/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeschema: true
+    transformation_ctx: adt_compliance_progress
+  name: adt_compliance_progress
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: last_modified_date
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_adt_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/adt/adt_compliance_progress/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: adt_compliance_progress
+  load_type: incremental
+  name: adt_compliance_progress
+  primary_key: user_id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/adt/adt_compliance_progress
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: select *, 'adt' as source_system_name from temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: execution_date
+  date_format: yyyy-mm-dd  hh:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: user_id
+    rename_columns: true
+  columns:
+  - column_name: user_id
+    column_data_type: integer
+    comment: unique identifier for the record
+    data_classification:
+    nullable: false
+    raw_column_name: id
+  - column_name: first_name
+    column_data_type: string
+    comment: first name of the user
+    data_classification:
+    nullable: true
+    raw_column_name: firstname
+  - column_name: last_name
+    column_data_type: string
+    comment: last name of the user
+    data_classification:
+    nullable: true
+    raw_column_name: lastname
+  - column_name: cost_centre
+    column_data_type: string
+    comment: cost centre associated with the user
+    data_classification:
+    nullable: true
+    raw_column_name: costcentre
+  - column_name: email_id
+    column_data_type: string
+    comment: email address of the user
+    data_classification:
+    nullable: true
+    raw_column_name: email
+  - column_name: user_name
+    column_data_type: string
+    comment: username of the user
+    data_classification:
+    nullable: true
+    raw_column_name: username
+  - column_name: ptd_issued_dt
+    column_data_type: timestamp
+    comment: date when permit to drive was issued
+    data_classification:
+    nullable: true
+    raw_column_name: permittodriveissueddate
+  - column_name: ptd_expiry_dt
+    column_data_type: timestamp
+    comment: expiry date of the permit to drive
+    data_classification:
+    nullable: true
+    raw_column_name: permittodriveexpirydate
+  - column_name: previous_ptd_issued_dt
+    column_data_type: timestamp
+    comment: previous permit to drive date
+    data_classification:
+    nullable: true
+    raw_column_name: previouspermittodrivedate
+  - column_name: license_status
+    column_data_type: timestamp
+    comment: current licence status
+    data_classification:
+    nullable: true
+    raw_column_name: licencestatus
+  - column_name: overall_category
+    column_data_type: string
+    comment: overall category of the user
+    data_classification:
+    nullable: true
+    raw_column_name: overallcategory
+  - column_name: previous_risk_rating
+    column_data_type: string
+    comment: previous risk rating
+    data_classification:
+    nullable: true
+    raw_column_name: previousriskrating
+  - column_name: assessment_dt
+    column_data_type: timestamp
+    comment: date when the assessment was conducted
+    data_classification:
+    nullable: true
+    raw_column_name: assessmentdate
+  - column_name: license_last_checked_dt
+    column_data_type: timestamp
+    comment: date when the licence was last checked
+    data_classification:
+    nullable: true
+    raw_column_name: licencelastcheckeddate
+  - column_name: license_mandate_received_dt
+    column_data_type: timestamp
+    comment: date when the licence mandate was received
+    data_classification:
+    nullable: true
+    raw_column_name: licencemandatereceiveddate
+  - column_name: previous_license_received_dt
+    column_data_type: timestamp
+    comment: date when the previous licence was received
+    data_classification:
+    nullable: true
+    raw_column_name: previouslicencereceiveddate
+  - column_name: previous_license_completed_dt
+    column_data_type: timestamp
+    comment: date when the previous licence was completed
+    data_classification:
+    nullable: true
+    raw_column_name: previouslicencecompleteddate
+  - column_name: license_expiry_dt
+    column_data_type: timestamp
+    comment: expiry date of the licence
+    data_classification:
+    nullable: true
+    raw_column_name: licenceexpirydate
+  - column_name: non_uk_license_holder
+    column_data_type: boolean
+    comment: whether the user holds a non-uk licence
+    data_classification:
+    nullable: true
+    raw_column_name: nonuklicenceholder
+  - column_name: license_confirmed
+    column_data_type: boolean
+    comment: whether the licence is confirmed
+    data_classification:
+    nullable: true
+    raw_column_name: licenceconfirmed
+  - column_name: country_code
+    column_data_type: string
+    comment: country code of the user
+    data_classification:
+    nullable: true
+    raw_column_name: countrycode
+  - column_name: information_classification
+    column_data_type: string
+    comment: classification of the information
+    data_classification:
+    nullable: true
+    raw_column_name: informationclassification
+  - column_name: progress_status
+    column_data_type: string
+    comment: current progress status of the user
+    data_classification:
+    nullable: true
+    raw_column_name: progressstatus
+  - column_name: vehicle_mileage
+    column_data_type: string
+    comment: mileage of the vehicle
+    data_classification:
+    nullable: true
+    raw_column_name: vehiclemileage
+  - column_name: group_membership
+    column_data_type: string
+    comment: group membership of the user
+    data_classification:
+    nullable: true
+    raw_column_name: groupmembership
+  - column_name: notes
+    column_data_type: string
+    comment: additional notes regarding the user
+    data_classification:
+    nullable: true
+    raw_column_name: notes
+  - column_name: additional_info_a
+    column_data_type: string
+    comment: additional info a
+    data_classification:
+    nullable: true
+    raw_column_name: additionalinfoa
+  - column_name: additional_info_b
+    column_data_type: string
+    comment: additional info b
+    data_classification:
+    nullable: true
+    raw_column_name: additionalinfob
+  - column_name: additional_info_c
+    column_data_type: string
+    comment: additional info c
+    data_classification:
+    nullable: true
+    raw_column_name: additionalinfoc
+  - column_name: additional_info_d
+    column_data_type: string
+    comment: additional info d
+    data_classification:
+    nullable: true
+    raw_column_name: additionalinfod
+  - column_name: additional_info_e
+    column_data_type: string
+    comment: additional info e
+    data_classification:
+    nullable: true
+    raw_column_name: additionalinfoe
+  - column_name: renewal_invite_sent_dt
+    column_data_type: timestamp
+    comment: date when renewal invite was sent
+    data_classification:
+    nullable: true
+    raw_column_name: renewalinvitesent
+  - column_name: reminder_1_date
+    column_data_type: timestamp
+    comment: date when first renewal reminder was sent
+    data_classification:
+    nullable: true
+    raw_column_name: renewalreminder1sent
+  - column_name: reminder_2_date
+    column_data_type: timestamp
+    comment: date when second renewal reminder was sent
+    data_classification:
+    nullable: true
+    raw_column_name: renewalreminder2sent
+  - column_name: reminder_3_date
+    column_data_type: timestamp
+    comment: date when third renewal reminder was sent
+    data_classification:
+    nullable: true
+    raw_column_name: renewalreminder3sent
+  - column_name: region
+    column_data_type: string
+    comment: region associated with the user
+    data_classification:
+    nullable: true
+    raw_column_name: region
+  - column_name: courses_finished
+    column_data_type: double
+    comment: number of courses finished
+    data_classification:
+    nullable: true
+    raw_column_name: coursesfinished
+  - column_name: courses_in_progress
+    column_data_type: double
+    comment: number of courses in progress
+    data_classification:
+    nullable: true
+    raw_column_name: coursesinprogress
+  - column_name: courses_not_available
+    column_data_type: double
+    comment: number of courses not available
+    data_classification:
+    nullable: true
+    raw_column_name: coursesnotavailable
+  - column_name: courses_not_started
+    column_data_type: double
+    comment: number of courses not started
+    data_classification:
+    nullable: true
+    raw_column_name: coursesnotstarted
+  - column_name: courses_overdue
+    column_data_type: double
+    comment: number of courses overdue
+    data_classification:
+    nullable: true
+    raw_column_name: coursesoverdue
+  - column_name: total_courses
+    column_data_type: string
+    comment: total number of courses
+    data_classification:
+    nullable: true
+    raw_column_name: totalcourses
+  - column_name: last_modified_date
+    column_data_type: timestamp
+    comment: last modified date of the record
+    data_classification:
+    nullable: true
+    raw_column_name: lastmodifieddate
+  - column_name: date_created
+    column_data_type: timestamp
+    comment: date when the record was created
+    data_classification:
+    nullable: true
+    raw_column_name: datecreated

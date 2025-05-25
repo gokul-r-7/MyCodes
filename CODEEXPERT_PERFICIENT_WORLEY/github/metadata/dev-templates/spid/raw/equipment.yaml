@@ -1,0 +1,18 @@
+SourceSystemId: spid
+MetadataType: db#spid#T_Equipment
+name: T_Equipment
+is_active: y
+db_parameter:
+  partition_column: None # Mandatory (Key)
+  date_delta_column: None # Mandatory (Key)
+  connection_parms: /worley/dev/db/spid #Mandatory (Key and Value)
+  secret_key: ${secret_prefix}-db-spid  # This goes into SecretsManager (Mandatory) (Key and Value)
+  ssl_flag : False
+  db_name_nonprod : CP2Pid  #Mandatory (Key and Value)
+  db_name_prod : CP2Pid  #Mandatory (Key and Value)
+  db_type : MSSQL #Mandatory (Key and Value)
+job_parameter:
+  bucket_name: ${raw_bucket}
+  input_path : None
+  full_incr: f
+  table_prefix: T_Equipment

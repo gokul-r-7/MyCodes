@@ -1,0 +1,55 @@
+customer:
+  id: "VG"
+  name: "Venture Global"
+  environments: ["dev", "prod"]
+
+dag_defaults:
+  owner: "vg_admin"
+  retries: 3
+  retry_delay_minutes: 5
+  schedule: "0 2 1,15 * *"
+  max_project_concurrency: 1
+  start_date: "2024-11-17"
+  catchup: false
+  depends_on_past: true
+  tags: ["oracle_p6", "VG"]
+
+aws:
+  region: "ap-southeast-2"
+  dynamodb:
+    metadata_table: "worley-mf-sydney-{env}-metadata-table"
+    source_system_id: "oracle_p6_duplicate"
+    curation_source_system_id: "curated_oracle_p6"
+
+glue_jobs:
+  patterns:
+    sourcing_api: "worley-mf-syd-{env}-glue-job-p6-sourcing-json-api-data"
+    raw_curated: "worley-mf-syd-{env}-glue-job-raw-to-curated-generic"
+
+task_groups:
+  global_sourcing:
+    id: "oracle_p6_global_sourcing"
+    operator: "GlueJobOperator"
+    
+  project_sourcing:
+    id: "oracle_p6_project_sourcing_v2"
+    operator: "GlueJobOperator"
+
+  other_sourcing:
+    id: "oracle_p6_other_sourcing_v2"
+    operator: "GlueJobOperator"
+
+  spread_sourcing:
+    id: "oracle_p6_spread_sourcing_v2"
+    operator: "GlueJobOperator"
+
+  raw_to_curated_global:
+    id: "curation_global"
+    operator: "GlueJobOperator"
+
+  raw_to_curated_project:
+    id: "curation_project"
+    operator: "GlueJobOperator"
+    
+datasets:
+  project_control: "//oracle_p6/project_control/domain_integrated_model"

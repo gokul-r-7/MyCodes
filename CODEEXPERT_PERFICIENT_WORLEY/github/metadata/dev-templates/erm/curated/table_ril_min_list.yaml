@@ -1,0 +1,139 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#ril_min_list#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/parquet/ril_min_list.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: ril_min_list
+    format_options:
+      mergeSchema: true
+  name: ril_min_list
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: min_number
+    comment: min_number
+    data_classification: 
+    nullable: false
+    raw_column_name: min_number
+  - column_data_type: string
+    column_name: issued_date
+    comment: issued_date
+    data_classification: 
+    nullable: true
+    raw_column_name: issued_date
+  - column_data_type: string
+    column_name: drawing_number
+    comment: drawing_number
+    data_classification: 
+    nullable: false
+    raw_column_name: drawing_number
+  - column_data_type: string
+    column_name: sap_code
+    comment: sap_code
+    data_classification: 
+    nullable: true
+    raw_column_name: sap_code
+  - column_data_type: string
+    column_name: pts_code
+    comment: pts_code
+    data_classification: 
+    nullable: true
+    raw_column_name: pts_code
+  - column_data_type: string
+    column_name: mat_type
+    comment: mat_type
+    data_classification: 
+    nullable: true
+    raw_column_name: mat_type
+  - column_data_type: string
+    column_name: engineering_description
+    comment: engineering_description
+    data_classification: 
+    nullable: true
+    raw_column_name: engineering_description
+  - column_data_type: string
+    column_name: uom
+    comment: uom
+    data_classification: 
+    nullable: true
+    raw_column_name: uom
+  - column_data_type: string
+    column_name: reqqty
+    comment: reqqty
+    data_classification: 
+    nullable: true
+    raw_column_name: reqqty
+  - column_data_type: string
+    column_name: apprqty
+    comment: apprqty
+    data_classification: 
+    nullable: true
+    raw_column_name: apprqty
+  - column_data_type: string
+    column_name: final_qty
+    comment: final_qty
+    data_classification: 
+    nullable: true
+    raw_column_name: final_qty
+  - column_data_type: string
+    column_name: work_order_no
+    comment: work_order_no
+    data_classification: 
+    nullable: true
+    raw_column_name: work_order_no
+  - column_data_type: string
+    column_name: contractor_name
+    comment: contractor_name
+    data_classification: 
+    nullable: true
+    raw_column_name: contractor_name
+  - column_data_type: string
+    column_name: erm_posting_status
+    comment: erm_posting_status
+    data_classification: 
+    nullable: true
+    raw_column_name: erm_posting_status
+  - column_data_type: string
+    column_name: remarks
+    comment: remarks
+    data_classification: 
+    nullable: true
+    raw_column_name: remarks
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/ril_min_list/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: ril_min_list
+  name: ril_min_list
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/ril_min_list/
+  load_type: full_load
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

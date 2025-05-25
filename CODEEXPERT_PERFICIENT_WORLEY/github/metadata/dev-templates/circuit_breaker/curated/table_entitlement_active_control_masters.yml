@@ -1,0 +1,397 @@
+---
+SourceSystemId: circuit_breaker_curated
+MetadataType: curated#circuit_breaker#entitlement_active_contract_masters#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/circuit_breaker/parquet/entitlement_active_contract_masters.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: entitlement_active_contract_masters_curated
+  name: entitlement_active_contract_masters_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: active_contract_masters_do_not_modify_contract_master
+    comment: active_contract_masters_do_not_modify_contract_master
+    data_classification: 
+    nullable: true
+    raw_column_name: do_not_modify_contract_master
+  - column_data_type: string
+    column_name: active_contract_masters_do_not_modify_row_checksum
+    comment: active_contract_masters_do_not_modify_row_checksum
+    data_classification: 
+    nullable: true
+    raw_column_name: do_not_modify_row_checksum
+  - column_data_type: string
+    column_name: active_contract_masters_do_not_modify_modified_on
+    comment: active_contract_masters_do_not_modify_modified_on
+    data_classification: 
+    nullable: true
+    raw_column_name: do_not_modify_modified_on
+  - column_data_type: string
+    column_name: active_contract_masters_id
+    comment: active_contract_masters_id
+    data_classification: 
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: active_contract_masters_contract_reference
+    comment: active_contract_masters_contract_reference
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_reference
+  - column_data_type: string
+    column_name: active_contract_masters_vendor_name
+    comment: active_contract_masters_vendor_name
+    data_classification: 
+    nullable: true
+    raw_column_name: vendor_name
+  - column_data_type: string
+    column_name: active_contract_masters_contract_name
+    comment: active_contract_masters_contract_name
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_name
+  - column_data_type: string
+    column_name: active_contract_masters_contract_type
+    comment: active_contract_masters_contract_type
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_type
+  - column_data_type: string
+    column_name: active_contract_masters_current_contract_start_date
+    comment: active_contract_masters_current_contract_start_date
+    data_classification: 
+    nullable: true
+    raw_column_name: current_contract_start_date
+  - column_data_type: string
+    column_name: active_contract_masters_current_contract_end_date
+    comment: active_contract_masters_current_contract_end_date
+    data_classification: 
+    nullable: true
+    raw_column_name: current_contract_end_date
+  - column_data_type: string
+    column_name: active_contract_masters_procurement_lead
+    comment: active_contract_masters_procurement_lead
+    data_classification: 
+    nullable: true
+    raw_column_name: procurement_lead
+  - column_data_type: string
+    column_name: active_contract_masters_gbs_project_number
+    comment: active_contract_masters_gbs_project_number
+    data_classification: 
+    nullable: true
+    raw_column_name: gbs_project_number
+  - column_data_type: string
+    column_name: active_contract_masters_wbs_task
+    comment: active_contract_masters_wbs_task
+    data_classification: 
+    nullable: true
+    raw_column_name: wbs_task
+  - column_data_type: string
+    column_name: active_contract_masters_completed
+    comment: active_contract_masters_completed
+    data_classification: 
+    nullable: true
+    raw_column_name: completed
+  - column_data_type: string
+    column_name: active_contract_masters_finance_signoff
+    comment: active_contract_masters_finance_signoff
+    data_classification: 
+    nullable: true
+    raw_column_name: finance_signoff
+  - column_data_type: string
+    column_name: active_contract_masters_budget_fy_25_aud_forecast_renewal_acv
+    comment: active_contract_masters_budget_fy_25_aud_forecast_renewal_acv
+    data_classification: 
+    nullable: true
+    raw_column_name: budget_fy_25_aud_forecast_renewal_acv
+  - column_data_type: string
+    column_name: active_contract_masters_budget_fy_25_contract_currency_forecast_renewal_a
+    comment: active_contract_masters_budget_fy_25_contract_currency_forecast_renewal_a
+    data_classification: 
+    nullable: true
+    raw_column_name: budget_fy_25_contract_currency_forecast_renewal_a
+  - column_data_type: string
+    column_name: active_contract_masters_contract_base_currency
+    comment: active_contract_masters_contract_base_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_base_currency
+  - column_data_type: string
+    column_name: active_contract_masters_current_approved_contract_commitment_aud
+    comment: active_contract_masters_current_approved_contract_commitment_aud
+    data_classification: 
+    nullable: true
+    raw_column_name: current_approved_contract_commitment_aud
+  - column_data_type: string
+    column_name: active_contract_masters_current_approved_contract_commitment_base_currency
+    comment: active_contract_masters_current_approved_contract_commitment_base_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: current_approved_contract_commitment_base_currency
+  - column_data_type: string
+    column_name: active_contract_masters_current_contract_term_months
+    comment: active_contract_masters_current_contract_term_months
+    data_classification: 
+    nullable: true
+    raw_column_name: current_contract_term_months
+  - column_data_type: string
+    column_name: active_contract_masters_date_of_completion
+    comment: active_contract_masters_date_of_completion
+    data_classification: 
+    nullable: true
+    raw_column_name: date_of_completion
+  - column_data_type: string
+    column_name: active_contract_masters_digital_funded_yes__no
+    comment: active_contract_masters_digital_funded_yes__no
+    data_classification: 
+    nullable: true
+    raw_column_name: digital_funded_yes__no
+  - column_data_type: string
+    column_name: active_contract_masters_digital_lt_budget_holder
+    comment: active_contract_masters_digital_lt_budget_holder
+    data_classification: 
+    nullable: true
+    raw_column_name: digital_lt_budget_holder
+  - column_data_type: string
+    column_name: active_contract_masters_final_finance_invoice_amount
+    comment: active_contract_masters_final_finance_invoice_amount
+    data_classification: 
+    nullable: true
+    raw_column_name: final_finance_invoice_amount
+  - column_data_type: string
+    column_name: active_contract_masters_finance_comments
+    comment: active_contract_masters_finance_comments
+    data_classification: 
+    nullable: true
+    raw_column_name: finance_comments
+  - column_data_type: string
+    column_name: active_contract_masters_finance_invoice_conversion
+    comment: active_contract_masters_finance_invoice_conversion
+    data_classification: 
+    nullable: true
+    raw_column_name: finance_invoice_conversion
+  - column_data_type: string
+    column_name: active_contract_masters_first_quote_contract_currency_acv
+    comment: active_contract_masters_first_quote_contract_currency_acv
+    data_classification: 
+    nullable: true
+    raw_column_name: first_quote_contract_currency_acv
+  - column_data_type: string
+    column_name: active_contract_masters_flexera_entitlement_data_yes__no
+    comment: active_contract_masters_flexera_entitlement_data_yes__no
+    data_classification: 
+    nullable: true
+    raw_column_name: flexera_entitlement_data_yes__no
+  - column_data_type: string
+    column_name: active_contract_masters_fy_25_aud_portion_of_forecast_acv
+    comment: active_contract_masters_fy_25_aud_portion_of_forecast_acv
+    data_classification: 
+    nullable: true
+    raw_column_name: fy_25_aud_portion_of_forecast_acv
+  - column_data_type: string
+    column_name: active_contract_masters_fy25_renewal_target_review_month
+    comment: active_contract_masters_fy25_renewal_target_review_month
+    data_classification: 
+    nullable: true
+    raw_column_name: fy25_renewal_target_review_month
+  - column_data_type: string
+    column_name: active_contract_masters_last_quote_actual_acv_fy_25_po_value__contract
+    comment: active_contract_masters_last_quote_actual_acv_fy_25_po_value__contract
+    data_classification: 
+    nullable: true
+    raw_column_name: last_quote_actual_acv_fy_25_po_value__contract
+  - column_data_type: string
+    column_name: active_contract_masters_link_to_contract_and_po
+    comment: active_contract_masters_link_to_contract_and_po
+    data_classification: 
+    nullable: true
+    raw_column_name: link_to_contract_and_po
+  - column_data_type: string
+    column_name: active_contract_masters_new_contract_end_date
+    comment: active_contract_masters_new_contract_end_date
+    data_classification: 
+    nullable: true
+    raw_column_name: new_contract_end_date
+  - column_data_type: string
+    column_name: active_contract_masters_new_contract_start_date
+    comment: active_contract_masters_new_contract_start_date
+    data_classification: 
+    nullable: true
+    raw_column_name: new_contract_start_date
+  - column_data_type: string
+    column_name: active_contract_masters_new_contract_term_months
+    comment: active_contract_masters_new_contract_term_months
+    data_classification: 
+    nullable: true
+    raw_column_name: new_contract_term_months
+  - column_data_type: string
+    column_name: active_contract_masters_new_po
+    comment: active_contract_masters_new_po
+    data_classification: 
+    nullable: true
+    raw_column_name: new_po
+  - column_data_type: string
+    column_name: active_contract_masters_notice_period_requirements_incl_auto_renewal
+    comment: active_contract_masters_notice_period_requirements_incl_auto_renewal
+    data_classification: 
+    nullable: true
+    raw_column_name: notice_period_requirements_incl_auto_renewal
+  - column_data_type: string
+    column_name: active_contract_masters_opentit_usage__consumption_data_yes__no
+    comment: active_contract_masters_opentit_usage__consumption_data_yes__no
+    data_classification: 
+    nullable: true
+    raw_column_name: opentit_usage__consumption_data_yes__no
+  - column_data_type: string
+    column_name: active_contract_masters_opentit_usage__consumption_data_yes__no_old
+    comment: active_contract_masters_opentit_usage__consumption_data_yes__no_old
+    data_classification: 
+    nullable: true
+    raw_column_name: opentit_usage__consumption_data_yes__no_old
+  - column_data_type: string
+    column_name: active_contract_masters_other_cost_avoidence
+    comment: active_contract_masters_other_cost_avoidence
+    data_classification: 
+    nullable: true
+    raw_column_name: other_cost_avoidence
+  - column_data_type: string
+    column_name: active_contract_masters_owner
+    comment: active_contract_masters_owner
+    data_classification: 
+    nullable: true
+    raw_column_name: owner
+  - column_data_type: string
+    column_name: active_contract_masters_owning_business_unit
+    comment: active_contract_masters_owning_business_unit
+    data_classification: 
+    nullable: true
+    raw_column_name: owning_business_unit
+  - column_data_type: string
+    column_name: active_contract_masters_procurement_comments
+    comment: active_contract_masters_procurement_comments
+    data_classification: 
+    nullable: true
+    raw_column_name: procurement_comments
+  - column_data_type: string
+    column_name: active_contract_masters_completed_old
+    comment: active_contract_masters_completed_old
+    data_classification: 
+    nullable: true
+    raw_column_name: completed_old
+  - column_data_type: string
+    column_name: active_contract_masters_created_by
+    comment: active_contract_masters_created_by
+    data_classification: 
+    nullable: true
+    raw_column_name: created_by
+  - column_data_type: string
+    column_name: active_contract_masters_created_by_delegate
+    comment: active_contract_masters_created_by_delegate
+    data_classification: 
+    nullable: true
+    raw_column_name: created_by_delegate
+  - column_data_type: string
+    column_name: active_contract_masters_created_on
+    comment: active_contract_masters_created_on
+    data_classification: 
+    nullable: true
+    raw_column_name: created_on
+  - column_data_type: string
+    column_name: active_contract_masters_modified_by
+    comment: active_contract_masters_modified_by
+    data_classification: 
+    nullable: true
+    raw_column_name: modified_by
+  - column_data_type: string
+    column_name: active_contract_masters_modified_by_delegate
+    comment: active_contract_masters_modified_by_delegate
+    data_classification: 
+    nullable: true
+    raw_column_name: modified_by_delegate
+  - column_data_type: string
+    column_name: active_contract_masters_modified_on
+    comment: active_contract_masters_modified_on
+    data_classification: 
+    nullable: true
+    raw_column_name: modified_on
+  - column_data_type: string
+    column_name: active_contract_masters_product_management_lead
+    comment: active_contract_masters_product_management_lead
+    data_classification: 
+    nullable: true
+    raw_column_name: product_management_lead
+  - column_data_type: string
+    column_name: active_contract_masters_record_created_on
+    comment: active_contract_masters_record_created_on
+    data_classification: 
+    nullable: true
+    raw_column_name: record_created_on
+  - column_data_type: string
+    column_name: active_contract_masters_renewal_in_fy_25
+    comment: active_contract_masters_renewal_in_fy_25
+    data_classification: 
+    nullable: true
+    raw_column_name: renewal_in_fy_25
+  - column_data_type: string
+    column_name: active_contract_masters_snow_ticket_number
+    comment: active_contract_masters_snow_ticket_number
+    data_classification: 
+    nullable: true
+    raw_column_name: snow_ticket_number
+  - column_data_type: string
+    column_name: active_contract_masters_status
+    comment: active_contract_masters_status
+    data_classification: 
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: active_contract_masters_status_reason
+    comment: active_contract_masters_status_reason
+    data_classification: 
+    nullable: true
+    raw_column_name: status_reason
+  - column_data_type: string
+    column_name: active_contract_masters_type
+    comment: active_contract_masters_type
+    data_classification: 
+    nullable: true
+    raw_column_name: type
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: worley_datalake_sydney_${envn}_glue_catalog_database_circuit_breaker_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_active_contract_masters/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_entitlement_active_contract_masters
+  load_type: full_load
+  name: curated_entitlement_active_contract_masters
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_active_contract_masters
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'circuit_breaker' as SOURCE_SYSTEM_NAME, 'entitlement_active_contract_masters'
+    as CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

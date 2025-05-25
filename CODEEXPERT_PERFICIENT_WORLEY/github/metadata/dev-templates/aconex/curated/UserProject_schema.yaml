@@ -1,0 +1,156 @@
+---
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#UserProject#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/aconex/UserProject/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: aconex-UserProject
+  name: aconex_UserProject
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: divisionname
+    comment: divisionname
+    data_classification: 
+    nullable: true
+    raw_column_name: divisionname
+  - column_data_type: string
+    column_name: groupid
+    comment: groupid
+    data_classification: 
+    nullable: true
+    raw_column_name: groupid
+  - column_data_type: string
+    column_name: groupname
+    comment: groupname
+    data_classification: 
+    nullable: true
+    raw_column_name: groupname
+  - column_data_type: string
+    column_name: organizationid
+    comment: organizationid
+    data_classification: 
+    nullable: true
+    raw_column_name: organizationid
+  - column_data_type: string
+    column_name: organizationname
+    comment: organizationname
+    data_classification: 
+    nullable: true
+    raw_column_name: organizationname
+  - column_data_type: string
+    column_name: tradingname
+    comment: tradingname
+    data_classification: 
+    nullable: true
+    raw_column_name: tradingname
+  - column_data_type: string
+    column_name: jobtitle
+    comment: jobtitle
+    data_classification: 
+    nullable: true
+    raw_column_name: jobtitle
+  - column_data_type: string
+    column_name: projectaddress
+    comment: projectaddress
+    data_classification: 
+    nullable: true
+    raw_column_name: projectaddress
+  - column_data_type: string
+    column_name: projectphone
+    comment: projectphone
+    data_classification: 
+    nullable: true
+    raw_column_name: projectphone
+  - column_data_type: string
+    column_name: projectfax
+    comment: projectfax
+    data_classification: 
+    nullable: true
+    raw_column_name: projectfax
+  - column_data_type: string
+    column_name: mobile
+    comment: mobile
+    data_classification: 
+    nullable: true
+    raw_column_name: mobile
+  - column_data_type: string
+    column_name: searchresulttype
+    comment: searchresulttype
+    data_classification: 
+    nullable: true
+    raw_column_name: searchresulttype
+  - column_data_type: string
+    column_name: userid
+    comment: userid
+    data_classification: 
+    nullable: true
+    raw_column_name: userid
+  - column_data_type: string
+    column_name: username
+    comment: username
+    data_classification: 
+    nullable: true
+    raw_column_name: username
+  - column_data_type: string
+    column_name: email
+    comment: email
+    data_classification: 
+    nullable: true
+    raw_column_name: email
+  - column_data_type: long
+    column_name: projectid
+    comment: projectid
+    data_classification: 
+    nullable: true
+    raw_column_name: projectid
+  - column_name:  instance_name
+    column_data_type:   string 
+    nullable: true
+    comment:  instance_name
+    data_classification: null
+    raw_column_name:   instance_name
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/userproject/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_userproject
+  load_type: incremental
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: instance_name
+    entity_table_attribute_name: instance_name
+    entity_s3_raw_partition_prefix: Instance
+  name: curated_aconex_userproject
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/userproject
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

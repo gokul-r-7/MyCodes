@@ -1,0 +1,3 @@
+export TARGET_DATA_PLATFORM_ACCOUNT=533267239288
+export DATASOURCE_ARN=arn:aws:quicksight:ap-southeast-2:533267239288:datasource/redshift-data-source
+export SOURCE_DATA_PLATFORM_ACCOUNT=891377181979

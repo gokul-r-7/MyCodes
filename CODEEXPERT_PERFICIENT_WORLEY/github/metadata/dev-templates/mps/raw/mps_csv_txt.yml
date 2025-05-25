@@ -1,0 +1,117 @@
+---
+SourceSystemId: mps
+MetadataType: csv_xlsx#mps
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: engineering/mps/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: engineering/mps/parquet/
+  raw_files_path: engineering/mps/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: engineering/mps/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  xls_files:
+    - filename: MPS Log_LFM.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: LFM
+          tablename: mps_log_lfm
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: MPS Log_New.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: PTM
+          tablename: mps_log_all_ptm
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: BOP
+          tablename: mps_log_all_bop
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: BOG
+          tablename: mps_log_all_bog
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: MAR
+          tablename: mps_log_all_mar
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: MPR
+          tablename: mps_log_all_mpr
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: NRU
+          tablename: mps_log_all_nru
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: LFM
+          tablename: mps_log_all_lfm
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: TNK
+          tablename: mps_log_all_tnk
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+          
+name: mps
+Namespace: engineering

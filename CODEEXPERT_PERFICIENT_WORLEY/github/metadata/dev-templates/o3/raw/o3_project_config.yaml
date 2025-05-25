@@ -1,0 +1,125 @@
+---
+SourceSystemId: o3
+MetadataType: api#o3#project_config
+name: O3_Project_Config
+dev:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 41
+    Endpoints:
+      type1:
+        - cwas
+        - cwps
+        - construction-components
+        - disciplines
+        - drawings
+        - documents
+        - ewps
+        - iwps
+        - work-package-execution-tasks
+        - change-history
+        - twps
+        # - pwps
+        - materials
+        - material-catalog
+        - contracts
+      type2:
+        - work-package-execution-tasks/steps
+        - constraints
+        - work-package-components
+        - material-requirements
+      type3:
+        - projectsettings/get-crew-schedule
+
+qa:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 41
+    Endpoints:
+      type1:
+        - cwas
+        - cwps
+        - construction-components
+        - disciplines
+        - drawings
+        - documents
+        - ewps
+        - iwps
+        - work-package-execution-tasks
+        - change-history
+        - twps
+        # - pwps
+        - materials
+        - material-catalog
+        - contracts
+      type2:
+        - work-package-execution-tasks/steps
+        - constraints
+        - work-package-components
+        - material-requirements
+      type3:
+        - projectsettings/get-crew-schedule
+
+prd:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 41
+    Endpoints:
+      type1:
+        - cwas
+        - cwps
+        - construction-components
+        - disciplines
+        - drawings
+        - documents
+        - ewps
+        - iwps
+        - work-package-execution-tasks
+        - change-history
+        - twps
+        # - pwps
+        # - materials
+        # - material-catalog
+        # - contracts
+      type2:
+        - work-package-execution-tasks/steps
+        - constraints
+        - work-package-components
+        # - material-requirements
+      type3:
+        - projectsettings/get-crew-schedule
+  Project_DAC:
+    Name: DAC
+    Id:
+      - 11
+      - 54
+    Endpoints:
+      type1:
+        - cwas
+        - cwps
+        - construction-components
+        - disciplines
+        - drawings
+        - documents
+        - ewps
+        - iwps
+        - work-package-execution-tasks
+        - change-history
+        - twps
+        # - pwps
+        # - materials
+        # - material-catalog
+        # - contracts
+      type2:
+        - work-package-execution-tasks/steps
+        - constraints
+        - work-package-components
+        # - material-requirements
+      type3:
+        - projectsettings/get-crew-schedule

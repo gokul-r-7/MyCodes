@@ -1,0 +1,210 @@
+SourceSystemId: hcm_extracts_curated
+MetadataType: curated#people#hr_location#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_people_bucket}/oracle/people/hcm_extracts/parquet/hr_location.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: hcm_extracts-hr_location
+  name: hcm_extracts_hr_location
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_people_oracle_hcm_extracts_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/people/oracle/hcm_extracts/hr_location/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_hr_location
+  load_type: incremental
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  name: curated_hr_location
+  primary_key: &id001
+  - location_id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/people/oracle/hcm_curated/hr_location
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'hcm_extracts' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: *id001
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: address_line_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOADDRESSLINE1
+  - column_data_type: string
+    column_name: address_line_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOADDRESSLINE2
+  - column_data_type: string
+    column_name: address_line_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOADDRESSLINE3
+  - column_data_type: string
+    column_name: address_line_4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOADDRESSLINE4
+  - column_data_type: string
+    column_name: country
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOCOUNTRY
+  - column_data_type: date
+    column_name: source_effective_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOEFFECTIVESTARTDATE
+  - column_data_type: timestamp
+    column_name: address_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOLASTUPDATEDATE
+  - column_data_type: timestamp
+    column_name: location_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LOCATIONDETAILSPEOLASTUPDATEDATE
+  - column_data_type: int
+    column_name: location_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LOCATIONPEOLOCATIONID
+  - column_data_type: string
+    column_name: postal_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOPOSTALCODE
+  - column_data_type: string
+    column_name: region_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOREGION1
+  - column_data_type: string
+    column_name: region_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOREGION2
+  - column_data_type: string
+    column_name: region_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOREGION3
+  - column_data_type: string
+    column_name: timezone_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOTIMEZONECODE
+  - column_data_type: string
+    column_name: town_or_city
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOTOWNORCITY
+  - column_data_type: timestamp
+    column_name: actionreason_trans_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ACTIONREASONSTRANSLATIONPEOLASTUPDATEDATE
+  - column_data_type: date
+    column_name: designated_receiver_effective_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: DESIGNATEDRECEIVERPEOEFFECTIVESTARTDATE
+  - column_data_type: string
+    column_name: location_standard_working_hours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LOCATIONDETAILSPEOSTANDARDWORKINGHOURS
+  - column_data_type: string
+    column_name: location_std_annual_working_duration
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LOCATIONDETAILSPEOSTDANNUALWORKINGDURATION
+  - column_data_type: string
+    column_name: addresses_latitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOLATITUDE
+  - column_data_type: string
+    column_name: addresses_longitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ADDRESSESPEOLONGITUDE
+  - column_data_type: string
+    column_name: location_annual_working_duration_units
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LOCATIONDETAILSPEOANNUALWORKINGDURATIONUNITS
+  - column_data_type: int
+    column_name: location_detail_sid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LOCATIONDETAILSID
+  - column_data_type: date
+    column_name: location_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LOCATIONPEOLASTUPDATEDATE
+  - column_data_type: date
+    column_name: setid_set_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: SETIDSETPEOLASTUPDATEDATE
+  - column_data_type: date
+    column_name: effective_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVESTARTDATE

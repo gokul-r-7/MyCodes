@@ -1,0 +1,270 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_Exchanger#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_Exchanger/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-exchanger
+  name: spid_exchanger
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: string
+    column_name: tema_designation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tema_designation
+  - column_data_type: string
+    column_name: heattransferrating
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: heattransferrating
+  - column_data_type: double
+    column_name: sp_heattransferratingsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_heattransferratingsi
+  - column_data_type: string
+    column_name: absorbedduty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: absorbedduty
+  - column_data_type: double
+    column_name: sp_absorbeddutysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_absorbeddutysi
+  - column_data_type: string
+    column_name: ratedduty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ratedduty
+  - column_data_type: double
+    column_name: sp_rateddutysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_rateddutysi
+  - column_data_type: integer
+    column_name: cleaningreqmtstube
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cleaningreqmtstube
+  - column_data_type: integer
+    column_name: coatingreqmtstube
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: coatingreqmtstube
+  - column_data_type: string
+    column_name: heattransferareaperunit
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: heattransferareaperunit
+  - column_data_type: double
+    column_name: sp_heattransferareaperunitsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_heattransferareaperunitsi
+  - column_data_type: string
+    column_name: corrosionallowancetube
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: corrosionallowancetube
+  - column_data_type: double
+    column_name: sp_corrosionallowancetubesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_corrosionallowancetubesi
+  - column_data_type: integer
+    column_name: materialofconstclasstube
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialofconstclasstube
+  - column_data_type: string
+    column_name: motorpowerperfan
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: motorpowerperfan
+  - column_data_type: double
+    column_name: sp_motorpowerperfansi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_motorpowerperfansi
+  - column_data_type: string
+    column_name: numberoffans
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: numberoffans
+  - column_data_type: string
+    column_name: numberofbays
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: numberofbays
+  - column_data_type: string
+    column_name: numberofbundles
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: numberofbundles
+  - column_data_type: string
+    column_name: numberoftubes
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: numberoftubes
+  - column_data_type: string
+    column_name: pipingmaterialsclasstube
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipingmaterialsclasstube
+  - column_data_type: string
+    column_name: powerabsorbedperfan
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: powerabsorbedperfan
+  - column_data_type: double
+    column_name: sp_powerabsorbedperfansi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_powerabsorbedperfansi
+  - column_data_type: string
+    column_name: shelldiameter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: shelldiameter
+  - column_data_type: double
+    column_name: sp_shelldiametersi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_shelldiametersi
+  - column_data_type: string
+    column_name: tubelength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tubelength
+  - column_data_type: double
+    column_name: sp_tubelengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_tubelengthsi
+  - column_data_type: string
+    column_name: unitwidth
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitwidth
+  - column_data_type: double
+    column_name: sp_unitwidthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_unitwidthsi
+  - column_data_type: integer
+    column_name: drafttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drafttype
+  - column_data_type: integer
+    column_name: typeoflouvers
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: typeoflouvers
+  - column_data_type: integer
+    column_name: equipmentorientation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: equipmentorientation
+  - column_data_type: string
+    column_name: insulationspectube
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationspectube
+  - column_data_type: string
+    column_name: wp_finnedarea
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_finnedarea
+  - column_data_type: double
+    column_name: sp_wp_finnedareasi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_finnedareasi
+  - column_data_type: string
+    column_name: wp_baretubearea
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_baretubearea
+  - column_data_type: double
+    column_name: sp_wp_baretubeareasi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_baretubeareasi    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_Exchanger/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_exchanger
+  load_type: append
+  name: curated_t_exchanger
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_exchanger
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

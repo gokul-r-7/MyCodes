@@ -1,0 +1,7 @@
+domain_name: project_control
+source_name: p6
+databases : 
+  - ${database_prefix}_project_control_oracle_p6_curated
+  - ${database_prefix}_project_control_oracle_p6_raw
+  - ${database_prefix}_dac_project_control_transformed
+  - ${database_prefix}_project_control_transformed

@@ -1,0 +1,83 @@
+---
+SourceSystemId: assurance_curated
+MetadataType: curated#assurance#action_factors_training_and_competence#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/assurance/parquet/action_factors_training_and_competence.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: action_factors_training_and_competence
+    format_options:
+      mergeSchema: true
+  name: action_factors_training_and_competence
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: decimal(32,0)
+    column_name: dwk_action
+    comment: dwk_action
+    data_classification: 
+    nullable: false
+    raw_column_name: dwk_action
+  - column_data_type: string
+    column_name: factors_training_and_competence
+    comment: factors_training_and_competence
+    data_classification: 
+    nullable: true
+    raw_column_name: factors_training_and_competence
+  - column_data_type: string
+    column_name: li_factors_training_and_competence
+    comment: li_factors_training_and_competence
+    data_classification: 
+    nullable: false
+    raw_column_name: li_factors_training_and_competence
+  - column_data_type: decimal(32,0)
+    column_name: lo_factors_training_and_competence
+    comment: lo_factors_training_and_competence
+    data_classification: 
+    nullable: true
+    raw_column_name: lo_factors_training_and_competence
+  - column_data_type: timestamp
+    column_name: bms_lastmodified
+    comment: bms_lastmodified
+    data_classification: 
+    nullable: true
+    raw_column_name: bms_lastmodified
+  schema_properties:
+    enforce: true
+    rename_columns: true
+    primary_key: [dwk_action,li_factors_training_and_competence]
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_assurance
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/assurance/action_factors_training_and_competence/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_action_factors_training_and_competence
+  name: curated_action_factors_training_and_competence
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/assurance/action_factors_training_and_competence
+  load_type: incremental
+  primary_key: [dwk_action,li_factors_training_and_competence]
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

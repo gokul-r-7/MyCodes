@@ -1,0 +1,233 @@
+MetadataType: curated#o3#change-history#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/change-history/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_change_history
+  name: o3_change_history
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    primary_key: [id,projectid]
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: uniqueid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: uniqueid
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: entityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entityid
+  - column_data_type: string
+    column_name: entitytypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitytypeid
+  - column_data_type: string
+    column_name: entitytype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitytype
+  - column_data_type: string
+    column_name: actiontype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actiontype
+  - column_data_type: string
+    column_name: actionid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actionid
+  - column_data_type: string
+    column_name: useraccountid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: useraccountid
+  - column_data_type: string
+    column_name: scheduleactivityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scheduleactivityid
+  - column_data_type: string
+    column_name: cwpreleaseid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwpreleaseid
+  - column_data_type: string
+    column_name: eventtypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eventtypeid
+  - column_data_type: string
+    column_name: modelparserconfigurationid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelparserconfigurationid
+  - column_data_type: string
+    column_name: integrationid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: integrationid
+  - column_data_type: string
+    column_name: attachmentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attachmentid
+  - column_data_type: string
+    column_name: eventname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eventname
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: entityname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entityname
+  - column_data_type: string
+    column_name: contractid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractid
+  - column_data_type: string
+    column_name: contract
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contract
+  - column_data_type: string
+    column_name: actionname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actionname
+  - column_data_type: string
+    column_name: importid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: importid
+  - column_data_type: string
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: createdbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuserid
+  - column_data_type: string
+    column_name: createdbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuser
+  - column_data_type: string
+    column_name: changehistoryid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: changehistoryid
+  - column_data_type: string
+    column_name: fieldname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fieldname
+  - column_data_type: string
+    column_name: oldvalue
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: oldvalue
+  - column_data_type: string
+    column_name: newvalue
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: newvalue
+  - column_data_type: string
+    column_name: archive
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: archive
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: datemodified_ts
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/change_history/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_change_history
+  load_type: incremental_no_delete
+  name: curated_o3_change_history
+  primary_key: [id,projectid]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/change_history
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, CAST(DateCreated as timestamp) as datemodified_ts, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

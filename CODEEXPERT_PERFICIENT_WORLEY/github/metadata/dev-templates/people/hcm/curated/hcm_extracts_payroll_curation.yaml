@@ -1,0 +1,180 @@
+SourceSystemId: hcm_extracts_curated
+MetadataType: curated#people#payroll#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_people_bucket}/oracle/people/hcm_extracts/parquet/payroll.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: hcm_extracts-payroll
+  name: hcm_extracts_payroll
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_people_oracle_hcm_extracts_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/people/oracle/hcm_extracts/payroll/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_payroll
+  load_type: incremental
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  name: curated_payroll
+  primary_key: &id001
+  - payroll_id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/people/oracle/hcm_curated/payroll
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'hcm_extracts' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: *id001
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: base_org_pay_method_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: BASEORGPAYMETHODNAME
+  - column_data_type: string
+    column_name: consolidation_set_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: CONSOLIDATIONSETNAME
+  - column_data_type: string
+    column_name: source_created_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOCREATEDBY
+  - column_data_type: timestamp
+    column_name: source_creation_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOCREATIONDATE
+  - column_data_type: int
+    column_name: cut_off_date_offset
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOCUTOFFDATEOFFSET
+  - column_data_type: int
+    column_name: default_paydate_offset
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEODEFAULTPAYDATEOFFSET
+  - column_data_type: date
+    column_name: source_effective_end_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOEFFECTIVEENDDATE
+  - column_data_type: date
+    column_name: source_effective_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOEFFECTIVESTARTDATE
+  - column_data_type: date
+    column_name: first_period_end_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOFIRSTPERIODENDDATE
+  - column_data_type: string
+    column_name: fixed_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOFIXEDDATE
+  - column_data_type: timestamp
+    column_name: source_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOLASTUPDATEDATE
+  - column_data_type: string
+    column_name: source_last_update_login
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOLASTUPDATELOGIN
+  - column_data_type: string
+    column_name: negative_pay_allowed_flag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEONEGATIVEPAYALLOWEDFLAG
+  - column_data_type: int
+    column_name: number_of_years
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEONUMBEROFYEARS
+  - column_data_type: int
+    column_name: payroll_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLID
+  - column_data_type: string
+    column_name: payroll_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOPAYROLLNAME
+  - column_data_type: int
+    column_name: payslip_view_date_offset
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOPAYSLIPVIEWDATEOFFSET
+  - column_data_type: int
+    column_name: period_reset_years
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOPERIODRESETYEARS
+  - column_data_type: string
+    column_name: period_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOPERIODTYPE
+  - column_data_type: int
+    column_name: regular_earn_date_offset
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOREGULAREARNDATEOFFSET
+  - column_data_type: int
+    column_name: regular_process_date_offset
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PAYROLLPEOREGULARPROCESSDATEOFFSET

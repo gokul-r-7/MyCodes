@@ -1,0 +1,64 @@
+SourceSystemId: ped
+MetadataType: api#ped#projects
+api_parameter: #Optinal will be replaced with respective object API configs
+  endpoint: "https://{ped_instance_id}.api.crm.dynamics.com/api/data/v9.2/{api_obj_name}"
+  ped_qualified_api_name: 'sds_pedprojects'
+  api_query_params: 
+    $filter: 'modifiedon gt {incremental_value} and ${genai_ped_confidential_field} eq false'
+    $select: 'sds_pedprojectid,sds_energytransition,sds_customergroupsearch,sds_businesssegment,sds_capabilities,sds_oursolution,sds_projectsummary,sds_scopesofservice,sds_projectstartdate,sds_phases,sds_totalhours,sds_estimatedcompletiondate,sds_totalinstalledcostaud,sds_billingtype,sds_projectrole,sds_keywords,sds_successstorystatus,sds_customerchallenge,sds_valuedelivered,sds_awardsaccolades'
+    $expand: 'sds_LeadOffice($select=sds_officename),sds_EndClient($select=sds_customername),sds_ProjectLocationState($select=sds_name),sds_MarketSegment($select=sds_marketsegmentname,sds_marketsubsector),sds_ProjectLocation($select=sds_name),sds_CountryofAsset($select=sds_countryname),sds_Customer($select=sds_customername)'
+job_parameter:
+  bucket_data_source_prefix: projects
+  bucket_name: ${secret_prefix}-genai-landing-${bucket_suffix}
+  output_files_path: 'ped/projects/{batch_foldername_format}'
+  status_timeout: 120
+  input_path : 
+  output_s3: projects
+  temp_input_path: temp/ped/projects/raw
+  temp_relationlized_path: 'temp/ped/projects/raw/relationalized_data/'
+  temp_output_path: 'temp/ped/projects/raw/output/'
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: ped/data_sampling/projects/
+  full_incremental: I
+  index_key: "LastModifiedDate"
+  incremental_value_format: "{yyyy}-{MM}-{dd}T{HH}:{mm}:{ss}Z"
+  incremental_default: "2020-01-01T00:00:00Z"
+  job_process_folder: ped/audit_folder
+  job_process_file: projects/projects_process.json
+  is_named_col: false
+  api_source_to_target_rename:
+    sds_pedprojectid: 'projectid'
+    sds_energytransition: 'energy_transition'
+    sds_Customer.sds_customername: 'customer_name'
+    sds_customergroupsearch: 'customer_group'
+    sds_businesssegment: 'lead_business_segment'
+    sds_LeadOffice.sds_officename: 'lead_office'
+    sds_CountryOfAsset.sds_countryname: 'country_of_asset'
+    sds_ProjectLocationState.sds_name: 'state_or_territory_of_asset'
+    sds_ProjectLocation.sds_name: 'city_of_asset'
+    sds_capabilities: 'solutions'
+    sds_oursolution: 'our_solution'
+    sds_MarketSegment.sds_marketsegmentname: 'market_segment'
+    sds_MarketSegment.sds_marketsubsector: 'market_subsector'
+    sds_projectsummary: 'project_summary'
+    sds_EndClient.sds_customername: 'end_client'
+    sds_scopesofservice: 'scope_of_services'
+    sds_projectstartdate: 'est_start_date'
+    sds_phases: 'phases'
+    sds_totalhours: 'est_hrs'
+    sds_estimatedcompletiondate: 'est_end_date'
+    sds_totalinstalledcostaud: 'tic_aud'
+    sds_billingtype: 'billing_type'
+    sds_projectrole: 'project_role'
+    sds_keywords: 'keywords'
+    sds_successstorystatus: 'success_story'
+    sds_customerchallenge: 'customer_challenge'
+    sds_valuedelivered: 'value_delivered'
+    sds_awardsaccolades: 'awards_&_accolades'
+is_active: Y
+name: pedprojects
+aws_region: ${region}
+Namespace: genai_ped
+
+

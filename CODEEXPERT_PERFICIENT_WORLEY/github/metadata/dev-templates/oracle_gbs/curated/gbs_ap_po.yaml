@@ -1,0 +1,545 @@
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#gbs_ap_po#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/gbs_ap_po.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: gbs_ap_po
+  name: gbs_ap_po
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/gbs_ap_po/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: gbs_ap_po
+  load_type: incremental_no_delete
+  name: gbs_ap_po
+  primary_key: [operating_unit,customer_taxpayer_id,supplier_num,invoice_num,prepayment_type,payment_amt_in_document_currency,payment_status,fiscal_period,pay_dist_code,po_number,check_number,check_date,void_date]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/gbs_ap_po
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [operating_unit,customer_taxpayer_id,supplier_num,invoice_num,prepayment_type,payment_amt_in_document_currency,payment_status,fiscal_period,pay_dist_code,po_number,check_number,check_date,void_date]
+    rename_columns: true
+  columns:
+    - column_data_type: string
+      column_name: operating_unit
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: operating_unit
+    - column_data_type: string
+      column_name: customer_taxpayer_id
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: customer_taxpayer_id
+    - column_data_type: string
+      column_name: invoice_type
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_type
+    - column_data_type: string
+      column_name: po_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: po_number
+    - column_data_type: string
+      column_name: trading_partner
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: trading_partner
+    - column_data_type: string
+      column_name: supplier_num
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_num
+    - column_data_type: string
+      column_name: supplier_site_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_site_name
+    - column_data_type: string
+      column_name: invoiced_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoiced_date
+    - column_data_type: string
+      column_name: invoice_num
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_num
+    - column_data_type: string
+      column_name: invoice_currency
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_currency
+    - column_data_type: string
+      column_name: invoice_amount
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_amount
+    - column_data_type: string
+      column_name: tax_amount
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: tax_amount
+    - column_data_type: string
+      column_name: withheld_amount
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: withheld_amount
+    - column_data_type: string
+      column_name: prepaid_amount
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: prepaid_amount
+    - column_data_type: string
+      column_name: gl_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: gl_date
+    - column_data_type: string
+      column_name: payment_curr
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_curr
+    - column_data_type: string
+      column_name: payment_rate_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_rate_date
+    - column_data_type: string
+      column_name: payment_rate_type
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_rate_type
+    - column_data_type: string
+      column_name: payment_rate
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_rate
+    - column_data_type: string
+      column_name: distribution_set
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: distribution_set
+    - column_data_type: string
+      column_name: description
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: description
+    - column_data_type: string
+      column_name: quick_credit
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: quick_credit
+    - column_data_type: string
+      column_name: credited_invoice
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: credited_invoice
+    - column_data_type: string
+      column_name: match_option
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: match_option
+    - column_data_type: string
+      column_name: project
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: project
+    - column_data_type: string
+      column_name: task
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: task
+    - column_data_type: string
+      column_name: expenditure_item_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: expenditure_item_date
+    - column_data_type: string
+      column_name: expenditure_type
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: expenditure_type
+    - column_data_type: string
+      column_name: expenditure_organization
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: expenditure_organization
+    - column_data_type: string
+      column_name: rate_type
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: rate_type
+    - column_data_type: string
+      column_name: exchange_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: exchange_date
+    - column_data_type: string
+      column_name: terms_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: terms_date
+    - column_data_type: string
+      column_name: terms
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: terms
+    - column_data_type: string
+      column_name: pay_group
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: pay_group
+    - column_data_type: string
+      column_name: prepayment_type
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: prepayment_type
+    - column_data_type: string
+      column_name: settlement_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: settlement_date
+    - column_data_type: string
+      column_name: taxation_country
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: taxation_country
+    - column_data_type: string
+      column_name: business_category
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: business_category
+    - column_data_type: string
+      column_name: product_fisc_classification
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: product_fisc_classification
+    - column_data_type: string
+      column_name: related_invoice
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: related_invoice
+    - column_data_type: string
+      column_name: invoice_sub_type
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_sub_type
+    - column_data_type: string
+      column_name: self_assessed_tax_amount
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: self_assessed_tax_amount
+    - column_data_type: string
+      column_name: internal_sequence_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: internal_sequence_number
+    - column_data_type: string
+      column_name: supplier_tax_invoice_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_tax_invoice_number
+    - column_data_type: string
+      column_name: internal_recording_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: internal_recording_date
+    - column_data_type: string
+      column_name: supplier_tax_invoice_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_tax_invoice_date
+    - column_data_type: string
+      column_name: supplier_tax_invoice_exchange_rate
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_tax_invoice_exchange_rate
+    - column_data_type: string
+      column_name: customs_location_code
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: customs_location_code
+    - column_data_type: string
+      column_name: remit_to_supplier_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: remit_to_supplier_name
+    - column_data_type: string
+      column_name: remit_to_supplier_site
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: remit_to_supplier_site
+    - column_data_type: string
+      column_name: release_amount_net_of_tax
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: release_amount_net_of_tax
+    - column_data_type: string
+      column_name: supplier_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_name
+    - column_data_type: string
+      column_name: supplier_account_site_code
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: supplier_account_site_code
+    - column_data_type: string
+      column_name: purchase_invoice_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: purchase_invoice_number
+    - column_data_type: string
+      column_name: invoice_gl_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_gl_date
+    - column_data_type: string
+      column_name: invoice_creation_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_creation_date
+    - column_data_type: string
+      column_name: invoice_receipt_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_receipt_date
+    - column_data_type: string
+      column_name: invoice_due_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: invoice_due_date
+    - column_data_type: string
+      column_name: fiscal_period
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: fiscal_period
+    - column_data_type: string
+      column_name: user_name_invoice_cretion
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: user_name_invoice_cretion
+    - column_data_type: string
+      column_name: user_name_invoice_last_update
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: user_name_invoice_last_update
+    - column_data_type: string
+      column_name: payment_amt_in_document_currency
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_amt_in_document_currency
+    - column_data_type: string
+      column_name: withholding_tax_amt_in_doc_currency
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: withholding_tax_amt_in_doc_currency
+    - column_data_type: string
+      column_name: payment_amt_in_local_currency
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_amt_in_local_currency
+    - column_data_type: string
+      column_name: withholding_tax_amt_in_local_currency
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: withholding_tax_amt_in_local_currency
+    - column_data_type: string
+      column_name: cash_payment_amt
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: cash_payment_amt
+    - column_data_type: string
+      column_name: discount_taken_local_amount
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: discount_taken_local_amount
+    - column_data_type: string
+      column_name: payment_method_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_method_name
+    - column_data_type: string
+      column_name: check_run_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: check_run_name
+    - column_data_type: string
+      column_name: check_number
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: check_number
+    - column_data_type: string
+      column_name: check_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: check_date
+    - column_data_type: string
+      column_name: void_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: void_date
+    - column_data_type: string
+      column_name: payment_status
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_status  
+    - column_data_type: string
+      column_name: cleared_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: cleared_date
+    - column_data_type: string
+      column_name: payables_org_name
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payables_org_name
+    - column_data_type: string
+      column_name: payment_type_flag
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: payment_type_flag
+    - column_data_type: string
+      column_name: ap_transaction_type_description
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: ap_transaction_type_description
+    - column_data_type: string
+      column_name: pay_dist_code
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: pay_dist_code
+    - column_data_type: string
+      column_name: entity_code
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: entity_code
+    - column_data_type: string
+      column_name: po_number_source_system
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: po_number_source_system
+    - column_data_type: string
+      column_name: invoice_number_source_system
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: last_update_date
+    - column_data_type: string
+      column_name: last_update_date
+      comment: null
+      data_classification: null
+      nullable: true
+      raw_column_name: last_update_date      
+    

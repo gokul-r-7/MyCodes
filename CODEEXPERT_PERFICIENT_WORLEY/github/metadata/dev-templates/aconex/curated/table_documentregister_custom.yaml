@@ -1,0 +1,108 @@
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#docregister_custom#job#iceberg
+source:
+  name: aconex_docregister_custom
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/document_control/aconex/docregister_custom/
+    format: parquet
+    transformation_ctx: aconex-docregister-custom
+transforms:
+- transform: rename_columns
+  rename_column: true
+- transform: select_columns_from_config_file
+  select_columns: true
+- transform: change_data_types
+  change_types: true
+- transform: add_run_date
+  column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+- transform: custom_sql
+  sql: SELECT *, CAST(datemodified as timestamp) as lastmodifieddate_ts ,'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+target:
+  name: curated_aconex_docregister_custom
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    table_name: curated_docregister_custom
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/docregister_custom/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: incremental_no_delete
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  primary_key: [projectid,documentid,trackingid]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/docregister_custom
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [projectid,documentid,trackingid]
+    rename_columns: true
+  columns:
+  - column_name:  documentid  
+    column_data_type:   string 
+    nullable: true
+    comment:  _documentid  
+    data_classification: null
+    raw_column_name:   _documentid   
+  - column_name:  revision 
+    column_data_type:   string 
+    nullable: true
+    comment:  revision 
+    data_classification: null
+    raw_column_name:   revision    
+  - column_name:  versionnumber 
+    column_data_type:   int 
+    nullable: true
+    comment:  versionnumber 
+    data_classification: null
+    raw_column_name:   versionnumber    
+  - column_name:  documentnumber  
+    column_data_type:   string 
+    nullable: true
+    comment:  documentnumber  
+    data_classification: null
+    raw_column_name:   documentnumber 
+  - column_name: datemodified
+    column_data_type: string
+    nullable: true
+    comment: datemodified
+    data_classification: null
+    raw_column_name: datemodified
+  - column_name:  projectid  
+    column_data_type:   long 
+    nullable: true
+    comment:  projectid  
+    data_classification: null
+    raw_column_name:   projectid   
+  - column_name:  customattributes  
+    column_data_type:   string 
+    nullable: true
+    comment:  custom_attributes_json  
+    data_classification: null
+    raw_column_name:   custom_attributes_json   
+  - column_name: trackingid
+    column_data_type: string
+    nullable: true
+    comment: trackingid
+    data_classification: null
+    raw_column_name: trackingid
+  - column_name: current
+    column_data_type: boolean
+    nullable: true
+    comment: current
+    data_classification: null
+    raw_column_name: current
+    

@@ -1,0 +1,150 @@
+---
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#UserProjectRole#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/aconex/UserProjectRole/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: aconex-UserProjectRole
+  name: aconex_UserProjectRole
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: boolean
+    column_name: defaultrole
+    comment: defaultrole
+    data_classification: 
+    nullable: true
+    raw_column_name: defaultrole
+  - column_data_type: boolean
+    column_name: neworgrole
+    comment: neworgrole
+    data_classification: 
+    nullable: true
+    raw_column_name: neworgrole
+  - column_data_type: boolean
+    column_name: organizationadminrole
+    comment: organizationadminrole
+    data_classification: 
+    nullable: true
+    raw_column_name: organizationadminrole
+  - column_data_type: long
+    column_name: owningorganizationid
+    comment: owningorganizationid
+    data_classification: 
+    nullable: true
+    raw_column_name: owningorganizationid
+  - column_data_type: long
+    column_name: projectid
+    comment: projectid
+    data_classification: 
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: id
+    comment: id
+    data_classification: 
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: name
+    comment: name
+    data_classification: 
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: user_email
+    comment: user_email
+    data_classification: 
+    nullable: true
+    raw_column_name: user_email
+  - column_data_type: string
+    column_name: user_mobile
+    comment: user_mobile
+    data_classification: 
+    nullable: true
+    raw_column_name: user_mobile
+  - column_data_type: string
+    column_name: user_firstname
+    comment: user_firstname
+    data_classification: 
+    nullable: true
+    raw_column_name: user_firstname
+  - column_data_type: long
+    column_name: user_userid
+    comment: user_userid
+    data_classification: 
+    nullable: true
+    raw_column_name: user_userid
+  - column_data_type: string
+    column_name: user_lastname
+    comment: user_lastname
+    data_classification: 
+    nullable: true
+    raw_column_name: user_lastname
+  - column_data_type: string
+    column_name: user_middlename
+    comment: user_middlename
+    data_classification: 
+    nullable: true
+    raw_column_name: user_middlename
+  - column_data_type: string
+    column_name: user_usertitle
+    comment: user_usertitle
+    data_classification: 
+    nullable: true
+    raw_column_name: user_usertitle
+  - column_data_type: string
+    column_name: user_username
+    comment: user_username
+    data_classification: 
+    nullable: true
+    raw_column_name: user_username
+  - column_name:  instance_name
+    column_data_type:   string 
+    nullable: true
+    comment:  instance_name
+    data_classification: null
+    raw_column_name:   instance_name
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/userprojectrole/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_userprojectrole
+  load_type: incremental
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: instance_name
+    entity_table_attribute_name: instance_name
+    entity_s3_raw_partition_prefix: Instance
+  name: curated_aconex_userprojectrole
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/userprojectrole
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

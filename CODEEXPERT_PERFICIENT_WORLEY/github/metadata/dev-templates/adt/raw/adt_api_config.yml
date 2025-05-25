@@ -1,0 +1,22 @@
+SourceSystemId: adt
+MetadataType: api#adt#extract_api
+api_parameter:
+  api_base_url: https://api.applied-driving.com/Reports/raw
+  api_tablename: Users
+  api_init_take_offset: 5000
+  api_init_skip_offset: 0
+  api_chunk_index : 0
+  secret_key: ${secret_prefix}-db-adt
+aws_region: ${region}
+job_parameter:
+  bucket_data_source_prefix: adt
+  bucket_name: ${raw_bucket}
+  input_path: health_safety_environment/adt
+  kms_key_id: ${kms_key_id}
+  output_s3: adt
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: health_safety_environment/adt/data_sampling
+  temp_output_path: temp/
+  metadata_table_name : worley-mf-sydney-${envn}-metadata-table"
+name: adt_api

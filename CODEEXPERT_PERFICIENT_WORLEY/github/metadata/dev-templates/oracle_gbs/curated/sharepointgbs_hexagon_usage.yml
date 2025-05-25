@@ -1,0 +1,85 @@
+---
+SourceSystemId: sharepointgbs_curated
+MetadataType: curated#sharepointgbs#hexagon_usage#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/sharepoint_gbs/parquet/gbs_hexagon_usage.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: sharepoint-gbs-hexagon-usage-csv_xlsx_curated
+  name: gbs_hexagon_usage_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: usagedate
+    comment: usagedate
+    data_classification: null
+    nullable: true
+    raw_column_name: usagedate
+  - column_data_type: string
+    column_name: productname
+    comment: productname
+    data_classification: null
+    nullable: true
+    raw_column_name: productname
+  - column_data_type: string
+    column_name: machinename
+    comment: machinename
+    data_classification: null
+    nullable: true
+    raw_column_name: machinename
+  - column_data_type: string
+    column_name: username
+    comment: username
+    data_classification: null
+    nullable: true
+    raw_column_name: username
+  - column_data_type: string
+    column_name: usagehours
+    comment: usagehours
+    data_classification: null
+    nullable: true
+    raw_column_name: usagehours
+  - column_data_type: string
+    column_name: month
+    comment: month
+    data_classification: null
+    nullable: true
+    raw_column_name: month
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/sharepoint_gbs/gbs_hexagon_usage/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: gbs_hexagon_usage
+  name: gbs_hexagon_usage
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/sharepoint_gbs/gbs_hexagon_usage
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'sharepoint_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

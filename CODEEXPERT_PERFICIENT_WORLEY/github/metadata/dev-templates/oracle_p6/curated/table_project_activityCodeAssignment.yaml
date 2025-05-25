@@ -1,0 +1,388 @@
+SourceSystemId: curated_oracle_p6
+MetadataType: 'curated#oracle_p6#project_activityCodeAssignment#job#iceberg'
+source:
+  name: oracle_p6_project_activitycodeassignment
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: >-
+      s3://${raw_bucket}/project_control/oracle_p6/project_activityCodeAssignment/
+    format: parquet
+    transformation_ctx: oracle_p6-project_activitycodeassignment
+transforms:
+  - transform: rename_columns
+    rename_column: true
+  - transform: select_columns_from_config_file
+    select_columns: true
+  - transform: change_data_types
+    change_types: true
+  - transform: add_run_date
+    column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+  - transform: custom_sql
+    sql: 'SELECT *, ''oracle_p6'' as SOURCE_SYSTEM_NAME FROM temp_df_static'
+    temp_view_name: temp_df_static
+target:
+  name: curated_oracle_p6_project_activitycodeassignment
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_oracle_p6_curated
+    table_name: curated_project_activitycodeassignment
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: >-
+        ${curated_bucket}/project_control/oracle_p6/project_activitycodeassignment/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: full_load
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: project_id
+    entity_table_attribute_name: project_id
+    entity_s3_raw_partition_prefix: Project
+  spark_options:
+    format: iceberg
+    options:
+      path: >-
+        s3://${curated_bucket}/project_control/oracle_p6/project_activitycodeassignment
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: ACTIVITYCODEDESCRIPTION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activitycodedescription
+  - column_data_type: string
+    column_name: ACTIVITYCODEOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activitycodeobjectid
+  - column_data_type: string
+    column_name: ACTIVITYCODETYPENAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activitycodetypename
+  - column_data_type: string
+    column_name: ACTIVITYCODETYPEOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activitycodetypeobjectid
+  - column_data_type: string
+    column_name: ACTIVITYCODETYPESCOPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activitycodetypescope
+  - column_data_type: string
+    column_name: ACTIVITYCODEVALUE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activitycodevalue
+  - column_data_type: string
+    column_name: ACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actuallaborunits
+
+  - column_data_type: string
+    column_name: ACTIVITYID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityid
+
+  - column_data_type: string
+    column_name: ACTIVITYOWNERUSERID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityowneruserid
+
+  - column_data_type: string
+    column_name: CBSCODE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbscode
+
+  - column_data_type: string
+    column_name: CBSID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbsid
+
+  - column_data_type: string
+    column_name: EXTERNALEARLYSTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externalearlystartdate
+
+  - column_data_type: string
+    column_name: EXTERNALLATEFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallatefinishdate
+
+  - column_data_type: string
+    column_name: FEEDBACK
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: feedback
+
+  - column_data_type: string
+    column_name: FLOATPATH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: floatpath
+
+  - column_data_type: string
+    column_name: FLOATPATHORDER
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: floatpathorder
+
+  - column_data_type: string
+    column_name: HASFUTUREBUCKETDATA
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hasfuturebucketdata
+
+  - column_data_type: string
+    column_name: LOCATIONNAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationname
+
+  - column_data_type: string
+    column_name: LOCATIONOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationobjectid
+
+  - column_data_type: string
+    column_name: MAXIMUMDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: maximumduration
+
+  - column_data_type: string
+    column_name: MINIMUMDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: minimumduration
+
+  - column_data_type: string
+    column_name: MOSTLIKELYDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mostlikelyduration
+
+  - column_data_type: string
+    column_name: NOTESTORESOURCES
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: notestoresources
+
+  - column_data_type: string
+    column_name: OWNERIDARRAY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: owneridarray
+
+  - column_data_type: string
+    column_name: OWNERNAMESARRAY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ownernamesarray
+
+  - column_data_type: string
+    column_name: POSTRESPCRITICALITYINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postrespcriticalityindex
+
+  - column_data_type: string
+    column_name: POSTRESPONSEPESSIMISTICFINISH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postresponsepessimisticfinish
+
+  - column_data_type: string
+    column_name: POSTRESPONSEPESSIMISTICSTART
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postresponsepessimisticstart
+
+  - column_data_type: string
+    column_name: PRERESPCRITICALITYINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prerespcriticalityindex
+
+  - column_data_type: string
+    column_name: PRERESPONSEPESSIMISTICFINISH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preresponsepessimisticfinish
+
+  - column_data_type: string
+    column_name: PRERESPONSEPESSIMISTICSTART
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preresponsepessimisticstart
+
+  - column_data_type: string
+    column_name: PRIMARYCONSTRAINTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primaryconstraintdate
+
+  - column_data_type: string
+    column_name: PROJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+
+  - column_data_type: string
+    column_name: RESUMEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resumedate
+
+  - column_data_type: string
+    column_name: REVIEWFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reviewfinishdate
+
+  - column_data_type: string
+    column_name: SECONDARYCONSTRAINTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secondaryconstraintdate
+
+  - column_data_type: string
+    column_name: SUSPENDDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: suspenddate
+
+  - column_data_type: string
+    column_name: TASKSTATUSINDICATOR
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: taskstatusindicator
+
+  - column_data_type: string
+    column_name: WORKPACKAGEID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: workpackageid
+  - column_data_type: string
+    column_name: ACTIVITYNAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityname
+  - column_data_type: string
+    column_name: ACTIVITYOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityobjectid
+  - column_data_type: string
+    column_name: CREATEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdate
+  - column_data_type: string
+    column_name: CREATEUSER
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createuser
+  - column_data_type: string
+    column_name: ISBASELINE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isbaseline
+  - column_data_type: string
+    column_name: ISTEMPLATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: istemplate
+  - column_data_type: string
+    column_name: LASTUPDATEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastupdatedate
+  - column_data_type: string
+    column_name: LASTUPDATEUSER
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastupdateuser
+  - column_data_type: string
+    column_name: PROJECTOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectobjectid
+  - column_data_type: string
+    column_name: WBSOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wbsobjectid
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id

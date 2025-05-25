@@ -1,0 +1,193 @@
+---
+SourceSystemId: supplier_package_curated
+MetadataType: curated#dac#transmittalreport#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/supplier_package/parquet/transmittalreport.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: dac_transmittalreport
+  name: supplier_package_transmittalreport
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sequence
+  - column_data_type: string
+    column_name: document_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: document_no
+  - column_data_type: string
+    column_name: confidential
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: confidential
+  - column_data_type: string
+    column_name: rev
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rev
+  - column_data_type: string
+    column_name: title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: access_control_list
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: access_control_list
+  - column_data_type: string
+    column_name: tag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tag
+  - column_data_type: string
+    column_name: contract_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contract_number
+  - column_data_type: string
+    column_name: sdr_codes
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sdr_codes
+  - column_data_type: string
+    column_name: area_or_asset_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_or_asset_number
+  - column_data_type: string
+    column_name: doc_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: doc_type
+  - column_data_type: string
+    column_name: received_transmittal_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: received_transmittal_no
+  - column_data_type: string
+    column_name: received_from
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: received_from
+  - column_data_type: string
+    column_name: received_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: received_date
+  - column_data_type: string
+    column_name: uploaded_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: uploaded_by
+  - column_data_type: string
+    column_name: reg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reg_date
+  - column_data_type: string
+    column_name: date_sent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: date_sent
+  - column_data_type: string
+    column_name: recipient_organization
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: recipient_organization
+  - column_data_type: string
+    column_name: transmittal_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: transmittal_no
+  - column_data_type: string
+    column_name: recipient
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: recipient
+  - column_data_type: string
+    column_name: reason_for_issue
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reason_for_issue
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id
+  - column_data_type: string
+    column_name: project_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_code
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_supplier_package_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/supplier_package/transmittalreport/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_transmittalreport
+  name: curated_transmittalreport
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/supplier_package/transmittalreport
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'dac_supplier_package' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

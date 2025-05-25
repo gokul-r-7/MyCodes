@@ -1,0 +1,36 @@
+---
+SourceSystemId: oracle_p6
+MetadataType: api#oracle_p6#airflow_config
+name: Oracle_P6_Airflow_Config
+dev:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 68929
+      - 76275
+      - 169292
+      - 169293
+      - 169294
+      - 170686
+      - 170687
+      - 170688
+      - 68930
+      - 68939
+      - 76273
+      - 76274
+
+qa:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 68939
+      - 76273
+
+prod:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 68930

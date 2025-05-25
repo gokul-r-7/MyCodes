@@ -1,0 +1,23 @@
+select
+   name,
+   type,
+   lock,
+   owner,
+   project,
+   workpack_no,
+   isometric,
+   support_type,
+   bore_inch,
+   "tag",
+   profile,
+   length_mm,
+   quantity,
+   client_doc_num,
+   drawing_no,
+   pid_line_no,
+   zone,
+   site,
+   execution_date,
+   source_system_name
+from
+   {{ref('fact_e3d_pipe_support')}}

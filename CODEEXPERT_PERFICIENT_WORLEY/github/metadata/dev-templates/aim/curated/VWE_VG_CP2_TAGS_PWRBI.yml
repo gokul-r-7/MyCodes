@@ -1,0 +1,1920 @@
+---
+SourceSystemId: database_aim_curated
+MetadataType: curated#aim#VWE_VG_CP2_TAGS_PWRBI#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/aim/VWE_VG_CP2_TAGS_PWRBI/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: aim-project
+  name: aim_project
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: plant_item_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_item_number
+  - column_data_type: string
+    column_name: loaded_via_interface_s_
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loaded_via_interface_s_
+  - column_data_type: string
+    column_name: removed_from_interface_s_
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: removed_from_interface_s_
+  - column_data_type: string
+    column_name: object_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_type
+  - column_data_type: string
+    column_name: object_on_p_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_on_p_id
+  - column_data_type: string
+    column_name: object_in_3d_system
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_in_3d_system
+  - column_data_type: string
+    column_name: object_in_procurement_syst
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_in_procurement_syst
+  - column_data_type: string
+    column_name: ism_tag_type_link
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ism_tag_type_link
+  - column_data_type: string
+    column_name: classid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: classid
+  - column_data_type: string
+    column_name: classname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: classname
+  - column_data_type: string
+    column_name: object_in_mtr
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_in_mtr
+  - column_data_type: string
+    column_name: object_in_pdm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_in_pdm
+  - column_data_type: string
+    column_name: object_in_spel
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_in_spel
+  - column_data_type: string
+    column_name: object_in_mel
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_in_mel
+  - column_data_type: string
+    column_name: object_in_list_schedule
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_in_list_schedule
+  - column_data_type: string
+    column_name: parentclassid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: parentclassid
+  - column_data_type: string
+    column_name: parent_classname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: parent_classname
+  - column_data_type: string
+    column_name: plant_item_type_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_item_type_name
+  - column_data_type: string
+    column_name: link_to_lineid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: link_to_lineid
+  - column_data_type: string
+    column_name: da_00044_p_id_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_00044_p_id_number
+  - column_data_type: string
+    column_name: fa_00388_operational_statu
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00388_operational_statu
+  - column_data_type: string
+    column_name: ga_00001_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00001_number
+  - column_data_type: string
+    column_name: ga_00002_description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00002_description
+  - column_data_type: string
+    column_name: ga_00007_pbs_area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00007_pbs_area
+  - column_data_type: string
+    column_name: ga_00008_pbs_unit
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00008_pbs_unit
+  - column_data_type: string
+    column_name: fa_00097_equipment_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00097_equipment_type
+  - column_data_type: string
+    column_name: pa_00120_location
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00120_location
+  - column_data_type: string
+    column_name: fa_00250_related_equipment
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00250_related_equipment
+  - column_data_type: string
+    column_name: fa_00390_parent_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00390_parent_number
+  - column_data_type: string
+    column_name: fa_00392_function_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00392_function_code
+  - column_data_type: string
+    column_name: fa_00433_from_tag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00433_from_tag
+  - column_data_type: string
+    column_name: fa_00434_to_tag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00434_to_tag
+  - column_data_type: string
+    column_name: fa_00096_elect_load_l_flag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00096_elect_load_l_flag
+  - column_data_type: string
+    column_name: fa_00130_in_line_flag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00130_in_line_flag
+  - column_data_type: string
+    column_name: fa_00439_hazardous_area_fl
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00439_hazardous_area_fl
+  - column_data_type: string
+    column_name: ga_00010_purchase_order_nu
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00010_purchase_order_nu
+  - column_data_type: string
+    column_name: pa_00198_supplier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00198_supplier
+  - column_data_type: string
+    column_name: ga_00019_requisition
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00019_requisition
+  - column_data_type: string
+    column_name: fa_00438_supply_responsibi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00438_supply_responsibi
+  - column_data_type: string
+    column_name: pa_00144_originating_contr
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00144_originating_contr
+  - column_data_type: string
+    column_name: pa_00145_origin_contr_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00145_origin_contr_code
+  - column_data_type: string
+    column_name: fa_00305_tag_criticality_r
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00305_tag_criticality_r
+  - column_data_type: string
+    column_name: pa_00196_original_equip_ma
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00196_original_equip_ma
+  - column_data_type: string
+    column_name: pa_00136_original_equip_mo
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00136_original_equip_mo
+  - column_data_type: string
+    column_name: pa_00139_original_equip_se
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00139_original_equip_se
+  - column_data_type: string
+    column_name: pa_00197_original_equip_pa
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00197_original_equip_pa
+  - column_data_type: string
+    column_name: ga_00016_loop
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00016_loop
+  - column_data_type: string
+    column_name: pa_00018_route
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00018_route
+  - column_data_type: string
+    column_name: fa_00068_temp_des_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00068_temp_des_min
+  - column_data_type: string
+    column_name: fa_00068_temp_des_min_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00068_temp_des_min_uom
+  - column_data_type: string
+    column_name: fa_00077_temp_des_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00077_temp_des_max
+  - column_data_type: string
+    column_name: fa_00077_temp_des_max_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00077_temp_des_max_uom
+  - column_data_type: string
+    column_name: fa_00078_temp_des_max_alt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00078_temp_des_max_alt
+  - column_data_type: string
+    column_name: fa_00078_temp_des_max_alt_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00078_temp_des_max_alt_uom
+  - column_data_type: string
+    column_name: fa_00178_press_des_max_alt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00178_press_des_max_alt
+  - column_data_type: string
+    column_name: fa_00178_press_des_max_alt_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00178_press_des_max_alt_uom
+  - column_data_type: string
+    column_name: fa_00361_press_des_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00361_press_des_min
+  - column_data_type: string
+    column_name: fa_00361_press_des_min_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00361_press_des_min_uom
+  - column_data_type: string
+    column_name: fa_00363_press_des_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00363_press_des_max
+  - column_data_type: string
+    column_name: fa_00363_press_des_max_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00363_press_des_max_uom
+  - column_data_type: string
+    column_name: pa_00019_segregation_level
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00019_segregation_level
+  - column_data_type: string
+    column_name: pa_00037_arrangement___con
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00037_arrangement___con
+  - column_data_type: string
+    column_name: pa_00039_conductor_size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00039_conductor_size
+  - column_data_type: string
+    column_name: fa_00087___differential_he
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00087___differential_he
+  - column_data_type: string
+    column_name: fa_00087___differential_he_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00087___differential_he_uom
+  - column_data_type: string
+    column_name: fa_00104_failure_action
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00104_failure_action
+  - column_data_type: string
+    column_name: fa_00108_fluid_phase
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00108_fluid_phase
+  - column_data_type: string
+    column_name: fa_00109_fluid_service_cod
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00109_fluid_service_cod
+  - column_data_type: string
+    column_name: fa_00110_fluid_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00110_fluid_type
+  - column_data_type: string
+    column_name: fa_00117_fullloadcurrent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00117_fullloadcurrent
+  - column_data_type: string
+    column_name: fa_00117_fullloadcurrent_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00117_fullloadcurrent_uom
+  - column_data_type: string
+    column_name: pa_00097_voltage___insulat
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00097_voltage___insulat
+  - column_data_type: string
+    column_name: pa_00102_diameter___intern
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00102_diameter___intern
+  - column_data_type: string
+    column_name: pa_00102_diameter___intern_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00102_diameter___intern_uom
+  - column_data_type: string
+    column_name: pa_00105_io_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00105_io_type
+  - column_data_type: string
+    column_name: fa_00175_calib_range_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00175_calib_range_max
+  - column_data_type: string
+    column_name: fa_00177_calib_range_u_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00177_calib_range_u_max
+  - column_data_type: string
+    column_name: fa_00185_calib_range_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00185_calib_range_min
+  - column_data_type: string
+    column_name: fa_00187_calib_range_u_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00187_calib_range_u_min
+  - column_data_type: string
+    column_name: fa_00274_set_point
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00274_set_point
+  - column_data_type: string
+    column_name: fa_00275_set_point_high
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00275_set_point_high
+  - column_data_type: string
+    column_name: fa_00276_set_point_high_hi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00276_set_point_high_hi
+  - column_data_type: string
+    column_name: fa_00277_set_point_low
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00277_set_point_low
+  - column_data_type: string
+    column_name: fa_00278_set_point_low_low
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00278_set_point_low_low
+  - column_data_type: string
+    column_name: fa_00285_signal___type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00285_signal___type
+  - column_data_type: string
+    column_name: pa_00202_ingression_protec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00202_ingression_protec
+  - column_data_type: string
+    column_name: pa_00213_additional_conduc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00213_additional_conduc
+  - column_data_type: string
+    column_name: fa_00300_stress_criticalit
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00300_stress_criticalit
+  - column_data_type: string
+    column_name: pa_00221_material
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00221_material
+  - column_data_type: string
+    column_name: fa_00311_test_medium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00311_test_medium
+  - column_data_type: string
+    column_name: fa_00327_temperature___tra
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00327_temperature___tra
+  - column_data_type: string
+    column_name: fa_00327_temperature___tra_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00327_temperature___tra_uom
+  - column_data_type: string
+    column_name: fa_00328_tracing_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00328_tracing_type
+  - column_data_type: string
+    column_name: pa_00241_cleaning_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00241_cleaning_code
+  - column_data_type: string
+    column_name: pa_00246_diameter___nomina
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00246_diameter___nomina
+  - column_data_type: string
+    column_name: pa_00246_diameter___nomina_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00246_diameter___nomina_uom
+  - column_data_type: string
+    column_name: pa_00247_paint___specifica
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00247_paint___specifica
+  - column_data_type: string
+    column_name: pa_00248_piping_material_c
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00248_piping_material_c
+  - column_data_type: string
+    column_name: pa_00250_radiography
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00250_radiography
+  - column_data_type: string
+    column_name: pa_00251_schedule
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00251_schedule
+  - column_data_type: string
+    column_name: pa_00278_temp_oper_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00278_temp_oper_min
+  - column_data_type: string
+    column_name: pa_00278_temp_oper_min_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00278_temp_oper_min_uom
+  - column_data_type: string
+    column_name: pa_00283_press_oper_norm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00283_press_oper_norm
+  - column_data_type: string
+    column_name: pa_00283_press_oper_norm_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00283_press_oper_norm_uom
+  - column_data_type: string
+    column_name: pa_00284_press_oper_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00284_press_oper_max
+  - column_data_type: string
+    column_name: pa_00284_press_oper_max_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00284_press_oper_max_uom
+  - column_data_type: string
+    column_name: pa_00286_temp_oper_norm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00286_temp_oper_norm
+  - column_data_type: string
+    column_name: pa_00286_temp_oper_norm_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00286_temp_oper_norm_uom
+  - column_data_type: string
+    column_name: pa_00289_temp_oper_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00289_temp_oper_max
+  - column_data_type: string
+    column_name: pa_00289_temp_oper_max_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00289_temp_oper_max_uom
+  - column_data_type: string
+    column_name: pa_00008_atex_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00008_atex_code
+  - column_data_type: string
+    column_name: pa_00084_haz_area_cer_au
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00084_haz_area_cer_au
+  - column_data_type: string
+    column_name: pa_00085_haz_area_cer_nu
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00085_haz_area_cer_nu
+  - column_data_type: string
+    column_name: pa_00086_haz_area_cer_st
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00086_haz_area_cer_st
+  - column_data_type: string
+    column_name: pa_00087_haz_area_temp_ra
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00087_haz_area_temp_ra
+  - column_data_type: string
+    column_name: pa_00272_haz_area_class
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00272_haz_area_class
+  - column_data_type: string
+    column_name: pa_00273_haz_area_gas_gr
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00273_haz_area_gas_gr
+  - column_data_type: string
+    column_name: pa_00243_insulation_materi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00243_insulation_materi
+  - column_data_type: string
+    column_name: pa_00244_insulation_thickn
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00244_insulation_thickn
+  - column_data_type: string
+    column_name: pa_00244_insulation_thickn_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00244_insulation_thickn_uom
+  - column_data_type: string
+    column_name: pa_00245_insulation_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00245_insulation_type
+  - column_data_type: string
+    column_name: pa_00069_length___installe
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00069_length___installe
+  - column_data_type: string
+    column_name: pa_00069_length___installe_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00069_length___installe_uom
+  - column_data_type: string
+    column_name: fa_00141_length___estimate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00141_length___estimate
+  - column_data_type: string
+    column_name: fa_00141_length___estimate_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00141_length___estimate_uom
+  - column_data_type: string
+    column_name: pa_00113_length___spare
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00113_length___spare
+  - column_data_type: string
+    column_name: pa_00113_length___spare_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00113_length___spare_uom
+  - column_data_type: string
+    column_name: pa_00116_length___tail_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00116_length___tail_1
+  - column_data_type: string
+    column_name: pa_00116_length___tail_1_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00116_length___tail_1_uom
+  - column_data_type: string
+    column_name: pa_00117_length___tail_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00117_length___tail_2
+  - column_data_type: string
+    column_name: pa_00117_length___tail_2_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00117_length___tail_2_uom
+  - column_data_type: string
+    column_name: pa_00123_bending_radius
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00123_bending_radius
+  - column_data_type: string
+    column_name: pa_00123_bending_radius_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00123_bending_radius_uom
+  - column_data_type: string
+    column_name: pa_00237_weight_per_length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00237_weight_per_length
+  - column_data_type: string
+    column_name: pa_00237_weight_per_length_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00237_weight_per_length_uom
+  - column_data_type: string
+    column_name: pa_00206_cable_num_of_para
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00206_cable_num_of_para
+  - column_data_type: string
+    column_name: pa_00207_number_of_splices
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00207_number_of_splices
+  - column_data_type: string
+    column_name: pa_00216_outside_diameter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00216_outside_diameter
+  - column_data_type: string
+    column_name: pa_00216_outside_diameter_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00216_outside_diameter_uom
+  - column_data_type: string
+    column_name: pa_00089_height
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00089_height
+  - column_data_type: string
+    column_name: pa_00089_height_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00089_height_uom
+  - column_data_type: string
+    column_name: pa_00112_length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00112_length
+  - column_data_type: string
+    column_name: pa_00112_length_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00112_length_uom
+  - column_data_type: string
+    column_name: pa_00257_width
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00257_width
+  - column_data_type: string
+    column_name: pa_00257_width_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00257_width_uom
+  - column_data_type: string
+    column_name: pa_00114_length___tan_to_t
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00114_length___tan_to_t
+  - column_data_type: string
+    column_name: pa_00114_length___tan_to_t_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00114_length___tan_to_t_uom
+  - column_data_type: string
+    column_name: fa_00060_current___rating
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00060_current___rating
+  - column_data_type: string
+    column_name: fa_00060_current___rating_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00060_current___rating_uom
+  - column_data_type: string
+    column_name: fa_00193_nde
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00193_nde
+  - column_data_type: string
+    column_name: fa_00271_tagsequenceno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00271_tagsequenceno
+  - column_data_type: string
+    column_name: pa_00143_orifice_size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00143_orifice_size
+  - column_data_type: string
+    column_name: pa_00143_orifice_size_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00143_orifice_size_uom
+  - column_data_type: string
+    column_name: pa_00160_capacity___rated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00160_capacity___rated
+  - column_data_type: string
+    column_name: pa_00160_capacity___rated_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00160_capacity___rated_uom
+  - column_data_type: string
+    column_name: pa_00163_power___rated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00163_power___rated
+  - column_data_type: string
+    column_name: pa_00163_power___rated_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00163_power___rated_uom
+  - column_data_type: string
+    column_name: pa_00165_voltage___rated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00165_voltage___rated
+  - column_data_type: string
+    column_name: ga_00014_constr_work_pack
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00014_constr_work_pack
+  - column_data_type: string
+    column_name: constr_work_pack_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constr_work_pack_name
+  - column_data_type: string
+    column_name: wbs_location_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wbs_location_code
+  - column_data_type: string
+    column_name: alt_wbs_location_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: alt_wbs_location_code
+  - column_data_type: string
+    column_name: const_zone_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: const_zone_code
+  - column_data_type: string
+    column_name: const_zone_description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: const_zone_description
+  - column_data_type: string
+    column_name: ga_00015_eng_work_pack
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00015_eng_work_pack
+  - column_data_type: string
+    column_name: fa_00040_commissioning_sub
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00040_commissioning_sub
+  - column_data_type: string
+    column_name: fa_00042_commissioning_sys
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00042_commissioning_sys
+  - column_data_type: string
+    column_name: pa_00305_constr_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00305_constr_status
+  - column_data_type: string
+    column_name: ga_00006_pbs_plant
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00006_pbs_plant
+  - column_data_type: string
+    column_name: pa_00186_warranty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00186_warranty
+  - column_data_type: string
+    column_name: pa_00301_weight___empty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00301_weight___empty
+  - column_data_type: string
+    column_name: pa_00301_weight___empty_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00301_weight___empty_uom
+  - column_data_type: string
+    column_name: da_00044_p_id_number_link
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_00044_p_id_number_link
+  - column_data_type: string
+    column_name: da_00007_datasheet_no_link
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_00007_datasheet_no_link
+  - column_data_type: string
+    column_name: pbs_plant_description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pbs_plant_description
+  - column_data_type: string
+    column_name: pbs_area_description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pbs_area_description
+  - column_data_type: string
+    column_name: pbs_unit_description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pbs_unit_description
+  - column_data_type: string
+    column_name: tag_class_discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tag_class_discipline
+  - column_data_type: string
+    column_name: e3d_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: e3d_name
+  - column_data_type: string
+    column_name: inspection
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: inspection
+  - column_data_type: string
+    column_name: pa_00260_orientation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00260_orientation
+  - column_data_type: string
+    column_name: normal_operating_volume_fl
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: normal_operating_volume_fl
+  - column_data_type: string
+    column_name: normal_operating_volume_fl_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: normal_operating_volume_fl_uom
+  - column_data_type: string
+    column_name: fa_00027_capacity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00027_capacity
+  - column_data_type: string
+    column_name: fa_00027_capacity_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00027_capacity_uom
+  - column_data_type: string
+    column_name: fa_00316_thermal_duty__pow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00316_thermal_duty__pow
+  - column_data_type: string
+    column_name: fa_00316_thermal_duty__pow_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00316_thermal_duty__pow_uom
+  - column_data_type: string
+    column_name: pa_00071_driver_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00071_driver_type
+  - column_data_type: string
+    column_name: pa_00150_power___consumpti
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00150_power___consumpti
+  - column_data_type: string
+    column_name: pa_00150_power___consumpti_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00150_power___consumpti_uom
+  - column_data_type: string
+    column_name: pa_00165_voltage___rated__
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00165_voltage___rated__
+  - column_data_type: string
+    column_name: pa_00165_voltage___rated___uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00165_voltage___rated___uom
+  - column_data_type: string
+    column_name: normal_operating_pressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: normal_operating_pressure
+  - column_data_type: string
+    column_name: normal_operating_pressure_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: normal_operating_pressure_uom
+  - column_data_type: string
+    column_name: normal_operating_inlet_pre
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: normal_operating_inlet_pre
+  - column_data_type: string
+    column_name: normal_operating_inlet_pre_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: normal_operating_inlet_pre_uom
+  - column_data_type: string
+    column_name: normal_operating_outlet_pr
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: normal_operating_outlet_pr
+  - column_data_type: string
+    column_name: normal_operating_outlet_pr_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: normal_operating_outlet_pr_uom
+  - column_data_type: string
+    column_name: fa_00072_pressure___design
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00072_pressure___design
+  - column_data_type: string
+    column_name: fa_00072_pressure___design_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00072_pressure___design_uom
+  - column_data_type: string
+    column_name: pa_00189_weight___operatin
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00189_weight___operatin
+  - column_data_type: string
+    column_name: pa_00189_weight___operatin_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00189_weight___operatin_uom
+  - column_data_type: string
+    column_name: pa_00190_weight___test
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00190_weight___test
+  - column_data_type: string
+    column_name: pa_00190_weight___test_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00190_weight___test_uom
+  - column_data_type: string
+    column_name: outside_surface_area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: outside_surface_area
+  - column_data_type: string
+    column_name: outside_surface_area_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: outside_surface_area_uom
+  - column_data_type: string
+    column_name: seal_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: seal_type
+  - column_data_type: string
+    column_name: pa_00176_supplier_model_nu
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00176_supplier_model_nu
+  - column_data_type: string
+    column_name: fa_00087_diff_head
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00087_diff_head
+  - column_data_type: string
+    column_name: fa_00087_diff_head_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00087_diff_head_uom
+  - column_data_type: string
+    column_name: fluid_service_code_descrip
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fluid_service_code_descrip
+  - column_data_type: string
+    column_name: molecular_weight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: molecular_weight
+  - column_data_type: string
+    column_name: fa_00062_density
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00062_density
+  - column_data_type: string
+    column_name: fa_00062_density_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00062_density_uom
+  - column_data_type: string
+    column_name: norm_oper_dyn_visc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: norm_oper_dyn_visc
+  - column_data_type: string
+    column_name: norm_oper_dyn_visc_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: norm_oper_dyn_visc_uom
+  - column_data_type: string
+    column_name: norm_oper_mass_flow_rate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: norm_oper_mass_flow_rate
+  - column_data_type: string
+    column_name: norm_oper_mass_flow_rate_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: norm_oper_mass_flow_rate_uom
+  - column_data_type: string
+    column_name: norm_oper_flow_velocity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: norm_oper_flow_velocity
+  - column_data_type: string
+    column_name: norm_oper_flow_velocity_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: norm_oper_flow_velocity_uom
+  - column_data_type: string
+    column_name: nominal_wall_thickness
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nominal_wall_thickness
+  - column_data_type: string
+    column_name: nominal_wall_thickness_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nominal_wall_thickness_uom
+  - column_data_type: string
+    column_name: pa_00214_corrosion_allowan
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00214_corrosion_allowan
+  - column_data_type: string
+    column_name: pa_00214_corrosion_allowan_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00214_corrosion_allowan_uom
+  - column_data_type: string
+    column_name: pa_00255_pressure___test
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00255_pressure___test
+  - column_data_type: string
+    column_name: pa_00255_pressure___test_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00255_pressure___test_uom
+  - column_data_type: string
+    column_name: fa_00239_post_weld_heat_tr
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00239_post_weld_heat_tr
+  - column_data_type: string
+    column_name: chemical_cleaning_required
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chemical_cleaning_required
+  - column_data_type: string
+    column_name: pa_00254_test_medium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00254_test_medium
+  - column_data_type: string
+    column_name: fa_00118_location___functi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00118_location___functi
+  - column_data_type: string
+    column_name: fa_00049_control_system_ty
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00049_control_system_ty
+  - column_data_type: string
+    column_name: output_signal_range
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: output_signal_range
+  - column_data_type: string
+    column_name: calibration_range
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calibration_range
+  - column_data_type: string
+    column_name: fa_dac00003_sp_low_low_low
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_dac00003_sp_low_low_low
+  - column_data_type: string
+    column_name: fa_dac00002_sp_high_hi_hi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_dac00002_sp_high_hi_hi
+  - column_data_type: string
+    column_name: pa_00170_size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00170_size
+  - column_data_type: string
+    column_name: pa_00170_size_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00170_size_uom
+  - column_data_type: string
+    column_name: da_00007_datasheet_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_00007_datasheet_number
+  - column_data_type: string
+    column_name: pa_00021_cable___specifica
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00021_cable___specifica
+  - column_data_type: string
+    column_name: da_00062_single_line_diagr
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_00062_single_line_diagr
+  - column_data_type: string
+    column_name: pa_00262_coating___externa
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00262_coating___externa
+  - column_data_type: string
+    column_name: in_instrument_index
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: in_instrument_index
+  - column_data_type: string
+    column_name: ga_00015_ewp_link
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00015_ewp_link
+  - column_data_type: string
+    column_name: commodity_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: commodity_code
+  - column_data_type: string
+    column_name: spi_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spi_name
+  - column_data_type: string
+    column_name: name_as_it_appears_on_p_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name_as_it_appears_on_p_id
+  - column_data_type: string
+    column_name: remarks
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remarks
+  - column_data_type: string
+    column_name: fa_00383_soft_tag_flag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00383_soft_tag_flag
+  - column_data_type: string
+    column_name: da_00033_loop_drawing_doc_
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_00033_loop_drawing_doc_
+  - column_data_type: string
+    column_name: da_00033_loop_drawing_docu
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_00033_loop_drawing_docu
+  - column_data_type: string
+    column_name: process_cell
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: process_cell
+  - column_data_type: string
+    column_name: process_unit_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: process_unit_code
+  - column_data_type: string
+    column_name: pa_00277_pressure___operat
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00277_pressure___operat
+  - column_data_type: string
+    column_name: pa_00277_pressure___operat_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00277_pressure___operat_uom
+  - column_data_type: string
+    column_name: client_property_tag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: client_property_tag
+  - column_data_type: string
+    column_name: ga_00018_short_description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00018_short_description
+  - column_data_type: string
+    column_name: ga_00012__fire_zone
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00012__fire_zone
+  - column_data_type: string
+    column_name: fa_00076_pressure___design
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00076_pressure___design
+  - column_data_type: string
+    column_name: fa_00076_pressure___design_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00076_pressure___design_uom
+  - column_data_type: string
+    column_name: fa_00074_pressure___design
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00074_pressure___design
+  - column_data_type: string
+    column_name: fa_00074_pressure___design_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00074_pressure___design_uom
+  - column_data_type: string
+    column_name: pa_00191_weight___transpor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00191_weight___transpor
+  - column_data_type: string
+    column_name: pa_00191_weight___transpor_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00191_weight___transpor_uom
+  - column_data_type: string
+    column_name: number_of_cores
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: number_of_cores
+  - column_data_type: string
+    column_name: udf_01_loop_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_01_loop_type
+  - column_data_type: string
+    column_name: pa_000xx_contract_delivery
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_contract_delivery
+  - column_data_type: string
+    column_name: pa_000xx_contract_delivery_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_contract_delivery_uom
+  - column_data_type: string
+    column_name: pa_000xx_forecast_delivery
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_forecast_delivery
+  - column_data_type: string
+    column_name: pa_000xx_forecast_delivery_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_forecast_delivery_uom
+  - column_data_type: string
+    column_name: pa_000xx_actual_delivery_d
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_actual_delivery_d
+  - column_data_type: string
+    column_name: pa_000xx_actual_delivery_d_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_actual_delivery_d_uom
+  - column_data_type: string
+    column_name: pa_000xx_forecast_arrival_
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_forecast_arrival_
+  - column_data_type: string
+    column_name: pa_000xx_forecast_arrival__uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_forecast_arrival__uom
+  - column_data_type: string
+    column_name: pa_000xx_actual_arrival_on
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_actual_arrival_on
+  - column_data_type: string
+    column_name: pa_000xx_actual_arrival_on_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_actual_arrival_on_uom
+  - column_data_type: string
+    column_name: pa_000xx_received_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_received_status
+  - column_data_type: string
+    column_name: fa_00015_applicable_design
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00015_applicable_design
+  - column_data_type: string
+    column_name: ga_00025_tag_maturity_leve
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00025_tag_maturity_leve
+  - column_data_type: string
+    column_name: object_in_spi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: object_in_spi
+  - column_data_type: string
+    column_name: da_000xx_equipment_list
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_000xx_equipment_list
+  - column_data_type: string
+    column_name: mtr_view_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mtr_view_name
+  - column_data_type: string
+    column_name: pa_00073_efficiency
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00073_efficiency
+  - column_data_type: string
+    column_name: fa_00090_discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00090_discipline
+  - column_data_type: string
+    column_name: pa_00299_power_factor___fu
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00299_power_factor___fu
+  - column_data_type: string
+    column_name: pa_00074_efficiency___full
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00074_efficiency___full
+  - column_data_type: string
+    column_name: da_00xxx_datasht_num_rev
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: da_00xxx_datasht_num_rev
+  - column_data_type: string
+    column_name: fa_00031_circuit_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00031_circuit_type
+  - column_data_type: string
+    column_name: ga_00024_tag_engineering_s
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00024_tag_engineering_s
+  - column_data_type: string
+    column_name: udf_02_modifiedby
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_02_modifiedby
+  - column_data_type: string
+    column_name: udf_date_01_modified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_date_01_modified
+  - column_data_type: string
+    column_name: udf_date_01_modified_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udf_date_01_modified_uom
+  - column_data_type: string
+    column_name: ga_00014_cwp_link
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ga_00014_cwp_link
+  - column_data_type: string
+    column_name: fa_00024_cable___assembly
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_00024_cable___assembly
+  - column_data_type: string
+    column_name: circuit_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: circuit_number
+  - column_data_type: string
+    column_name: pa_00151_power_factor___at
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00151_power_factor___at
+  - column_data_type: string
+    column_name: pa_00315_load___rated___ac
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00315_load___rated___ac
+  - column_data_type: string
+    column_name: pa_00315_load___rated___ac_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00315_load___rated___ac_uom
+  - column_data_type: string
+    column_name: pa_00316_load___rated___ap
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00316_load___rated___ap
+  - column_data_type: string
+    column_name: pa_00316_load___rated___ap_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00316_load___rated___ap_uom
+  - column_data_type: string
+    column_name: pa_00317_load___rated___re
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00317_load___rated___re
+  - column_data_type: string
+    column_name: pa_00317_load___rated___re_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_00317_load___rated___re_uom
+  - column_data_type: string
+    column_name: project
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project
+  - column_data_type: string
+    column_name: pa_000xx_expediter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pa_000xx_expediter
+  - column_data_type: string
+    column_name: scope_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scope_status
+  - column_data_type: string
+    column_name: required_in_pid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_in_pid
+  - column_data_type: string
+    column_name: required_in_list
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_in_list
+  - column_data_type: string
+    column_name: required_in_3d
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_in_3d
+  - column_data_type: string
+    column_name: required_in_procurement
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_in_procurement
+  - column_data_type: string
+    column_name: required_in_spi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_in_spi
+  - column_data_type: string
+    column_name: required__in_equipment_lis
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required__in_equipment_lis
+  - column_data_type: string
+    column_name: required_in_spel
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_in_spel
+  - column_data_type: string
+    column_name: required_in_line_list
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_in_line_list
+  - column_data_type: string
+    column_name: required_in_mtr
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_in_mtr    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_aim_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/aim/VWE_VG_CP2_TAGS_PWRBI/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_vwe_vg_cp2_tags_pwrbi
+  load_type: append
+  name: curated_vwe_vg_cp2_tags_pwrbi
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/aim/VWE_VG_CP2_TAGS_PWRBI
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'aim' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

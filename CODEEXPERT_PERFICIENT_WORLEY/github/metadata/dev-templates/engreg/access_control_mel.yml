@@ -1,0 +1,5 @@
+domain_name: engineering
+source_name: engreg
+databases : 
+  - ${database_prefix}_engineering_engreg_curated
+  - ${database_prefix}_engineering_engreg_raw

@@ -1,0 +1,17 @@
+domain_name: construction
+source_name: o3
+databases : 
+  - ${database_prefix}_construction_o3_curated
+  - ${database_prefix}_construction_o3_raw
+  - ${database_prefix}_construction_transformed
+table_definitions:
+  - table_name: constraints
+    column_definitions:
+      - column_name: id
+        data_classification: public
+  - table_name: ewps
+    column_definitions:
+      - column_name: id
+        data_classification: public
+      - column_name: projectid
+        data_classification: private

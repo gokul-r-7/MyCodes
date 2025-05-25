@@ -1,0 +1,97 @@
+redshift_permissions_config:
+  - database_name: integrations
+    ad_roles:
+      - role_name: AWS-PIM - DataPlatform Data Engineer - Non Prod
+        identity_provider: AWSIDC
+        quicksight_role: quicksight # optional: only for AWS identity provider
+        allowed_schemas:
+          - name: document_control_product   #product Schema starts here
+          - name: supply_chain_product
+          - name: construction_product
+          - name: project_control_product
+          - name: finance_product
+          - name: engineering_product
+          - name: health_safety_environment_product
+          - name: document_control    #fact/obt Schema starts here
+          - name: supply_chain
+          - name: construction
+          - name: project_control
+          - name: finance
+          - name: engineering
+          - name: health_safety_environment
+      - role_name: AWS-PIM - DataPlatform Data Consumer - NonProd
+        identity_provider: AWSIDC
+        quicksight_role: quicksight # optional: only for AWS identity provider
+        allowed_schemas:
+          - name: finance_product
+          - name: finance
+      - role_name: AWS-PIM - Dataplatform Integrations Consumer - NonProd
+        identity_provider: AWSIDC
+        quicksight_role: quicksight # optional: only for AWS identity provider
+        allowed_schemas:
+          - name: document_control_product   #product Schema starts here
+          - name: supply_chain_product
+          - name: construction_product
+          - name: project_control_product
+          - name: finance_product
+          - name: engineering_product
+          - name: health_safety_environment_product
+          - name: document_control    #fact/obt Schema starts here
+          - name: supply_chain
+          - name: construction
+          - name: project_control
+          - name: finance
+          - name: engineering
+          - name: health_safety_environment
+    iam_roles:
+    users:
+      - user_name: dbt_integrations_user
+        identity_provider: internal
+        allowed_schemas:
+          - name: dbt_document_control_product   #product Schema starts here
+          - name: dbt_supply_chain_product
+          - name: dbt_construction_product
+          - name: dbt_project_control_product
+          - name: dbt_finance_product
+          - name: dbt_engineering_product
+          - name: document_control    #fact/obt Schema starts here
+            permissions: CREATE
+          - name: supply_chain
+            permissions: CREATE
+          - name: construction
+            permissions: CREATE
+          - name: project_control
+            permissions: CREATE
+          - name: finance
+            permissions: CREATE
+          - name: engineering
+            permissions: CREATE
+          - name: health_safety_environment
+            permissions: CREATE
+          # - name: worley_nerve_center
+          #   permissions: CREATE # optional: specify this if create on schema permission is required
+      - user_name: data_access_user
+        identity_provider: internal
+        allowed_schemas:
+          - name: dbt_document_control_product   #product Schema starts here
+          # - name: dbt_supply_chain_product
+          - name: dbt_construction_product
+          - name: dbt_project_control_product
+          # - name: dbt_finance_product
+          # - name: dbt_engineering_product
+          - name: document_control    #fact/obt Schema starts here
+          - name: construction
+          - name: project_control
+          # - name: health_safety_environment
+          # - name: worley_nerve_center
+          #   permissions: CREATE # optional: specify this if create on schema permission is required
+      - user_name: assurance_user ##create access
+        identity_provider: internal
+        allowed_schemas:
+          - name: dbt_health_safety_environment_product
+          - name: health_safety_environment
+            permissions: CREATE
+        # - name: worley_nerve_center
+        #   permissions: CREATE # optional: specify this if create on schema permission is required
+
+### NOTE: DON'T GIVE AAD access to external schema

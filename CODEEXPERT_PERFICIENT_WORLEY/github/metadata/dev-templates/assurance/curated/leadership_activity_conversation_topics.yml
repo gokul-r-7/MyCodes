@@ -1,0 +1,63 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#leadership_activity_conversation_topics#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/leadership_activity_conversation_topics.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: leadership_activity_conversation_topics
+  name: leadership_activity_conversation_topics
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/leadership_activity_conversation_topics/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: leadership_activity_conversation_topics
+  load_type: incremental
+  name: leadership_activity_conversation_topics
+  primary_key: [dwk_leadership_activity, dwk_conversation_topic]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/leadership_activity_conversation_topics
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [dwk_leadership_activity, dwk_conversation_topic]
+    rename_columns: true
+  columns:
+  - column_name: dwk_leadership_activity
+    column_data_type: decimal(38,0)
+    comment: dwk_leadership_activity
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_leadership_activity
+  - column_name: dwk_conversation_topic
+    column_data_type: decimal(38,0)
+    comment: dwk_conversation_topic
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_conversation_topic

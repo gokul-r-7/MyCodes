@@ -1,0 +1,21 @@
+SourceSystemId: aconex
+MetadataType: batch#aconex#${envn}#cacdcwpspf06v
+is_active: true
+aws_region: ${region}
+Pattern: batch
+smb_configuration: 
+  host_url: 10.71.102.86
+  host_port: 445
+  secret_credentials: worley-datalake-sydney-${envn}-db-aconex-cacdcwpspf06v-bot-server 
+  destination_bucket: ${raw_bucket} 
+  destination_folder: document_control/aconex/supplier_report/raw
+  kms_key_arn: ${iceberg_snapshot_key}
+  file_archive_flag: false
+  file_delete_flag: false
+  archive_folder: ""
+  source: 
+    - SourcePath: /Supplier All Rev Data Report
+      pattern: .*SupplierReport.*\.csv$
+    - SourcePath: /Supplier All Rev Data Report
+      pattern: .*SupplierReport.*\.xlsx$
+ 

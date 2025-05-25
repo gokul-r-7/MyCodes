@@ -1,0 +1,240 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_Vessel#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_Vessel/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-vessel
+  name: spid_vessel
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: string
+    column_name: levelreference
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: levelreference
+  - column_data_type: double
+    column_name: sp_levelreferencesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_levelreferencesi
+  - column_data_type: string
+    column_name: volumerating
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: volumerating
+  - column_data_type: double
+    column_name: sp_volumeratingsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_volumeratingsi
+  - column_data_type: string
+    column_name: liquidlevelnormal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: liquidlevelnormal
+  - column_data_type: double
+    column_name: sp_liquidlevelnormalsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_liquidlevelnormalsi
+  - column_data_type: string
+    column_name: liquidlevelhigh
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: liquidlevelhigh
+  - column_data_type: double
+    column_name: sp_liquidlevelhighsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_liquidlevelhighsi
+  - column_data_type: string
+    column_name: liquidlevellow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: liquidlevellow
+  - column_data_type: double
+    column_name: sp_liquidlevellowsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_liquidlevellowsi
+  - column_data_type: string
+    column_name: liquidlevelhighhigh
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: liquidlevelhighhigh
+  - column_data_type: double
+    column_name: sp_liquidlevelhighhighsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_liquidlevelhighhighsi
+  - column_data_type: string
+    column_name: liquidlevellowlow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: liquidlevellowlow
+  - column_data_type: double
+    column_name: sp_liquidlevellowlowsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_liquidlevellowlowsi
+  - column_data_type: string
+    column_name: liquidleveloverflow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: liquidleveloverflow
+  - column_data_type: double
+    column_name: sp_liquidleveloverflowsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_liquidleveloverflowsi
+  - column_data_type: string
+    column_name: diameterinternal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: diameterinternal
+  - column_data_type: double
+    column_name: sp_diameterinternalsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_diameterinternalsi
+  - column_data_type: string
+    column_name: lengthtantotan
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lengthtantotan
+  - column_data_type: double
+    column_name: sp_lengthtantotansi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_lengthtantotansi
+  - column_data_type: integer
+    column_name: equipmentorientation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: equipmentorientation
+  - column_data_type: integer
+    column_name: materialofconstclassinternal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialofconstclassinternal
+  - column_data_type: string
+    column_name: wp_intermliqlevelnormal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_intermliqlevelnormal
+  - column_data_type: double
+    column_name: sp_wp_intermliqlevelnormalsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_intermliqlevelnormalsi
+  - column_data_type: string
+    column_name: wp_intermliqlevellowlow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_intermliqlevellowlow
+  - column_data_type: double
+    column_name: sp_wp_intermliqlevellowlowsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_intermliqlevellowlowsi
+  - column_data_type: string
+    column_name: wp_intermliqlevellow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_intermliqlevellow
+  - column_data_type: double
+    column_name: sp_wp_intermliqlevellowsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_intermliqlevellowsi
+  - column_data_type: string
+    column_name: wp_intermliqlevelhighhigh
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_intermliqlevelhighhigh
+  - column_data_type: double
+    column_name: sp_wp_intermliqlevelhighhighsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_intermliqlevelhighhighsi
+  - column_data_type: string
+    column_name: wp_intermliqlevelhigh
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_intermliqlevelhigh
+  - column_data_type: double
+    column_name: sp_wp_intermliqlevelhighsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_intermliqlevelhighsi    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_Vessel/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_vessel
+  load_type: append
+  name: curated_t_vessel
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_vessel
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

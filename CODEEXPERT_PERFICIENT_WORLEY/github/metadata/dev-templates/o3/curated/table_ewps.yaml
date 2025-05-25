@@ -1,0 +1,911 @@
+MetadataType: curated#o3#ewps#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/ewps/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_ewps
+  name: o3_ewps
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    primary_key: [projectid,name]
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: projectinfo
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectinfo
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: statusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statusid
+  - column_data_type: string
+    column_name: status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: statusdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statusdate
+  - column_data_type: string
+    column_name: ewpstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ewpstatus
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: longdescription
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: longdescription
+  - column_data_type: string
+    column_name: significantrequirements
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: significantrequirements
+  - column_data_type: string
+    column_name: scopeexclusions
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scopeexclusions
+  - column_data_type: string
+    column_name: externallink
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallink
+  - column_data_type: string
+    column_name: revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revision
+  - column_data_type: string
+    column_name: revisiondate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revisiondate
+  - column_data_type: string
+    column_name: constructionworkpackageid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionworkpackageid
+  - column_data_type: string
+    column_name: cwp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwp
+  - column_data_type: string
+    column_name: unitid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitid
+  - column_data_type: string
+    column_name: unit
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit
+  - column_data_type: string
+    column_name: constructionworkareaid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionworkareaid
+  - column_data_type: string
+    column_name: constructionworkarea
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionworkarea
+  - column_data_type: string
+    column_name: zoneid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: zoneid
+  - column_data_type: string
+    column_name: zone
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: constructiontypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructiontypeid
+  - column_data_type: string
+    column_name: constructiontype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructiontype
+  - column_data_type: string
+    column_name: areaid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areaid
+  - column_data_type: string
+    column_name: area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area
+  - column_data_type: string
+    column_name: disciplineid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: disciplineid
+  - column_data_type: string
+    column_name: discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: discipline
+  - column_data_type: string
+    column_name: purposeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: purposeid
+  - column_data_type: string
+    column_name: purpose
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: purpose
+  - column_data_type: string
+    column_name: engineeruserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: engineeruserid
+  - column_data_type: string
+    column_name: engineeruser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: engineeruser
+  - column_data_type: string
+    column_name: drawingcount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingcount
+  - column_data_type: string
+    column_name: budgetedhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: budgetedhours
+  - column_data_type: string
+    column_name: estimatedhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: estimatedhours
+  - column_data_type: string
+    column_name: scheduleactivityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scheduleactivityid
+  - column_data_type: string
+    column_name: plannedissuedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedissuedate
+  - column_data_type: string
+    column_name: actualissuedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualissuedate
+  - column_data_type: string
+    column_name: issuedatevariance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issuedatevariance
+  - column_data_type: string
+    column_name: plannedstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedstartdate
+  - column_data_type: string
+    column_name: plannedstartyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedstartyear
+  - column_data_type: string
+    column_name: plannedstartmonth
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedstartmonth
+  - column_data_type: string
+    column_name: plannedstartweekofyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedstartweekofyear
+  - column_data_type: string
+    column_name: plannedstartdayofyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedstartdayofyear
+  - column_data_type: string
+    column_name: plannedstartweek
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedstartweek
+  - column_data_type: string
+    column_name: actualstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualstartdate
+  - column_data_type: string
+    column_name: actualstartyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualstartyear
+  - column_data_type: string
+    column_name: actualstartmonth
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualstartmonth
+  - column_data_type: string
+    column_name: actualstartweekofyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualstartweekofyear
+  - column_data_type: string
+    column_name: actualstartdayofyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualstartdayofyear
+  - column_data_type: string
+    column_name: startdatevariance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startdatevariance
+  - column_data_type: string
+    column_name: plannedfinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedfinishdate
+  - column_data_type: string
+    column_name: actualfinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualfinishdate
+  - column_data_type: string
+    column_name: finishdatevariance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: finishdatevariance
+  - column_data_type: string
+    column_name: actualfinishyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualfinishyear
+  - column_data_type: string
+    column_name: actualfinishmonth
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualfinishmonth
+  - column_data_type: string
+    column_name: actualfinishweekofyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualfinishweekofyear
+  - column_data_type: string
+    column_name: actualfinishdayofyear
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualfinishdayofyear
+  - column_data_type: string
+    column_name: assemblystartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: assemblystartdate
+  - column_data_type: string
+    column_name: assemblyfinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: assemblyfinishdate
+  - column_data_type: string
+    column_name: releasedtouserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: releasedtouserid
+  - column_data_type: string
+    column_name: releasedtouser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: releasedtouser
+  - column_data_type: string
+    column_name: datereleased
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datereleased
+  - column_data_type: string
+    column_name: datedelivered
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datedelivered
+  - column_data_type: string
+    column_name: earnedhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: earnedhours
+  - column_data_type: string
+    column_name: actualhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualhours
+  - column_data_type: string
+    column_name: forecastedhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: forecastedhours
+  - column_data_type: string
+    column_name: percentcomplete
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentcomplete
+  - column_data_type: string
+    column_name: percentdocumented
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentdocumented
+  - column_data_type: string
+    column_name: percentdocumentedinclusive
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentdocumentedinclusive
+  - column_data_type: string
+    column_name: percentconstraintfree
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentconstraintfree
+  - column_data_type: string
+    column_name: percentdelayfree
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentdelayfree
+  - column_data_type: string
+    column_name: percentapproved
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentapproved
+  - column_data_type: string
+    column_name: percentdeveloped
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: percentdeveloped
+  - column_data_type: string
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: createdbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuserid
+  - column_data_type: string
+    column_name: createdbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuser
+  - column_data_type: string
+    column_name: datemodified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datemodified
+  - column_data_type: string
+    column_name: modifiedbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuserid
+  - column_data_type: string
+    column_name: modifiedbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuser
+  - column_data_type: string
+    column_name: isdeleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isdeleted
+  - column_data_type: string
+    column_name: sourcedeleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sourcedeleted
+  - column_data_type: string
+    column_name: dateconstraintfree
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dateconstraintfree
+  - column_data_type: string
+    column_name: datedatacomplete
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datedatacomplete
+  - column_data_type: string
+    column_name: openconstraintcount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: openconstraintcount
+  - column_data_type: string
+    column_name: datecloseoutdatacomplete
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecloseoutdatacomplete
+  - column_data_type: string
+    column_name: datacompletenessstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datacompletenessstatus
+  - column_data_type: string
+    column_name: contractid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractid
+  - column_data_type: string
+    column_name: contract
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contract
+  - column_data_type: string
+    column_name: contractgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractgroupid
+  - column_data_type: string
+    column_name: contractgroup
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractgroup
+  - column_data_type: string
+    column_name: overviewmodelshotattachmentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: overviewmodelshotattachmentid
+  - column_data_type: string
+    column_name: criticalpath
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: criticalpath
+  - column_data_type: string
+    column_name: planneruserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: planneruserid
+  - column_data_type: string
+    column_name: planneruser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: planneruser
+  - column_data_type: string
+    column_name: plannerusercompany
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannerusercompany
+  - column_data_type: string
+    column_name: draftreviewdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: draftreviewdate
+  - column_data_type: string
+    column_name: plannedreadyforreviewdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedreadyforreviewdate
+  - column_data_type: string
+    column_name: readyforreviewdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: readyforreviewdate
+  - column_data_type: string
+    column_name: plannedapproveddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedapproveddate
+  - column_data_type: string
+    column_name: approveddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: approveddate
+  - column_data_type: string
+    column_name: planneddevelopmentstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: planneddevelopmentstartdate
+  - column_data_type: string
+    column_name: actualdevelopmentstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualdevelopmentstartdate
+  - column_data_type: string
+    column_name: plannedcloseoutdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedcloseoutdate
+  - column_data_type: string
+    column_name: actualcloseoutdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualcloseoutdate
+  - column_data_type: string
+    column_name: plannedduration
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedduration
+  - column_data_type: string
+    column_name: actualduration
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualduration
+  - column_data_type: string
+    column_name: baselinestartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselinestartdate
+  - column_data_type: string
+    column_name: baselinefinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: baselinefinishdate
+  - column_data_type: string
+    column_name: attachmentcount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attachmentcount
+  - column_data_type: string
+    column_name: unitcategoryid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitcategoryid
+  - column_data_type: string
+    column_name: unitcategory
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unitcategory
+  - column_data_type: string
+    column_name: labels
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: labels
+  - column_data_type: string
+    column_name: stateid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stateid
+  - column_data_type: string
+    column_name: forecaststartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: forecaststartdate
+  - column_data_type: string
+    column_name: forecastfinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: forecastfinishdate
+  - column_data_type: string
+    column_name: externallinkverified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallinkverified
+  - column_data_type: string
+    column_name: externallinkverifiedbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallinkverifiedbyuser
+  - column_data_type: string
+    column_name: externallinkverifiedbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallinkverifiedbyuserid
+  - column_data_type: string
+    column_name: externallinkverifieddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallinkverifieddate
+  - column_data_type: string
+    column_name: dateapprovedforconstruction
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dateapprovedforconstruction
+  - column_data_type: string
+    column_name: plannedapprovedforconstructiondate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedapprovedforconstructiondate
+  - column_data_type: string
+    column_name: cwpplannedstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwpplannedstartdate
+  - column_data_type: string
+    column_name: cwpplannedfinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwpplannedfinishdate
+  - column_data_type: string
+    column_name: calendarstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calendarstartdate
+  - column_data_type: string
+    column_name: calendarenddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calendarenddate
+  - column_data_type: string
+    column_name: statuscolor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statuscolor
+  - column_data_type: string
+    column_name: annotateddrawingscount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: annotateddrawingscount
+  - column_data_type: string
+    column_name: modelshot
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelshot
+  - column_data_type: string
+    column_name: forecastduration
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: forecastduration
+  - column_data_type: string
+    column_name: productivityfactor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: productivityfactor
+  - column_data_type: string
+    column_name: plotplancount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plotplancount
+  - column_data_type: string
+    column_name: entitytypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitytypeid
+  - column_data_type: string
+    column_name: scheduledatadate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scheduledatadate
+  - column_data_type: string
+    column_name: earlystartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: earlystartdate
+  - column_data_type: string
+    column_name: latestartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: latestartdate
+  - column_data_type: string
+    column_name: earlyfinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: earlyfinishdate
+  - column_data_type: string
+    column_name: latefinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: latefinishdate
+  - column_data_type: string
+    column_name: companyresponsibleid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: companyresponsibleid
+  - column_data_type: string
+    column_name: company
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: company
+  - column_data_type: string
+    column_name: remarks
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remarks
+  - column_data_type: string
+    column_name: notes
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: notes
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: datemodified_ts
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/ewps/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_ewps
+  load_type: incremental_no_delete
+  name: curated_o3_ewps
+  primary_key: [projectid,name]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/ewps
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, CAST(datemodified as timestamp) as datemodified_ts, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

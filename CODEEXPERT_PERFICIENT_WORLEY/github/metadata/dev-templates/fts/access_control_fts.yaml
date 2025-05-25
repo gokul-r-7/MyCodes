@@ -1,0 +1,6 @@
+domain_name: construction
+source_name: fts
+databases : 
+  - ${database_prefix}_construction_fts_curated
+  - ${database_prefix}_construction_fts_raw
+  - ${database_prefix}_construction_transformed

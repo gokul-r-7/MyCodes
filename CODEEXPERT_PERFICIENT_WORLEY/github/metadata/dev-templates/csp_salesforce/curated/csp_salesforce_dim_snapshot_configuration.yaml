@@ -1,0 +1,106 @@
+SourceSystemId: csp_salesforce_curated
+MetadataType: curated#dim_snapshot#csp_salesforce#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/customer/csp_salesforce/conv_tables/table_dim_snapshot.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: csp_salesforce_dim_snapshot_curated
+  name: dim_snapshot_csv_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+    - column_data_type: date
+      column_name: date_snapshot
+      comment: date_snapshot
+      data_classification: null
+      nullable: true
+      raw_column_name: date_snapshot
+    - column_data_type: date
+      column_name: date_award
+      comment: date_award
+      data_classification: null
+      nullable: true
+      raw_column_name: date_award
+    - column_data_type: date
+      column_name: date_created
+      comment: date_created
+      data_classification: null
+      nullable: true
+      raw_column_name: date_created
+    - column_data_type: string
+      column_name: forecast_includeexclude
+      comment: forecast_includeexclude
+      data_classification: null
+      nullable: true
+      raw_column_name: forecast_includeexclude
+    - column_data_type: int
+      column_name: goget_get
+      comment: goget_get
+      data_classification: null
+      nullable: true
+      raw_column_name: goget_get
+    - column_data_type: int
+      column_name: goget_go
+      comment: goget_go
+      data_classification: null
+      nullable: true
+      raw_column_name: goget_go
+    - column_data_type: string
+      column_name: id_opportunity
+      comment: id_opportunity
+      data_classification: null
+      nullable: true
+      raw_column_name: id_opportunity
+    - column_data_type: string
+      column_name: stage_actual
+      comment: stage_actual
+      data_classification: null
+      nullable: true
+      raw_column_name: stage_actual
+    - column_data_type: date
+      column_name: date_lastmodified
+      comment: date_lastmodified
+      data_classification: null
+      nullable: true
+      raw_column_name: date_lastmodified
+    - column_data_type: string
+      column_name: campaignid
+      comment: campaignid
+      data_classification: null
+      nullable: true
+      raw_column_name: campaignid
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  deduplication_keys:
+    - ''
+  iceberg_properties:
+    database_name: ${database_prefix}_customer_csp_salesforce_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: s3://${curated_bucket}/customer/csp_salesforce/dim_snapshot/
+      table_properties:
+        format-version: "2"
+        write.format.default: parquet
+    table_name: curated_dim_snapshot
+  load_type: full_load
+  name: curated_dim_snapshot
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/customer/csp_salesforce/dim_snapshot/
+transforms:
+  - rename_column: true
+    transform: rename_columns
+  - select_columns: true
+    transform: select_columns_from_config_file
+  - change_types: true
+    transform: change_data_types
+  - column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+    transform: add_run_date

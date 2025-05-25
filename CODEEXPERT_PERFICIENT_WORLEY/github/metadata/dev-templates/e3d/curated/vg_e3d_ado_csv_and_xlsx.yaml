@@ -1,0 +1,162 @@
+SourceSystemId: e3d_curated
+MetadataType: curated#vg_E3D#ado_csv_and_xlsx#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/e3d/parquet/modelreviewitemstracker.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_E3D-csv_xlsx_curated
+  name: vg_E3D_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: ID
+    comment: ID
+    data_classification: 
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: WORK ITEM TYPE
+    comment: WORK ITEM TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: work_item_type
+  - column_data_type: string
+    column_name: AREA PATH
+    comment: AREA PATH
+    data_classification: 
+    nullable: true
+    raw_column_name: area_path
+  - column_data_type: string
+    column_name: AASIGNED TO
+    comment: ASSIGNED TO
+    data_classification: 
+    nullable: true
+    raw_column_name: assigned_to
+  - column_data_type: string
+    column_name: MODEL REVIEW AREA 
+    comment:  MODEL REVIEW AREA
+    data_classification: 
+    nullable: true
+    raw_column_name: model_review_area
+  - column_data_type: string
+    column_name:  MODEL REVIEW SESSION
+    comment:  MODEL REVIEW SESSION
+    data_classification: 
+    nullable: true
+    raw_column_name: model_review_session
+  - column_data_type: string
+    column_name: TAGID
+    comment: TAGID
+    data_classification: 
+    nullable: true
+    raw_column_name: tagid
+  - column_data_type: string
+    column_name: TITLE
+    comment: TITLE
+    data_classification: 
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: TAGS
+    comment: TAGS
+    data_classification: 
+    nullable: true
+    raw_column_name: tags
+  - column_data_type: string
+    column_name: DATE RAISED
+    comment: DATE RAISED
+    data_classification: 
+    nullable: true
+    raw_column_name: date_raised
+  - column_data_type: string
+    column_name: CWA
+    comment: CWA
+    data_classification: 
+    nullable: true
+    raw_column_name: cwa
+  - column_data_type: string
+    column_name: OWNER
+    comment: OWNER
+    data_classification: 
+    nullable: true
+    raw_column_name: owner
+  - column_data_type: string
+    column_name: RESPONSIBILITY
+    comment: RESPONSIBILITY
+    data_classification: 
+    nullable: true
+    raw_column_name: responsibility
+  - column_data_type: string
+    column_name: PRIMARY DISCIPLINE
+    comment: PRIMARY DISCIPLINE
+    data_classification: 
+    nullable: true
+    raw_column_name: primary_discipline
+  - column_data_type: string
+    column_name: SECONDARY DISCIPLINE
+    comment: SECONDARY DISCIPLINE
+    data_classification: 
+    nullable: true
+    raw_column_name: secondary_discipline
+  - column_data_type: string
+    column_name: TARGET DATE
+    comment: TARGET DATE
+    data_classification: 
+    nullable: true
+    raw_column_name: target_date
+  - column_data_type: string
+    column_name: STATE
+    comment: STATE
+    data_classification: 
+    nullable: true
+    raw_column_name: state
+  - column_data_type: string
+    column_name: WORLEY REMARKS
+    comment: WORLEY REMARKS
+    data_classification: 
+    nullable: true
+    raw_column_name: worley_remarks
+  - column_data_type: string
+    column_name: PARENT
+    comment: PARENT
+    data_classification: 
+    nullable: true
+    raw_column_name: parent
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_e3d_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/e3d/modelreviewitemstracker/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_modelreviewitemstracker
+  name: curated_vg_E3D_ado_csv_and_xlsx
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/e3d/modelreviewitemstracker
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'ado' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

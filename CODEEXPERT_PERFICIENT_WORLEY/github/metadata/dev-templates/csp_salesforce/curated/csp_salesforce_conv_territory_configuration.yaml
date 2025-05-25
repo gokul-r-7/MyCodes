@@ -1,0 +1,64 @@
+SourceSystemId: csp_salesforce_curated
+MetadataType: curated#conv_territory#csp_salesforce#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/customer/csp_salesforce/conv_tables/table_conv_territory.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: csp_salesforce_conv_territory_curated
+  name: conv_territory_csv_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+    - column_data_type: string
+      column_name: selling_territory
+      comment: selling_territory
+      data_classification: null
+      nullable: true
+      raw_column_name: selling_territory
+    - column_data_type: string
+      column_name: selling_territory_short
+      comment: selling_territory_short
+      data_classification: null
+      nullable: true
+      raw_column_name: selling_territory_short
+    - column_data_type: string
+      column_name: selling_business_secondary
+      comment: budget_acselling_business_secondarytual
+      data_classification: null
+      nullable: true
+      raw_column_name: selling_business_secondary
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  deduplication_keys:
+    - ''
+  iceberg_properties:
+    database_name: ${database_prefix}_customer_csp_salesforce_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: s3://${curated_bucket}/customer/csp_salesforce/conv_territory
+      table_properties:
+        format-version: "2"
+        write.format.default: parquet
+    table_name: curated_conv_territory
+  load_type: full_load
+  name: curated_conv_territory
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/customer/csp_salesforce/conv_territory
+transforms:
+  - rename_column: true
+    transform: rename_columns
+  - select_columns: true
+    transform: select_columns_from_config_file
+  - change_types: true
+    transform: change_data_types
+  - column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+    transform: add_run_date

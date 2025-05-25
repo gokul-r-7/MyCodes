@@ -1,0 +1,349 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_consequence_motor_vehicle_accident#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_consequence_motor_vehicle_accident.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_consequence_motor_vehicle_accident
+  name: event_consequence_motor_vehicle_accident
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_consequence_motor_vehicle_accident/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_consequence_motor_vehicle_accident
+  load_type: incremental
+  name: event_consequence_motor_vehicle_accident
+  primary_key: dwi_event_consequence_motor_vehicle_accident
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_consequence_motor_vehicle_accident
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_event_consequence_motor_vehicle_accident
+    rename_columns: true
+  columns:
+  - column_name: dwi_event_consequence_motor_vehicle_accident
+    column_data_type: decimal(38,0)
+    comment: dwi_event_consequence_motor_vehicle_accident
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_event_consequence_motor_vehicle_accident
+  - column_name: approximate_vehicle_speed_at_point_of_impact
+    column_data_type: string
+    comment: approximate_vehicle_speed_at_point_of_impact
+    data_classification:
+    nullable: true
+    raw_column_name: approximate_vehicle_speed_at_point_of_impact
+  - column_name: company_vehicle
+    column_data_type: string
+    comment: company_vehicle
+    data_classification:
+    nullable: true
+    raw_column_name: company_vehicle
+  - column_name: li_company_vehicle
+    column_data_type: string
+    comment: li_company_vehicle
+    data_classification:
+    nullable: true
+    raw_column_name: li_company_vehicle
+  - column_name: lo_company_vehicle
+    column_data_type: decimal(38,0)
+    comment: lo_company_vehicle
+    data_classification:
+    nullable: true
+    raw_column_name: lo_company_vehicle
+  - column_name: driver_license_number
+    column_data_type: string
+    comment: driver_license_number
+    data_classification:
+    nullable: true
+    raw_column_name: driver_license_number
+  - column_name: driver_name_if_not_in_list
+    column_data_type: string
+    comment: driver_name_if_not_in_list
+    data_classification:
+    nullable: true
+    raw_column_name: driver_name_if_not_in_list
+  - column_name: length_of_skid_marks
+    column_data_type: string
+    comment: length_of_skid_marks
+    data_classification:
+    nullable: true
+    raw_column_name: length_of_skid_marks
+  - column_name: license_expiry_date
+    column_data_type: timestamp
+    comment: license_expiry_date
+    data_classification:
+    nullable: true
+    raw_column_name: license_expiry_date
+  - column_name: number_of_passengers
+    column_data_type: decimal(38,0)
+    comment: number_of_passengers
+    data_classification:
+    nullable: true
+    raw_column_name: number_of_passengers
+  - column_name: reference_number
+    column_data_type: string
+    comment: reference_number
+    data_classification:
+    nullable: true
+    raw_column_name: reference_number
+  - column_name: registration_plate_number
+    column_data_type: string
+    comment: registration_plate_number
+    data_classification:
+    nullable: true
+    raw_column_name: registration_plate_number
+  - column_name: road_surface_conditions
+    column_data_type: string
+    comment: road_surface_conditions
+    data_classification:
+    nullable: true
+    raw_column_name: road_surface_conditions
+  - column_name: li_road_surface_conditions
+    column_data_type: string
+    comment: li_road_surface_conditions
+    data_classification:
+    nullable: true
+    raw_column_name: li_road_surface_conditions
+  - column_name: lo_road_surface_conditions
+    column_data_type: decimal(38,0)
+    comment: lo_road_surface_conditions
+    data_classification:
+    nullable: true
+    raw_column_name: lo_road_surface_conditions
+  - column_name: road_type
+    column_data_type: string
+    comment: road_type
+    data_classification:
+    nullable: true
+    raw_column_name: road_type
+  - column_name: li_road_type
+    column_data_type: string
+    comment: li_road_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_road_type
+  - column_name: lo_road_type
+    column_data_type: decimal(38,0)
+    comment: lo_road_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_road_type
+  - column_name: site_permit_number
+    column_data_type: string
+    comment: site_permit_number
+    data_classification:
+    nullable: true
+    raw_column_name: site_permit_number
+  - column_name: time_of_day
+    column_data_type: string
+    comment: time_of_day
+    data_classification:
+    nullable: true
+    raw_column_name: time_of_day
+  - column_name: li_time_of_day
+    column_data_type: string
+    comment: li_time_of_day
+    data_classification:
+    nullable: true
+    raw_column_name: li_time_of_day
+  - column_name: lo_time_of_day
+    column_data_type: decimal(38,0)
+    comment: lo_time_of_day
+    data_classification:
+    nullable: true
+    raw_column_name: lo_time_of_day
+  - column_name: vehicle_direction_of_travel
+    column_data_type: string
+    comment: vehicle_direction_of_travel
+    data_classification:
+    nullable: true
+    raw_column_name: vehicle_direction_of_travel
+  - column_name: li_vehicle_direction_of_travel
+    column_data_type: string
+    comment: li_vehicle_direction_of_travel
+    data_classification:
+    nullable: true
+    raw_column_name: li_vehicle_direction_of_travel
+  - column_name: lo_vehicle_direction_of_travel
+    column_data_type: decimal(38,0)
+    comment: lo_vehicle_direction_of_travel
+    data_classification:
+    nullable: true
+    raw_column_name: lo_vehicle_direction_of_travel
+  - column_name: vehicle_make
+    column_data_type: string
+    comment: vehicle_make
+    data_classification:
+    nullable: true
+    raw_column_name: vehicle_make
+  - column_name: vehicle_model
+    column_data_type: string
+    comment: vehicle_model
+    data_classification:
+    nullable: true
+    raw_column_name: vehicle_model
+  - column_name: vehicle_type
+    column_data_type: string
+    comment: vehicle_type
+    data_classification:
+    nullable: true
+    raw_column_name: vehicle_type
+  - column_name: vehicle_year
+    column_data_type: string
+    comment: vehicle_year
+    data_classification:
+    nullable: true
+    raw_column_name: vehicle_year
+  - column_name: was_the_driver_wearing_a_seat_belt
+    column_data_type: string
+    comment: was_the_driver_wearing_a_seat_belt
+    data_classification:
+    nullable: true
+    raw_column_name: was_the_driver_wearing_a_seat_belt
+  - column_name: li_was_the_driver_wearing_a_seat_belt
+    column_data_type: string
+    comment: li_was_the_driver_wearing_a_seat_belt
+    data_classification:
+    nullable: true
+    raw_column_name: li_was_the_driver_wearing_a_seat_belt
+  - column_name: lo_was_the_driver_wearing_a_seat_belt
+    column_data_type: decimal(38,0)
+    comment: lo_was_the_driver_wearing_a_seat_belt
+    data_classification:
+    nullable: true
+    raw_column_name: lo_was_the_driver_wearing_a_seat_belt
+  - column_name: work_hours
+    column_data_type: decimal(38,0)
+    comment: work_hours
+    data_classification:
+    nullable: true
+    raw_column_name: work_hours
+  - column_name: sys_legacy_id
+    column_data_type: string
+    comment: sys_legacy_id
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_id
+  - column_name: employment_category
+    column_data_type: string
+    comment: employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: employment_category
+  - column_name: li_employment_category
+    column_data_type: string
+    comment: li_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_employment_category
+  - column_name: lo_employment_category
+    column_data_type: decimal(38,0)
+    comment: lo_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_employment_category
+  - column_name: vehicle_crash_classification
+    column_data_type: string
+    comment: vehicle_crash_classification
+    data_classification:
+    nullable: true
+    raw_column_name: vehicle_crash_classification
+  - column_name: li_vehicle_crash_classification
+    column_data_type: string
+    comment: li_vehicle_crash_classification
+    data_classification:
+    nullable: true
+    raw_column_name: li_vehicle_crash_classification
+  - column_name: lo_vehicle_crash_classification
+    column_data_type: decimal(38,0)
+    comment: lo_vehicle_crash_classification
+    data_classification:
+    nullable: true
+    raw_column_name: lo_vehicle_crash_classification
+  - column_name: dwk_event_as_source_of_motor_vehicle_accident_consequence
+    column_data_type: decimal(38,0)
+    comment: dwk_event_as_source_of_motor_vehicle_accident_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_as_source_of_motor_vehicle_accident_consequence
+  - column_name: dwk_driver_name
+    column_data_type: decimal(38,0)
+    comment: dwk_driver_name
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_driver_name
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

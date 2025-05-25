@@ -1,0 +1,654 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#COMPONENT_FUNCTION_TYPE#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/COMPONENT_FUNCTION_TYPE/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-component_function_type
+  name: spi_component_function_type
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_func_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_func_type_id
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: decimal(38,0)
+    column_name: plant_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_id
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date
+  - column_data_type: string
+    column_name: cmpnt_func_type_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_func_type_name
+  - column_data_type: string
+    column_name: cmpnt_func_type_desc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_func_type_desc
+  - column_data_type: string
+    column_name: prf_spec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_spec
+  - column_data_type: string
+    column_name: prf_wiring
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_wiring
+  - column_data_type: string
+    column_name: prf_cs_point
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_cs_point
+  - column_data_type: string
+    column_name: prf_in_line_device
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_in_line_device
+  - column_data_type: string
+    column_name: prf_hu_electrical
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_hu_electrical
+  - column_data_type: string
+    column_name: prf_hu_pneumatic
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_hu_pneumatic
+  - column_data_type: string
+    column_name: prf_hu_support
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_hu_support
+  - column_data_type: string
+    column_name: prf_hu_process
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_hu_process
+  - column_data_type: string
+    column_name: prf_hu_winterization
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_hu_winterization
+  - column_data_type: string
+    column_name: prf_f1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_f1
+  - column_data_type: string
+    column_name: prf_f2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_f2
+  - column_data_type: string
+    column_name: prf_f3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_f3
+  - column_data_type: string
+    column_name: prf_f4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_f4
+  - column_data_type: string
+    column_name: prf_f5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_f5
+  - column_data_type: decimal(38,0)
+    column_name: calc_pd_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calc_pd_type_id
+  - column_data_type: decimal(38,0)
+    column_name: dwg_external_blk_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_external_blk_id
+  - column_data_type: decimal(38,0)
+    column_name: panel_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: panel_id
+  - column_data_type: decimal(38,0)
+    column_name: cable_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cable_id
+  - column_data_type: decimal(38,0)
+    column_name: landing_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: landing_type_id
+  - column_data_type: decimal(38,0)
+    column_name: proc_func_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proc_func_id
+  - column_data_type: decimal(38,0)
+    column_name: spec_form_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_form_id
+  - column_data_type: decimal(38,0)
+    column_name: hu_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hu_id
+  - column_data_type: decimal(38,0)
+    column_name: hu_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hu_type_id
+  - column_data_type: string
+    column_name: bom_include_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: bom_include_flg
+  - column_data_type: decimal(38,0)
+    column_name: spec_dwg_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_dwg_id
+  - column_data_type: string
+    column_name: prf_io_type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_io_type
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_io_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_io_type_id
+  - column_data_type: string
+    column_name: prf_location
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_location
+  - column_data_type: decimal(38,0)
+    column_name: cmpnt_loc_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_loc_id
+  - column_data_type: string
+    column_name: prf_pd_tag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_pd_tag
+  - column_data_type: string
+    column_name: prf_no_loop
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_no_loop
+  - column_data_type: string
+    column_name: prf_pm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_pm
+  - column_data_type: string
+    column_name: prf_cs_tag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_cs_tag
+  - column_data_type: string
+    column_name: prf_dimension
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_dimension
+  - column_data_type: decimal(38,0)
+    column_name: dim_grp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dim_grp_id
+  - column_data_type: string
+    column_name: prf_pd_requir
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_pd_requir
+  - column_data_type: decimal(38,0)
+    column_name: spec_format_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: spec_format_id
+  - column_data_type: string
+    column_name: cstag_func_type_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cstag_func_type_name
+  - column_data_type: decimal(38,0)
+    column_name: proc_func_cat_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proc_func_cat_id
+  - column_data_type: string
+    column_name: prf_udt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_udt
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id1
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id2
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id3
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id4
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id5
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id6
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id7
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id8
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id9
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id10
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id11
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id11
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id12
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id12
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id13
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id13
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id14
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id14
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id15
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id15
+  - column_data_type: decimal(38,0)
+    column_name: udt_support_id16
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: udt_support_id16
+  - column_data_type: string
+    column_name: symbol_path
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: symbol_path
+  - column_data_type: string
+    column_name: device_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: device_type_id
+  - column_data_type: string
+    column_name: fb_tag_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_tag_no
+  - column_data_type: string
+    column_name: fb_dev_address
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_dev_address
+  - column_data_type: string
+    column_name: fb_dev_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_dev_id
+  - column_data_type: decimal(38,10)
+    column_name: fb_dc_cur
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_dc_cur
+  - column_data_type: decimal(38,10)
+    column_name: capacitance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: capacitance
+  - column_data_type: string
+    column_name: capacitance_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: capacitance_uom
+  - column_data_type: decimal(38,10)
+    column_name: fb_min_transmit_level
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_min_transmit_level
+  - column_data_type: decimal(38,10)
+    column_name: fb_min_volt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_min_volt
+  - column_data_type: decimal(38,10)
+    column_name: fb_max_volt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fb_max_volt
+  - column_data_type: string
+    column_name: backup_link_master
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: backup_link_master
+  - column_data_type: string
+    column_name: prf_fieldbus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_fieldbus
+  - column_data_type: string
+    column_name: graphic_file_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: graphic_file_name
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c01
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c01
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c02
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c02
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c03
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c03
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c04
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c04
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c05
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c05
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c06
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c06
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c07
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c07
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c08
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c08
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c09
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c09
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c10
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c11
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c11
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c12
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c12
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c13
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c13
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c14
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c14
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c15
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c15
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c16
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c16
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c17
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c17
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c18
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c18
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c19
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c19
+  - column_data_type: string
+    column_name: cmpnt_fun_type_udf_c20
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cmpnt_fun_type_udf_c20
+  - column_data_type: string
+    column_name: prf_default
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prf_default
+  - column_data_type: string
+    column_name: lop_class_uid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lop_class_uid    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/COMPONENT_FUNCTION_TYPE/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_component_function_type
+  load_type: append
+  name: curated_component_function_type
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_component_function_type
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

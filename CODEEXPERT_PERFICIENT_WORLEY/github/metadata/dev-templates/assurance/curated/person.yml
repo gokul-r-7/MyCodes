@@ -1,0 +1,361 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#person#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/person.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: person
+  name: person
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/person/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: person
+  load_type: incremental
+  name: person
+  primary_key: dwi_person
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/person
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_person
+    rename_columns: true
+  columns:
+  - column_name: dwi_person
+    column_data_type: decimal(38,0)
+    comment: dwi_person
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_person
+  - column_name: basis_of_employment
+    column_data_type: string
+    comment: basis_of_employment
+    data_classification:
+    nullable: true
+    raw_column_name: basis_of_employment
+  - column_name: li_basis_of_employment
+    column_data_type: string
+    comment: li_basis_of_employment
+    data_classification:
+    nullable: true
+    raw_column_name: li_basis_of_employment
+  - column_name: lo_basis_of_employment
+    column_data_type: decimal(38,0)
+    comment: lo_basis_of_employment
+    data_classification:
+    nullable: true
+    raw_column_name: lo_basis_of_employment
+  - column_name: city
+    column_data_type: string
+    comment: city
+    data_classification:
+    nullable: true
+    raw_column_name: city
+  - column_name: date_hired
+    column_data_type: timestamp
+    comment: date_hired
+    data_classification:
+    nullable: true
+    raw_column_name: date_hired
+  - column_name: email_address
+    column_data_type: string
+    comment: email_address
+    data_classification:
+    nullable: true
+    raw_column_name: email_address
+  - column_name: employee_number
+    column_data_type: string
+    comment: employee_number
+    data_classification:
+    nullable: true
+    raw_column_name: employee_number
+  - column_name: first_name
+    column_data_type: string
+    comment: first_name
+    data_classification:
+    nullable: true
+    raw_column_name: first_name
+  - column_name: gender
+    column_data_type: string
+    comment: gender
+    data_classification:
+    nullable: true
+    raw_column_name: gender
+  - column_name: li_gender
+    column_data_type: string
+    comment: li_gender
+    data_classification:
+    nullable: true
+    raw_column_name: li_gender
+  - column_name: lo_gender
+    column_data_type: decimal(38,0)
+    comment: lo_gender
+    data_classification:
+    nullable: true
+    raw_column_name: lo_gender
+  - column_name: last_name
+    column_data_type: string
+    comment: last_name
+    data_classification:
+    nullable: true
+    raw_column_name: last_name
+  - column_name: person_auto_number
+    column_data_type: string
+    comment: person_auto_number
+    data_classification:
+    nullable: true
+    raw_column_name: person_auto_number
+  - column_name: position_status
+    column_data_type: string
+    comment: position_status
+    data_classification:
+    nullable: true
+    raw_column_name: position_status
+  - column_name: li_position_status
+    column_data_type: string
+    comment: li_position_status
+    data_classification:
+    nullable: true
+    raw_column_name: li_position_status
+  - column_name: lo_position_status
+    column_data_type: decimal(38,0)
+    comment: lo_position_status
+    data_classification:
+    nullable: true
+    raw_column_name: lo_position_status
+  - column_name: position_title
+    column_data_type: string
+    comment: position_title
+    data_classification:
+    nullable: true
+    raw_column_name: position_title
+  - column_name: post_code_zip_code
+    column_data_type: string
+    comment: post_code_zip_code
+    data_classification:
+    nullable: true
+    raw_column_name: post_code_zip_code
+  - column_name: state
+    column_data_type: string
+    comment: state
+    data_classification:
+    nullable: true
+    raw_column_name: state
+  - column_name: street_address
+    column_data_type: string
+    comment: street_address
+    data_classification:
+    nullable: true
+    raw_column_name: street_address
+  - column_name: telephone_number
+    column_data_type: string
+    comment: telephone_number
+    data_classification:
+    nullable: true
+    raw_column_name: telephone_number
+  - column_name: termination_date
+    column_data_type: timestamp
+    comment: termination_date
+    data_classification:
+    nullable: true
+    raw_column_name: termination_date
+  - column_name: user_name
+    column_data_type: string
+    comment: user_name
+    data_classification:
+    nullable: true
+    raw_column_name: user_name
+  - column_name: worley_unique_id
+    column_data_type: string
+    comment: worley_unique_id
+    data_classification:
+    nullable: true
+    raw_column_name: worley_unique_id
+  - column_name: zzznotused_date_of_birth
+    column_data_type: timestamp
+    comment: zzznotused_date_of_birth
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_date_of_birth
+  - column_name: zzznotused_employment_type
+    column_data_type: string
+    comment: zzznotused_employment_type
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_employment_type
+  - column_name: li_zzznotused_employment_type
+    column_data_type: string
+    comment: li_zzznotused_employment_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_zzznotused_employment_type
+  - column_name: lo_zzznotused_employment_type
+    column_data_type: decimal(38,0)
+    comment: lo_zzznotused_employment_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_zzznotused_employment_type
+  - column_name: zzznotused_sys_business_line_id_string
+    column_data_type: string
+    comment: zzznotused_sys_business_line_id_string
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_sys_business_line_id_string
+  - column_name: zzznotused_sys_subsector_id_string
+    column_data_type: string
+    comment: zzznotused_sys_subsector_id_string
+    data_classification:
+    nullable: true
+    raw_column_name: zzznotused_sys_subsector_id_string
+  - column_name: sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+    column_data_type: string
+    comment: sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+    data_classification:
+    nullable: true
+    raw_column_name: sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+  - column_name: li_sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+    column_data_type: string
+    comment: li_sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+  - column_name: lo_sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+    column_data_type: decimal(38,0)
+    comment: lo_sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_analytics_generate_new_medical_evaluation_for_respirator_questionnaire
+  - column_name: sys_analytics_refresh_competency_status
+    column_data_type: string
+    comment: sys_analytics_refresh_competency_status
+    data_classification:
+    nullable: true
+    raw_column_name: sys_analytics_refresh_competency_status
+  - column_name: li_sys_analytics_refresh_competency_status
+    column_data_type: string
+    comment: li_sys_analytics_refresh_competency_status
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_analytics_refresh_competency_status
+  - column_name: lo_sys_analytics_refresh_competency_status
+    column_data_type: decimal(38,0)
+    comment: lo_sys_analytics_refresh_competency_status
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_analytics_refresh_competency_status
+  - column_name: sys_full_name
+    column_data_type: string
+    comment: sys_full_name
+    data_classification:
+    nullable: true
+    raw_column_name: sys_full_name
+  - column_name: notes
+    column_data_type: string
+    comment: notes
+    data_classification:
+    nullable: true
+    raw_column_name: notes
+  - column_name: dwk_line_manager
+    column_data_type: decimal(38,0)
+    comment: dwk_line_manager
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_line_manager
+  - column_name: dwk_zzznotused_department
+    column_data_type: decimal(38,0)
+    comment: dwk_zzznotused_department
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_zzznotused_department
+  - column_name: dwk_zzznotused_location
+    column_data_type: decimal(38,0)
+    comment: dwk_zzznotused_location
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_zzznotused_location
+  - column_name: dwk_employer
+    column_data_type: decimal(38,0)
+    comment: dwk_employer
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_employer
+  - column_name: dwk_zzznotused_scurve_team_members
+    column_data_type: decimal(38,0)
+    comment: dwk_zzznotused_scurve_team_members
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_zzznotused_scurve_team_members
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

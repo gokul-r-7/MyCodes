@@ -1,0 +1,37 @@
+SourceSystemId: jplus
+MetadataType: csv_xlsx#jplus
+aws_region: ${region}
+Env: ${envn}
+is_active: y
+job_parameter:
+  sampling_seed: 42
+  bucket_name: ${raw_bucket}
+  drop_duplicate_columns: true
+  sampling_fraction: '0.5'
+  replace_non_printable_ascii_with_underscore: false
+  csv_files_path: finance/jplus/timecard/raw/
+  replacement_char: _
+  raw_files_path: finance/jplus/timecard/raw/
+  sample_data_location: finance/jplus/data_sampling
+  replace_non_alphanumeric_with_underscore: true
+  specialchars_to_be_replaced_in_columnnames: []
+  parquet_files_path: finance/jplus/parquet/
+  drop_duplicate_rows: true
+  xls_files:
+    - file_suffix_length: 21
+      sheets:
+        - sheet_name: Table1
+          tablename: timecard
+          data_start_row: 0
+          header_column: 0
+          multiline: true
+          header_row: 0
+          quote_character: '"'
+          separator: ','
+          data_start_column: 0
+      filename: WP_US_USA_OU-O3_JPlus_20250325011601.xlsx
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      xls_engine_name: openpyxl
+name: jplus
+Namespace: finance

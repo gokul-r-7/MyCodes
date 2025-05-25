@@ -1,0 +1,1200 @@
+SourceSystemId: circuit_breaker_curated
+MetadataType: curated#circuit_breaker#finance_budget#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/circuit_breaker/parquet/finance_budget.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: finance_budget_curated
+  name: finance_budget_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: budget_budget_line_item
+    comment: budget_budget_line_item
+    data_classification: 
+    nullable: true
+    raw_column_name: budget_line_item
+  - column_data_type: string
+    column_name: budget_level_1
+    comment: budget_level_1
+    data_classification: 
+    nullable: true
+    raw_column_name: level_1
+  - column_data_type: string
+    column_name: budget_level_2
+    comment: budget_level_2
+    data_classification: 
+    nullable: true
+    raw_column_name: level_2
+  - column_data_type: string
+    column_name: budget_hyperion_task_current_name
+    comment: budget_hyperion_task_current_name
+    data_classification: 
+    nullable: true
+    raw_column_name: hyperion_task_current_name
+  - column_data_type: string
+    column_name: budget_hyperion_task_updated_name_if_required
+    comment: budget_hyperion_task_updated_name_if_required
+    data_classification: 
+    nullable: true
+    raw_column_name: hyperion_task_updated_name_if_required
+  - column_data_type: string
+    column_name: budget_hyperion_task_number
+    comment: budget_hyperion_task_number
+    data_classification: 
+    nullable: true
+    raw_column_name: hyperion_task_number
+  - column_data_type: string
+    column_name: budget_level_1_access
+    comment: budget_level_1_access
+    data_classification: 
+    nullable: true
+    raw_column_name: level_1_access
+  - column_data_type: string
+    column_name: budget_project_manager
+    comment: budget_project_manager
+    data_classification: 
+    nullable: true
+    raw_column_name: project_manager
+  - column_data_type: string
+    column_name: budget_gbs_project_number
+    comment: budget_gbs_project_number
+    data_classification: 
+    nullable: true
+    raw_column_name: gbs_project_number
+  - column_data_type: string
+    column_name: budget_wbs_task
+    comment: budget_wbs_task
+    data_classification: 
+    nullable: true
+    raw_column_name: wbs_task
+  - column_data_type: string
+    column_name: budget_vendor
+    comment: budget_vendor
+    data_classification: 
+    nullable: true
+    raw_column_name: vendor
+  - column_data_type: string
+    column_name: budget_gsr_id_no
+    comment: budget_gsr_id_no
+    data_classification: 
+    nullable: true
+    raw_column_name: gsr_id_no
+  - column_data_type: string
+    column_name: budget_po
+    comment: budget_po
+    data_classification: 
+    nullable: true
+    raw_column_name: po
+  - column_data_type: string
+    column_name: budget_function_point_of_contact
+    comment: budget_function_point_of_contact
+    data_classification: 
+    nullable: true
+    raw_column_name: function_point_of_contact
+  - column_data_type: string
+    column_name: budget_hyperion_expenditure_type
+    comment: budget_hyperion_expenditure_type
+    data_classification: 
+    nullable: true
+    raw_column_name: hyperion_expenditure_type
+  - column_data_type: string
+    column_name: budget_epm_account_wip
+    comment: budget_epm_account_wip
+    data_classification: 
+    nullable: true
+    raw_column_name: epm_account_wip
+  - column_data_type: string
+    column_name: budget_cost_type
+    comment: budget_cost_type
+    data_classification: 
+    nullable: true
+    raw_column_name: cost_type
+  - column_data_type: string
+    column_name: budget_cost_variability_driver
+    comment: budget_cost_variability_driver
+    data_classification: 
+    nullable: true
+    raw_column_name: cost_variability_driver
+  - column_data_type: string
+    column_name: budget_vulnerability_h_m_l
+    comment: budget_vulnerability_h_m_l
+    data_classification: 
+    nullable: true
+    raw_column_name: vulnerability_h_m_l
+  - column_data_type: string
+    column_name: budget_budget_item_description
+    comment: budget_budget_item_description
+    data_classification: 
+    nullable: true
+    raw_column_name: budget_item_description
+  - column_data_type: string
+    column_name: budget_budget_category
+    comment: budget_budget_category
+    data_classification: 
+    nullable: true
+    raw_column_name: budget_category
+  - column_data_type: string
+    column_name: budget_justification
+    comment: budget_justification
+    data_classification: 
+    nullable: true
+    raw_column_name: justification
+  - column_data_type: string
+    column_name: budget_committed_yes_no
+    comment: budget_committed_yes_no
+    data_classification: 
+    nullable: true
+    raw_column_name: committed_yes_no
+  - column_data_type: string
+    column_name: budget_service_period_start
+    comment: budget_service_period_start
+    data_classification: 
+    nullable: true
+    raw_column_name: service_period_start
+  - column_data_type: string
+    column_name: budget_service_period_end
+    comment: budget_service_period_end
+    data_classification: 
+    nullable: true
+    raw_column_name: service_period_end
+  - column_data_type: string
+    column_name: budget_input_currency
+    comment: budget_input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: input_currency
+  - column_data_type: string
+    column_name: budget_contract_or_forecast_value_in_contract_currency
+    comment: budget_contract_or_forecast_value_in_contract_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_or_forecast_value_in_contract_currency
+  - column_data_type: string
+    column_name: budget_service_period_start_1
+    comment: budget_service_period_start_1
+    data_classification: 
+    nullable: true
+    raw_column_name: service_period_start_1
+  - column_data_type: string
+    column_name: budget_service_period_end_1
+    comment: budget_service_period_end_1
+    data_classification: 
+    nullable: true
+    raw_column_name: service_period_end_1
+  - column_data_type: string
+    column_name: budget_input_currency_1
+    comment: budget_input_currency_1
+    data_classification: 
+    nullable: true
+    raw_column_name: input_currency_1
+  - column_data_type: string
+    column_name: budget_contract_or_forecast_value_in_contract_currency_1
+    comment: budget_contract_or_forecast_value_in_contract_currency_1
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_or_forecast_value_in_contract_currency_1
+  - column_data_type: string
+    column_name: budget_contract_or_forecast_value_in_aud
+    comment: budget_contract_or_forecast_value_in_aud
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_or_forecast_value_in_aud
+  - column_data_type: string
+    column_name: budget_licence_type_e_g_user_platform_device_count_etc
+    comment: budget_licence_type_e_g_user_platform_device_count_etc
+    data_classification: 
+    nullable: true
+    raw_column_name: licence_type_e_g_user_platform_device_count_etc
+  - column_data_type: string
+    column_name: budget_licence_volume
+    comment: budget_licence_volume
+    data_classification: 
+    nullable: true
+    raw_column_name: licence_volume
+  - column_data_type: string
+    column_name: budget_cost_per_licence_in_contract_currency
+    comment: budget_cost_per_licence_in_contract_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: cost_per_licence_in_contract_currency
+  - column_data_type: string
+    column_name: budget_contract_months
+    comment: budget_contract_months
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_months
+  - column_data_type: string
+    column_name: budget_invoice_frequency
+    comment: budget_invoice_frequency
+    data_classification: 
+    nullable: true
+    raw_column_name: invoice_frequency
+  - column_data_type: string
+    column_name: budget_x
+    comment: budget_x
+    data_classification: 
+    nullable: true
+    raw_column_name: x
+  - column_data_type: string
+    column_name: budget_cpi_assumption_if_required
+    comment: budget_cpi_assumption_if_required
+    data_classification: 
+    nullable: true
+    raw_column_name: cpi_assumption_if_required
+  - column_data_type: string
+    column_name: budget_org_growth_assumption_if_required
+    comment: budget_org_growth_assumption_if_required
+    data_classification: 
+    nullable: true
+    raw_column_name: org_growth_assumption_if_required
+  - column_data_type: string
+    column_name: budget_x_1
+    comment: budget_x_1
+    data_classification: 
+    nullable: true
+    raw_column_name: x_1
+  - column_data_type: string
+    column_name: budget_jul_24__bud__input_currency
+    comment: budget_jul_24__bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_24__bud__input_currency
+  - column_data_type: string
+    column_name: budget_aug_24__bud__input_currency
+    comment: budget_aug_24__bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_24__bud__input_currency
+  - column_data_type: string
+    column_name: budget_sep_24__bud__input_currency
+    comment: budget_sep_24__bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_24__bud__input_currency
+  - column_data_type: string
+    column_name: budget_oct_24__bud__input_currency
+    comment: budget_oct_24__bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_24__bud__input_currency
+  - column_data_type: string
+    column_name: budget_nov_24__bud__input_currency
+    comment: budget_nov_24__bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_24__bud__input_currency
+  - column_data_type: string
+    column_name: budget_dec_24_bud__input_currency
+    comment: budget_dec_24_bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_24_bud__input_currency
+  - column_data_type: string
+    column_name: budget_jan_25__bud__input_currency
+    comment: budget_jan_25__bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_25__bud__input_currency
+  - column_data_type: string
+    column_name: budget_feb_25_bud__input_currency
+    comment: budget_feb_25_bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_25_bud__input_currency
+  - column_data_type: string
+    column_name: budget_mar_25_bud__input_currency
+    comment: budget_mar_25_bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_25_bud__input_currency
+  - column_data_type: string
+    column_name: budget_apr_25__bud__input_currency
+    comment: budget_apr_25__bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_25__bud__input_currency
+  - column_data_type: string
+    column_name: budget_may_25_bud__input_currency
+    comment: budget_may_25_bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: may_25_bud__input_currency
+  - column_data_type: string
+    column_name: budget_jun_25__bud__input_currency
+    comment: budget_jun_25__bud__input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_25__bud__input_currency
+  - column_data_type: string
+    column_name: budget_fy25_full_year_budget_input_currency
+    comment: budget_fy25_full_year_budget_input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: fy25_full_year_budget_input_currency
+  - column_data_type: string
+    column_name: budget_jul_24__bud
+    comment: budget_jul_24__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_24__bud
+  - column_data_type: string
+    column_name: budget_aug_24__bud
+    comment: budget_aug_24__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_24__bud
+  - column_data_type: string
+    column_name: budget_sep_24__bud
+    comment: budget_sep_24__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_24__bud
+  - column_data_type: string
+    column_name: budget_oct_24__bud
+    comment: budget_oct_24__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_24__bud
+  - column_data_type: string
+    column_name: budget_nov_24__bud
+    comment: budget_nov_24__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_24__bud
+  - column_data_type: string
+    column_name: budget_dec_24__bud
+    comment: budget_dec_24__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_24__bud
+  - column_data_type: string
+    column_name: budget_jan_25__bud
+    comment: budget_jan_25__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_25__bud
+  - column_data_type: string
+    column_name: budget_feb_25__bud
+    comment: budget_feb_25__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_25__bud
+  - column_data_type: string
+    column_name: budget_mar_25__bud
+    comment: budget_mar_25__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_25__bud
+  - column_data_type: string
+    column_name: budget_apr_25__bud
+    comment: budget_apr_25__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_25__bud
+  - column_data_type: string
+    column_name: budget_may_25__bud
+    comment: budget_may_25__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: may_25__bud
+  - column_data_type: string
+    column_name: budget_jun_25__bud
+    comment: budget_jun_25__bud
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_25__bud
+  - column_data_type: string
+    column_name: budget_fy25_full_year_budget_aud_currency
+    comment: budget_fy25_full_year_budget_aud_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: fy25_full_year_budget_aud_currency
+  - column_data_type: string
+    column_name: budget_x_2
+    comment: budget_x_2
+    data_classification: 
+    nullable: true
+    raw_column_name: x_2
+  - column_data_type: string
+    column_name: budget_x_3
+    comment: budget_x_3
+    data_classification: 
+    nullable: true
+    raw_column_name: x_3
+  - column_data_type: string
+    column_name: budget_jul_25__forecast
+    comment: budget_jul_25__forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_25__forecast
+  - column_data_type: string
+    column_name: budget_aug_25__forecast
+    comment: budget_aug_25__forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_25__forecast
+  - column_data_type: string
+    column_name: budget_sep_25__forecast
+    comment: budget_sep_25__forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_25__forecast
+  - column_data_type: string
+    column_name: budget_oct_25_forecast
+    comment: budget_oct_25_forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_25_forecast
+  - column_data_type: string
+    column_name: budget_nov_25__forecast
+    comment: budget_nov_25__forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_25__forecast
+  - column_data_type: string
+    column_name: budget_dec_25_forecast
+    comment: budget_dec_25_forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_25_forecast
+  - column_data_type: string
+    column_name: budget_jan_26_forecast
+    comment: budget_jan_26_forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_26_forecast
+  - column_data_type: string
+    column_name: budget_feb_26_forecast
+    comment: budget_feb_26_forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_26_forecast
+  - column_data_type: string
+    column_name: budget_mar_26_forecast
+    comment: budget_mar_26_forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_26_forecast
+  - column_data_type: string
+    column_name: budget_apr_26_forecast
+    comment: budget_apr_26_forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_26_forecast
+  - column_data_type: string
+    column_name: budget_may_26_forecast
+    comment: budget_may_26_forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: may_26_forecast
+  - column_data_type: string
+    column_name: budget_jun_26_forecast
+    comment: budget_jun_26_forecast
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_26_forecast
+  - column_data_type: string
+    column_name: budget_fy26_full_year_forecast_input_currency
+    comment: budget_fy26_full_year_forecast_input_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: fy26_full_year_forecast_input_currency
+  - column_data_type: string
+    column_name: budget_jul_25__forecast_1
+    comment: budget_jul_25__forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_25__forecast_1
+  - column_data_type: string
+    column_name: budget_aug_25__forecast_1
+    comment: budget_aug_25__forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_25__forecast_1
+  - column_data_type: string
+    column_name: budget_sep_25__forecast_1
+    comment: budget_sep_25__forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_25__forecast_1
+  - column_data_type: string
+    column_name: budget_oct_25_forecast_1
+    comment: budget_oct_25_forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_25_forecast_1
+  - column_data_type: string
+    column_name: budget_nov_25__forecast_1
+    comment: budget_nov_25__forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_25__forecast_1
+  - column_data_type: string
+    column_name: budget_dec_25_forecast_1
+    comment: budget_dec_25_forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_25_forecast_1
+  - column_data_type: string
+    column_name: budget_jan_26_forecast_1
+    comment: budget_jan_26_forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_26_forecast_1
+  - column_data_type: string
+    column_name: budget_feb_26_forecast_1
+    comment: budget_feb_26_forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_26_forecast_1
+  - column_data_type: string
+    column_name: budget_mar_26_forecast_1
+    comment: budget_mar_26_forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_26_forecast_1
+  - column_data_type: string
+    column_name: budget_apr_26_forecast_1
+    comment: budget_apr_26_forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_26_forecast_1
+  - column_data_type: string
+    column_name: budget_may_26_forecast_1
+    comment: budget_may_26_forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: may_26_forecast_1
+  - column_data_type: string
+    column_name: budget_jun_26_forecast_1
+    comment: budget_jun_26_forecast_1
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_26_forecast_1
+  - column_data_type: string
+    column_name: budget_fy26_full_year_forecast_aud
+    comment: budget_fy26_full_year_forecast_aud
+    data_classification: 
+    nullable: true
+    raw_column_name: fy26_full_year_forecast_aud
+  - column_data_type: string
+    column_name: budget_jul_24__q1_fcst
+    comment: budget_jul_24__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_24__q1_fcst
+  - column_data_type: string
+    column_name: budget_aug_24__q1_fcst
+    comment: budget_aug_24__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_24__q1_fcst
+  - column_data_type: string
+    column_name: budget_sep_24__q1_fcst
+    comment: budget_sep_24__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_24__q1_fcst
+  - column_data_type: string
+    column_name: budget_oct_24__q1_fcst
+    comment: budget_oct_24__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_24__q1_fcst
+  - column_data_type: string
+    column_name: budget_nov_24__q1_fcst
+    comment: budget_nov_24__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_24__q1_fcst
+  - column_data_type: string
+    column_name: budget_dec_24__q1_fcst
+    comment: budget_dec_24__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_24__q1_fcst
+  - column_data_type: string
+    column_name: budget_jan_25__q1_fcst
+    comment: budget_jan_25__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_25__q1_fcst
+  - column_data_type: string
+    column_name: budget_feb_25__q1_fcst
+    comment: budget_feb_25__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_25__q1_fcst
+  - column_data_type: string
+    column_name: budget_mar_25__q1_fcst
+    comment: budget_mar_25__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_25__q1_fcst
+  - column_data_type: string
+    column_name: budget_apr_25__q1_fcst
+    comment: budget_apr_25__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_25__q1_fcst
+  - column_data_type: string
+    column_name: budget_may_25__q1_fcst
+    comment: budget_may_25__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: may_25__q1_fcst
+  - column_data_type: string
+    column_name: budget_jun_25__q1_fcst
+    comment: budget_jun_25__q1_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_25__q1_fcst
+  - column_data_type: string
+    column_name: budget_fy25_full_year_q1_fcst_aud_currency
+    comment: budget_fy25_full_year_q1_fcst_aud_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: fy25_full_year_q1_fcst_aud_currency
+  - column_data_type: string
+    column_name: budget_q1_forecast_less_budget
+    comment: budget_q1_forecast_less_budget
+    data_classification: 
+    nullable: true
+    raw_column_name: q1_forecast_less_budget
+  - column_data_type: string
+    column_name: budget_x_4
+    comment: budget_x_4
+    data_classification: 
+    nullable: true
+    raw_column_name: x_4
+  - column_data_type: string
+    column_name: budget_jul_24__q2_fcst
+    comment: budget_jul_24__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_24__q2_fcst
+  - column_data_type: string
+    column_name: budget_aug_24__q2_fcst
+    comment: budget_aug_24__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_24__q2_fcst
+  - column_data_type: string
+    column_name: budget_sep_24__q2_fcst
+    comment: budget_sep_24__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_24__q2_fcst
+  - column_data_type: string
+    column_name: budget_oct_24__q2_fcst
+    comment: budget_oct_24__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_24__q2_fcst
+  - column_data_type: string
+    column_name: budget_nov_24__q2_fcst
+    comment: budget_nov_24__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_24__q2_fcst
+  - column_data_type: string
+    column_name: budget_dec_24__q2_fcst
+    comment: budget_dec_24__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_24__q2_fcst
+  - column_data_type: string
+    column_name: budget_jan_25__q2_fcst
+    comment: budget_jan_25__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_25__q2_fcst
+  - column_data_type: string
+    column_name: budget_feb_25__q2_fcst
+    comment: budget_feb_25__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_25__q2_fcst
+  - column_data_type: string
+    column_name: budget_mar_25__q2_fcst
+    comment: budget_mar_25__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_25__q2_fcst
+  - column_data_type: string
+    column_name: budget_apr_25__q2_fcst
+    comment: budget_apr_25__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_25__q2_fcst
+  - column_data_type: string
+    column_name: budget_may_25__q2_fcst
+    comment: budget_may_25__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: may_25__q2_fcst
+  - column_data_type: string
+    column_name: budget_jun_25__q2_fcst
+    comment: budget_jun_25__q2_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_25__q2_fcst
+  - column_data_type: string
+    column_name: budget_fy25_full_year_q2_fcst_aud_currency
+    comment: budget_fy25_full_year_q2_fcst_aud_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: fy25_full_year_q2_fcst_aud_currency
+  - column_data_type: string
+    column_name: budget_jul_24__q3_fcst
+    comment: budget_jul_24__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_24__q3_fcst
+  - column_data_type: string
+    column_name: budget_aug_24__q3_fcst
+    comment: budget_aug_24__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_24__q3_fcst
+  - column_data_type: string
+    column_name: budget_sep_24__q3_fcst
+    comment: budget_sep_24__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_24__q3_fcst
+  - column_data_type: string
+    column_name: budget_oct_24__q3_fcst
+    comment: budget_oct_24__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_24__q3_fcst
+  - column_data_type: string
+    column_name: budget_nov_24__q3_fcst
+    comment: budget_nov_24__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_24__q3_fcst
+  - column_data_type: string
+    column_name: budget_dec_24__q3_fcst
+    comment: budget_dec_24__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_24__q3_fcst
+  - column_data_type: string
+    column_name: budget_jan_25__q3_fcst
+    comment: budget_jan_25__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_25__q3_fcst
+  - column_data_type: string
+    column_name: budget_feb_25__q3_fcst
+    comment: budget_feb_25__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_25__q3_fcst
+  - column_data_type: string
+    column_name: budget_mar_25__q3_fcst
+    comment: budget_mar_25__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_25__q3_fcst
+  - column_data_type: string
+    column_name: budget_apr_25__q3_fcst
+    comment: budget_apr_25__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_25__q3_fcst
+  - column_data_type: string
+    column_name: budget_may_25__q3_fcst
+    comment: budget_may_25__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: may_25__q3_fcst
+  - column_data_type: string
+    column_name: budget_jun_25__q3_fcst
+    comment: budget_jun_25__q3_fcst
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_25__q3_fcst
+  - column_data_type: string
+    column_name: budget_fy25_full_year_q3_fcst_aud_currency
+    comment: budget_fy25_full_year_q3_fcst_aud_currency
+    data_classification: 
+    nullable: true
+    raw_column_name: fy25_full_year_q3_fcst_aud_currency
+  - column_data_type: string
+    column_name: budget_x_5
+    comment: budget_x_5
+    data_classification: 
+    nullable: true
+    raw_column_name: x_5
+  - column_data_type: string
+    column_name: budget_jul_24__actuals
+    comment: budget_jul_24__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_24__actuals
+  - column_data_type: string
+    column_name: budget_aug_24__actuals
+    comment: budget_aug_24__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_24__actuals
+  - column_data_type: string
+    column_name: budget_sep_24__actuals
+    comment: budget_sep_24__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_24__actuals
+  - column_data_type: string
+    column_name: budget_oct_24__actuals
+    comment: budget_oct_24__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_24__actuals
+  - column_data_type: string
+    column_name: budget_nov_24__actuals
+    comment: budget_nov_24__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_24__actuals
+  - column_data_type: string
+    column_name: budget_dec_24__actuals
+    comment: budget_dec_24__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_24__actuals
+  - column_data_type: string
+    column_name: budget_jan_25__actuals
+    comment: budget_jan_25__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_25__actuals
+  - column_data_type: string
+    column_name: budget_feb_25__actuals
+    comment: budget_feb_25__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_25__actuals
+  - column_data_type: string
+    column_name: budget_mar_25__actuals
+    comment: budget_mar_25__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_25__actuals
+  - column_data_type: string
+    column_name: budget_apr_25__actuals
+    comment: budget_apr_25__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_25__actuals
+  - column_data_type: string
+    column_name: budget_may_25__actuals
+    comment: budget_may_25__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: may_25__actuals
+  - column_data_type: string
+    column_name: budget_jun_25__actuals
+    comment: budget_jun_25__actuals
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_25__actuals
+  - column_data_type: string
+    column_name: budget_fy25_full_year_actuals_aud
+    comment: budget_fy25_full_year_actuals_aud
+    data_classification: 
+    nullable: true
+    raw_column_name: fy25_full_year_actuals_aud
+  - column_data_type: string
+    column_name: budget_x_6
+    comment: budget_x_6
+    data_classification: 
+    nullable: true
+    raw_column_name: x_6
+  - column_data_type: string
+    column_name: budget_x_7
+    comment: budget_x_7
+    data_classification: 
+    nullable: true
+    raw_column_name: x_7
+  - column_data_type: string
+    column_name: budget_jul_24_var
+    comment: budget_jul_24_var
+    data_classification: 
+    nullable: true
+    raw_column_name: jul_24_var
+  - column_data_type: string
+    column_name: budget_aug_24__var
+    comment: budget_aug_24__var
+    data_classification: 
+    nullable: true
+    raw_column_name: aug_24__var
+  - column_data_type: string
+    column_name: budget_sep_24__var
+    comment: budget_sep_24__var
+    data_classification: 
+    nullable: true
+    raw_column_name: sep_24__var
+  - column_data_type: string
+    column_name: budget_oct_24_var
+    comment: budget_oct_24_var
+    data_classification: 
+    nullable: true
+    raw_column_name: oct_24_var
+  - column_data_type: string
+    column_name: budget_nov_24__var
+    comment: budget_nov_24__var
+    data_classification: 
+    nullable: true
+    raw_column_name: nov_24__var
+  - column_data_type: string
+    column_name: budget_dec_24_var
+    comment: budget_dec_24_var
+    data_classification: 
+    nullable: true
+    raw_column_name: dec_24_var
+  - column_data_type: string
+    column_name: budget_jan_25_var
+    comment: budget_jan_25_var
+    data_classification: 
+    nullable: true
+    raw_column_name: jan_25_var
+  - column_data_type: string
+    column_name: budget_feb_25_var
+    comment: budget_feb_25_var
+    data_classification: 
+    nullable: true
+    raw_column_name: feb_25_var
+  - column_data_type: string
+    column_name: budget_mar_25_var
+    comment: budget_mar_25_var
+    data_classification: 
+    nullable: true
+    raw_column_name: mar_25_var
+  - column_data_type: string
+    column_name: budget_apr_25_var
+    comment: budget_apr_25_var
+    data_classification: 
+    nullable: true
+    raw_column_name: apr_25_var
+  - column_data_type: string
+    column_name: budget_may_25_var
+    comment: budget_may_25_var
+    data_classification: 
+    nullable: true
+    raw_column_name: may_25_var
+  - column_data_type: string
+    column_name: budget_jun_25_var
+    comment: budget_jun_25_var
+    data_classification: 
+    nullable: true
+    raw_column_name: jun_25_var
+  - column_data_type: string
+    column_name: budget_fy25_full_year_var_aud
+    comment: budget_fy25_full_year_var_aud
+    data_classification: 
+    nullable: true
+    raw_column_name: fy25_full_year_var_aud
+  - column_data_type: string
+    column_name: budget_x_8
+    comment: budget_x_8
+    data_classification: 
+    nullable: true
+    raw_column_name: x_8
+  - column_data_type: string
+    column_name: budget_fx
+    comment: budget_fx
+    data_classification: 
+    nullable: true
+    raw_column_name: fx
+  - column_data_type: string
+    column_name: budget_amortization
+    comment: budget_amortization
+    data_classification: 
+    nullable: true
+    raw_column_name: amortization
+  - column_data_type: string
+    column_name: budget_usage_1
+    comment: budget_usage_1
+    data_classification: 
+    nullable: true
+    raw_column_name: usage_1
+  - column_data_type: string
+    column_name: budget_accounting_related
+    comment: budget_accounting_related
+    data_classification: 
+    nullable: true
+    raw_column_name: accounting_related
+  - column_data_type: string
+    column_name: budget_accounting_related_onerous_provision
+    comment: budget_accounting_related_onerous_provision
+    data_classification: 
+    nullable: true
+    raw_column_name: accounting_related_onerous_provision
+  - column_data_type: string
+    column_name: budget_budget
+    comment: budget_budget
+    data_classification: 
+    nullable: true
+    raw_column_name: budget
+  - column_data_type: string
+    column_name: budget_budget_type
+    comment: budget_budget_type
+    data_classification: 
+    nullable: true
+    raw_column_name: budget_type
+  - column_data_type: string
+    column_name: budget_current_risk_ranking
+    comment: budget_current_risk_ranking
+    data_classification: 
+    nullable: true
+    raw_column_name: current_risk_ranking
+  - column_data_type: string
+    column_name: budget_opportunities
+    comment: budget_opportunities
+    data_classification: 
+    nullable: true
+    raw_column_name: opportunities
+  - column_data_type: string
+    column_name: budget_risk_rating_remarks
+    comment: budget_risk_rating_remarks
+    data_classification: 
+    nullable: true
+    raw_column_name: risk_rating_remarks
+  - column_data_type: string
+    column_name: budget_x_9
+    comment: budget_x_9
+    data_classification: 
+    nullable: true
+    raw_column_name: x_9
+  - column_data_type: string
+    column_name: budget_commentaries
+    comment: budget_commentaries
+    data_classification: 
+    nullable: true
+    raw_column_name: commentaries
+  - column_data_type: string
+    column_name: budget_contract_renewal_savings
+    comment: budget_contract_renewal_savings
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_renewal_savings
+  - column_data_type: string
+    column_name: budget_onerous_provision
+    comment: budget_onerous_provision
+    data_classification: 
+    nullable: true
+    raw_column_name: onerous_provision
+  - column_data_type: string
+    column_name: budget_usage_2
+    comment: budget_usage_2
+    data_classification: 
+    nullable: true
+    raw_column_name: usage_2
+  - column_data_type: string
+    column_name: budget_accounting
+    comment: budget_accounting
+    data_classification: 
+    nullable: true
+    raw_column_name: accounting
+  - column_data_type: string
+    column_name: budget_capex_related_issue_change_in_capex_amount_timing
+    comment: budget_capex_related_issue_change_in_capex_amount_timing
+    data_classification: 
+    nullable: true
+    raw_column_name: capex_related_issue_change_in_capex_amount_timing
+  - column_data_type: string
+    column_name: budget_fx_variance
+    comment: budget_fx_variance
+    data_classification: 
+    nullable: true
+    raw_column_name: fx_variance
+  - column_data_type: string
+    column_name: budget_unutilised_budget_release
+    comment: budget_unutilised_budget_release
+    data_classification: 
+    nullable: true
+    raw_column_name: unutilised_budget_release
+  - column_data_type: string
+    column_name: budget_unnamed_191
+    comment: budget_unnamed_191
+    data_classification: 
+    nullable: true
+    raw_column_name: unnamed_191
+  - column_data_type: string
+    column_name: budget_contract_renewal
+    comment: budget_contract_renewal
+    data_classification: 
+    nullable: true
+    raw_column_name: contract_renewal
+  - column_data_type: string
+    column_name: budget_onerous_provision_1
+    comment: budget_onerous_provision_1
+    data_classification: 
+    nullable: true
+    raw_column_name: onerous_provision_1
+  - column_data_type: string
+    column_name: budget_variance
+    comment: budget_variance
+    data_classification: 
+    nullable: true
+    raw_column_name: variance
+  - column_data_type: string
+    column_name: budget_x_10
+    comment: budget_x_10
+    data_classification: 
+    nullable: true
+    raw_column_name: x_10
+  - column_data_type: string
+    column_name: budget_unnamed_196
+    comment: budget_unnamed_196
+    data_classification: 
+    nullable: true
+    raw_column_name: unnamed_196
+  - column_data_type: string
+    column_name: budget_finance_response
+    comment: budget_finance_response
+    data_classification: 
+    nullable: true
+    raw_column_name: finance_response
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: worley_datalake_sydney_${envn}_glue_catalog_database_circuit_breaker_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/circuit_breaker/finance/curated_finance_budget/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_finance_budget
+  load_type: full_load
+  name: curated_finance_budget
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/circuit_breaker/finance/curated_finance_budget
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'circuit_breaker' as SOURCE_SYSTEM_NAME, 'curated_finance_budget'
+    as CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

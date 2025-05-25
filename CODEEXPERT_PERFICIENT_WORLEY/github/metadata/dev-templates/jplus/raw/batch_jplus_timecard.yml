@@ -1,0 +1,19 @@
+SourceSystemId: jplus_timecard
+MetadataType: batch#jplus#dev#timecard
+aws_region: ${region}
+Env: ${envn}
+is_active: true
+Pattern: batch
+smb_configuration:
+  archive_folder: /JPLUSFILETRANSFERS$/SHARED/Exports/O3/Archive
+  file_archive_flag: true
+  file_delete_flag: true
+  host_url: usazrweb006v.worley.com
+  destination_bucket: ${raw_bucket}
+  host_port: 445
+  source:
+  - pattern: '*WP_US_USA_OU-O3_JPlus*.xlsx'
+    SourcePath: /JPLUSFILETRANSFERS$/SHARED/Exports/O3/New
+  kms_key_arn: ${iceberg_snapshot_key}
+  destination_folder: finance/jplus/timecard/raw
+  secret_credentials: ${jplus_source_secret}

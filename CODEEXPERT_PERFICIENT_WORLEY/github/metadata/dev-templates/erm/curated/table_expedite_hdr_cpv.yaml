@@ -1,0 +1,289 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishExpediteHdrCpv#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishExpediteHdrCpv/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishExpediteHdrCpv
+  name: erm_PublishExpediteHdrCpv
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: expedite_hdr_no
+    comment: expedite_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: expedite_hdr_no
+  - column_data_type: string
+    column_name: cust_po_no
+    comment: cust_po_no
+    data_classification: null
+    nullable: true
+    raw_column_name: cust_po_no
+  - column_data_type: string
+    column_name: point_of_origin
+    comment: point_of_origin
+    data_classification: null
+    nullable: true
+    raw_column_name: point_of_origin
+  - column_data_type: decimal(38,2)
+    column_name: origin
+    comment: origin
+    data_classification: null
+    nullable: true
+    raw_column_name: origin
+  - column_data_type: decimal(38,2)
+    column_name: expediting_level
+    comment: expediting_level
+    data_classification: null
+    nullable: true
+    raw_column_name: expediting_level
+  - column_data_type: decimal(38,2)
+    column_name: inspection_level
+    comment: inspection_level
+    data_classification: null
+    nullable: true
+    raw_column_name: inspection_level
+  - column_data_type: string
+    column_name: sub_project
+    comment: sub_project
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_project
+  - column_data_type: date
+    column_name: po_close_date
+    comment: po_close_date
+    data_classification: null
+    nullable: true
+    raw_column_name: po_close_date
+  - column_data_type: string
+    column_name: supplier_pm
+    comment: supplier_pm
+    data_classification: null
+    nullable: true
+    raw_column_name: supplier_pm
+  - column_data_type: string
+    column_name: major_suborder_placed
+    comment: major_suborder_placed
+    data_classification: null
+    nullable: true
+    raw_column_name: major_suborder_placed
+  - column_data_type: string
+    column_name: pts_doc_recv
+    comment: pts_doc_recv
+    data_classification: null
+    nullable: true
+    raw_column_name: pts_doc_recv
+  - column_data_type: string
+    column_name: total_doc_sub_req
+    comment: total_doc_sub_req
+    data_classification: null
+    nullable: true
+    raw_column_name: total_doc_sub_req
+  - column_data_type: string
+    column_name: total_doc_sub_todate
+    comment: total_doc_sub_todate
+    data_classification: null
+    nullable: true
+    raw_column_name: total_doc_sub_todate
+  - column_data_type: date
+    column_name: fat
+    comment: fat
+    data_classification: null
+    nullable: true
+    raw_column_name: fat
+  - column_data_type: string
+    column_name: client_ref_no
+    comment: client_ref_no
+    data_classification: null
+    nullable: true
+    raw_column_name: client_ref_no
+  - column_data_type: date
+    column_name: milestone1_docs_recv
+    comment: milestone1_docs_recv
+    data_classification: null
+    nullable: true
+    raw_column_name: milestone1_docs_recv
+  - column_data_type: date
+    column_name: pim_date
+    comment: pim_date
+    data_classification: null
+    nullable: true
+    raw_column_name: pim_date
+  - column_data_type: date
+    column_name: fab_start_date
+    comment: fab_start_date
+    data_classification: null
+    nullable: true
+    raw_column_name: fab_start_date
+  - column_data_type: date
+    column_name: final_insp_date
+    comment: final_insp_date
+    data_classification: null
+    nullable: true
+    raw_column_name: final_insp_date
+  - column_data_type: date
+    column_name: cust_po_iss_date
+    comment: cust_po_iss_date
+    data_classification: null
+    nullable: true
+    raw_column_name: cust_po_iss_date
+  - column_data_type: string
+    column_name: assigned_buyer
+    comment: assigned_buyer
+    data_classification: null
+    nullable: true
+    raw_column_name: assigned_buyer
+  - column_data_type: string
+    column_name: package_engineer
+    comment: package_engineer
+    data_classification: null
+    nullable: true
+    raw_column_name: package_engineer
+  - column_data_type: decimal(38,2)
+    column_name: fabrication_progress
+    comment: fabrication_progress
+    data_classification: null
+    nullable: true
+    raw_column_name: fabrication_progress
+  - column_data_type: string
+    column_name: sub_supplier
+    comment: sub_supplier
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_supplier
+  - column_data_type: string
+    column_name: sub_supplier_contact
+    comment: sub_supplier_contact
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_supplier_contact
+  - column_data_type: string
+    column_name: sub_supplier_location
+    comment: sub_supplier_location
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_supplier_location
+  - column_data_type: string
+    column_name: sqs_coordinator
+    comment: sqs_coordinator
+    data_classification: null
+    nullable: true
+    raw_column_name: sqs_coordinator
+  - column_data_type: string
+    column_name: assigned_inspector
+    comment: assigned_inspector
+    data_classification: null
+    nullable: true
+    raw_column_name: assigned_inspector
+  - column_data_type: string
+    column_name: assigned_inspector_email
+    comment: assigned_inspector_email
+    data_classification: null
+    nullable: true
+    raw_column_name: assigned_inspector_email
+  - column_data_type: string
+    column_name: executvie_contact_name
+    comment: executvie_contact_name
+    data_classification: null
+    nullable: true
+    raw_column_name: executvie_contact_name
+  - column_data_type: string
+    column_name: executvie_contact_phone
+    comment: executvie_contact_phone
+    data_classification: null
+    nullable: true
+    raw_column_name: executvie_contact_phone
+  - column_data_type: string
+    column_name: executvie_contact_email
+    comment: executvie_contact_email
+    data_classification: null
+    nullable: true
+    raw_column_name: executvie_contact_email
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: po_close_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishExpediteHdrCpv/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: expedite_hdr_cpv
+  load_type: cdc
+  name: expedite_hdr_cpv
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishExpediteHdrCpv
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

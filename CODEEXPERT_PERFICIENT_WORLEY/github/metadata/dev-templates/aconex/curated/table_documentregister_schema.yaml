@@ -1,0 +1,70 @@
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#docregister_schema#job#iceberg
+source:
+  name: aconex_docregister_schema
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/document_control/aconex/docregister_schema/
+    format: parquet
+    transformation_ctx: aconex-doc-register-schema
+transforms:
+- transform: rename_columns
+  rename_column: true
+- transform: select_columns_from_config_file
+  select_columns: true
+- transform: change_data_types
+  change_types: true
+- transform: add_run_date
+  column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+- transform: custom_sql
+  sql: SELECT *, 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+target:
+  name: curated_aconex_docregister_schema
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    table_name: curated_docregister_schema
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/docregister_schema/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: incremental
+  primary_key: [projectid,identifier]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/docregister_schema
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [projectid,identifier]
+    rename_columns: true
+  columns:
+  - column_name:  identifier 
+    column_data_type:   string 
+    nullable: true
+    comment:  identifier  
+    data_classification: null
+    raw_column_name:   identifier   
+  - column_name:  modifiedfieldname 
+    column_data_type:   string 
+    nullable: true
+    comment:  modifiedfieldname 
+    data_classification: null
+    raw_column_name:   modifiedfieldname    
+  - column_name:  projectid 
+    column_data_type:   long 
+    nullable: true
+    comment:  projectid 
+    data_classification: null
+    raw_column_name: projectid    
+   
+ 

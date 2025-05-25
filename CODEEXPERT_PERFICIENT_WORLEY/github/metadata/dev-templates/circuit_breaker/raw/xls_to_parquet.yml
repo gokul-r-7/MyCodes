@@ -1,0 +1,206 @@
+SourceSystemId: circuit_breaker
+MetadataType: csv_xlsx#circuit_breaker#circuit_breaker
+aws_region: ${region}
+Env: ${envn}
+is_active: "y"
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: circuit_breaker/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: circuit_breaker/parquet/
+  raw_files_path: circuit_breaker/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: circuit_breaker/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames:
+  - "\n"
+  xls_files:
+  - filename: License Entitlements Spreadsheet.xlsx
+    file_prefix_length: 18
+    file_suffix_length: 0
+    is_fixed_file_name: false
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: WP
+      skiprows: 3
+      tablename: entitlement_worley_parsons
+    xls_engine_name: openpyxl
+  - filename: GSR Export 11-Nov-24.xlsx
+    file_prefix_length: 10
+    file_suffix_length: 0
+    is_fixed_file_name: false
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: GSR Export
+      tablename: global_software_register
+    xls_engine_name: openpyxl
+  - filename: All commercial software 20241111.xlsx
+    file_prefix_length: 20
+    file_suffix_length: 0
+    is_fixed_file_name: false
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Microsoft
+      tablename: consumption_flexera
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Non-microsoft
+      tablename: consumption_flexera
+    xls_engine_name: openpyxl
+  - filename: AWS - Open iT Extract 09122024.xlsx
+    file_prefix_length: 20
+    file_suffix_length: 0
+    is_fixed_file_name: true
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Monthly Summary
+      skiprows: 7
+      tablename: consumption_openit_monthly_summary
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Monthly Summary by Location
+      skiprows: 7
+      tablename: consumption_openit_monthly_summary_by_location
+    xls_engine_name: openpyxl
+  - filename: AWS - Open iT Extract 10122024.xlsx
+    file_prefix_length: 20
+    file_suffix_length: 0
+    is_fixed_file_name: true
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Monthly Summary
+      skiprows: 7
+      tablename: consumption_openit_monthly_summary
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Monthly Summary by Location
+      skiprows: 7
+      tablename: consumption_openit_monthly_summary_by_location
+    xls_engine_name: openpyxl
+  - filename: FY25 Worley Digital- Finance tracker.xlsx
+    file_prefix_length: 20
+    file_suffix_length: 0
+    is_fixed_file_name: false
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: FY25 Final NL- Tracker
+      skiprows: 3
+      tablename: finance_budget
+    xls_engine_name: openpyxl
+  - filename: Machine Name Prefix to Country Translator.xlsx
+    file_prefix_length: 20
+    file_suffix_length: 0
+    is_fixed_file_name: false
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Sheet1
+      tablename: consumption_region_country_mapping
+    xls_engine_name: openpyxl
+  - filename: Headcount Trend-2.xlsx
+    file_prefix_length: 10
+    file_suffix_length: 0
+    is_fixed_file_name: false
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Total Headcount
+      tablename: entitlement_total_headcount
+    xls_engine_name: openpyxl
+  - filename: Active Contract Masters 15-01-2025.xlsx
+    file_prefix_length: 20
+    file_suffix_length: 0
+    is_fixed_file_name: false
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Active Contract Masters
+      tablename: entitlement_active_contract_masters
+    xls_engine_name: openpyxl
+  - filename: GSR - Worley Functional Groups to Function Mapping.xlsx
+    file_prefix_length: 30
+    file_suffix_length: 0
+    is_fixed_file_name: false
+    sheets:
+    - data_start_column: 0
+      data_start_row: 0
+      header_column: 0
+      header_row: 0
+      multiline: true
+      quote_character: "\""
+      separator: ","
+      sheet_name: Functional Mapping
+      tablename: entitlement_worley_functionalgroup_to_functionalmapping
+    xls_engine_name: openpyxl
+name: circuit_breaker
+Namespace: circuit_breaker

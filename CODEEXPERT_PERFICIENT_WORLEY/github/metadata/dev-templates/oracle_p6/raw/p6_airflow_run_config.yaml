@@ -1,0 +1,140 @@
+SourceSystemId: oracle_p6
+MetadataType: api#oracle_p6#airflowRunConfig
+name: Oracle_P6_airflowRunConfig
+dev:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 418095-50787-CSUL3-CS-PLN-DB
+      - 418005-00744-EP-PIS-CS-PLN-DB
+      - 418095-50787-HOU-CS-PLN-DB
+      - 418095-50787-CSUL3-CS-CUR-DB
+      - 418005-00744-EP-PIS-CS-CUR-DB
+      - 418095-50787-HOU-CS-CUR-DB
+      - 418095-50787-EWP-CS-CUR-DB
+      - 418095-50787-CNL1-CS-CUR-DB
+    data_type:
+      project:
+        activity : project_activity
+        activityCode : project_activityCode
+        activityCodeAssignment : project_activityCodeAssignment
+        activityCodeType : project_activityCodeType
+        activitySpread : project_activitySpread
+        project : project
+        eps : eps
+        relationship : project_relationship
+        resource : resource
+        resourceAssignment : project_resourceAssignment
+        resourceAssignmentSpread : project_resourceAssignmentSpread
+        udfType : udfType
+        udfValue : project_udfValue
+      global:
+        activityCode : activityCode
+        activityCodeType : activityCodeType
+  Project_DAC:
+    Name: DAC
+    Id:
+      - 418005-00482-MS03
+    data_type:
+      project:
+        activity : project_activity
+        activityCode : project_activityCode
+        activityCodeAssignment : project_activityCodeAssignment
+        activityCodeType : project_activityCodeType
+        activitySpread : project_activitySpread
+        project : project
+        eps : eps
+        relationship : project_relationship
+        resource : resource
+        resourceAssignment : project_resourceAssignment
+        resourceAssignmentSpread : project_resourceAssignmentSpread
+        udfType : udfType
+        udfValue : project_udfValue
+      global:
+        activityCode : activityCode
+        activityCodeType : activityCodeType
+qa:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 418095-50787-CSUL3-CS-PLN-DB
+      - 418005-00744-EP-PIS-CS-PLN-DB
+      - 418095-50787-HOU-CS-PLN-DB
+      - 418095-50787-CSUL3-CS-CUR-DB
+      - 418005-00744-EP-PIS-CS-CUR-DB
+      - 418095-50787-HOU-CS-CUR-DB
+      - 418095-50787-EWP-CS-CUR-DB
+      - 418095-50787-CNL1-CS-CUR-DB
+    data_type:
+      project:
+        activity : project_activity
+        activityCode : project_activityCode
+        activityCodeAssignment : project_activityCodeAssignment
+        activityCodeType : project_activityCodeType
+        activitySpread : project_activitySpread
+        project : project
+        eps : eps
+        relationship : project_relationship
+        resource : resource
+        resourceAssignment : project_resourceAssignment
+        resourceAssignmentSpread : project_resourceAssignmentSpread
+        udfType : udfType
+        udfValue : project_udfValue
+      global:
+        activityCode : activityCode
+        activityCodeType : activityCodeType
+  Project_DAC:
+    Name: DAC
+    Id:
+      - 418005-00482-MS03
+    data_type:
+      project:
+        activity : project_activity
+        activityCode : project_activityCode
+        activityCodeAssignment : project_activityCodeAssignment
+        activityCodeType : project_activityCodeType
+        activitySpread : project_activitySpread
+        project : project
+        eps : eps
+        relationship : project_relationship
+        resource : resource
+        resourceAssignment : project_resourceAssignment
+        resourceAssignmentSpread : project_resourceAssignmentSpread
+        udfType : udfType
+        udfValue : project_udfValue
+      global:
+        activityCode : activityCode
+        activityCodeType : activityCodeType
+prd:
+  region: "${region}"
+  Project:
+    Name: VG
+    Id:
+      - 418095-50787-CSUL3-CS-PLN-DB
+      - 418005-00744-EP-PIS-CS-PLN-DB
+      - 418095-50787-HOU-CS-PLN-DB
+      - 418095-50787-CSUL3-CS-CUR-DB
+      - 418005-00744-EP-PIS-CS-CUR-DB
+      - 418095-50787-HOU-CS-CUR-DB
+      - 418095-50787-EWP-CS-CUR-DB
+      - 418095-50787-CNL1-CS-CUR-DB
+    data_type:
+      project:
+        activity : project_activity
+        activityCode : project_activityCode
+        activityCodeAssignment : project_activityCodeAssignment
+        activityCodeType : project_activityCodeType
+        activitySpread : project_activitySpread
+        project : project
+        eps : eps
+        relationship : project_relationship
+        resource : resource
+        resourceAssignment : project_resourceAssignment
+        resourceAssignmentSpread : project_resourceAssignmentSpread
+        udfType : udfType
+        udfValue : project_udfValue
+      global:
+        activityCode : activityCode
+        activityCodeType : activityCodeType

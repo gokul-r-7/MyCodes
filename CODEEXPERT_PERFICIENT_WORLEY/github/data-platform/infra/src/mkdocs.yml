@@ -1,0 +1,77 @@
+site_name: Worley Data Engineering
+site_description: Data engineering made easy on AWS
+strict: true
+site_url: https://www.worley.com/
+
+theme:
+  name: "material"
+
+nav:
+    - Get Started:
+        - Worley Helpers: index.md
+    - Process:
+        - Concepts: process/concepts.md
+        - DevOps: process/devops.md
+    - Curation: curation/curation.md
+    - Developer Tools:
+        - Glue: development/local_development_glue.md
+        - MWAA: development/local_development_mwaa.md
+    - Roadmap: roadmap/roadmap.md
+    - Sourcing Documentation:
+        - Assurance: sourcing/assurance.md
+        - Oraclegbs: sourcing/oraclegbs.md
+        - E3D: sourcing/e3d.md
+        - Sharepoint: sourcing/sharepoint.md
+        - SharepointList: sourcing/sharepointlist.md
+        - OracleP6 : sourcing/oraclep6.md
+        - Aconex : sourcing/aconex.md
+        - Ecosys : sourcing/ecosys.md
+        - ERM : sourcing/erm.md
+
+    
+    - Data governance documentation: 
+        - High level design : data-governance/worley_data_governance_design.md
+        - Redshift external tables : data-governance/Redshift_Spectrum_Table.md
+        - Redshift db admin cheat sheet : data-governance/redshift_dba_playbook.md
+        - DBT : data-governance/Redshift_Database_Admin_DBT_Set_Up.md
+        - Lakeformation : data-governance/Lake Formation Administration.md
+        - Onboarding : data-governance/Onboarding_new_data_engineering_team.md
+        - Quicksight : data-governance/Redshift_QuickSight_IDC_Integration.md
+
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+      title: Page contents
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      pygments_lang_class: true
+  - pymdownx.extra
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
+  - mkdocstrings
+#   - with-pdf:
+#         output_path: //Users/karguru/Documents/Worley-Consolidated-Repo/data-platform/infra/src/site/document.pdf
+#         verbose: true
+  
+

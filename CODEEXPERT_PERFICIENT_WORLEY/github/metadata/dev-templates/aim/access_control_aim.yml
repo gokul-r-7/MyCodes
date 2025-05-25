@@ -1,0 +1,5 @@
+domain_name: engineering
+source_name: aim
+databases : 
+  - ${database_prefix}_engineering_aim_curated
+  - ${database_prefix}_engineering_aim_raw

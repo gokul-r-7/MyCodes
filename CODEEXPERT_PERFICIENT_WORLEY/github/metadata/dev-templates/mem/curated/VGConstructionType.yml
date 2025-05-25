@@ -1,0 +1,54 @@
+---
+SourceSystemId: database_mem_curated
+MetadataType: curated#mem#VGConstructionType#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/mem/VGConstructionType/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: mem-vgConstructionType
+  name: mem_vgConstructionType
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: constrtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constrtype
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_mem_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/mem/VGConstructionType/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_vgconstructiontype
+  load_type: append
+  name: curated_vgconstructiontype
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/mem/curated_vgconstructiontype
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'mem' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

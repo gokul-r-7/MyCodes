@@ -1,0 +1,64 @@
+SourceSystemId: sharepoint_gph
+MetadataType: api#sharepoint_gph#comprimo_pursuits
+api_parameter:
+  api_body: null
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/json
+  api_method: get
+  api_query_params: {}
+  api_response_type: json
+  api_retry: 3
+  api_ssl_verify: true
+  api_timeout: 30
+  dynamic_api_query_param: null
+  endpoint_prefix: https://graph.microsoft.com/v1.0/sites/
+aws_region: ${region}
+Env: ${envn}
+is_active: y
+job_parameter:
+  api_sharepoint_library_prefix: "https://worleyparsons.sharepoint.com/sites/${genai_sharepoint_gph_prefix}/${genai_sharepoint_gph_comprimo}/"
+  bucket_name: worley-datalake-sydney-${envn}-genai-landing-${bucket_suffix}
+  genai_project_name: 'SRG'
+  file_filters:
+    default_filter_by_modified_date: 2020-01-01 00:00:00 UTC
+    file_by_modified_date_flag: y
+    file_extension_filters:
+    - .xls
+    - .xlsx
+    - .word
+    - .pdf
+    - .doc
+    - .docx
+    filter_by_file_extension_flag: y
+  folder: ${genai_sharepoint_gph}/${genai_sharepoint_gph_comprimo}
+  folder_filters:
+  - filter_by_foldername: n
+    folder_filters:
+    - filter_by_foldername: y
+      folder_filters: []
+      name: 08_As_Submitted
+    name: ''
+  full_incremental: I
+  incremental_criteria_folder_location: ${genai_sharepoint_gph}
+  kms_key_id: ${genai_kms_key_id}
+  notification_parameter:
+    SourceSystemId: genai
+    MetadataType: genai#notification_webhook#api
+  rds_cluster: ${aurora_host}:5432/${envn}
+  rds_job_audit: job_audit
+  rds_schema: GenAI
+  rds_sharepoint_files_metadata: sharepoint_files_metadata
+  S3_folder: ${genai_sharepoint_gph}/${genai_sharepoint_gph_comprimo}
+  secret_key_rds: Worley-datalake-sydney-${envn}-db-csp-salesforce-glueuser
+  sharepointDocumentLibrary: ${genai_sharepoint_gph_comprimo}
+  sharepointHostName: worleyparsons.sharepoint.com
+  sharepointSiteName: ${genai_sharepoint_gph}
+name: GPH
+oauth_parameter:
+  oauth_endpoint_method: post
+  oauth_endpoint_prefix: https://login.microsoftonline.com/
+  oauth_endpoint_suffix: /oauth2/v2.0/token
+  oauth_grant_type: client_credentials
+  oauth_scope: https://graph.microsoft.com/.default
+  secret_key: Worley-datalake-sydney-${envn}-api-sharepoint-gph

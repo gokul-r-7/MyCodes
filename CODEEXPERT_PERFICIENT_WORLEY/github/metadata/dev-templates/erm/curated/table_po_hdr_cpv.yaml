@@ -1,0 +1,265 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishPoHdrCpv#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishPoHdrCpv/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishPoHdrCpv 
+  name: erm_PublishPoHdrCpv 
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: po_no
+    comment: po_no
+    data_classification: null
+    nullable: true
+    raw_column_name: po_no
+  - column_data_type: string
+    column_name: cust_po_no
+    comment: cust_po_no
+    data_classification: null
+    nullable: true
+    raw_column_name: cust_po_no
+  - column_data_type: decimal(38,2)
+    column_name: expediting_level
+    comment: expediting_level
+    data_classification: null
+    nullable: true
+    raw_column_name: expediting_level
+  - column_data_type: decimal(38,2)
+    column_name: inspection_level
+    comment: inspection_level
+    data_classification: null
+    nullable: true
+    raw_column_name: inspection_level
+  - column_data_type: date
+    column_name: issue_date
+    comment: issue_date
+    data_classification: null
+    nullable: true
+    raw_column_name: issue_date
+  - column_data_type: decimal(38,2)
+    column_name: origin
+    comment: origin
+    data_classification: null
+    nullable: true
+    raw_column_name: origin
+  - column_data_type: decimal(38,2)
+    column_name: tax_status
+    comment: tax_status
+    data_classification: null
+    nullable: true
+    raw_column_name: tax_status
+  - column_data_type: string
+    column_name: point_of_origin
+    comment: point_of_origin
+    data_classification: null
+    nullable: true
+    raw_column_name: point_of_origin
+  - column_data_type: string
+    column_name: page1bsign
+    comment: page1bsign
+    data_classification: null
+    nullable: true
+    raw_column_name: page1bsign
+  - column_data_type: string
+    column_name: page1vsign
+    comment: page1vsign
+    data_classification: null
+    nullable: true
+    raw_column_name: page1vsign
+  - column_data_type: decimal(38,2)
+    column_name: invint
+    comment: invint
+    data_classification: null
+    nullable: true
+    raw_column_name: invint
+  - column_data_type: string
+    column_name: po_total_label
+    comment: po_total_label
+    data_classification: null
+    nullable: true
+    raw_column_name: po_total_label
+  - column_data_type: string
+    column_name: warranty_period
+    comment: warranty_period
+    data_classification: null
+    nullable: true
+    raw_column_name: warranty_period
+  - column_data_type: string
+    column_name: client_ref_no
+    comment: client_ref_no
+    data_classification: null
+    nullable: true
+    raw_column_name: client_ref_no
+  - column_data_type: string
+    column_name: po_ship_to
+    comment: po_ship_to
+    data_classification: null
+    nullable: true
+    raw_column_name: po_ship_to
+  - column_data_type: string
+    column_name: sub_project
+    comment: sub_project
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_project
+  - column_data_type: string
+    column_name: signer
+    comment: signer
+    data_classification: null
+    nullable: true
+    raw_column_name: signer
+  - column_data_type: string
+    column_name: signer2
+    comment: signer2
+    data_classification: null
+    nullable: true
+    raw_column_name: signer2
+  - column_data_type: string
+    column_name: signer3
+    comment: signer3
+    data_classification: null
+    nullable: true
+    raw_column_name: signer3
+  - column_data_type: date
+    column_name: bank_guarantee_expires
+    comment: bank_guarantee_expires
+    data_classification: null
+    nullable: true
+    raw_column_name: bank_guarantee_expires
+  - column_data_type: string
+    column_name: customer
+    comment: customer
+    data_classification: null
+    nullable: true
+    raw_column_name: customer
+  - column_data_type: date
+    column_name: rev_date
+    comment: rev_date
+    data_classification: null
+    nullable: true
+    raw_column_name: rev_date
+  - column_data_type: date
+    column_name: clientsys_po_issue_date
+    comment: clientsys_po_issue_date
+    data_classification: null
+    nullable: true
+    raw_column_name: clientsys_po_issue_date
+  - column_data_type: decimal(38,2)
+    column_name: material_group
+    comment: material_group
+    data_classification: null
+    nullable: true
+    raw_column_name: material_group
+  - column_data_type: decimal(38,2)
+    column_name: po_type
+    comment: po_type
+    data_classification: null
+    nullable: true
+    raw_column_name: po_type
+  - column_data_type: decimal(38,2)
+    column_name: client_pay_term
+    comment: client_pay_term
+    data_classification: null
+    nullable: true
+    raw_column_name: client_pay_term
+  - column_data_type: string
+    column_name: ora_supplier_no
+    comment: ora_supplier_no
+    data_classification: null
+    nullable: true
+    raw_column_name: ora_supplier_no
+  - column_data_type: string
+    column_name: ora_supplier_site
+    comment: ora_supplier_site
+    data_classification: null
+    nullable: true
+    raw_column_name: ora_supplier_site
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: rev_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishPoHdrCpv/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: po_hdr_cpv
+  load_type: cdc
+  name: po_hdr_cpv
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishPoHdrCpv 
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

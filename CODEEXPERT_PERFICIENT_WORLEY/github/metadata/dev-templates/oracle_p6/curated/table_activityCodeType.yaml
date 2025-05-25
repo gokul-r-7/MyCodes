@@ -1,0 +1,150 @@
+SourceSystemId: curated_oracle_p6
+MetadataType: curated#oracle_p6#activityCodeType#job#iceberg
+source:
+  name: oracle_p6_activitycodetype
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/project_control/oracle_p6/activityCodeType/
+    format: parquet
+    transformation_ctx: oracle_p6-activitycodetype
+transforms:
+  - transform: rename_columns
+    rename_column: true
+  - transform: select_columns_from_config_file
+    select_columns: true
+  - transform: change_data_types
+    change_types: true
+  - transform: add_run_date
+    column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd HH:mm:ss
+  - transform: custom_sql
+    sql: SELECT *, 'oracle_p6' as SOURCE_SYSTEM_NAME FROM temp_df_static
+    temp_view_name: temp_df_static
+target:
+  name: curated_oracle_p6_activitycodetype
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_oracle_p6_curated
+    table_name: curated_activitycodetype
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/project_control/oracle_p6/activitycodetype/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: full_load
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/project_control/oracle_p6/activitycodetype
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: createdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: CreateDate
+  - column_data_type: string
+    column_name: createuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: CreateUser
+  - column_data_type: string
+    column_name: epscodetypehierarchy
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EPSCodeTypeHierarchy
+  - column_data_type: string
+    column_name: epsobjectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EPSObjectId
+  - column_data_type: string
+    column_name: isbaseline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: IsBaseline
+  - column_data_type: string
+    column_name: issecurecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: IsSecureCode
+  - column_data_type: string
+    column_name: istemplate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: IsTemplate
+  - column_data_type: string
+    column_name: lastupdatedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LastUpdateDate
+  - column_data_type: string
+    column_name: lastupdateuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: LastUpdateUser
+  - column_data_type: string
+    column_name: length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: Length
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: Name
+  - column_data_type: string
+    column_name: objectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ObjectId
+  - column_data_type: string
+    column_name: projectobjectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ProjectObjectId
+  - column_data_type: string
+    column_name: refprojectobjectids
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: RefProjectObjectIds
+  - column_data_type: string
+    column_name: scope
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: Scope
+  - column_data_type: string
+    column_name: sequencenumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: SequenceNumber
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id

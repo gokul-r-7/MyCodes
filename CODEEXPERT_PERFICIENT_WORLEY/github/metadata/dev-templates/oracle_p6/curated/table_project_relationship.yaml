@@ -1,0 +1,116 @@
+SourceSystemId: curated_oracle_p6
+MetadataType: 'curated#oracle_p6#project_relationship#job#iceberg'
+source:
+  name: oracle_p6_project_relationship
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: >-
+      s3://${raw_bucket}/project_control/oracle_p6/project_relationship/
+    format: parquet
+    transformation_ctx: oracle_p6-project_relationship
+transforms:
+  - transform: rename_columns
+    rename_column: true
+  - transform: select_columns_from_config_file
+    select_columns: true
+  - transform: change_data_types
+    change_types: true
+  - transform: add_run_date
+    column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+  - transform: custom_sql
+    sql: 'SELECT *, ''oracle_p6'' as SOURCE_SYSTEM_NAME FROM temp_df_static'
+    temp_view_name: temp_df_static
+target:
+  name: curated_oracle_p6_project_relationship
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_oracle_p6_curated
+    table_name: curated_project_relationship
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: >-
+        ${curated_bucket}/project_control/oracle_p6/project_relationship/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: full_load
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: project_id
+    entity_table_attribute_name: project_id
+    entity_s3_raw_partition_prefix: Project
+  spark_options:
+    format: iceberg
+    options:
+      path: >-
+        s3://${curated_bucket}/project_control/oracle_p6/project_relationship
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: CREATEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdate
+  - column_data_type: string
+    column_name: LAG
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lag
+  - column_data_type: string
+    column_name: OBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: objectid
+  - column_data_type: string
+    column_name: PREDECESSORACTIVITYOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: predecessoractivityobjectid
+  - column_data_type: string
+    column_name: PREDECESSORPROJECTOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: predecessorprojectobjectid
+  - column_data_type: string
+    column_name: SUCCESSORACTIVITYOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: successoractivityobjectid
+  - column_data_type: string
+    column_name: SUCCESSORPROJECTOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: successorprojectobjectid
+  - column_data_type: string
+    column_name: TYPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: LASTUPDATEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastupdatedate 
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id

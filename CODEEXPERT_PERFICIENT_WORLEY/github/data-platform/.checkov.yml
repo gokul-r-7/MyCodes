@@ -1,0 +1,6 @@
+checks:
+  - CKV_TF_1
+skip_checks:
+  CKV_TF_1:
+    - reason: Terraform module sources do not use a git url with a commit hash revision
+    - suppress_for: /*

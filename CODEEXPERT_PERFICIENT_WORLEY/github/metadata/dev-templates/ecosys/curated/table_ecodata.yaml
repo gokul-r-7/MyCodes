@@ -1,0 +1,401 @@
+SourceSystemId: ecosys_curated
+MetadataType: curated#ecosys#ecodata#job#iceberg
+source:
+  name: ecosys_ecodata
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/project_control/ecosys/ecodata/
+    format: parquet
+    transformation_ctx: ecosys-ecodata
+transforms:
+- transform: rename_columns
+  rename_column: true
+- transform: select_columns_from_config_file
+  select_columns: true
+- transform: change_data_types
+  change_types: true
+- transform: add_run_date
+  column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+- transform: custom_sql
+  sql: SELECT *, 'ecosys' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+target:
+  name: ecosys_ecodata
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_ecosys_curated
+    table_name: curated_ecosys_ecodata
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/project_control/ecosys/ecodata/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: incremental_no_delete
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: snapshotcreatedate  
+  primary_key: [controlaccountinternalid,pa_date]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/project_control/ecosys/ecodata
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [controlaccountinternalid,pa_date]
+    rename_columns: true
+  columns:
+  - column_name: actual_costs
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: actual costs
+    data_classification: null
+    raw_column_name: ecodata_actualcosts
+  - column_name: actual_units
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: actual units
+    data_classification: null
+    raw_column_name: ecodata_actualunits
+  - column_name: alternate_actual_costs
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: alternate actual costs
+    data_classification: null
+    raw_column_name: ecodata_alternateactualcosts
+  - column_name: approved_changes_cost
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: approved changes cost
+    data_classification: null
+    raw_column_name: ecodata_approvedchangescost
+  - column_name: approved_changes
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: approved changes
+    data_classification: null
+    raw_column_name: ecodata_approvedchangesh
+  - column_name: approved_changes_sell
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: approved changes sell
+    data_classification: null
+    raw_column_name: ecodata_approvedchangessell
+  - column_name: billableyesnoname
+    column_data_type: boolean
+    nullable: true
+    comment: billableyesnoname
+    data_classification: null
+    raw_column_name: ecodata_billableyesnoname
+  - column_name: current_budget_cost
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: current budget cost
+    data_classification: null
+    raw_column_name: ecodata_cbcost
+  - column_name: current_budget_hours
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: current budget hours
+    data_classification: null
+    raw_column_name: ecodata_cbhours
+  - column_name: current_budget_sell
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: current budget sell
+    data_classification: null
+    raw_column_name: ecodata_cbsell
+  - column_name: code_of_account_id
+    column_data_type: string
+    nullable: true
+    comment: code of account id
+    data_classification: null
+    raw_column_name: ecodata_codeofaccountid
+  - column_name: code_of_account_name
+    column_data_type: string
+    nullable: true
+    comment: code of account name
+    data_classification: null
+    raw_column_name: ecodata_codeofaccountname
+  - column_name: committed_cost
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: committed cost
+    data_classification: null
+    raw_column_name: ecodata_committedcost
+  - column_name: committed_sell
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: committed sell
+    data_classification: null
+    raw_column_name: ecodata_committedsell
+  - column_name: controlaccountinternalid
+    column_data_type: string
+    nullable: true
+    comment: controlaccountinternalid
+    data_classification: null
+    raw_column_name: ecodata_controlaccountinternalid
+  - column_name: cost_object_hierarchy_path_id
+    column_data_type: string
+    nullable: true
+    comment: cost object hierarchy path id
+    data_classification: null
+    raw_column_name: ecodata_costobjecthierarchypathid
+  - column_name: cost_object_id
+    column_data_type: string
+    nullable: true
+    comment: cost object id
+    data_classification: null
+    raw_column_name: ecodata_costobjectid
+  - column_name: cost_object_name
+    column_data_type: string
+    nullable: true
+    comment: cost object name
+    data_classification: null
+    raw_column_name: ecodata_costobjectname
+  - column_name: cost_type_id
+    column_data_type: string
+    nullable: true
+    comment: cost type id
+    data_classification: null
+    raw_column_name: ecodata_costtypeid
+  - column_name: cost_type_name
+    column_data_type: string
+    nullable: true
+    comment: cost type name
+    data_classification: null
+    raw_column_name: ecodata_costtypename
+  - column_name: ctinternalid
+    column_data_type: string
+    nullable: true
+    comment: ctinternalid
+    data_classification: null
+    raw_column_name: ecodata_ctinternalid
+  - column_name: earned_cost
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: earned cost
+    data_classification: null
+    raw_column_name: ecodata_earnedcost
+  - column_name: earned_hours
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: earned hours
+    data_classification: null
+    raw_column_name: ecodata_earnedhours
+  - column_name: earned_sell
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: earned sell
+    data_classification: null
+    raw_column_name: ecodata_earnedsell
+  - column_name: obcost
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: obcost
+    data_classification: null
+    raw_column_name: ecodata_obcost
+  - column_name: obsell
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: obsell
+    data_classification: null
+    raw_column_name: ecodata_obsell
+  - column_name: original_budget_end_date
+    column_data_type: date
+    nullable: true
+    comment: original budget end date
+    data_classification: null
+    raw_column_name: ecodata_originalbudgetenddate
+  - column_name: original_budget
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: original budget
+    data_classification: null
+    raw_column_name: ecodata_originalbudgeth
+  - column_name: original_budget_start_date
+    column_data_type: date
+    nullable: true
+    comment: original budget start date
+    data_classification: null
+    raw_column_name: ecodata_originalbudgetstartdate
+  - column_name: pa_date
+    column_data_type: string
+    nullable: true
+    comment: pa date
+    data_classification: null
+    raw_column_name: ecodata_padate
+  - column_name: pcs_ct_category
+    column_data_type: string
+    nullable: true
+    comment: pcs ct category
+    data_classification: null
+    raw_column_name: ecodata_pcsctcategory
+  - column_name: pending_changes_cost
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: pending changes cost
+    data_classification: null
+    raw_column_name: ecodata_pendingchangescost
+  - column_name: pending_changes
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: pending changes
+    data_classification: null
+    raw_column_name: ecodata_pendingchangesh
+  - column_name: pending_changes_sell
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: pending changes sell
+    data_classification: null
+    raw_column_name: ecodata_pendingchangessell
+  - column_name: planned_cost
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: planned cost
+    data_classification: null
+    raw_column_name: ecodata_plannedcost
+  - column_name: planned_hours
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: planned hours
+    data_classification: null
+    raw_column_name: ecodata_plannedhours
+  - column_name: planned_sell
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: planned sell
+    data_classification: null
+    raw_column_name: ecodata_plannedsell
+  - column_name: project_id
+    column_data_type: string
+    nullable: true
+    comment: project id
+    data_classification: null
+    raw_column_name: ecodata_projectid
+  - column_name: projectinternalid
+    column_data_type: string
+    nullable: true
+    comment: projectinternalid
+    data_classification: null
+    raw_column_name: ecodata_projectinternalid
+  - column_name: snapshotcreatedate
+    column_data_type: date
+    nullable: true
+    comment: snapshotcreatedate
+    data_classification: null
+    raw_column_name: ecodata_snapshotcreatedate
+  - column_name: top_task_id
+    column_data_type: string
+    nullable: true
+    comment: top task id
+    data_classification: null
+    raw_column_name: ecodata_toptaskid
+  - column_name: wbs_id_namel01
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel01
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel01
+  - column_name: wbs_id_namel02
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel02
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel02
+  - column_name: wbs_id_namel03
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel03
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel03
+  - column_name: wbs_id_namel04
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel04
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel04
+  - column_name: wbs_id_namel05
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel05
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel05
+  - column_name: wbs_id_namel06
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel06
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel06
+  - column_name: wbs_id_namel07
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel07
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel07
+  - column_name: wbs_id_namel08
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel08
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel08
+  - column_name: wbs_id_namel09
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel09
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel09
+  - column_name: wbs_id_namel10
+    column_data_type: string
+    nullable: true
+    comment: wbs id namel10
+    data_classification: null
+    raw_column_name: ecodata_wbsidnamel10
+  - column_name: working_forecast_cfc
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: working forecast cfc
+    data_classification: null
+    raw_column_name: ecodata_workingforecastcfc
+  - column_name: working_forecast_cfs
+    column_data_type: decimal(23,8)
+    nullable: true
+    comment: working forecast cfs
+    data_classification: null
+    raw_column_name: ecodata_workingforecastcfs
+  - column_name: working_forecast_end_date
+    column_data_type: date
+    nullable: true
+    comment: working forecast end date
+    data_classification: null
+    raw_column_name: ecodata_workingforecastenddate
+  - column_data_type: decimal(23,8)
+    column_name: cfhours
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ecodata_cfhours
+  - column_data_type: string
+    column_name: coainternalid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ecodata_coainternalid
+  - column_data_type: string
+    column_name: secorg_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secorg_id
+  - column_data_type: string
+    column_name: snapshot_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: snapshot_id    

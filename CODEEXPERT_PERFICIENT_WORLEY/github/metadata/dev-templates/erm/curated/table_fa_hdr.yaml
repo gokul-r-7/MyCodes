@@ -1,0 +1,457 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishFaHdr#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishFaHdr/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishFaHdr 
+  name: erm_PublishFaHdr 
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: fa_no
+    comment: fa_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_no
+  - column_data_type: string
+    column_name: fa_id
+    comment: fa_id
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_id
+  - column_data_type: decimal(38,2)
+    column_name: proc_ext_stat_no
+    comment: proc_ext_stat_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proc_ext_stat_no
+  - column_data_type: decimal(38,2)
+    column_name: proc_int_stat_no
+    comment: proc_int_stat_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proc_int_stat_no
+  - column_data_type: decimal(38,2)
+    column_name: ver
+    comment: ver
+    data_classification: null
+    nullable: true
+    raw_column_name: ver
+  - column_data_type: string
+    column_name: title
+    comment: title
+    data_classification: null
+    nullable: true
+    raw_column_name: title
+  - column_data_type: date
+    column_name: valid_until
+    comment: valid_until
+    data_classification: null
+    nullable: true
+    raw_column_name: valid_until
+  - column_data_type: string
+    column_name: merc_hand_usr_id
+    comment: merc_hand_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: merc_hand_usr_id
+  - column_data_type: string
+    column_name: tech_hand_usr_id
+    comment: tech_hand_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: tech_hand_usr_id
+  - column_data_type: decimal(38,2)
+    column_name: suppl_no
+    comment: suppl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: suppl_no
+  - column_data_type: decimal(38,2)
+    column_name: suppl_addr_no
+    comment: suppl_addr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: suppl_addr_no
+  - column_data_type: string
+    column_name: suppl_ref
+    comment: suppl_ref
+    data_classification: null
+    nullable: true
+    raw_column_name: suppl_ref
+  - column_data_type: string
+    column_name: proposal
+    comment: proposal
+    data_classification: null
+    nullable: true
+    raw_column_name: proposal
+  - column_data_type: decimal(38,2)
+    column_name: deliv_term_no
+    comment: deliv_term_no
+    data_classification: null
+    nullable: true
+    raw_column_name: deliv_term_no
+  - column_data_type: decimal(38,2)
+    column_name: trans_term_no
+    comment: trans_term_no
+    data_classification: null
+    nullable: true
+    raw_column_name: trans_term_no
+  - column_data_type: string
+    column_name: agent_is_used
+    comment: agent_is_used
+    data_classification: null
+    nullable: true
+    raw_column_name: agent_is_used
+  - column_data_type: decimal(38,2)
+    column_name: pay_term_no
+    comment: pay_term_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pay_term_no
+  - column_data_type: decimal(38,2)
+    column_name: pen_term_no
+    comment: pen_term_no
+    data_classification: null
+    nullable: true
+    raw_column_name: pen_term_no
+  - column_data_type: string
+    column_name: cur_id
+    comment: cur_id
+    data_classification: null
+    nullable: true
+    raw_column_name: cur_id
+  - column_data_type: string
+    column_name: tax_yn
+    comment: tax_yn
+    data_classification: null
+    nullable: true
+    raw_column_name: tax_yn
+  - column_data_type: string
+    column_name: lang_id
+    comment: lang_id
+    data_classification: null
+    nullable: true
+    raw_column_name: lang_id
+  - column_data_type: decimal(38,2)
+    column_name: suppl_agent_suppl_no
+    comment: suppl_agent_suppl_no
+    data_classification: null
+    nullable: true
+    raw_column_name: suppl_agent_suppl_no
+  - column_data_type: decimal(38,2)
+    column_name: suppl_agent_suppl_addr_no
+    comment: suppl_agent_suppl_addr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: suppl_agent_suppl_addr_no
+  - column_data_type: string
+    column_name: suppl_agent_ref
+    comment: suppl_agent_ref
+    data_classification: null
+    nullable: true
+    raw_column_name: suppl_agent_ref
+  - column_data_type: decimal(38,2)
+    column_name: forwarder_no
+    comment: forwarder_no
+    data_classification: null
+    nullable: true
+    raw_column_name: forwarder_no
+  - column_data_type: decimal(38,2)
+    column_name: forwarder_addr_no
+    comment: forwarder_addr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: forwarder_addr_no
+  - column_data_type: string
+    column_name: forwarder_ref
+    comment: forwarder_ref
+    data_classification: null
+    nullable: true
+    raw_column_name: forwarder_ref
+  - column_data_type: string
+    column_name: suppl_frame_no
+    comment: suppl_frame_no
+    data_classification: null
+    nullable: true
+    raw_column_name: suppl_frame_no
+  - column_data_type: decimal(38,2)
+    column_name: free_deliv_limit
+    comment: free_deliv_limit
+    data_classification: null
+    nullable: true
+    raw_column_name: free_deliv_limit
+  - column_data_type: decimal(38,2)
+    column_name: min_po_pur_price
+    comment: min_po_pur_price
+    data_classification: null
+    nullable: true
+    raw_column_name: min_po_pur_price
+  - column_data_type: date
+    column_name: valid_from
+    comment: valid_from
+    data_classification: null
+    nullable: true
+    raw_column_name: valid_from
+  - column_data_type: decimal(38,2)
+    column_name: legal_entity_no
+    comment: legal_entity_no
+    data_classification: null
+    nullable: true
+    raw_column_name: legal_entity_no
+  - column_data_type: string
+    column_name: approver_usr_id
+    comment: approver_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: approver_usr_id
+  - column_data_type: date
+    column_name: approve_date
+    comment: approve_date
+    data_classification: null
+    nullable: true
+    raw_column_name: approve_date
+  - column_data_type: string
+    column_name: approve_rejected
+    comment: approve_rejected
+    data_classification: null
+    nullable: true
+    raw_column_name: approve_rejected
+  - column_data_type: string
+    column_name: chg_reason
+    comment: chg_reason
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_reason
+  - column_data_type: string
+    column_name: rem
+    comment: rem
+    data_classification: null
+    nullable: true
+    raw_column_name: rem
+  - column_data_type: string
+    column_name: hdr_txt
+    comment: hdr_txt
+    data_classification: null
+    nullable: true
+    raw_column_name: hdr_txt
+  - column_data_type: string
+    column_name: app_txt
+    comment: app_txt
+    data_classification: null
+    nullable: true
+    raw_column_name: app_txt
+  - column_data_type: string
+    column_name: customer_col_0
+    comment: customer_col_0
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_0
+  - column_data_type: string
+    column_name: customer_col_1
+    comment: customer_col_1
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_1
+  - column_data_type: string
+    column_name: customer_col_2
+    comment: customer_col_2
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_2
+  - column_data_type: string
+    column_name: customer_col_3
+    comment: customer_col_3
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_3
+  - column_data_type: string
+    column_name: customer_col_4
+    comment: customer_col_4
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_4
+  - column_data_type: string
+    column_name: customer_col_5
+    comment: customer_col_5
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_5
+  - column_data_type: string
+    column_name: customer_col_6
+    comment: customer_col_6
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_6
+  - column_data_type: string
+    column_name: customer_col_7
+    comment: customer_col_7
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_7
+  - column_data_type: string
+    column_name: customer_col_8
+    comment: customer_col_8
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_8
+  - column_data_type: string
+    column_name: customer_col_9
+    comment: customer_col_9
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_col_9
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: null
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_usr_id
+  - column_data_type: string
+    column_name: reject_reason
+    comment: reject_reason
+    data_classification: null
+    nullable: true
+    raw_column_name: reject_reason
+  - column_data_type: date
+    column_name: issue_date
+    comment: issue_date
+    data_classification: null
+    nullable: true
+    raw_column_name: issue_date
+  - column_data_type: date
+    column_name: ver_raised_date
+    comment: ver_raised_date
+    data_classification: null
+    nullable: true
+    raw_column_name: ver_raised_date
+  - column_data_type: decimal(38,2)
+    column_name: proj_no
+    comment: proj_no
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_no
+  - column_data_type: decimal(38,2)
+    column_name: fa_type_no
+    comment: fa_type_no
+    data_classification: null
+    nullable: true
+    raw_column_name: fa_type_no
+  - column_data_type: decimal(38,2)
+    column_name: disc_percent
+    comment: disc_percent
+    data_classification: null
+    nullable: true
+    raw_column_name: disc_percent
+  - column_data_type: decimal(38,2)
+    column_name: max_order_value
+    comment: max_order_value
+    data_classification: null
+    nullable: true
+    raw_column_name: max_order_value
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishFaHdr/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: fa_hdr
+  load_type: cdc
+  name: fa_hdr
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishFaHdr 
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: etl_load_date
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

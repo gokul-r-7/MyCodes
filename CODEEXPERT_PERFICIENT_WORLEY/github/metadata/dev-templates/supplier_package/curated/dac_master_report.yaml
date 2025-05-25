@@ -1,0 +1,361 @@
+---
+SourceSystemId: supplier_package_curated
+MetadataType: curated#dac#masterreport#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/supplier_package/parquet/masterreport.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: dac_materreport
+  name: supplier_package_masterreport
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: sub-project_number_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sub-project_number_name
+  - column_data_type: string
+    column_name: file
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: file
+  - column_data_type: string
+    column_name: phase
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phase
+  - column_data_type: string
+    column_name: document_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: document_no
+  - column_data_type: string
+    column_name: title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revision
+  - column_data_type: string
+    column_name: revision_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revision_date
+  - column_data_type: string
+    column_name: review_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: review_status
+  - column_data_type: string
+    column_name: status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: discipline
+  - column_data_type: string
+    column_name: document_identifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: document_identifier
+  - column_data_type: string
+    column_name: date_modified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: date_modified
+  - column_data_type: string
+    column_name: originating_organisation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: originating_organisation
+  - column_data_type: string
+    column_name: lock
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lock
+  - column_data_type: string
+    column_name: for_handover_turnover
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: for_handover_turnover
+  - column_data_type: string
+    column_name: area_or_asset_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_or_asset_number
+  - column_data_type: string
+    column_name: design_critical
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: design_critical
+  - column_data_type: string
+    column_name: ewp_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ewp_no
+  - column_data_type: string
+    column_name: manufacturer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: manufacturer
+  - column_data_type: string
+    column_name: purchase_order_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: purchase_order_number
+  - column_data_type: string
+    column_name: access_control_list
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: access_control_list
+  - column_data_type: string
+    column_name: applies_to_item
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: applies_to_item
+  - column_data_type: string
+    column_name: as-built_required
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: as-built_required
+  - column_data_type: string
+    column_name: confidential
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: confidential
+  - column_data_type: string
+    column_name: current
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: current
+  - column_data_type: string
+    column_name: customer_document_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_document_no
+  - column_data_type: string
+    column_name: customer_document_revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_document_revision
+  - column_data_type: string
+    column_name: file_classification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: file_classification
+  - column_data_type: string
+    column_name: file_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: file_name
+  - column_data_type: string
+    column_name: hyperlink
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hyperlink
+  - column_data_type: string
+    column_name: markup_last_modified_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: markup_last_modified_date
+  - column_data_type: string
+    column_name: milestone_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: milestone_date
+  - column_data_type: string
+    column_name: number_of_markups
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: number_of_markups
+  - column_data_type: string
+    column_name: originator
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: originator
+  - column_data_type: string
+    column_name: packages
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: packages
+  - column_data_type: string
+    column_name: planned_submission_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: planned_submission_date
+  - column_data_type: string
+    column_name: print_size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: print_size
+  - column_data_type: string
+    column_name: review_source
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: review_source
+  - column_data_type: string
+    column_name: scope
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: scope
+  - column_data_type: string
+    column_name: sdr_codes
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sdr_codes
+  - column_data_type: string
+    column_name: select_list_9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_9
+  - column_data_type: string
+    column_name: size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size
+  - column_data_type: string
+    column_name: supplier_document_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: supplier_document_no
+  - column_data_type: string
+    column_name: supplier_document_revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: supplier_document_revision
+  - column_data_type: string
+    column_name: tag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tag
+  - column_data_type: string
+    column_name: transmittal_in
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: transmittal_in
+  - column_data_type: string
+    column_name: transmittal_number_if_applicable
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: transmittal_number_if_applicable
+  - column_data_type: boolean
+    column_name: transmitted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: transmitted
+  - column_data_type: string
+    column_name: type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: version
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: version
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id
+  - column_data_type: string
+    column_name: project_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_code
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_supplier_package_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/supplier_package/masterreport/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_masterreport
+  name: curated_masterreport
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/supplier_package/masterreport
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'dac_supplier_package' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

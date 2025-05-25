@@ -1,0 +1,4845 @@
+models:
+  - name: engineering_document_register_fact
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: document_sid
+        data_type: varchar(65535)
+      - name: document_number
+        data_type: varchar(65535)
+      - name: category
+        data_type: varchar(65535)        
+      - name: revision_date
+        data_type: date
+      - name: issued_date
+        data_type: timestamp
+      - name : issued_date_week
+        data_type: float
+      - name : issued_date_month_year
+        data_type: varchar(100)
+      - name: revision_code
+        data_type: varchar(100)
+      - name: confidential
+        data_type: boolean
+      - name: title
+        data_type: varchar(1000)
+      - name: type_code
+        data_type: varchar(100)
+      - name: type_name
+        data_type: varchar(200)
+      - name: current_flag
+        data_type: boolean
+      - name: status_code
+        data_type: varchar(100)
+      - name: status_name
+        data_type: varchar(100)
+      - name: ifr_status
+        data_type: varchar(20)
+      - name: version_number
+        data_type: integer
+      - name: originating_organization
+        data_type: varchar(500)
+      - name: discipline_code
+        data_type: varchar(100)
+      - name: discipline_name
+        data_type: varchar(200)
+      - name: asset
+        data_type: varchar(500)
+      - name: sub_project
+        data_type: varchar(100)
+      - name: phase
+        data_type: varchar(100)
+      - name: ewp
+        data_type: varchar(65535)
+      - name: cwp
+        data_type: varchar(65535)
+      - name: wbs
+        data_type: varchar(65535)
+      - name: is_drawing
+        data_type: varchar(3)
+      - name: transmittal_date
+        data_type: timestamp
+      - name: transmittal_number
+        data_type: varchar(100)
+      - name: revised_status
+        data_type: varchar(20)
+      - name: no_of_resubmission
+        data_type: integer
+      - name: resubmission_filter
+        data_type: varchar(100)
+      - name: issued_vs_reserved
+        data_type: varchar(15)
+      - name: report_title
+        data_type: varchar(250)
+      - name: project_id
+        data_type: varchar(100)
+      - name: meta_project_rls_name
+        data_type: varchar(200)
+      - name: snapshot_date
+        data_type: timestamp
+      - name: source
+        data_type: varchar(100)
+  - name: document_control_security
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: user_name
+        data_type: varchar(250)
+  - name: review_status_fact
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: document_number
+        data_type: varchar(100)
+      - name: type_code
+        data_type: varchar(100)
+      - name: category
+        data_type: varchar(100)
+      - name: reason_for_issue
+        data_type: varchar(500)
+      - name: document_sid
+        data_type: varchar(100)
+      - name: status_code
+        data_type: varchar(100)
+      - name: status_name
+        data_type: varchar(100)
+      - name: workflowid
+        data_type: varchar(100)
+      - name: workflow_title
+        data_type: varchar(1000)
+      - name: wf_status
+        data_type: varchar(100)
+      - name: consolidator
+        data_type: varchar(100)
+      - name: wf_date_planned
+        data_type: date
+      - name: wf_date_forecast
+        data_type: date
+      - name: wf_date_actual
+        data_type: date
+      - name: stepstatus
+        data_type: varchar(100)
+      - name: wf_daysdue
+        data_type: integer
+      - name: current_flag
+        data_type: boolean
+      - name: discipline_code
+        data_type: varchar(100)
+      - name: discipline_name
+        data_type: varchar(200)
+      - name: title
+        data_type: varchar(1000)
+      - name: revision_code
+        data_type: varchar(100)
+      - name: revision_date
+        data_type: timestamp
+      - name: confidential
+        data_type: boolean
+      - name: asset
+        data_type: varchar(500)
+      - name: sub_project
+        data_type: varchar(100)
+      - name: phase
+        data_type: varchar(100)
+      - name: ewp
+        data_type: varchar(65535)
+      - name: cwp
+        data_type: varchar(65535)
+      - name: wbs
+        data_type: varchar(65535)
+      - name: is_drawing
+        data_type: varchar(3)
+      - name: workflow_kpi_status
+        data_type: varchar(15)
+      - name: workflow_kpi_status_order
+        data_type: integer
+      - name: actionee_kpi_status
+        data_type: varchar(11)
+      - name: actionee
+        data_type: varchar(100)
+      - name: organization_name
+        data_type: varchar(100)
+      - name: a_date_planned
+        data_type: date
+      - name: a_date_forecast
+        data_type: date
+      - name: a_date_actual
+        data_type: date
+      - name: a_daysdue
+        data_type: integer
+      - name: snapshot_date
+        data_type: timestamp
+      - name: report_title
+        data_type: varchar(250)
+      - name: project_id
+        data_type: varchar(100)
+      - name: meta_project_rls_name
+        data_type: varchar(200)
+
+  - name: dim_date
+    config: 
+      contract: {enforced: true}
+    columns:
+      - name: date_key
+        data_type: date
+
+      - name: year
+        data_type: integer
+
+      - name: month
+        data_type: integer
+
+      - name: month_name_mmm
+        data_type: varchar(5)
+
+      - name: month_name
+        data_type: varchar(15)
+
+      - name: monthyear
+        data_type: varchar(12)
+
+      - name: weekend_date
+        data_type: date
+      - name: weekend_saturday
+        data_type: date
+      - name: weekend_sunday
+        data_type: date
+  - name: supply_chain_security
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: user_name
+        data_type: varchar(250)
+      
+  - name: material_status_obt
+
+    config: 
+      contract: {enforced: true}
+
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+        
+      - name: drl_hdr_no
+        data_type: integer
+        
+      - name: required_date
+        data_type: date
+        
+      - name: mat_all_run_no
+        data_type: integer
+        
+      - name: entered_by
+        data_type: varchar(250)
+        
+      - name: requested_by
+        data_type: varchar(250)
+        
+      - name: remarks
+        data_type: varchar(max)
+        
+      - name: material_request_no
+        data_type: varchar(500)
+        
+      - name: deliver_to
+        data_type: varchar(200)
+        
+      - name: linked_to_line_no
+        data_type: integer
+        
+      - name: item_no
+        data_type: integer
+        
+      - name: description
+        data_type: varchar(1000)
+        
+      - name: requested_qty
+        data_type: numeric
+        
+      - name: pmto_drawing_sheet
+        data_type: integer
+        
+      - name: pmto_pos
+        data_type: integer
+        
+      - name: drl_item_no
+        data_type: integer
+        
+      - name: drl_hdr_no_item_fact
+        data_type: integer
+        
+      - name: material_type
+        data_type: varchar(300)
+        
+      - name: pick_lst_stat_id
+        data_type: varchar(100)
+        
+      - name: site
+        data_type: varchar(300)
+        
+      - name: pick_lst_ready
+        data_type: varchar(200)
+        
+      - name: pick_list_required_date
+        data_type: date
+        
+      - name: issue_date
+        data_type: date
+        
+      - name: ready_to_issue
+        data_type: numeric
+        
+      - name: site_mto_hdr_id
+        data_type: varchar(1000)
+        
+      - name: warehouse
+        data_type: varchar(500)
+        
+      - name: cont_id
+        data_type: varchar(500)
+        
+      - name: name_1
+        data_type: varchar(600)
+        
+      - name: issue_status
+        data_type: varchar(100)
+        
+      - name: dataset_refreshed_date
+        data_type: date
+
+      - name: index
+        data_type: integer
+
+      - name: issuedt_present
+        data_type: integer
+      
+      - name: pick_list_status
+        data_type: varchar(300)
+
+      - name: pick_lst_hdr_id
+        data_type: varchar(200)
+
+      - name: ready_to_issue_chk
+        data_type: integer
+  
+  - name: fact_po_invoices_obt
+    config: 
+      contract: {enforced: true}
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+        
+      - name: po_number
+        data_type: varchar(300)
+        
+      - name: description
+        data_type: varchar(1000)
+        
+      - name: highest_issued_rev
+        data_type: integer
+
+      - name: sub_project
+        data_type: varchar(200)
+        
+      - name: supplier_no
+        data_type: varchar(100)
+        
+      - name: supplier
+        data_type: varchar(200)
+        
+      - name: customer_po_number
+        data_type: varchar(200)
+        
+      - name: tax_status
+        data_type: varchar(100)
+        
+      - name: issue_date
+        data_type: date
+
+      - name: buyer
+        data_type: varchar(100)
+        
+      - name: total_po_commitment
+        data_type: numeric
+
+      - name: total_invoices_applied_to_commitment
+        data_type: numeric
+
+      - name: total_taxes_and_freight
+        data_type: numeric
+
+      - name: total_invoices_applied
+        data_type: numeric
+
+      - name: commited_currency
+        data_type: varchar(20)
+        
+      - name: invoice_number
+        data_type: varchar(100)
+        
+      - name: invoice_date
+        data_type: date
+
+      - name: received_date
+        data_type: date
+
+      - name: approve_date
+        data_type: date
+
+      - name: approved_by
+        data_type: varchar(100)
+        
+      - name: accounting_supplier_and_location
+        data_type: varchar(100)
+        
+      - name: payment_terms
+        data_type: varchar(100)
+        
+      - name: payment_due_date
+        data_type: date
+
+      - name: invoice_applied_to_commitment
+        data_type: numeric
+
+      - name: tax_and_freight
+        data_type: numeric
+
+      - name: invoice_amount
+        data_type: numeric
+
+      - name: payment_amount
+        data_type: numeric
+        
+      - name: payment_date
+        data_type: date
+
+      - name: payment_number
+        data_type: varchar(1000)
+        
+      - name: status
+        data_type: varchar(100)
+        
+      - name: dataset_refreshed_date
+        data_type: date
+
+
+  - name: fact_po_commitment_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+
+      - name: po_number
+        data_type: varchar(300)
+
+      - name: description
+        data_type: varchar(1000)
+
+      - name: highest_issued_rev
+        data_type: integer
+
+      - name: sub_project
+        data_type: varchar(200)
+
+      - name: supplier
+        data_type: varchar(1000)
+
+      - name: customer_po_number
+        data_type: varchar(1000)
+
+      - name: issue_date
+        data_type: date
+
+      - name: contract_delivery_date
+        data_type: date
+
+      - name: ros_date
+        data_type: date
+
+      - name: approve_date
+        data_type: date
+
+      - name: incoterm
+        data_type: varchar(1000)
+
+      - name: delivery_location
+        data_type: varchar(1000)
+
+      - name: buyer
+        data_type: varchar(1000)
+
+      - name: total_po_commitment
+        data_type: numeric
+
+      - name: commited_currency
+        data_type: varchar(100)
+
+      - name: po_close_date
+        data_type: date
+
+      - name: received_total
+        data_type: numeric
+
+      - name: progress_payment
+        data_type: numeric
+
+      - name: invoice_total_against_commitment
+        data_type: numeric
+
+      - name: invoice_total_not_booked_against_commitment
+        data_type: numeric
+
+      - name: invoice_total
+        data_type: numeric
+
+      - name: commitment_remaining
+        data_type: numeric
+
+      - name: po_complete_pct
+        data_type: numeric
+
+      - name: accrual
+        data_type: numeric
+
+      - name: customer
+        data_type: varchar(1000)
+
+      - name: entity
+        data_type: varchar(1000)
+
+      - name: bg_expiry
+        data_type: date
+
+      - name: bg_needed
+        data_type: varchar(1000)
+
+      - name: bg_description
+        data_type: varchar(1000)
+
+      - name: bg_arrival
+        data_type: date
+
+      - name: user_accepting_bg
+        data_type: varchar(1000)
+
+      - name: dataset_refreshed_date
+        data_type: date
+
+  - name: invoice_status_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+        
+      - name: payment_due_date
+        data_type: date
+        
+      - name: invoice_amount
+        data_type: numeric
+        
+      - name: status
+        data_type: varchar(1000)
+        
+      - name: po_number
+        data_type: varchar(1000)
+        
+      - name: description
+        data_type: varchar(1000)
+        
+      - name: supplier
+        data_type: varchar(1000)
+        
+      - name: issue_date
+        data_type: date
+        
+      - name: ros_date
+        data_type: date
+        
+      - name: total_po_commitment
+        data_type: numeric
+        
+      - name: po_close_date
+        data_type: date
+        
+      - name: received_total
+        data_type: numeric
+        
+      - name: invoice_total_against_commitment
+        data_type: numeric
+        
+      - name: invoice_total_not_booked_against_commitment
+        data_type: numeric
+        
+      - name: invoice_total
+        data_type: numeric
+        
+      - name: po_complete_pct
+        data_type: numeric
+        
+      - name: customer
+        data_type: varchar(1000)
+        
+      - name: entity
+        data_type: varchar(1000)
+        
+      - name: supplier_name
+        data_type: varchar(1000)
+        
+      - name: business_units
+        data_type: varchar(1000)
+        
+      - name: overpaid_or_complaint
+        data_type: varchar(1000)
+        
+      - name: status_with_closed
+        data_type: varchar(1000)
+      
+      - name: status_with_past_due
+        data_type: varchar(1000)
+      
+      - name: invoice_number
+        data_type: varchar(1000)
+      
+      - name: issue_date_month
+        data_type: integer
+      
+      - name: issue_date_month_name
+        data_type: varchar(100)
+
+      - name: issue_date_quarter
+        data_type: varchar(100)
+
+      - name: issue_date_year
+        data_type: integer
+
+      - name: open_or_close
+        data_type: varchar(100)
+
+      - name: payment_due_date_month
+        data_type: integer
+
+      - name: payment_due_date_month_name
+        data_type: varchar(100)
+
+      - name: payment_due_date_year 
+        data_type: integer
+        
+      - name: dataset_refreshed_date
+        data_type: date
+
+  - name: iwp_start_finish_tracker_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+
+      - name: cwp
+        data_type: varchar(100)
+
+      - name: iwp
+        data_type: varchar(100)
+
+      - name: disciplinedescription
+        data_type: varchar(500)
+      
+      - name: scope_discipline
+        data_type: varchar(500)
+      
+      - name: cwasdescription
+        data_type: varchar(500)
+
+      - name: iwp_plannedstartdate
+        data_type: date
+
+      - name: iwp_actualstartdate
+        data_type: date
+
+      - name: iwp_plannedfinishdate
+        data_type: date
+
+      - name: iwp_actualfinishdate
+        data_type: date
+
+  - name: wfp_data_validation
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: iwp_updated_date
+        data_type: date
+
+      - name: project_id
+        data_type: varchar(100)
+
+      - name: cwp_cwpsid
+        data_type: varchar(100)
+
+      - name: iwp_iwpsid
+        data_type: varchar(100)
+
+      - name: iwp_status
+        data_type: varchar(200)
+
+      - name: iwp_estimatedhours
+        data_type: numeric(38,2)
+
+      - name: iwp_earnedhours
+        data_type: numeric(38,2)
+
+      - name: iwp_actualfinishdate
+        data_type: date
+
+      - name: iwp_plannedstartdate
+        data_type: date
+
+      - name: iwp_percentcomplete
+        data_type: numeric(38,2)  
+
+      - name: iwps_with_actualfinishdate_without_fullprogress
+        data_type: boolean
+
+      - name: constraintid
+        data_type: varchar(500)
+
+      - name: constraintstatus
+        data_type: varchar(1000)
+
+      - name: cwpstatus
+        data_type: varchar(1000)
+
+      - name: constraintlongdescription
+        data_type: varchar(5000)
+
+      - name: constraintdescription
+        data_type: varchar(5000)
+
+      - name: _constraint
+        data_type: varchar(5000)
+
+      - name: hardconstraint
+        data_type: boolean
+
+      - name: constrainttypeid
+        data_type: integer
+
+      - name: constrainttype
+        data_type: varchar(1000)
+
+      - name: constrainttype_count
+        data_type: integer
+
+  - name: erm_procurement_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+
+      - name: po_number
+        data_type: varchar(1000)
+
+      - name: worley_office_origin
+        data_type: varchar(1000)
+
+      - name: po_creation_date
+        data_type: date
+
+      - name: title
+        data_type: varchar(1000)
+
+      - name: gross_value
+        data_type: numeric
+
+      - name: client
+        data_type: varchar(1000)
+
+      - name: supplier
+        data_type: varchar(1000)
+
+      - name: supplier_code
+        data_type: varchar(1000)
+
+      - name: supplier_location
+        data_type: varchar(1000)
+
+      - name: po_issue_date
+        data_type: date
+
+      - name: buyer
+        data_type: varchar(1000)
+
+      - name: database_instance_name
+        data_type: varchar(500)
+
+      - name: cost_type
+        data_type: varchar(200)
+
+      - name: required_on_site_date
+        data_type: date
+
+      - name: purchase_order_line_item_internal_id
+        data_type: numeric
+
+      - name: po_line_number
+        data_type: numeric
+
+      - name: po_line_quantity
+        data_type: numeric
+
+      - name: line_item_unit_price
+        data_type: numeric
+
+      - name: line_item_total_price
+        data_type: numeric
+
+      - name: promised_date
+        data_type: date
+
+      - name: incoterm_tax_terms
+        data_type: varchar(200)
+
+      - name: code_of_account
+        data_type: varchar(400)
+
+      - name: item_tag
+        data_type: varchar(1000)
+
+      - name: item_description
+        data_type: varchar(1000)
+
+      - name: po_revision
+        data_type: numeric
+
+      - name: contract_delivery_date
+        data_type: date
+
+      - name: req_creation_date
+        data_type: date
+
+      - name: received_date
+        data_type: date
+
+      - name: received_quantity
+        data_type: numeric
+
+      - name: po_status
+        data_type: varchar(100)
+
+      - name: data_refreshed_date
+        data_type: date
+
+      - name: pds
+        data_type: bigint
+
+      - name: ros
+        data_type: bigint
+
+      - name: cdd
+        data_type: bigint
+
+      - name: polt_v1
+        data_type: bigint
+
+      - name: polt_v2
+        data_type: bigint
+
+      - name: po_approval_time
+        data_type: varchar(100)
+
+      - name: po_stts_flag
+        data_type: integer
+
+      - name: received_flag
+        data_type: integer
+
+      - name: currency_type
+        data_type: varchar(100)
+
+      - name: usd_conv
+        data_type: integer
+
+      - name: unspsc
+        data_type: varchar(1000)
+
+      - name: worley_project_region
+        data_type: varchar(1000)
+
+      - name: project_sub_region
+        data_type: varchar(1000)
+
+      - name: project_country
+        data_type: varchar(1000)
+
+      - name: worley_project_office
+        data_type: varchar(1000)
+
+      - name: sector
+        data_type: varchar(1000)
+
+      - name: client_country
+        data_type: varchar(1000)
+
+      - name: paper
+        data_type: varchar(1000)
+
+      - name: catg_supplier
+        data_type: varchar(1000)
+
+      - name: catg_country_code
+        data_type: varchar(1000)
+
+      - name: erm_supplier_country
+        data_type: varchar(1000)
+
+      - name: group_l1
+        data_type: varchar(1000)
+
+      - name: category_l2
+        data_type: varchar(1000)
+
+      - name: sub_category_l3
+        data_type: varchar(1000)
+
+      - name: family_l4
+        data_type: varchar(1000)
+
+      - name: commodity_l5
+        data_type: varchar(1000)
+
+      - name: sub_project
+        data_type: varchar(1000)
+
+      - name: ctg_category_l2
+        data_type: varchar(1000)
+
+      - name: ctg_sub_category_l3
+        data_type: varchar(1000)
+
+      - name: ctg_family_l4
+        data_type: varchar(1000)
+
+      - name: ctg_commodity_l5
+        data_type: varchar(1000)
+
+      - name: pds_status
+        data_type: varchar(100)
+
+      - name: ros_status
+        data_type: varchar(100)
+
+      - name: cdd_status
+        data_type: varchar(100)
+
+      - name: received_date_issue
+        data_type: varchar(100)
+
+      - name: received_open
+        data_type: varchar(100)
+
+      - name: req_processing_time
+        data_type: varchar(100)
+
+      - name: received_year
+        data_type: integer
+
+      - name: received_month
+        data_type: varchar(15)
+
+      - name: received_date_key
+        data_type: numeric
+
+      - name: po_creation_year
+        data_type: integer
+
+      - name: po_creation_month
+        data_type: varchar(15)
+
+      - name: po_creation_date_key
+        data_type: numeric
+
+      - name: po_issue_year
+        data_type: integer
+
+      - name: po_issue_month
+        data_type: varchar(15)
+
+      - name: po_issue_date_key
+        data_type: numeric
+
+      - name: usd_line_total_conv
+        data_type: numeric
+
+      - name: usd_line_unit_conv
+        data_type: numeric
+
+      - name: po_total_conv
+        data_type: integer
+
+      - name: po_range_filter
+        data_type: varchar(100)
+
+      - name: po_and_line_item_no
+        data_type: varchar(1000)
+
+      - name: refreshed_date
+        data_type: varchar(100)
+
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+
+  - name: buyer_analysis_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+
+      - name: po_number
+        data_type: varchar(1000)
+
+      - name: po_line_item_number
+        data_type: numeric
+
+      - name: po_line_description
+        data_type: varchar(1000)
+
+      - name: buyer
+        data_type: varchar(1000)
+
+      - name: item_description
+        data_type: varchar(1000)
+
+      - name: supplier_name
+        data_type: varchar(1000)
+
+      - name: req_creation_date
+        data_type: date
+
+      - name: po_creation_date
+        data_type: date
+
+      - name: po_creation_date_year
+        data_type: integer
+
+      - name: po_creation_date_month
+        data_type: integer
+
+      - name: po_creation_date_quarter
+        data_type: varchar(10)
+
+      - name: po_creation_date_month_name
+        data_type: varchar(15)
+
+      - name: po_issue_date
+        data_type: date
+
+      - name: po_issue_date_year
+        data_type: integer
+
+      - name: po_issue_date_month
+        data_type: integer
+
+      - name: po_issue_date_quarter
+        data_type: varchar(10)
+
+      - name: po_issue_date_month_name
+        data_type: varchar(15)
+
+      - name: promised_date
+        data_type: date
+
+      - name: req_processing_time
+        data_type: integer
+
+      - name: po_approval_time
+        data_type: integer
+
+      - name: polt_v1
+        data_type: bigint
+
+      - name: code_of_account
+        data_type: varchar(400)
+
+      - name: incoterm_tax_terms
+        data_type: varchar(200)
+
+      - name: item_tag
+        data_type: varchar(1000)
+
+      - name: line_item_unit_price
+        data_type: numeric
+
+      - name: po_line_quantity
+        data_type: numeric
+
+      - name: line_value
+        data_type: numeric
+
+      - name: received_quantity
+        data_type: numeric
+
+      - name: received_value
+        data_type: numeric
+
+      - name: supplier_location
+        data_type: varchar(1000)
+
+      - name: worley_project_region
+        data_type: varchar(1000)
+
+      - name: project_sub_region
+        data_type: varchar(1000)
+
+      - name: project_country
+        data_type: varchar(1000)
+
+      - name: worley_project_office
+        data_type: varchar(1000)
+
+      - name: sector
+        data_type: varchar(1000)
+
+      - name: client
+        data_type: varchar(1000)
+
+      - name: paper
+        data_type: varchar(1000)
+
+      - name: group_l1
+        data_type: varchar(1000)
+
+      - name: category_l2
+        data_type: varchar(1000)
+
+      - name: sub_category_l3
+        data_type: varchar(1000)
+
+      - name: family_l4
+        data_type: varchar(1000)
+
+      - name: worley_code_l5
+        data_type: varchar(1000)
+
+      - name: po_stts_flag
+        data_type: integer
+
+      - name: received_date
+        data_type: date
+
+      - name: received_date_year
+        data_type: integer
+
+      - name: received_date_month
+        data_type: integer
+
+      - name: received_date_quarter
+        data_type: varchar(10)
+
+      - name: received_date_month_name
+        data_type: varchar(15)
+
+      - name: data_refreshed_date
+        data_type: date
+
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+
+  - name: category_management_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: purchase_order_line_item_internal_id
+        data_type: integer 
+      - name: po_creation_date
+        data_type: date
+      - name: po_creation_date_year
+        data_type: integer 
+      - name: po_creation_date_quarter
+        data_type: varchar(15)
+      - name: po_creation_month_name
+        data_type: varchar(20)
+      - name: po_line_number
+        data_type: integer 
+      - name: worley_code
+        data_type: varchar(1000)
+      - name: worley_project_region
+        data_type: varchar(1000)
+      - name: supplier
+        data_type: varchar(1000)
+      - name: country
+        data_type: varchar(200)
+      - name: category
+        data_type: varchar(1000)
+      - name: sub_category
+        data_type: varchar(1000)
+      - name: family
+        data_type: varchar(1000)
+      - name: ctg_commodity_l5
+        data_type: varchar(1000)
+      - name: line_value
+        data_type: numeric
+      - name: refreshed_date
+        data_type: date
+      - name: po_issue_date
+        data_type: date
+
+  - name: support_info_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: worley_office_origin
+        data_type: varchar(1000)
+      - name: po_creation_date
+        data_type: date
+      - name: client
+        data_type: varchar(1000)
+      - name: supplier
+        data_type: varchar(1000)
+      - name: supplier_location
+        data_type: varchar(1000)
+      - name: po_issue_date
+        data_type: date
+      - name: po_line_number
+        data_type: integer 
+      - name: item_description
+        data_type: varchar(2000)
+      - name: received_date
+        data_type: date
+      - name: polt_v1
+        data_type: integer 
+      - name: polt_v2
+        data_type: integer 
+      - name: worley_project_region
+        data_type: varchar(1000)
+      - name: project_sub_region
+        data_type: varchar(1000)
+      - name: project_country
+        data_type: varchar(1000)
+      - name: sector
+        data_type: varchar(1000)
+      - name: received_date_issue
+        data_type: varchar(100)
+      - name: po_creation_date_year
+        data_type: integer
+      - name: po_creation_date_month
+        data_type: integer
+      - name: po_creation_date_quarter
+        data_type: varchar(15)
+      - name: po_creation_date_month_name
+        data_type: varchar(20)
+      - name: po_issue_date_year
+        data_type: integer
+      - name: po_issue_date_month
+        data_type: integer
+      - name: po_issue_date_quarter
+        data_type: varchar(15)
+      - name: po_issue_date_month_name
+        data_type: varchar(20)
+      - name: received_date_year
+        data_type: integer
+      - name: received_date_month
+        data_type: integer
+      - name: received_date_quarter
+        data_type: varchar(15)
+      - name: received_date_month_name
+        data_type: varchar(20)
+      - name: po_stts_flag
+        data_type: integer
+      - name: po_total_conv
+        data_type: integer
+      - name: refreshed_date
+        data_type: date
+  - name: spend_analysis_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: po_creation_date
+        data_type: date
+      - name: title
+        data_type: varchar(1000)
+      - name: gross_value
+        data_type: numeric
+      - name: client
+        data_type: varchar(1000)
+      - name: supplier_location
+        data_type: varchar(1000)
+      - name: po_issue_date
+        data_type: date
+      - name: purchase_order_line_item_internal_id
+        data_type: numeric
+      - name: po_line_number
+        data_type: numeric
+      - name: po_line_quantity
+        data_type: numeric
+      - name: promised_date
+        data_type: date
+      - name: incoterm_tax_terms
+        data_type: varchar(200)
+      - name: code_of_account
+        data_type: varchar(400)
+      - name: item_tag
+        data_type: varchar(1000)
+      - name: item_description
+        data_type: varchar(1000)
+      - name: req_creation_date
+        data_type: date
+      - name: received_quantity
+        data_type: numeric
+      - name: data_refreshed_date
+        data_type: date
+      - name: polt_v1
+        data_type: bigint
+      - name: po_approval_time
+        data_type: integer 
+      - name: po_stts_flag
+        data_type: integer
+      - name: usd_conv
+        data_type: integer
+      - name: unspsc
+        data_type: varchar(1000)
+      - name: worley_project_region
+        data_type: varchar(1000)
+      - name: project_sub_region
+        data_type: varchar(1000)
+      - name: project_country
+        data_type: varchar(1000)
+      - name: worley_project_office
+        data_type: varchar(1000)
+      - name: sector
+        data_type: varchar(1000)
+      - name: paper
+        data_type: varchar(1000)
+      - name: catg_supplier
+        data_type: varchar(1000)
+      - name: erm_supplier_country
+        data_type: varchar(1000)
+      - name: group_l1
+        data_type: varchar(1000)
+      - name: category_l2
+        data_type: varchar(1000)
+      - name: sub_category_l3
+        data_type: varchar(1000)
+      - name: family_l4
+        data_type: varchar(1000)
+      - name: sub_project
+        data_type: varchar(1000)
+      - name: req_processing_time
+        data_type: integer
+      - name: usd_line_total_conv
+        data_type: numeric
+      - name: usd_line_unit_conv
+        data_type: numeric
+      - name: po_range_filter
+        data_type: varchar(100)
+      - name: po_issue_date_year
+        data_type: integer
+      - name: po_issue_date_month
+        data_type: integer
+      - name: po_issue_date_quarter
+        data_type: varchar(15)
+      - name: po_issue_date_month_name
+        data_type: varchar(20)
+      - name: received_date_year
+        data_type: integer
+      - name: received_date_month
+        data_type: integer
+      - name: received_date_quarter
+        data_type: varchar(15)
+      - name: received_date_month_name
+        data_type: varchar(20)
+
+  - name: lead_time_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+
+      - name: po_number
+        data_type: varchar(1000)
+
+      - name: worley_office_origin
+        data_type: varchar(1000)
+
+      - name: po_creation_date
+        data_type: date
+
+      - name: title
+        data_type: varchar(1000)
+
+      - name: gross_value
+        data_type: numeric
+
+      - name: client
+        data_type: varchar(1000)
+
+      - name: supplier
+        data_type: varchar(1000)
+
+      - name: supplier_code
+        data_type: varchar(1000)
+
+      - name: supplier_location
+        data_type: varchar(1000)
+
+      - name: po_issue_date
+        data_type: date
+
+      - name: buyer
+        data_type: varchar(1000)
+
+      - name: database_instance_name
+        data_type: varchar(500)
+
+      - name: cost_type
+        data_type: varchar(200)
+
+      - name: required_on_site_date
+        data_type: date
+
+      - name: purchase_order_line_item_internal_id
+        data_type: numeric
+
+      - name: po_line_number
+        data_type: numeric
+
+      - name: po_line_quantity
+        data_type: numeric
+
+      - name: line_item_unit_price
+        data_type: numeric
+
+      - name: line_item_total_price
+        data_type: numeric
+
+      - name: promised_date
+        data_type: date
+
+      - name: incoterm_tax_terms
+        data_type: varchar(200)
+
+      - name: code_of_account
+        data_type: varchar(400)
+
+      - name: item_tag
+        data_type: varchar(1000)
+
+      - name: item_description
+        data_type: varchar(1000)
+
+      - name: po_revision
+        data_type: numeric
+
+      - name: contract_delivery_date
+        data_type: date
+
+      - name: req_creation_date
+        data_type: date
+
+      - name: received_date
+        data_type: date
+
+      - name: received_quantity
+        data_type: numeric
+
+      - name: po_status
+        data_type: varchar(100)
+
+      - name: data_refreshed_date
+        data_type: date
+
+      - name: pds
+        data_type: bigint
+
+      - name: ros
+        data_type: bigint
+
+      - name: cdd
+        data_type: bigint
+
+      - name: polt_v1
+        data_type: bigint
+
+      - name: polt_v2
+        data_type: bigint
+
+      - name: po_approval_time
+        data_type: varchar(100)
+
+      - name: po_stts_flag
+        data_type: integer
+
+      - name: received_flag
+        data_type: integer
+
+      - name: currency_type
+        data_type: varchar(100)
+
+      - name: usd_conv
+        data_type: integer
+
+      - name: unspsc
+        data_type: varchar(1000)
+
+      - name: worley_project_region
+        data_type: varchar(1000)
+
+      - name: project_sub_region
+        data_type: varchar(1000)
+
+      - name: project_country
+        data_type: varchar(1000)
+
+      - name: worley_project_office
+        data_type: varchar(1000)
+
+      - name: sector
+        data_type: varchar(1000)
+
+      - name: client_country
+        data_type: varchar(1000)
+
+      - name: paper
+        data_type: varchar(1000)
+
+      - name: catg_supplier
+        data_type: varchar(1000)
+
+      - name: catg_country_code
+        data_type: varchar(1000)
+
+      - name: erm_supplier_country
+        data_type: varchar(1000)
+
+      - name: group_l1
+        data_type: varchar(1000)
+
+      - name: category_l2
+        data_type: varchar(1000)
+
+      - name: sub_category_l3
+        data_type: varchar(1000)
+
+      - name: family_l4
+        data_type: varchar(1000)
+
+      - name: commodity_l5
+        data_type: varchar(1000)
+
+      - name: sub_project
+        data_type: varchar(1000)
+
+      - name: ctg_category_l2
+        data_type: varchar(1000)
+
+      - name: ctg_sub_category_l3
+        data_type: varchar(1000)
+
+      - name: ctg_family_l4
+        data_type: varchar(1000)
+
+      - name: ctg_commodity_l5
+        data_type: varchar(1000)
+
+      - name: pds_status
+        data_type: varchar(100)
+
+      - name: ros_status
+        data_type: varchar(100)
+
+      - name: cdd_status
+        data_type: varchar(100)
+
+      - name: received_date_issue
+        data_type: varchar(100)
+
+      - name: received_open
+        data_type: varchar(100)
+
+      - name: req_processing_time
+        data_type: varchar(100)
+
+      - name: received_year
+        data_type: integer
+
+      - name: received_month
+        data_type: varchar(15)
+
+      - name: received_date_key
+        data_type: numeric
+
+      - name: po_creation_year
+        data_type: integer
+
+      - name: po_creation_month
+        data_type: varchar(15)
+
+      - name: po_creation_date_key
+        data_type: numeric
+
+      - name: po_issue_year
+        data_type: integer
+      
+      - name: po_issue_month_no
+        data_type: integer
+      
+      - name: po_issue_quarter
+        data_type: varchar(10)
+
+      - name: received_month_no
+        data_type: integer
+      
+      - name: received_quarter
+        data_type: varchar(10)
+
+      - name: po_creation_month_no
+        data_type: integer
+      
+      - name: po_creation_quarter
+        data_type: varchar(10)
+
+      - name: po_issue_month
+        data_type: varchar(15)
+
+      - name: po_issue_date_key
+        data_type: numeric
+
+      - name: usd_line_total_conv
+        data_type: numeric
+
+      - name: usd_line_unit_conv
+        data_type: numeric
+
+      - name: po_total_conv
+        data_type: integer
+
+      - name: po_range_filter
+        data_type: varchar(100)
+
+      - name: po_and_line_item_no
+        data_type: varchar(1000)
+
+      - name: refreshed_date
+        data_type: varchar(100)
+
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+
+  - name: pack_track
+
+    config: 
+      contract: {enforced: true}
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: cwpsid
+        data_type: varchar(100)
+      - name: iwpsid
+        data_type: varchar(100)
+      - name: disciplinedescription
+        data_type: varchar(500)
+      - name: scope_discipline
+        data_type: varchar(500)
+      - name: date_key
+        data_type: date
+      - name: status
+        data_type: varchar(500)
+      - name: openconstraintcount
+        data_type: integer
+      - name: lookahead
+        data_type: varchar(100)
+      - name: budgetedhours
+        data_type: numeric
+      - name: estimatedhours
+        data_type: numeric
+      - name: earnedhours
+        data_type: numeric
+      - name: remaininghours
+        data_type: numeric
+      - name: percentcomplete
+        data_type: numeric
+      - name: iwpsdescription
+        data_type: varchar(1000)
+      - name: planneruser
+        data_type: varchar(1000)
+      - name: plannedstartdate
+        data_type: date
+      - name: plannedfinishdate
+        data_type: date
+      - name: actualstartdate
+        data_type: date
+      - name: actualfinishdate
+        data_type: date
+      - name: cwa_constructionworkarea
+        data_type: varchar(1000)
+      - name: open_duration
+        data_type: bigint
+      - name: plannedduration
+        data_type: varchar(100)
+      - name: actual_duration
+        data_type: varchar(100)
+      - name: delay
+        data_type: numeric
+      - name: delay_percent
+        data_type: numeric
+      - name: constrainttype
+        data_type: varchar(500)
+      - name: constraintid
+        data_type: varchar(500)
+      - name: _constraint
+        data_type: varchar(1000)
+      - name: constrainttype_count
+        data_type: integer
+      - name: period_obt
+        data_type: varchar(100)
+
+  - name: issued_by_week
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: cwp
+        data_type: varchar(100)
+      - name: iwp
+        data_type: varchar(100)
+      - name: disciplinedescription
+        data_type: varchar(500)
+      - name: cwasname
+        data_type: varchar(1000)
+      - name: scope_discipline
+        data_type: varchar(500)
+      - name: status
+        data_type: varchar(500)
+      - name: date_key
+        data_type: date
+      - name: value
+        data_type: numeric
+      - name: fte_count
+        data_type: integer
+      - name: category
+        data_type: varchar(100)
+
+  - name: fact_requisition_data_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_no
+        data_type: integer
+      - name: project_id
+        data_type: varchar(100)
+      - name: current_revision
+        data_type: numeric(38,2)
+      - name: requisition_title
+        data_type: varchar(1000)
+      - name: originator
+        data_type: varchar(1000)
+      - name: buyer
+        data_type: varchar(1000)
+      - name: expediter
+        data_type: varchar(1000)
+      - name: criticality
+        data_type: varchar(1000)
+      - name: discipline
+        data_type: varchar(1000)
+      - name: supplier
+        data_type: varchar(1000)
+      - name: potential_suppliers
+        data_type: varchar(1000)
+      - name: budget
+        data_type: numeric(38,2)
+      - name: commitment_value
+        data_type: numeric(38,2)
+      - name: requisition_no
+        data_type: varchar(1000)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: ros_date
+        data_type: date
+      - name: lead_time
+        data_type: varchar(1000)
+      - name: sub_project
+        data_type: varchar(1000)
+      - name: float_new
+        data_type: integer
+      - name: milestone_id
+        data_type: varchar(1000)
+      - name: milestone_name
+        data_type: varchar(1000)
+      - name: milestone_planned_date
+        data_type: date
+      - name: milestone_forecast_date
+        data_type: date
+      - name: milestone_actual_date
+        data_type: date
+      - name: milestone_duration
+        data_type: numeric(38,2)
+      - name: milestone_float
+        data_type: numeric(38,2)
+      - name: milestone_comment
+        data_type: varchar(max)
+      - name: milestone_sequence
+        data_type: integer
+      - name: comment
+        data_type: varchar(max)
+      - name: contract_owner
+        data_type: varchar(1000)
+      - name: contract_holder
+        data_type: varchar(1000)
+      - name: project_region
+        data_type: varchar(1000)
+      - name: customer_po
+        data_type: varchar(1000)
+      - name: rr_discipline
+        data_type: varchar(1000)
+      - name: client_reference_no
+        data_type: numeric(38,2)
+      - name: status
+        data_type: varchar(1000)
+      - name: ros_date_new
+        data_type: date
+      - name: actual_date_new
+        data_type: date
+      - name: dataset_refreshed_date
+        data_type: date
+      - name: milestone_lead_time
+        data_type: bigint
+
+  - name: psr_po
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: requisition_no
+        data_type: varchar(1000)
+      - name: grouped_milestone_code
+        data_type: varchar(1000)
+      - name: discipline
+        data_type: varchar(1000)
+      - name: po_planned_date
+        data_type: date
+      - name: po_forecast_date
+        data_type: date
+
+  - name: psr_tmr
+
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: requisition_no
+        data_type: varchar(1000)
+      - name: grouped_milestone_code
+        data_type: varchar(1000)
+      - name: discipline
+        data_type: varchar(1000)
+      - name: tmr_planned_date
+        data_type: date
+      - name: tmr_forecast_date
+        data_type: date
+
+  - name: purchasing_status_report_obt
+
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_no
+        data_type: integer
+      - name: project_id
+        data_type: varchar(100)
+      - name: current_revision
+        data_type: numeric(38,2)
+      - name: requisition_title
+        data_type: varchar(1000)
+      - name: originator
+        data_type: varchar(1000)
+      - name: buyer
+        data_type: varchar(1000)
+      - name: expediter
+        data_type: varchar(1000)
+      - name: criticality
+        data_type: varchar(1000)
+      - name: discipline
+        data_type: varchar(1000)
+      - name: supplier
+        data_type: varchar(1000)
+      - name: potential_suppliers
+        data_type: varchar(1000)
+      - name: budget
+        data_type: numeric(38,2)
+      - name: commitment_value
+        data_type: numeric(38,2)
+      - name: requisition_no
+        data_type: varchar(1000)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: ros_date
+        data_type: date
+      - name: lead_time
+        data_type: varchar(1000)
+      - name: sub_project
+        data_type: varchar(1000)
+      - name: float_new
+        data_type: integer
+      - name: milestone_id
+        data_type: varchar(1000)
+      - name: milestone_name
+        data_type: varchar(1000)
+      - name: milestone_planned_date
+        data_type: date
+      - name: milestone_forecast_date
+        data_type: date
+      - name: milestone_actual_date
+        data_type: date
+      - name: milestone_duration
+        data_type: numeric(38,2)
+      - name: milestone_float
+        data_type: numeric(38,2)
+      - name: milestone_comment
+        data_type: varchar(max)
+      - name: milestone_sequence
+        data_type: integer
+      - name: comment
+        data_type: varchar(max)
+      - name: contract_owner
+        data_type: varchar(1000)
+      - name: contract_holder
+        data_type: varchar(1000)
+      - name: project_region
+        data_type: varchar(1000)
+      - name: customer_po
+        data_type: varchar(1000)
+      - name: rr_discipline
+        data_type: varchar(1000)
+      - name: client_reference_no
+        data_type: numeric(38,2)
+      - name: status
+        data_type: varchar(1000)
+      - name: ros_date_new
+        data_type: date
+      - name: actual_date_new
+        data_type: date
+      - name: dataset_refreshed_date
+        data_type: date
+      - name: milestone_lead_time
+        data_type: bigint
+      - name: avg_lt_planned
+        data_type: integer
+      - name: avg_lt_forecast
+        data_type: integer
+      - name: tmr_issued_to_rfq_closure
+        data_type: integer
+      - name: rfq_closure_to_tbe_approval
+        data_type: integer
+      - name: tmr_received_to_po_issued
+        data_type: integer
+      - name: po_issued_to_po_delivered
+        data_type: integer
+      - name: po_planned_date
+        data_type: date
+      - name: po_forecast_date
+        data_type: date
+      - name: tmr_planned_date
+        data_type: date
+      - name: tmr_forecast_date
+        data_type: date
+      - name: planned_dates_in_past
+        data_type: varchar(20)
+      - name: key
+        data_type: varchar(5000)
+      - name: key1
+        data_type: varchar(5000)
+      - name: variance
+        data_type: bigint
+      - name: variance_filter
+        data_type: varchar(500)
+      - name: positive_negative_float
+        data_type: varchar(500)
+      - name: forecastdatecf
+        data_type: varchar(100)
+      - name: forecastdateicons
+        data_type: integer
+      - name: milestone_key
+        data_type: varchar(2000)
+      - name: actual_date_filter
+        data_type: varchar(100)
+      - name: complete_open
+        data_type: varchar(100)
+      - name: milestone_status_detail
+        data_type: varchar(100)
+      - name: desc_milestone_paf
+        data_type: varchar(5000)
+      - name: milestone_status_flag
+        data_type: varchar(200)
+      - name : fx_red
+        data_type: varchar(100)
+      - name : po_plan_date_new
+        data_type: date
+      - name : ros_date_year
+        data_type: integer
+      - name : ros_date_quarter
+        data_type: varchar(20)
+      - name : ros_date_month_name
+        data_type: varchar(100)
+      - name : ros_date_day
+        data_type : integer
+      - name : requisition_no_title
+        data_type: varchar(5000)
+      - name : tmr_to_po_placement_planned_duration
+        data_type: varchar(100)
+      - name : tmr_to_po_placement_forecast_duration
+        data_type: varchar(100)
+      - name : duration_progress
+        data_type: integer
+      - name : comment_new
+        data_type: varchar(max)
+      - name : df_cf
+        data_type: varchar(100)
+
+  - name: ecosys_finance_fact_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_no
+        data_type: varchar(100)
+      - name: project_internal_id
+        data_type: varchar(100)
+      - name: transaction_date
+        data_type: date
+      - name: project_snapshot
+        data_type: varchar(100)
+      - name: contingency_category
+        data_type: varchar(100)
+      - name: contingency_weighting
+        data_type: float
+      - name: rec_revenue
+        data_type: float
+      - name: invd_to_date
+        data_type: float
+      - name: wip
+        data_type: float
+      - name: recd_to_date
+        data_type: float
+      - name: outstanding_current
+        data_type: float
+      - name: outstanding_1_to_30_days
+        data_type: float
+      - name: outstanding_31_to_60_days
+        data_type: float
+      - name: outstanding_61_plus_days
+        data_type: float
+      - name: dso
+        data_type: float
+      - name: dwu
+        data_type: float
+      - name: ddo
+        data_type: float
+      - name: terms
+        data_type: varchar(100)
+      - name: outstanding_total
+        data_type: float
+      - name: outstanding_overdue
+        data_type: float
+      - name: has_financial_data
+        data_type: varchar(10)
+      - name: type
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: varchar(100)
+
+  - name: ecosys_control_account_fact_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_internal_id
+        data_type: varchar(100)
+      - name: project_no
+        data_type: varchar(100)
+      - name: project_title
+        data_type: varchar(1000)
+      - name: project_display_name
+        data_type: varchar(1000)
+      # - name: portfolio_project_grouping
+      #   data_type: varchar(1000)
+      # - name: project_start_date
+      #   data_type: timestamp
+      # - name: project_forecast_end_date
+      #   data_type: timestamp
+      # - name: project_manager
+      #   data_type: varchar(100)
+      # - name: project_controller
+      #   data_type: varchar(100)
+      # - name: approval_status_id
+      #   data_type: varchar(100)
+      - name: pa_date
+        data_type: varchar(100)
+      - name: snapshot_date
+        data_type: date
+      - name: project_snapshot
+        data_type: varchar(100)
+      - name: ca_snapshot
+        data_type: varchar(100)
+      - name: secorgid
+        data_type: varchar(100)
+      - name: control_account_internal_id
+        data_type: varchar(100)
+      - name: ct_internal_id
+        data_type: varchar(100)
+      - name: coa_internal_id
+        data_type: varchar(100)
+      - name: billableyesnoname
+        data_type: boolean
+      - name: billing_type_name
+        data_type: varchar(100)
+      - name: legacy_wbs
+        data_type: varchar(100)
+      # - name: sec_org_id
+      #   data_type: varchar(100)
+      # - name: path
+      #   data_type: varchar(1000)
+      # - name: region
+      #   data_type: varchar(1000)
+      # - name: sub_region
+      #   data_type: varchar(1000)
+      # - name: location_l1
+      #   data_type: varchar(1000)
+      # - name: location_l2
+      #   data_type: varchar(1000)
+      # - name: location_l3
+      #   data_type: varchar(1000)
+      # - name: location_l4
+      #   data_type: varchar(1000)
+      # - name: location_l5
+      #   data_type: varchar(1000)
+      # - name: location_l6
+      #   data_type: varchar(1000)
+      # - name: project_size_classification
+      #   data_type: varchar(1000)
+      # - name: project_size
+      #   data_type: varchar(100)
+      # - name: project_risk_classification
+      #   data_type: varchar(100)
+      # - name: project_risk
+      #   data_type: varchar(100)
+      # - name: project_type
+      #   data_type: varchar(100)
+      # - name: project_type_code
+      #   data_type: varchar(100)
+      # - name: project_type_name
+      #   data_type: varchar(100)
+      # - name: project_currency
+      #   data_type: varchar(100)
+      - name: project_currency_code
+        data_type: varchar(100)
+      - name: project_currency_name
+        data_type: varchar(100)
+      # - name: service_type
+      #   data_type: varchar(100)
+      # - name: service_type_code
+      #   data_type: varchar(100)
+      # - name: service_type_name
+      #   data_type: varchar(100)
+      # - name: customer_name
+      #   data_type: varchar(1000)
+      # - name: customer_type
+      #   data_type: varchar(100)
+      # - name: customer_type_code
+      #   data_type: varchar(100)
+      # - name: customer_type_name
+      #   data_type: varchar(100)
+      # - name: home_office_location
+      #   data_type: varchar(100)
+      # - name: home_office_location_code
+      #   data_type: varchar(100)
+      # - name: home_office_location_name
+      #   data_type: varchar(100)
+      # - name: project_funding
+      #   data_type: float
+      - name: cost_object_hierarchy_path_id
+        data_type: varchar(1000)
+      - name: cost_object_category_value_id
+        data_type: varchar(100)
+      - name: cost_object_category_value_name
+        data_type: varchar(100)
+      - name: display_name
+        data_type: varchar(100)
+      - name: library
+        data_type: varchar(100)
+      - name: level_1_description
+        data_type: varchar(100)
+      - name: level_2_description
+        data_type: varchar(100)
+      - name: level_3_description
+        data_type: varchar(100)
+      - name: level_4_description
+        data_type: varchar(100)
+      - name: level_5_description
+        data_type: varchar(100)
+      - name: hours_category
+        data_type: varchar(100)
+      - name: hours_progress_category
+        data_type: varchar(100)
+      - name: hours_wpi_category
+        data_type: varchar(100)
+      - name: original_hours_category
+        data_type: varchar(100)
+      - name: hours_parent_category_description
+        data_type: varchar(100)
+      - name: hours_category_description
+        data_type: varchar(100)
+      - name: original_budget_work_hours
+        data_type: float
+      - name: approved_variations_work_hours
+        data_type: float
+      - name: pending_variations_work_hours
+        data_type: float
+      - name: current_budget_work_hours
+        data_type: float
+      - name: actuals_to_date_work_hours
+        data_type: float
+      - name: estimate_to_complete_work_hours
+        data_type: float
+      - name: estimate_at_complete_work_hours
+        data_type: float
+      - name: variance_work_hours
+        data_type: float
+      - name: planned_work_hours
+        data_type: float
+      - name: earned_work_hours
+        data_type: float
+      - name: orig_hours_cat_current_budget_hours
+        data_type: float
+      - name: orig_hours_cat_actual_hours
+        data_type: float
+      - name: orig_hours_cat_planned_hours
+        data_type: float
+      - name: orig_hours_cat_earned_hours
+        data_type: float
+      - name: cost_category
+        data_type: varchar(100)
+      - name: cost_progress_category
+        data_type: varchar(100)
+      - name: original_cost_category
+        data_type: varchar(100)
+      - name: cost_parent_category_description
+        data_type: varchar(100)
+      - name: cost_category_description
+        data_type: varchar(100)
+      - name: original_budget_cost
+        data_type: float
+      - name: approved_variations_cost
+        data_type: float
+      - name: pending_variations_cost
+        data_type: float
+      - name: current_budget_cost
+        data_type: float
+      - name: actuals_to_date_cost
+        data_type: float
+      - name: estimate_to_complete_cost
+        data_type: float
+      - name: estimate_at_completion_cost
+        data_type: float
+      - name: planned_cost
+        data_type: float
+      - name: earned_cost
+        data_type: float
+      - name: variance_cost
+        data_type: float
+      - name: commitments_cost
+        data_type: float
+      - name: orig_cost_cat_current_budget_cost
+        data_type: float
+      - name: orig_cost_cat_actual_cost
+        data_type: float
+      - name: orig_cost_cat_planned_cost
+        data_type: float
+      - name: orig_cost_cat_earned_cost
+        data_type: float
+      - name: revenue_category
+        data_type: varchar(100)
+      - name: revenue_progress_category
+        data_type: varchar(100)
+      - name: revenue_parent_category_description
+        data_type: varchar(100)
+      - name: revenue_category_description
+        data_type: varchar(100)
+      - name: actuals_to_date_all_revenue
+        data_type: float
+      - name: original_budget_revenue
+        data_type: float
+      - name: approved_variations_revenue
+        data_type: float
+      - name: pending_variations_revenue
+        data_type: float
+      - name: current_budget_revenue
+        data_type: float
+      - name: planned_revenue
+        data_type: float
+      - name: earned_revenue
+        data_type: float
+      - name: commitments_revenue
+        data_type: float
+      - name: actuals_to_date_revenue
+        data_type: float
+      - name: estimate_at_completion_revenue
+        data_type: float
+      - name: estimate_to_complete_revenue
+        data_type: float
+      - name: variance_revenue
+        data_type: float
+      - name: cost_category_overhead
+        data_type: varchar(100)
+      - name: original_cost_category_overhead
+        data_type: varchar(100)
+      - name: original_budget_overhead
+        data_type: float
+      - name: approved_variations_overhead
+        data_type: float
+      - name: pending_variations_overhead
+        data_type: float
+      - name: current_budget_overhead
+        data_type: float
+      - name: actuals_to_date_overhead
+        data_type: float
+      - name: estimate_to_complete_overhead
+        data_type: float
+      - name: estimate_at_completion_overhead
+        data_type: float
+      - name: planned_overhead
+        data_type: float
+      - name: earned_overhead
+        data_type: float
+      - name: variance_overhead
+        data_type: float
+      - name: commitments_overhead
+        data_type: float
+      - name: unallocated_actual_revenue
+        data_type: float
+      - name: unallocated_actual_cost
+        data_type: float
+      - name: unallocated_actual_hours
+        data_type: float
+      - name: wbs01
+        data_type: varchar(100)
+      - name: wbs02
+        data_type: varchar(100)
+      - name: top_task_id
+        data_type: varchar(100)
+      - name: wbsid_phase
+        data_type: varchar(100)
+      - name: wbsid_location
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+
+  - name: dim_ecosys_calendar
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: date_key
+        data_type: int
+      - name: year
+        data_type: int
+      - name: snapshot_date
+        data_type: date
+      - name: snapshot_month
+        data_type: varchar(10)
+      - name: index
+        data_type: bigint          
+
+  - name: dim_ecosys_exchange_rates
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: startminorperiod
+        data_type: date
+      - name: aed
+        data_type: float
+      - name: aoa
+        data_type: float
+      - name: ars
+        data_type: float
+      - name: aud
+        data_type: float
+      - name: azn
+        data_type: float
+      - name: bgn
+        data_type: float
+      - name: bhd
+        data_type: float
+      - name: bnd
+        data_type: float
+      - name: brl
+        data_type: float
+      - name: cad
+        data_type: float
+      - name: chf
+        data_type: float
+      - name: clp
+        data_type: float
+      - name: cny
+        data_type: float
+      - name: cop
+        data_type: float
+      - name: czk
+        data_type: float
+      - name: dkk
+        data_type: float
+      - name: egp
+        data_type: float
+      - name: eur
+        data_type: float
+      - name: gbp
+        data_type: float
+      - name: ghs
+        data_type: float
+      - name: hkd
+        data_type: float
+      - name: idr
+        data_type: float
+      - name: inr
+        data_type: float
+      - name: iqd
+        data_type: float
+      - name: irr
+        data_type: float
+      - name: jmd
+        data_type: float
+      - name: jod
+        data_type: float
+      - name: jpy
+        data_type: float
+      - name: kes
+        data_type: float
+      - name: kgs
+        data_type: float
+      - name: krw
+        data_type: float
+      - name: kwd
+        data_type: float
+      - name: kzt
+        data_type: float
+      - name: lyd
+        data_type: float
+      - name: mad
+        data_type: float
+      - name: mnt
+        data_type: float
+      - name: mxn
+        data_type: float
+      - name: myr
+        data_type: float
+      - name: mzn
+        data_type: float
+      - name: nad
+        data_type: float
+      - name: ngn
+        data_type: float
+      - name: nok
+        data_type: float
+      - name: nzd
+        data_type: float
+      - name: omr
+        data_type: float
+      - name: pen
+        data_type: float
+      - name: pgk
+        data_type: float
+      - name: php
+        data_type: float
+      - name: pln
+        data_type: float
+      - name: qar
+        data_type: float
+      - name: ron
+        data_type: float
+      - name: rub
+        data_type: float
+      - name: sar
+        data_type: float
+      - name: sek
+        data_type: float
+      - name: sgd
+        data_type: float
+      - name: skk
+        data_type: float
+      - name: syp
+        data_type: float
+      - name: thb
+        data_type: float
+      - name: tnd
+        data_type: float
+      - name: try
+        data_type: float
+      - name: ttd
+        data_type: float
+      - name: tzs
+        data_type: float
+      - name: uah
+        data_type: float
+      - name: usd
+        data_type: float
+      - name: uyu
+        data_type: float
+      - name: uzs
+        data_type: float
+      - name: vef
+        data_type: float
+      - name: vnd
+        data_type: float
+      - name: xaf
+        data_type: float
+      - name: xpf
+        data_type: float
+      - name: zar
+        data_type: float
+      - name: zmk
+        data_type: float
+
+  - name: dim_ecosys_exchange_rates_unpivot
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: snapshot_date
+        data_type: date
+      - name: cur
+        data_type: varchar(10)
+      - name: aed
+        data_type: float
+      - name: ars
+        data_type: float
+      - name: aud
+        data_type: float
+      - name: bhd
+        data_type: float
+      - name: bnd
+        data_type: float
+      - name: brl
+        data_type: float
+      - name: cad
+        data_type: float
+      - name: clp
+        data_type: float
+      - name: cny
+        data_type: float
+      - name: cop
+        data_type: float
+      - name: eur
+        data_type: float
+      - name: gbp
+        data_type: float
+      - name: idr
+        data_type: float
+      - name: inr
+        data_type: float
+      - name: kwd
+        data_type: float
+      - name: kzt
+        data_type: float
+      - name: mxn
+        data_type: float
+      - name: myr
+        data_type: float
+      - name: ngn
+        data_type: float
+      - name: nzd
+        data_type: float
+      - name: omr
+        data_type: float
+      - name: qar
+        data_type: float
+      - name: sar
+        data_type: float
+      - name: sek
+        data_type: float
+      - name: sgd
+        data_type: float
+      - name: thb
+        data_type: float
+      - name: ttd
+        data_type: float
+      - name: usd
+        data_type: float
+      - name: uzs
+        data_type: float
+      - name: zar
+        data_type: float
+
+  - name: dim_ecosys_header
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_internal_id
+        data_type: varchar(100)
+      - name: project_no
+        data_type: varchar(100)
+      - name: project_title
+        data_type: varchar(1000)
+      - name: project_display_name
+        data_type: varchar(1000)
+      - name: portfolio_project_grouping
+        data_type: varchar(1000)
+      - name: project_start_date
+        data_type: date
+      - name: project_forecast_end_date
+        data_type: date
+      - name: project_manager
+        data_type: varchar(100)
+      - name: project_controller
+        data_type: varchar(100)
+      - name: project_sponsor
+        data_type: varchar(100)
+      - name: approval_status_id
+        data_type: varchar(100)
+      - name: project_approval_status_desc
+        data_type: varchar(100)
+      - name: billing_type_name
+        data_type: varchar(100)
+      - name: is_lump_sum
+        data_type: varchar(10)
+      - name: legacy_wbs
+        data_type: varchar(100)
+      - name: sec_org_id
+        data_type: varchar(100)
+      - name: path
+        data_type: varchar(1000)
+      - name: region
+        data_type: varchar(1000)
+      - name: sub_region
+        data_type: varchar(1000)
+      - name: location_l1
+        data_type: varchar(1000)
+      - name: location_l2
+        data_type: varchar(1000)
+      - name: location_l3
+        data_type: varchar(1000)
+      - name: location_l4
+        data_type: varchar(1000)
+      - name: location_l5
+        data_type: varchar(1000)
+      - name: location_l6
+        data_type: varchar(1000)
+      - name: project_size_classification
+        data_type: varchar(1000)
+      - name: project_size
+        data_type: varchar(100)
+      - name: project_risk_classification
+        data_type: varchar(100)
+      - name: project_risk
+        data_type: varchar(100)
+      - name: project_type
+        data_type: varchar(100)
+      - name: project_type_code
+        data_type: varchar(100)
+      - name: project_type_name
+        data_type: varchar(100)
+      - name: project_currency
+        data_type: varchar(100)
+      - name: project_currency_code
+        data_type: varchar(100)
+      - name: project_currency_name
+        data_type: varchar(100)
+      - name: business_line
+        data_type: varchar(100)
+      - name: business_line_code
+        data_type: varchar(100)
+      - name: business_line_name
+        data_type: varchar(100)
+      - name: sector
+        data_type: varchar(100)
+      - name: sector_code
+        data_type: varchar(100)
+      - name: sector_name
+        data_type: varchar(100)
+      - name: service_type
+        data_type: varchar(100)
+      - name: service_type_code
+        data_type: varchar(100)
+      - name: service_type_name
+        data_type: varchar(100)
+      - name: customer_name
+        data_type: varchar(1000)
+      - name: customer_type
+        data_type: varchar(100)
+      - name: customer_type_code
+        data_type: varchar(100)
+      - name: customer_type_name
+        data_type: varchar(100)
+      - name: home_office_location
+        data_type: varchar(100)
+      - name: home_office_location_code
+        data_type: varchar(100)
+      - name: home_office_location_name
+        data_type: varchar(100)
+      - name: project_funding
+        data_type: float
+      - name: has_funding
+        data_type: varchar(10)
+      - name: major_project
+        data_type: varchar(10)
+      - name: is_major_project
+        data_type: varchar(10)
+      - name: has_gid_hours
+        data_type: varchar(10)
+
+  - name: ecosys_project_data_availability
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_no
+        data_type: varchar(100)
+      - name: end_date
+        data_type: date
+      - name: project_snapshot
+        data_type: varchar(100)
+      - name: project_currency_code
+        data_type: varchar(10)
+      - name: original_budget_start_date
+        data_type: date
+      - name: original_budget_end_date
+        data_type: date
+      - name: working_forecast_end_date
+        data_type: date
+      - name: non_sub_contract_ca_count
+        data_type: bigint
+      - name: billable_ca_count
+        data_type: bigint
+      - name: has_original_budget_revenue
+        data_type: varchar(10)
+      - name: has_actuals_to_date_revenue
+        data_type: varchar(10)
+      - name: has_approved_variations_revenue
+        data_type: varchar(10)
+      - name: has_pending_variations_revenue
+        data_type: varchar(10)
+      - name: has_estimate_at_completion_revenue
+        data_type: varchar(10)
+      - name: has_planned_revenue
+        data_type: varchar(10)
+      - name: has_earned_revenue
+        data_type: varchar(10)
+      - name: has_current_budget_revenue
+        data_type: varchar(10)
+      - name: has_earned_revenue_in_period
+        data_type: varchar(10)
+      - name: has_actuals_to_date_revenue_in_period
+        data_type: varchar(10)
+      - name: has_estimate_at_completion_revenue_in_period
+        data_type: varchar(10)
+      - name: has_original_budget_cost
+        data_type: varchar(10)
+      - name: has_actuals_to_date_cost
+        data_type: varchar(10)
+      - name: has_approved_variations_cost
+        data_type: varchar(10)
+      - name: has_pending_variations_cost
+        data_type: varchar(10)
+      - name: has_estimate_at_completion_cost
+        data_type: varchar(10)
+      - name: has_planned_cost
+        data_type: varchar(10)
+      - name: has_earned_cost
+        data_type: varchar(10)
+      - name: has_current_budget_cost
+        data_type: varchar(10)
+      - name: has_earned_cost_in_period
+        data_type: varchar(10)
+      - name: has_actuals_to_date_cost_in_period
+        data_type: varchar(10)
+      - name: has_estimate_at_completion_cost_in_period
+        data_type: varchar(10)
+      - name: has_original_budget_work_hours
+        data_type: varchar(10)
+      - name: has_actuals_to_date_work_hours
+        data_type: varchar(10)
+      - name: has_approved_variations_work_hours
+        data_type: varchar(10)
+      - name: has_pending_variations_work_hours
+        data_type: varchar(10)
+      - name: has_estimate_at_completion_work_hours
+        data_type: varchar(10)
+      - name: has_planned_work_hours
+        data_type: varchar(10)
+      - name: has_earned_work_hours
+        data_type: varchar(10)
+      - name: has_current_budget_hours
+        data_type: varchar(10)
+      - name: has_earned_work_hours_in_period
+        data_type: varchar(10)
+      - name: has_actuals_to_date_work_hours_in_period
+        data_type: varchar(10)
+      - name: has_estimate_at_completion_work_hours_in_period
+        data_type: varchar(10)
+      - name: project_original_budget_work_hours
+        data_type : float
+      - name: project_approved_variations_work_hours
+        data_type : float
+      - name: project_pending_variations_work_hours
+        data_type : float
+      - name: project_current_budget_work_hours
+        data_type : float
+      - name: project_actuals_to_date_work_hours
+        data_type : float
+      - name: project_estimate_to_complete_work_hours
+        data_type : float
+      - name: project_estimate_at_complete_work_hours
+        data_type : float
+      - name: project_variance_work_hours
+        data_type : float
+      - name: project_planned_work_hours
+        data_type : float
+      - name: project_earned_work_hours
+        data_type : float
+      - name: project_original_budget_cost
+        data_type : float
+      - name: project_approved_variations_cost
+        data_type : float
+      - name: project_pending_variations_cost
+        data_type : float
+      - name: project_current_budget_cost
+        data_type : float
+      - name: project_actuals_to_date_cost
+        data_type : float
+      - name: project_estimate_to_complete_cost
+        data_type : float
+      - name: project_estimate_at_completion_cost
+        data_type : float
+      - name: project_planned_cost
+        data_type : float
+      - name: project_earned_cost
+        data_type : float
+      - name: project_variance_cost
+        data_type : float
+      - name: project_commitments_cost
+        data_type : float
+      - name: project_actuals_to_date_all_revenue
+        data_type : float
+      - name: project_original_budget_revenue
+        data_type : float
+      - name: project_approved_variations_revenue
+        data_type : float
+      - name: project_pending_variations_revenue
+        data_type : float
+      - name: project_current_budget_revenue
+        data_type : float
+      - name: project_planned_revenue
+        data_type : float
+      - name: project_earned_revenue
+        data_type : float
+      - name: project_commitments_revenue
+        data_type : float
+      - name: project_actuals_to_date_revenue
+        data_type : float
+      - name: project_estimate_at_completion_revenue
+        data_type : float
+      - name: project_estimate_to_complete_revenue
+        data_type : float
+      - name: project_variance_revenue
+        data_type : float
+      - name: project_original_budget_overhead
+        data_type : float
+      - name: project_approved_variations_overhead
+        data_type : float
+      - name: project_pending_variations_overhead
+        data_type : float
+      - name: project_current_budget_overhead
+        data_type : float
+      - name: project_actuals_to_date_overhead
+        data_type : float
+      - name: project_estimate_to_complete_overhead
+        data_type : float
+      - name: project_estimate_at_completion_overhead
+        data_type : float
+      - name: project_planned_overhead
+        data_type : float
+      - name: project_earned_overhead
+        data_type : float
+      - name: project_variance_overhead
+        data_type : float
+      - name: project_commitments_overhead
+        data_type : float
+      - name: project_unallocated_actual_revenue
+        data_type : float
+      - name: project_unallocated_actual_cost
+        data_type : float
+      - name: project_unallocated_actual_hours
+        data_type : float
+      - name: project_current_budget_gross_margin
+        data_type : float
+      - name: project_original_budget_gross_margin
+        data_type : float
+      - name: project_estimate_at_completion_gross_margin
+        data_type : float
+      - name: project_actuals_to_date_gross_margin
+        data_type : float
+      - name: aed
+        data_type: float
+      - name: ars
+        data_type: float
+      - name: aud
+        data_type: float
+      - name: bhd
+        data_type: float
+      - name: bnd
+        data_type: float
+      - name: brl
+        data_type: float
+      - name: cad
+        data_type: float
+      - name: clp
+        data_type: float
+      - name: cny
+        data_type: float
+      - name: cop
+        data_type: float
+      - name: eur
+        data_type: float
+      - name: gbp
+        data_type: float
+      - name: idr
+        data_type: float
+      - name: inr
+        data_type: float
+      - name: kwd
+        data_type: float
+      - name: kzt
+        data_type: float
+      - name: mxn
+        data_type: float
+      - name: myr
+        data_type: float
+      - name: ngn
+        data_type: float
+      - name: nzd
+        data_type: float
+      - name: omr
+        data_type: float
+      - name: qar
+        data_type: float
+      - name: sar
+        data_type: float
+      - name: sek
+        data_type: float
+      - name: sgd
+        data_type: float
+      - name: thb
+        data_type: float
+      - name: ttd
+        data_type: float
+      - name: usd
+        data_type: float
+      - name: uzs
+        data_type: float
+      - name: zar
+        data_type: float
+      - name: eacpercentdiff
+        data_type: float
+      - name: itdpercentdiff
+        data_type: float
+      - name: revenue_traffic_light_color
+        data_type: varchar(10)
+      - name: cost_eacpercentdiff
+        data_type: float
+      - name: cost_itdpercentdiff
+        data_type: float
+      - name: cost_traffic_light_color
+        data_type: varchar(10)
+      - name: hours_eacpercentdiff
+        data_type: float
+      - name: hours_itdpercentdiff
+        data_type: float
+      - name: hours_traffic_light_color
+        data_type: varchar(10)
+      - name: gm_eacpercentdiff
+        data_type: float
+      - name: gm_traffic_light_color
+        data_type: varchar(10)
+
+  - name: project_control_security
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: user_name
+        data_type: varchar(250)
+
+  - name: supplier_submission_fact
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: new_submision_status
+        data_type: varchar(1000)
+      - name: package_number
+        data_type: varchar(1000)
+      - name: document_number
+        data_type: varchar(1000)
+      - name: title
+        data_type: varchar(5000)
+      - name: revision
+        data_type: varchar(1000)
+      - name: submission_status
+        data_type: varchar(1000)
+      - name: review_status
+        data_type: varchar(1000)
+      - name: assigned_to_org
+        data_type: varchar(1000)
+      - name: due_in
+        data_type: date
+      - name: due_out
+        data_type: date
+      - name: milestone_date
+        data_type: date
+      - name: actual_in
+        data_type: date
+      - name: actual_out
+        data_type: date
+      - name: as_built_required
+        data_type: varchar(1000)
+      - name: assigned_to
+        data_type: varchar(1000)
+      - name: sdr_codes
+        data_type: varchar(4000)
+      - name: document_identifier
+        data_type: varchar(1000)
+      - name: days_late
+        data_type: varchar(1000)
+      - name: description
+        data_type: varchar(1000)
+      - name: file_name
+        data_type: varchar(1000)
+      - name: planned_submission_date
+        data_type: date
+      - name: required_by
+        data_type: varchar(1000)
+      - name: review_source
+        data_type: varchar(1000)
+      - name: file_classification
+        data_type: varchar(500)
+      - name: supplier
+        data_type: varchar(1000)
+      - name: purchase_order_number
+        data_type: varchar(1000)
+      - name: jip33
+        data_type: varchar(1000)
+      - name: status
+        data_type: varchar(1000)
+      - name: submission_sequence
+        data_type: bigint
+      - name: supplied_by
+        data_type: varchar(1000)
+      - name: document_type_name
+        data_type: varchar(1000)
+      - name: discipline
+        data_type: varchar(1000)
+      - name: version
+        data_type: varchar(1000)
+      - name: current_flag
+        data_type: boolean
+      - name: project_id
+        data_type: varchar(1000)
+      - name: dim_project_rls_name
+        data_type: varchar(1000)
+      - name: report_title
+        data_type: varchar(1000)
+      - name: snapshot_date
+        data_type: timestamp
+      - name: week_start_date
+        data_type: timestamp
+      - name: week_end_date
+        data_type: timestamp
+      - name: current_week
+        data_type: varchar(50)
+
+  - name: supplier_submission_plan_actual
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: new_submision_status
+        data_type: varchar(1000)
+      - name: document_number
+        data_type: varchar(1000)
+      - name: submission_status
+        data_type: varchar(1000)
+      - name: snapshot_date
+        data_type: timestamp
+      - name: project_id
+        data_type: varchar(1000)
+      - name: dim_project_rls_name
+        data_type: varchar(1000)
+      - name: attribute
+        data_type: varchar(1000)
+      - name: date_value
+        data_type: date
+      - name: overall_status
+        data_type: varchar(50)
+      - name: current_week
+        data_type: varchar(50)
+
+  - name: e3d_cwp_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: cwp
+        data_type: varchar(500)
+      - name: project_id
+        data_type: varchar(100)
+      - name: cwpkey
+        data_type: varchar(600)
+
+  - name: e3d_iso_stats_quantities
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: pipe_ws
+        data_type: varchar(500)
+      - name: iso
+        data_type: varchar(500)
+      - name: type
+        data_type: varchar(500)
+      - name: tag_name
+        data_type: varchar(500)
+      - name: material
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(500)
+      - name: piping_specs
+        data_type: varchar(500)
+      - name: piping_specification
+        data_type: varchar(500)
+      - name: ispec
+        data_type: varchar(500)
+      - name: nb1
+        data_type: varchar(500)
+      - name: length
+        data_type: varchar(500)
+      - name: pipe_diameter
+        data_type: decimal(38,2)
+      - name: thru_length
+        data_type: decimal(38,2)
+      - name: thru_length_ft
+        data_type: decimal(38,2)
+      - name: length_ft
+        data_type: decimal(38,2)
+      - name: avg_diameter
+        data_type: numeric(38,4)
+      - name: avg_diameter1
+        data_type: decimal(38,2)
+      - name: materials
+        data_type: varchar(100)
+      - name: pipe_size
+        data_type: varchar(100)
+      - name: pipe_size1
+        data_type: varchar(100)
+      - name: wgt
+        data_type: varchar(500)
+      - name: weight_kg
+        data_type: decimal(38,4)
+      - name: weight_lbs
+        data_type: decimal(38,4)
+      - name: closure_weld_description
+        data_type: varchar(100)
+      - name: flanges
+        data_type: varchar(100)
+      - name: fit_and_flanges
+        data_type: integer
+      - name: tubi
+        data_type: integer
+      - name: valve
+        data_type: integer
+      - name: valve_type
+        data_type: varchar(100)
+      - name: flanged_valve
+        data_type: integer
+      - name: welded_valve
+        data_type: integer
+      - name: extracted_date
+        data_type: date
+      - name: search_key
+        data_type: varchar(4000)
+      - name: weld_material
+        data_type: varchar(15)
+      - name: tspe
+        data_type: varchar(500)
+      - name: project_id
+        data_type: varchar(100)
+      - name: wbs
+        data_type: varchar(500)
+      - name: cwa
+        data_type: varchar(500)
+      - name: cwpzone
+        data_type: varchar(500)
+      - name: cwp
+        data_type: varchar(500)
+      - name: wbskey
+        data_type: varchar(1600)
+      - name: project_wbs
+        data_type: varchar(600)
+      - name: cwpkey
+        data_type: varchar(600)
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+      - name: rn
+        data_type: bigint
+
+  - name: e3d_pipe_latest_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: name_ws
+        data_type: varchar(500)
+      - name: pidlineno
+        data_type: varchar(500)
+      - name: clientdocno
+        data_type: varchar(500)
+      - name: pidref
+        data_type: varchar(500)
+      - name: unique_line_id
+        data_type: varchar(500)
+      - name: bore_in
+        data_type: varchar(500)
+      - name: pspe
+        data_type: varchar(500)
+      - name: ispe
+        data_type: varchar(500)
+      - name: tspe
+        data_type: varchar(500)
+      - name: duty
+        data_type: varchar(500)
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: rocgroup
+        data_type: varchar(100)
+      - name: roc
+        data_type: varchar(500)
+      - name: progress
+        data_type: varchar(500)
+      - name: progress_perc
+        data_type: decimal(38,4)
+      - name: holdflag
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: wbs
+        data_type: varchar(500)
+      - name: wbs_id
+        data_type: integer
+      - name: project_wbs
+        data_type: varchar(600)
+      - name: cwa
+        data_type: varchar(500)
+      - name: cwpzone
+        data_type: varchar(500)
+      - name: cwp1
+        data_type: varchar(500)
+      - name: search_key1
+        data_type: varchar(4000)
+      - name: project_id
+        data_type: varchar(100)
+      - name: extracted_date
+        data_type: date
+      - name: is_active
+        data_type: boolean
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+      - name: length_inch
+        data_type: decimal(38,4)
+      - name: thru_length_ft
+        data_type: numeric(38,4)
+      - name: tube_length_inch
+        data_type: decimal(38,4)
+      - name: tube_length_ft
+        data_type: numeric(38,4)
+      - name: spec_size
+        data_type: varchar(500)
+      - name: wbskey
+        data_type: varchar(1600)
+      - name: cwpkey
+        data_type: varchar(600)
+      - name: latest
+        data_type: bigint
+      - name: rn
+        data_type: bigint
+
+  - name: e3d_pipe_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: name_ws
+        data_type: varchar(500)
+      - name: pidlineno
+        data_type: varchar(500)
+      - name: clientdocno
+        data_type: varchar(500)
+      - name: pidref
+        data_type: varchar(500)
+      - name: unique_line_id
+        data_type: varchar(500)
+      - name: bore_in
+        data_type: varchar(500)
+      - name: pspe
+        data_type: varchar(500)
+      - name: ispe
+        data_type: varchar(500)
+      - name: tspe
+        data_type: varchar(500)
+      - name: duty
+        data_type: varchar(500)
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: rocgroup
+        data_type: varchar(100)
+      - name: roc
+        data_type: varchar(500)
+      - name: progress
+        data_type: varchar(500)
+      - name: progress_perc
+        data_type: decimal(38,4)
+      - name: holdflag
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: wbs
+        data_type: varchar(500)
+      - name: wbs_id
+        data_type: integer
+      - name: project_wbs
+        data_type: varchar(600)
+      - name: cwa
+        data_type: varchar(500)
+      - name: cwpzone
+        data_type: varchar(500)
+      - name: cwp1
+        data_type: varchar(500)
+      - name: search_key1
+        data_type: varchar(4000)
+      - name: project_id
+        data_type: varchar(100)
+      - name: extracted_date
+        data_type: date
+      - name: is_active
+        data_type: boolean
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+      - name: length_inch
+        data_type: decimal(38,4)
+      - name: thru_length_ft
+        data_type: numeric(38,4)
+      - name: tube_length_inch
+        data_type: decimal(38,4)
+      - name: tube_length_ft
+        data_type: numeric(38,4)
+      - name: spec_size
+        data_type: varchar(500)
+      - name: wbskey
+        data_type: varchar(1600)
+      - name: cwpkey
+        data_type: varchar(600)
+      - name: latest
+        data_type: bigint
+
+  - name: e3d_pipe_spec_size_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: name_ws
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: spref1
+        data_type: varchar(500)
+      - name: is_active
+        data_type: boolean
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+
+  - name: e3d_pipe_std_support_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: workpack_no
+        data_type: varchar(500)
+      - name: suppo
+        data_type: varchar(500)
+      - name: support_type
+        data_type: varchar(500)
+      - name: bore_inch
+        data_type: varchar(500)
+      - name: tag_name
+        data_type: varchar(500)
+      - name: quantity
+        data_type: varchar(500)
+      - name: pid_line_no
+        data_type: varchar(500)
+      - name: isometric
+        data_type: varchar(500)
+      - name: project_id
+        data_type: varchar(100)
+      - name: pipe_size
+        data_type: varchar(500)
+      - name: pipe_size_in
+        data_type: numeric(38,2)
+      - name: support_type2
+        data_type: varchar(500)
+      - name: pipe_material_type
+        data_type: varchar(50)
+      - name: wbs
+        data_type: varchar(500)
+      - name: cwa
+        data_type: varchar(100)
+      - name: cwpzone
+        data_type: varchar(100)
+      - name: wbskey
+        data_type: varchar(600)
+      - name: project_wbs
+        data_type: varchar(600)
+      - name: cwp_key
+        data_type: varchar(600)
+      - name: support_typev
+        data_type: varchar(50)
+      - name: extracted_date
+        data_type: date
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+
+  - name: e3d_pipes_trending_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: wbs
+        data_type: varchar(500)
+      - name: cwa
+        data_type: varchar(500)
+      - name: cwpzone
+        data_type: varchar(500)
+      - name: cwp1
+        data_type: varchar(500)
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: extracted_date
+        data_type: date
+      - name: wbskey
+        data_type: varchar(1600)
+      - name: project_wbs
+        data_type: varchar(600)
+      - name: progress
+        data_type: decimal(38,2)
+      - name: dist_line_count
+        data_type: bigint
+      - name: dist_line_segment_count
+        data_type: bigint
+      - name: dist_iso_count
+        data_type: bigint
+      - name: line_count
+        data_type: bigint
+      - name: line_segment_count
+        data_type: bigint
+      - name: iso_count
+        data_type: bigint
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+      - name: line_progress_perc
+        data_type: decimal(38,4)
+      - name: iso_progress_perc
+        data_type: decimal(38,4)
+      - name: rocgroup
+        data_type: varchar(100)
+
+  - name: e3d_project_dim_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: id
+        data_type: numeric(38,0)
+      - name: project_code
+        data_type: varchar(100)
+      - name: project_name
+        data_type: varchar(100)
+      - name: extracted_date
+        data_type: date
+      - name: model_created_date
+        data_type: TIMESTAMPTZ
+      - name: model_updated_date
+        data_type: TIMESTAMPTZ
+      - name: model_load_id
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+
+  - name: e3d_roc_status_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_name
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: maturity_step
+        data_type: varchar(100)
+      - name: activity
+        data_type: varchar(100)
+      - name: step_percent
+        data_type: numeric(38,2)
+      - name: cum_percent
+        data_type: numeric(38,2)
+      - name: discipline
+        data_type: varchar(100)
+      - name: phase
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: extracted_date
+        data_type: date
+
+  - name: e3d_wbs_index_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: wbs
+        data_type: varchar(500)
+      - name: project_id
+        data_type: varchar(100)
+      - name: project_wbs
+        data_type: varchar(600)
+      - name: id
+        data_type: bigint
+
+  - name: e3d_wbs_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: wbs
+        data_type: varchar(100)
+      - name: cwa
+        data_type: varchar(100)
+      - name: cwpzone
+        data_type: varchar(100)
+      - name: wbskey
+        data_type: varchar(400)
+
+  - name: engineering_security
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: user_name
+        data_type: varchar(250)
+  
+  - name: e3d_equipment_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: eq_name
+        data_type: varchar(500)
+      - name: me_func_code
+        data_type: varchar(100)
+      - name: me_func_code_flag
+        data_type: integer  
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: rocgroup
+        data_type: varchar(100)
+      - name: progress
+        data_type: varchar(500)
+      - name: discipline
+        data_type: varchar(500)
+      - name: wbs
+        data_type: varchar(100)
+      - name: cwa
+        data_type: varchar(100)
+      - name: cwpzone
+        data_type: varchar(100)
+      - name: cwp
+        data_type: varchar(500)
+      - name: project_id
+        data_type: varchar(100)
+      - name: wbskey
+        data_type: varchar(300)
+      - name: search_key
+        data_type: varchar(4000)
+      - name: extracted_date
+        data_type: date
+      - name: rn
+        data_type: bigint
+      - name: description
+        data_type: varchar(500)
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+
+  - name: psr_s_curve_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: requisition_no
+        data_type: varchar(1000)
+      - name: milestone_id
+        data_type: varchar(1000)
+      - name: milestone_sequence
+        data_type: integer
+      - name: milestone_name
+        data_type: varchar(1000)
+      - name: key
+        data_type: varchar(5000)
+      - name: milestonendatename
+        data_type: varchar(500)
+      - name: datevalue
+        data_type: date
+      - name: key1
+        data_type: varchar(5000)
+      - name: datevalue_year
+        data_type: integer
+      - name: datavalue_month_name
+        data_type: varchar(50)
+      - name: datavalue_month_year_name
+        data_type: varchar(100)
+      - name: datevalue_month_no
+        data_type: integer
+      
+  
+  - name: psr_milestone_sort
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: milestone_name
+        data_type: varchar(1000)
+      - name: milestoneseq
+        data_type: integer
+      - name: sort_key
+        data_type: bigint
+
+  - name: category_running_total
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: worley_code
+        data_type: varchar(1000)
+      - name: category
+        data_type: varchar(1000)
+      - name: sub_category
+        data_type: varchar(1000)
+      - name: family
+        data_type: varchar(1000)
+      - name: worley_code_lv
+        data_type: numeric
+      - name: family_lv
+        data_type: numeric
+      - name: sub_category_lv
+        data_type: numeric
+      - name: category_lv
+        data_type: numeric
+
+  - name: ctg_category
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: category
+        data_type: varchar(2000)
+      - name: category_lv
+        data_type: numeric
+
+  - name: ctg_family
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: family
+        data_type: varchar(2000)
+      - name: family_lv
+        data_type: numeric
+
+  - name: ctg_sub_category
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: sub_category
+        data_type: varchar(2000)
+      - name: sub_category_lv
+        data_type: numeric
+
+  - name: ctg_supplier
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: supplier
+        data_type: varchar(2000)
+      - name: supplier_cumulative
+        data_type: numeric
+
+
+  - name: iwp_status_by_week_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id	
+        data_type: varchar(100)
+      - name: iwpsid
+        data_type: varchar(100)	
+      - name: cwpsid
+        data_type: varchar(100)
+      - name: disciplinedescription
+        data_type: varchar(500)
+      - name: cwasdescription
+        data_type: varchar(500)	
+      - name: scope_discipline
+        data_type: varchar(500)
+      - name: plannedstartdate
+        data_type: date
+      - name: plannedstartdate_weekend
+        data_type: date	
+      - name: plannedfinishdate
+        data_type: date	
+      - name: plannedfinishdate_weekend
+        data_type: date	
+      - name: actualstartdate
+        data_type: date
+      - name: actualstartdate_weekend
+        data_type: date
+      - name: actualfinishdate
+        data_type: date
+      - name: actualfinishdate_weekend
+        data_type: date	
+      - name: percentcomplete	
+        data_type: float
+      - name: weekend
+        data_type: date	
+      - name: earnedhours
+        data_type: float	
+      - name: spenthours
+        data_type: float	
+      - name: earned_minweekend
+        data_type: date	
+      - name: spent_minweekend
+        data_type: date	
+      - name: min_startweekend
+        data_type: date
+      - name: category
+        data_type: integer
+        
+
+  - name: ets_contraints_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: iwp_updated_date	
+        data_type: date
+      - name: project_id
+        data_type: varchar(100)	
+      - name: cwp_cwpsid
+        data_type: varchar(100)
+      - name: iwp_iwpsid
+        data_type: varchar(100)
+      - name: iwp_status
+        data_type: varchar(200)	
+      - name: contractor_discipline
+        data_type: varchar(500)
+      - name: cwa_constructionworkarea
+        data_type: varchar(500)
+      - name: iwp_plannedstartdate
+        data_type: date
+      - name: iwp_plannedfinishdate
+        data_type: date	
+      - name: iwp_actualstartdate
+        data_type: date	
+      - name: iwp_actualfinishdate
+        data_type: date	
+      - name: remaininghours
+        data_type: numeric(38,2)
+      - name: total_spenthours
+        data_type: numeric(38,2)
+      - name: constraintid
+        data_type: varchar(500)
+      - name: constraintstatus
+        data_type: varchar(1000)
+      - name: constrainttypeid
+        data_type: integer	
+      - name: constrainttype	
+        data_type: varchar(1000)
+      - name: constrainttypedescription
+        data_type: varchar(5000)	
+      - name: hardconstraint
+        data_type: boolean	
+
+  - name: o3_calendar_dates
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id	
+        data_type: varchar(100)
+      - name: Min_Start
+        data_type: date	
+      - name: Max_Finish
+        data_type: date
+
+  - name: refresh_dates
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: source	
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)	
+      - name: refresh_date
+        data_type: date
+
+  - name: e3d_structural_quant_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: Owner
+        data_type: varchar(500)
+      - name: stru_name
+        data_type: varchar(500)
+      - name: StlWeightClass
+        data_type: varchar(500)
+      - name: SPRE
+        data_type: varchar(500)
+      - name: MATR
+        data_type: varchar(500)
+      - name: FIREPROOFING
+        data_type: varchar(500)
+      - name: reference_of_the_element
+        data_type: varchar(500)
+      - name: class
+        data_type: varchar(500)
+      - name: MTO_TYPE1
+        data_type: varchar(500)
+      - name: material_type
+        data_type: varchar(500)
+      - name: material_type_code
+        data_type: integer
+      - name: nett_weight_kg
+        data_type: decimal(38, 4)
+      - name: nett_weight_us_ton
+        data_type: decimal(38, 4)
+      - name: cut_length_in1
+        data_type: decimal(38, 4)
+      - name: cut_length_ft
+        data_type: decimal(38, 4)
+      - name: nett_volume_in3_1
+        data_type: decimal(38, 4)
+      - name: nett_volume_CuYd
+        data_type: decimal(38, 4)
+      - name: stvval
+        data_type: varchar(500)
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: rocgroup
+        data_type: varchar(100)
+      - name: progress
+        data_type: varchar(500)
+      - name: WORKPACKNO
+        data_type: varchar(500)
+      - name: site
+        data_type: varchar(500)
+      - name: zone
+        data_type: varchar(500)
+      - name: wbs
+        data_type: varchar(100)
+      - name: cwa
+        data_type: varchar(100)
+      - name: cwpzone
+        data_type: varchar(100)
+      - name: cwp1
+        data_type: varchar(500)
+      - name: wbs_key
+        data_type: varchar(300)
+      - name: project_id
+        data_type: varchar(100)
+      - name: extracted_date
+        data_type: date
+      - name: is_active
+        data_type: boolean
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+
+
+  - name: psr_bridge
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id	
+        data_type: varchar(100)
+    
+  - name: psr_max_dates
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: max_date	
+        data_type: date
+
+  - name: psr_actual_ms
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: requisition_no
+        data_type: varchar(1000)
+      - name: milestone_sequence
+        data_type: integer
+      - name: milestone_name
+        data_type: varchar(1000)
+      - name: milestone_actual_date
+        data_type: date
+
+  - name: psr_forecast_ms
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: requisition_no
+        data_type: varchar(1000)
+      - name: milestone_sequence
+        data_type: integer
+      - name: milestone_name
+        data_type: varchar(1000)
+      - name: milestone_forecast_date
+        data_type: date
+
+  - name: psr_planned_ms
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: requisition_no
+        data_type: varchar(1000)
+      - name: milestone_sequence
+        data_type: integer
+      - name: milestone_name
+        data_type: varchar(1000)
+      - name: milestone_planned_date
+        data_type: date
+
+
+  - name: fact_esr_data_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_no
+        data_type: integer
+      - name: project_id
+        data_type: varchar(100)
+      - name: tmr_number
+        data_type: varchar(1000)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: customer_po
+        data_type: varchar(1000)
+      - name: latest_rev
+        data_type: integer
+      - name: tag_number
+        data_type: varchar(2000)
+      - name: supplier
+        data_type: varchar(2000)
+      - name: expediter
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(10000)
+      - name: item_description
+        data_type: varchar(10000)
+      - name: order_qty
+        data_type: integer
+      - name: outstanding_qty
+        data_type: integer
+      - name: incoterm
+        data_type: varchar(10000)
+      - name: delivery_location
+        data_type: varchar(5000)
+      - name: delivery_site
+        data_type: varchar(5000)
+      - name: po_1st_issue
+        data_type: date
+      - name: next_contact_date
+        data_type: date
+      - name: contract_delivery_date
+        data_type: date
+      - name: forecast_delivery_date
+        data_type: date
+      - name: latest_issue_date
+        data_type: date
+      - name: forecast_arrival_on_site
+        data_type: date
+      - name: exp_ros
+        data_type: date
+      - name: ros_float
+        data_type: integer
+      - name: delivery_float
+        data_type: integer
+      - name: total_exp_items
+        data_type: integer
+      - name: expediting_comments
+        data_type: varchar(max)
+      - name: project_region
+        data_type: varchar(100)
+      - name: buyer
+        data_type: varchar(1000)
+      - name: commoditycode
+        data_type: varchar(1000)
+      - name: cwp
+        data_type: varchar(2000)
+      - name: delivery_type
+        data_type: varchar(2000)
+      - name: earliest_contract_delivery_date
+        data_type: date
+      - name: earliest_forecast_arrival_date
+        data_type: date
+      - name: earliest_forecast_delivery_date
+        data_type: date
+      - name: earliest_ros
+        data_type: date
+      - name: eo
+        data_type: varchar(1000)
+      - name: exp_qty
+        data_type: integer
+      - name: first_shipping_actual
+        data_type: date
+      - name: general_attribute
+        data_type: varchar(1000)
+      - name: inspector
+        data_type: varchar(1000)
+      - name: item_comments
+        data_type: varchar(max)
+      - name: itemno
+        data_type: varchar(1000)
+      - name: last_contact_date
+        data_type: date
+      - name: mrr_date
+        data_type: date
+      - name: mrr_number
+        data_type: varchar(1000)
+      - name: mrr_qty
+        data_type: integer
+      - name: order_position
+        data_type: integer
+      - name: size1
+        data_type: varchar(1000)
+      - name: size2
+        data_type: varchar(1000)
+      - name: size3
+        data_type: varchar(1000)
+      - name: so
+        data_type: integer
+      - name: srn_date
+        data_type: varchar(1000)
+      - name: srn_no
+        data_type: varchar(1000)
+      - name: srn_qty
+        data_type: integer
+      - name: subproject
+        data_type: varchar(1000)
+      - name: total_received
+        data_type: integer
+      - name: uom
+        data_type: varchar(1000)
+      - name: arrival_on_site_actual
+        data_type: date
+      - name: dataset_refershed_date
+        data_type: date
+      - name: project_po
+        data_type: varchar(5000)
+
+
+  - name: e3d_inline_instrument_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: rocstatus
+        data_type: varchar(500)
+      - name: rocgroup
+        data_type: varchar(100)
+      - name: progress
+        data_type: varchar(500)
+      - name: line_num
+        data_type: varchar(500)
+      - name: Inst_type
+        data_type: varchar(100)
+      - name: In_Line
+        data_type: integer
+      - name: tag_name
+        data_type: varchar(500)
+      - name: line_no
+        data_type: varchar(500)
+      - name: iso_no
+        data_type: varchar(500)
+      - name: ewp
+        data_type: varchar(500)
+      - name: p_id_line_no
+        data_type: varchar(500)
+      - name: Comp_type
+        data_type: varchar(500)
+      - name: Instrument_Type
+        data_type: varchar(500)
+      - name: project_id
+        data_type: varchar(100)
+      - name: wbs
+        data_type: varchar(100)
+      - name: cwa
+        data_type: varchar(100)
+      - name: cwpzone
+        data_type: varchar(100)
+      - name: cwp
+        data_type: varchar(100)
+      - name: wbs_key
+        data_type: varchar(300)
+      - name: search_key
+        data_type: varchar(4000)
+      - name: extracted_date
+        data_type: date
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+
+
+  - name: expenditure_summary_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: iwp_updated_date
+        data_type: date
+      - name: iwp_plannedstartdate
+        data_type: date
+      - name: iwp_plannedfinishdate
+        data_type: date
+      - name: datedifference
+        data_type: integer
+      - name: cwpsid
+        data_type: varchar(100)
+      - name: iwpsid
+        data_type: varchar(100)
+      - name: weekend
+        data_type: date
+      - name: project_id
+        data_type: varchar(100)
+      - name: discipline_id
+        data_type: integer
+      - name: cwaid
+        data_type: integer
+      - name: contract_filter
+        data_type: varchar(1000)
+      - name: weekly_planned_hours
+        data_type: numeric(38,2)
+      - name: ch_newvalue
+        data_type: decimal(8,2)
+      - name: weekly_earned_hours
+        data_type: decimal(8,2)
+      - name: weekly_spent_hours
+        data_type: float
+      - name: disc_disciplinedescription
+        data_type: varchar(1000)
+      - name: cwa_constructionworkarea
+        data_type: varchar(500)
+      - name: contract_discipline
+        data_type: varchar(2500)
+
+  - name: wfp_iwp_duration_analysis
+
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: iwpsid
+        data_type: varchar(100)
+      - name: cwpsid
+        data_type: varchar(100)
+      - name: status
+        data_type: varchar(100)
+      - name: plannedstartdate
+        data_type: date
+      - name: plannedfinishdate
+        data_type: date
+      - name: actualstartdate
+        data_type: date
+      - name: actualfinishdate
+        data_type: date
+      - name: percentcomplete
+        data_type: numeric(38,2)
+      - name: estimatedhours
+        data_type: numeric(38,2)
+      - name: iwp_earnedhours
+        data_type: numeric(38,2)
+      - name: disciplinedescription
+        data_type: varchar(500)
+      - name: cwasname
+        data_type: varchar(100)
+      - name: cwasdescription
+        data_type: varchar(500)
+      - name: scope_discipline
+        data_type: varchar(500)
+      - name: weekendingdate
+        data_type: date
+      - name: spenthours
+        data_type: numeric(38,2)
+      - name: ch_earnedhours
+        data_type: numeric(38,2)
+      - name: ch_weekend
+        data_type: date
+      - name: plannedstartdate_weekend
+        data_type: date
+      - name: plannedfinishdate_weekend
+        data_type: date
+      - name: actualstartdate_weekend
+        data_type: date
+      - name: actualfinishdate_weekend
+        data_type: date
+      - name: iwp_planned_week_diff
+        data_type: bigint
+      - name: iwp_actual_week_diff
+        data_type: bigint
+      - name: closed_in_same_week
+        data_type: Integer
+      - name: Category_1
+        data_type: varchar(100)
+      - name: Category_2
+        data_type:  varchar(100)
+
+
+  - name: po_milestone_sort
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: milestones
+        data_type: varchar(2000)
+      - name: milestoneseq
+        data_type: integer
+      - name: sort_key
+        data_type: bigint
+
+  - name: fact_po_header_obt
+
+    config: 
+      contract: {enforced: true}
+    columns:   
+      - name: project_no
+        data_type: integer
+      - name: project_id
+        data_type: varchar(100)
+      - name: sub_project
+        data_type: varchar(1000)
+      - name: tmr_number
+        data_type: varchar(1000)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: latest_rev
+        data_type: integer
+      - name: customer_po
+        data_type: varchar(1000)
+      - name: client_reference_no
+        data_type: varchar(1000)
+      - name: description
+        data_type: varchar(1000)
+      - name: supplier
+        data_type: varchar(1000)
+      - name: buyer
+        data_type: varchar(1000)
+      - name: expediter
+        data_type: varchar(1000)
+      - name: inspector
+        data_type: varchar(1000)
+      - name: po_1st_issue
+        data_type: date
+      - name: latest_issue_date
+        data_type: date
+      - name: total_line_items
+        data_type: bigint
+      - name: last_contact_date
+        data_type: date
+      - name: next_contact_date
+        data_type: date
+      - name: earliest_contract_delivery_date
+        data_type: date
+      - name: earliest_forecast_delivery_date
+        data_type: date
+      - name: earliest_ros
+        data_type: date
+      - name: earliest_forecast_arrival_date
+        data_type: date
+      - name: incoterm
+        data_type: varchar(1000)
+      - name: trans_terms
+        data_type: varchar(1000)
+      - name: expediting_level
+        data_type: integer
+      - name: inspection_level
+        data_type: integer
+      - name: contract_delivery_date
+        data_type: date
+      - name: expediting_comments
+        data_type: varchar(max)
+      - name: ros_date
+        data_type: date
+      - name: items_not_released
+        data_type: bigint
+      - name: total_items_released
+        data_type: bigint
+      - name: milestone
+        data_type: varchar(1000)
+      - name: milestone_seq
+        data_type: integer
+      - name: baseline_date
+        data_type: date
+      - name: milestone_forecast_start_date
+        data_type: date
+      - name: milestone_forecast_complete_date
+        data_type: date
+      - name: milestone_actual_date
+        data_type: date
+      - name: milestone_float
+        data_type: integer
+      - name: duration_before_milestone
+        data_type: integer
+      - name: milestone_duration
+        data_type: integer
+      - name: remarks
+        data_type: varchar(max)
+      - name: template_no
+        data_type: varchar(1000)
+      - name: template
+        data_type: integer
+      - name: template_name
+        data_type: varchar(1000)
+      - name: dataset_refershed_date
+        data_type: date
+      - name: unspsc
+        data_type: varchar(1000)
+      - name: group_l1
+        data_type: varchar(1000)
+      - name: category_l2
+        data_type: varchar(1000)
+      - name: sub_category_l3
+        data_type: varchar(1000)
+      - name: family_l4
+        data_type: varchar(1000)
+      - name: commodity_l5
+        data_type: varchar(1000)
+      - name: office_location
+        data_type: varchar(1000)
+      - name: milestone_status
+        data_type: varchar(100)
+      - name: open_milestone_status
+        data_type: varchar(100)
+      - name: completed_milestone_status
+        data_type: varchar(100)
+      - name: status
+        data_type: varchar(100)
+      - name: expediting_comments_new
+        data_type: varchar(max)
+      - name: ros_float
+        data_type: varchar(100)
+      - name: forecaststartdate_font
+        data_type: varchar(100)
+      - name: forecastcompletedate_font
+        data_type: varchar(100)
+      - name: forecaststartdate_icons
+        data_type: integer
+      - name: forecastcompletedate_icons
+        data_type: integer
+      - name: forecast_date_in_past
+        data_type: varchar(100)
+      - name: po_closed
+        data_type: varchar(100)
+      - name: ros_float_value
+        data_type: integer
+      - name: baseline_float
+        data_type: bigint
+      - name: forecast_to_completion
+        data_type: bigint
+      - name: forecast_complete_font
+        data_type: varchar(100)
+      - name: project_po
+        data_type: varchar(5000)
+      - name: po_acknowledgement
+        data_type: varchar(200)
+      
+
+  - name: fact_tmr_data_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_id
+        data_type: varchar(100)
+      - name: tmr_number
+        data_type: varchar(2000)
+      - name: sub_project
+        data_type: varchar(2000)
+      - name: discipline_id
+        data_type: varchar(1000)
+      - name: discipline
+        data_type: varchar(1000)
+      - name: title
+        data_type: varchar(5000)
+      - name: tmr_originator
+        data_type: varchar(1000)
+      - name: ros_date
+        data_type: date
+      - name: internal_status
+        data_type: varchar(500)
+      - name: issue_purpose
+        data_type: varchar(500)
+      - name: origin
+        data_type: varchar(500)
+      - name: refreshed_date
+        data_type: date
+
+      
+  - name: exp_material_status_obt
+
+    config: 
+      contract: {enforced: true}
+
+    columns:   
+      - name: project_no
+        data_type: integer
+      - name: project_id
+        data_type: varchar(100)
+      - name: tmr_number
+        data_type: varchar(1000)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: customer_po
+        data_type: varchar(1000)
+      - name: latest_rev
+        data_type: integer
+      - name: tag_number
+        data_type: varchar(2000)
+      - name: supplier
+        data_type: varchar(2000)
+      - name: expediter
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(10000)
+      - name: item_description
+        data_type: varchar(10000)
+      - name: order_qty
+        data_type: integer
+      - name: outstanding_qty
+        data_type: integer
+      - name: incoterm
+        data_type: varchar(10000)
+      - name: delivery_location
+        data_type: varchar(5000)
+      - name: delivery_site
+        data_type: varchar(5000)
+      - name: po_1st_issue
+        data_type: date
+      - name: next_contact_date
+        data_type: date
+      - name: contract_delivery_date
+        data_type: date
+      - name: forecast_delivery_date
+        data_type: date
+      - name: latest_issue_date
+        data_type: date
+      - name: forecast_arrival_on_site
+        data_type: date
+      - name: exp_ros
+        data_type: date
+      - name: ros_float
+        data_type: integer
+      - name: delivery_float
+        data_type: integer
+      - name: total_exp_items
+        data_type: integer
+      - name: expediting_comments
+        data_type: varchar(max)
+      - name: project_region
+        data_type: varchar(100)
+      - name: buyer
+        data_type: varchar(1000)
+      - name: commoditycode
+        data_type: varchar(1000)
+      - name: cwp
+        data_type: varchar(2000)
+      - name: delivery_type
+        data_type: varchar(2000)
+      - name: earliest_contract_delivery_date
+        data_type: date
+      - name: earliest_forecast_arrival_date
+        data_type: date
+      - name: earliest_forecast_delivery_date
+        data_type: date
+      - name: earliest_ros
+        data_type: date
+      - name: eo
+        data_type: varchar(1000)
+      - name: exp_qty
+        data_type: integer
+      - name: first_shipping_actual
+        data_type: date
+      - name: general_attribute
+        data_type: varchar(1000)
+      - name: inspector
+        data_type: varchar(1000)
+      - name: item_comments
+        data_type: varchar(max)
+      - name: itemno
+        data_type: varchar(1000)
+      - name: last_contact_date
+        data_type: date
+      - name: mrr_date
+        data_type: date
+      - name: mrr_number
+        data_type: varchar(1000)
+      - name: mrr_qty
+        data_type: integer
+      - name: order_position
+        data_type: integer
+      - name: size1
+        data_type: varchar(1000)
+      - name: size2
+        data_type: varchar(1000)
+      - name: size3
+        data_type: varchar(1000)
+      - name: so
+        data_type: integer
+      - name: srn_date
+        data_type: varchar(1000)
+      - name: srn_no
+        data_type: varchar(1000)
+      - name: srn_qty
+        data_type: integer
+      - name: subproject
+        data_type: varchar(1000)
+      - name: total_received
+        data_type: integer
+      - name: uom
+        data_type: varchar(1000)
+      - name: arrival_on_site_actual
+        data_type: date
+      - name: dataset_refershed_date
+        data_type: date
+      - name: project_po
+        data_type: varchar(5000)
+      - name: expediting_comments_new
+        data_type: varchar(max)
+      - name: unspsc
+        data_type: varchar(1000)
+      - name: group_l1
+        data_type: varchar(1000)
+      - name: category_l2
+        data_type: varchar(1000)
+      - name: sub_category_l3
+        data_type: varchar(1000)
+      - name: family_l4
+        data_type: varchar(1000)
+      - name: commodity_l5
+        data_type: varchar(1000)
+      - name: office_location
+        data_type: varchar(1000)
+      - name: delayed
+        data_type: date
+      - name: line_received_status
+        data_type: varchar(100)
+      - name: po_received_status
+        data_type: varchar(100)
+      - name: ros_vs_aaos
+        data_type: varchar(100)
+      - name: new_delivery_float
+        data_type: bigint
+      - name: received_perct
+        data_type: integer
+      - name: received_status
+        data_type: varchar(100)
+      - name: release_perct
+        data_type: integer
+      - name: release_status
+        data_type: varchar(100)
+      - name: total_order_qty
+        data_type: integer
+      - name: total_received_qty
+        data_type: integer
+      - name: total_outstanding_qty
+        data_type: integer
+      - name: discipline
+        data_type: varchar(500)
+      - name: srn_date_new
+        data_type: varchar(100)
+      - name: fx_red
+        data_type: varchar(100)
+      - name: srn_date1
+        data_type: date
+      - name: legend_expediting
+        data_type: varchar(200)
+      - name: forecast
+        data_type: date
+      
+      
+      
+
+  - name: spi_instrument_key_quant_obt
+
+    config: 
+      contract: {enforced: true}
+ 
+    columns:
+      - name: cmpnt_name
+        data_type: VARCHAR(500)
+      - name: cmpnt_func_type_id
+        data_type: numeric(38,0)
+      - name: phy_instru
+        data_type: VARCHAR(100)
+      - name: cmpnt_handle_id
+        data_type: numeric(38,0)
+      - name: cmpnt_handle_name
+        data_type: VARCHAR(500)
+      - name: cmpnt_handle_desc
+        data_type: VARCHAR(500)
+      - name: delete_flag
+        data_type: integer
+      - name: new_or_by_mech
+        data_type: integer
+      - name: worley_direct_procured
+        data_type: integer
+      - name: furnished_with_mech_equipment
+        data_type: integer
+      - name: ofe
+        data_type: integer
+      - name: undefined
+        data_type: integer
+      - name: cmpnt_sys_io_type_id
+        data_type: numeric(38,0)
+      - name: cmpnt_sys_io_type_name
+        data_type: VARCHAR(500)
+      - name: all_instrument
+        data_type: integer
+      - name: pre_cmpnt_sys_io_type_name
+        data_type: VARCHAR(100)
+      - name: hardwired_ios
+        data_type: integer
+      - name: instrument_type
+        data_type: VARCHAR(500)
+      - name: component_location_name
+        data_type: VARCHAR(100)
+      - name: project_id
+        data_type: VARCHAR(100)
+      - name: wbs
+        data_type: VARCHAR(100)
+      - name: cwa
+        data_type: VARCHAR(100)
+      - name: cwpzone
+        data_type: VARCHAR(100)
+      - name: wbs_key
+        data_type: VARCHAR(300)
+      - name: extracted_date
+        data_type: date
+      - name: dag_execution_date
+        data_type: timestamp without time zone
+      - name: rn
+        data_type: bigint
+
+
+  - name: gantt_esr_data_obt
+
+    config: 
+      contract: {enforced: true}
+ 
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: tmr_number
+        data_type: varchar(1000)
+      - name: po_number
+        data_type: varchar(1000)
+      - name: supplier
+        data_type: varchar(2000)
+      - name: project_po
+        data_type: varchar(5000)
+      - name: po_1st_issue
+        data_type: date
+      - name: earliest_forecast_delivery_date
+        data_type: date
+      - name: earliest_forecast_arrival_date
+        data_type: date
+      - name: earliest_contract_delivery_date
+        data_type: date
+      - name: delivery_float
+        data_type: integer
+      - name: forecast_delivery_date
+        data_type: date
+      - name: contract_delivery_date
+        data_type: date
+      - name: forecast_arrival_on_site
+        data_type: date
+      - name: ros_float
+        data_type: integer
+      - name: description
+        data_type: varchar(10000)
+      - name: exp_qty
+        data_type: integer
+      - name: earliest_ros
+        data_type: date
+      - name: first_dur
+        data_type: bigint
+      - name: second_dur
+        data_type: bigint
+      - name: float1
+        data_type: bigint
+      - name: po_number_description
+        data_type: varchar(10000)
+      - name: prog
+        data_type: integer
+      - name: prog1
+        data_type: numeric(38,4)

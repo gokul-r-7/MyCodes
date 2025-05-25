@@ -1,0 +1,139 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#unit_of_measure_conversion#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/unit_of_measure_conversion.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: unit_of_measure_conversion
+  name: unit_of_measure_conversion
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/unit_of_measure_conversion/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: unit_of_measure_conversion
+  load_type: incremental
+  name: unit_of_measure_conversion
+  primary_key: dwi_unit_of_measure_conversion
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/unit_of_measure_conversion
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_unit_of_measure_conversion
+    rename_columns: true
+  columns:
+  - column_name: dwi_unit_of_measure_conversion
+    column_data_type: decimal(38,0)
+    comment: dwi_unit_of_measure_conversion
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_unit_of_measure_conversion
+  - column_name: conversion_factor
+    column_data_type: decimal(38,16)
+    comment: conversion_factor
+    data_classification:
+    nullable: true
+    raw_column_name: conversion_factor
+  - column_name: reference_number
+    column_data_type: string
+    comment: reference_number
+    data_classification:
+    nullable: true
+    raw_column_name: reference_number
+  - column_name: date02
+    column_data_type: timestamp
+    comment: date02
+    data_classification:
+    nullable: true
+    raw_column_name: date02
+  - column_name: sys_import_reference
+    column_data_type: string
+    comment: sys_import_reference
+    data_classification:
+    nullable: true
+    raw_column_name: sys_import_reference
+  - column_name: dwk_unit_of_measure_from
+    column_data_type: decimal(38,0)
+    comment: dwk_unit_of_measure_from
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_unit_of_measure_from
+  - column_name: dwk_unit_of_measure_to
+    column_data_type: decimal(38,0)
+    comment: dwk_unit_of_measure_to
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_unit_of_measure_to
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

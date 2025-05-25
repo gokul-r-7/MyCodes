@@ -1,0 +1,218 @@
+name: Import BI Assets to QuickSight QA & PRD
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - 'artifacts/**'
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: read
+
+jobs:
+  qa-import-bi-assets:
+    # Only run if PR is merged (not just closed)
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'bi-assets-update/')
+    runs-on: ubuntu-latest
+    environment: qa
+    defaults:
+      run:
+        shell: bash
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Validate changed BI Asset Files
+        id: changed-files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Get the list of files changed in the PR
+          changes=$(gh api /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files \
+            --jq '[.[] | select(.filename | startswith("artifacts/")) | .filename] | join("\n")')
+          
+          # Extract unique dashboard paths
+          unique_dashboards=$(echo "$changes" | grep -o 'artifacts/[^/]*/[^/]*/' | sort -u)
+          dashboard_count=$(echo "$unique_dashboards" | grep -c "^" || true)
+
+          if [ "$dashboard_count" -eq 0 ]; then
+            echo "No dashboard changes found"
+            exit 1
+          elif [ "$dashboard_count" -gt 1 ]; then
+            echo "Error: Changes span multiple dashboards:"
+            echo "$unique_dashboards"
+            echo "Please submit changes for only one dashboard in a PR"
+            exit 1
+          else
+            # Extract domain and dashboard ID from the path
+            dashboard_path=$(echo "$unique_dashboards" | head -n 1)
+            domain=$(echo "$dashboard_path" | cut -d'/' -f2)
+            dashboard_id=$(echo "$dashboard_path" | cut -d'/' -f3)
+            
+            echo "All changes are for below dashboard:"
+            echo "Domain: $domain"
+            echo "Dashboard ID: $dashboard_id"
+            
+          fi
+
+          metadata_file="metadata/${domain}/${dashboard_id}.json"
+
+          if [ ! -f "$metadata_file" ]; then
+            echo "Error: Metadata file not found at: $metadata_file"
+            exit 1
+          fi
+
+          # Extract owner email from metadata file
+          owner_email=$(jq -r '.dashboard_owner_email' "$metadata_file")
+
+          if [ "$owner_email" == "null" ] || [ -z "$owner_email" ]; then
+            echo "Error: Owner email not found in metadata file"
+            exit 1
+          fi
+
+          echo "Dashboard Owner Email: $owner_email"
+
+          # Set outputs for use in later steps
+          {
+              echo "domain=$domain"
+              echo "dashboard_id=$dashboard_id"
+              echo "owner_email=$owner_email"
+          } >> "$GITHUB_OUTPUT"
+
+      
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::533267239288:role/GitHubActions
+          role-session-name: Worley_AWS_Data_Platform_${{ github.run_id }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - run: aws sts get-caller-identity
+
+      - name: Execute QA BI Asset Import Workflow
+        if: success()
+        id: import-qa-bi-assets
+        working-directory: src
+        run: |
+          chmod +x bi_asset_import.sh
+          chmod +x qa_config.sh
+          sh bi_asset_import.sh "QA" \
+            "${{ steps.changed-files.outputs.domain }}" \
+            "${{ steps.changed-files.outputs.dashboard_id }}" \
+            "${{ steps.changed-files.outputs.owner_email }}"
+        continue-on-error: false
+
+
+####----------------PROD Deployment----------------###
+
+  prd-import-bi-assets:
+    # Only run if PR is merged (not just closed)
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'bi-assets-update/')
+    runs-on: ubuntu-latest
+    environment: prd
+    defaults:
+      run:
+        shell: bash
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Validate changed BI Asset Files
+        id: changed-files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Get the list of files changed in the PR
+          changes=$(gh api /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files \
+            --jq '[.[] | select(.filename | startswith("artifacts/")) | .filename] | join("\n")')
+          
+          # Extract unique dashboard paths
+          unique_dashboards=$(echo "$changes" | grep -o 'artifacts/[^/]*/[^/]*/' | sort -u)
+          dashboard_count=$(echo "$unique_dashboards" | grep -c "^" || true)
+
+          if [ "$dashboard_count" -eq 0 ]; then
+            echo "No dashboard changes found"
+            exit 1
+          elif [ "$dashboard_count" -gt 1 ]; then
+            echo "Error: Changes span multiple dashboards:"
+            echo "$unique_dashboards"
+            echo "Please submit changes for only one dashboard in a PR"
+            exit 1
+          else
+            # Extract domain and dashboard ID from the path
+            dashboard_path=$(echo "$unique_dashboards" | head -n 1)
+            domain=$(echo "$dashboard_path" | cut -d'/' -f2)
+            dashboard_id=$(echo "$dashboard_path" | cut -d'/' -f3)
+            
+            echo "All changes are for below dashboard:"
+            echo "Domain: $domain"
+            echo "Dashboard ID: $dashboard_id"
+            
+          fi
+
+          metadata_file="metadata/${domain}/${dashboard_id}.json"
+
+          if [ ! -f "$metadata_file" ]; then
+            echo "Error: Metadata file not found at: $metadata_file"
+            exit 1
+          fi
+
+          # Extract owner email from metadata file
+          owner_email=$(jq -r '.dashboard_owner_email' "$metadata_file")
+
+          if [ "$owner_email" == "null" ] || [ -z "$owner_email" ]; then
+            echo "Error: Owner email not found in metadata file"
+            exit 1
+          fi
+
+          echo "Dashboard Owner Email: $owner_email"
+
+          # Set outputs for use in later steps
+          {
+              echo "domain=$domain"
+              echo "dashboard_id=$dashboard_id"
+              echo "owner_email=$owner_email"
+          } >> "$GITHUB_OUTPUT"
+
+      
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::471112986846:role/github-oidc-provider-aws
+          role-session-name: Worley_AWS_Data_Platform_${{ github.run_id }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - run: aws sts get-caller-identity
+
+      - name: Execute PRD BI Asset Import Workflow
+        if: success()
+        id: import-prd-bi-assets
+        working-directory: src
+        run: |
+          chmod +x bi_asset_import.sh
+          chmod +x prd_config.sh
+          sh bi_asset_import.sh "PRD" \
+            "${{ steps.changed-files.outputs.domain }}" \
+            "${{ steps.changed-files.outputs.dashboard_id }}" \
+            "${{ steps.changed-files.outputs.owner_email }}"
+        continue-on-error: false
+      #- name: Notify on Success
+      #  if: success()
+      #  env:
+      #    GH_TOKEN: ${{ secrets.PR_WRITE_ACCESS_PAT }}
+      #  run: |
+      #    gh pr comment ${{ github.event.pull_request.number }} \
+      #      --body "Successfully imported BI assets to QA environment"
+
+      # - name: Notify on Failure
+      #  if: failure()
+      #  env:
+      #    GH_TOKEN: ${{ secrets.PR_WRITE_ACCESS_PAT }}
+      #  run: |
+      #    gh pr comment ${{ github.event.pull_request.number }} \
+      #      --body "Failed to import BI assets to QA environment. Please check the workflow logs."

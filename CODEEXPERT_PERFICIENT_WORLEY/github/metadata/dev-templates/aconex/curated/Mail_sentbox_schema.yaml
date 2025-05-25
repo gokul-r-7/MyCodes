@@ -1,0 +1,282 @@
+---
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#Mail_sentbox#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/aconex/Mail_sentbox/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: aconex-Mail_sentbox
+  name: aconex_Mail_sentbox
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: attribute1_attributetypename
+    comment: attribute1_attributetypename
+    data_classification: 
+    nullable: true
+    raw_column_name: attribute1_attributetypenames_attributetypename
+  - column_data_type: string
+    column_name: attribute1_attributetype
+    comment: attribute1_attributetype
+    data_classification: 
+    nullable: true
+    raw_column_name: attribute1_attributetype
+  - column_data_type: string
+    column_name: attribute2_attributetypename
+    comment: attribute2_attributetypename
+    data_classification: 
+    nullable: true
+    raw_column_name: attribute2_attributetypenames_attributetypename
+  - column_data_type: string
+    column_name: attribute2_attributetype
+    comment: attribute2_attributetype
+    data_classification: 
+    nullable: true
+    raw_column_name: attribute2_attributetype
+  - column_data_type: string
+    column_name: closedoutdetails_closedoutbyorganizationname
+    comment: closedoutdetails_closedoutbyorganizationname
+    data_classification: 
+    nullable: true
+    raw_column_name: closedoutdetails_closedoutbyorganizationname
+  - column_data_type: string
+    column_name: closedoutdetails_closedoutbyorganizationid
+    comment: closedoutdetails_closedoutbyorganizationid
+    data_classification: 
+    nullable: true
+    raw_column_name: closedoutdetails_closedoutbyorganizationid
+  - column_data_type: string
+    column_name: closedoutdetails_closedoutbyusername
+    comment: closedoutdetails_closedoutbyusername
+    data_classification: 
+    nullable: true
+    raw_column_name: closedoutdetails_closedoutbyusername
+  - column_data_type: string
+    column_name: closedoutdetails_closedoutbyuserid
+    comment: closedoutdetails_closedoutbyuserid
+    data_classification: 
+    nullable: true
+    raw_column_name: closedoutdetails_closedoutbyuserid
+  - column_data_type: TIMESTAMP_LTZ
+    column_name: closedoutdetails_closedoutdate
+    comment: closedoutdetails_closedoutdate
+    data_classification: 
+    nullable: true
+    raw_column_name: closedoutdetails_closedoutdate
+  - column_data_type: boolean
+    column_name: confidential
+    comment: confidential
+    data_classification: 
+    nullable: true
+    raw_column_name: confidential
+  - column_data_type: string
+    column_name: correspondencetype
+    comment: correspondencetype
+    data_classification: 
+    nullable: true
+    raw_column_name: correspondencetype
+  - column_data_type: string
+    column_name: tousers_recipient_organizationid
+    comment: tousers_recipient_organizationid
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_organizationid
+  - column_data_type: string
+    column_name: tousers_recipient_organizationname
+    comment: tousers_recipient_organizationname
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_organizationname
+  - column_data_type: string
+    column_name: tousers_recipient_firstname
+    comment: tousers_recipient_firstname
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_firstname
+  - column_data_type: string
+    column_name: tousers_recipient_lastname
+    comment: tousers_recipient_lastname
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_lastname
+  - column_data_type: string
+    column_name: tousers_recipient_name
+    comment: tousers_recipient_name
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_name
+  - column_data_type: string
+    column_name: tousers_recipient_status
+    comment: tousers_recipient_status
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_status
+  - column_data_type: string
+    column_name: tousers_recipient_distributiontype
+    comment: tousers_recipient_distributiontype
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_distributiontype
+  - column_data_type: string
+    column_name: tousers_recipient_userid
+    comment: tousers_recipient_userid
+    data_classification: 
+    nullable: true
+    raw_column_name: recipient_userid
+  - column_data_type: string
+    column_name: mailno
+    comment: mailno
+    data_classification: 
+    nullable: true
+    raw_column_name: mailno
+  - column_data_type: string
+    column_name: fromuserdetails_organizationid
+    comment: fromuserdetails_organizationid
+    data_classification: 
+    nullable: true
+    raw_column_name: fromuserdetails_organizationid
+  - column_data_type: string
+    column_name: fromuserdetails_organizationname
+    comment: fromuserdetails_organizationname
+    data_classification: 
+    nullable: true
+    raw_column_name: fromuserdetails_organizationname
+  - column_data_type: string
+    column_name: fromuserdetails_userid
+    comment: fromuserdetails_userid
+    data_classification: 
+    nullable: true
+    raw_column_name: fromuserdetails_userid
+  - column_data_type: string
+    column_name: fromuserdetails_firstname
+    comment: fromuserdetails_firstname
+    data_classification: 
+    nullable: true
+    raw_column_name: fromuserdetails_firstname
+  - column_data_type: string
+    column_name: fromuserdetails_lastname
+    comment: fromuserdetails_lastname
+    data_classification: 
+    nullable: true
+    raw_column_name: fromuserdetails_lastname
+  - column_data_type: string
+    column_name: fromuserdetails_name
+    comment: fromuserdetails_name
+    data_classification: 
+    nullable: true
+    raw_column_name: fromuserdetails_name
+  - column_data_type: string
+    column_name: reasonforissue
+    comment: reasonforissue
+    data_classification: 
+    nullable: true
+    raw_column_name: reasonforissue
+  - column_data_type: TIMESTAMP_LTZ
+    column_name: sentdate
+    comment: sentdate
+    data_classification: 
+    nullable: true
+    raw_column_name: sentdate
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: 
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: subject
+    comment: subject
+    data_classification: 
+    nullable: true
+    raw_column_name: subject
+  - column_data_type: string
+    column_name: referencenumber
+    comment: referencenumber
+    data_classification: 
+    nullable: true
+    raw_column_name: referencenumber
+  - column_data_type: string
+    column_name: attacheddocumentcount
+    comment: attacheddocumentcount
+    data_classification: 
+    nullable: true
+    raw_column_name: attacheddocumentcount
+  - column_data_type: string
+    column_name: attachmentfilesize
+    comment: attachmentfilesize
+    data_classification: 
+    nullable: true
+    raw_column_name: attachmentfilesize
+  - column_data_type: string
+    column_name: projectid
+    comment: projectid
+    data_classification: 
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: TIMESTAMP_LTZ
+    column_name: responserequired_responserequireddate
+    comment: responserequired_responserequireddate
+    data_classification: 
+    nullable: true
+    raw_column_name: responserequired_responserequireddate
+  - column_data_type: string
+    column_name: responserequired_responserequiredmessage
+    comment: responserequired_responserequiredmessage
+    data_classification: 
+    nullable: true
+    raw_column_name: responserequired_responserequiredmessage
+  - column_data_type: string
+    column_name: mailid
+    comment: mailid
+    data_classification: 
+    nullable: true
+    raw_column_name: _mailid
+  schema_properties:
+    primary_key:
+    - projectid
+    - MailId
+    - ToUsers_Recipient_UserId
+    - ToUsers_Recipient_DistributionType
+    - status
+    rename_columns: true
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/mailsentbox/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_mailsentbox
+  load_type: incremental_no_delete
+  name: curated_aconex_mailsentbox
+  primary_key:
+  - projectid
+  - MailId
+  - ToUsers_Recipient_UserId
+  - ToUsers_Recipient_DistributionType
+  - status
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/mailsentbox
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

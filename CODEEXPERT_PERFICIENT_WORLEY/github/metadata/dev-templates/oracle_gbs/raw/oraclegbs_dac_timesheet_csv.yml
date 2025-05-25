@@ -1,0 +1,31 @@
+SourceSystemId: oraclegbs_dac_timesheet
+MetadataType: 'batch#oraclegbs#${envn}#dac_timesheet'
+Ingest:
+  archival_folder: ${oraclegbs_dac_sftp_remote_folder}/Archive
+  archive_flag: 'N'
+  bucket_key: ${raw_bucket}  
+  delete_flag: 'N'
+  destination_bucket: ${raw_bucket}  
+  host_protocol: sftp
+  host_url: ${gbs_sftp_server}
+  kms_key_arn: ${iceberg_snapshot_key}
+  patterns:
+    - '[r''^.*\.zip$'', r''.*\.json$'', r''.*\.csv$'']'
+  remote_folder: ${oraclegbs_dac_sftp_remote_folder}/DAC_AWS
+  rename_file_flag: 'True'
+  secret_credentials: ${gbs_sftp_host_user}
+  secret_key: ${gbs_secret_key}
+  secret_ssh_key: ${gbs_secret_key}
+  sftp_secret_name: ${gbs_sftp_host_user}
+  Source:
+    - pattern: 'BR_AWS_DAC_TIMESHEET_DTL.CSV'
+      s3Path: finance/oracle_gbs/raw/csv/
+      SourcePath: ${oraclegbs_dac_sftp_remote_folder}/DAC_AWS
+  temp_dir: /tmp/extracted_files
+  tmp_location: temp/sftp_files/
+  txt_file_delimiter: '|'
+  txt_file_flag: 'N'
+  zip_unzip_flag: 'N'
+is_active: 'True'
+Pattern: batch
+aws_region: ${region}

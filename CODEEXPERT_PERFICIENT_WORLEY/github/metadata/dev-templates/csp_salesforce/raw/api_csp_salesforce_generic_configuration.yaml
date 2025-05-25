@@ -1,0 +1,59 @@
+---
+SourceSystemId: csp_salesforce
+MetadataType: api#csp_salesforce#extract_api
+api_parameter: #Optinal will be replaced with respective object API configs
+  api_body: 
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/json
+  api_method: get
+  api_query_params: 
+  api_request_body: 
+  api_response_type: json
+  max_retry: 2
+  api_ssl_verify: True
+  api_timeout: 300
+  auth_type: Bearer
+  dynamic_api_headers: #Optional
+    Authorization :  #Optional (Key only)
+  endpoint: "{instance_url}/services/data/v{api_version}/query?q={soql_query}" #Mandatory (Key and Value)
+  api_version: "61.0"
+  instance_url: "https://${salesforce_instance_url}"
+auth_api_parameter:
+  api_name: csp_salesforce
+  auth_body: #Mandatory
+    client_id: #Mandatory and will be filled from Secrets
+    client_secret: #Mandatory and will be filled from Secrets
+    grant_type: password #Mandatory and will be filled from Secrets
+    username: #Mandatory and will be filled from Secrets
+    password: #Mandatory and will be filled from Secrets
+  auth_exponential_backoff: 5
+  auth_headers: #Mandatory
+    content_type: application/json #Mandatory (Key and Value)
+  auth_method: post #Mandatory and will be filled from Secrets
+  auth_ssl_verify: False
+  auth_query_params: 
+  auth_retry: 3
+  auth_timeout: 180
+  dynamic_auth_headers:
+  - AuthToken
+  endpoint: https://${salesforce_login_url}/services/oauth2/token #Mandatory
+  secret_key: ${secret_prefix}-db-csp-salesforce #Mandatory
+aws_region: ${region}
+is_active: Y
+job_parameter:
+  bucket_data_source_prefix: csp_salesforce
+  bucket_name: ${raw_bucket}
+  full_incremental:
+  input_path: csp_salesforce
+  kms_key_id: ${kms_key_id}
+  output_s3: csp_salesforce
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: customer/csp_salesforce/data_sampling
+  status_timeout: 300
+  temp_output_path: temp/customer/csp_salesforce/{sf_function_name}/raw #Optional
+  status_check: 60
+  job_process_folder: customer/csp_salesforce/audit_folder/
+  job_process_file: 
+name: CSP_SALESFORCE_GENERIC_API

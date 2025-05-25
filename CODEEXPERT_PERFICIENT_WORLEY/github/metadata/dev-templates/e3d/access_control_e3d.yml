@@ -1,0 +1,15 @@
+#domain_name: engineering
+#table_definitions:
+# - table_name: erm_change_history
+    # column_definitions:
+    #   - column_name: id
+    #     data_classification: public
+    #   - column_name: password
+    #     data_classification: secret
+
+domain_name: engineering
+source_name: e3d
+databases : 
+  - ${database_prefix}_engineering_e3d_curated
+  - ${database_prefix}_engineering_e3d_raw
+  - ${database_prefix}_engineering_transformed

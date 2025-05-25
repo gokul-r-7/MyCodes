@@ -1,0 +1,5 @@
+domain_name: engineering
+source_name: spi
+databases : 
+  - ${database_prefix}_engineering_spi_curated
+  - ${database_prefix}_engineering_spi_raw

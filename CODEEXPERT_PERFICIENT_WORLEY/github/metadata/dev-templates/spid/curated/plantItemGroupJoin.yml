@@ -1,0 +1,41 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#t_plantItemGroupJoin#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_PlantItemGroupJoin/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-plantItemGroupJoin
+  name: spid_plantItemGroupJoin
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: false
+    rename_columns: false
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_PlantItemGroupJoin/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_plantitemgroupjoin
+  load_type: append
+  name: curated_t_plantitemgroupjoin
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_plantitemgroupjoin
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

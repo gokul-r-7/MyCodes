@@ -1,0 +1,77 @@
+SourceSystemId: ecosys
+MetadataType: api_xml#ecosys#project_api
+name: ecosys_project_api
+dev:
+  region: ${region}
+  Project_VG:
+    Name: VGCP2
+    job_data:
+      project:
+        secorg: HOUS
+        id:
+          - 418005-00861
+          - 418005-00861ENGOnly
+          - 418005-00861OB
+          - 418095-50786
+          - 418095-50786OB
+          - HOUS-B2d90-00003
+  Project_DAC:
+    Name: DAC
+    job_data:
+      project:
+        secorg: AMDAC
+        id:
+          - 418005-00966
+          - 418005-00765
+          - 418005-01166
+qa:
+  region: ${region}
+  Project_VG:
+    Name: VGCP2
+    job_data:
+      project:
+        secorg: HOUS
+        id:
+          - 418005-00744
+          - 418005-00861
+          - 418005-00861ENGOnly
+          - 418005-00861OB
+          - 418095-50786
+          - 418095-50786OB
+          - HOUS-B2d90-00003
+  Project_DAC:
+    Name: DAC
+    job_data:
+      project:
+        secorg: AMDAC
+        id:
+          - 418005-00472
+          - 418005-00472-00
+          - 418005-00472-02
+          - 418005-00966
+          - 418005-00765
+          - 418005-01166
+
+prd:
+  region: ${region}
+  Project_VG:
+    Name: VGCP2
+    job_data:
+      project:
+        secorg: HOUS
+        id:
+          - 418005-00861
+          - 418005-00861ENGOnly
+          - 418005-00861OB
+          - 418095-50786
+          - 418095-50786OB
+          - HOUS-B2d90-00003
+  Project_DAC:
+    Name: DAC
+    job_data:
+      project:
+        secorg: AMDAC
+        id:
+          - 418005-00966
+          - 418005-00765
+          - 418005-01166

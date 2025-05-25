@@ -1,0 +1,7 @@
+SourceSystemId: contract
+MetadataType: contract#tables#list
+aws_region: ${region}
+Env: ${envn}
+datasets:  
+ - id: 1
+   table_name: IDD_CONTRACTMASTERS

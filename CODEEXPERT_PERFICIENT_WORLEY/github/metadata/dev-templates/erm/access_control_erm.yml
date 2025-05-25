@@ -1,0 +1,6 @@
+domain_name: supply_chain
+source_name: erm
+databases : 
+  - ${database_prefix}_supply_chain_erm_curated
+  - ${database_prefix}_supply_chain_erm_raw
+  - ${database_prefix}_supply_chain_transformed

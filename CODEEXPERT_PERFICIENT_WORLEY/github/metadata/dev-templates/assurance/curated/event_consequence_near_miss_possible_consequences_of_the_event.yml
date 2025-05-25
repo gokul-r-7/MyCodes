@@ -1,0 +1,75 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_consequence_near_miss_possible_consequences_of_the_event#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_consequence_near_miss_possible_consequences_of_the_event.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_consequence_near_miss_possible_consequences_of_the_event
+  name: event_consequence_near_miss_possible_consequences_of_the_event
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_consequence_near_miss_possible_consequences_of_the_event/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_consequence_near_miss_possible_consequences_of_the_event
+  load_type: incremental
+  name: event_consequence_near_miss_possible_consequences_of_the_event
+  primary_key: [dwk_event_consequence_near_miss, li_possible_consequences_of_the_event]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_consequence_near_miss_possible_consequences_of_the_event
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [dwk_event_consequence_near_miss, li_possible_consequences_of_the_event]
+    rename_columns: true
+  columns:
+  - column_name: dwk_event_consequence_near_miss
+    column_data_type: decimal(38,0)
+    comment: dwk_event_consequence_near_miss
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_consequence_near_miss
+  - column_name: possible_consequences_of_the_event
+    column_data_type: string
+    comment: possible_consequences_of_the_event
+    data_classification:
+    nullable: true
+    raw_column_name: possible_consequences_of_the_event
+  - column_name: li_possible_consequences_of_the_event
+    column_data_type: string
+    comment: li_possible_consequences_of_the_event
+    data_classification:
+    nullable: true
+    raw_column_name: li_possible_consequences_of_the_event
+  - column_name: lo_possible_consequences_of_the_event
+    column_data_type: decimal(38,0)
+    comment: lo_possible_consequences_of_the_event
+    data_classification:
+    nullable: true
+    raw_column_name: lo_possible_consequences_of_the_event

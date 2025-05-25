@@ -1,0 +1,289 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_consequence_near_miss#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_consequence_near_miss.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_consequence_near_miss
+  name: event_consequence_near_miss
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_consequence_near_miss/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_consequence_near_miss
+  load_type: incremental
+  name: event_consequence_near_miss
+  primary_key: dwi_event_consequence_near_miss
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_consequence_near_miss
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_event_consequence_near_miss
+    rename_columns: true
+  columns:
+  - column_name: dwi_event_consequence_near_miss
+    column_data_type: decimal(38,0)
+    comment: dwi_event_consequence_near_miss
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_event_consequence_near_miss
+  - column_name: comments
+    column_data_type: string
+    comment: comments
+    data_classification:
+    nullable: true
+    raw_column_name: comments
+  - column_name: reference_number
+    column_data_type: string
+    comment: reference_number
+    data_classification:
+    nullable: true
+    raw_column_name: reference_number
+  - column_name: sys_legacy_id
+    column_data_type: string
+    comment: sys_legacy_id
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_id
+  - column_name: employment_category
+    column_data_type: string
+    comment: employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: employment_category
+  - column_name: li_employment_category
+    column_data_type: string
+    comment: li_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: li_employment_category
+  - column_name: lo_employment_category
+    column_data_type: decimal(38,0)
+    comment: lo_employment_category
+    data_classification:
+    nullable: true
+    raw_column_name: lo_employment_category
+  - column_name: age_group
+    column_data_type: string
+    comment: age_group
+    data_classification:
+    nullable: true
+    raw_column_name: age_group
+  - column_name: li_age_group
+    column_data_type: string
+    comment: li_age_group
+    data_classification:
+    nullable: true
+    raw_column_name: li_age_group
+  - column_name: lo_age_group
+    column_data_type: decimal(38,0)
+    comment: lo_age_group
+    data_classification:
+    nullable: true
+    raw_column_name: lo_age_group
+  - column_name: role02
+    column_data_type: string
+    comment: role02
+    data_classification:
+    nullable: true
+    raw_column_name: role02
+  - column_name: li_role02
+    column_data_type: string
+    comment: li_role02
+    data_classification:
+    nullable: true
+    raw_column_name: li_role02
+  - column_name: lo_role02
+    column_data_type: decimal(38,0)
+    comment: lo_role02
+    data_classification:
+    nullable: true
+    raw_column_name: lo_role02
+  - column_name: experience_in_current_role
+    column_data_type: string
+    comment: experience_in_current_role
+    data_classification:
+    nullable: true
+    raw_column_name: experience_in_current_role
+  - column_name: li_experience_in_current_role
+    column_data_type: string
+    comment: li_experience_in_current_role
+    data_classification:
+    nullable: true
+    raw_column_name: li_experience_in_current_role
+  - column_name: lo_experience_in_current_role
+    column_data_type: decimal(38,0)
+    comment: lo_experience_in_current_role
+    data_classification:
+    nullable: true
+    raw_column_name: lo_experience_in_current_role
+  - column_name: length_of_time_on_current_assignment
+    column_data_type: string
+    comment: length_of_time_on_current_assignment
+    data_classification:
+    nullable: true
+    raw_column_name: length_of_time_on_current_assignment
+  - column_name: li_length_of_time_on_current_assignment
+    column_data_type: string
+    comment: li_length_of_time_on_current_assignment
+    data_classification:
+    nullable: true
+    raw_column_name: li_length_of_time_on_current_assignment
+  - column_name: lo_length_of_time_on_current_assignment
+    column_data_type: decimal(38,0)
+    comment: lo_length_of_time_on_current_assignment
+    data_classification:
+    nullable: true
+    raw_column_name: lo_length_of_time_on_current_assignment
+  - column_name: potential_consequence
+    column_data_type: string
+    comment: potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: potential_consequence
+  - column_name: li_potential_consequence
+    column_data_type: string
+    comment: li_potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: li_potential_consequence
+  - column_name: lo_potential_consequence
+    column_data_type: decimal(38,0)
+    comment: lo_potential_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: lo_potential_consequence
+  - column_name: type_of_quality_near_miss
+    column_data_type: string
+    comment: type_of_quality_near_miss
+    data_classification:
+    nullable: true
+    raw_column_name: type_of_quality_near_miss
+  - column_name: li_type_of_quality_near_miss
+    column_data_type: string
+    comment: li_type_of_quality_near_miss
+    data_classification:
+    nullable: true
+    raw_column_name: li_type_of_quality_near_miss
+  - column_name: lo_type_of_quality_near_miss
+    column_data_type: decimal(38,0)
+    comment: lo_type_of_quality_near_miss
+    data_classification:
+    nullable: true
+    raw_column_name: lo_type_of_quality_near_miss
+  - column_name: engineering_discipline
+    column_data_type: string
+    comment: engineering_discipline
+    data_classification:
+    nullable: true
+    raw_column_name: engineering_discipline
+  - column_name: li_engineering_discipline
+    column_data_type: string
+    comment: li_engineering_discipline
+    data_classification:
+    nullable: true
+    raw_column_name: li_engineering_discipline
+  - column_name: lo_engineering_discipline
+    column_data_type: decimal(38,0)
+    comment: lo_engineering_discipline
+    data_classification:
+    nullable: true
+    raw_column_name: lo_engineering_discipline
+  - column_name: dwk_ems_business_process
+    column_data_type: decimal(38,0)
+    comment: dwk_ems_business_process
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_ems_business_process
+  - column_name: dwk_event_as_source_of_near_miss_consequence
+    column_data_type: decimal(38,0)
+    comment: dwk_event_as_source_of_near_miss_consequence
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_as_source_of_near_miss_consequence
+  - column_name: dwk_event_as_near_misses
+    column_data_type: decimal(38,0)
+    comment: dwk_event_as_near_misses
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_as_near_misses
+  - column_name: dwk_event_as_potential_injury_illness_near_misses
+    column_data_type: decimal(38,0)
+    comment: dwk_event_as_potential_injury_illness_near_misses
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_as_potential_injury_illness_near_misses
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

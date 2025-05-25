@@ -1,0 +1,593 @@
+MetadataType: curated#o3#work-package-components#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/work-package-components/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_work_package_components
+  name: o3_work_package_components
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [projectid, entitytypename,entityname,constructioncomponentid]
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: entityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entityid
+  - column_data_type: string
+    column_name: entitytypename
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitytypename
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: entitytypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitytypeid
+  - column_data_type: string
+    column_name: entitystatusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitystatusid
+  - column_data_type: string
+    column_name: entitystatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitystatus
+  - column_data_type: string
+    column_name: entitystatuscolor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitystatuscolor
+  - column_data_type: string
+    column_name: entityname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entityname
+  - column_data_type: string
+    column_name: entitydescription
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitydescription
+  - column_data_type: string
+    column_name: plannedstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedstartdate
+  - column_data_type: string
+    column_name: plannedfinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plannedfinishdate
+  - column_data_type: string
+    column_name: actualstartdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualstartdate
+  - column_data_type: string
+    column_name: actualfinishdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actualfinishdate
+  - column_data_type: string
+    column_name: componenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: componenttype
+  - column_data_type: string
+    column_name: tagnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagnumber
+  - column_data_type: string
+    column_name: lookupkey
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lookupkey
+  - column_data_type: string
+    column_name: constructioncomponentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructioncomponentid
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: createdbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuserid
+  - column_data_type: string
+    column_name: createdbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuser
+  - column_data_type: string
+    column_name: datemodified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datemodified
+  - column_data_type: string
+    column_name: modifiedbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuserid
+  - column_data_type: string
+    column_name: modifiedbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuser
+  - column_data_type: string
+    column_name: componentmissing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: componentmissing
+  - column_data_type: string
+    column_name: drawingid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingid
+  - column_data_type: string
+    column_name: drawing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawing
+  - column_data_type: string
+    column_name: associatedentityplannerid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: associatedentityplannerid
+  - column_data_type: string
+    column_name: isdeleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isdeleted
+  - column_data_type: string
+    column_name: purposeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: purposeid
+  - column_data_type: string
+    column_name: constraintrollupstatusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constraintrollupstatusid
+  - column_data_type: string
+    column_name: constraintrollupstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constraintrollupstatus
+  - column_data_type: string
+    column_name: constraintrollupstatuscolor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constraintrollupstatuscolor
+  - column_data_type: string
+    column_name: systempath
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systempath
+  - column_data_type: string
+    column_name: sheet
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sheet
+  - column_data_type: string
+    column_name: area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area
+  - column_data_type: string
+    column_name: module
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module
+  - column_data_type: string
+    column_name: unit
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit
+  - column_data_type: string
+    column_name: core
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: core
+  - column_data_type: string
+    column_name: insulation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulation
+  - column_data_type: string
+    column_name: insulationspecification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationspecification
+  - column_data_type: string
+    column_name: linenumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: linenumber
+  - column_data_type: string
+    column_name: loopnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loopnumber
+  - column_data_type: string
+    column_name: pipelineid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipelineid
+  - column_data_type: string
+    column_name: material
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: material
+  - column_data_type: string
+    column_name: materialidentifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialidentifier
+  - column_data_type: string
+    column_name: objecttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: objecttype
+  - column_data_type: string
+    column_name: pid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pid
+  - column_data_type: string
+    column_name: pressurerating
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pressurerating
+  - column_data_type: string
+    column_name: schedule
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: schedule
+  - column_data_type: string
+    column_name: service
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: service
+  - column_data_type: string
+    column_name: shortmaterialtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: shortmaterialtype
+  - column_data_type: string
+    column_name: specification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: specification
+  - column_data_type: string
+    column_name: subobjecttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: subobjecttype
+  - column_data_type: string
+    column_name: subsystemname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: subsystemname
+  - column_data_type: string
+    column_name: systemname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemname
+  - column_data_type: string
+    column_name: terminationnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: terminationnumber
+  - column_data_type: string
+    column_name: testpressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: testpressure
+  - column_data_type: string
+    column_name: testtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: testtype
+  - column_data_type: string
+    column_name: voltage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: voltage
+  - column_data_type: string
+    column_name: insulationthickness
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationthickness
+  - column_data_type: string
+    column_name: fromtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fromtag
+  - column_data_type: string
+    column_name: totag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totag
+  - column_data_type: string
+    column_name: boresize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: boresize
+  - column_data_type: string
+    column_name: length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: length
+  - column_data_type: string
+    column_name: areadimension
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areadimension
+  - column_data_type: string
+    column_name: volume
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: volume
+  - column_data_type: string
+    column_name: weight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: weight
+  - column_data_type: string
+    column_name: systemdescription
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemdescription
+  - column_data_type: string
+    column_name: subsystemdescription
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: subsystemdescription
+  - column_data_type: string
+    column_name: status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: topelevation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: topelevation
+  - column_data_type: string
+    column_name: bottomelevation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: bottomelevation
+  - column_data_type: string
+    column_name: locationposition
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationposition
+  - column_data_type: string
+    column_name: drawingtypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingtypeid
+  - column_data_type: string
+    column_name: drawingtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingtype
+  - column_data_type: string
+    column_name: sourceurn
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sourceurn
+  - column_data_type: string
+    column_name: trackingtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: trackingtag
+  - column_data_type: string
+    column_name: contractid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractid
+  - column_data_type: string
+    column_name: priority
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: priority
+  - column_data_type: string
+    column_name: fabricationstatusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricationstatusid
+  - column_data_type: string
+    column_name: fabricationstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricationstatus
+  - column_data_type: string
+    column_name: entitystatusstateid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: entitystatusstateid
+  - column_data_type: string
+    column_name: autocreatedfromcc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: autocreatedfromcc
+  - column_data_type: string
+    column_name: externallookup
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallookup
+  - column_data_type: double
+    column_name: keyquantity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: keyquantity
+  - column_data_type: string
+    column_name: keyquantityuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: keyquantityuom
+  - column_data_type: string
+    column_name: sortorder
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sortorder
+  - column_data_type: string
+    column_name: haspendingdatareview
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: haspendingdatareview
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: datemodified_ts
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/work_package_components/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_work_package_components
+  load_type: incremental_no_delete
+  name: curated_o3_work_package_components
+  primary_key: [projectid, entitytypename,entityname,constructioncomponentid]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/work_package_components
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, CAST(datemodified as timestamp) as datemodified_ts, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

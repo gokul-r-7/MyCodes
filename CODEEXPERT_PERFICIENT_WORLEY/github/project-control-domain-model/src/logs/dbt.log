@@ -1,0 +1,72 @@
+[0m00:04:53.293976 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108558680>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108845040>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108844c50>]}
+
+
+============================== 00:04:53.297078 | f6e2be45-d1f3-41c2-8fd8-235b7c1d7d99 ==============================
+[0m00:04:53.297078 [info ] [MainThread]: Running with dbt=1.8.6
+[0m00:04:53.297401 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'logs', 'profiles_dir': '/Users/bnakhi/.dbt', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt init domain_model', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m00:04:53.309143 [info ] [MainThread]: A project called domain_model already exists here.
+[0m00:04:53.314172 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 0.06655371, "process_user_time": 0.662024, "process_kernel_time": 0.169335, "process_mem_max_rss": "95109120", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m00:04:53.314802 [debug] [MainThread]: Command `dbt init` succeeded at 00:04:53.314620 after 0.07 seconds
+[0m00:04:53.315127 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1088aade0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108246480>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108844d70>]}
+[0m00:04:53.315357 [debug] [MainThread]: Flushing usage events
+[0m00:05:09.901418 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104603fe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1068c1280>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1068c0e90>]}
+
+
+============================== 00:05:09.906689 | a84fb43d-681c-4c82-a3eb-74e112568625 ==============================
+[0m00:05:09.906689 [info ] [MainThread]: Running with dbt=1.8.6
+[0m00:05:09.907072 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/bnakhi/.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'invocation_command': 'dbt init domain_model', 'send_anonymous_usage_stats': 'True'}
+[0m00:05:09.918614 [debug] [MainThread]: Starter project path: /Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/include/starter_project
+[0m00:05:09.925581 [info ] [MainThread]: 
+Your new dbt project "domain_model" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m00:05:09.925857 [info ] [MainThread]: Setting up your profile.
+[0m00:05:15.012280 [debug] [MainThread]: Redshift adapter: Setting redshift_connector to ERROR
+[0m00:05:15.012582 [debug] [MainThread]: Redshift adapter: Setting redshift_connector.core to ERROR
+[0m00:05:23.259569 [error] [MainThread]: Encountered an error:
+
+[0m00:05:23.264559 [error] [MainThread]: Traceback (most recent call last):
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/cli/requires.py", line 138, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/cli/requires.py", line 101, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/cli/main.py", line 470, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 347, in run
+    self.setup_profile(profile_name)
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 263, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 180, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 164, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 130, in generate_target_from_input
+    target[key] = click.prompt(
+                  ^^^^^^^^^^^^^
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/click/termui.py", line 164, in prompt
+    value = prompt_func(prompt)
+            ^^^^^^^^^^^^^^^^^^^
+  File "/Users/bnakhi/Library/CloudStorage/WorkDocsDrive-Documents/Projects/Worly Data Platform/project-control-data-modelling/project-control-domain-model/.venv/lib/python3.12/site-packages/click/termui.py", line 147, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m00:05:23.268282 [debug] [MainThread]: Resource report: {"command_name": "init", "command_wall_clock_time": 13.416054, "process_user_time": 0.720417, "process_kernel_time": 0.231241, "process_mem_max_rss": "106364928", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m00:05:23.268922 [debug] [MainThread]: Command `dbt init` failed at 00:05:23.268834 after 13.42 seconds
+[0m00:05:23.269267 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106fbfb60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1071ba540>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106864800>]}
+[0m00:05:23.269620 [debug] [MainThread]: Flushing usage events

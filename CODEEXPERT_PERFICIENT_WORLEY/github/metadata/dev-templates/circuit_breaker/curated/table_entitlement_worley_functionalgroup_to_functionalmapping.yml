@@ -1,0 +1,62 @@
+---
+SourceSystemId: circuit_breaker_curated
+MetadataType: curated#circuit_breaker#entitlement_worley_functionalgroup_to_functionalmapping#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/circuit_breaker/parquet/entitlement_worley_functionalgroup_to_functionalmapping.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: entitlement_worley_functionalgroup_to_functionalmapping_curated
+  name: entitlement_worley_functionalgroup_to_functionalmapping_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: functionalmapping_functional_group_primary_short
+    comment: functionalmapping_functional_group_primary_short
+    data_classification: 
+    nullable: true
+    raw_column_name: functional_group_primary_short
+  - column_data_type: string
+    column_name: functionalmapping_function
+    comment: functionalmapping_function
+    data_classification: 
+    nullable: true
+    raw_column_name: function
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: worley_datalake_sydney_${envn}_glue_catalog_database_circuit_breaker_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_worley_functionalgroup_to_functionalmapping/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_entitlement_worley_functionalgroup_to_functionalmapping
+  load_type: full_load
+  name: curated_entitlement_worley_functionalgroup_to_functionalmapping
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/circuit_breaker/entitlements/curated_entitlement_worley_functionalgroup_to_functionalmapping
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'circuit_breaker' as SOURCE_SYSTEM_NAME, 'entitlement_worley_functionalgroup_to_functionalmapping'
+    as CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

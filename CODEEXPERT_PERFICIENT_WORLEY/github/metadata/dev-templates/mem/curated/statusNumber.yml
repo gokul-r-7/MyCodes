@@ -1,0 +1,48 @@
+---
+SourceSystemId: database_mem_curated
+MetadataType: curated#mem#StatusNumbers#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/mem/StatusNumbers/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: mem-statusNumbers
+  name: mem_statusNumbers
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: short
+    column_name: statusnum
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: statusnum    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_mem_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/mem/StatusNumbers/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_statusnumbers
+  load_type: append
+  name: curated_statusnumbers
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/mem/curated_statusnumbers
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'mem' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

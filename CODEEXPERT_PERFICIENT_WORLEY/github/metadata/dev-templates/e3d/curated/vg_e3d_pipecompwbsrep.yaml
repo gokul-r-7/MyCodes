@@ -1,0 +1,234 @@
+SourceSystemId: e3d_curated
+MetadataType: curated#vg_E3D#pipecompwbsrep#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/e3d/parquet/pipecompwbsrep.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: vg_E3D-csv_xlsx_curated
+  name: vg_E3D_csv_xlsx_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: WBS
+    comment: WBS
+    data_classification: 
+    nullable: true
+    raw_column_name: wbs
+  - column_data_type: string
+    column_name: SITE
+    comment: SITE
+    data_classification: 
+    nullable: true
+    raw_column_name: site
+  - column_data_type: string
+    column_name: ZONE
+    comment: ZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: zone
+  - column_data_type: string
+    column_name: PIPE
+    comment: PIPE
+    data_classification: 
+    nullable: true
+    raw_column_name: pipe
+  - column_data_type: string
+    column_name: BRANCH
+    comment: BRANCH
+    data_classification: 
+    nullable: true
+    raw_column_name: branch
+  - column_data_type: string
+    column_name: TYPE
+    comment: TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: REF
+    comment: REF
+    data_classification: 
+    nullable: true
+    raw_column_name: ref
+  - column_data_type: string
+    column_name: TAG
+    comment: TAG
+    data_classification: 
+    nullable: true
+    raw_column_name: tag
+  - column_data_type: string
+    column_name: SPREF
+    comment: SPREF
+    data_classification: 
+    nullable: true
+    raw_column_name: spref
+  - column_data_type: string
+    column_name: ISPEC
+    comment: ISPEC
+    data_classification: 
+    nullable: true
+    raw_column_name: ispec
+  - column_data_type: string
+    column_name: NB1
+    comment: NB1
+    data_classification: 
+    nullable: true
+    raw_column_name: nb1
+  - column_data_type: string
+    column_name: NB2
+    comment: NB2
+    data_classification: 
+    nullable: true
+    raw_column_name: nb2
+  - column_data_type: string
+    column_name: NB3
+    comment: NB3
+    data_classification: 
+    nullable: true
+    raw_column_name: nb3
+  - column_data_type: string
+    column_name: NB4
+    comment: NB4
+    data_classification: 
+    nullable: true
+    raw_column_name: nb4
+  - column_data_type: string
+    column_name: LENGTH
+    comment: LENGTH
+    data_classification: 
+    nullable: true
+    raw_column_name: length
+  - column_data_type: string
+    column_name: DESCRIPTION
+    comment: DESCRIPTION
+    data_classification: 
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: MATERIAL
+    comment: MATERIAL
+    data_classification: 
+    nullable: true
+    raw_column_name: material
+  - column_data_type: string
+    column_name: IDCODE
+    comment: IDCODE
+    data_classification: 
+    nullable: true
+    raw_column_name: idcode
+  - column_data_type: string
+    column_name: CMCODE
+    comment: CMCODE
+    data_classification: 
+    nullable: true
+    raw_column_name: cmcode
+  - column_data_type: string
+    column_name: LINENO
+    comment: LINENO
+    data_classification: 
+    nullable: true
+    raw_column_name: lineno
+  - column_data_type: string
+    column_name: DUTY
+    comment: DUTY
+    data_classification: 
+    nullable: true
+    raw_column_name: duty
+  - column_data_type: string
+    column_name: WGT
+    comment: WGT
+    data_classification: 
+    nullable: true
+    raw_column_name: wgt_lbs
+  - column_data_type: string
+    column_name: WGT_LBS_W_INSU
+    comment: WGT_LBS_W_INSU
+    data_classification: 
+    nullable: true
+    raw_column_name: wgt_lbs_w_insu
+  - column_data_type: string
+    column_name: EWP
+    comment: EWP
+    data_classification: 
+    nullable: true
+    raw_column_name: ewp_ewp
+  - column_data_type: string
+    column_name: CWA
+    comment: CWA
+    data_classification: 
+    nullable: true
+    raw_column_name: cwa_cwarea
+  - column_data_type: string
+    column_name: CWP
+    comment: CWP
+    data_classification: 
+    nullable: true
+    raw_column_name: cwp_workpackno
+  - column_data_type: string
+    column_name: CWPZONE
+    comment: CWPZONE
+    data_classification: 
+    nullable: true
+    raw_column_name: cwpzone_areacode
+  - column_data_type: string
+    column_name: ISO
+    comment: ISO
+    data_classification: 
+    nullable: true
+    raw_column_name: iso
+  - column_data_type: string
+    column_name: DRAWING_NO
+    comment: DRAWING_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: drawing_no
+  - column_data_type: string
+    column_name: P_ID_LINE_NO
+    comment: P_ID_LINE_NO
+    data_classification: 
+    nullable: true
+    raw_column_name: p_id_line_no
+  - column_data_type: string
+    column_name: P_ID_REFERENCE
+    comment: P_ID_REFERENCE
+    data_classification: 
+    nullable: true
+    raw_column_name: p_id_reference
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_e3d_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/e3d/pipecompwbsrep/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_pipecompwbsrep
+  name: curated_vg_E3D_pipecompwbsrep
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/e3d/pipecompwbsrep
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'vg_E3D' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

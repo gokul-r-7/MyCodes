@@ -1,0 +1,609 @@
+SourceSystemId: csp_salesforce_curated
+MetadataType: curated#snapshots_monthly#csp_salesforce#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/customer/csp_salesforce/conv_tables/table_snapshots_monthly.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: csp_salesforce_snapshots_monthly_curated
+  name: snapshots_monthly_csv_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+    - column_name: date_snapshot
+      column_data_type: date
+      comment: date_snapshot
+      nullable: false
+      raw_column_name: date_snapshot
+
+    - column_name: account_perimeter2
+      column_data_type: boolean
+      comment: account_perimeter2
+      nullable: false
+      raw_column_name: account_perimeter2
+
+    - column_name: account_perimeter_inout
+      column_data_type: string
+      comment: account_perimeter_inout
+      nullable: false
+      raw_column_name: account_perimeter_inout
+
+    - column_name: account_tier
+      column_data_type: string
+      comment: account_tier
+      nullable: false
+      raw_column_name: account_tier
+
+    - column_name: accountid
+      column_data_type: string
+      comment: accountid
+      nullable: false
+      raw_column_name: accountid
+
+    - column_name: asset_country
+      column_data_type: string
+      comment: asset_country
+      nullable: false
+      raw_column_name: asset_country
+
+    - column_name: asset_country_full
+      column_data_type: string
+      comment: asset_country_full
+      nullable: false
+      raw_column_name: asset_country_full
+
+    - column_name: asset_type
+      column_data_type: string
+      comment: asset_type
+      nullable: false
+      raw_column_name: asset_type
+
+    - column_name: bid_office
+      column_data_type: string
+      comment: bid_office
+      nullable: false
+      raw_column_name: bid_office
+
+    - column_name: category_opportunity
+      column_data_type: string
+      comment: category_opportunity
+      nullable: false
+      raw_column_name: category_opportunity
+
+    - column_name: classification_project
+      column_data_type: string
+      comment: classification_project
+      nullable: false
+      raw_column_name: classification_project
+
+    - column_name: contract_type
+      column_data_type: string
+      comment: contract_type
+      nullable: false
+      raw_column_name: contract_type
+
+    - column_name: contract_type_award
+      column_data_type: string
+      comment: contract_type_award
+      nullable: false
+      raw_column_name: contract_type_award
+
+    - column_name: date_award
+      column_data_type: date
+      comment: date_award
+      nullable: false
+      raw_column_name: date_award
+
+    - column_name: date_created
+      column_data_type: date
+      comment: date_created
+      nullable: false
+      raw_column_name: date_created
+
+    - column_name: date_lastmodified
+      column_data_type: date
+      comment: date_lastmodified
+      nullable: false
+      raw_column_name: date_lastmodified
+
+    - column_name: date_proposaldue
+      column_data_type: date
+      comment: date_proposaldue
+      nullable: false
+      raw_column_name: date_proposaldue
+
+    - column_name: date_rfp
+      column_data_type: date
+      comment: date_rfp
+      nullable: false
+      raw_column_name: date_rfp
+
+    - column_name: forecast_category
+      column_data_type: string
+      comment: forecast_category
+      nullable: false
+      raw_column_name: forecast_category
+
+    - column_name: forecast_includeexclude
+      column_data_type: string
+      comment: forecast_includeexclude
+      nullable: false
+      raw_column_name: forecast_includeexclude
+
+    - column_name: advisian_hub_lead
+      column_data_type: string
+      comment: advisian_hub_lead
+      nullable: false
+      raw_column_name: advisian_hub_lead
+
+    - column_name: goget_get
+      column_data_type: int
+      comment: goget_get
+      nullable: false
+      raw_column_name: goget_get
+
+    - column_name: goget_go
+      column_data_type: int
+      comment: goget_go
+      nullable: false
+      raw_column_name: goget_go
+
+    - column_name: id_currency_contract
+      column_data_type: string
+      comment: id_currency_contract
+      nullable: false
+      raw_column_name: id_currency_contract
+
+    - column_name: id_opportunity
+      column_data_type: string
+      comment: id_opportunity
+      nullable: false
+      raw_column_name: id_opportunity
+
+    - column_name: id_opportunity_parent
+      column_data_type: string
+      comment: id_opportunity_parent
+      nullable: false
+      raw_column_name: id_opportunity_parent
+
+    - column_name: jacobs_industry_groupc
+      column_data_type: string
+      comment: jacobs_industry_groupc
+      nullable: false
+      raw_column_name: jacobs_industry_groupc
+
+    - column_name: lead_performance_unit_puc
+      column_data_type: string
+      comment: lead_performance_unit_puc
+      nullable: false
+      raw_column_name: lead_performance_unit_puc
+
+    - column_name: legacy_market_sector
+      column_data_type: string
+      comment: legacy_market_sector
+      nullable: false
+      raw_column_name: legacy_market_sector
+
+    - column_name: legacy_market_sector_short
+      column_data_type: string
+      comment: legacy_market_sector_short
+      nullable: false
+      raw_column_name: legacy_market_sector_short
+
+    - column_name: marketsc
+      column_data_type: string
+      comment: marketsc
+      nullable: false
+      raw_column_name: marketsc
+
+    - column_name: name_account
+      column_data_type: string
+      comment: name_account
+      nullable: false
+      raw_column_name: name_account
+
+    - column_name: name_account_group
+      column_data_type: string
+      comment: name_account_group
+      nullable: false
+      raw_column_name: name_account_group
+
+    - column_name: name_opportunity
+      column_data_type: string
+      comment: name_opportunity
+      nullable: false
+      raw_column_name: name_opportunity
+
+    - column_name: name_owner
+      column_data_type: string
+      comment: name_owner
+      nullable: false
+      raw_column_name: name_owner
+
+    - column_name: name_proposal_manager
+      column_data_type: string
+      comment: name_proposal_manager
+      nullable: false
+      raw_column_name: name_proposal_manager
+
+    - column_name: ownerid
+      column_data_type: string
+      comment: ownerid
+      nullable: false
+      raw_column_name: ownerid
+
+    - column_name: project_categoriesc
+      column_data_type: string
+      comment: project_categoriesc
+      nullable: false
+      raw_column_name: project_categoriesc
+
+    - column_name: project_rolec
+      column_data_type: string
+      comment: project_rolec
+      nullable: false
+      raw_column_name: project_rolec
+
+    - column_name: sec_codes_and_categoriesc
+      column_data_type: string
+      comment: sec_codes_and_categoriesc
+      nullable: false
+      raw_column_name: sec_codes_and_categoriesc
+
+    - column_name: selling_scope
+      column_data_type: string
+      comment: selling_scope
+      nullable: false
+      raw_column_name: selling_scope
+
+    - column_name: lead_capability
+      column_data_type: string
+      comment: lead_capability
+      nullable: false
+      raw_column_name: lead_capability
+
+    - column_name: service_line_lead
+      column_data_type: string
+      comment: service_line_lead
+      nullable: false
+      raw_column_name: service_line_lead
+
+    - column_name: service_typec
+      column_data_type: string
+      comment: service_typec
+      nullable: false
+      raw_column_name: service_typec
+
+    - column_name: specialties
+      column_data_type: string
+      comment: specialties
+      nullable: false
+      raw_column_name: specialties
+
+    - column_name: stage_actual
+      column_data_type: string
+      comment: stage_actual
+      nullable: false
+      raw_column_name: stage_actual
+
+    - column_name: stage_initial
+      column_data_type: string
+      comment: stage_initial
+      nullable: false
+      raw_column_name: stage_initial
+
+    - column_name: status_activeinactive
+      column_data_type: string
+      comment: status_activeinactive
+      nullable: false
+      raw_column_name: status_activeinactive
+
+    - column_name: status_description
+      column_data_type: string
+      comment: status_description
+      nullable: false
+      raw_column_name: status_description
+
+    - column_name: tier_opportunity
+      column_data_type: string
+      comment: tier_opportunity
+      nullable: false
+      raw_column_name: tier_opportunity
+
+    - column_name: tier_opportunity_short
+      column_data_type: string
+      comment: tier_opportunity_short
+      nullable: false
+      raw_column_name: tier_opportunity_short
+
+    - column_name: top_prospectc
+      column_data_type: string
+      comment: top_prospectc
+      nullable: false
+      raw_column_name: top_prospectc
+
+    - column_name: sales_plan_unit
+      column_data_type: string
+      comment: sales_plan_unit
+      nullable: false
+      raw_column_name: sales_plan_unit
+
+    - column_name: selling_business
+      column_data_type: string
+      comment: selling_business
+      nullable: false
+      raw_column_name: selling_business
+
+    - column_name: selling_territory
+      column_data_type: string
+      comment: selling_territory
+      nullable: false
+      raw_column_name: selling_territory
+
+    - column_name: selling_territory_short
+      column_data_type: string
+      comment: selling_territory_short
+      nullable: false
+      raw_column_name: selling_territory_short
+
+    - column_name: boolean_lead_multiofficesplit
+      column_data_type: string
+      comment: boolean_lead_multiofficesplit
+      nullable: false
+      raw_column_name: boolean_lead_multiofficesplit
+
+    - column_name: bool_gid
+      column_data_type: string
+      comment: bool_gid
+      nullable: false
+      raw_column_name: bool_gid
+
+    - column_name: entity
+      column_data_type: string
+      comment: entity
+      nullable: false
+      raw_column_name: entity
+
+    - column_name: executing_business
+      column_data_type: string
+      comment: executing_business
+      nullable: false
+      raw_column_name: executing_business
+
+    - column_name: executing_business_line
+      column_data_type: string
+      comment: executing_business_line
+      nullable: false
+      raw_column_name: executing_business_line
+
+    - column_name: executing_business_segment
+      column_data_type: string
+      comment: executing_business_segment
+      nullable: false
+      raw_column_name: executing_business_segment
+
+    - column_name: executing_country
+      column_data_type: string
+      comment: executing_country
+      nullable: false
+      raw_column_name: executing_country
+
+    - column_name: executing_office
+      column_data_type: string
+      comment: executing_office
+      nullable: false
+      raw_column_name: executing_office
+
+    - column_name: executing_business_unit
+      column_data_type: string
+      comment: executing_business_unit
+      nullable: false
+      raw_column_name: executing_business_unit
+
+    - column_name: executing_region
+      column_data_type: string
+      comment: executing_region
+      nullable: false
+      raw_column_name: executing_region
+
+    - column_name: executing_scope
+      column_data_type: string
+      comment: executing_scope
+      nullable: false
+      raw_column_name: executing_scope
+
+    - column_name: capability
+      column_data_type: string
+      comment: capability
+      nullable: false
+      raw_column_name: capability
+
+    - column_name: period_days_multiofficesplit
+      column_data_type: string
+      comment: period_days_multiofficesplit
+      nullable: false
+      raw_column_name: period_days_multiofficesplit
+
+    - column_name: period_months_multiofficesplit
+      column_data_type: string
+      comment: period_months_multiofficesplit
+      nullable: false
+      raw_column_name: period_months_multiofficesplit
+
+    - column_name: profit_centre_group
+      column_data_type: string
+      comment: profit_centre_group
+      nullable: false
+      raw_column_name: profit_centre_group
+
+    - column_name: resource_type
+      column_data_type: string
+      comment: resource_type
+      nullable: false
+      raw_column_name: resource_type
+
+    - column_name: role_multiofficesplit
+      column_data_type: string
+      comment: role_multiofficesplit
+      nullable: false
+      raw_column_name: role_multiofficesplit
+
+    - column_name: service_line
+      column_data_type: string
+      comment: service_line
+      nullable: false
+      raw_column_name: service_line
+
+    - column_name: spreading_formula
+      column_data_type: string
+      comment: spreading_formula
+      nullable: false
+      raw_column_name: spreading_formula
+
+    - column_name: revenue_mos_unfactored
+      column_data_type: string
+      comment: revenue_mos_unfactored
+      nullable: false
+      raw_column_name: revenue_mos_unfactored
+
+    - column_name: gm_mos_unfactored
+      column_data_type: string
+      comment: gm_mos_unfactored
+      nullable: false
+      raw_column_name: gm_mos_unfactored
+
+    - column_name: hours_mos_unfactored
+      column_data_type: string
+      comment: hours_mos_unfactored
+      nullable: false
+      raw_column_name: hours_mos_unfactored
+
+    - column_name: date_end_multiofficesplit
+      column_data_type: string
+      comment: date_end_multiofficesplit
+      nullable: false
+      raw_column_name: date_end_multiofficesplit
+
+    - column_name: date_start_multiofficesplit
+      column_data_type: string
+      comment: date_start_multiofficesplit
+      nullable: false
+      raw_column_name: date_start_multiofficesplit
+
+    - column_name: id_multiofficesplit
+      column_data_type: string
+      comment: id_multiofficesplit
+      nullable: false
+      raw_column_name: id_multiofficesplit
+
+    - column_name: date_created_mos
+      column_data_type: string
+      comment: date_created_mos
+      nullable: false
+      raw_column_name: date_created_mos
+
+    - column_name: ecr
+      column_data_type: string
+      comment: ecr
+      nullable: false
+      raw_column_name: ecr
+
+    - column_name: market_sector
+      column_data_type: string
+      comment: market_sector
+      nullable: false
+      raw_column_name: market_sector
+
+    - column_name: market_subsector
+      column_data_type: string
+      comment: market_subsector
+      nullable: false
+      raw_column_name: market_subsector
+
+    - column_name: market_segment
+      column_data_type: string
+      comment: market_segment
+      nullable: false
+      raw_column_name: market_segment
+
+    - column_name: cost_bandp_actual
+      column_data_type: string
+      comment: cost_bandp_actual
+      nullable: false
+      raw_column_name: cost_bandp_actual
+
+    - column_name: cost_bandp_budget
+      column_data_type: string
+      comment: cost_bandp_budget
+      nullable: false
+      raw_column_name: cost_bandp_budget
+
+    - column_name: hours_bandp_budget
+      column_data_type: string
+      comment: hours_bandp_budget
+      nullable: false
+      raw_column_name: hours_bandp_budget
+
+    - column_name: revenue_financial_opp_budget
+      column_data_type: bigint
+      comment: revenue_financial_opp_budget
+      nullable: false
+      raw_column_name: revenue_financial_opp_budget
+
+    - column_name: revenue_financial_opp_actual
+      column_data_type: bigint
+      comment: revenue_financial_opp_actual
+      nullable: false
+      raw_column_name: revenue_financial_opp_actual
+
+    - column_name: gm_financial_opp_budget
+      column_data_type: bigint
+      comment: gm_financial_opp_budget
+      nullable: false
+      raw_column_name: gm_financial_opp_budget
+
+    - column_name: gm_financial_opp_actual
+      column_data_type: bigint
+      comment: gm_financial_opp_actual
+      nullable: false
+      raw_column_name: gm_financial_opp_actual
+
+    - column_name: campaignid
+      column_data_type: string
+      comment: campaignid
+      nullable: false
+      raw_column_name: campaignid
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  deduplication_keys:
+    - ''
+  iceberg_properties:
+    database_name: ${database_prefix}_customer_csp_salesforce_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: s3://${curated_bucket}/customer/csp_salesforce/snapshots_monthly/
+      table_properties:
+        format-version: "2"
+        write.format.default: parquet
+    table_name: curated_snapshots_monthly
+  load_type: full_load
+  name: curated_snapshots_monthly
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/customer/csp_salesforce/snapshots_monthly/
+transforms:
+  - rename_column: true
+    transform: rename_columns
+  - select_columns: true
+    transform: select_columns_from_config_file
+  - change_types: true
+    transform: change_data_types
+  - column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+    transform: add_run_date

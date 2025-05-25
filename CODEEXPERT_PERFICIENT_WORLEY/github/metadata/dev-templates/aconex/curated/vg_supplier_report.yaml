@@ -1,0 +1,461 @@
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#supplier_report#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/document_control/aconex/supplier_report/parquet/supplier_report.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: aconex_supplier_report
+  name: aconex_supplierreport
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: file
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: file
+  - column_data_type: string
+    column_name: package_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: package_number
+  - column_data_type: string
+    column_name: document_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: document_no
+  - column_data_type: string
+    column_name: title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: revision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: revision
+  - column_data_type: string
+    column_name: submission_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: submission_status
+  - column_data_type: string
+    column_name: review_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: review_status
+  - column_data_type: string
+    column_name: assigned_to_org
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: assigned_to_org
+  - column_data_type: string
+    column_name: due_in
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: due_in
+  - column_data_type: string
+    column_name: due_out
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: due_out
+  - column_data_type: string
+    column_name: milestone_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: milestone_date
+  - column_data_type: string
+    column_name: lock
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lock
+  - column_data_type: string  
+    column_name: actual_in
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_in
+  - column_data_type: string
+    column_name: actual_out
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actual_out
+  - column_data_type: string
+    column_name: as_built_required
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: as_built_required
+  - column_data_type: string
+    column_name: assigned_to_users
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: assigned_to_users
+  - column_data_type: string
+    column_name: attribute_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attribute_1
+  - column_data_type: string
+    column_name: attribute_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attribute_2
+  - column_data_type: string
+    column_name: attribute_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attribute_3
+  - column_data_type: string
+    column_name: attribute_4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attribute_4
+  - column_data_type: string
+    column_name: category
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: category
+  - column_data_type: string
+    column_name: check_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: check_1
+  - column_data_type: string
+    column_name: comments
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: comments
+  - column_data_type: string
+    column_name: comments_in
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: comments_in
+  - column_data_type: string
+    column_name: comments_out
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: comments_out
+  - column_data_type: string
+    column_name: confidential
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: confidential
+  - column_data_type: string
+    column_name: contract_deliverable
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contract_deliverable
+  - column_data_type: string
+    column_name: contractor_doc_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractor_doc_no
+  - column_data_type: string
+    column_name: contractor_rev
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contractor_rev
+  - column_data_type: string
+    column_name: created_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: created_by
+  - column_data_type: TIMESTAMP
+    column_name: date_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: date_2
+  - column_data_type: TIMESTAMP
+    column_name: date_created
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: date_created
+  - column_data_type: TIMESTAMP
+    column_name: date_to_client
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: date_to_client
+  - column_data_type: TIMESTAMP
+    column_name: date_modified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: date_modified
+  - column_data_type: string
+    column_name: days_late
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: days_late
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: discipline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: discipline
+  - column_data_type: string
+    column_name: file_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: file_name
+  - column_data_type: string
+    column_name: planned_submission_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: planned_submission_date
+  - column_data_type: string
+    column_name: print_size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: print_size
+  - column_data_type: string
+    column_name: project_field_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_field_3
+  - column_data_type: string
+    column_name: reference
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reference
+  - column_data_type: string
+    column_name: required_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: required_by
+  - column_data_type: string
+    column_name: review_source
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: review_source
+  - column_data_type: string
+    column_name: select_list_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_1
+  - column_data_type: string
+    column_name: select_list_10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_10
+  - column_data_type: string
+    column_name: select_list_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_2
+  - column_data_type: string
+    column_name: select_list_3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_3
+  - column_data_type: string
+    column_name: select_list_4
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_4
+  - column_data_type: string
+    column_name: select_list_5
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_5
+  - column_data_type: string
+    column_name: select_list_6
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_6
+  - column_data_type: string
+    column_name: select_list_7
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_7
+  - column_data_type: string
+    column_name: select_list_8
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_8
+  - column_data_type: string
+    column_name: select_list_9
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: select_list_9
+  - column_data_type: string
+    column_name: size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size
+  - column_data_type: string
+    column_name: status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: long
+    column_name: submission_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: submission_sequence
+  - column_data_type: string
+    column_name: supplied_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: supplied_by
+  - column_data_type: string
+    column_name: tag_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tag_no
+  - column_data_type: string
+    column_name: transmittal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: transmittal
+  - column_data_type: string
+    column_name: type
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: type
+  - column_data_type: string
+    column_name: vdr_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vdr_code
+  - column_data_type: string
+    column_name: vendor_doc_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vendor_doc_no
+  - column_data_type: string
+    column_name: vendor_rev
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vendor_rev
+  - column_data_type: string
+    column_name: version
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: version
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_number
+  - column_data_type: string
+    column_name: project_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_code
+  - column_data_type:   string
+    column_name:  instance_name
+    nullable: true
+    comment:  instance_name
+    data_classification: null
+    raw_column_name:   instance_name
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/supplier_report/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_supplier_report
+  name: curated_supplier_report
+  load_type: full_load
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: instance_name
+    entity_table_attribute_name: instance_name
+    entity_s3_raw_partition_prefix: Instance
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/supplier_report
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

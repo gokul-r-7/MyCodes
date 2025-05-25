@@ -1,0 +1,283 @@
+---
+SourceSystemId: sharepoint
+MetadataType: csv_xlsx#vg#sharepoint
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: vg/sharepoint/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: vg/sharepoint/parquet/
+  raw_files_path: vg/sharepoint/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: vg/sharepoint/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  csv_files:
+    - filename: Assumptions Index.csv
+      is_fixed_file_name: true
+      file_prefix_length: 0
+      file_suffix_length: 0
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: assumptions_index
+      with_header: true
+  xls_files:
+    - filename: LFM ISO TRACKER.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_lfm_iso_tracker_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: MPS Log_LFM.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'LFM'
+          tablename: vg_sharepoint_mps_log_lfm
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: MPS Log_New.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'PTM'
+          tablename: vg_sharepoint_mps
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0  
+        - sheet_name: 'BOP'
+          tablename: vg_sharepoint_mps
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0  
+        - sheet_name: 'BOG'
+          tablename: vg_sharepoint_mps
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0 
+        - sheet_name: 'MAR'
+          tablename: vg_sharepoint_mps
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0   
+        - sheet_name: 'MPR'
+          tablename: vg_sharepoint_mps
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0 
+        - sheet_name: 'NRU'
+          tablename: vg_sharepoint_mps
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0  
+        - sheet_name: 'TNK'
+          tablename: vg_sharepoint_mps
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0   
+    - filename: MECHANICAL EQUIPMENT LIST- EQL.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'CP2-MEL'
+          tablename: vg_sharepoint_mechanical_equipment_list
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 8
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0  
+    - filename: BOG_TNK ISO TRACKER.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_bog_tnk_iso_tracker_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0 
+    - filename: BOP ISO TRACKER_SM_SZ.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_bop_iso_tracker_sm_sz
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0  
+    - filename: BOP ISO TRACKER_UM_UZ.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_bop_iso_tracker_um_uz
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0   
+    - filename: MAR ISO TRACKER.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_mar_iso_tracker_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0    
+    - filename: MPR ISO TRACKER.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_mpr_iso_tracker_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0   
+    - filename: NRU ISO TRACKER.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_nru_iso_tracker_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0   
+    - filename: PTM ISO TRACKER.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_ptm_iso_tracker_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0   
+    - filename: UG ISO TRACKER.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'ISO Tracker sheet '
+          tablename: vg_sharepoint_ug_iso_tracker_sheet
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 4
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0   
+    - filename: CP2 Isometric Calculation Tracker.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: true
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: 'Tracker Sheet'
+          tablename: vg_sharepoint_cp2_isometric_calculation
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 9
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0   
+name: sharepoint
+Namespace: vg
+

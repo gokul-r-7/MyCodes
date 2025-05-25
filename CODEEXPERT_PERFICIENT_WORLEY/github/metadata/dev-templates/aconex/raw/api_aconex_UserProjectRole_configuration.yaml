@@ -1,0 +1,29 @@
+SourceSystemId: aconex
+MetadataType: api#aconex#UserProjectRole
+api_parameter:
+  api_body: 
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/xml
+  api_method: get
+  api_response_type: xml
+  api_retry: 6
+  api_timeout: 60
+  auth_type: Basic
+  endpoint_prefix: https://
+  endpoint_suffix: "/api/"
+  secret_key: ${secret_prefix}-db-aconex
+aws_region: ${region}
+job_parameter:
+  bucket_data_source_prefix: document_control/aconex
+  bucket_name:  ${raw_bucket}
+  input_path: temp/document_control/aconex/userprojectrole
+  kms_key_id: ${kms_key_id}
+  output_s3: document_control/aconex
+  org_name: Worley
+  row_tag: Role
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: document_control/aconex/data_sampling
+name: UserProjectRole
+page_size: 1000

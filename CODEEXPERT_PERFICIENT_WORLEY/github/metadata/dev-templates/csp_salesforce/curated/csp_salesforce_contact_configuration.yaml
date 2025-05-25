@@ -1,0 +1,1562 @@
+SourceSystemId: csp_salesforce_curated
+MetadataType: curated#csp_salesforce#contact#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/customer/csp_salesforce/contact/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: csp_salesforce-contact
+  name: csp_salesforce_contact
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_customer_csp_salesforce_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/customer/csp_salesforce/contact/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_contact
+  load_type: incremental_no_delete
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  db_load:
+    aurora_host: ${aurora_host}
+    aurora_port: '5432'
+    aurora_secret: Worley-datalake-sydney-${envn}-db-csp-salesforce-glueuser
+    aurora_db_name: ${aurora_db}
+    aurora_db_target_table_name: contact
+    aurora_db_target_schema: CSP_Salesforce
+    aurora_data_load_type: append
+    snapshot_s3_bucket: ${raw_bucket}
+    snapshot_s3_key: customer/csp_salesforce/iceberg-to-aurora/snapshot/csp_salesforce/contact/last_processed_snapshot.txt
+    snapshot_s3_kms_key_id: ${iceberg_snapshot_key}
+    primary_key: id
+  name: curated_contact
+  primary_key:
+  - id
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/customer/csp_salesforce/contact
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, CAST(lastmodifieddate as timestamp) as lastmodifieddate_ts, 'csp_salesforce'
+    as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key:
+    - id
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: boolean
+    column_name: isdeleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isdeleted
+  - column_data_type: string
+    column_name: masterrecordid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: masterrecordid
+  - column_data_type: string
+    column_name: accountid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: accountid
+  - column_data_type: string
+    column_name: lastname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastname
+  - column_data_type: string
+    column_name: firstname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: firstname
+  - column_data_type: string
+    column_name: salutation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: salutation
+  - column_data_type: string
+    column_name: middlename
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: middlename
+  - column_data_type: string
+    column_name: suffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: suffix
+  - column_data_type: string
+    column_name: name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: recordtypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: recordtypeid
+  - column_data_type: string
+    column_name: otherstreet
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otherstreet
+  - column_data_type: string
+    column_name: othercity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: othercity
+  - column_data_type: string
+    column_name: otherstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otherstate
+  - column_data_type: string
+    column_name: otherpostalcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otherpostalcode
+  - column_data_type: string
+    column_name: othercountry
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: othercountry
+  - column_data_type: string
+    column_name: otherstatecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otherstatecode
+  - column_data_type: string
+    column_name: othercountrycode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: othercountrycode
+  - column_data_type: double
+    column_name: otherlatitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otherlatitude
+  - column_data_type: double
+    column_name: otherlongitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otherlongitude
+  - column_data_type: string
+    column_name: othergeocodeaccuracy
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: othergeocodeaccuracy
+  - column_data_type: string
+    column_name: otheraddress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress
+  - column_data_type: string
+    column_name: otheraddress_address_street
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_address_street
+  - column_data_type: string
+    column_name: otheraddress_city
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_city
+  - column_data_type: string
+    column_name: otheraddress_state
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_state
+  - column_data_type: string
+    column_name: otheraddress_postalcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_postalcode
+  - column_data_type: string
+    column_name: otheraddress_country
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_country
+  - column_data_type: string
+    column_name: otheraddress_statecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_statecode
+  - column_data_type: string
+    column_name: otheraddress_countrycode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_countrycode
+  - column_data_type: double
+    column_name: otheraddress_latitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_latitude
+  - column_data_type: double
+    column_name: otheraddress_longitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_longitude
+  - column_data_type: string
+    column_name: otheraddress_geocodeaccuracy
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otheraddress_geocodeaccuracy
+  - column_data_type: string
+    column_name: mailingstreet
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingstreet
+  - column_data_type: string
+    column_name: mailingcity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingcity
+  - column_data_type: string
+    column_name: mailingstate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingstate
+  - column_data_type: string
+    column_name: mailingpostalcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingpostalcode
+  - column_data_type: string
+    column_name: mailingcountry
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingcountry
+  - column_data_type: string
+    column_name: mailingstatecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingstatecode
+  - column_data_type: string
+    column_name: mailingcountrycode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingcountrycode
+  - column_data_type: double
+    column_name: mailinglatitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailinglatitude
+  - column_data_type: double
+    column_name: mailinglongitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailinglongitude
+  - column_data_type: string
+    column_name: mailinggeocodeaccuracy
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailinggeocodeaccuracy
+  - column_data_type: string
+    column_name: mailingaddress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress
+  - column_data_type: string
+    column_name: mailingaddress_address_street
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_address_street
+  - column_data_type: string
+    column_name: mailingaddress_city
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_city
+  - column_data_type: string
+    column_name: mailingaddress_state
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_state
+  - column_data_type: string
+    column_name: mailingaddress_postalcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_postalcode
+  - column_data_type: string
+    column_name: mailingaddress_country
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_country
+  - column_data_type: string
+    column_name: mailingaddress_statecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_statecode
+  - column_data_type: string
+    column_name: mailingaddress_countrycode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_countrycode
+  - column_data_type: double
+    column_name: mailingaddress_latitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_latitude
+  - column_data_type: double
+    column_name: mailingaddress_longitude
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_longitude
+  - column_data_type: string
+    column_name: mailingaddress_geocodeaccuracy
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailingaddress_geocodeaccuracy
+  - column_data_type: string
+    column_name: phone
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: phone
+  - column_data_type: string
+    column_name: fax
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fax
+  - column_data_type: string
+    column_name: mobilephone
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mobilephone
+  - column_data_type: string
+    column_name: homephone
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: homephone
+  - column_data_type: string
+    column_name: otherphone
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: otherphone
+  - column_data_type: string
+    column_name: assistantphone
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: assistantphone
+  - column_data_type: string
+    column_name: reportstoid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reportstoid
+  - column_data_type: string
+    column_name: email
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: email
+  - column_data_type: string
+    column_name: title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: department
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: department
+  - column_data_type: string
+    column_name: assistantname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: assistantname
+  - column_data_type: string
+    column_name: leadsource
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: leadsource
+  - column_data_type: string
+    column_name: birthdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: birthdate
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: currencyisocode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: currencyisocode
+  - column_data_type: string
+    column_name: ownerid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ownerid
+  - column_data_type: boolean
+    column_name: hasoptedoutofemail
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hasoptedoutofemail
+  - column_data_type: boolean
+    column_name: hasoptedoutoffax
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hasoptedoutoffax
+  - column_data_type: boolean
+    column_name: donotcall
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: donotcall
+  - column_data_type: string
+    column_name: createddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createddate
+  - column_data_type: string
+    column_name: createdbyid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyid
+  - column_data_type: string
+    column_name: lastmodifieddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastmodifieddate
+  - column_data_type: string
+    column_name: lastmodifiedbyid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastmodifiedbyid
+  - column_data_type: string
+    column_name: systemmodstamp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemmodstamp
+  - column_data_type: string
+    column_name: lastactivitydate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastactivitydate
+  - column_data_type: string
+    column_name: lastcurequestdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastcurequestdate
+  - column_data_type: string
+    column_name: lastcuupdatedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastcuupdatedate
+  - column_data_type: string
+    column_name: lastvieweddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastvieweddate
+  - column_data_type: string
+    column_name: lastreferenceddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lastreferenceddate
+  - column_data_type: string
+    column_name: emailbouncedreason
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: emailbouncedreason
+  - column_data_type: string
+    column_name: emailbounceddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: emailbounceddate
+  - column_data_type: boolean
+    column_name: isemailbounced
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isemailbounced
+  - column_data_type: string
+    column_name: photourl
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: photourl
+  - column_data_type: string
+    column_name: jigsaw
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jigsaw
+  - column_data_type: string
+    column_name: jigsawcontactid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jigsawcontactid
+  - column_data_type: string
+    column_name: individualid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: individualid
+  - column_data_type: boolean
+    column_name: ispriorityrecord
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ispriorityrecord
+  - column_data_type: string
+    column_name: contactsource
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contactsource
+  - column_data_type: string
+    column_name: titletype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: titletype
+  - column_data_type: string
+    column_name: departmentgroup
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: departmentgroup
+  - column_data_type: string
+    column_name: buyerattributes
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: buyerattributes
+  - column_data_type: string
+    column_name: ecrmigrationexternalidc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ecrmigrationexternalidc
+  - column_data_type: string
+    column_name: active_contactc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: active_contactc
+  - column_data_type: boolean
+    column_name: activec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activec
+  - column_data_type: string
+    column_name: assistantemailc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: assistantemailc
+  - column_data_type: string
+    column_name: business_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: business_unitc
+  - column_data_type: string
+    column_name: ch2m_dynamics_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ch2m_dynamics_idc
+  - column_data_type: string
+    column_name: cloned_fromc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cloned_fromc
+  - column_data_type: boolean
+    column_name: confidentialc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: confidentialc
+  - column_data_type: string
+    column_name: datamigridc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datamigridc
+  - column_data_type: string
+    column_name: datasourcec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datasourcec
+  - column_data_type: string
+    column_name: hris_adjusted_service_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hris_adjusted_service_datec
+  - column_data_type: string
+    column_name: hris_assignment_categoryc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hris_assignment_categoryc
+  - column_data_type: string
+    column_name: hris_assignment_statusc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hris_assignment_statusc
+  - column_data_type: string
+    column_name: hris_person_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hris_person_typec
+  - column_data_type: string
+    column_name: hris_titlec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hris_titlec
+  - column_data_type: string
+    column_name: hire_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hire_datec
+  - column_data_type: boolean
+    column_name: is_clonec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: is_clonec
+  - column_data_type: string
+    column_name: jacobs_employee_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: jacobs_employee_idc
+  - column_data_type: string
+    column_name: languagec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: languagec
+  - column_data_type: string
+    column_name: latesthiredatec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: latesthiredatec
+  - column_data_type: string
+    column_name: legacyidc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: legacyidc
+  - column_data_type: string
+    column_name: line_of_businessc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_of_businessc
+  - column_data_type: string
+    column_name: mailing_addressc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mailing_addressc
+  - column_data_type: string
+    column_name: managers_employee_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: managers_employee_idc
+  - column_data_type: string
+    column_name: notesc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: notesc
+  - column_data_type: string
+    column_name: office_namec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: office_namec
+  - column_data_type: string
+    column_name: oracle_party_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: oracle_party_idc
+  - column_data_type: string
+    column_name: performance_unitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: performance_unitc
+  - column_data_type: string
+    column_name: preferred_namec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preferred_namec
+  - column_data_type: string
+    column_name: regionc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: regionc
+  - column_data_type: string
+    column_name: resource_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resource_typec
+  - column_data_type: string
+    column_name: termination_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: termination_datec
+  - column_data_type: string
+    column_name: userc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: userc
+  - column_data_type: string
+    column_name: work_locationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: work_locationc
+  - column_data_type: boolean
+    column_name: cb_community_userc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cb_community_userc
+  - column_data_type: boolean
+    column_name: cb_community_user_requestc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cb_community_user_requestc
+  - column_data_type: boolean
+    column_name: cb_financial_pocc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cb_financial_pocc
+  - column_data_type: boolean
+    column_name: cb_send_update_emailc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cb_send_update_emailc
+  - column_data_type: string
+    column_name: dt_date_sentc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dt_date_sentc
+  - column_data_type: string
+    column_name: dtm_user_last_modified_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dtm_user_last_modified_datec
+  - column_data_type: boolean
+    column_name: frm_cb_community_userc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: frm_cb_community_userc
+  - column_data_type: string
+    column_name: frm_contact_display_namec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: frm_contact_display_namec
+  - column_data_type: string
+    column_name: frm_manager_emailc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: frm_manager_emailc
+  - column_data_type: double
+    column_name: frm_myaccountc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: frm_myaccountc
+  - column_data_type: string
+    column_name: lr_partner_community_userc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lr_partner_community_userc
+  - column_data_type: string
+    column_name: pl_contact_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pl_contact_typec
+  - column_data_type: string
+    column_name: txt_request_notesc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: txt_request_notesc
+  - column_data_type: double
+    column_name: num_of_callsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: num_of_callsc
+  - column_data_type: string
+    column_name: crmt_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: crmt_idc
+  - column_data_type: string
+    column_name: legacy_worley_employee_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: legacy_worley_employee_idc
+  - column_data_type: string
+    column_name: preferred_method_of_contactc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preferred_method_of_contactc
+  - column_data_type: string
+    column_name: business_linec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: business_linec
+  - column_data_type: string
+    column_name: hcm_reportstoc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hcm_reportstoc
+  - column_data_type: string
+    column_name: legacy_ecr_employee_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: legacy_ecr_employee_idc
+  - column_data_type: string
+    column_name: reportsto_employee_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reportsto_employee_numberc
+  - column_data_type: string
+    column_name: worker_numberc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: worker_numberc
+  - column_data_type: string
+    column_name: contact_owner_profilec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contact_owner_profilec
+  - column_data_type: boolean
+    column_name: executivec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: executivec
+  - column_data_type: boolean
+    column_name: pineeds_score_syncedc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pineeds_score_syncedc
+  - column_data_type: string
+    column_name: pipardot_last_scored_atc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipardot_last_scored_atc
+  - column_data_type: string
+    column_name: picampaignc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: picampaignc
+  - column_data_type: string
+    column_name: picommentsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: picommentsc
+  - column_data_type: string
+    column_name: piconversion_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piconversion_datec
+  - column_data_type: string
+    column_name: piconversion_object_namec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piconversion_object_namec
+  - column_data_type: string
+    column_name: piconversion_object_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piconversion_object_typec
+  - column_data_type: string
+    column_name: picreated_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: picreated_datec
+  - column_data_type: string
+    column_name: pifirst_activityc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pifirst_activityc
+  - column_data_type: string
+    column_name: pifirst_search_termc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pifirst_search_termc
+  - column_data_type: string
+    column_name: pifirst_search_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pifirst_search_typec
+  - column_data_type: string
+    column_name: pifirst_touch_urlc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pifirst_touch_urlc
+  - column_data_type: string
+    column_name: pigradec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pigradec
+  - column_data_type: string
+    column_name: pilast_activityc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pilast_activityc
+  - column_data_type: string
+    column_name: pinotesc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pinotesc
+  - column_data_type: boolean
+    column_name: pipardot_hard_bouncedc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipardot_hard_bouncedc
+  - column_data_type: double
+    column_name: piscorec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piscorec
+  - column_data_type: string
+    column_name: piurlc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piurlc
+  - column_data_type: string
+    column_name: piutm_campaignc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piutm_campaignc
+  - column_data_type: string
+    column_name: piutm_contentc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piutm_contentc
+  - column_data_type: string
+    column_name: piutm_mediumc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piutm_mediumc
+  - column_data_type: string
+    column_name: piutm_sourcec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piutm_sourcec
+  - column_data_type: string
+    column_name: piutm_termc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: piutm_termc
+  - column_data_type: boolean
+    column_name: asx_announcements_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: asx_announcements_opt_outc
+  - column_data_type: string
+    column_name: alternative_emailc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: alternative_emailc
+  - column_data_type: string
+    column_name: areac
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areac
+  - column_data_type: string
+    column_name: attended_information_engagezc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attended_information_engagezc
+  - column_data_type: string
+    column_name: attended_information_rsvpifyc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attended_information_rsvpifyc
+  - column_data_type: string
+    column_name: authorityc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: authorityc
+  - column_data_type: string
+    column_name: messagec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: messagec
+  - column_data_type: string
+    column_name: collateral_engagementc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: collateral_engagementc
+  - column_data_type: string
+    column_name: companyc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: companyc
+  - column_data_type: string
+    column_name: consent_timestampc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: consent_timestampc
+  - column_data_type: string
+    column_name: consentc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: consentc
+  - column_data_type: boolean
+    column_name: consulting_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: consulting_opt_outc
+  - column_data_type: string
+    column_name: contact_system_idc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contact_system_idc
+  - column_data_type: string
+    column_name: contact_visitc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contact_visitc
+  - column_data_type: string
+    column_name: customer_sub_business_segmentc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customer_sub_business_segmentc
+  - column_data_type: boolean
+    column_name: email_allowedc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: email_allowedc
+  - column_data_type: boolean
+    column_name: events_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: events_opt_outc
+  - column_data_type: string
+    column_name: ip_addressc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ip_addressc
+  - column_data_type: string
+    column_name: influencec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: influencec
+  - column_data_type: boolean
+    column_name: infrastructure_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: infrastructure_opt_outc
+  - column_data_type: string
+    column_name: key_driversc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: key_driversc
+  - column_data_type: string
+    column_name: last_meetingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: last_meetingc
+  - column_data_type: string
+    column_name: last_visited_urlc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: last_visited_urlc
+  - column_data_type: string
+    column_name: last_visitedc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: last_visitedc
+  - column_data_type: string
+    column_name: meeting_frequencyc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: meeting_frequencyc
+  - column_data_type: boolean
+    column_name: mining_minerals_metals_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mining_minerals_metals_opt_outc
+  - column_data_type: boolean
+    column_name: new_energy_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: new_energy_opt_outc
+  - column_data_type: string
+    column_name: next_meetingc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: next_meetingc
+  - column_data_type: string
+    column_name: objectivesc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: objectivesc
+  - column_data_type: string
+    column_name: origin_urlc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: origin_urlc
+  - column_data_type: boolean
+    column_name: power_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: power_opt_outc
+  - column_data_type: string
+    column_name: primary_relationship_ownerc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primary_relationship_ownerc
+  - column_data_type: string
+    column_name: projectsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectsc
+  - column_data_type: boolean
+    column_name: refining_chemicals_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: refining_chemicals_opt_outc
+  - column_data_type: string
+    column_name: region_sitecorec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: region_sitecorec
+  - column_data_type: string
+    column_name: registration_time_stamp_infoc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: registration_time_stamp_infoc
+  - column_data_type: string
+    column_name: registrationc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: registrationc
+  - column_data_type: string
+    column_name: rolec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rolec
+  - column_data_type: string
+    column_name: secundary_relationship_ownerc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secundary_relationship_ownerc
+  - column_data_type: string
+    column_name: session_datac
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: session_datac
+  - column_data_type: boolean
+    column_name: surveys_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: surveys_opt_outc
+  - column_data_type: boolean
+    column_name: thought_leadership_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: thought_leadership_opt_outc
+  - column_data_type: string
+    column_name: unknownc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unknownc
+  - column_data_type: boolean
+    column_name: upstream_midstream_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: upstream_midstream_opt_outc
+  - column_data_type: double
+    column_name: web_visitsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: web_visitsc
+  - column_data_type: boolean
+    column_name: worley_news_opt_outc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: worley_news_opt_outc
+  - column_data_type: string
+    column_name: secondary_relationship_ownerc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secondary_relationship_ownerc
+  - column_data_type: string
+    column_name: account_priorityc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: account_priorityc
+  - column_data_type: double
+    column_name: contact_visit_indexc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: contact_visit_indexc
+  - column_data_type: string
+    column_name: geocoordinatec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: geocoordinatec
+  - column_data_type: string
+    column_name: id_hidden_fieldc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id_hidden_fieldc
+  - column_data_type: string
+    column_name: page_namec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: page_namec
+  - column_data_type: string
+    column_name: account_aliasc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: account_aliasc
+  - column_data_type: boolean
+    column_name: et4ae5hasoptedoutofmobilec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: et4ae5hasoptedoutofmobilec
+  - column_data_type: string
+    column_name: et4ae5mobile_country_codec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: et4ae5mobile_country_codec
+  - column_data_type: string
+    column_name: timestampc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: timestampc
+  - column_data_type: string
+    column_name: sectorc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sectorc
+  - column_data_type: string
+    column_name: submission_datestampc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: submission_datestampc
+  - column_data_type: string
+    column_name: dnbconnectd_b_connect_company_profilec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectd_b_connect_company_profilec
+  - column_data_type: string
+    column_name: dnbconnectd_b_connect_contact_profilec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectd_b_connect_contact_profilec
+  - column_data_type: string
+    column_name: dnbconnectd_b_contact_match_driverc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectd_b_contact_match_driverc
+  - column_data_type: double
+    column_name: dnbconnectd_b_match_confidence_codec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectd_b_match_confidence_codec
+  - column_data_type: string
+    column_name: dnbconnectd_b_match_data_profilec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectd_b_match_data_profilec
+  - column_data_type: string
+    column_name: dnbconnectd_b_match_gradec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectd_b_match_gradec
+  - column_data_type: string
+    column_name: dnbconnectd_b_match_typec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectd_b_match_typec
+  - column_data_type: double
+    column_name: dnbconnectd_b_name_match_scorec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectd_b_name_match_scorec
+  - column_data_type: string
+    column_name: dnbconnectmatcheddunsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dnbconnectmatcheddunsc
+  - column_data_type: string
+    column_name: dietary_needsc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dietary_needsc
+  - column_data_type: string
+    column_name: nominated_guestc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nominated_guestc
+  - column_data_type: string
+    column_name: rsvp_statusc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rsvp_statusc
+  - column_data_type: string
+    column_name: relationship_strengthc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: relationship_strengthc
+  - column_data_type: string
+    column_name: zipper_plan_modified_byc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: zipper_plan_modified_byc
+  - column_data_type: string
+    column_name: zipper_plan_modified_datec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: zipper_plan_modified_datec
+  - column_data_type: string
+    column_name: email_fieldc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: email_fieldc

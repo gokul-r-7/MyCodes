@@ -1,0 +1,104 @@
+
+name: Publish project control Model Assets MWAA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - "src/**"
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  pull-requests: write
+
+jobs:
+
+  sync-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::891377181979:role/GitHubActions
+          role-session-name: Worley_AWS_Project_Control_Domain_Model_${{ github.run_id }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - run: aws sts get-caller-identity
+
+      - name: Publish project control DBT Model files
+        id: dbt_model_files
+        working-directory: src/domain_model
+        run: aws s3 sync . s3://worley-datalake-sydney-dev-mwaa-airflow-s3/dags/dbt/project_control
+        continue-on-error: false
+
+      - name: Publish project control DAG files
+        id: dag_file
+        working-directory: src/dags
+        run: aws s3 sync . s3://worley-datalake-sydney-dev-mwaa-airflow-s3/dags
+
+  sync-qa:
+    runs-on: ubuntu-latest
+    environment: qa
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::533267239288:role/GitHubActions
+          role-session-name: Worley_AWS_Project_Control_Domain_Model_${{ github.run_id }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - run: aws sts get-caller-identity
+
+      - name: Publish Project Control DBT Model files
+        id: dbt_model_files
+        working-directory: src/domain_model
+        run: aws s3 sync . s3://worley-datalake-sydney-qa-mwaa-airflow-s3/dags/dbt/project_control
+        continue-on-error: false
+      
+      - name: Publish Project Control DAG file
+        id: dag_file
+        working-directory: src/dags
+        run: aws s3 sync . s3://worley-datalake-sydney-qa-mwaa-airflow-s3/dags
+
+
+  sync-prd:
+    runs-on: ubuntu-latest
+    environment: prd
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::471112986846:role/github-oidc-provider-aws
+          role-session-name: Worley_AWS_Project_Control_Domain_Model_${{ github.run_id }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - run: aws sts get-caller-identity
+
+      - name: Publish Project Control DBT Model files
+        id: dbt_model_files
+        working-directory: src/domain_model
+        run: aws s3 sync . s3://worley-datalake-sydney-prd-mwaa-airflow-s3/dags/dbt/project_control
+        continue-on-error: false
+      
+      - name: Publish Project Control DAG file
+        id: dag_file
+        working-directory: src/dags
+        run: aws s3 sync . s3://worley-datalake-sydney-prd-mwaa-airflow-s3/dags

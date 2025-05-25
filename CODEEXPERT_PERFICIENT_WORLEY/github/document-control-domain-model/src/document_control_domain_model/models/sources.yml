@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: curated_aconex
+    schema: "{{ var('curated_schema')[target.name] }}"
+    tables:
+      - name: curated_userproject
+      - name: curated_mailsentbox
+      - name: curated_mailinbox
+      - name: curated_docregister_custom
+      - name: curated_docregister_standard
+      - name: curated_project
+      - name: curated_mail_document
+      - name: curated_workflow
+      - name: curated_userdirectory
+      - name: curated_supplier_report
+      
+
+  - name: curated_hexagon
+    schema: "{{ var('curated_hexagon_schema')[target.name] }}"
+    tables:
+      - name: curated_hexagon_ofe
+      - name: curated_hexagon_ofe_consolidate
+      

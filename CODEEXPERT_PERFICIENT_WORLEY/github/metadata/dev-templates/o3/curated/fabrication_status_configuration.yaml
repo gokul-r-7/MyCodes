@@ -1,0 +1,612 @@
+SourceSystemId: curated_o3
+MetadataType: curated#fabrication_status#o3#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/fabrication_status/1555 Fab Status Report 4.1.2025.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_curated_fabrication_status
+  name: fabrication_status_csv_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_name: job_no
+    column_data_type: int
+    comment: job_no
+    data_classification: null
+    nullable: true
+    raw_column_name: job_no
+
+  - column_name: order_co
+    column_data_type: int
+    comment: order_co
+    data_classification: null
+    nullable: true
+    raw_column_name: order_co
+
+  - column_name: order_co_name
+    column_data_type: string
+    comment: order_co_name
+    data_classification: null
+    nullable: true
+    raw_column_name: order_co_name
+
+  - column_name: order_no
+    column_data_type: int
+    comment: order_no
+    data_classification: null
+    nullable: true
+    raw_column_name: order_no
+
+  - column_name: spool_no
+    column_data_type: int
+    comment: spool_no
+    data_classification: null
+    nullable: true
+    raw_column_name: spool_no
+
+  - column_name: drawing_ref
+    column_data_type: string
+    comment: drawing_ref
+    data_classification: null
+    nullable: true
+    raw_column_name: drawing_ref
+
+  - column_name: piecemark
+    column_data_type: string
+    comment: piecemark
+    data_classification: null
+    nullable: true
+    raw_column_name: piecemark
+
+  - column_name: transmittal_no
+    column_data_type: int
+    comment: transmittal_no
+    data_classification: null
+    nullable: true
+    raw_column_name: transmittal_no
+
+  - column_name: transmittal_dt
+    column_data_type: date
+    comment: transmittal_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: transmittal_dt
+
+  - column_name: last_status_desc
+    column_data_type: string
+    comment: last_status_desc
+    data_classification: null
+    nullable: true
+    raw_column_name: last_status_desc
+
+  - column_name: header_size
+    column_data_type: int
+    comment: header_size
+    data_classification: null
+    nullable: true
+    raw_column_name: header_size
+
+  - column_name: material_type
+    column_data_type: string
+    comment: material_type
+    data_classification: null
+    nullable: true
+    raw_column_name: material_type
+
+  - column_name: material_type_desc
+    column_data_type: string
+    comment: material_type_desc
+    data_classification: null
+    nullable: true
+    raw_column_name: material_type_desc
+
+  - column_name: priority
+    column_data_type: int
+    comment: priority
+    data_classification: null
+    nullable: true
+    raw_column_name: priority
+
+  - column_name: num_sort
+    column_data_type: string
+    comment: num_sort
+    data_classification: null
+    nullable: true
+    raw_column_name: num_sort
+
+  - column_name: fdi
+    column_data_type: int
+    comment: fdi
+    data_classification: null
+    nullable: true
+    raw_column_name: fdi
+
+  - column_name: weight
+    column_data_type: int
+    comment: weight
+    data_classification: null
+    nullable: true
+    raw_column_name: weight
+
+  - column_name: surface_area
+    column_data_type: int
+    comment: surface_area
+    data_classification: null
+    nullable: true
+    raw_column_name: surface_area
+
+  - column_name: bay_code
+    column_data_type: string
+    comment: bay_code
+    data_classification: null
+    nullable: true
+    raw_column_name: bay_code
+
+  - column_name: line_spec
+    column_data_type: string
+    comment: line_spec
+    data_classification: null
+    nullable: true
+    raw_column_name: line_spec
+
+  - column_name: laydown_area
+    column_data_type: string
+    comment: laydown_area
+    data_classification: null
+    nullable: true
+    raw_column_name: laydown_area
+
+  - column_name: alpha_sort
+    column_data_type: string
+    comment: alpha_sort
+    data_classification: null
+    nullable: true
+    raw_column_name: alpha_sort
+
+  - column_name: column1
+    column_data_type: string
+    comment: column1
+    data_classification: null
+    nullable: true
+    raw_column_name: column1
+
+  - column_name: heat_treat
+    column_data_type: string
+    comment: heat_treat
+    data_classification: null
+    nullable: true
+    raw_column_name : heat_treat
+
+  - column_name: bend_y_n
+    column_data_type: string
+    comment: bend_y_n
+    data_classification: null
+    nullable: true
+    raw_column_name: bend_y_n
+
+  - column_name: hydro_y_n
+    column_data_type: string
+    comment: hydro_y_n
+    data_classification: null
+    nullable: true
+    raw_column_name: hydro_y_n
+
+  - column_name: hydro_l_list_r9
+    column_data_type: string
+    comment: hydro_l_list_r9
+    data_classification: null
+    nullable: true
+    raw_column_name: hydro_l_list_r9
+
+  - column_name: sort_code
+    column_data_type: string
+    comment: sort_code
+    data_classification: null
+    nullable: true
+    raw_column_name: sort_code
+
+  - column_name: paint_system
+    column_data_type: string
+    comment: paint_system
+    data_classification: null
+    nullable: true
+    raw_column_name: paint_system
+
+  - column_name: order_notes
+    column_data_type: string
+    comment: order_notes
+    data_classification: null
+    nullable: true
+    raw_column_name: order_notes
+
+  - column_name: no_of_welds
+    column_data_type: int
+    comment: no_of_welds
+    data_classification: null
+    nullable: true
+    raw_column_name: no_of_welds
+
+  - column_name: delivery_no
+    column_data_type: int
+    comment: delivery_no
+    data_classification: null
+    nullable: true
+    raw_column_name: delivery_no
+
+  - column_name: ship_to_name
+    column_data_type: string
+    comment: ship_to_name
+    data_classification: null
+    nullable: true
+    raw_column_name: ship_to_name
+
+  - column_name: revision
+    column_data_type: int
+    comment: revision
+    data_classification: null
+    nullable: true
+    raw_column_name: revision
+
+  - column_name: hold_code
+    column_data_type: string
+    comment: hold_code
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_code
+
+  - column_name: hold_code_desc
+    column_data_type: string
+    comment: hold_code_desc
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_code_desc
+
+  - column_name: hold_dt
+    column_data_type: date
+    comment: hold_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: hold_dt
+
+  - column_name: current_days_on_hold
+    column_data_type: int
+    comment: current_days_on_hold
+    data_classification: null
+    nullable: true
+    raw_column_name: current_days_on_hold
+
+  - column_name: total_days_on_hold
+    column_data_type: int
+    comment: total_days_on_hold
+    data_classification: null
+    nullable: true
+    raw_column_name: total_days_on_hold
+
+  - column_name: drawing_received_dt
+    column_data_type: date
+    comment: drawing_received_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: drawing_received_dt
+
+  - column_name: engineering_released_dt
+    column_data_type: date
+    comment: engineering_released_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: engineering_released_dt
+
+  - column_name: edit_check_complete_dt
+    column_data_type: date
+    comment: edit_check_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: edit_check_complete_dt
+
+  - column_name: inventory_release_dt
+    column_data_type: date
+    comment: inventory_release_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: inventory_release_dt
+
+  - column_name: material_handling_dt
+    column_data_type: date
+    comment: material_handling_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: material_handling_dt
+
+  - column_name: release_to_wip_dt
+    column_data_type: date
+    comment: release_to_wip_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: release_to_wip_dt
+
+  - column_name: shop_short_return_to_mc_dt
+    column_data_type: date
+    comment: shop_short_return_to_mc_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: shop_short_return_to_mc_dt
+
+  - column_name: cut_complete_dt
+    column_data_type: date
+    comment: cut_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: cut_complete_dt
+
+  - column_name: machining_dt
+    column_data_type: date
+    comment: machining_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: machining_dt
+
+  - column_name: machining_complete_dt
+    column_data_type: date
+    comment: machining_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: machining_complete_dt
+
+  - column_name: fit_complete_dt
+    column_data_type: date
+    comment: fit_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: fit_complete_dt
+
+  - column_name: final_fit_complete_dt
+    column_data_type: date
+    comment: final_fit_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: final_fit_complete_dt
+
+  - column_name: weld_complete_dt
+    column_data_type: date
+    comment: weld_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: weld_complete_dt
+
+  - column_name: square_up_dt
+    column_data_type: date
+    comment: square_up_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: square_up_dt
+
+  - column_name: shop_repair_dt
+    column_data_type: date
+    comment: shop_repair_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: shop_repair_dt
+
+  - column_name: checkout_complete_dt
+    column_data_type: date
+    comment: checkout_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: checkout_complete_dt
+
+  - column_name: hydro_cut_apart_dt
+    column_data_type: date
+    comment: hydro_cut_apart_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: hydro_cut_apart_dt
+
+  - column_name: received_in_qc_dt
+    column_data_type: date
+    comment: received_in_qc_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: received_in_qc_dt
+
+  - column_name: nde_dt
+    column_data_type: date
+    comment: nde_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: nde_dt
+
+  - column_name: ready_to_stress_dt
+    column_data_type: date
+    comment: ready_to_stress_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: ready_to_stress_dt
+
+  - column_name: stress_complete_dt
+    column_data_type: date
+    comment: stress_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: stress_complete_dt
+
+  - column_name: xray_dt
+    column_data_type: date
+    comment: xray_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: xray_dt
+
+  - column_name: xray_repair_dt
+    column_data_type: date
+    comment: xray_repair_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: xray_repair_dt
+
+  - column_name: hydro_dt
+    column_data_type: date
+    comment: hydro_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: hydro_dt
+
+  - column_name: hydro_complete_dt
+    column_data_type: date
+    comment: hydro_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: hydro_complete_dt
+
+  - column_name: qc_review_dt
+    column_data_type: date
+    comment: qc_review_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: qc_review_dt
+
+  - column_name: qc_complete_dt
+    column_data_type: date
+    comment: qc_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: qc_complete_dt
+
+  - column_name: loaded_on_cart_dt
+    column_data_type: date
+    comment: loaded_on_cart_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: loaded_on_cart_dt
+
+  - column_name: id_blast_dt
+    column_data_type: date
+    comment: id_blast_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: id_blast_dt
+
+  - column_name: coat_1_complete_dt
+    column_data_type: date
+    comment: coat_1_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: coat_1_complete_dt
+
+  - column_name: coat_2_complete_dt
+    column_data_type: date
+    comment: coat_2_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: coat_2_complete_dt
+
+  - column_name: coat_3_complete_dt
+    column_data_type: date
+    comment: coat_3_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: coat_3_complete_dt
+
+  - column_name: paint_complete_dt
+    column_data_type: date
+    comment: paint_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: paint_complete_dt
+
+  - column_name: inspection_complete_dt
+    column_data_type: date
+    comment: inspection_complete_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: inspection_complete_dt
+
+  - column_name: ready_to_ship_dt
+    column_data_type: date
+    comment: ready_to_ship_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: ready_to_ship_dt
+
+  - column_name: loaded_on_truck_dt
+    column_data_type: date
+    comment: loaded_on_truck_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: loaded_on_truck_dt
+
+  - column_name: shipped_dt
+    column_data_type: date
+    comment: shipped_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: shipped_dt
+
+  - column_name: voided_spool_dt
+    column_data_type: date
+    comment: voided_spool_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: voided_spool_dt
+
+  - column_name: canceled_in_order_entry_dt
+    column_data_type: date
+    comment: canceled_in_order_entry_dt
+    data_classification: null
+    nullable: true
+    raw_column_name: canceled_in_order_entry_dt
+
+  - column_name: ros
+    column_data_type: string
+    comment: ros
+    data_classification: null
+    nullable: true
+    raw_column_name: ros
+
+  - column_name: ssct
+    column_data_type: date
+    comment: ssct
+    data_classification: null
+    nullable: true
+    raw_column_name: ssct
+    
+  - column_data_type: int
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  deduplication_keys:
+    - order_no
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: s3://${curated_bucket}/construction/o3/fabrication_status
+      table_properties:
+        format-version: "2"
+        write.format.default: parquet
+    table_name: curated_fabrication_status
+  load_type: full_load
+  name: curated_fabrication_status
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/fabrication_status
+transforms:
+  - rename_column: true
+    transform: rename_columns
+  - select_columns: true
+    transform: select_columns_from_config_file
+  - change_types: true
+    transform: change_data_types
+  - column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+    transform: add_run_date

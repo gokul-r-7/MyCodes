@@ -1,0 +1,617 @@
+SourceSystemId: curated_oracle_p6
+MetadataType: 'curated#oracle_p6#project_resourceAssignmentSpread#job#iceberg'
+source:
+  name: oracle_p6_project_resourceassignmentspread
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: >-
+      s3://${raw_bucket}/project_control/oracle_p6/project_resourceAssignmentSpread/
+    format: parquet
+    transformation_ctx: oracle_p6-project_resourceassignmentspread
+transforms:
+  - transform: rename_columns
+    rename_column: true
+  - transform: select_columns_from_config_file
+    select_columns: true
+  - transform: change_data_types
+    change_types: true
+  - transform: add_run_date
+    column_name: EXECUTION_DATE
+    date_format: yyyy-MM-dd
+  - transform: custom_sql
+    sql: 'SELECT *, ''oracle_p6'' as SOURCE_SYSTEM_NAME FROM temp_df_static'
+    temp_view_name: temp_df_static
+target:
+  name: curated_oracle_p6_project_resourceassignmentspread
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_oracle_p6_curated
+    table_name: curated_project_resourceassignmentspread
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: >-
+        ${curated_bucket}/project_control/oracle_p6/project_resourceassignmentspread/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: full_load
+  entity_load:  true
+  entity_load_properties:
+    entity_job_attribute_name: project_id
+    entity_table_attribute_name: project_id
+    entity_s3_raw_partition_prefix: Project
+  spark_options:
+    format: iceberg
+    options:
+      path: >-
+        s3://${curated_bucket}/project_control/oracle_p6/project_resourceassignmentspread
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: integer
+    column_name: RESOURCEASSIGNMENTOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resourceassignmentobjectid
+  - column_data_type: string
+    column_name: STARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: startdate
+  - column_data_type: string
+    column_name: ENDDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: enddate
+  - column_data_type: string
+    column_name: PERIODTYPE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: periodtype
+  - column_data_type: string
+    column_name: PERIOD_STARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_startdate
+  - column_data_type: string
+    column_name: PERIOD_ENDDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_enddate
+  - column_data_type: string
+    column_name: ACTUALLABORUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: actuallaborunits
+
+  - column_data_type: string
+    column_name: ACTIVITYID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityid
+
+  - column_data_type: string
+    column_name: ACTIVITYOWNERUSERID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: activityowneruserid
+
+  - column_data_type: string
+    column_name: CBSCODE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbscode
+
+  - column_data_type: string
+    column_name: CBSID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cbsid
+
+  - column_data_type: string
+    column_name: EXTERNALEARLYSTARTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externalearlystartdate
+
+  - column_data_type: string
+    column_name: EXTERNALLATEFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallatefinishdate
+
+  - column_data_type: string
+    column_name: FEEDBACK
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: feedback
+
+  - column_data_type: string
+    column_name: FLOATPATH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: floatpath
+
+  - column_data_type: string
+    column_name: FLOATPATHORDER
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: floatpathorder
+
+  - column_data_type: string
+    column_name: HASFUTUREBUCKETDATA
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hasfuturebucketdata
+
+  - column_data_type: string
+    column_name: LOCATIONNAME
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationname
+
+  - column_data_type: string
+    column_name: LOCATIONOBJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationobjectid
+
+  - column_data_type: string
+    column_name: MAXIMUMDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: maximumduration
+
+  - column_data_type: string
+    column_name: MINIMUMDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: minimumduration
+
+  - column_data_type: string
+    column_name: MOSTLIKELYDURATION
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mostlikelyduration
+
+  - column_data_type: string
+    column_name: NOTESTORESOURCES
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: notestoresources
+
+  - column_data_type: string
+    column_name: OWNERIDARRAY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: owneridarray
+
+  - column_data_type: string
+    column_name: OWNERNAMESARRAY
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ownernamesarray
+
+  - column_data_type: string
+    column_name: POSTRESPCRITICALITYINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postrespcriticalityindex
+
+  - column_data_type: string
+    column_name: POSTRESPONSEPESSIMISTICFINISH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postresponsepessimisticfinish
+
+  - column_data_type: string
+    column_name: POSTRESPONSEPESSIMISTICSTART
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: postresponsepessimisticstart
+
+  - column_data_type: string
+    column_name: PRERESPCRITICALITYINDEX
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: prerespcriticalityindex
+
+  - column_data_type: string
+    column_name: PRERESPONSEPESSIMISTICFINISH
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preresponsepessimisticfinish
+
+  - column_data_type: string
+    column_name: PRERESPONSEPESSIMISTICSTART
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: preresponsepessimisticstart
+
+  - column_data_type: string
+    column_name: PRIMARYCONSTRAINTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: primaryconstraintdate
+
+  - column_data_type: string
+    column_name: PROJECTID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+
+  - column_data_type: string
+    column_name: RESUMEDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resumedate
+
+  - column_data_type: string
+    column_name: REVIEWFINISHDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reviewfinishdate
+
+  - column_data_type: string
+    column_name: SECONDARYCONSTRAINTDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: secondaryconstraintdate
+
+  - column_data_type: string
+    column_name: SUSPENDDATE
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: suspenddate
+
+  - column_data_type: string
+    column_name: TASKSTATUSINDICATOR
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: taskstatusindicator
+
+  - column_data_type: string
+    column_name: WORKPACKAGEID
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: workpackageid
+  - column_data_type: double
+    column_name: PERIOD_ACTUALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualcost
+  - column_data_type: double
+    column_name: PERIOD_ACTUALOVERTIMECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualovertimecost
+  - column_data_type: double
+    column_name: PERIOD_ACTUALOVERTIMEUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualovertimeunits
+  - column_data_type: double
+    column_name: PERIOD_ACTUALREGULARCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualregularcost
+  - column_data_type: double
+    column_name: PERIOD_ACTUALREGULARUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualregularunits
+  - column_data_type: double
+    column_name: PERIOD_ACTUALUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_actualunits
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletioncost
+  - column_data_type: double
+    column_name: PERIOD_ATCOMPLETIONUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_atcompletionunits
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedcost
+  - column_data_type: double
+    column_name: PERIOD_PLANNEDUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_plannedunits
+  - column_data_type: double
+    column_name: PERIOD_REMAININGCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remainingcost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglatecost
+  - column_data_type: double
+    column_name: PERIOD_REMAININGLATEUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remaininglateunits
+  - column_data_type: double
+    column_name: PERIOD_REMAININGUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_remainingunits
+  - column_data_type: double
+    column_name: PERIOD_STAFFEDREMAININGCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_staffedremainingcost
+  - column_data_type: double
+    column_name: PERIOD_STAFFEDREMAININGLATECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_staffedremaininglatecost
+  - column_data_type: double
+    column_name: PERIOD_STAFFEDREMAININGLATEUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_staffedremaininglateunits
+  - column_data_type: double
+    column_name: PERIOD_STAFFEDREMAININGUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_staffedremainingunits
+  - column_data_type: double
+    column_name: PERIOD_UNSTAFFEDREMAININGCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_unstaffedremainingcost
+  - column_data_type: double
+    column_name: PERIOD_UNSTAFFEDREMAININGLATECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_unstaffedremaininglatecost
+  - column_data_type: double
+    column_name: PERIOD_UNSTAFFEDREMAININGLATEUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_unstaffedremaininglateunits
+  - column_data_type: double
+    column_name: PERIOD_UNSTAFFEDREMAININGUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_unstaffedremainingunits
+  - column_data_type: double
+    column_name: PERIOD_PERIODACTUALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_periodactualcost
+  - column_data_type: double
+    column_name: PERIOD_PERIODACTUALUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_periodactualunits
+  - column_data_type: double
+    column_name: PERIOD_PERIODATCOMPLETIONCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_periodatcompletioncost
+  - column_data_type: double
+    column_name: PERIOD_PERIODATCOMPLETIONUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_periodatcompletionunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALOVERTIMECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualovertimecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALOVERTIMEUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualovertimeunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALREGULARCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualregularcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALREGULARUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualregularunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEACTUALUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeactualunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletioncost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEATCOMPLETIONUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeatcompletionunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEPLANNEDUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeplannedunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremainingcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglatecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGLATEUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremaininglateunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEREMAININGUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeremainingunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVESTAFFEDREMAININGCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativestaffedremainingcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVESTAFFEDREMAININGLATECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativestaffedremaininglatecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVESTAFFEDREMAININGLATEUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativestaffedremaininglateunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVESTAFFEDREMAININGUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativestaffedremainingunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEUNSTAFFEDREMAININGCOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeunstaffedremainingcost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEUNSTAFFEDREMAININGLATECOST
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeunstaffedremaininglatecost
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEUNSTAFFEDREMAININGLATEUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeunstaffedremaininglateunits
+  - column_data_type: double
+    column_name: PERIOD_CUMULATIVEUNSTAFFEDREMAININGUNITS
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: period_cumulativeunstaffedremainingunits
+
+  - column_data_type: string
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id

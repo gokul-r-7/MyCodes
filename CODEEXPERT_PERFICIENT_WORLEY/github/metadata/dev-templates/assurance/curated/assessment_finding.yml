@@ -1,0 +1,283 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#assessment_finding#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/assessment_finding.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: assessment_finding
+  name: assessment_finding
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/assessment_finding/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: assessment_finding
+  load_type: incremental
+  name: assessment_finding
+  primary_key: dwi_assessment_finding
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/assessment_finding
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_assessment_finding
+    rename_columns: true
+  columns:
+  - column_name: dwi_assessment_finding
+    column_data_type: decimal(38,0)
+    comment: dwi_assessment_finding
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_assessment_finding
+  - column_name: completion_comments
+    column_data_type: string
+    comment: completion_comments
+    data_classification:
+    nullable: true
+    raw_column_name: completion_comments
+  - column_name: date_closed
+    column_data_type: timestamp
+    comment: date_closed
+    data_classification:
+    nullable: true
+    raw_column_name: date_closed
+  - column_name: date_of_finding
+    column_data_type: timestamp
+    comment: date_of_finding
+    data_classification:
+    nullable: true
+    raw_column_name: date_of_finding
+  - column_name: date_to_be_rectified
+    column_data_type: timestamp
+    comment: date_to_be_rectified
+    data_classification:
+    nullable: true
+    raw_column_name: date_to_be_rectified
+  - column_name: details
+    column_data_type: string
+    comment: details
+    data_classification:
+    nullable: true
+    raw_column_name: details
+  - column_name: finding_number
+    column_data_type: string
+    comment: finding_number
+    data_classification:
+    nullable: true
+    raw_column_name: finding_number
+  - column_name: finding_status
+    column_data_type: string
+    comment: finding_status
+    data_classification:
+    nullable: true
+    raw_column_name: finding_status
+  - column_name: li_finding_status
+    column_data_type: string
+    comment: li_finding_status
+    data_classification:
+    nullable: true
+    raw_column_name: li_finding_status
+  - column_name: lo_finding_status
+    column_data_type: decimal(38,0)
+    comment: lo_finding_status
+    data_classification:
+    nullable: true
+    raw_column_name: lo_finding_status
+  - column_name: finding_summary
+    column_data_type: string
+    comment: finding_summary
+    data_classification:
+    nullable: true
+    raw_column_name: finding_summary
+  - column_name: finding_type
+    column_data_type: string
+    comment: finding_type
+    data_classification:
+    nullable: true
+    raw_column_name: finding_type
+  - column_name: li_finding_type
+    column_data_type: string
+    comment: li_finding_type
+    data_classification:
+    nullable: true
+    raw_column_name: li_finding_type
+  - column_name: lo_finding_type
+    column_data_type: decimal(38,0)
+    comment: lo_finding_type
+    data_classification:
+    nullable: true
+    raw_column_name: lo_finding_type
+  - column_name: sysq_questionanswer
+    column_data_type: string
+    comment: sysq_questionanswer
+    data_classification:
+    nullable: true
+    raw_column_name: sysq_questionanswer
+  - column_name: sysq_questionnairename
+    column_data_type: string
+    comment: sysq_questionnairename
+    data_classification:
+    nullable: true
+    raw_column_name: sysq_questionnairename
+  - column_name: sysq_questionresult
+    column_data_type: string
+    comment: sysq_questionresult
+    data_classification:
+    nullable: true
+    raw_column_name: sysq_questionresult
+  - column_name: sysq_questiontext
+    column_data_type: string
+    comment: sysq_questiontext
+    data_classification:
+    nullable: true
+    raw_column_name: sysq_questiontext
+  - column_name: sysq_sectionname
+    column_data_type: string
+    comment: sysq_sectionname
+    data_classification:
+    nullable: true
+    raw_column_name: sysq_sectionname
+  - column_name: sys_created_date
+    column_data_type: timestamp
+    comment: sys_created_date
+    data_classification:
+    nullable: true
+    raw_column_name: sys_created_date
+  - column_name: sys_legacy_id
+    column_data_type: string
+    comment: sys_legacy_id
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_id
+  - column_name: sys_raised_from_questionnaire
+    column_data_type: string
+    comment: sys_raised_from_questionnaire
+    data_classification:
+    nullable: true
+    raw_column_name: sys_raised_from_questionnaire
+  - column_name: li_sys_raised_from_questionnaire
+    column_data_type: string
+    comment: li_sys_raised_from_questionnaire
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_raised_from_questionnaire
+  - column_name: lo_sys_raised_from_questionnaire
+    column_data_type: decimal(38,0)
+    comment: lo_sys_raised_from_questionnaire
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_raised_from_questionnaire
+  - column_name: sys_raw_questionnaire_data
+    column_data_type: string
+    comment: sys_raw_questionnaire_data
+    data_classification:
+    nullable: true
+    raw_column_name: sys_raw_questionnaire_data
+  - column_name: sys_all_actions_complete_email_sent
+    column_data_type: string
+    comment: sys_all_actions_complete_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: sys_all_actions_complete_email_sent
+  - column_name: li_sys_all_actions_complete_email_sent
+    column_data_type: string
+    comment: li_sys_all_actions_complete_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_all_actions_complete_email_sent
+  - column_name: lo_sys_all_actions_complete_email_sent
+    column_data_type: decimal(38,0)
+    comment: lo_sys_all_actions_complete_email_sent
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_all_actions_complete_email_sent
+  - column_name: dwk_assessment_as_a_source_of_assessment_finding
+    column_data_type: decimal(38,0)
+    comment: dwk_assessment_as_a_source_of_assessment_finding
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_assessment_as_a_source_of_assessment_finding
+  - column_name: dwk_finding_owner
+    column_data_type: decimal(38,0)
+    comment: dwk_finding_owner
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_finding_owner
+  - column_name: dwk_closed_by
+    column_data_type: decimal(38,0)
+    comment: dwk_closed_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_closed_by
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

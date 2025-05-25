@@ -1,0 +1,2174 @@
+name: Publish DBTs-Tags
+on:
+  workflow_dispatch:
+    inputs:
+      tag_to_deploy:
+        description: 'Enter the tag to deploy (e.g., tag-v1.0.0)'
+        required: true
+        type: string
+      deploy_to_dev:
+        description: 'Deploy to Dev environment?'
+        required: true
+        type: boolean
+      deploy_to_qa:
+        description: 'Deploy to QA environment?'
+        required: true
+        type: boolean
+      deploy_to_stg:
+        description: 'Deploy to Staging environment?'
+        required: true
+        type: boolean
+      deploy_to_uat:
+        description: 'Deploy to UAT environment?'
+        required: true
+        type: boolean
+      deploy_to_prd:
+        description: 'Deploy to Production environment?'
+        required: true
+        type: boolean
+  pull_request:
+    # Trigger on PR creation and updates targeting the main branch
+    branches:
+      - main
+    # Filter by files in specific paths
+    paths:
+      - 'src/circuit_domain_model/**'
+    types:
+      - opened
+      - edited
+      - synchronized
+      - reopened
+concurrency:
+  group: ${{ github.head_ref }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+jobs:
+##############################################################################################################
+  create_tag_for_deployment:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request'}}
+    outputs:
+      NEW_TAG: ${{ steps.get_version.outputs.NEW_TAG }}
+      COMMIT_MESSAGE: ${{ steps.pr_commit_message.outputs.COMMIT_MESSAGE }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }} 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Set up Git for tagging
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+      - name: Fetch tags from remote
+        run: |
+          git fetch --tags
+      - name: Get latest tag and determine version increment
+        id: get_version
+        run: |
+          # Get the latest tag in the repo
+          LATEST_TAG=$(git tag --list 'tag-v*' | sort -V | tail -n 1)
+          if [ -z "$LATEST_TAG" ]; then
+            LATEST_TAG="tag-v0.0.0"
+          fi
+          # Parse version components (e.g., tag-v1.0.0 -> MAJOR=1, MINOR=0, PATCH=0)
+          VERSION="${LATEST_TAG//tag-v/}"
+          VERSION_PARTS=(${VERSION//./ })
+          MAJOR="${VERSION_PARTS[0]}"
+          MINOR="${VERSION_PARTS[1]}"
+          PATCH="${VERSION_PARTS[2]}"
+          # Check commit message for version increment and modify
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          
+          if [[ "$COMMIT_MESSAGE" == *MAJOR* ]]; then
+            MAJOR=$((MAJOR + 1))
+            MINOR=0
+            PATCH=0
+          elif [[ "$COMMIT_MESSAGE" == *MINOR* ]]; then
+            MINOR=$((MINOR + 1))
+            PATCH=0
+          elif [[ "$COMMIT_MESSAGE" == *PATCH* ]]; then
+            PATCH=$((PATCH + 1))
+          fi
+          # Set new tag
+          NEW_TAG="tag-v${MAJOR}.${MINOR}.${PATCH}"
+          # Ensure the tag is unique (increment PATCH if necessary)
+          while git rev-parse "$NEW_TAG" >/dev/null 2>&1; do
+            PATCH=$((PATCH + 1))
+            NEW_TAG="tag-v${MAJOR}.${MINOR}.${PATCH}"
+          done
+          echo "New tag: $NEW_TAG"
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_OUTPUT
+
+      - name: Create and push tag from feature branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEW_TAG="${{ env.NEW_TAG }}"
+          git tag $NEW_TAG
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git push origin $NEW_TAG
+          echo "Created and pushed tag: $NEW_TAG"
+
+      - name: Fetch PR commit message using GitHub API
+        id: pr_commit_message
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          COMMIT_MESSAGE=$(curl -s \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}" \
+            | jq -r '.title + " " + .body')
+          # Remove newlines and extra spaces
+          COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE" | tr -d '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          # Set commit message for later use
+          echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
+          echo "Fetched Commit Message: $COMMIT_MESSAGE"
+          echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
+
+      - name: Fetch PR changed files using GitHub API
+        id: changed_files
+        run: |
+          # Ensure PR number is available
+          PER_PAGE=100
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          echo "PR Number: $PR_NUMBER"
+          
+          if [ -z "$PR_NUMBER" ]; then
+            echo "PR number not found. Exiting."
+            exit 1
+          fi
+
+          echo "Fetching changed files for PR #$PR_NUMBER..."
+
+          # Fetch the changed files from the PR using GitHub API
+          RESPONSE=$(curl -s \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/files?per_page=$PER_PAGE")
+
+          # Check if the response is empty or malformed
+          if [ -z "$RESPONSE" ]; then
+            echo "API response is empty. Exiting."
+            exit 1
+          fi
+
+          # Extract filenames and status using jq
+          CHANGED_FILES=$(echo "$RESPONSE" | jq -r '.[] | select(.status != "removed") | .filename')
+
+
+          # Check if files are being returned
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No files found in the PR. Exiting."
+            exit 1
+          fi
+
+          # Filter only files in the /src path (ignoring files outside /src/circuit_domain_model/)
+          SRC_CHANGED_FILES=$(echo "$CHANGED_FILES" | grep -E "^src/circuit_domain_model/" || echo "")
+
+          # Display the count of changed files
+          CHANGED_FILES_COUNT=$(echo "$CHANGED_FILES" | wc -l)
+          echo "all changed files count: $CHANGED_FILES_COUNT"
+          SRC_CHANGED_FILES_COUNT=$(echo "$SRC_CHANGED_FILES" | wc -l)
+          echo "SRC changed files count: $SRC_CHANGED_FILES_COUNT"
+
+          # Handle the case where no files match the filter
+          if [ -z "$SRC_CHANGED_FILES" ]; then
+            echo "No files changed in path 'src/circuit_domain_model/'."
+            echo "Skipping further steps."
+            exit 0
+          else
+            echo "Files changed in 'src/circuit_domain_model/':"
+            echo "$SRC_CHANGED_FILES"
+            echo "Current working directory: $(pwd)"
+            echo "$SRC_CHANGED_FILES" > dbts_changed_files.txt
+            echo "$CHANGED_FILES" > all_changed_files.txt
+          fi
+
+          # Output the commit message (if needed)
+          echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
+
+
+      - name: Upload all_changed_files.txt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-changed-files
+          path: all_changed_files.txt
+
+      - name: Upload dbts_changed_files.txt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbts-changed-files
+          path: dbts_changed_files.txt
+
+##############################################################################################################
+  check-approval:
+    needs: create_tag_for_deployment
+    if: ${{ github.event_name == 'pull_request'}}
+    name: Validate_PR_Approval
+    runs-on: ubuntu-latest
+    outputs:
+      approval-status: ${{ steps.check-approval.outputs.status }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fetch PR changed files using GitHub API
+        id: changed_files
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          echo "PR Number: $PR_NUMBER"
+          
+          if [ -z "$PR_NUMBER" ]; then
+            echo "PR number not found. Exiting."
+            exit 1
+          fi
+
+          CHANGED_FILES=$(curl -s \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/files" \
+            | jq -r '.[].filename')
+
+          echo "Changed files are:"
+          echo "$CHANGED_FILES"
+
+          SRC_CHANGED_FILES=$(echo "$CHANGED_FILES" | grep "^src/circuit_domain_model/" || true)
+
+          if [ -z "$SRC_CHANGED_FILES" ]; then
+            echo "No files changed in path 'src/circuit_domain_model/'. Exiting."
+            exit 0
+          else
+            echo "Files changed in 'src/circuit_domain_model/':"
+            echo "$SRC_CHANGED_FILES"
+            echo "Proceeding with further actions..."
+          fi
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+      - name: Check if PR is approved
+        id: check-approval
+        run: |
+          pr_number="${{ github.event.pull_request.number }}"
+          # Poll until PR is approved
+          while true; do
+            # Fetch all reviews for the PR
+            pr_reviews=$(gh pr view $pr_number --json reviews --jq '.reviews')
+            
+            if [[ $? -ne 0 ]]; then
+              echo "Failed to fetch PR details. Error: $pr_reviews"
+              exit 1
+            fi
+            
+            echo "PR Reviews: $pr_reviews"
+            # If there are no reviews, print a message and wait
+            if [ -z "$pr_reviews" ]; then
+              echo "No reviews found yet. Waiting for reviews..."
+              sleep 30  # Sleep for 30 seconds before checking again
+              continue  # Continue checking without exiting
+            fi
+            # Check for approval status
+            approval_status=$(echo "$pr_reviews" | jq '.[] | select(.state == "APPROVED")' | wc -l)
+            echo "Approval status is: $approval_status"
+            # If PR is approved, proceed with further steps
+            if [ "$approval_status" -ge 1 ]; then
+              echo "PR is approved, proceeding with further steps."
+
+              
+              break  # Exit the loop after successful merge
+            else
+              echo "PR is not approved yet, waiting..."
+              sleep 30  # Wait for approval, check again after some time
+            fi
+          done
+
+##############################################################################################################          
+  validate_created_pr:
+    name: Validate_PR_Description
+    needs: check-approval
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request'}}
+    # if: ${{ github.event_name == 'pull_request_review' && needs.check-approval.outputs.approval-status == 'approved' }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          # token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+
+      - name: Fetch PR description
+        id: pr-description
+        run: |
+          
+          # If triggered by a PR, fetch the PR description
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          PR_DESCRIPTION=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}" | jq -r '.body')
+          echo "PR Description:"
+          echo "$PR_DESCRIPTION" 
+          # Save the PR description to a file
+          echo "$PR_DESCRIPTION" > pr_description.txt
+            
+          echo "PR Description saved to pr_description.txt"
+          
+      - name: Validate PR Description
+        run: |
+          # Read the PR description from the file
+          PR_DESCRIPTION=$(cat pr_description.txt)
+          echo "$PR_DESCRIPTION" 
+          # Trim leading/trailing spaces and newlines
+          PR_DESCRIPTION=$(echo "$PR_DESCRIPTION" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          echo "Trimmed PR Description:"
+          echo "$PR_DESCRIPTION"
+          check_section() {
+              section_name="$1"
+              line=$(echo "$PR_DESCRIPTION" | grep -A 1 "### $section_name ###" | tail -n 1)
+              
+              # Check if the line is empty or just spaces after the colon
+              if [[ "$line" =~ ^\s*:?\s*$ ]]; then
+                  echo "Error: '$section_name' section is missing or empty."
+                  exit 1
+              fi
+          }
+          # PR Description Validation
+          echo "Checking PR Description..."
+          # Validate each section
+          check_section "Description of changes"
+          # check_section "Files Changed"
+          # check_section "Reason for Change"
+          check_section "Task/Ticket/Issue"
+          echo "PR Description is valid!"
+##############################################################################################################
+  validate_fetched_pr:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          # token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Fetch PR description
+        id: pr-description
+        run: |
+          echo "Using manual inputs"
+          
+          # Capture manual inputs
+          TAG_TO_DEPLOY="${{ github.event.inputs.tag_to_deploy }}"
+          
+          if [[ -n "$TAG_TO_DEPLOY" ]]; then
+            echo "Fetching PR description associated with the tag: $TAG_TO_DEPLOY"
+            # Step 1: finding commit SHA for the tag
+            COMMIT_SHA=$(git rev-list -n 1 "$TAG_TO_DEPLOY")
+            echo "Commit SHA for tag $TAG_TO_DEPLOY: $COMMIT_SHA"
+              
+            # Step 2: Using GitHub API to find the PR associated with the commit SHA
+            RESPONSE=$(curl -s \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls?state=all&per_page=100&page=1" \
+              | jq -r ".[] | select(.head.sha == \"$COMMIT_SHA\" or .merge_commit_sha == \"$COMMIT_SHA\") | .number")
+            echo "API Response for PR number: $RESPONSE"
+            if [[ -z "$RESPONSE" ]]; then
+              echo "Error: No PR found for the given tag."
+              exit 1
+            fi
+            echo "Found PR #$RESPONSE for tag $TAG_TO_DEPLOY"
+              
+            # Fetching the PR description using the PR number
+            PR_DESCRIPTION=$(curl -s \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls/$RESPONSE" \
+              | jq -r '.body')
+            echo "PR Description fetched for the tag: $PR_DESCRIPTION"
+            
+            # Save the PR description to a file
+            echo "$PR_DESCRIPTION" > pr_description.txt
+            echo "PR Description saved to pr_description.txt"
+
+            # Set the PR number as an environment variable for later use
+            echo "PR_NUMBER=$RESPONSE" >> $GITHUB_ENV
+            echo "PR_NUMBER has been set as an environment variable"
+            # Output the commit message (if needed)
+            echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+            # Get the commit message for the commit SHA
+            COMMIT_MESSAGE=$(git log --format=%B -n 1 "$COMMIT_SHA")
+            echo "Commit message for SHA $COMMIT_SHA: $COMMIT_MESSAGE"
+            
+            # Set commit message as an environment variable
+            echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
+            # Output the commit message (if needed)
+            echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
+            echo "Commit message has been set as an environment variable"
+            echo "TAG_TO_DEPLOY=$TAG_TO_DEPLOY" >> $GITHUB_OUTPUT
+            
+          
+          else
+            echo "No tag provided, skipping PR fetch."
+          fi
+
+      - name: Fetch PR changed files using GitHub API
+        id: changed_files
+        run: |
+          # Ensure PR number is available
+          PER_PAGE=100
+          PR_NUMBER="${{ env.PR_NUMBER }}"
+          echo "PR Number: $PR_NUMBER"
+          
+          if [ -z "$PR_NUMBER" ]; then
+            echo "PR number not found. Exiting."
+            exit 1
+          fi
+
+          echo "Fetching changed files for PR #$PR_NUMBER..."
+
+          # Fetch the changed files from the PR using GitHub API
+          RESPONSE=$(curl -s \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/files?per_page=$PER_PAGE")
+
+          # Check if the response is empty or malformed
+          if [ -z "$RESPONSE" ]; then
+            echo "API response is empty. Exiting."
+            exit 1
+          fi
+
+          # Extract filenames and status using jq
+          CHANGED_FILES=$(echo "$RESPONSE" | jq -r '.[] | select(.status != "removed") | .filename')
+
+
+          # Check if files are being returned
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No files found in the PR. Exiting."
+            exit 1
+          fi
+
+          # Filter only files in the /src/circuit_domain_model/ path (ignoring files outside /src/circuit_domain_model/)
+          SRC_CHANGED_FILES=$(echo "$CHANGED_FILES" | grep -E "^src/circuit_domain_model/" || echo "")
+
+          # Display the count of changed files
+          CHANGED_FILES_COUNT=$(echo "$CHANGED_FILES" | wc -l)
+          echo "all changed files count: $CHANGED_FILES_COUNT"
+          SRC_CHANGED_FILES_COUNT=$(echo "$SRC_CHANGED_FILES" | wc -l)
+          echo "SRC changed files count: $SRC_CHANGED_FILES_COUNT"
+
+          # Handle the case where no files match the filter
+          if [ -z "$SRC_CHANGED_FILES" ]; then
+            echo "No files changed in path 'src/circuit_domain_model/'."
+            echo "Skipping further steps."
+            exit 0
+          else
+            echo "Files changed in 'src/circuit_domain_model/':"
+            echo "$SRC_CHANGED_FILES"
+            echo "Current working directory: $(pwd)"
+            echo "$SRC_CHANGED_FILES" > dbts_changed_files.txt
+            echo "$CHANGED_FILES" > all_changed_files.txt
+          fi
+
+          # Output the commit message (if needed)
+          echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
+
+
+      - name: Upload all_changed_files.txt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-changed-files
+          path: all_changed_files.txt
+
+      - name: Upload dbts_changed_files.txt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbts-changed-files
+          path: dbts_changed_files.txt
+      # - name: Validate PR Description
+      #   run: |
+      #     # Reading the PR description from the file
+      #     PR_DESCRIPTION=$(cat pr_description.txt)
+      #     echo "PR Description:"
+      #     echo "$PR_DESCRIPTION"  
+      #     # Trim leading/trailing spaces and newlines
+      #     PR_DESCRIPTION=$(echo "$PR_DESCRIPTION" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+      #     echo "Trimmed PR Description:"
+      #     echo "$PR_DESCRIPTION" 
+      #     check_section() {
+      #         section_name="$1"
+      #         line=$(echo "$PR_DESCRIPTION" | grep -A 1 "### $section_name ###" | tail -n 1)
+              
+      #         # Check if the line is empty or just spaces after the colon
+      #         if [[ "$line" =~ ^\s*:?\s*$ ]]; then
+      #             echo "Error: '$section_name' section is missing or empty."
+      #             exit 1
+      #         fi
+      #     }
+      #     # PR Description Validation
+      #     echo "Checking PR Description..."
+      #     # Validate each section
+      #     check_section "Description of changes"
+      #     # check_section "Files Changed"
+      #     # check_section "Reason for Change"
+      #     check_section "Task/Ticket/Issue"
+      #     echo "PR Description is valid!"
+  
+
+##############################################################################################################
+  dev_deployment_from_tag:
+    needs: [validate_created_pr,create_tag_for_deployment]
+    if: ${{ github.event_name == 'pull_request'}}
+    name: dev_deployment_from_- ${{  needs.create_tag_for_deployment.outputs.NEW_TAG }}
+    runs-on: ubuntu-latest
+    env:
+        NEW_TAG: ${{ needs.create_tag_for_deployment.outputs.NEW_TAG }}
+        COMMIT_MESSAGE: ${{ needs.create_tag_for_deployment.outputs.COMMIT_MESSAGE }}
+         
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }} 
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Checkout the tag for deployment
+        run: |
+          NEW_TAG="${{ env.NEW_TAG }}"
+          git checkout $NEW_TAG
+          echo "Checked out tag: $NEW_TAG"
+          ls -alh  # List files to verify the tag content
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::891377181979:role/GitHubActions
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Download dbt_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbts-changed-files
+
+      - name: Get repository name
+        run: |
+          # Fetch the full repository name (owner/repo_name)
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "Repository name is: $REPO_NAME"
+          
+          # Optionally, use it as an environment variable for later steps
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
+      - name: Deploy to Dev (Copy only changed files)
+        run: |
+          echo "Deploying to Dev environment using tag ${{ env.NEW_TAG }}"
+          echo "Current working directory: $(pwd)"
+          
+          # Loop through the changed files and copy them to the S3 bucket
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              echo "Copying '$file' to S3..."
+              # Remove the 'src/circuit_domain_model/' part from the file path if it exists
+              TARGET_FILE_PATH=$(echo "$file" | sed 's|^src/circuit_domain_model/||')
+              aws s3 cp "$file" "s3://worley-datalake-sydney-dev-mwaa-airflow-s3/dags/dbt/circuit_breaker/$TARGET_FILE_PATH"
+            else
+              echo "File $file not found."
+            fi
+          done < "/home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/dbts_changed_files.txt"
+##############################################################################################################
+
+  dev_deployment_from_provided_tag:
+    needs: [validate_fetched_pr]
+    if: ${{ github.event.inputs.deploy_to_dev == 'true' }}
+    name: dev_deployment_from_- ${{  needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+    runs-on: ubuntu-latest
+    env:
+        TAG_TO_DEPLOY: ${{ needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+        COMMIT_MESSAGE: ${{ needs.validate_fetched_pr.outputs.COMMIT_MESSAGE }}
+        PR_NUMBER: ${{ needs.validate_fetched_pr.outputs.PR_NUMBER }}
+         
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }} 
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Checkout the tag for deployment
+        run: |
+          TAG_TO_DEPLOY="${{ env.TAG_TO_DEPLOY }}"
+          git checkout $TAG_TO_DEPLOY
+          echo "Checked out tag: $TAG_TO_DEPLOY"
+          ls -alh  # List files to verify the tag content
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::891377181979:role/GitHubActions
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Download dbts_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbts-changed-files
+
+      - name: Get repository name
+        run: |
+          # Fetch the full repository name (owner/repo_name)
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "Repository name is: $REPO_NAME"
+          
+          # Optionally, use it as an environment variable for later steps
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
+      - name: Deploy to Dev (Copy only changed files)
+        run: |
+          echo "Deploying to Dev environment using tag ${{ env.TAG_TO_DEPLOY }}"
+          echo "Current working directory: $(pwd)"
+          
+          # Loop through the changed files and copy them to the S3 bucket
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              echo "Copying '$file' to S3..."
+              # Remove the 'src/circuit_domain_model/' part from the file path if it exists
+              TARGET_FILE_PATH=$(echo "$file" | sed 's|^src/circuit_domain_model/||')
+              aws s3 cp "$file" "s3://worley-datalake-sydney-dev-mwaa-airflow-s3/dags/dbt/circuit_breaker/$TARGET_FILE_PATH"
+            else
+              echo "File $file not found."
+            fi
+          done < "/home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/dbts_changed_files.txt"
+##############################################################################################################
+  main_pr_automerge_no_manual_intervention_needed:
+    needs: dev_deployment_from_tag
+    if: ${{ github.event_name == 'pull_request'}}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+      - name: Check Dbts PR review status
+        run: |
+          echo "Fetching Dbts PR review details..."
+          pr_number="${{ github.event.pull_request.number }}"
+          # Poll until PR is approved
+          while true; do
+            # Fetch all reviews for the PR
+            pr_reviews=$(gh pr view $pr_number --json reviews --jq '.reviews')
+            
+            if [[ $? -ne 0 ]]; then
+              echo "Failed to fetch Dbts PR details. Error: $pr_reviews"
+              exit 1
+            fi
+            
+            echo "PR Reviews: $pr_reviews"
+            # If there are no reviews, print a message and wait
+            if [ -z "$pr_reviews" ]; then
+              echo "No reviews found yet. Waiting for reviews..."
+              sleep 30  # Sleep for 30 seconds before checking again
+              continue  # Continue checking without exiting
+            fi
+            # Check for approval status
+            approval_status=$(echo "$pr_reviews" | jq '.[] | select(.state == "APPROVED")' | wc -l)
+            echo "Approval status is: $approval_status"
+            # If PR is approved, proceed with merge
+            if [ "$approval_status" -ge 1 ]; then
+              echo "PR is approved, proceeding with merge."
+
+              # Checkout the target branch (main) to prepare for merging
+              git checkout main
+              git pull origin main
+              # Merge the PR using GitHub CLI
+              gh pr merge $pr_number --merge
+              echo "PR #$pr_number merged successfully into main."
+              break  # Exit the loop after successful merge
+            else
+              echo "PR is not approved yet, waiting..."
+              sleep 30  # Wait for approval, check again after some time
+            fi
+          done  
+      
+##############################################################################################################
+  dev_changelog_pr_no_manual_intervention_needed:
+    needs: [create_tag_for_deployment,dev_deployment_from_tag]
+    if: ${{ github.event_name == 'pull_request'}}
+    runs-on: ubuntu-latest
+    env:
+        NEW_TAG: ${{ needs.create_tag_for_deployment.outputs.NEW_TAG }}
+        COMMIT_MESSAGE: ${{ needs.create_tag_for_deployment.outputs.COMMIT_MESSAGE }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Download all_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: all-changed-files
+
+      - name: Update Changelog for Dev Deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          TAG_NAME="${{ env.NEW_TAG }}"
+          DATE=$(date +'%Y-%m-%d')
+          ENVIRONMENT="dev"
+          COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          CHANGED_FILES_CONTENT=$(cat all_changed_files.txt)
+          # Ensure we're on the changelog branch to update the changelog file
+          git checkout changelog
+          git pull origin changelog
+          FEATURE_BRANCH="feature/changelog-$ENVIRONMENT-$NEW_TAG-$(date +'%Y%m%d%H%M%S')"
+          git checkout -b "$FEATURE_BRANCH"
+          echo "Created new feature branch: $FEATURE_BRANCH"
+          # Add a changelog entry for the Dev deployment with PR commit message
+          echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n- Files Updated: $CHANGED_FILES_CONTENT" >> CHANGELOG_Dev.md
+          # Commit and push changes
+          git add CHANGELOG_Dev.md
+          git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+          # Push the changes
+          git push origin "$FEATURE_BRANCH"
+          echo "pushed changes to $FEATURE_BRANCH branch"
+          echo "creating PR ...."
+          # Create PR and store PR number
+          pr_url=$(gh pr create \
+            --title "Changelog Update ${FEATURE_BRANCH}" \
+            --body "Automated PR for changelog update" \
+            --base changelog \
+            --head $FEATURE_BRANCH)
+              
+          echo "PR created and pending review at ${pr_url}"
+          # Save the PR number for later steps
+          pr_number=$(gh pr list --state=open --base changelog --head $FEATURE_BRANCH --json number --jq '.[0].number')
+          echo "PR number: $pr_number"
+          echo "dev_changelog_pr_number=$pr_number" >> $GITHUB_ENV
+          echo "changelog_pr_url=$pr_url" >> $GITHUB_ENV
+          echo "dev_changelog_feature_branch=$FEATURE_BRANCH" >> $GITHUB_ENV
+
+      - name: Get PR details
+        env:
+          GH_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          echo "Fetching PR details"
+          pr_number="${{ env.dev_changelog_pr_number }}"
+          pr_creator=$(gh pr view $pr_number --json author --jq '.author.login')
+          echo "PR number: $pr_number"
+          echo "PR creator: $pr_creator"
+          echo "dev_changelog_pr_creator=$pr_creator" >> $GITHUB_ENV    
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Approve the PR
+        run: |
+          echo "Approving the PR..."
+          pr_number="${{ env.dev_changelog_pr_number }}"
+          gh pr review $pr_number --approve --body "Automated approval"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_APPROVER_TOKEN }}
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Merge the PR
+        run: |
+          echo "Merging the PR..."
+          pr_number="${{ env.dev_changelog_pr_number }}"
+          gh pr merge $pr_number --merge --auto --delete-branch
+          echo "PR #$pr_number merged successfully into changelog and deleted changelog feature branch"
+
+##############################################################################################################
+  dev_changelog_pr_for_provided_tag_no_manual_intervention_needed:
+    if: ${{ github.event.inputs.deploy_to_dev == 'true' }}
+    needs: [validate_fetched_pr,dev_deployment_from_provided_tag]
+    runs-on: ubuntu-latest
+    env:
+        TAG_TO_DEPLOY: ${{ needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+        COMMIT_MESSAGE: ${{ needs.validate_fetched_pr.outputs.COMMIT_MESSAGE }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Download all_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: all-changed-files
+
+      - name: Update Changelog for Dev Deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          TAG_NAME="${{ env.TAG_TO_DEPLOY }}"
+          DATE=$(date +'%Y-%m-%d')
+          ENVIRONMENT="dev"
+          COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          CHANGED_FILES_CONTENT=$(cat all_changed_files.txt)
+          # Ensure we're on the changelog branch to update the changelog file
+          git checkout changelog
+          git pull origin changelog
+          FEATURE_BRANCH="feature/changelog-$ENVIRONMENT-$TAG_NAME-$(date +'%Y%m%d%H%M%S')"
+          git checkout -b "$FEATURE_BRANCH"
+          echo "Created new feature branch: $FEATURE_BRANCH"
+          # Add a changelog entry for the Dev deployment with PR commit message
+          echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n- Files Updated: $CHANGED_FILES_CONTENT" >> CHANGELOG_Dev.md
+          # Commit and push changes
+          git add CHANGELOG_Dev.md
+          git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+          # Push the changes
+          git push origin "$FEATURE_BRANCH"
+          echo "pushed changes to $FEATURE_BRANCH branch"
+          echo "creating PR ...."
+          # Create PR and store PR number
+          pr_url=$(gh pr create \
+            --title "Changelog Update ${FEATURE_BRANCH}" \
+            --body "Automated PR for changelog update" \
+            --base changelog \
+            --head $FEATURE_BRANCH)
+              
+          echo "PR created and pending review at ${pr_url}"
+          # Save the PR number for later steps
+          pr_number=$(gh pr list --state=open --base changelog --head $FEATURE_BRANCH --json number --jq '.[0].number')
+          echo "PR number: $pr_number"
+          echo "dev_changelog_pr_number=$pr_number" >> $GITHUB_ENV
+          echo "changelog_pr_url=$pr_url" >> $GITHUB_ENV
+          echo "dev_changelog_feature_branch=$FEATURE_BRANCH" >> $GITHUB_ENV
+
+      - name: Get PR details
+        env:
+          GH_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          echo "Fetching PR details"
+          pr_number="${{ env.dev_changelog_pr_number }}"
+          pr_creator=$(gh pr view $pr_number --json author --jq '.author.login')
+          echo "PR number: $pr_number"
+          echo "PR creator: $pr_creator"
+          echo "dev_changelog_pr_creator=$pr_creator" >> $GITHUB_ENV    
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Approve the PR
+        run: |
+          echo "Approving the PR..."
+          pr_number="${{ env.dev_changelog_pr_number }}"
+          gh pr review $pr_number --approve --body "Automated approval"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_APPROVER_TOKEN }}
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Merge the PR
+        run: |
+          echo "Merging the PR..."
+          pr_number="${{ env.dev_changelog_pr_number }}"
+          gh pr merge $pr_number --merge --auto --delete-branch
+          echo "PR #$pr_number merged successfully into changelog and deleted changelog feature branch"
+##############################################################################################################
+  qa_deployment_from_tag:
+    needs: [create_tag_for_deployment,dev_deployment_from_tag]
+    if: ${{ github.event_name == 'pull_request'}}
+    name: qa_deployment_from- ${{  needs.create_tag_for_deployment.outputs.NEW_TAG }}
+    environment: qa
+    runs-on: ubuntu-latest
+    env:
+        NEW_TAG: ${{ needs.create_tag_for_deployment.outputs.NEW_TAG }}
+        COMMIT_MESSAGE: ${{ needs.create_tag_for_deployment.outputs.COMMIT_MESSAGE }}
+         
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Checkout the tag for deployment
+        run: |
+          NEW_TAG="${{ env.NEW_TAG }}"
+          git checkout $NEW_TAG
+          echo "Checked out tag: $NEW_TAG"
+          ls -alh  # List files to verify the tag content
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::533267239288:role/GitHubActions
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Download dbt_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbts-changed-files
+
+      - name: Get repository name
+        run: |
+          # Fetch the full repository name (owner/repo_name)
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "Repository name is: $REPO_NAME"
+          
+          # Optionally, use it as an environment variable for later steps
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
+      - name: Deploy to Qa (Copy only changed files)
+        run: |
+          echo "Deploying to Qa environment using tag ${{ env.NEW_TAG }}"
+          echo "Current working directory: $(pwd)"
+          
+          # Loop through the changed files and copy them to the S3 bucket
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              echo "Copying '$file' to S3..."
+              # Remove the 'src/circuit_domain_model/' part from the file path if it exists
+              TARGET_FILE_PATH=$(echo "$file" | sed 's|^src/circuit_domain_model/||')
+              aws s3 cp "$file" "s3://worley-datalake-sydney-qa-mwaa-airflow-s3/dags/dbt/circuit_breaker/$TARGET_FILE_PATH"
+            else
+              echo "File $file not found."
+            fi
+          done < "/home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/dbts_changed_files.txt"
+
+##############################################################################################################
+  qa_changelog_pr_no_manual_intervention_needed:
+    needs: [create_tag_for_deployment,qa_deployment_from_tag]
+    if: ${{ github.event_name == 'pull_request'}}
+    runs-on: ubuntu-latest
+    env:
+        NEW_TAG: ${{ needs.create_tag_for_deployment.outputs.NEW_TAG }}
+        COMMIT_MESSAGE: ${{ needs.create_tag_for_deployment.outputs.COMMIT_MESSAGE }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Download all_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: all-changed-files
+
+      - name: Update Changelog for Qa Deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          TAG_NAME="${{ env.NEW_TAG }}"
+          DATE=$(date +'%Y-%m-%d')
+          ENVIRONMENT="qa"
+          COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          CHANGED_FILES_CONTENT=$(cat all_changed_files.txt)
+          # Ensure we're on the main branch to update the changelog file
+          git checkout main
+          git pull origin main
+          FEATURE_BRANCH="feature/changelog-$ENVIRONMENT-$NEW_TAG-$(date +'%Y%m%d%H%M%S')"
+          git checkout -b "$FEATURE_BRANCH"
+          echo "Created new feature branch: $FEATURE_BRANCH"
+          # Add a changelog entry for the Qa deployment with PR commit message
+          echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n- Files Updated: $CHANGED_FILES_CONTENT" >> CHANGELOG_Qa.md
+          # Commit and push changes
+          git add CHANGELOG_Qa.md
+          git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+          # Push the changes
+          git push origin "$FEATURE_BRANCH"
+          echo "pushed changes to $FEATURE_BRANCH branch"
+          echo "creating PR ...."
+          # Create PR and store PR number
+          pr_url=$(gh pr create \
+            --title "Changelog Update ${FEATURE_BRANCH}" \
+            --body "Automated PR for changelog update" \
+            --base main \
+            --head $FEATURE_BRANCH)
+              
+          echo "PR created and pending review at ${pr_url}"
+          # Save the PR number for later steps
+          pr_number=$(gh pr list --state=open --base main --head $FEATURE_BRANCH --json number --jq '.[0].number')
+          echo "PR number: $pr_number"
+          echo "qa_changelog_pr_number=$pr_number" >> $GITHUB_ENV
+          echo "changelog_pr_url=$pr_url" >> $GITHUB_ENV
+          echo "qa_changelog_feature_branch=$FEATURE_BRANCH" >> $GITHUB_ENV
+
+      - name: Get PR details
+        env:
+          GH_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          echo "Fetching PR details"
+          pr_number="${{ env.qa_changelog_pr_number }}"
+          pr_creator=$(gh pr view $pr_number --json author --jq '.author.login')
+          echo "PR number: $pr_number"
+          echo "PR creator: $pr_creator"
+          echo "qa_changelog_pr_creator=$pr_creator" >> $GITHUB_ENV    
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Approve the PR
+        run: |
+          echo "Approving the PR..."
+          pr_number="${{ env.qa_changelog_pr_number }}"
+          gh pr review $pr_number --approve --body "Automated approval"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_APPROVER_TOKEN }}
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Merge the PR
+        run: |
+          echo "Merging the PR..."
+          pr_number="${{ env.qa_changelog_pr_number }}"
+          gh pr merge $pr_number --merge --auto --delete-branch
+          echo "PR #$pr_number merged successfully into main and deleted changelog feature branch"
+
+##############################################################################################################
+
+  qa_deployment_from_provided_tag:
+    needs: [validate_fetched_pr]
+    if: ${{ github.event.inputs.deploy_to_qa == 'true' }}
+    name: qa_deployment_from_- ${{  needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+    runs-on: ubuntu-latest
+    env:
+        TAG_TO_DEPLOY: ${{ needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+        COMMIT_MESSAGE: ${{ needs.validate_fetched_pr.outputs.COMMIT_MESSAGE }}
+        PR_NUMBER: ${{ needs.validate_fetched_pr.outputs.PR_NUMBER }}
+         
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }} 
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Checkout the tag for deployment
+        run: |
+          TAG_TO_DEPLOY="${{ env.TAG_TO_DEPLOY }}"
+          git checkout $TAG_TO_DEPLOY
+          echo "Checked out tag: $TAG_TO_DEPLOY"
+          ls -alh  # List files to verify the tag content
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::533267239288:role/GitHubActions
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Download dbts_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbts-changed-files
+
+      - name: Get repository name
+        run: |
+          # Fetch the full repository name (owner/repo_name)
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "Repository name is: $REPO_NAME"
+          
+          # Optionally, use it as an environment variable for later steps
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
+      - name: Deploy to qa (Copy only changed files)
+        run: |
+          echo "Deploying to qa environment using tag ${{ env.TAG_TO_DEPLOY }}"
+          echo "Current working directory: $(pwd)"
+          
+          # Loop through the changed files and copy them to the S3 bucket
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              echo "Copying '$file' to S3..."
+              # Remove the 'src/circuit_domain_model/' part from the file path if it exists
+              TARGET_FILE_PATH=$(echo "$file" | sed 's|^src/circuit_domain_model/||')
+              aws s3 cp "$file" "s3://worley-datalake-sydney-qa-mwaa-airflow-s3/dags/dbt/circuit_breaker/$TARGET_FILE_PATH"
+            else
+              echo "File $file not found."
+            fi
+          done < "/home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/dbts_changed_files.txt"
+
+##############################################################################################################
+  qa_changelog_pr_for_provided_tag_no_manual_intervention_needed:
+    if: ${{ github.event.inputs.deploy_to_qa == 'true' }}
+    needs: [validate_fetched_pr,qa_deployment_from_provided_tag]
+    runs-on: ubuntu-latest
+    env:
+        TAG_TO_DEPLOY: ${{ needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+        COMMIT_MESSAGE: ${{ needs.validate_fetched_pr.outputs.COMMIT_MESSAGE }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Download all_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: all-changed-files
+
+      - name: Update Changelog for qa Deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          TAG_NAME="${{ env.TAG_TO_DEPLOY }}"
+          DATE=$(date +'%Y-%m-%d')
+          ENVIRONMENT="qa"
+          COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          CHANGED_FILES_CONTENT=$(cat all_changed_files.txt)
+          # Ensure we're on the changelog branch to update the changelog file
+          git checkout changelog
+          git pull origin changelog
+          FEATURE_BRANCH="feature/changelog-$ENVIRONMENT-$TAG_NAME-$(date +'%Y%m%d%H%M%S')"
+          git checkout -b "$FEATURE_BRANCH"
+          echo "Created new feature branch: $FEATURE_BRANCH"
+          # Add a changelog entry for the qa deployment with PR commit message
+          echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n- Files Updated: $CHANGED_FILES_CONTENT" >> CHANGELOG_Qa.md
+          # Commit and push changes
+          git add CHANGELOG_Qa.md
+          git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+          # Push the changes
+          git push origin "$FEATURE_BRANCH"
+          echo "pushed changes to $FEATURE_BRANCH branch"
+          echo "creating PR ...."
+          # Create PR and store PR number
+          pr_url=$(gh pr create \
+            --title "Changelog Update ${FEATURE_BRANCH}" \
+            --body "Automated PR for changelog update" \
+            --base changelog \
+            --head $FEATURE_BRANCH)
+              
+          echo "PR created and pending review at ${pr_url}"
+          # Save the PR number for later steps
+          pr_number=$(gh pr list --state=open --base changelog --head $FEATURE_BRANCH --json number --jq '.[0].number')
+          echo "PR number: $pr_number"
+          echo "qa_changelog_pr_number=$pr_number" >> $GITHUB_ENV
+          echo "changelog_pr_url=$pr_url" >> $GITHUB_ENV
+          echo "qa_changelog_feature_branch=$FEATURE_BRANCH" >> $GITHUB_ENV
+
+      - name: Get PR details
+        env:
+          GH_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          echo "Fetching PR details"
+          pr_number="${{ env.qa_changelog_pr_number }}"
+          pr_creator=$(gh pr view $pr_number --json author --jq '.author.login')
+          echo "PR number: $pr_number"
+          echo "PR creator: $pr_creator"
+          echo "qa_changelog_pr_creator=$pr_creator" >> $GITHUB_ENV    
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Approve the PR
+        run: |
+          echo "Approving the PR..."
+          pr_number="${{ env.qa_changelog_pr_number }}"
+          gh pr review $pr_number --approve --body "Automated approval"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_APPROVER_TOKEN }}
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Merge the PR
+        run: |
+          echo "Merging the PR..."
+          pr_number="${{ env.qa_changelog_pr_number }}"
+          gh pr merge $pr_number --merge --auto --delete-branch
+          echo "PR #$pr_number merged successfully into changelog and deleted changelog feature branch"
+##############################################################################################################
+##############################################################################################################
+      # - name: Check PR review status
+      #   run: |
+      #     echo "Fetching PR review details..."
+      #     pr_number="${{ env.qa_changelog_pr_number }}"
+      #     FEATURE_BRANCH="${{ env.qa_changelog_feature_branch }}"
+      #     # Poll until PR is approved
+      #     while true; do
+      #       # Fetch all reviews for the PR
+      #       pr_reviews=$(gh pr view $pr_number --json reviews --jq '.reviews')
+            
+      #       if [[ $? -ne 0 ]]; then
+      #         echo "Failed to fetch PR details. Error: $pr_reviews"
+      #         exit 1
+      #       fi
+            
+      #       echo "PR Reviews: $pr_reviews"
+      #       # If there are no reviews, print a message and wait
+      #       if [ -z "$pr_reviews" ]; then
+      #         echo "No reviews found yet. Waiting for reviews..."
+      #         sleep 30  # Sleep for 30 seconds before checking again
+      #         continue  # Continue checking without exiting
+      #       fi
+      #       # Check for approval status
+      #       approval_status=$(echo "$pr_reviews" | jq '.[] | select(.state == "APPROVED")' | wc -l)
+      #       echo "Approval status is: $approval_status"
+      #       # If PR is approved, proceed with merge
+      #       if [ "$approval_status" -ge 1 ]; then
+      #         echo "PR is approved, proceeding with merge."
+      #         # Rebase and merge the PR
+      #         git fetch origin
+      #         git checkout main
+      #         git pull origin main
+      #         git checkout "$FEATURE_BRANCH"  # Checkout the feature branch
+      #         echo "Attempting to rebase onto main"
+      #         git rebase main  # Rebase onto main to include any updates from other merged PRs
+
+      #         git push origin "$FEATURE_BRANCH" --force-with-lease  # Push rebased branch
+      #         # Merge the PR using GitHub CLI
+      #         gh pr merge $pr_number --merge --delete-branch  # Or use --squash or --rebase
+      #         echo "PR #$pr_number merged successfully into main."
+      #         break  # Exit the loop after successful merge
+      #       else
+      #         echo "PR is not approved yet, waiting..."
+      #         echo "Approve the PR , click on link to go to PR $changelog_pr_url"
+      #         sleep 30  # Wait for approval, check again after some time
+      #       fi
+      #     done
+          
+
+##############################################################################################################
+#   uat_deployment_from_tag:
+#     needs: [create_tag_for_deployment,qa_deployment_from_tag]
+#     environment: uat
+#     runs-on: ubuntu-latest
+#     env:
+#         NEW_TAG: ${{ needs.create_tag_for_deployment.outputs.NEW_TAG }}
+#         COMMIT_MESSAGE: ${{ needs.create_tag_for_deployment.outputs.COMMIT_MESSAGE }}
+    
+#     permissions:
+#       id-token: write # This is required for requesting the JWT
+#       contents: write  # Allow GITHUB_TOKEN to write to repository contents
+#       pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+#     steps:
+#       - name: user config
+#         run: |
+#           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#           git config --global user.name "github-actions[bot]"
+
+#       - name: Checkout code from PR branch
+#         uses: actions/checkout@v3
+#         with:
+#           # ref: ${{ github.head_ref }}
+#           fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+#       - name: Fetch all tags
+#         run: git fetch --tags
+
+#       - name: Checkout the tag for deployment
+#         run: |
+#           NEW_TAG="${{ env.NEW_TAG }}"
+#           git checkout $NEW_TAG
+#           echo "Checked out tag: $NEW_TAG"
+#           ls -alh  # List files to verify the tag content
+
+#       - name: Assume AWS IAM Role
+#         uses: aws-actions/configure-aws-credentials@v4.0.2
+#         with:
+#           aws-region: ap-southeast-2
+#           role-to-assume: arn:aws:iam::147997124047:role/github-oidc-provider-aws
+#           role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+#           role-duration-seconds: 3600 # 1 hour
+
+#       - name: Download dbt_changed_files.txt artifact
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: dbts-changed-files
+
+
+#       - name: Get repository name
+#         run: |
+#           # Fetch the full repository name (owner/repo_name)
+#           REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+#           echo "Repository name is: $REPO_NAME"
+          
+#           # Optionally, use it as an environment variable for later steps
+#           echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
+#       - name: Deploy to uat (Copy only changed files)
+#         run: |
+#           echo "Deploying to uat environment using tag ${{ env.NEW_TAG }}"
+#           echo "Current working directory: $(pwd)"
+          
+#           # Loop through the changed files and copy them to the S3 bucket
+#           while IFS= read -r file; do
+#             if [ -f "$file" ]; then
+#               echo "Copying '$file' to S3..."
+#               # Remove the 'src/circuit_domain_model/' part from the file path if it exists
+#               TARGET_FILE_PATH=$(echo "$file" | sed 's|^src/circuit_domain_model/||')
+#               aws s3 cp "$file" "s3://worley-datalake-sydney-uat-mwaa-airflow-s3/dags/dbt/circuit_breaker/$TARGET_FILE_PATH"
+#             else
+#               echo "File $file not found."
+#             fi
+#           done < "/home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/dbts_changed_files.txt"
+
+# ##############################################################################################################
+#   uat_changelog_pr_no_manual_intervention_needed:
+#     needs: [create_tag_for_deployment,uat_deployment_from_tag]
+#     runs-on: ubuntu-latest
+#     env:
+#         NEW_TAG: ${{ needs.create_tag_for_deployment.outputs.NEW_TAG }}
+#         COMMIT_MESSAGE: ${{ needs.create_tag_for_deployment.outputs.COMMIT_MESSAGE }}
+#     permissions:
+#       id-token: write # This is required for requesting the JWT
+#       contents: write  # Allow GITHUB_TOKEN to write to repository contents
+#       pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+#     steps:
+#       - name: user config
+#         run: |
+#           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#           git config --global user.name "github-actions[bot]"
+
+#       - name: Checkout code from PR branch
+#         uses: actions/checkout@v3
+#         with:
+#           # ref: ${{ github.head_ref }}
+#           fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+#       - name: Fetch all tags
+#         run: git fetch --tags
+
+#       - name: Download all_changed_files.txt artifact
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: all-changed-files
+
+#       - name: Update Changelog for uat Deployment
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+#         run: |
+#           TAG_NAME="${{ env.NEW_TAG }}"
+#           DATE=$(date +'%Y-%m-%d')
+#           ENVIRONMENT="uat"
+#           COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+#           CHANGED_FILES_CONTENT=$(cat all_changed_files.txt)
+#           # Ensure we're on the main branch to update the changelog file
+#           git checkout main
+#           git pull origin main
+#           FEATURE_BRANCH="feature/changelog-$ENVIRONMENT-$NEW_TAG-$(date +'%Y%m%d%H%M%S')"
+#           git checkout -b "$FEATURE_BRANCH"
+#           echo "Created new feature branch: $FEATURE_BRANCH"
+#           # Add a changelog entry for the Uat deployment with PR commit message
+#           echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n- Files Updated: $CHANGED_FILES_CONTENT" >> CHANGELOG_Uat.md
+#           # Commit and push changes
+#           git add CHANGELOG_Uat.md
+#           git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+#           # Push the changes
+#           git push origin "$FEATURE_BRANCH"
+#           echo "pushed changes to $FEATURE_BRANCH branch"
+#           echo "creating PR ...."
+#           # Create PR and store PR number
+#           pr_url=$(gh pr create \
+#             --title "Changelog Update ${FEATURE_BRANCH}" \
+#             --body "Automated PR for changelog update" \
+#             --base main \
+#             --head $FEATURE_BRANCH)
+              
+#           echo "PR created and pending review at ${pr_url}"
+#           # Save the PR number for later steps
+#           pr_number=$(gh pr list --state=open --base main --head $FEATURE_BRANCH --json number --jq '.[0].number')
+#           echo "PR number: $pr_number"
+#           echo "uat_changelog_pr_number=$pr_number" >> $GITHUB_ENV
+#           echo "changelog_pr_url=$pr_url" >> $GITHUB_ENV
+#           echo "uat_changelog_feature_branch=$FEATURE_BRANCH" >> $GITHUB_ENV
+
+#       - name: Get PR details
+#         env:
+#           GH_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+#         run: |
+#           echo "Fetching PR details"
+#           pr_number="${{ env.uat_changelog_pr_number }}"
+#           pr_creator=$(gh pr view $pr_number --json author --jq '.author.login')
+#           echo "PR number: $pr_number"
+#           echo "PR creator: $pr_creator"
+#           echo "uat_changelog_pr_creator=$pr_creator" >> $GITHUB_ENV    
+
+      
+#       - name: Authenticate GitHub CLI
+#         run: |
+#           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+#       - name: Approve the PR
+#         run: |
+#           echo "Approving the PR..."
+#           pr_number="${{ env.uat_changelog_pr_number }}"
+#           gh pr review $pr_number --approve --body "Automated approval"
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.PR_APPROVER_TOKEN }}
+
+#       - name: Authenticate GitHub CLI
+#         run: |
+#           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+#       - name: Merge the PR
+#         run: |
+#           echo "Merging the PR..."
+#           pr_number="${{ env.uat_changelog_pr_number }}"
+#           gh pr merge $pr_number --merge --auto --delete-branch
+#           echo "PR #$pr_number merged successfully into main and deleted changelog feature branch"
+
+      # - name: Check PR review status
+      #   run: |
+      #     echo "Fetching PR review details..."
+      #     pr_number="${{ env.uat_changelog_pr_number }}"
+      #     FEATURE_BRANCH="${{ env.uat_changelog_feature_branch }}"
+      #     # Poll until PR is approved
+      #     while true; do
+      #       # Fetch all reviews for the PR
+      #       pr_reviews=$(gh pr view $pr_number --json reviews --jq '.reviews')
+            
+      #       if [[ $? -ne 0 ]]; then
+      #         echo "Failed to fetch PR details. Error: $pr_reviews"
+      #         exit 1
+      #       fi
+            
+      #       echo "PR Reviews: $pr_reviews"
+      #       # If there are no reviews, print a message and wait
+      #       if [ -z "$pr_reviews" ]; then
+      #         echo "No reviews found yet. Waiting for reviews..."
+      #         sleep 30  # Sleep for 30 seconds before checking again
+      #         continue  # Continue checking without exiting
+      #       fi
+      #       # Check for approval status
+      #       approval_status=$(echo "$pr_reviews" | jq '.[] | select(.state == "APPROVED")' | wc -l)
+      #       echo "Approval status is: $approval_status"
+      #       # If PR is approved, proceed with merge
+      #       if [ "$approval_status" -ge 1 ]; then
+      #         echo "PR is approved, proceeding with merge."
+      #         # Rebase and merge the PR
+      #         git fetch origin
+      #         git checkout main
+      #         git pull origin main
+      #         git checkout "$FEATURE_BRANCH"  # Checkout the feature branch
+      #         echo "Attempting to rebase onto main"
+      #         git rebase main  # Rebase onto main to include any updates from other merged PRs
+              
+      #         git push origin "$FEATURE_BRANCH" --force-with-lease  # Push rebased branch
+      #         # Merge the PR using GitHub CLI
+      #         gh pr merge $pr_number --merge --delete-branch  # Or use --squash or --rebase
+      #         echo "PR #$pr_number merged successfully into main."
+      #         break  # Exit the loop after successful merge
+      #       else
+      #         echo "PR is not approved yet, waiting..."
+      #         echo "Approve the PR , click on link to go to PR $changelog_pr_url"
+      #         sleep 30  # Wait for approval, check again after some time
+      #       fi
+      #     done
+      
+
+
+##############################################################################################################
+
+  prd_deployment_from_tag:
+    needs: [create_tag_for_deployment,qa_deployment_from_tag]
+    if: ${{ github.event_name == 'pull_request'}}
+    name: prd_deployment_from- ${{  needs.create_tag_for_deployment.outputs.NEW_TAG }}
+    environment: prd
+    runs-on: ubuntu-latest
+    env:
+        NEW_TAG: ${{ needs.create_tag_for_deployment.outputs.NEW_TAG }}
+        COMMIT_MESSAGE: ${{ needs.create_tag_for_deployment.outputs.COMMIT_MESSAGE }}
+    
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Checkout the tag for deployment
+        run: |
+          NEW_TAG="${{ env.NEW_TAG }}"
+          git checkout $NEW_TAG
+          echo "Checked out tag: $NEW_TAG"
+          ls -alh  # List files to verify the tag content
+
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::471112986846:role/github-oidc-provider-aws
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Download dbt_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbts-changed-files
+
+      - name: Get repository name
+        run: |
+          # Fetch the full repository name (owner/repo_name)
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "Repository name is: $REPO_NAME"
+          
+          # Optionally, use it as an environment variable for later steps
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
+      - name: Deploy to Prod (Copy only changed files)
+        run: |
+          echo "Deploying to Prod environment using tag ${{ env.NEW_TAG }}"
+          echo "Current working directory: $(pwd)"
+          
+          # Loop through the changed files and copy them to the S3 bucket
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              echo "Copying '$file' to S3..."
+              # Remove the 'src/circuit_domain_model/' part from the file path if it exists
+              TARGET_FILE_PATH=$(echo "$file" | sed 's|^src/circuit_domain_model/||')
+              aws s3 cp "$file" "s3://worley-datalake-sydney-prd-mwaa-airflow-s3/dags/dbt/circuit_breaker/$TARGET_FILE_PATH"
+            else
+              echo "File $file not found."
+            fi
+          done < "/home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/dbts_changed_files.txt"
+
+##############################################################################################################
+  prd_changelog_pr_no_manual_intervention_needed:
+    needs: [create_tag_for_deployment,prd_deployment_from_tag]
+    if: ${{ github.event_name == 'pull_request'}}
+    runs-on: ubuntu-latest
+    env:
+        NEW_TAG: ${{ needs.create_tag_for_deployment.outputs.NEW_TAG }}
+        COMMIT_MESSAGE: ${{ needs.create_tag_for_deployment.outputs.COMMIT_MESSAGE }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Download all_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: all-changed-files
+
+      - name: Update Changelog for Prd Deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          TAG_NAME="${{ env.NEW_TAG }}"
+          DATE=$(date +'%Y-%m-%d')
+          ENVIRONMENT="prd"
+          COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          CHANGED_FILES_CONTENT=$(cat all_changed_files.txt)
+          # Ensure we're on the main branch to update the changelog file
+          git checkout main
+          git pull origin main
+          FEATURE_BRANCH="feature/changelog-$ENVIRONMENT-$NEW_TAG-$(date +'%Y%m%d%H%M%S')"
+          git checkout -b "$FEATURE_BRANCH"
+          echo "Created new feature branch: $FEATURE_BRANCH"
+          # Add a changelog entry for the Prd deployment with PR commit message
+          echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n- Files Updated: $CHANGED_FILES_CONTENT" >> CHANGELOG_Prd.md
+          # Commit and push changes
+          git add CHANGELOG_Prd.md
+          git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+          # Push the changes
+          git push origin "$FEATURE_BRANCH"
+          echo "pushed changes to $FEATURE_BRANCH branch"
+          echo "creating PR ...."
+          # Create PR and store PR number
+          pr_url=$(gh pr create \
+            --title "Changelog Update ${FEATURE_BRANCH}" \
+            --body "Automated PR for changelog update" \
+            --base main \
+            --head $FEATURE_BRANCH)
+              
+          echo "PR created and pending review at ${pr_url}"
+          # Save the PR number for later steps
+          pr_number=$(gh pr list --state=open --base main --head $FEATURE_BRANCH --json number --jq '.[0].number')
+          echo "PR number: $pr_number"
+          echo "prd_changelog_pr_number=$pr_number" >> $GITHUB_ENV
+          echo "changelog_pr_url=$pr_url" >> $GITHUB_ENV
+          echo "prd_changelog_feature_branch=$FEATURE_BRANCH" >> $GITHUB_ENV
+
+      - name: Get PR details
+        env:
+          GH_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          echo "Fetching PR details"
+          pr_number="${{ env.prd_changelog_pr_number }}"
+          pr_creator=$(gh pr view $pr_number --json author --jq '.author.login')
+          echo "PR number: $pr_number"
+          echo "PR creator: $pr_creator"
+          echo "prd_changelog_pr_creator=$pr_creator" >> $GITHUB_ENV    
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Approve the PR
+        run: |
+          echo "Approving the PR..."
+          pr_number="${{ env.prd_changelog_pr_number }}"
+          gh pr review $pr_number --approve --body "Automated approval"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_APPROVER_TOKEN }}
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Merge the PR
+        run: |
+          echo "Merging the PR..."
+          pr_number="${{ env.prd_changelog_pr_number }}"
+          gh pr merge $pr_number --merge --auto --delete-branch
+          echo "PR #$pr_number merged successfully into main and deleted changelog feature branch"
+
+##############################################################################################################
+
+  prd_deployment_from_provided_tag:
+    needs: [validate_fetched_pr]
+    if: ${{ github.event.inputs.deploy_to_prd == 'true' }}
+    name: prd_deployment_from_- ${{  needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+    runs-on: ubuntu-latest
+    env:
+        TAG_TO_DEPLOY: ${{ needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+        COMMIT_MESSAGE: ${{ needs.validate_fetched_pr.outputs.COMMIT_MESSAGE }}
+        PR_NUMBER: ${{ needs.validate_fetched_pr.outputs.PR_NUMBER }}
+         
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }} 
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Checkout the tag for deployment
+        run: |
+          TAG_TO_DEPLOY="${{ env.TAG_TO_DEPLOY }}"
+          git checkout $TAG_TO_DEPLOY
+          echo "Checked out tag: $TAG_TO_DEPLOY"
+          ls -alh  # List files to verify the tag content
+      - name: Assume AWS IAM Role
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::471112986846:role/github-oidc-provider-aws
+          role-session-name: Worley_AWS_DP_${{ github.run_id }}_${{ github.actor }}
+          role-duration-seconds: 3600 # 1 hour
+
+      - name: Download dbts_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbts-changed-files
+
+      - name: Get repository name
+        run: |
+          # Fetch the full repository name (owner/repo_name)
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "Repository name is: $REPO_NAME"
+          
+          # Optionally, use it as an environment variable for later steps
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
+      - name: Deploy to prd (Copy only changed files)
+        run: |
+          echo "Deploying to prd environment using tag ${{ env.TAG_TO_DEPLOY }}"
+          echo "Current working directory: $(pwd)"
+          
+          # Loop through the changed files and copy them to the S3 bucket
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              echo "Copying '$file' to S3..."
+              # Remove the 'src/circuit_domain_model/' part from the file path if it exists
+              TARGET_FILE_PATH=$(echo "$file" | sed 's|^src/circuit_domain_model/||')
+              aws s3 cp "$file" "s3://worley-datalake-sydney-prd-mwaa-airflow-s3/dags/dbt/circuit_breaker/$TARGET_FILE_PATH"
+            else
+              echo "File $file not found."
+            fi
+          done < "/home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/dbts_changed_files.txt"
+
+##############################################################################################################
+  prd_changelog_pr_for_provided_tag_no_manual_intervention_needed:
+    if: ${{ github.event.inputs.deploy_to_prd == 'true' }}
+    needs: [validate_fetched_pr,prd_deployment_from_provided_tag]
+    runs-on: ubuntu-latest
+    env:
+        TAG_TO_DEPLOY: ${{ needs.validate_fetched_pr.outputs.TAG_TO_DEPLOY }}
+        COMMIT_MESSAGE: ${{ needs.validate_fetched_pr.outputs.COMMIT_MESSAGE }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write  # Allow GITHUB_TOKEN to write to repository contents
+      pull-requests: write  # Allow GITHUB_TOKEN to create and manage pull requests
+    steps:
+      - name: user config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Checkout code from PR branch
+        uses: actions/checkout@v3
+        with:
+          # ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensure that the entire history and all tags are fetched
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Download all_changed_files.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: all-changed-files
+
+      - name: Update Changelog for prd Deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          TAG_NAME="${{ env.TAG_TO_DEPLOY }}"
+          DATE=$(date +'%Y-%m-%d')
+          ENVIRONMENT="prd"
+          COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          CHANGED_FILES_CONTENT=$(cat all_changed_files.txt)
+          # Ensure we're on the changelog branch to update the changelog file
+          git checkout changelog
+          git pull origin changelog
+          FEATURE_BRANCH="feature/changelog-$ENVIRONMENT-$TAG_NAME-$(date +'%Y%m%d%H%M%S')"
+          git checkout -b "$FEATURE_BRANCH"
+          echo "Created new feature branch: $FEATURE_BRANCH"
+          # Add a changelog entry for the prd deployment with PR commit message
+          echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n- Files Updated: $CHANGED_FILES_CONTENT" >> CHANGELOG_Prd.md
+          # Commit and push changes
+          git add CHANGELOG_Prd.md
+          git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+          # Push the changes
+          git push origin "$FEATURE_BRANCH"
+          echo "pushed changes to $FEATURE_BRANCH branch"
+          echo "creating PR ...."
+          # Create PR and store PR number
+          pr_url=$(gh pr create \
+            --title "Changelog Update ${FEATURE_BRANCH}" \
+            --body "Automated PR for changelog update" \
+            --base changelog \
+            --head $FEATURE_BRANCH)
+              
+          echo "PR created and pending review at ${pr_url}"
+          # Save the PR number for later steps
+          pr_number=$(gh pr list --state=open --base changelog --head $FEATURE_BRANCH --json number --jq '.[0].number')
+          echo "PR number: $pr_number"
+          echo "prd_changelog_pr_number=$pr_number" >> $GITHUB_ENV
+          echo "changelog_pr_url=$pr_url" >> $GITHUB_ENV
+          echo "prd_changelog_feature_branch=$FEATURE_BRANCH" >> $GITHUB_ENV
+
+      - name: Get PR details
+        env:
+          GH_TOKEN: ${{ secrets.PR_TOKEN_GLOBAL }}
+        run: |
+          echo "Fetching PR details"
+          pr_number="${{ env.prd_changelog_pr_number }}"
+          pr_creator=$(gh pr view $pr_number --json author --jq '.author.login')
+          echo "PR number: $pr_number"
+          echo "PR creator: $pr_creator"
+          echo "prd_changelog_pr_creator=$pr_creator" >> $GITHUB_ENV    
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Approve the PR
+        run: |
+          echo "Approving the PR..."
+          pr_number="${{ env.prd_changelog_pr_number }}"
+          gh pr review $pr_number --approve --body "Automated approval"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PR_APPROVER_TOKEN }}
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Merge the PR
+        run: |
+          echo "Merging the PR..."
+          pr_number="${{ env.prd_changelog_pr_number }}"
+          gh pr merge $pr_number --merge --auto --delete-branch
+          echo "PR #$pr_number merged successfully into changelog and deleted changelog feature branch"
+##############################################################################################################
+      # - name: Check PR review status
+      #   run: |
+      #     echo "Fetching PR review details..."
+      #     pr_number="${{ env.prd_changelog_pr_number }}"
+      #     FEATURE_BRANCH="${{ env.prd_changelog_feature_branch }}"
+      #     # Poll until PR is approved
+      #     while true; do
+      #       # Fetch all reviews for the PR
+      #       pr_reviews=$(gh pr view $pr_number --json reviews --jq '.reviews')
+            
+      #       if [[ $? -ne 0 ]]; then
+      #         echo "Failed to fetch PR details. Error: $pr_reviews"
+      #         exit 1
+      #       fi
+            
+      #       echo "PR Reviews: $pr_reviews"
+      #       # If there are no reviews, print a message and wait
+      #       if [ -z "$pr_reviews" ]; then
+      #         echo "No reviews found yet. Waiting for reviews..."
+      #         sleep 30  # Sleep for 30 seconds before checking again
+      #         continue  # Continue checking without exiting
+      #       fi
+      #       # Check for approval status
+      #       approval_status=$(echo "$pr_reviews" | jq '.[] | select(.state == "APPROVED")' | wc -l)
+      #       echo "Approval status is: $approval_status"
+      #       # If PR is approved, proceed with merge
+      #       if [ "$approval_status" -ge 1 ]; then
+      #         echo "PR is approved, proceeding with merge."
+      #         # Rebase and merge the PR
+      #         git fetch origin
+      #         git checkout main
+      #         git pull origin main
+      #         git checkout "$FEATURE_BRANCH"  # Checkout the feature branch
+      #         echo "Attempting to rebase onto main"
+      #         git rebase main  # Rebase onto main to include any updates from other merged PRs
+      #         git push origin "$FEATURE_BRANCH" --force-with-lease  # Push rebased branch
+      #         # Merge the PR using GitHub CLI
+      #         gh pr merge $pr_number --merge --delete-branch  # Or use --squash or --rebase
+      #         echo "PR #$pr_number merged successfully into main."
+      #         break  # Exit the loop after successful merge
+      #       else
+      #         echo "PR is not approved yet, waiting..."
+      #         echo "Approve the PR , click on link to go to PR $changelog_pr_url"
+      #         sleep 30  # Wait for approval, check again after some time
+      #       fi
+      #     done
+      
+
+
+##############################################################################################################
+
+  # read_tag_and_deploy:
+  #   needs: validate_fetched_pr
+  #   if: github.event_name == 'workflow_dispatch' 
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code from PR branch
+  #       uses: actions/checkout@v3
+  #       with:
+  #         ref: ${{ github.head_ref }}  # Checkout the feature branch
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+
+  #     - name: Set up Git for tagging
+  #       run: |
+  #         git config --global user.name "github-actions"
+  #         git config --global user.email "github-actions@github.com"
+  #     - name: Fetch tags from remote
+  #       run: |
+  #         git fetch --tags
+  #     - name: Fetch PR commit message using GitHub API
+  #       id: maunal_pr_commit_message
+  #       run: |
+  #         TAG_TO_DEPLOY="${{ github.event.inputs.tag_to_deploy }}"
+          
+  #         # Ensure the tag variable is set correctly
+  #         echo "Deploying Tag: $TAG_TO_DEPLOY"
+  #         # Step 1: Get the commit SHA for the tag
+  #         COMMIT_SHA=$(git rev-list -n 1 "$TAG_TO_DEPLOY")
+  #         echo "Commit SHA for tag $TAG_TO_DEPLOY: $COMMIT_SHA"
+              
+  #         # Step 2: Use the GitHub API to find the PR associated with the commit SHA
+  #         PR_NUMBER=$(curl -s \
+  #           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+  #           "https://api.github.com/repos/${{ github.repository }}/pulls?state=all&head=${COMMIT_SHA}" \
+  #           | jq -r '.[0].number')
+          
+  #         # Fetch PR details
+  #         COMMIT_MESSAGE=$(curl -s \
+  #           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+  #           "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}" \
+  #           | jq -r '.title + " " + .body')
+  #         # Remove newlines and extra spaces
+  #         COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE" | tr -d '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+  #         # Set commit message for later use
+  #         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
+  #         echo "Fetched Commit Message: $COMMIT_MESSAGE"
+          
+  #     - name: Checkout the tag for deployment
+  #       run: |
+  #         NEW_TAG="${{ github.event.inputs.tag_to_deploy }}"
+  #         git checkout $NEW_TAG
+  #         echo "Checked out tag: $NEW_TAG"
+  #         ls -alh  # List files to verify the tag content
+  #     - name: Deploy to Dev
+  #       run: |
+  #         echo "Deploying to Dev environment using tag ${{ env.NEW_TAG }}"
+  #         dir
+  #         ls
+  #     - name: Update Changelog for Dev Deployment
+  #       run: |
+  #         TAG_NAME="${{ github.event.inputs.tag_to_deploy }}"
+  #         DATE=$(date +'%Y-%m-%d')
+  #         ENVIRONMENT="dev"
+  #         COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+  #         # Ensure we're on the main branch to create feature from
+  #         git checkout main
+  #         git pull origin main
+  #         # Debugging: Print the value of TAG_NAME to ensure it is correct
+  #         echo "Updating changelog for tag: $TAG_NAME"
+  #         # Add a changelog entry for the Dev deployment with PR commit message
+  #         echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n" >> CHANGELOG_Dev.md
+  #         # Commit and push changes
+  #         git add CHANGELOG_Dev.md
+  #         git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+  #         # Fetch and merge remote changes before pushing
+  #         git fetch origin main
+  #         git merge origin/main --no-edit --allow-unrelated-histories || true
+  #         # Handle conflicts manually if necessary
+  #         if git ls-files -u | grep -q .; then
+  #           echo "Merge conflicts detected, resolving..."
+  #           git checkout --ours CHANGELOG_Dev.md CHANGELOG_Qa.md CHANGELOG_Prod.md  # Keep local changes in changelog
+  #           git add CHANGELOG_Dev.md CHANGELOG_Qa.md CHANGELOG_Prod.md
+  #           git commit -m "Resolved conflicts for changelog files"
+  #         fi
+  #         # Push the changes
+  #         git push origin HEAD:main
+  #     - name: Checkout the tag for deployment
+  #       run: |
+  #         NEW_TAG="${{ github.event.inputs.tag_to_deploy }}"
+  #         git checkout $NEW_TAG
+  #         echo "Checked out tag: $NEW_TAG"
+  #         ls -alh  # List files to verify the tag content
+  #     - name: Deploy to QA
+  #       run: |
+  #         echo "Deploying to QA environment using tag ${{ env.NEW_TAG }}"
+  #         dir
+  #         ls
+  #     - name: Update Changelog for Qa Deployment
+  #       run: |
+  #         TAG_NAME="${{ github.event.inputs.tag_to_deploy }}"
+  #         DATE=$(date +'%Y-%m-%d')
+  #         ENVIRONMENT="qa"
+  #         COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+  #         # Ensure we're on the main branch to update the changelog file
+  #         git checkout main
+  #         git pull origin main
+  #         # Debugging: Print the value of TAG_NAME to ensure it is correct
+  #         echo "Updating changelog for tag: $TAG_NAME"
+  #         # Add a changelog entry for the QA deployment with PR commit message
+  #         echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n" >> CHANGELOG_Qa.md
+  #         # Commit and push changes
+  #         git add CHANGELOG_Qa.md
+  #         git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+  #         # Fetch and merge remote changes before pushing
+  #         git fetch origin main
+  #         git merge origin/main --no-edit --allow-unrelated-histories || true
+  #         # Handle conflicts manually if necessary
+  #         if git ls-files -u | grep -q .; then
+  #           echo "Merge conflicts detected, resolving..."
+  #           git checkout --ours CHANGELOG_Dev.md CHANGELOG_Qa.md CHANGELOG_Prod.md  # Keep local changes in changelog
+  #           git add CHANGELOG_Dev.md CHANGELOG_Qa.md CHANGELOG_Prod.md
+  #           git commit -m "Resolved conflicts for changelog files"
+  #         fi
+  #         # Push the changes
+  #         git push origin HEAD:main
+  #     - name: Checkout the tag for deployment
+  #       run: |
+  #         NEW_TAG="${{ github.event.inputs.tag_to_deploy }}"
+  #         git checkout $NEW_TAG
+  #         echo "Checked out tag: $NEW_TAG"
+  #         ls -alh  # List files to verify the tag content
+  #     - name: Deploy to PROD
+  #       run: |
+  #         echo "Deploying to PROD environment using tag ${{ env.NEW_TAG }}"
+  #         dir
+  #         ls
+  #     - name: Update Changelog for Prod Deployment
+  #       run: |
+  #         TAG_NAME="${{ github.event.inputs.tag_to_deploy }}"
+  #         DATE=$(date +'%Y-%m-%d')
+  #         ENVIRONMENT="prod"
+  #         COMMIT_MESSAGE="${{ env.COMMIT_MESSAGE }}"
+  #         # Ensure we're on the main branch to update the changelog file
+  #         git checkout main
+  #         git pull origin main
+  #         # Debugging: Print the value of TAG_NAME to ensure it is correct
+  #         echo "Updating changelog for tag: $TAG_NAME"
+  #         # Add a changelog entry for the prod deployment with PR commit message
+  #         echo -e "\n#####\n## [${TAG_NAME}] - $DATE\n### Deployed to:\n- **${ENVIRONMENT}**: ${DATE}\n### Changes:\n- Deployed version ${TAG_NAME}\n- Commit Message: $COMMIT_MESSAGE\n" >> CHANGELOG_Prod.md
+  #         # Commit and push changes
+  #         git add CHANGELOG_Prod.md
+  #         git commit -m "Update changelog for ${TAG_NAME} deployment to ${ENVIRONMENT}"
+  #         # Fetch and merge remote changes before pushing
+  #         git fetch origin main
+  #         git merge origin/main --no-edit --allow-unrelated-histories || true
+  #         # Handle conflicts manually if necessary
+  #         if git ls-files -u | grep -q .; then
+  #           echo "Merge conflicts detected, resolving..."
+  #           git checkout --ours CHANGELOG_Dev.md CHANGELOG_Qa.md CHANGELOG_Prod.md  # Keep local changes in changelog
+  #           git add CHANGELOG_Dev.md CHANGELOG_Qa.md CHANGELOG_Prod.md
+  #           git commit -m "Resolved conflicts for changelog files"
+  #         fi
+  #         # Push the changes
+  #         git push origin HEAD:main

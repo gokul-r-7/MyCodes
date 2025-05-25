@@ -1,0 +1,11 @@
+domain_name: customer
+source_name: salesforce
+databases : 
+  - ${database_prefix}_customer_csp_salesforce_curated
+  - ${database_prefix}_customer_csp_salesforce_raw
+  - ${database_prefix}_customer_csp_salesforce_transformed
+#table_definitions:
+#  - table_name: o3_change_history
+#    column_definitions:
+#      - column_name: id
+#        data_classification: public

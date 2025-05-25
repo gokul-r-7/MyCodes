@@ -1,0 +1,547 @@
+---
+SourceSystemId: isotracker_curated
+MetadataType: curated#isotracker#cp2_stress_calc#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/isotracker/parquet/cp2_stress_calc_iso_tracker.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: isotracker-cp2-stress-calc-csv_xlsx_curated
+  name: isotracker_cp2_stress_calc_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: calc_tracking
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calc_tracking
+  - column_data_type: string
+    column_name: sr_no
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sr_no
+  - column_data_type: string
+    column_name: item
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: item
+  - column_data_type: string
+    column_name: design_area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: design_area
+  - column_data_type: string
+    column_name: area_for_tracking
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_for_tracking
+  - column_data_type: string
+    column_name: area_for_tracking_edited_by_hou
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_for_tracking_edited_by_hou
+  - column_data_type: string
+    column_name: line_id_ref_ldt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_id_ref_ldt
+  - column_data_type: string
+    column_name: pipe_spec_ref_ldt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_spec_ref_ldt
+  - column_data_type: string
+    column_name: size_ref_ldt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: size_ref_ldt
+  - column_data_type: string
+    column_name: flow_sheet_no__ref_ldt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: flow_sheet_no__ref_ldt
+  - column_data_type: string
+    column_name: designer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: designer
+  - column_data_type: string
+    column_name: work_share_comments
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: work_share_comments
+  - column_data_type: string
+    column_name: stress_level__ref_ldt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress_level__ref_ldt
+  - column_data_type: string
+    column_name: stress_calc_no__ref_ldt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress_calc_no__ref_ldt
+  - column_data_type: string
+    column_name: module_cm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module_cm
+  - column_data_type: string
+    column_name: module_tm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module_tm
+  - column_data_type: string
+    column_name: module_bm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module_bm
+  - column_data_type: string
+    column_name: module_um
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module_um
+  - column_data_type: string
+    column_name: module_lm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module_lm
+  - column_data_type: string
+    column_name: module_pm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module_pm
+  - column_data_type: string
+    column_name: module_sm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module_sm
+  - column_data_type: string
+    column_name: module_nm
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module_nm
+  - column_data_type: string
+    column_name: isometric_from_design_date__yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isometric_from_design_date__yyyy_mm_dd
+  - column_data_type: string
+    column_name: issued_to_design_date__yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_design_date__yyyy_mm_dd
+  - column_data_type: string
+    column_name: calc__in_analysis_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calc__in_analysis_y_n
+  - column_data_type: string
+    column_name: in_checking_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: in_checking_y_n
+  - column_data_type: string
+    column_name: completed_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: completed_y_n
+  - column_data_type: string
+    column_name: issued_to_ho_date__yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_ho_date__yyyy_mm_dd
+  - column_data_type: string
+    column_name: received_from_ho_date__yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: received_from_ho_date__yyyy_mm_dd
+  - column_data_type: string
+    column_name: ho_comments_picked_up_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ho_comments_picked_up_y_n
+  - column_data_type: string
+    column_name: final_issued_to_ho_date__yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: final_issued_to_ho_date__yyyy_mm_dd
+  - column_data_type: string
+    column_name: stress_analysis_engineer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress_analysis_engineer
+  - column_data_type: string
+    column_name: gid_checker
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gid_checker
+  - column_data_type: string
+    column_name: ho_checker
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ho_checker
+  - column_data_type: string
+    column_name: remarks
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remarks
+  - column_data_type: string
+    column_name: unique_line_id_y_blank_for_ref_only
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unique_line_id_y_blank_for_ref_only
+  - column_data_type: string
+    column_name: isometric_from_design_date__mm_dd_yyyy
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isometric_from_design_date__mm_dd_yyyy
+  - column_data_type: string
+    column_name: calc_in_ho_scope_started
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calc_in_ho_scope_started
+  - column_data_type: string
+    column_name: calc_in_analysis_in_gid_scope_started_y
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calc_in_analysis_in_gid_scope_started_y
+  - column_data_type: string
+    column_name: issues_w_starting_calc__y
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issues_w_starting_calc__y
+  - column_data_type: string
+    column_name: analysis_started_but_now_on_hold_y
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: analysis_started_but_now_on_hold_y
+  - column_data_type: string
+    column_name: lines_not_started_but_isometrics_available_y
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lines_not_started_but_isometrics_available_y
+  - column_data_type: string
+    column_name: analysis_completed_yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: analysis_completed_yyyy_mm_dd
+  - column_data_type: string
+    column_name: in_checking_y
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: in_checking_y
+  - column_data_type: string
+    column_name: checking_completed_yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: checking_completed_yyyy_mm_dd
+  - column_data_type: string
+    column_name: issued_to_ho_date__yyyy_mm_dd_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_ho_date__yyyy_mm_dd_1
+  - column_data_type: string
+    column_name: received_from_ho_date__yyyy_mm_dd_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: received_from_ho_date__yyyy_mm_dd_1
+  - column_data_type: string
+    column_name: ho_comments_picked_up_yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ho_comments_picked_up_yyyy_mm_dd
+  - column_data_type: string
+    column_name: stress_analysis_engineer_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress_analysis_engineer_1
+  - column_data_type: string
+    column_name: gid_checker_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gid_checker_1
+  - column_data_type: string
+    column_name: ho_checker_reviewer
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ho_checker_reviewer
+  - column_data_type: string
+    column_name: ready_for_client_review_level_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ready_for_client_review_level_1
+  - column_data_type: string
+    column_name: issued_to_vg_date__yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_vg_date__yyyy_mm_dd
+  - column_data_type: string
+    column_name: approved_from_vg_date__yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: approved_from_vg_date__yyyy_mm_dd
+  - column_data_type: string
+    column_name: loads_issued_to_civil_structural
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loads_issued_to_civil_structural
+  - column_data_type: string
+    column_name: final_issued_to_piping_design_date__yyyy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: final_issued_to_piping_design_date__yyyy_mm_dd
+  - column_data_type: string
+    column_name: remarks_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remarks_1
+  - column_data_type: string
+    column_name: ageing_for_calc_pending_with_ho_for_review
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ageing_for_calc_pending_with_ho_for_review
+  - column_data_type: string
+    column_name: ageing_for_calc_pending_with_gid_for_comment_incorporation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ageing_for_calc_pending_with_gid_for_comment_incorporation
+  - column_data_type: string
+    column_name: ageing_for_calc_pending_with_from_vg_approval_to_issue_to_piping_design
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ageing_for_calc_pending_with_from_vg_approval_to_issue_to_piping_design
+  - column_data_type: string
+    column_name: isometric_from_design_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isometric_from_design_date
+  - column_data_type: string
+    column_name: issued_to_design_date__yy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_design_date__yy_mm_dd
+  - column_data_type: string
+    column_name: calc__in_analysis_y_n_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: calc__in_analysis_y_n_1
+  - column_data_type: string
+    column_name: in_checking_y_n_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: in_checking_y_n_1
+  - column_data_type: string
+    column_name: completed_y_n_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: completed_y_n_1
+  - column_data_type: string
+    column_name: issued_to_ho_date__yy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_ho_date__yy_mm_dd
+  - column_data_type: string
+    column_name: received_from_ho_date__yy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: received_from_ho_date__yy_mm_dd
+  - column_data_type: string
+    column_name: final_issued_to_ho_date__yy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: final_issued_to_ho_date__yy_mm_dd
+  - column_data_type: string
+    column_name: issued_to_design_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: issued_to_design_date
+  - column_data_type: string
+    column_name: stress_analysis_engineer_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stress_analysis_engineer_2
+  - column_data_type: string
+    column_name: gid_checker_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: gid_checker_2
+  - column_data_type: string
+    column_name: ho_checker_1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ho_checker_1
+  - column_data_type: string
+    column_name: remarks_2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remarks_2
+  - column_data_type: string
+    column_name: isometric_from_design_date__yy_mm_dd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isometric_from_design_date__yy_mm_dd
+  - column_data_type: string
+    column_name: date_at_excel_cell_bv
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: date_at_excel_cell_bv
+  - column_data_type: string
+    column_name: vessel_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vessel_number
+  - column_data_type: string
+    column_name: vessel_clip_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vessel_clip_y_n
+  - column_data_type: string
+    column_name: no_of_vessel_clips
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: no_of_vessel_clips
+  - column_data_type: string
+    column_name: nozzle_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nozzle_number
+  - column_data_type: string
+    column_name: qualified_within_vendor_allowable_ks_me_spc_0203_standard_allowable_external_loads_on_equipment_nozzles_specification_api_standards_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: qualified_within_vendor_allowable_ks_me_spc_0203_standard_allowable_external_loads_on_equipment_nozzles_specification_api_standards_y_n
+  - column_data_type: string
+    column_name: nozzle_transmittal_prepared_for_loads_exceeding_the_allowables_y_n
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nozzle_transmittal_prepared_for_loads_exceeding_the_allowables_y_n
+  - column_data_type: string
+    column_name: nozzle_transmittal_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: nozzle_transmittal_number
+  - column_data_type: string
+    column_name: loading_to_csa
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loading_to_csa
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_isotracker_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/isotracker/cp2_stress_calc/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_cp2_stress_calc
+  name: curated_cp2_stress_calc
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/isotracker/cp2_stress_calc
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'isotracker' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

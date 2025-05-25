@@ -1,0 +1,40 @@
+SourceSystemId: sharepointgbs
+MetadataType: csv_xlsx#aveva_usage#sharepointgbs
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: finance/sharepoint_gbs/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: finance/sharepoint_gbs/parquet/
+  raw_files_path: finance/sharepoint_gbs/raw/aveva_usage/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: finance/sharepoint_gbs/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  csv_files:
+    - filename: Aveva_Usage_Sept21.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 6
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: gbs_aveva_usage
+      with_header: true
+    - filename: Aveva_Usage_Sep21.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 5
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: gbs_aveva_usage
+      with_header: true
+name: SharePointGBSAveva
+Namespace: finance

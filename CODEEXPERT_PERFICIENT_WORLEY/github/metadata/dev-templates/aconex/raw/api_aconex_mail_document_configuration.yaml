@@ -1,0 +1,53 @@
+---
+SourceSystemId: aconex
+MetadataType: api#document_control#aconex#mail_document
+api_parameter:
+  api_body:
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/xml
+  api_method: get
+  api_query_params:
+  api_response_type: xml
+  api_retry: 12
+  api_ssl_verify: False
+  api_timeout: 60
+  auth_type: Basic
+  endpoint: "https://{instance_host}/api/projects/{project_id}/mail/{mail_id}"
+  secret_key: ${secret_prefix}-db-aconex
+aws_region: ${region}
+is_active: "y"
+job_parameter:
+  bucket_data_source_prefix: "document_control/aconex"
+  tmp_object_name: "{mail_id}_{current_batch_run_time}.xml"
+  api_tmp_folder: "temp/document_control/aconex/mail_document/Project={project_id}/{current_batch_folder_name}"
+  relation_tmp_folder: "temp/document_control/aconex/mail_document/relationalized/{project_id}/{current_batch_folder_name}"
+  bucket_name: ${raw_bucket}
+  dependency_mail_id_output_folder_path: "document_control/aconex/Mail_inbox/Project={project_id}/{batch_partition_path}/"
+  dependency_full_load_mail_id_folder_path: "document_control/aconex/Mail_inbox/Project={project_id}/"
+  tmp_input_path: "temp/document_control/aconex/mail_document/Project={project_id}"
+  kms_key_id: ${kms_key_id}
+  full_incr: I
+  bookmark_contxt: "aconex_mail_document_{project_id}"
+  is_glue_bookmark_enabled: true 
+  output_s3: "document_control/aconex/mail_document/Project={project_id}/{batch_partition_path}/"
+  incremental_criteria_folder_location: "document_control/aconex/mail_document_audit_folder"
+  audit_file_name: "aconex_mail_document_{project_id}.txt"
+  root_tag: Mail
+  row_tag: Attachments
+  row_child_tag: RegisteredDocumentAttachment
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  sampling_output_s3: "document_control/aconex/data_sampling"
+  api_source_to_target_rename:
+    Attachments.RegisteredDocumentAttachment.val.DocumentId: "DocumentId"
+    Attachments.RegisteredDocumentAttachment.val.DocumentNo: "DocumentNo"
+    Attachments.RegisteredDocumentAttachment.val.RegisteredAs: "RegisteredAs"
+    Attachments.RegisteredDocumentAttachment.val.FileName: "FileName"
+    Attachments.RegisteredDocumentAttachment.val.FileSize: "FileSize"
+    Attachments.RegisteredDocumentAttachment.val.Revision: "Revision"
+    Attachments.RegisteredDocumentAttachment.val.Status: "Status"
+    Attachments.RegisteredDocumentAttachment.val.Title: "Title"
+    Attachments.RegisteredDocumentAttachment.val._attachmentId: "attachmentId"
+    _MailId: "MailId"
+name: mail_document

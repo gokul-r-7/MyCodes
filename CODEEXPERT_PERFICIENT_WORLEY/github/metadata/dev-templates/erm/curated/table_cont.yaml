@@ -1,0 +1,451 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishCont#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishCont/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishCont
+  name: erm_PublishCont
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: 
+    nullable: true
+    raw_column_name: tablename  
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: ''
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: ''
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: ''
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: ''
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: ''
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: cont_no
+    comment: cont_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: cont_no
+  - column_data_type: string
+    column_name: cont_id
+    comment: cont_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: cont_id
+  - column_data_type: string
+    column_name: name_1
+    comment: name_1
+    data_classification: ''
+    nullable: true
+    raw_column_name: name_1
+  - column_data_type: string
+    column_name: name_2
+    comment: name_2
+    data_classification: ''
+    nullable: true
+    raw_column_name: name_2
+  - column_data_type: string
+    column_name: cont_is_temp_suppl
+    comment: cont_is_temp_suppl
+    data_classification: ''
+    nullable: true
+    raw_column_name: cont_is_temp_suppl
+  - column_data_type: string
+    column_name: cont_is_suppl
+    comment: cont_is_suppl
+    data_classification: ''
+    nullable: true
+    raw_column_name: cont_is_suppl
+  - column_data_type: string
+    column_name: cont_is_cust
+    comment: cont_is_cust
+    data_classification: ''
+    nullable: true
+    raw_column_name: cont_is_cust
+  - column_data_type: string
+    column_name: cont_is_forwarder
+    comment: cont_is_forwarder
+    data_classification: ''
+    nullable: true
+    raw_column_name: cont_is_forwarder
+  - column_data_type: string
+    column_name: suppl_stat
+    comment: suppl_stat
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_stat
+  - column_data_type: string
+    column_name: cust_stat
+    comment: cust_stat
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_stat
+  - column_data_type: string
+    column_name: forwarder_stat
+    comment: forwarder_stat
+    data_classification: ''
+    nullable: true
+    raw_column_name: forwarder_stat
+  - column_data_type: string
+    column_name: country_id
+    comment: country_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: country_id
+  - column_data_type: string
+    column_name: lang_id
+    comment: lang_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: lang_id
+  - column_data_type: decimal(38,2)
+    column_name: suppl_main_cont_addr_no
+    comment: suppl_main_cont_addr_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_main_cont_addr_no
+  - column_data_type: decimal(38,2)
+    column_name: cust_main_cont_addr_no
+    comment: cust_main_cont_addr_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_main_cont_addr_no
+  - column_data_type: decimal(38,2)
+    column_name: suppl_pay_term_no
+    comment: suppl_pay_term_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_pay_term_no
+  - column_data_type: decimal(38,2)
+    column_name: cust_pay_term_no
+    comment: cust_pay_term_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_pay_term_no
+  - column_data_type: decimal(38,2)
+    column_name: suppl_trans_term_no
+    comment: suppl_trans_term_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_trans_term_no
+  - column_data_type: decimal(38,2)
+    column_name: cust_trans_term_no
+    comment: cust_trans_term_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_trans_term_no
+  - column_data_type: decimal(38,2)
+    column_name: suppl_deliv_term_no
+    comment: suppl_deliv_term_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_deliv_term_no
+  - column_data_type: decimal(38,2)
+    column_name: cust_deliv_term_no
+    comment: cust_deliv_term_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_deliv_term_no
+  - column_data_type: string
+    column_name: deliv_place
+    comment: deliv_place
+    data_classification: ''
+    nullable: true
+    raw_column_name: deliv_place
+  - column_data_type: string
+    column_name: creditor_no
+    comment: creditor_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: creditor_no
+  - column_data_type: string
+    column_name: debtor_no
+    comment: debtor_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: debtor_no
+  - column_data_type: string
+    column_name: vat_reg_no
+    comment: vat_reg_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: vat_reg_no
+  - column_data_type: string
+    column_name: proc_hand_usr_id
+    comment: proc_hand_usr_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: proc_hand_usr_id
+  - column_data_type: string
+    column_name: sale_hand_usr_id
+    comment: sale_hand_usr_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: sale_hand_usr_id
+  - column_data_type: decimal(38,2)
+    column_name: suppl_rating
+    comment: suppl_rating
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_rating
+  - column_data_type: decimal(38,2)
+    column_name: cust_rating
+    comment: cust_rating
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_rating
+  - column_data_type: decimal(38,2)
+    column_name: suppl_cls_code_no
+    comment: suppl_cls_code_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_cls_code_no
+  - column_data_type: decimal(38,2)
+    column_name: suppl_agent_no
+    comment: suppl_agent_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_agent_no
+  - column_data_type: decimal(38,2)
+    column_name: cust_agent_no
+    comment: cust_agent_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_agent_no
+  - column_data_type: string
+    column_name: suppl_cur_id
+    comment: suppl_cur_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_cur_id
+  - column_data_type: string
+    column_name: cust_cur_id
+    comment: cust_cur_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_cur_id
+  - column_data_type: string
+    column_name: suppl_rem
+    comment: suppl_rem
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_rem
+  - column_data_type: string
+    column_name: cust_rem
+    comment: cust_rem
+    data_classification: ''
+    nullable: true
+    raw_column_name: cust_rem
+  - column_data_type: string
+    column_name: suppl_portal_access
+    comment: suppl_portal_access
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_portal_access
+  - column_data_type: string
+    column_name: homepage
+    comment: homepage
+    data_classification: ''
+    nullable: true
+    raw_column_name: homepage
+  - column_data_type: string
+    column_name: suppl_portal_eula_accepted
+    comment: suppl_portal_eula_accepted
+    data_classification: ''
+    nullable: true
+    raw_column_name: suppl_portal_eula_accepted
+  - column_data_type: decimal(38,2)
+    column_name: parent_cont_no
+    comment: parent_cont_no
+    data_classification: ''
+    nullable: true
+    raw_column_name: parent_cont_no
+  - column_data_type: string
+    column_name: customer_col_0
+    comment: customer_col_0
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_0
+  - column_data_type: string
+    column_name: customer_col_1
+    comment: customer_col_1
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_1
+  - column_data_type: string
+    column_name: customer_col_2
+    comment: customer_col_2
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_2
+  - column_data_type: string
+    column_name: customer_col_3
+    comment: customer_col_3
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_3
+  - column_data_type: string
+    column_name: customer_col_4
+    comment: customer_col_4
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_4
+  - column_data_type: string
+    column_name: customer_col_5
+    comment: customer_col_5
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_5
+  - column_data_type: string
+    column_name: customer_col_6
+    comment: customer_col_6
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_6
+  - column_data_type: string
+    column_name: customer_col_7
+    comment: customer_col_7
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_7
+  - column_data_type: string
+    column_name: customer_col_8
+    comment: customer_col_8
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_8
+  - column_data_type: string
+    column_name: customer_col_9
+    comment: customer_col_9
+    data_classification: ''
+    nullable: true
+    raw_column_name: customer_col_9
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: ''
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: ''
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: ''
+    nullable: true
+    raw_column_name: upd_usr_id
+  - column_data_type: string
+    column_name: cont_is_insp
+    comment: cont_is_insp
+    data_classification: ''
+    nullable: true
+    raw_column_name: cont_is_insp
+  - column_data_type: string
+    column_name: insp_stat
+    comment: insp_stat
+    data_classification: ''
+    nullable: true
+    raw_column_name: insp_stat
+  - column_data_type: string
+    column_name: cont_is_subcontractor
+    comment: cont_is_subcontractor
+    data_classification: ''
+    nullable: true
+    raw_column_name: cont_is_subcontractor
+  - column_data_type: string
+    column_name: subcontractor_stat
+    comment: subcontractor_stat
+    data_classification: ''
+    nullable: true
+    raw_column_name: subcontractor_stat
+  - column_data_type: decimal(38,2)
+    column_name: dflt_shipping_time
+    comment: dflt_shipping_time
+    data_classification: ''
+    nullable: true
+    raw_column_name: dflt_shipping_time
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishCont/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: cont
+  load_type: cdc
+  name: cont
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishCont
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

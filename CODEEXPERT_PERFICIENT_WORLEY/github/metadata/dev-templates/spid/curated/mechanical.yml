@@ -1,0 +1,192 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_Mechanical#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_Mechanical/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-mechanical
+  name: spid_mechanical
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: string
+    column_name: powerconsumption
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: powerconsumption
+  - column_data_type: double
+    column_name: sp_powerconsumptionsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_powerconsumptionsi
+  - column_data_type: integer
+    column_name: typeofdriver
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: typeofdriver
+  - column_data_type: integer
+    column_name: mechrating
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mechrating
+  - column_data_type: integer
+    column_name: sealpipingplan
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sealpipingplan
+  - column_data_type: integer
+    column_name: cwpipingplan
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwpipingplan
+  - column_data_type: string
+    column_name: driverratedpower
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: driverratedpower
+  - column_data_type: double
+    column_name: sp_driverratedpowersi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_driverratedpowersi
+  - column_data_type: string
+    column_name: powerabsorbed
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: powerabsorbed
+  - column_data_type: double
+    column_name: sp_powerabsorbedsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_powerabsorbedsi
+  - column_data_type: string
+    column_name: differentialpressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: differentialpressure
+  - column_data_type: double
+    column_name: sp_differentialpressuresi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_differentialpressuresi
+  - column_data_type: string
+    column_name: ratedsuctionpressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ratedsuctionpressure
+  - column_data_type: double
+    column_name: sp_ratedsuctionpressuresi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_ratedsuctionpressuresi
+  - column_data_type: string
+    column_name: rateddischargepressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rateddischargepressure
+  - column_data_type: double
+    column_name: sp_rateddischargepressuresi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_rateddischargepressuresi
+  - column_data_type: string
+    column_name: ratedcapacity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ratedcapacity
+  - column_data_type: double
+    column_name: sp_ratedcapacitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_ratedcapacitysi
+  - column_data_type: integer
+    column_name: materialofconstclassinternal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialofconstclassinternal
+  - column_data_type: string
+    column_name: wp_sparing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_sparing
+  - column_data_type: string
+    column_name: wp_media
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_media
+  - column_data_type: integer
+    column_name: wp_operatingmode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_operatingmode
+  - column_data_type: string
+    column_name: wor_drivervoltage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_drivervoltage
+  - column_data_type: double
+    column_name: sp_wor_drivervoltagesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wor_drivervoltagesi    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_Mechanical/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_mechanical
+  load_type: append
+  name: curated_t_mechanical
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_mechanical
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,743 @@
+MetadataType: curated#o3#construction-components#job#iceberg
+SourceSystemId: curated_o3
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/construction/o3/construction-components/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: o3_construction_components
+  name: o3_construction_components
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    primary_key: [projectid, componenttype, componenttypeid, lookupkey, objecttype]
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: projectid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: projectid
+  - column_data_type: string
+    column_name: tagnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagnumber
+  - column_data_type: string
+    column_name: lookupkey
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: lookupkey
+  - column_data_type: string
+    column_name: systempath
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systempath
+  - column_data_type: string
+    column_name: drawingid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingid
+  - column_data_type: string
+    column_name: uniqueid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: uniqueid
+  - column_data_type: string
+    column_name: drawing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawing
+  - column_data_type: string
+    column_name: drawingsourceurn
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingsourceurn
+  - column_data_type: string
+    column_name: drawingmaterialavailabilityid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingmaterialavailabilityid
+  - column_data_type: string
+    column_name: drawingmaterialavailability
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingmaterialavailability
+  - column_data_type: string
+    column_name: drawingmaterialavailabilitycolor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawingmaterialavailabilitycolor
+  - column_data_type: string
+    column_name: componenttypeid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: componenttypeid
+  - column_data_type: string
+    column_name: componenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: componenttype
+  - column_data_type: string
+    column_name: datecreated
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datecreated
+  - column_data_type: string
+    column_name: createdbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuserid
+  - column_data_type: string
+    column_name: createdbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: createdbyuser
+  - column_data_type: string
+    column_name: datemodified
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: datemodified
+  - column_data_type: string
+    column_name: modifiedbyuserid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuserid
+  - column_data_type: string
+    column_name: modifiedbyuser
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modifiedbyuser
+  - column_data_type: string
+    column_name: sheet
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sheet
+  - column_data_type: string
+    column_name: area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area
+  - column_data_type: string
+    column_name: module
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: module
+  - column_data_type: string
+    column_name: unit
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit
+  - column_data_type: string
+    column_name: core
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: core
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: insulation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulation
+  - column_data_type: string
+    column_name: insulationspecification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationspecification
+  - column_data_type: string
+    column_name: linenumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: linenumber
+  - column_data_type: string
+    column_name: loopnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: loopnumber
+  - column_data_type: string
+    column_name: pipelineid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipelineid
+  - column_data_type: string
+    column_name: material
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: material
+  - column_data_type: string
+    column_name: materialidentifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialidentifier
+  - column_data_type: string
+    column_name: objecttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: objecttype
+  - column_data_type: string
+    column_name: pid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pid
+  - column_data_type: string
+    column_name: pressurerating
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pressurerating
+  - column_data_type: string
+    column_name: schedule
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: schedule
+  - column_data_type: string
+    column_name: service
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: service
+  - column_data_type: string
+    column_name: shortmaterialtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: shortmaterialtype
+  - column_data_type: string
+    column_name: specification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: specification
+  - column_data_type: string
+    column_name: subobjecttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: subobjecttype
+  - column_data_type: string
+    column_name: subsystemname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: subsystemname
+  - column_data_type: string
+    column_name: systemname
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemname
+  - column_data_type: string
+    column_name: terminationnumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: terminationnumber
+  - column_data_type: string
+    column_name: testpressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: testpressure
+  - column_data_type: string
+    column_name: testtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: testtype
+  - column_data_type: string
+    column_name: voltage
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: voltage
+  - column_data_type: string
+    column_name: insulationthickness
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationthickness
+  - column_data_type: string
+    column_name: fromtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fromtag
+  - column_data_type: string
+    column_name: totag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: totag
+  - column_data_type: string
+    column_name: boresize
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: boresize
+  - column_data_type: string
+    column_name: length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: length
+  - column_data_type: string
+    column_name: areadimension
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: areadimension
+  - column_data_type: string
+    column_name: volume
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: volume
+  - column_data_type: string
+    column_name: weight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: weight
+  - column_data_type: string
+    column_name: constructionworkareaid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionworkareaid
+  - column_data_type: string
+    column_name: cwa
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwa
+  - column_data_type: string
+    column_name: constructionworkpackageid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: constructionworkpackageid
+  - column_data_type: string
+    column_name: cwp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwp
+  - column_data_type: string
+    column_name: ismodelcomponent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ismodelcomponent
+  - column_data_type: string
+    column_name: systemdescription
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemdescription
+  - column_data_type: string
+    column_name: subsystemdescription
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: subsystemdescription
+  - column_data_type: string
+    column_name: status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: string
+    column_name: pipespoolid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipespoolid
+  - column_data_type: string
+    column_name: topelevation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: topelevation
+  - column_data_type: string
+    column_name: bottomelevation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: bottomelevation
+  - column_data_type: string
+    column_name: locationposition
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: locationposition
+  - column_data_type: string
+    column_name: materialuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialuom
+  - column_data_type: string
+    column_name: materialquantity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialquantity
+  - column_data_type: string
+    column_name: materialtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialtype
+  - column_data_type: string
+    column_name: materialcategory
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialcategory
+  - column_data_type: string
+    column_name: materialdrawing
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialdrawing
+  - column_data_type: string
+    column_name: materialsource
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialsource
+  - column_data_type: string
+    column_name: drawings
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: drawings
+  - column_data_type: string
+    column_name: trackingtag
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: trackingtag
+  - column_data_type: string
+    column_name: hostcomponents
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hostcomponents
+  - column_data_type: string
+    column_name: width
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: width
+  - column_data_type: string
+    column_name: height
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: height
+  - column_data_type: string
+    column_name: thickness
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: thickness
+  - column_data_type: string
+    column_name: perimeter
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: perimeter
+  - column_data_type: string
+    column_name: temperature
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: temperature
+  - column_data_type: string
+    column_name: componentidentifier
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: componentidentifier
+  - column_data_type: string
+    column_name: classification
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: classification
+  - column_data_type: string
+    column_name: maincomponent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: maincomponent
+  - column_data_type: string
+    column_name: engineeringrevision
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: engineeringrevision
+  - column_data_type: string
+    column_name: cwatext
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwatext
+  - column_data_type: string
+    column_name: cwptext
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cwptext
+  - column_data_type: string
+    column_name: fabricationstatusid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricationstatusid
+  - column_data_type: string
+    column_name: fabricationstatus
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fabricationstatus
+  - column_data_type: string
+    column_name: paintingspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: paintingspec
+  - column_data_type: string
+    column_name: tracingspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tracingspec
+  - column_data_type: string
+    column_name: pressureequipmentdirective
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pressureequipmentdirective
+  - column_data_type: string
+    column_name: shopweldcount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: shopweldcount
+  - column_data_type: string
+    column_name: fieldweldcount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: fieldweldcount
+  - column_data_type: string
+    column_name: ewptext
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ewptext
+  - column_data_type: string
+    column_name: engineeringworkpackageid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: engineeringworkpackageid
+  - column_data_type: string
+    column_name: ewp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ewp
+  - column_data_type: string
+    column_name: iwpcount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: iwpcount
+  - column_data_type: string
+    column_name: systemid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: systemid
+  - column_data_type: string
+    column_name: subsystemid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: subsystemid
+  - column_data_type: string
+    column_name: ismanual
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ismanual
+  - column_data_type: string
+    column_name: componentbacklogtaskcount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: componentbacklogtaskcount
+  - column_data_type: string
+    column_name: ratecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ratecode
+  - column_data_type: string
+    column_name: costcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: costcode
+  - column_data_type: string
+    column_name: externallookup
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: externallookup
+  - column_data_type: string
+    column_name: sequencerank
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sequencerank
+  - column_data_type: string
+    column_name: splitparentid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: splitparentid
+  - column_data_type: string
+    column_name: keyquantity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: keyquantity
+  - column_data_type: string
+    column_name: keyquantityuom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: keyquantityuom
+  - column_data_type: string
+    column_name: splitallocatedquantity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: splitallocatedquantity
+  - column_data_type: string
+    column_name: splitremainingquantity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: splitremainingquantity
+  - column_data_type: string
+    column_name: level
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: level
+  - column_data_type: string
+    column_name: profile
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: profile
+  - column_data_type: string
+    column_name: density
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: density
+  - column_data_type: string
+    column_name: remark
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: remark
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: datemodified_ts
+  iceberg_properties:
+    database_name: ${database_prefix}_construction_o3_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/construction/o3/construction_components/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_construction_components
+  load_type: incremental_no_delete
+  name: curated_o3_construction_components
+  primary_key: [projectid, componenttype, componenttypeid, lookupkey, objecttype]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/construction/o3/construction_components
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, CAST(datemodified as timestamp) as datemodified_ts, 'o3' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,420 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#LINE#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/LINE/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-line
+  name: spi_line
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: line_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_id
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: decimal(38,0)
+    column_name: unit_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit_id
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date
+  - column_data_type: string
+    column_name: line_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_num
+  - column_data_type: string
+    column_name: line_size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_size
+  - column_data_type: decimal(38,10)
+    column_name: wall_thick
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wall_thick
+  - column_data_type: string
+    column_name: rtg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rtg
+  - column_data_type: decimal(38,0)
+    column_name: plant_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_id
+  - column_data_type: decimal(38,0)
+    column_name: area_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_id
+  - column_data_type: decimal(38,0)
+    column_name: line_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_type_id
+  - column_data_type: string
+    column_name: line_sched
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_sched
+  - column_data_type: decimal(38,10)
+    column_name: line_internal_dia
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_internal_dia
+  - column_data_type: string
+    column_name: temperature_rtg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: temperature_rtg
+  - column_data_type: string
+    column_name: press_rtg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: press_rtg
+  - column_data_type: decimal(38,10)
+    column_name: pd_corros_allow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_corros_allow
+  - column_data_type: string
+    column_name: pd_insul
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_insul
+  - column_data_type: string
+    column_name: pd_pump_drop_uid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_pump_drop_uid
+  - column_data_type: decimal(38,10)
+    column_name: pd_velocity_min
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_velocity_min
+  - column_data_type: decimal(38,10)
+    column_name: pd_velocity_max
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_velocity_max
+  - column_data_type: decimal(38,10)
+    column_name: pd_velocity_nor
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_velocity_nor
+  - column_data_type: string
+    column_name: pd_velocity_uid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_velocity_uid
+  - column_data_type: string
+    column_name: pd_line_from
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_line_from
+  - column_data_type: string
+    column_name: pd_line_to
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_line_to
+  - column_data_type: string
+    column_name: pd_piping_class
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_piping_class
+  - column_data_type: decimal(38,10)
+    column_name: pd_pour_pnt_up
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_pour_pnt_up
+  - column_data_type: decimal(38,10)
+    column_name: pd_pour_pnt_low
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_pour_pnt_low
+  - column_data_type: string
+    column_name: pd_pour_pnt_uid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_pour_pnt_uid
+  - column_data_type: decimal(38,10)
+    column_name: pd_sys_fric_loss
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_sys_fric_loss
+  - column_data_type: string
+    column_name: pd_sys_fric_loss_uid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_sys_fric_loss_uid
+  - column_data_type: string
+    column_name: pd_corros_allow_uid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_corros_allow_uid
+  - column_data_type: decimal(38,10)
+    column_name: pd_pump_drop
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_pump_drop
+  - column_data_type: decimal(38,0)
+    column_name: pipe_std_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_std_id
+  - column_data_type: string
+    column_name: line_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_uom
+  - column_data_type: string
+    column_name: pipe_material
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_material
+  - column_data_type: string
+    column_name: ansi_din
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ansi_din
+  - column_data_type: decimal(38,10)
+    column_name: pipe_size
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_size
+  - column_data_type: string
+    column_name: wall_thick_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wall_thick_uom
+  - column_data_type: string
+    column_name: line_internal_dia_uom
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_internal_dia_uom
+  - column_data_type: decimal(38,0)
+    column_name: pd_insulation_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pd_insulation_id
+  - column_data_type: decimal(38,0)
+    column_name: pipe_orif_mat_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_orif_mat_id
+  - column_data_type: decimal(38,0)
+    column_name: line_isize_pipeschid_indx
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_isize_pipeschid_indx
+  - column_data_type: decimal(38,0)
+    column_name: line_isize_sched_indx
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: line_isize_sched_indx
+  - column_data_type: decimal(38,0)
+    column_name: rev_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rev_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_proj_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_ref_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_ref_id
+  - column_data_type: string
+    column_name: stream_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stream_num
+  - column_data_type: decimal(38,0)
+    column_name: dwg_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_id
+  - column_data_type: decimal(38,0)
+    column_name: pipe_class_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_class_id
+  - column_data_type: string
+    column_name: kks_totalplant
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_totalplant
+  - column_data_type: string
+    column_name: kks_function_key_prefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key_prefix
+  - column_data_type: string
+    column_name: kks_function_key
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key
+  - column_data_type: string
+    column_name: kks_function_key_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_function_key_sequence
+  - column_data_type: string
+    column_name: kks_equipment_unit_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_code
+  - column_data_type: string
+    column_name: kks_equipment_unit_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_sequence
+  - column_data_type: string
+    column_name: kks_equipment_unit_add_code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_equipment_unit_add_code
+  - column_data_type: string
+    column_name: kks_component_key
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_component_key
+  - column_data_type: string
+    column_name: kks_component_key_sequence
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: kks_component_key_sequence
+  - column_data_type: string
+    column_name: merge_release_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: merge_release_flg    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/LINE/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_line
+  load_type: append
+  name: curated_line
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_line
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

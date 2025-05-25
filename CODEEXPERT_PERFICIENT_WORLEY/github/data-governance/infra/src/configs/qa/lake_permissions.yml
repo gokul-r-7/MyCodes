@@ -1,0 +1,113 @@
+domain:
+  - name: Construction
+    description: Construction data to onboard
+    roles:
+      # - role_name: AWS-PIM - Non-Prod-Redshift-DBA
+      - role_name: AWS-PIM - DataPlatform Data Engineer - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformEngineerBasicAccess_cb4821bb6eb171dd
+      # - role_name: AWS-PIM - DataPlatform Data Consumer - NonProd
+      # - role_name: AWS-PIM - DataPlatform Data Curator - Non Prod
+      # - role_name: AWS-PIM - DataPlatform Visualization - Non Prod
+      - role_name: AWS-PIM - DataPlatform Admins - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformAdminAccess_87ce25786c31ff0c
+      # - role_name: worley-datalake-sydney-dev-sys-int-cross-account-iam-role # Don't need to promote to QA
+      #   lake_permissions: ALL
+      #   lf_role_arn: arn:aws:iam::891377181979:role/worley-datalake-sydney-dev-sys-int-cross-account-iam-role 
+
+  - name: Project_control
+    description: Project control data to onboard
+    roles:
+      # - role_name: AWS-PIM - Non-Prod-Redshift-DBA
+      - role_name: AWS-PIM - DataPlatform Data Engineer - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformEngineerBasicAccess_cb4821bb6eb171dd
+      # - role_name: AWS-PIM - DataPlatform Data Consumer - NonProd
+      # - role_name: AWS-PIM - DataPlatform Data Curator - Non Prod
+      # - role_name: AWS-PIM - DataPlatform Visualization - Non Prod
+      - role_name: AWS-PIM - DataPlatform Admins - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformAdminAccess_87ce25786c31ff0c
+      # - role_name: worley-datalake-sydney-dev-sys-int-cross-account-iam-role
+      #   lake_permissions: ALL
+      #   lf_role_arn: arn:aws:iam::891377181979:role/worley-datalake-sydney-dev-sys-int-cross-account-iam-role 
+
+  - name: Document_Control
+    description: Document Control data to onboard
+    roles:
+      # - role_name: AWS-PIM - Non-Prod-Redshift-DBA
+      - role_name: AWS-PIM - DataPlatform Data Engineer - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformEngineerBasicAccess_cb4821bb6eb171dd
+      # - role_name: AWS-PIM - DataPlatform Data Consumer - NonProd
+      # - role_name: AWS-PIM - DataPlatform Data Curator - Non Prod
+      # - role_name: AWS-PIM - DataPlatform Visualization - Non Prod
+      - role_name: AWS-PIM - DataPlatform Admins - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformAdminAccess_87ce25786c31ff0c
+      # - role_name: worley-datalake-sydney-dev-sys-int-cross-account-iam-role
+      #   lake_permissions: ALL
+      #   lf_role_arn: arn:aws:iam::891377181979:role/worley-datalake-sydney-dev-sys-int-cross-account-iam-role 
+
+  - name: Supply_Chain
+    description: Supply chain data
+    roles:
+      # - role_name: AWS-PIM - Non-Prod-Redshift-DBA
+      - role_name: AWS-PIM - DataPlatform Data Engineer - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformEngineerBasicAccess_cb4821bb6eb171dd
+      # - role_name: AWS-PIM - DataPlatform Data Consumer - NonProd
+      # - role_name: AWS-PIM - DataPlatform Data Curator - Non Prod
+      # - role_name: AWS-PIM - DataPlatform Visualization - Non Prod
+      - role_name: AWS-PIM - DataPlatform Admins - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformAdminAccess_87ce25786c31ff0c
+
+  - name: circuit_breaker
+    description: circuit_breaker data
+    roles:
+      - role_name: AWS-PIM - DataPlatform Data Engineer - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformEngineerBasicAccess_cb4821bb6eb171dd
+      # - role_name: AWS-PIM - DataPlatform Data Curator - Non Prod
+      # - role_name: AWS-PIM - SoftwareCircuitBreaker Visualization - Non Prod
+      # - role_name: AWS-PIM - SoftwareCircuitBreaker Budget Visualization - Non Prod
+      - role_name: AWS-PIM - DataPlatform Admins - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformAdminAccess_87ce25786c31ff0c
+
+  - name: finance
+    description: finance data
+    roles:
+      # - role_name: AWS-PIM - Non-Prod-Redshift-DBA
+      - role_name: AWS-PIM - DataPlatform Data Engineer - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformEngineerBasicAccess_cb4821bb6eb171dd
+      # - role_name: AWS-PIM - DataPlatform Data Consumer - NonProd
+      # - role_name: AWS-PIM - DataPlatform Data Curator - Non Prod
+      - role_name: AWS-PIM - DataPlatform Admins - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformAdminAccess_87ce25786c31ff0c
+
+  - name: engineering
+    description: engineering data
+    roles:
+      # - role_name: AWS-PIM - Non-Prod-Redshift-DBA
+      - role_name: AWS-PIM - DataPlatform Data Engineer - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformEngineerBasicAccess_cb4821bb6eb171dd
+      # - role_name: AWS-PIM - DataPlatform Data Consumer - NonProd
+      # - role_name: AWS-PIM - DataPlatform Data Curator - Non Prod
+      - role_name: AWS-PIM - DataPlatform Admins - Non Prod
+        lake_permissions: ALL
+        lf_role_arn: arn:aws:iam::533267239288:role/aws-reserved/sso.amazonaws.com/ap-southeast-2/AWSReservedSSO_DataPlatformAdminAccess_87ce25786c31ff0c
+
+
+data_classification:
+  - name: Confidential
+    description: Confidential data
+    roles: []
+  - name: Public
+    description: Public data
+    roles: []

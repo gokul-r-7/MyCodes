@@ -1,0 +1,300 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_PipingComp#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_PipingComp/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-pipingComp
+  name: spid_pipingComp
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: integer
+    column_name: insultype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insultype
+  - column_data_type: integer
+    column_name: insulpurpose
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulpurpose
+  - column_data_type: string
+    column_name: insulthick
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulthick
+  - column_data_type: double
+    column_name: sp_insulthicksi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insulthicksi
+  - column_data_type: string
+    column_name: insuldensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insuldensity
+  - column_data_type: double
+    column_name: sp_insuldensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insuldensitysi
+  - column_data_type: string
+    column_name: insultemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insultemp
+  - column_data_type: double
+    column_name: sp_insultempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insultempsi
+  - column_data_type: integer
+    column_name: htracereqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracereqmt
+  - column_data_type: integer
+    column_name: htracemedium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracemedium
+  - column_data_type: string
+    column_name: htracemediumtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracemediumtemp
+  - column_data_type: double
+    column_name: sp_htracemediumtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_htracemediumtempsi
+  - column_data_type: string
+    column_name: tagsequenceno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsequenceno
+  - column_data_type: string
+    column_name: tagsuffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsuffix
+  - column_data_type: string
+    column_name: tagprefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagprefix
+  - column_data_type: string
+    column_name: modelcode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: modelcode
+  - column_data_type: integer
+    column_name: optioncode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: optioncode
+  - column_data_type: integer
+    column_name: pipingcomptype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipingcomptype
+  - column_data_type: integer
+    column_name: pipingcompsubclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipingcompsubclass
+  - column_data_type: integer
+    column_name: pipingcompclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipingcompclass
+  - column_data_type: integer
+    column_name: isinline
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: isinline
+  - column_data_type: integer
+    column_name: stressreliefreqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stressreliefreqmt
+  - column_data_type: string
+    column_name: insulationspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationspec
+  - column_data_type: integer
+    column_name: insulationnomdia
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationnomdia
+  - column_data_type: integer
+    column_name: insulationthksource
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationthksource
+  - column_data_type: integer
+    column_name: sp_isspecialtyitem
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_isspecialtyitem
+  - column_data_type: string
+    column_name: wp_trainno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_trainno
+  - column_data_type: string
+    column_name: wp_tieinno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_tieinno
+  - column_data_type: string
+    column_name: wp_pipingcompremark
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_pipingcompremark
+  - column_data_type: string
+    column_name: wp_existinglinenumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_existinglinenumber
+  - column_data_type: string
+    column_name: wp_pipingcompsubtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_pipingcompsubtype
+  - column_data_type: integer
+    column_name: wor_insulreqd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_insulreqd
+  - column_data_type: string
+    column_name: wor_tieinlocationplanno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_tieinlocationplanno
+  - column_data_type: string
+    column_name: wor_tieiniso
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_tieiniso
+  - column_data_type: string
+    column_name: wor_operator
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_operator
+  - column_data_type: integer
+    column_name: wor_insulremovalreqd
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_insulremovalreqd
+  - column_data_type: integer
+    column_name: wor_procgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_procgroupid
+  - column_data_type: integer
+    column_name: wor_tiein_servicecode
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_tiein_servicecode
+  - column_data_type: integer
+    column_name: wor_spitemtype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_spitemtype
+  - column_data_type: integer
+    column_name: wor_valvetype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_valvetype
+  - column_data_type: string
+    column_name: wor_pipingcompremark2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_pipingcompremark2
+  - column_data_type: string
+    column_name: wor_sp_tagseq
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_sp_tagseq    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_PipingComp/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_pipingcomp
+  load_type: append
+  name: curated_t_pipingcomp
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_pipingcomp
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

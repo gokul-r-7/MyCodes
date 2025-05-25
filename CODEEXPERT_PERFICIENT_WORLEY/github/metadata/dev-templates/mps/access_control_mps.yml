@@ -1,0 +1,5 @@
+domain_name: engineering
+source_name: mps
+databases : 
+  - ${database_prefix}_engineering_mps_curated
+  - ${database_prefix}_engineering_mps_raw

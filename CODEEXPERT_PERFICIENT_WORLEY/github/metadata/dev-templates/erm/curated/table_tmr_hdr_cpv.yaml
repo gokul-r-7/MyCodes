@@ -1,0 +1,196 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishTmrHdrCpv#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishTmrHdrCpv/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishTmrHdrCpv 
+  name: erm_PublishTmrHdrCpv 
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: tmr_no
+    comment: tmr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: tmr_no
+  - column_data_type: decimal(38,2)
+    column_name: origin
+    comment: origin
+    data_classification: null
+    nullable: true
+    raw_column_name: origin
+  - column_data_type: string
+    column_name: client_ref_no
+    comment: client_ref_no
+    data_classification: null
+    nullable: true
+    raw_column_name: client_ref_no
+  - column_data_type: string
+    column_name: sub_project
+    comment: sub_project
+    data_classification: null
+    nullable: true
+    raw_column_name: sub_project
+  - column_data_type: string
+    column_name: aconex_pck_id
+    comment: aconex_pck_id
+    data_classification: null
+    nullable: true
+    raw_column_name: aconex_pck_id
+  - column_data_type: date
+    column_name: rev_date
+    comment: rev_date
+    data_classification: null
+    nullable: true
+    raw_column_name: rev_date
+  - column_data_type: decimal(38,2)
+    column_name: budget
+    comment: budget
+    data_classification: null
+    nullable: true
+    raw_column_name: budget
+  - column_data_type: string
+    column_name: signer1
+    comment: signer1
+    data_classification: null
+    nullable: true
+    raw_column_name: signer1
+  - column_data_type: string
+    column_name: signer2
+    comment: signer2
+    data_classification: null
+    nullable: true
+    raw_column_name: signer2
+  - column_data_type: string
+    column_name: signer3
+    comment: signer3
+    data_classification: null
+    nullable: true
+    raw_column_name: signer3
+  - column_data_type: string
+    column_name: signer4
+    comment: signer4
+    data_classification: null
+    nullable: true
+    raw_column_name: signer4
+  - column_data_type: string
+    column_name: signer5
+    comment: signer5
+    data_classification: null
+    nullable: true
+    raw_column_name: signer5
+  - column_data_type: string
+    column_name: signer6
+    comment: signer6
+    data_classification: null
+    nullable: true
+    raw_column_name: signer6
+  - column_data_type: string
+    column_name: rec_source
+    comment: rec_source
+    data_classification: null
+    nullable: true
+    raw_column_name: rec_source
+  - column_data_type: string
+    column_name: customer
+    comment: customer
+    data_classification: null
+    nullable: true
+    raw_column_name: customer
+  - column_data_type: string
+    column_name: internal_id_mr
+    comment: internal_id_mr
+    data_classification: null
+    nullable: true
+    raw_column_name: internal_id_mr
+  - column_data_type: decimal(38,2)
+    column_name: jip33_doc
+    comment: jip33_doc
+    data_classification: null
+    nullable: true
+    raw_column_name: jip33_doc
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishTmrHdrCpv/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: tmr_hdr_cpv
+  load_type: cdc
+  name: tmr_hdr_cpv
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishTmrHdrCpv 
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

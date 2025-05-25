@@ -1,0 +1,89 @@
+SourceSystemId: people
+MetadataType: csv_xlsx#people#non_oracle
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${people_raw_bucket}
+  csv_files_path: people/non_oracle/data_extracts/csv/
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: people/non_oracle/data_extracts/parquet/
+  raw_files_path: people/non_oracle/data_extracts/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: people/non_oracle/data_extracts/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  xls_files:   
+    - filename: jesa_jv_mmyyyy.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 7
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Demographics
+          tablename: demographics_jesa_jv
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: Mobilization
+          tablename: mobilization_jesa_jv
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: Demobilization
+          tablename: demobilization_jesa_jv
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: norway_mmyyyy.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 7
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Demographics
+          tablename: demographics_norway
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: Mobilization
+          tablename: mobilization_norway
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: Demobilization
+          tablename: demobilization_norway
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+
+name: NonPeople_Xlsx_Parsing
+Namespace: non_people

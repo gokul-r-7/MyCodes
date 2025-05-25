@@ -1,0 +1,169 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#injury_number_of_days_lost#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/injury_number_of_days_lost.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: injury_number_of_days_lost
+  name: injury_number_of_days_lost
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/injury_number_of_days_lost/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: injury_number_of_days_lost
+  load_type: incremental
+  name: injury_number_of_days_lost
+  primary_key: dwi_injury_number_of_days_lost
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/injury_number_of_days_lost
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_injury_number_of_days_lost
+    rename_columns: true
+  columns:
+  - column_name: dwi_injury_number_of_days_lost
+    column_data_type: decimal(38,0)
+    comment: dwi_injury_number_of_days_lost
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_injury_number_of_days_lost
+  - column_name: end_date
+    column_data_type: timestamp
+    comment: end_date
+    data_classification:
+    nullable: true
+    raw_column_name: end_date
+  - column_name: number_of_days
+    column_data_type: decimal(38,0)
+    comment: number_of_days
+    data_classification:
+    nullable: true
+    raw_column_name: number_of_days
+  - column_name: start_date
+    column_data_type: timestamp
+    comment: start_date
+    data_classification:
+    nullable: true
+    raw_column_name: start_date
+  - column_name: days_classification
+    column_data_type: string
+    comment: days_classification
+    data_classification:
+    nullable: true
+    raw_column_name: days_classification
+  - column_name: li_days_classification
+    column_data_type: string
+    comment: li_days_classification
+    data_classification:
+    nullable: true
+    raw_column_name: li_days_classification
+  - column_name: lo_days_classification
+    column_data_type: decimal(38,0)
+    comment: lo_days_classification
+    data_classification:
+    nullable: true
+    raw_column_name: lo_days_classification
+  - column_name: sys_legacy_id
+    column_data_type: string
+    comment: sys_legacy_id
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_id
+  - column_name: type02
+    column_data_type: string
+    comment: type02
+    data_classification:
+    nullable: true
+    raw_column_name: type02
+  - column_name: li_type02
+    column_data_type: string
+    comment: li_type02
+    data_classification:
+    nullable: true
+    raw_column_name: li_type02
+  - column_name: lo_type02
+    column_data_type: decimal(38,0)
+    comment: lo_type02
+    data_classification:
+    nullable: true
+    raw_column_name: lo_type02
+  - column_name: dwk_injury
+    column_data_type: decimal(38,0)
+    comment: dwk_injury
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_injury
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

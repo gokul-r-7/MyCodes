@@ -1,0 +1,36 @@
+---
+SourceSystemId: aconex
+MetadataType: api#aconex#workflow
+api_parameter:
+  api_body: 
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/xml
+  api_method: get
+  api_query_params: 
+  api_response_type: xml
+  api_retry: 6
+  api_ssl_verify: False
+  api_timeout: 60
+  auth_type: Basic
+  endpoint_prefix: https://
+  endpoint_suffix: "/api/projects"
+  secret_key: ${secret_prefix}-db-aconex
+aws_region: ${region}
+is_active: "y"
+job_parameter:
+  bucket_data_source_prefix: document_control/aconex
+  bucket_name: ${raw_bucket}
+  full_incr: i
+  incremental_criteria_folder_location: document_control/aconex/workflow_audit_folder
+  incremental_default_date: '19010101'
+  input_path: temp/document_control/aconex/workflow
+  kms_key_id: ${kms_key_id}
+  output_s3: document_control/aconex
+  root_tag: Workflow
+  row_tag: Workflow
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: document_control/aconex/data_sampling
+name: workflow
+page_size: 500

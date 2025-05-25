@@ -1,0 +1,320 @@
+---
+SourceSystemId: engreg_curated
+MetadataType: curated#sharepointlist#td_index#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/engreg/TD_Index/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: SharePointList-td_index
+  name: SharePointList_td_index
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: metadata_id
+    comment: metadata_id
+    data_classification: 
+    nullable: true
+    raw_column_name: metadata_id
+  - column_data_type: string
+    column_name: metadata_uri
+    comment: metadata_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: metadata_uri
+  - column_data_type: string
+    column_name: metadata_etag
+    comment: metadata_etag
+    data_classification: 
+    nullable: true
+    raw_column_name: metadata_etag
+  - column_data_type: string
+    column_name: metadata_type
+    comment: metadata_type
+    data_classification: 
+    nullable: true
+    raw_column_name: metadata_type
+  - column_data_type: string
+    column_name: firstuniqueancestorsecurableobject_deferred_uri
+    comment: firstuniqueancestorsecurableobject_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: firstuniqueancestorsecurableobject_deferred_uri
+  - column_data_type: string
+    column_name: roleassignments_deferred_uri
+    comment: roleassignments_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: roleassignments_deferred_uri
+  - column_data_type: string
+    column_name: attachmentfiles_deferred_uri
+    comment: attachmentfiles_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: attachmentfiles_deferred_uri
+  - column_data_type: string
+    column_name: contenttype_deferred_uri
+    comment: contenttype_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: contenttype_deferred_uri
+  - column_data_type: string
+    column_name: getdlppolicytip_deferred_uri
+    comment: getdlppolicytip_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: getdlppolicytip_deferred_uri
+  - column_data_type: string
+    column_name: fieldvaluesashtml_deferred_uri
+    comment: fieldvaluesashtml_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: fieldvaluesashtml_deferred_uri
+  - column_data_type: string
+    column_name: fieldvaluesastext_deferred_uri
+    comment: fieldvaluesastext_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: fieldvaluesastext_deferred_uri
+  - column_data_type: string
+    column_name: fieldvaluesforedit_deferred_uri
+    comment: fieldvaluesforedit_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: fieldvaluesforedit_deferred_uri
+  - column_data_type: string
+    column_name: file_deferred_uri
+    comment: file_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: file_deferred_uri
+  - column_data_type: string
+    column_name: folder_deferred_uri
+    comment: folder_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: folder_deferred_uri
+  - column_data_type: string
+    column_name: likedbyinformation_deferred_uri
+    comment: likedbyinformation_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: likedbyinformation_deferred_uri
+  - column_data_type: string
+    column_name: parentlist_deferred_uri
+    comment: parentlist_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: parentlist_deferred_uri
+  - column_data_type: string
+    column_name: properties_deferred_uri
+    comment: properties_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: properties_deferred_uri
+  - column_data_type: string
+    column_name: versions_deferred_uri
+    comment: versions_deferred_uri
+    data_classification: 
+    nullable: true
+    raw_column_name: versions_deferred_uri
+  - column_data_type: string
+    column_name: filesystemobjecttype
+    comment: filesystemobjecttype
+    data_classification: 
+    nullable: true
+    raw_column_name: filesystemobjecttype
+  - column_data_type: string
+    column_name: id
+    comment: id
+    data_classification: 
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: serverredirectedembeduri
+    comment: serverredirectedembeduri
+    data_classification: 
+    nullable: true
+    raw_column_name: serverredirectedembeduri
+  - column_data_type: string
+    column_name: serverredirectedembedurl
+    comment: serverredirectedembedurl
+    data_classification: 
+    nullable: true
+    raw_column_name: serverredirectedembedurl
+  - column_data_type: string
+    column_name: contenttypeid
+    comment: contenttypeid
+    data_classification: 
+    nullable: true
+    raw_column_name: contenttypeid
+  - column_data_type: string
+    column_name: title
+    comment: title
+    data_classification: 
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: odatacolortag
+    comment: odatacolortag
+    data_classification: 
+    nullable: true
+    raw_column_name: odatacolortag
+  - column_data_type: string
+    column_name: complianceassetid
+    comment: complianceassetid
+    data_classification: 
+    nullable: true
+    raw_column_name: complianceassetid
+  - column_data_type: string
+    column_name: rev
+    comment: field_1
+    data_classification: 
+    nullable: true
+    raw_column_name: field_1
+  - column_data_type: string
+    column_name: tdtitle
+    comment: field_2
+    data_classification: 
+    nullable: true
+    raw_column_name: field_2
+  - column_data_type: string
+    column_name: originator
+    comment: field_3
+    data_classification: 
+    nullable: true
+    raw_column_name: field_3
+  - column_data_type: string
+    column_name: discipline
+    comment: field_4
+    data_classification: 
+    nullable: true
+    raw_column_name: field_4
+  - column_data_type: string
+    column_name: td_recipient_name
+    comment: field_5
+    data_classification: 
+    nullable: true
+    raw_column_name: field_5
+  - column_data_type: string
+    column_name: td_recipient_company
+    comment: field_6
+    data_classification: 
+    nullable: true
+    raw_column_name: field_6
+  - column_data_type: string
+    column_name: date_issued
+    comment: field_7
+    data_classification: 
+    nullable: true
+    raw_column_name: field_7
+  - column_data_type: string
+    column_name: due_date_for_response
+    comment: field_8
+    data_classification: 
+    nullable: true
+    raw_column_name: field_8
+  - column_data_type: string
+    column_name: date_for_response
+    comment: field_9
+    data_classification: 
+    nullable: true
+    raw_column_name: field_9
+  - column_data_type: string
+    column_name: pdn_no
+    comment: field_10
+    data_classification: 
+    nullable: true
+    raw_column_name: field_10
+  - column_data_type: string
+    column_name: status
+    comment: field_11
+    data_classification: 
+    nullable: true
+    raw_column_name: field_11
+  - column_data_type: string
+    column_name: tdid
+    comment: tdid
+    data_classification: 
+    nullable: true
+    raw_column_name: tdid
+  - column_data_type: string
+    column_name: modified
+    comment: modified
+    data_classification: 
+    nullable: true
+    raw_column_name: modified
+  - column_data_type: string
+    column_name: created
+    comment: created
+    data_classification: 
+    nullable: true
+    raw_column_name: created
+  - column_data_type: string
+    column_name: authorid
+    comment: authorid
+    data_classification: 
+    nullable: true
+    raw_column_name: authorid
+  - column_data_type: string
+    column_name: editorid
+    comment: editorid
+    data_classification: 
+    nullable: true
+    raw_column_name: editorid
+  - column_data_type: string
+    column_name: odatauiversionstring
+    comment: odatauiversionstring
+    data_classification: 
+    nullable: true
+    raw_column_name: odatauiversionstring
+  - column_data_type: string
+    column_name: attachments
+    comment: attachments
+    data_classification: 
+    nullable: true
+    raw_column_name: attachments
+  - column_data_type: string
+    column_name: guid
+    comment: guid
+    data_classification: 
+    nullable: true
+    raw_column_name: guid
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_engreg_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/engreg/td_index/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_td_index
+  load_type: append
+  name: curated_td_index
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/engreg/td_index
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'engreg' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: curated_vg_e3d
+    database: dev
+    schema: vg_e3d
+    tables:
+      - name: curated_vg_e3d_vglpipes_sheet
+      - name: curated_dim_memstatus
+      - name: curated_vg_e3d_vglstruc_sheet
+      - name: curated_vg_e3d_vglequip_sheet
+      - name: curated_dim_project
+      - name: curated_dim_3dmodelusers
+      - name: curated_pipecompwbsrep
+      - name: curated_vg_e3d_vglpipesupport_sheet
+ 
+  - name: curated_vg_p6
+    database: dev
+    schema: ea_p6
+    tables:
+      - name: curated_project_activity
+      - name: curated_project_activitycode
+      - name: curated_activitycodeassignment
+      - name: curated_project_activitycodetype
+      - name: curated_eps
+      - name: curated_project
+      - name: curated_resource
+      - name: curated_project_resourceassignment
+      - name: curated_activityspread
+      - name: curated_resourcespread
+      
+  - name: curated_vg_ecosys
+    database: dev
+    schema: ea_ecosys
+    tables:
+      - name: curated_ecosys_calendar
+      - name: curated_ecosys_costtypepcsmapping
+      - name: curated_ecosys_ecodata
+      - name: curated_ecosys_header
+      - name: curated_timephased
+
+  - name: curated_vg_o3
+    database: dev
+    schema: ea_o3
+    tables:
+      - name: curated_constraints
+      - name: curated_cwps
+      - name: curated_iwps
+
+ 

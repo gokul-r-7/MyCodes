@@ -1,0 +1,63 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#action_plan_action_team_members#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/action_plan_action_team_members.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: action_plan_action_team_members
+  name: action_plan_action_team_members
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/action_plan_action_team_members/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: action_plan_action_team_members
+  load_type: incremental
+  name: action_plan_action_team_members
+  primary_key: [dwk_action_plan, dwk_person]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/action_plan_action_team_members
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [dwk_action_plan, dwk_person]
+    rename_columns: true
+  columns:
+  - column_name: dwk_action_plan
+    column_data_type: decimal(38,0)
+    comment: dwk_action_plan
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_action_plan
+  - column_name: dwk_person
+    column_data_type: decimal(38,0)
+    comment: dwk_person
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_person

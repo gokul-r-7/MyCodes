@@ -1,0 +1,18 @@
+SourceSystemId: aim
+MetadataType: db#aim#VWE_VG_CP2_TAGS_PWRBI
+name: VWE_VG_CP2_TAGS_PWRBI
+is_active: y
+db_parameter:
+  partition_column: None # Mandatory (Key)
+  date_delta_column: None # Mandatory (Key)
+  connection_parms: /worley/dev/db/aim #Mandatory (Key and Value)
+  secret_key: ${secret_prefix}-db-aim  # This goes into SecretsManager (Mandatory) (Key and Value)
+  ssl_flag : False
+  db_name_nonprod : IFM_OWNER  #Mandatory (Key and Value)
+  db_name_prod : IFM_OWNER  #Mandatory (Key and Value)
+  db_type : ORACLE #Mandatory (Key and Value)
+job_parameter:
+  bucket_name: ${raw_bucket}
+  input_path : None
+  full_incr: f
+  table_prefix: VWE_VG_CP2_TAGS_PWRBI

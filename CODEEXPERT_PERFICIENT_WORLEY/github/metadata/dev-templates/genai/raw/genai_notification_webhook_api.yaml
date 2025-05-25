@@ -1,0 +1,51 @@
+---
+SourceSystemId: genai
+MetadataType: genai#notification_webhook#api
+name: GenAI_Notification_Webhook_API
+aws_region: ${region}
+is_active: "y"
+api_parameter:
+  api_method: post
+  endpoint: https://${genai_notification_env_prefix}/genai-py-realtime-embedding/process-embeddings/ 
+  secret_key: ${secret_prefix}-genai-notification-webhook-api
+  api_response_type: json
+  api_retry: 3
+  api_timeout: 360
+  api_exponential_backoff: 3
+  api_ssl_verify: ${secret_prefix}-genai-ped-api-ssl
+  auth_type: Bearer
+  api_headers:
+    Content-Type: application/json
+    Authorization: 
+  dynamic_api_headers:
+  - Authorization
+  api_query_params: 
+  dynamic_api_query_params: 
+  api_body: 
+    requestNumber: 
+    folderName: 
+    folderPath: 
+    subFolderName: 
+    timestamp: 
+    filesCount: 1
+job_parameter:
+  bucket_name: ${secret_prefix}-genai-landing-${bucket_suffix}
+  is_audit_log_enabled: true
+  kms_key_id: ${genai_kms_key_id}
+  s3_audit_file_path: s3://${secret_prefix}-genai-landing-${bucket_suffix}/genai/notification_webhook_audit_log/notification_status.csv
+  audit_file:
+    is_fixed_file_name: true
+    multiline: true
+    quote_character: '"'
+    separator: '|'
+    with_header: true
+    is_append: true
+    fields: 
+      - genai_source
+      - job_run_id
+      - webhook_start_time
+      - request_body
+      - response_status_code
+      - comments
+
+

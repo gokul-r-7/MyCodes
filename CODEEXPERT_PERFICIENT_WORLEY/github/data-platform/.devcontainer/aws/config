@@ -1,0 +1,16 @@
+# LANDING ZONE
+
+[profile worley-data-eng-dev]
+sso_session = worley-aft-management
+sso_account_id = 891377181979
+sso_role_name = AccountAdminAccess
+
+[profile worley-data-eng-qa]
+sso_session = worley-aft-management
+sso_account_id = 533267239288
+sso_role_name = AccountAdminAccess
+
+[sso-session worley-aft-management]
+sso_start_url = https://d-9767447864.awsapps.com/start
+sso_region = ap-southeast-2
+sso_registration_scopes = sso:account:access

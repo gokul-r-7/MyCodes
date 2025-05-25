@@ -1,0 +1,289 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#action_plan#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/action_plan.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: action_plan
+  name: action_plan
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/action_plan/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: action_plan
+  load_type: incremental
+  name: action_plan
+  primary_key: dwi_action_plan
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/action_plan
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_action_plan
+    rename_columns: true
+  columns:
+  - column_name: dwi_action_plan
+    column_data_type: decimal(38,0)
+    comment: dwi_action_plan
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_action_plan
+  - column_name: action_description
+    column_data_type: string
+    comment: action_description
+    data_classification:
+    nullable: true
+    raw_column_name: action_description
+  - column_name: action_plan_number
+    column_data_type: string
+    comment: action_plan_number
+    data_classification:
+    nullable: true
+    raw_column_name: action_plan_number
+  - column_name: action_summary
+    column_data_type: string
+    comment: action_summary
+    data_classification:
+    nullable: true
+    raw_column_name: action_summary
+  - column_name: cancel_action_plan
+    column_data_type: string
+    comment: cancel_action_plan
+    data_classification:
+    nullable: true
+    raw_column_name: cancel_action_plan
+  - column_name: li_cancel_action_plan
+    column_data_type: string
+    comment: li_cancel_action_plan
+    data_classification:
+    nullable: true
+    raw_column_name: li_cancel_action_plan
+  - column_name: lo_cancel_action_plan
+    column_data_type: decimal(38,0)
+    comment: lo_cancel_action_plan
+    data_classification:
+    nullable: true
+    raw_column_name: lo_cancel_action_plan
+  - column_name: first_due_date
+    column_data_type: timestamp
+    comment: first_due_date
+    data_classification:
+    nullable: true
+    raw_column_name: first_due_date
+  - column_name: frequency
+    column_data_type: string
+    comment: frequency
+    data_classification:
+    nullable: true
+    raw_column_name: frequency
+  - column_name: li_frequency
+    column_data_type: string
+    comment: li_frequency
+    data_classification:
+    nullable: true
+    raw_column_name: li_frequency
+  - column_name: lo_frequency
+    column_data_type: decimal(38,0)
+    comment: lo_frequency
+    data_classification:
+    nullable: true
+    raw_column_name: lo_frequency
+  - column_name: have_you_spoken_to_this_person
+    column_data_type: string
+    comment: have_you_spoken_to_this_person
+    data_classification:
+    nullable: true
+    raw_column_name: have_you_spoken_to_this_person
+  - column_name: li_have_you_spoken_to_this_person
+    column_data_type: string
+    comment: li_have_you_spoken_to_this_person
+    data_classification:
+    nullable: true
+    raw_column_name: li_have_you_spoken_to_this_person
+  - column_name: lo_have_you_spoken_to_this_person
+    column_data_type: decimal(38,0)
+    comment: lo_have_you_spoken_to_this_person
+    data_classification:
+    nullable: true
+    raw_column_name: lo_have_you_spoken_to_this_person
+  - column_name: priority
+    column_data_type: string
+    comment: priority
+    data_classification:
+    nullable: true
+    raw_column_name: priority
+  - column_name: li_priority
+    column_data_type: string
+    comment: li_priority
+    data_classification:
+    nullable: true
+    raw_column_name: li_priority
+  - column_name: lo_priority
+    column_data_type: decimal(38,0)
+    comment: lo_priority
+    data_classification:
+    nullable: true
+    raw_column_name: lo_priority
+  - column_name: reason_for_cancelling
+    column_data_type: string
+    comment: reason_for_cancelling
+    data_classification:
+    nullable: true
+    raw_column_name: reason_for_cancelling
+  - column_name: risk_level02
+    column_data_type: string
+    comment: risk_level02
+    data_classification:
+    nullable: true
+    raw_column_name: risk_level02
+  - column_name: li_risk_level02
+    column_data_type: string
+    comment: li_risk_level02
+    data_classification:
+    nullable: true
+    raw_column_name: li_risk_level02
+  - column_name: lo_risk_level02
+    column_data_type: decimal(38,0)
+    comment: lo_risk_level02
+    data_classification:
+    nullable: true
+    raw_column_name: lo_risk_level02
+  - column_name: sys_action_plan_source
+    column_data_type: string
+    comment: sys_action_plan_source
+    data_classification:
+    nullable: true
+    raw_column_name: sys_action_plan_source
+  - column_name: li_sys_action_plan_source
+    column_data_type: string
+    comment: li_sys_action_plan_source
+    data_classification:
+    nullable: true
+    raw_column_name: li_sys_action_plan_source
+  - column_name: lo_sys_action_plan_source
+    column_data_type: decimal(38,0)
+    comment: lo_sys_action_plan_source
+    data_classification:
+    nullable: true
+    raw_column_name: lo_sys_action_plan_source
+  - column_name: sys_last_due_date
+    column_data_type: timestamp
+    comment: sys_last_due_date
+    data_classification:
+    nullable: true
+    raw_column_name: sys_last_due_date
+  - column_name: sys_next_create_date
+    column_data_type: timestamp
+    comment: sys_next_create_date
+    data_classification:
+    nullable: true
+    raw_column_name: sys_next_create_date
+  - column_name: sys_next_due_date
+    column_data_type: timestamp
+    comment: sys_next_due_date
+    data_classification:
+    nullable: true
+    raw_column_name: sys_next_due_date
+  - column_name: sys_legacy_id
+    column_data_type: string
+    comment: sys_legacy_id
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_id
+  - column_name: dwk_action_plan_assigned_by
+    column_data_type: decimal(38,0)
+    comment: dwk_action_plan_assigned_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_action_plan_assigned_by
+  - column_name: dwk_action_plan_assigned_to
+    column_data_type: decimal(38,0)
+    comment: dwk_action_plan_assigned_to
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_action_plan_assigned_to
+  - column_name: dwk_ems_business_process
+    column_data_type: decimal(38,0)
+    comment: dwk_ems_business_process
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_ems_business_process
+  - column_name: dwk_obligation_as_source_of_action_plan
+    column_data_type: decimal(38,0)
+    comment: dwk_obligation_as_source_of_action_plan
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_obligation_as_source_of_action_plan
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

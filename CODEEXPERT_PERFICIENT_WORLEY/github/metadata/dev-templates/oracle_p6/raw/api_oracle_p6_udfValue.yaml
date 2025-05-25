@@ -1,0 +1,51 @@
+MetadataType: api#oracle_p6#udfValue
+SourceSystemId: oracle_p6
+api_parameter:
+  Fields: CodeValue,ConditionalIndicator,Cost,CreateDate,CreateUser,Description,Double,FinishDate,ForeignObjectId,Formula,Indicator,Integer,IsBaseline,IsTemplate,IsUDFTypeCalculated,IsUDFTypeConditional,LastUpdateDate,LastUpdateUser,ProjectObjectId,StartDate,Text,UDFCodeObjectId,UDFTypeDataType,UDFTypeObjectId,UDFTypeSubjectArea,UDFTypeTitle
+  api_body: null
+  api_exponential_backoff: 3
+  api_headers:
+    Content-Type: application/json
+  api_method: get
+  api_query_params: {}
+  api_response_type: json
+  api_retry: 3
+  api_timeout: 900
+  auth_type: Bearer
+  dynamic_api_headers:
+  - Authorization
+  dynamic_api_query_params: null
+  endpoint: https://p6.oraclecloud.com/worley/p6ws/restapi/
+  api_project_filters: "&Filter=ProjectObjectId in ({})"
+  api_global_filters: null
+  IncludeCumulative: null
+  PeriodType: null
+  extract_type: export
+  api_type: 6
+auth_api_parameter:
+  auth_body: null
+  auth_exponential_backoff: 5
+  auth_headers:
+    Content-Type: application/json
+    token_exp: '3600'
+  auth_method: post
+  auth_query_params: null
+  auth_retry: 3
+  auth_timeout: 600
+  dynamic_auth_headers:
+  - AuthToken
+  endpoint: https://p6.oraclecloud.com/worley/p6ws/oauth/token
+  secret_key: ${secret_prefix}-db-p6
+aws_region: ap-southeast-2
+is_active: y
+job_parameter:
+  bucket_data_source_prefix: project_control/oracle_p6/
+  bucket_name: ${raw_bucket}
+  kms_key_id: ${kms_key_id}
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  schema_output_s3: project_control/oracle_p6/data_sampling/
+  temp_path: temp/
+  object_column: ObjectId
+  object_path: null
+name: Oracle_P6_ExtractAPI

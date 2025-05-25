@@ -1,0 +1,714 @@
+---
+SourceSystemId: database_spid_curated
+MetadataType: curated#spid#T_Equipment#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spid/T_Equipment/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spid-equipment
+  name: spid_equipment
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: string
+    column_name: sp_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_id
+  - column_data_type: integer
+    column_name: insultype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insultype
+  - column_data_type: integer
+    column_name: insulpurpose
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulpurpose
+  - column_data_type: string
+    column_name: insulthick
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulthick
+  - column_data_type: double
+    column_name: sp_insulthicksi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insulthicksi
+  - column_data_type: string
+    column_name: insuldensity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insuldensity
+  - column_data_type: double
+    column_name: sp_insuldensitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insuldensitysi
+  - column_data_type: string
+    column_name: insultemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insultemp
+  - column_data_type: double
+    column_name: sp_insultempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_insultempsi
+  - column_data_type: integer
+    column_name: htracereqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracereqmt
+  - column_data_type: integer
+    column_name: htracemedium
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracemedium
+  - column_data_type: string
+    column_name: htracemediumtemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: htracemediumtemp
+  - column_data_type: double
+    column_name: sp_htracemediumtempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_htracemediumtempsi
+  - column_data_type: string
+    column_name: pipingmaterialsclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipingmaterialsclass
+  - column_data_type: string
+    column_name: slope
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: slope
+  - column_data_type: double
+    column_name: sp_slopesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_slopesi
+  - column_data_type: integer
+    column_name: cleaningreqmts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cleaningreqmts
+  - column_data_type: integer
+    column_name: coatingreqmts
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: coatingreqmts
+  - column_data_type: integer
+    column_name: materialofconstclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: materialofconstclass
+  - column_data_type: string
+    column_name: tagsequenceno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsequenceno
+  - column_data_type: string
+    column_name: tagsuffix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagsuffix
+  - column_data_type: integer
+    column_name: class
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: class
+  - column_data_type: integer
+    column_name: equipmenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: equipmenttype
+  - column_data_type: string
+    column_name: tagprefix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: tagprefix
+  - column_data_type: string
+    column_name: electricalreqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: electricalreqmt
+  - column_data_type: double
+    column_name: sp_electricalreqmtsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_electricalreqmtsi
+  - column_data_type: integer
+    column_name: equipmentsubclass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: equipmentsubclass
+  - column_data_type: string
+    column_name: sloperise
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sloperise
+  - column_data_type: double
+    column_name: sp_sloperisesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sloperisesi
+  - column_data_type: string
+    column_name: sloperun
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sloperun
+  - column_data_type: double
+    column_name: sp_sloperunsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_sloperunsi
+  - column_data_type: string
+    column_name: corrosionallowance
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: corrosionallowance
+  - column_data_type: double
+    column_name: sp_corrosionallowancesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_corrosionallowancesi
+  - column_data_type: integer
+    column_name: stressreliefreqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: stressreliefreqmt
+  - column_data_type: string
+    column_name: steamoutpressure
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: steamoutpressure
+  - column_data_type: double
+    column_name: sp_steamoutpressuresi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_steamoutpressuresi
+  - column_data_type: string
+    column_name: steamouttemperature
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: steamouttemperature
+  - column_data_type: double
+    column_name: sp_steamouttemperaturesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_steamouttemperaturesi
+  - column_data_type: integer
+    column_name: steamoutreqmt
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: steamoutreqmt
+  - column_data_type: string
+    column_name: insulationspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationspec
+  - column_data_type: string
+    column_name: trimspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: trimspec
+  - column_data_type: string
+    column_name: height
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: height
+  - column_data_type: double
+    column_name: sp_heightsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_heightsi
+  - column_data_type: integer
+    column_name: insulationthksource
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: insulationthksource
+  - column_data_type: string
+    column_name: wp_bootliquidlevelhigh
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_bootliquidlevelhigh
+  - column_data_type: double
+    column_name: sp_wp_bootliquidlevelhighsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_bootliquidlevelhighsi
+  - column_data_type: string
+    column_name: wp_bootlength
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_bootlength
+  - column_data_type: double
+    column_name: sp_wp_bootlengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_bootlengthsi
+  - column_data_type: string
+    column_name: wp_bootdiameterinternal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_bootdiameterinternal
+  - column_data_type: double
+    column_name: sp_wp_bootdiameterinternalsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_bootdiameterinternalsi
+  - column_data_type: string
+    column_name: wp_alttrimspec
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_alttrimspec
+  - column_data_type: string
+    column_name: wp_elevation
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_elevation
+  - column_data_type: double
+    column_name: sp_wp_elevationsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_elevationsi
+  - column_data_type: string
+    column_name: wp_drivernumber
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_drivernumber
+  - column_data_type: string
+    column_name: wp_differentialhead
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_differentialhead
+  - column_data_type: double
+    column_name: sp_wp_differentialheadsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_differentialheadsi
+  - column_data_type: string
+    column_name: wp_diameter3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_diameter3
+  - column_data_type: double
+    column_name: sp_wp_diameter3si
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_diameter3si
+  - column_data_type: string
+    column_name: wp_diameter2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_diameter2
+  - column_data_type: double
+    column_name: sp_wp_diameter2si
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_diameter2si
+  - column_data_type: string
+    column_name: wp_diameter1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_diameter1
+  - column_data_type: double
+    column_name: sp_wp_diameter1si
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_diameter1si
+  - column_data_type: string
+    column_name: wp_designcapacity
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_designcapacity
+  - column_data_type: double
+    column_name: sp_wp_designcapacitysi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_designcapacitysi
+  - column_data_type: string
+    column_name: wp_coildesigntemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_coildesigntemp
+  - column_data_type: double
+    column_name: sp_wp_coildesigntempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_coildesigntempsi
+  - column_data_type: string
+    column_name: wp_coildesignpress
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_coildesignpress
+  - column_data_type: double
+    column_name: sp_wp_coildesignpresssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_coildesignpresssi
+  - column_data_type: integer
+    column_name: wp_coatingreqmtsinternals
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_coatingreqmtsinternals
+  - column_data_type: string
+    column_name: wp_catalystbed
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_catalystbed
+  - column_data_type: double
+    column_name: sp_wp_catalystbedsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_catalystbedsi
+  - column_data_type: string
+    column_name: wp_boottrim
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_boottrim
+  - column_data_type: string
+    column_name: wp_bootliquidlevelnormal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_bootliquidlevelnormal
+  - column_data_type: double
+    column_name: sp_wp_bootliquidlevelnormalsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_bootliquidlevelnormalsi
+  - column_data_type: string
+    column_name: wp_bootliquidlevellowlow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_bootliquidlevellowlow
+  - column_data_type: double
+    column_name: sp_wp_bootliquidlevellowlowsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_bootliquidlevellowlowsi
+  - column_data_type: string
+    column_name: wp_bootliquidlevellow
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_bootliquidlevellow
+  - column_data_type: double
+    column_name: sp_wp_bootliquidlevellowsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_bootliquidlevellowsi
+  - column_data_type: string
+    column_name: wp_bootliqlevelhighhigh
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_bootliqlevelhighhigh
+  - column_data_type: double
+    column_name: sp_wp_bootliqlevelhighhighsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_bootliqlevelhighhighsi
+  - column_data_type: string
+    column_name: wp_trainno
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_trainno
+  - column_data_type: string
+    column_name: wp_refractorylining
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_refractorylining
+  - column_data_type: double
+    column_name: sp_wp_refractoryliningsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_refractoryliningsi
+  - column_data_type: string
+    column_name: wp_ratedsuctiontemp
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_ratedsuctiontemp
+  - column_data_type: double
+    column_name: sp_wp_ratedsuctiontempsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_ratedsuctiontempsi
+  - column_data_type: integer
+    column_name: wp_materialofconstclassshell
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_materialofconstclassshell
+  - column_data_type: integer
+    column_name: wp_materialofconstclass3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_materialofconstclass3
+  - column_data_type: integer
+    column_name: wp_materialofconstclass2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_materialofconstclass2
+  - column_data_type: string
+    column_name: wp_length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_length
+  - column_data_type: double
+    column_name: sp_wp_lengthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_lengthsi
+  - column_data_type: string
+    column_name: wp_fullvacuumtube
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_fullvacuumtube
+  - column_data_type: string
+    column_name: wp_fullvacuum
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_fullvacuum
+  - column_data_type: string
+    column_name: wp_flowratemass
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_flowratemass
+  - column_data_type: double
+    column_name: sp_wp_flowratemasssi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_flowratemasssi
+  - column_data_type: string
+    column_name: wp_filtertype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_filtertype
+  - column_data_type: string
+    column_name: wp_equipremark
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_equipremark
+  - column_data_type: integer
+    column_name: wp_equiprefpoint
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_equiprefpoint
+  - column_data_type: string
+    column_name: wp_width
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_width
+  - column_data_type: double
+    column_name: sp_wp_widthsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_widthsi
+  - column_data_type: string
+    column_name: wp_volume
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_volume
+  - column_data_type: double
+    column_name: sp_wp_volumesi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wp_volumesi
+  - column_data_type: string
+    column_name: wp_trimspectube
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wp_trimspectube
+  - column_data_type: string
+    column_name: wor_shippingweight
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_shippingweight
+  - column_data_type: double
+    column_name: sp_wor_shippingweightsi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_wor_shippingweightsi
+  - column_data_type: string
+    column_name: wor_fireproof
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_fireproof
+  - column_data_type: integer
+    column_name: wor_procgroupid
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_procgroupid
+  - column_data_type: string
+    column_name: vg_insulationthk2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_insulationthk2
+  - column_data_type: double
+    column_name: sp_vg_insulationthk2si
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_vg_insulationthk2si
+  - column_data_type: integer
+    column_name: vg_insulationpurpose2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: vg_insulationpurpose2
+  - column_data_type: integer
+    column_name: wor_altequipmenttype
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wor_altequipmenttype
+  - column_data_type: string
+    column_name: area
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area
+  - column_data_type: double
+    column_name: sp_areasi
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: sp_areasi    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spid_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spid/T_Equipment/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_t_equipment
+  load_type: append
+  name: curated_t_equipment
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spid/curated_t_equipment
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spid' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

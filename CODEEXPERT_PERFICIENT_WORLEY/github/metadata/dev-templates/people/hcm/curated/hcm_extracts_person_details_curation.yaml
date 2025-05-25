@@ -1,0 +1,139 @@
+SourceSystemId: hcm_extracts_curated
+MetadataType: curated#people#person_details#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_people_bucket}/oracle/people/hcm_extracts/parquet/person_details.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: hcm_extracts-person_details
+  name: hcm_extracts_person_details
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_people_oracle_hcm_extracts_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/people/oracle/hcm_extracts/person_details/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_person_details
+  load_type: incremental
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  name: curated_person_details
+  primary_key: &id001
+  - person_id
+  - person_number
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/people/oracle/hcm_curated/person_details
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'hcm_extracts' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: *id001
+    rename_columns: true
+  columns:
+  - column_data_type: int
+    column_name: person_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONID
+  - column_data_type: string
+    column_name: person_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOPERSONNUMBER
+  - column_data_type: string
+    column_name: applicant_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOAPPLICANTNUMBER
+  - column_data_type: string
+    column_name: primary_nid_number
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOPRIMARYNIDNUMBER
+  - column_data_type: int
+    column_name: primary_email_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOPRIMARYEMAILID
+  - column_data_type: int
+    column_name: primary_phone_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOPRIMARYPHONEID
+  - column_data_type: date
+    column_name: start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOSTARTDATE
+  - column_data_type: string
+    column_name: waive_data_protect
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOWAIVEDATAPROTECT
+  - column_data_type: date
+    column_name: source_effective_end_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVEENDDATE
+  - column_data_type: date
+    column_name: source_effective_start_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: EFFECTIVESTARTDATE
+  - column_data_type: string
+    column_name: source_created_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOCREATEDBY
+  - column_data_type: timestamp
+    column_name: source_creation_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOCREATIONDATE
+  - column_data_type: timestamp
+    column_name: source_last_update_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOLASTUPDATEDATE
+  - column_data_type: string
+    column_name: source_last_updated_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: PERSONDETAILSPEOLASTUPDATEDBY

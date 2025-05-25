@@ -1,0 +1,157 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#action_progress#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/action_progress.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: action_progress
+  name: action_progress
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: bms_lastmodified
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/action_progress/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: action_progress
+  load_type: incremental
+  name: action_progress
+  primary_key: dwi_action_progress
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/action_progress
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: dwi_action_progress
+    rename_columns: true
+  columns:
+  - column_name: dwi_action_progress
+    column_data_type: decimal(38,0)
+    comment: dwi_action_progress
+    data_classification:
+    nullable: true
+    raw_column_name: dwi_action_progress
+  - column_name: action_progress_status
+    column_data_type: string
+    comment: action_progress_status
+    data_classification:
+    nullable: true
+    raw_column_name: action_progress_status
+  - column_name: li_action_progress_status
+    column_data_type: string
+    comment: li_action_progress_status
+    data_classification:
+    nullable: true
+    raw_column_name: li_action_progress_status
+  - column_name: lo_action_progress_status
+    column_data_type: decimal(38,0)
+    comment: lo_action_progress_status
+    data_classification:
+    nullable: true
+    raw_column_name: lo_action_progress_status
+  - column_name: comments
+    column_data_type: string
+    comment: comments
+    data_classification:
+    nullable: true
+    raw_column_name: comments
+  - column_name: date_of_action_progress
+    column_data_type: timestamp
+    comment: date_of_action_progress
+    data_classification:
+    nullable: true
+    raw_column_name: date_of_action_progress
+  - column_name: percentage_complete
+    column_data_type: decimal(38,0)
+    comment: percentage_complete
+    data_classification:
+    nullable: true
+    raw_column_name: percentage_complete
+  - column_name: sys_legacy_action_progress_number
+    column_data_type: string
+    comment: sys_legacy_action_progress_number
+    data_classification:
+    nullable: true
+    raw_column_name: sys_legacy_action_progress_number
+  - column_name: dwk_progress_updated_by
+    column_data_type: decimal(38,0)
+    comment: dwk_progress_updated_by
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_progress_updated_by
+  - column_name: dwk_action_as_source_of_action_progress
+    column_data_type: decimal(38,0)
+    comment: dwk_action_as_source_of_action_progress
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_action_as_source_of_action_progress
+  - column_name: si_status
+    column_data_type: string
+    comment: si_status
+    data_classification:
+    nullable: true
+    raw_column_name: si_status
+  - column_name: sn_status
+    column_data_type: string
+    comment: sn_status
+    data_classification:
+    nullable: true
+    raw_column_name: sn_status
+  - column_name: si_base_state
+    column_data_type: string
+    comment: si_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: si_base_state
+  - column_name: sn_base_state
+    column_data_type: string
+    comment: sn_base_state
+    data_classification:
+    nullable: true
+    raw_column_name: sn_base_state
+  - column_name: uniqueid
+    column_data_type: string
+    comment: uniqueid
+    data_classification:
+    nullable: true
+    raw_column_name: uniqueid
+  - column_name: bms_id
+    column_data_type: string
+    comment: bms_id
+    data_classification:
+    nullable: true
+    raw_column_name: bms_id
+  - column_name: bms_lastmodified
+    column_data_type: timestamp
+    comment: bms_lastmodified
+    data_classification:
+    nullable: true
+    raw_column_name: bms_lastmodified

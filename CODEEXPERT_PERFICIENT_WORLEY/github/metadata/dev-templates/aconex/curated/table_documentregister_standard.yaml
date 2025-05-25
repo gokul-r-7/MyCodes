@@ -1,0 +1,565 @@
+SourceSystemId: aconex_curated
+MetadataType: curated#aconex#docregister_standard#job#iceberg
+source:
+  name: aconex_docregister_standard
+  compute_engine: spark
+  spark_options:
+    format: parquet
+  glue_options:
+    connection_type: s3
+    connection_options: s3://${raw_bucket}/document_control/aconex/docregister_standard/
+    format: parquet
+    transformation_ctx: aconex-docregister-standard
+transforms:
+- transform: rename_columns
+  rename_column: true
+- transform: select_columns_from_config_file
+  select_columns: true
+- transform: change_data_types
+  change_types: true
+- transform: add_run_date
+  column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+- transform: custom_sql
+  sql: SELECT *, datemodified as lastmodifieddate_ts , 'aconex' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+target:
+  name: curated_aconex_docregister_standard
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_document_control_aconex_curated
+    table_name: curated_docregister_standard
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/document_control/aconex/docregister_standard/
+      table_properties:
+        write.format.default: parquet
+        format-version: '2'
+  load_type: incremental_no_delete
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: lastmodifieddate_ts
+  primary_key: [projectid,documentid,trackingid]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/document_control/aconex/docregister_standard
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [projectid,documentid,trackingid]
+    rename_columns: true
+  columns:
+  - column_name: documentid
+    column_data_type: string
+    nullable: true
+    comment: documentid
+    data_classification: null
+    raw_column_name: _documentid
+
+  - column_name: dateapproved
+    column_data_type: TIMESTAMP
+    nullable: true
+    comment: dateapproved
+    data_classification: null
+    raw_column_name: dateapproved
+
+  - column_name: asbuiltrequired
+    column_data_type: boolean
+    nullable: true
+    comment: asbuiltrequired
+    data_classification: null
+    raw_column_name: asbuiltrequired
+
+  - column_name: attribute1
+    column_data_type: string
+    nullable: true
+    comment: attribute1
+    data_classification: null
+    raw_column_name: attribute1_attributetype
+
+  - column_name: attribute1_attributetypenames
+    column_data_type: string
+    nullable: true
+    comment: attribute1_attributetypenames
+    data_classification: null
+    raw_column_name: attribute1_attributetypenames
+
+  - column_name: attribute2
+    column_data_type: string
+    nullable: true
+    comment: attribute2
+    data_classification: null
+    raw_column_name: attribute2_attributetype
+
+  - column_name: attribute2_attributetypenames
+    column_data_type: string
+    nullable: true
+    comment: attribute2_attributetypenames
+    data_classification: null
+    raw_column_name: attribute2_attributetypenames
+
+  - column_name: attribute3
+    column_data_type: string
+    nullable: true
+    comment: attribute3
+    data_classification: null
+    raw_column_name: attribute3_attributetype
+
+  - column_name: attribute3_attributetypenames
+    column_data_type: string
+    nullable: true
+    comment: attribute3_attributetypenames
+    data_classification: null
+    raw_column_name: attribute3_attributetypenames
+
+  - column_name: attribute4
+    column_data_type: string
+    nullable: true
+    comment: attribute4
+    data_classification: null
+    raw_column_name: attribute4_attributetype
+
+  - column_name: attribute4_attributetypenames
+    column_data_type: string
+    nullable: true
+    comment: attribute4_attributetypenames
+    data_classification: null
+    raw_column_name: attribute4_attributetypenames
+
+  - column_name: author
+    column_data_type: string
+    nullable: true
+    comment: author
+    data_classification: null
+    raw_column_name: author
+
+  - column_name: authorisedby
+    column_data_type: string
+    nullable: true
+    comment: authorisedby
+    data_classification: null
+    raw_column_name: authorisedby
+
+  - column_name: category
+    column_data_type: string
+    nullable: true
+    comment: category
+    data_classification: null
+    raw_column_name: category
+
+  - column_name: check1
+    column_data_type: boolean
+    nullable: true
+    comment: check1
+    data_classification: null
+    raw_column_name: check1
+
+  - column_name: check2
+    column_data_type: boolean
+    nullable: true
+    comment: check2
+    data_classification: null
+    raw_column_name: check2
+
+  - column_name: comments
+    column_data_type: string
+    nullable: true
+    comment: comments
+    data_classification: null
+    raw_column_name: comments
+
+  - column_name: comments2
+    column_data_type: string
+    nullable: true
+    comment: comments2
+    data_classification: null
+    raw_column_name: comments2
+
+  - column_name: confidential
+    column_data_type: boolean
+    nullable: true
+    comment: confidential
+    data_classification: null
+    raw_column_name: confidential
+
+  - column_name: contractdeliverable
+    column_data_type: boolean
+    nullable: true
+    comment: contractdeliverable
+    data_classification: null
+    raw_column_name: contractdeliverable
+
+  - column_name: contractnumber
+    column_data_type: string
+    nullable: true
+    comment: contractnumber
+    data_classification: null
+    raw_column_name: contractnumber
+
+  - column_name: contractordocumentnumber
+    column_data_type: string
+    nullable: true
+    comment: contractordocumentnumber
+    data_classification: null
+    raw_column_name: contractordocumentnumber
+
+  - column_name: contractorrevision
+    column_data_type: string
+    nullable: true
+    comment: contractorrevision
+    data_classification: null
+    raw_column_name: contractorrevision
+
+  - column_name: current
+    column_data_type: boolean
+    nullable: true
+    comment: current
+    data_classification: null
+    raw_column_name: current
+
+  - column_name: date1
+    column_data_type: TIMESTAMP_LTZ
+    nullable: true
+    comment: date1
+    data_classification: null
+    raw_column_name: date1
+
+  - column_name: date2
+    column_data_type: TIMESTAMP_LTZ
+    nullable: true
+    comment: date2
+    data_classification: null
+    raw_column_name: date2
+
+  - column_name: datecreated
+    column_data_type: TIMESTAMP_LTZ
+    nullable: true
+    comment: datecreated
+    data_classification: null
+    raw_column_name: datecreated
+
+  - column_name: dateforreview
+    column_data_type: TIMESTAMP_LTZ
+    nullable: true
+    comment: dateforreview
+    data_classification: null
+    raw_column_name: dateforreview
+
+  - column_name: datemodified
+    column_data_type: TIMESTAMP
+    nullable: true
+    comment: datemodified
+    data_classification: null
+    raw_column_name: datemodified
+
+  - column_name: datereviewed
+    column_data_type: TIMESTAMP
+    nullable: true
+    comment: datereviewed
+    data_classification: null
+    raw_column_name: datereviewed
+
+  - column_name: discipline
+    column_data_type: string
+    nullable: true
+    comment: discipline
+    data_classification: null
+    raw_column_name: discipline
+
+  - column_name: documentstatus
+    column_data_type: string
+    nullable: true
+    comment: documentstatus
+    data_classification: null
+    raw_column_name: documentstatus
+
+  - column_name: documenttype
+    column_data_type: string
+    nullable: true
+    comment: documenttype
+    data_classification: null
+    raw_column_name: documenttype
+
+  - column_name: filesize
+    column_data_type: long
+    nullable: true
+    comment: filesize
+    data_classification: null
+    raw_column_name: filesize
+
+  - column_name: filename
+    column_data_type: string
+    nullable: true
+    comment: filename
+    data_classification: null
+    raw_column_name: filename
+
+  - column_name: filetype
+    column_data_type: string
+    nullable: true
+    comment: filetype
+    data_classification: null
+    raw_column_name: filetype
+
+  - column_name: markuplastmodifieddate
+    column_data_type: TIMESTAMP_LTZ
+    nullable: true
+    comment: markuplastmodifieddate
+    data_classification: null
+    raw_column_name: markuplastmodifieddate
+
+  - column_name: milestonedate
+    column_data_type: TIMESTAMP_LTZ
+    nullable: true
+    comment: milestonedate
+    data_classification: null
+    raw_column_name: milestonedate
+
+  - column_name: numberofmarkups
+    column_data_type: int
+    nullable: true
+    comment: numberofmarkups
+    data_classification: null
+    raw_column_name: numberofmarkups
+
+  - column_name: modifiedby
+    column_data_type: string
+    nullable: true
+    comment: modifiedby
+    data_classification: null
+    raw_column_name: modifiedby
+
+  - column_name: packagenumber
+    column_data_type: string
+    nullable: true
+    comment: packagenumber
+    data_classification: null
+    raw_column_name: packagenumber
+
+  - column_name: percentcomplete
+    column_data_type: int
+    nullable: true
+    comment: percentcomplete
+    data_classification: null
+    raw_column_name: percentcomplete
+
+  - column_name: plannedsubmissiondate
+    column_data_type: TIMESTAMP_LTZ
+    nullable: true
+    comment: plannedsubmissiondate
+    data_classification: null
+    raw_column_name: plannedsubmissiondate
+
+  - column_name: printsize
+    column_data_type: string
+    nullable: true
+    comment: printsize
+    data_classification: null
+    raw_column_name: printsize
+
+  - column_name: projectfield1
+    column_data_type: string
+    nullable: true
+    comment: projectfield1
+    data_classification: null
+    raw_column_name: projectfield1
+
+  - column_name: projectfield2
+    column_data_type: string
+    nullable: true
+    comment: projectfield2
+    data_classification: null
+    raw_column_name: projectfield2
+
+  - column_name: projectfield3
+    column_data_type: string
+    nullable: true
+    comment: projectfield3
+    data_classification: null
+    raw_column_name: projectfield3
+
+  - column_name: reference
+    column_data_type: string
+    nullable: true
+    comment: reference
+    data_classification: null
+    raw_column_name: reference
+
+  - column_name: reviewsource
+    column_data_type: string
+    nullable: true
+    comment: reviewsource
+    data_classification: null
+    raw_column_name: reviewsource
+
+  - column_name: reviewstatus
+    column_data_type: string
+    nullable: true
+    comment: reviewstatus
+    data_classification: null
+    raw_column_name: reviewstatus
+
+  - column_name: revision
+    column_data_type: string
+    nullable: true
+    comment: revision
+    data_classification: null
+    raw_column_name: revision
+
+  - column_name: revisiondate
+    column_data_type: TIMESTAMP
+    nullable: true
+    comment: revisiondate
+    data_classification: null
+    raw_column_name: revisiondate
+
+  - column_name: scale
+    column_data_type: string
+    nullable: true
+    comment: scale
+    data_classification: null
+    raw_column_name: scale
+
+  - column_name: selectlist1
+    column_data_type: string
+    nullable: true
+    comment: selectlist1
+    data_classification: null
+    raw_column_name: selectlist1
+
+  - column_name: selectlist2
+    column_data_type: string
+    nullable: true
+    comment: selectlist2
+    data_classification: null
+    raw_column_name: selectlist2
+
+  - column_name: selectlist3
+    column_data_type: string
+    nullable: true
+    comment: selectlist3
+    data_classification: null
+    raw_column_name: selectlist3
+
+  - column_name: selectlist4
+    column_data_type: string
+    nullable: true
+    comment: selectlist4
+    data_classification: null
+    raw_column_name: selectlist4
+
+  - column_name: selectlist5
+    column_data_type: string
+    nullable: true
+    comment: selectlist5
+    data_classification: null
+    raw_column_name: selectlist5
+
+  - column_name: selectlist6
+    column_data_type: string
+    nullable: true
+    comment: selectlist6
+    data_classification: null
+    raw_column_name: selectlist6
+
+  - column_name: selectlist7
+    column_data_type: string
+    nullable: true
+    comment: selectlist7
+    data_classification: null
+    raw_column_name: selectlist7
+
+  - column_name: selectlist8
+    column_data_type: string
+    nullable: true
+    comment: selectlist8
+    data_classification: null
+    raw_column_name: selectlist8
+
+  - column_name: selectlist9
+    column_data_type: string
+    nullable: true
+    comment: selectlist9
+    data_classification: null
+    raw_column_name: selectlist9
+
+  - column_name: selectlist10
+    column_data_type: string
+    nullable: true
+    comment: selectlist10
+    data_classification: null
+    raw_column_name: selectlist10
+
+  - column_name: tagnumber
+    column_data_type: string
+    nullable: true
+    comment: tagnumber
+    data_classification: null
+    raw_column_name: tagnumber
+
+  - column_name: title
+    column_data_type: string
+    nullable: true
+    comment: title
+    data_classification: null
+    raw_column_name: title
+
+  - column_name: toclientdate
+    column_data_type: TIMESTAMP_LTZ
+    nullable: true
+    comment: toclientdate
+    data_classification: null
+    raw_column_name: toclientdate
+
+  - column_name: trackingid
+    column_data_type: string
+    nullable: true
+    comment: trackingid
+    data_classification: null
+    raw_column_name: trackingid
+
+  - column_name: versionnumber
+    column_data_type: integer
+    nullable: true
+    comment: versionnumber
+    data_classification: null
+    raw_column_name: versionnumber
+
+  - column_name: vdrcode
+    column_data_type: string
+    nullable: true
+    comment: vdrcode
+    data_classification: null
+    raw_column_name: vdrcode
+
+  - column_name: vendordocumentnumber
+    column_data_type: string
+    nullable: true
+    comment: vendordocumentnumber
+    data_classification: null
+    raw_column_name: vendordocumentnumber
+
+  - column_name: vendorrevision
+    column_data_type: string
+    nullable: true
+    comment: vendorrevision
+    data_classification: null
+    raw_column_name: vendorrevision
+
+  - column_name: documentnumber
+    column_data_type: string
+    nullable: true
+    comment: documentnumber
+    data_classification: null
+    raw_column_name: documentnumber
+
+  - column_name: projectid
+    column_data_type: long
+    nullable: true
+    comment: projectid
+    data_classification: null
+    raw_column_name: projectid
+
+

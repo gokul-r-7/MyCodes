@@ -1,0 +1,4109 @@
+models:
+  - name: transformed_constraint_type
+    tags: ["o3"]
+    config: 
+      contract: {enforced: true}
+
+    columns:
+      - name: constraint_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: constrainttypeid
+        data_type: int
+        tests:
+          - not_null
+      - name: constrainttype
+        data_type: varchar(100)
+        tests:
+          - not_null
+      - name: is_current
+        data_type: int
+      - name: projectcode
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_discipline
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: discipline_key
+        data_type: varchar(500)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: disciplineid
+        data_type: int
+        tests:
+          - not_null
+      - name: disciplinecode
+        data_type: varchar(10)
+        tests:
+          - not_null 
+      - name: is_current
+        data_type: int
+      - name: ID
+        data_type: int
+      - name: datecreated
+        data_type: timestamp
+      - name: datemodified
+        data_type: timestamp
+      - name: description 
+        data_type: varchar(500)
+      - name: projectid
+        data_type: varchar(500)
+      - name: createdbyuser
+        data_type: varchar(500)         
+      - name: createdbyuserid
+        data_type: int          
+      - name: drawingidsjson
+        data_type: varchar(100)    
+      - name: isdeleted
+        data_type: boolean
+      - name: modifiedbyuserid
+        data_type: int
+      - name: modifiedbyuser
+        data_type: varchar(50)
+      - name: projectinfo
+        data_type: varchar(100)
+      - name: disciplinedescription
+        data_type: varchar(500)
+      - name: projectcode
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(20)
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_change_history
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: change_history_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+      - name: is_current
+        data_type: int
+      - name: id
+        data_type: varchar(500)
+      - name: uniqueid
+        data_type: varchar(500)
+      - name: cwpspk
+        data_type: varchar(100)
+      - name: iwpspk
+        data_type: varchar(100)
+      - name: ewpspk
+        data_type: varchar(100)
+      - name: twpspk
+        data_type: varchar(100)
+      - name: entitytypeid
+        data_type: int
+      - name: entityname
+        data_type: varchar(500)
+      - name: projectid
+        data_type: varchar(500)
+      - name: entityid
+        data_type: int
+      - name: eventtypeid
+        data_type: int
+      - name: eventname
+        data_type: varchar(500)
+      - name: entitytype
+        data_type: varchar(500)
+      - name: actionid
+        data_type: int
+      - name: actiontype
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(500)
+      - name: changehistoryid
+        data_type: int
+      - name: fieldname
+        data_type: varchar(500)
+      - name: newvalue
+        data_type: varchar(16383)
+      - name: oldvalue
+        data_type: varchar(16383)
+      - name: timemodified
+        data_type: timestamp
+      - name: useraccountid
+        data_type: varchar(500)
+      - name: scheduleactivityid
+        data_type: varchar(500)
+      - name: cwpreleaseid
+        data_type: varchar(500)
+      - name: modelparserconfigurationid
+        data_type: varchar(500)
+      - name: integrationid
+        data_type: varchar(500)
+      - name: attachmentid
+        data_type: varchar(500)
+      - name: contract
+        data_type: varchar(500)
+      - name: contractid
+        data_type: int
+      - name: actionname
+        data_type: varchar(500)
+      - name: importid
+        data_type: int
+      - name: datecreated
+        data_type: timestamp
+      - name: createdbyuserid
+        data_type: int
+      - name: createdbyuser
+        data_type: varchar(500)
+      - name: archive
+        data_type: varchar(500)
+      - name: primary_key
+        data_type: varchar(500)
+      - name: source_system_name
+        data_type: varchar(500)
+      # - name: executiondate
+      #   data_type: date
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_region
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: RegionID
+        data_type: varchar(32)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: zoneid
+        data_type: int
+      - name: areaid
+        data_type: int
+      - name: zonedescription
+        data_type: varchar(5)
+      - name: areadescription
+        data_type: varchar(5)
+      - name: source_system_name
+        data_type: varchar(20)
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_cwas
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: cwas_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: cwasid
+        data_type: int
+        tests:
+          - not_null
+      - name: projectid
+        data_type: int
+        tests:
+          - not_null
+      - name: is_current
+        data_type: int
+      - name: constructiontype
+        data_type: varchar(100)
+      - name: projectinfo
+        data_type: varchar(100)
+      - name: cwasname
+        data_type: varchar(20)
+      - name: statusid
+        data_type: int
+      - name: statusdate
+        data_type: timestamp
+      - name: status
+        data_type: int
+      - name: cwasstatus
+        data_type: varchar(50)
+      - name: cwasstatuscolor
+        data_type: varchar(50)
+      - name: cwasdescription
+        data_type: varchar(100)
+      - name: cwaslongdescription
+        data_type: varchar(100)
+      - name: externallink
+        data_type: varchar(100)
+      - name: revision
+        data_type: varchar(10)
+      - name: unitid
+        data_type: int
+      - name: plannedreleasedate
+        data_type: timestamp
+      - name: forecastreleasedate
+        data_type: timestamp
+      - name: datereleased
+        data_type: timestamp
+      - name: zoneid
+        data_type: int
+      - name: zone
+        data_type: varchar(10)
+      - name: unit
+        data_type: varchar(50)
+      - name: cwatypeid
+        data_type: varchar(50)
+      - name: cwatype
+        data_type: varchar(50)
+      - name: cwalayerid
+        data_type: varchar(100)
+      - name: cwalayer
+        data_type: varchar(100)
+      - name: cwaareareleaseid
+        data_type: varchar(100)
+      - name: cwaarearelease
+        data_type: varchar(100)
+      - name: plannedstartdate
+        data_type: timestamp
+      - name: actualstartdate
+        data_type: timestamp
+      - name: plannedfinishdate
+        data_type: timestamp
+      - name: actualfinishdate
+        data_type: timestamp
+      - name: plannedduration
+        data_type: int
+      - name: actualduration
+        data_type: int
+      - name: percentdocumented
+        data_type: float
+      - name: percentdocumentedinclusive
+        data_type: float
+      - name: percentconstraintfree
+        data_type: float
+      - name: percentdelayfree
+        data_type: float
+      - name: percentapproved
+        data_type: float
+      - name: percentdeveloped
+        data_type: float
+      - name: datecreated
+        data_type: timestamp
+      - name: createdbyuserid
+        data_type: varchar(50)
+      - name: createdbyuser
+        data_type: varchar(50)
+      - name: datemodified
+        data_type: timestamp
+      - name: modifiedbyuserid
+        data_type: varchar(50)
+      - name: modifiedbyuser
+        data_type: varchar(50)
+      - name: isdeleted
+        data_type: boolean
+      - name: estimatedhours
+        data_type: int
+      - name: attachmentcount
+        data_type: int
+      - name: priority
+        data_type: int
+      - name: unitcategoryid
+        data_type: varchar(50)
+      - name: unitcategory
+        data_type: varchar(100)
+      - name: labels
+        data_type: varchar(50)
+      - name: calendarstartdate
+        data_type: timestamp
+      - name: calendarenddate
+        data_type: timestamp
+      - name: statuscolor
+        data_type: varchar(50)
+      - name: openconstraintcount
+        data_type: int
+      - name: forecaststartdate
+        data_type: timestamp
+      - name: forecastfinishdate
+        data_type: timestamp
+      - name: plannedcloseoutdate
+        data_type: timestamp
+      - name: actualcloseoutdate
+        data_type: timestamp
+      - name: wbsid
+        data_type: int
+      - name: wbs
+        data_type: varchar(10)
+      - name: forecastduration
+        data_type: varchar(100)
+      - name: responsibleengineeruserid
+        data_type: varchar(50)
+      - name: responsibleengineeruser
+        data_type: varchar(50)
+      - name: earnedhours
+        data_type: float
+      - name: plotplancount
+        data_type: int
+      - name: preferredplotplanid
+        data_type: varchar(20)
+      - name: preferredplotplan
+        data_type: varchar(20)
+      - name: entitytypeid
+        data_type: int
+      - name: percentcomplete
+        data_type: float
+      - name: budgetedhours
+        data_type: int
+      - name: constructiontypeid
+        data_type: int
+      - name: longleaddays
+        data_type: int
+      - name: execution_date
+        data_type: date
+      - name: source_system_name
+        data_type: varchar(20)
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+      - name: functionalareaid
+        data_type: varchar(50)
+      - name: functionalarea
+        data_type: varchar(50)
+  - name: transformed_cwps
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: cwpspk
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: is_current
+        data_type: int
+      - name: constructiontype
+        data_type: varchar(100)
+      - name: baselinefinishdate
+        data_type: timestamp
+      - name: baselinestartdate
+        data_type: timestamp
+      - name: closedconstraintcount
+        data_type: int      
+      - name: totalconstraintcount
+        data_type: int
+      - name: iwptotalestimatedhours
+        data_type: int
+      - name: openconstraintcount
+        data_type: int
+      - name: actualduration
+        data_type: int
+      - name: plannedduration
+        data_type: int
+      - name: wbs
+        data_type: varchar(10)
+      - name: actualfinishweekofyear
+        data_type: int
+      - name: actualstartyear
+        data_type: int
+      - name: actualfinishdayofyear
+        data_type: int
+      - name: actualfinishweekofyear
+        data_type: int
+      - name: actualfinishmonth
+        data_type: int
+      - name: actualfinishyear
+        data_type: int
+      - name: finishdatevariance
+        data_type: int
+      - name: actualfinishdate
+        data_type: timestamp
+      - name: plannedfinishdate
+        data_type: timestamp
+      - name: startdatevariance
+        data_type: int
+      - name: actualstartdayofyear
+        data_type: int
+      - name: actualstartweekofyear
+        data_type: int
+      - name: actualstartmonth
+        data_type: int
+      - name: actualstartdate
+        data_type: timestamp
+      - name: plannedstartweek
+        data_type: int
+      - name: plannedstartdayofyear
+        data_type: int
+      - name: plannedstartweekofyear
+        data_type: int
+      - name: plannedstartmonth
+        data_type: int
+      - name: plannedstartyear
+        data_type: int
+      - name: plannedstartdate
+        data_type: timestamp
+      - name: issuedatevariance
+        data_type: int
+      - name: disciplinedescription
+        data_type: varchar(5000)
+      - name: zone
+        data_type: varchar(100)
+      - name: area
+        data_type: varchar(100)
+      - name: discipline
+        data_type: varchar(100)
+      - name: cwadescription
+        data_type: varchar(5000)
+      - name: name
+        data_type: varchar(100)
+      - name: constructionworkarea
+        data_type: varchar(100) 
+      - name: cwasid
+        data_type: int
+      - name: entityid
+        data_type: int
+      - name: entitytypeid
+        data_type: int
+      - name: disciplineid
+        data_type: int
+      - name: constructiontypeid
+        data_type: int
+      - name: wbsid
+        data_type: int
+      - name: projectid
+        data_type: int
+      - name: projectinfo
+        data_type: varchar(100)
+      - name: statusid
+        data_type: int
+      - name: status
+        data_type: varchar(100)
+      - name: statusdate
+        data_type: timestamp
+      - name: cwpstatus
+        data_type: varchar(100)
+      - name: cwpstatuscolor
+        data_type: varchar(100)
+      - name: cwpsid
+        data_type: varchar(100)
+      - name: cwpsdescription
+        data_type: varchar(5000)
+      - name: cwpslongdescription
+        data_type: varchar(5000)
+      - name: unitid
+        data_type: varchar(100)
+      - name: unit
+        data_type: varchar(100)
+      - name: areaid
+        data_type: int
+      - name: zoneid
+        data_type: int
+      - name: RegionID
+        data_type: int
+      - name: purposeid
+        data_type: varchar(100)
+      - name: purpose
+        data_type: varchar(100)
+      - name: contractid
+        data_type: int
+      - name: contract
+        data_type: varchar(500)
+      - name: planneruserid
+        data_type: int
+      - name: planneruser
+        data_type: varchar(100)
+      - name: planneruseremail
+        data_type: varchar(100)
+      - name: significantrequirements
+        data_type: varchar(10000)
+      - name: scopeexclusions
+        data_type: varchar(100)
+      - name: externallink
+        data_type: varchar(500)
+      - name: revision
+        data_type: varchar(100)
+      - name: revisiondate
+        data_type: timestamp
+      - name: scopeid
+        data_type: varchar(100)
+      - name: scope
+        data_type: varchar(100)
+      - name: deliveryteamid
+        data_type: varchar(100)
+      - name: deliveryteam
+        data_type: varchar(100)
+      - name: drawingcount
+        data_type: int
+      - name: budgetedhours
+        data_type: float
+      - name: estimatedhours
+        data_type: float
+      - name: activityid
+        data_type: varchar(100)
+      - name: scheduleactivityid
+        data_type: varchar(100)
+      - name: plannedissuedate
+        data_type: timestamp
+      - name: actualissuedate
+        data_type: timestamp
+      - name: assemblystartdate
+        data_type: timestamp
+      - name: assemblyfinishdate
+        data_type: timestamp
+      - name: releasedtouserid
+        data_type: varchar(100)
+      - name: releasedtouser
+        data_type: varchar(100)
+      - name: plannedreleasedate
+        data_type: timestamp
+      - name: forecastreleasedate
+        data_type: timestamp
+      - name: datedelivered
+        data_type: timestamp
+      - name: earnedhours
+        data_type: float
+      - name: actualhours
+        data_type: float
+      - name: forecastedhours
+        data_type: float
+      - name: percentcomplete
+        data_type: float
+      - name: percentdocumented
+        data_type: float
+      - name: percentdocumentedinclusive
+        data_type: float
+      - name: percentconstraintfree
+        data_type: float
+      - name: percentdelayfree
+        data_type: float
+      - name: percentapproved
+        data_type: float
+      - name: percentdeveloped
+        data_type: float
+      - name: designareacode
+        data_type: varchar(100)
+      - name: designarea
+        data_type: varchar(100)
+      - name: volumetypecode
+        data_type: varchar(100)
+      - name: volumetype
+        data_type: varchar(100)
+      - name: modulenumber
+        data_type: varchar(100)
+      - name: modulehandlingcode
+        data_type: varchar(100)
+      - name: modulehandlingdescription
+        data_type: varchar(500)
+      - name: cwpsequencenumber
+        data_type: int
+      - name: materialdestination
+        data_type: varchar(100)
+      - name: datecreated
+        data_type: timestamp
+      - name: createdbyuserid
+        data_type: int
+      - name: createdbyuser
+        data_type: varchar(200)
+      - name: datemodified
+        data_type: timestamp
+      - name: modifiedbyuserid
+        data_type: int
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: isdeleted
+        data_type: boolean
+      - name: percentageplanned
+        data_type: float
+      - name: sourcedeleted
+        data_type: boolean
+      - name: dateconstraintfree
+        data_type: varchar(100)
+      - name: keyquantity
+        data_type: float
+      - name: unitofmeasureid
+        data_type: varchar(100)
+      - name: uom
+        data_type: varchar(100)
+      - name: releasedquantity
+        data_type: float
+      - name: percentreleased
+        data_type: float
+      - name: technicalauthorshiptransferdate
+        data_type: timestamp
+      - name: datedatacomplete
+        data_type: timestamp
+      - name: datecloseoutdatacomplete
+        data_type: timestamp
+      - name: datacompletenessstatus
+        data_type: varchar(500)
+      - name: estimatedcost
+        data_type: float
+      - name: forecastedcost
+        data_type: float
+      - name: actualcost
+        data_type: float
+      - name: planneddevelopmentstartdate
+        data_type: timestamp
+      - name: actualdevelopmentstartdate
+        data_type: timestamp
+      - name: plannedreadyforreviewdate
+        data_type: timestamp
+      - name: readyforreviewdate
+        data_type: timestamp
+      - name: plannedapproveddate
+        data_type: timestamp
+      - name: approveddate
+        data_type: timestamp
+      - name: draftreviewdate
+        data_type: timestamp
+      - name: plannedcloseoutdate
+        data_type: timestamp
+      - name: actualcloseoutdate
+        data_type: timestamp
+      - name: overviewmodelshotattachmentid
+        data_type: int
+      - name: contractgroupid
+        data_type: varchar(100)
+      - name: contractgroup
+        data_type: varchar(100)
+      - name: criticalpath
+        data_type: boolean
+      - name: criticalpathcategoryid
+        data_type: varchar(100)
+      - name: criticalpathcategory
+        data_type: varchar(100)
+      - name: cwpreleasecount
+        data_type: int
+      - name: overdueconstraintcount
+        data_type: int
+      - name: attachmentcount
+        data_type: int
+      - name: unitcategoryid
+        data_type: varchar(100)
+      - name: unitcategory
+        data_type: varchar(100)
+      - name: labels
+        data_type: varchar(100)
+      - name: stateid
+        data_type: int
+      - name: forecaststartdate
+        data_type: timestamp
+      - name: forecastfinishdate
+        data_type: timestamp
+      - name: externallinkverified
+        data_type: boolean
+      - name: externallinkverifiedbyuser
+        data_type: varchar(100)
+      - name: externallinkverifiedbyuserid
+        data_type: varchar(100)
+      - name: externallinkverifieddate
+        data_type: timestamp
+      - name: dateapprovedforconstruction
+        data_type: timestamp
+      - name: plannedapprovedforconstructiondate
+        data_type: timestamp
+      - name: forgemodelshotstate
+        data_type: varchar(16383)
+      - name: invalidmodeldata
+        data_type: boolean
+      - name: calendarstartdate
+        data_type: timestamp
+      - name: calendarenddate
+        data_type: timestamp
+      - name: statuscolor
+        data_type: varchar(100)
+      - name: masterentityid
+        data_type: varchar(100)
+      - name: releasedbyuserid
+        data_type: varchar(100)
+      - name: releasedbyuser
+        data_type: varchar(100)
+      - name: datereleased
+        data_type: timestamp
+      - name: hasreleasedversion
+        data_type: boolean
+      - name: hasworkingversion
+        data_type: boolean
+      - name: leadengineeruserid
+        data_type: int
+      - name: constructionrepresentativeuserid
+        data_type: int
+      - name: leadengineer
+        data_type: varchar(100)
+      - name: leadengineeremail
+        data_type: varchar(100)
+      - name: constructionrepresentative
+        data_type: varchar(100)
+      - name: constructionrepresentativeemail
+        data_type: varchar(500)
+      - name: isworkingversion
+        data_type: boolean
+      - name: lastreleasedversionentityid
+        data_type: varchar(100)
+      - name: budgetedearnedhours
+        data_type: float
+      - name: modelshot
+        data_type: boolean
+      - name: forecastduration
+        data_type: varchar(100)
+      - name: projectphaseid
+        data_type: int
+      - name: projectphase
+        data_type: varchar(100)
+      - name: drawingfilecount
+        data_type: int
+      - name: lessonslearnednotes
+        data_type: varchar(500)
+      - name: safetynotes
+        data_type: varchar(500)
+      - name: interfacenotes
+        data_type: varchar(500)
+      - name: constructabilitynotes
+        data_type: varchar(500)
+      - name: qualitynotes
+        data_type: varchar(500)
+      - name: vendornotes
+        data_type: varchar(500)
+      - name: benchmarknotes
+        data_type: varchar(500)
+      - name: unreleaseddrawingcount
+        data_type: int
+      - name: plotplancount
+        data_type: int
+      - name: drawingsupdatedafterlatestreleasecount
+        data_type: int
+      - name: preferredplotplanid
+        data_type: varchar(100)
+      - name: preferredplotplan
+        data_type: varchar(100)
+      - name: contractors
+        data_type: varchar(100)
+      - name: scheduledatadate
+        data_type: timestamp
+      - name: earlystartdate
+        data_type: timestamp
+      - name: latestartdate
+        data_type: timestamp
+      - name: earlyfinishdate
+        data_type: timestamp
+      - name: latefinishdate
+        data_type: timestamp
+      - name: functionalareaid
+        data_type: varchar(100)
+      - name: functionalarea
+        data_type: varchar(100)
+      - name: componentkeyquantityuom
+        data_type: varchar(100)
+      - name: componentkeyquantityunitofmeasureid
+        data_type: varchar(100)
+      - name: componentkeyquantityunitfield
+        data_type: varchar(100)
+      - name: componentkeyquantityunitfieldid
+        data_type: varchar(100)
+      - name: componentkeyquantity
+        data_type: float
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_work_package_execution_tasks
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: workpackageexecutiontasks_key
+        data_type: varchar(32)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: is_current
+        data_type: int
+      - name: workpackageexecutiontaskid
+        data_type: int
+      - name: entityid
+        data_type: int
+      - name: entitytypeid
+        data_type: int
+      - name: entitytype
+        data_type: varchar(100)
+      - name: entityname
+        data_type: varchar(200)
+      - name: category
+        data_type: varchar(100)
+      - name: tasktype
+        data_type: varchar(100)
+      - name: taskunitofmeasureid
+        data_type: int
+      - name: taskuom
+        data_type: varchar(100)
+      - name: workpackageexecutiontasktypeid
+        data_type: int
+      - name: drawing
+        data_type: varchar(100)
+      - name: totalunits
+        data_type: float
+      - name: estimatedhours
+        data_type: float
+      - name: projectid
+        data_type: int
+      - name: actionentitytypeid
+        data_type: int
+      - name: workpackageexecutiontaskname
+        data_type: varchar(100)
+      - name: workpackageexecutiontaskdescription
+        data_type: varchar(5000)
+      - name: createdbyuserid
+        data_type: int
+      - name: datecreated
+        data_type: timestamp
+      - name: createdbyuser
+        data_type: varchar(100)
+      - name: modifiedbyuserid
+        data_type: int
+      - name: datemodified
+        data_type: timestamp
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: totalstepcount
+        data_type: int
+      - name: totalstepweight
+        data_type: float
+      - name: scaffoldid
+        data_type: varchar(100)
+      - name: statusid
+        data_type: int
+      - name: statuscolor
+        data_type: varchar(100)
+      - name: status
+        data_type: varchar(100)
+      - name: multiplier
+        data_type: float
+      - name: percentcomplete
+        data_type: float
+      - name: earnedhours
+        data_type: float
+      - name: constructioncomponentid
+        data_type: int
+      - name: componententitytypeid
+        data_type: int
+      - name: _float
+        data_type: varchar(500)
+      - name: componentmissing
+        data_type: boolean
+      - name: workpackagecomponentid
+        data_type: int
+      - name: executiontasksortorder
+        data_type: int
+      - name: needscalculation
+        data_type: boolean
+      - name: executiontaskscheduleactivityid
+        data_type: varchar(100)
+      - name: executiontaskplannedstartdate
+        data_type: timestamp
+      - name: executiontaskdatedue
+        data_type: timestamp
+      - name: executiontaskactualstartdate
+        data_type: timestamp
+      - name: executiontaskactualfinishdate
+        data_type: timestamp
+      - name: o3estimatedhours
+        data_type: float
+      - name: overrideestimatedhours
+        data_type: float
+      - name: componentbacklogtaskid
+        data_type: int
+      - name: calculationrateofplacement
+        data_type: float
+      - name: componentidentifier
+        data_type: varchar(100)
+      - name: progresstypeid
+        data_type: int
+      - name: progresstype
+        data_type: varchar(100)
+      - name: completedunits
+        data_type: int
+      - name: category2
+        data_type: varchar(100)
+      - name: category3
+        data_type: varchar(100)
+      - name: category4
+        data_type: varchar(100)
+      - name: category5
+        data_type: varchar(100)
+      - name: allowpartialprogress
+        data_type: boolean
+      - name: code
+        data_type: varchar(100)
+      - name: completedbyuserid
+        data_type: int
+      - name: completedbyuser
+        data_type: varchar(100)
+      - name: tradequantity
+        data_type: float
+      - name: tradeduration
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+ 
+  - name: transformed_work_package_execution_tasks_steps
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: workpackageexecutiontaskssteps_key
+        data_type: varchar(32)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: is_current
+        data_type: int
+      - name: workpackageexecutiontaskstepid
+        data_type: int
+      - name: projectid
+        data_type: varchar(100)
+      - name: workpackageexecutiontaskid
+        data_type: int
+      - name: entityid
+        data_type: int
+      - name: entitytypeid
+        data_type: int
+      - name: entityname
+        data_type: varchar(200)
+      - name: workpackageexecutiontaskname
+        data_type: varchar(100)
+      - name: workpackageexecutiontasksort
+        data_type: int
+      - name: datecompleted
+        data_type: timestamp
+      - name: completedbyuserid
+        data_type: int
+      - name: completedbyuser
+        data_type: varchar(100)
+      - name: createdbyuserid
+        data_type: int
+      - name: datecreated
+        data_type: timestamp
+      - name: createdbyuser
+        data_type: varchar(100)
+      - name: modifiedbyuserid
+        data_type: int
+      - name: datemodified
+        data_type: timestamp
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: excluded
+        data_type: boolean
+      - name: componentbacklogtaskstepid
+        data_type: int
+      - name: componentbacklogtaskid
+        data_type: int
+      - name: entitystatusrestrictprogressing
+        data_type: boolean
+      - name: sortorder
+        data_type: int
+      - name: taskname
+        data_type: varchar(100)
+      - name: category
+        data_type: varchar(100)
+      - name: tasktype
+        data_type: varchar(100)
+      - name: taskunitofmeasureid
+        data_type: int
+      - name: taskuom
+        data_type: varchar(100)
+      - name: executiontasksortorder
+        data_type: int
+      - name: weight
+        data_type: float
+      - name: steprateofplacement
+        data_type: float
+      - name: stepestimatedhours
+        data_type: float
+      - name: stepearnedhours
+        data_type: float
+      - name: percentcomplete
+        data_type: float
+      - name: allowpartialprogress
+        data_type: boolean
+      - name: iscompleted
+        data_type: boolean
+      - name: sourcekey
+        data_type: varchar(100)
+      - name: referencenumber
+        data_type: varchar(100)
+      - name: simpleentityid
+        data_type: int
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(110)    
+  
+  - name: transformed_constraints
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: constraint_key
+        data_type: varchar(32)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: is_current
+        data_type: int
+      - name: constructiontype
+        data_type: varchar(100)
+      - name: constructionworkarea
+        data_type: varchar(100)
+      - name: cwpstatus
+        data_type: varchar(100)
+      - name: cwpstatusid
+        data_type: int
+      - name: cwpdescription
+        data_type: varchar(1000)
+      - name: entityid
+        data_type: int
+      - name: entitytypeid
+        data_type: int
+      - name: entitytype
+        data_type: varchar(1000)
+      - name: id
+        data_type: int
+      - name: projectid
+        data_type: int
+      - name: projectinfo
+        data_type: varchar(100)
+      - name: constrainttypeid
+        data_type: int
+      - name: constrainttype
+        data_type: varchar(1000)
+      - name: constraintid
+        data_type: varchar(100)
+      - name: actionentitytypeid
+        data_type: int
+      - name: entitycontractid
+        data_type: int
+      - name: entityname
+        data_type: varchar(1000)
+      - name: statusid
+        data_type: int
+      - name: status
+        data_type: varchar(100)
+      - name: statuscolor
+        data_type: varchar(100)
+      - name: priorityid
+        data_type: int
+      - name: priority
+        data_type: varchar(100)
+      - name: hardconstraint
+        data_type: boolean
+      - name: companyid
+        data_type: varchar(100)
+      - name: company
+        data_type: varchar(100)
+      - name: category
+        data_type: varchar(100)
+      - name: _constraint
+        data_type: varchar(1000)
+      - name: constraintlongdescription
+        data_type: varchar(1000)
+      - name: constraintdescription
+        data_type: varchar(5000)
+      - name: entityplannedstartdate
+        data_type: varchar(100)
+      - name: countdown
+        data_type: int
+      - name: editorroleids
+        data_type: varchar(100)
+      - name: sortorder
+        data_type: int
+      - name: workpackagestageid
+        data_type: int
+      - name: workpackagestage
+        data_type: varchar(100)
+      - name: workpackagestagesortorder
+        data_type: int
+      - name: notes
+        data_type: varchar(10000)
+      - name: constructionworkareaid
+        data_type: int
+      - name: disciplineid
+        data_type: int
+      - name: discipline
+        data_type: varchar(100)
+      - name: disciplinedescription
+        data_type: varchar(100)
+      - name: purposeid
+        data_type: int
+      - name: purpose
+        data_type: varchar(100)
+      - name: zoneid
+        data_type: int
+      - name: zone
+        data_type: varchar(100)
+      - name: constructiontypeid
+        data_type: int
+      - name: areaid
+        data_type: int
+      - name: area
+        data_type: varchar(100)
+      - name: contractid
+        data_type: int
+      - name: contract
+        data_type: varchar(100)
+      - name: planneruserid
+        data_type: int
+      - name: planneruser
+        data_type: varchar(100)
+      - name: scheduleactivityid
+        data_type: varchar(100)
+      - name: unitid
+        data_type: int
+      - name: unit
+        data_type: varchar(100)
+      - name: ewpestimatedhours
+        data_type: varchar(100)
+      - name: constructionworkpackageid
+        data_type: int
+      - name: cwpsid
+        data_type: varchar(100)
+      - name: assignedtoroleid
+        data_type: varchar(100)
+      - name: assignedtorole
+        data_type: varchar(100)
+      - name: assignedtousergroupid
+        data_type: varchar(100)
+      - name: assignedtousergroup
+        data_type: varchar(100)
+      - name: assignedtouserid
+        data_type: int
+      - name: assignedtouser
+        data_type: varchar(100)
+      - name: assignedbyuserid
+        data_type: int
+      - name: assignedbyuser
+        data_type: varchar(100)
+      - name: lastcommentuser
+        data_type: varchar(100)
+      - name: dateassigned
+        data_type: varchar(100)
+      - name: completedbyuserid
+        data_type: int
+      - name: completedbyuser
+        data_type: varchar(100)
+      - name: datecompleted
+        data_type: timestamp
+      - name: iscomplete
+        data_type: boolean
+      - name: datedue
+        data_type: timestamp
+      - name: forecastdate
+        data_type: timestamp
+      - name: commentcount
+        data_type: int
+      - name: sourceid
+        data_type: varchar(100)
+      - name: source
+        data_type: varchar(100)
+      - name: sourcekey
+        data_type: varchar(100)
+      - name: sourceimportid
+        data_type: varchar(100)
+      - name: datemarkedneedsverification
+        data_type: timestamp
+      - name: markedneedsverificationuserid
+        data_type: varchar(100)
+      - name: markedneedsverificationbyuser
+        data_type: varchar(100)
+      - name: datecreated
+        data_type: timestamp
+      - name: createdbyuserid
+        data_type: int
+      - name: createdbyuser
+        data_type: varchar(100)
+      - name: datemodified
+        data_type: timestamp
+      - name: modifiedbyuserid
+        data_type: int
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: dateduedateassigned
+        data_type: timestamp
+      - name: daystoduedate
+        data_type: int
+      - name: urgencyid
+        data_type: int
+      - name: lastcommentid
+        data_type: int
+      - name: lastcomment
+        data_type: varchar(1000)
+      - name: lastcommentdate
+        data_type: timestamp
+      - name: urgency
+        data_type: varchar(100)
+      - name: defaultduedays
+        data_type: int
+      - name: keepduedatealignedwithpsd
+        data_type: boolean
+      - name: isautocreatedconstraint
+        data_type: boolean
+      - name: parentactionid
+        data_type: varchar(100)
+      - name: parentaction
+        data_type: varchar(100)
+      - name: _float
+        data_type: varchar(100)
+      - name: constraintplannedstartdate
+        data_type: timestamp
+      - name: completedbyuseremail
+        data_type: varchar(100)
+      - name: assignedtouseremail
+        data_type: varchar(100)
+      - name: assignedbyuseremail
+        data_type: varchar(100)
+      - name: releasedonentityid
+        data_type: int
+      - name: referencenumber
+        data_type: varchar(100)
+      - name: attachmentannotationid
+        data_type: varchar(100)
+      - name: isrestrictedannotation
+        data_type: boolean
+      - name: isdeleted
+        data_type: boolean
+      - name: constrainttypedescription
+        data_type: varchar(100)
+      - name: assignedtoprojectteamid
+        data_type: int
+      - name: assignedtoprojectteam
+        data_type: varchar(100)
+      - name: simpleentityid
+        data_type: int
+      - name: ewpnumber
+        data_type: varchar(100)
+      - name: ewpstatusid
+        data_type: int
+      - name: ewpstatus
+        data_type: varchar(100)
+      - name: statusdate
+        data_type: varchar(100)
+      - name: ewpdescription
+        data_type: varchar(1000)
+      - name: ewplongdescription
+        data_type: varchar(16383)
+      - name: ewpexternallink
+        data_type: varchar(100)
+      - name: ewprevision
+        data_type: varchar(100)
+      - name: criticalpath
+        data_type: boolean
+      - name: plannedstartdate
+        data_type: timestamp
+      - name: actualstartdate
+        data_type: timestamp
+      - name: plannedfinishdate
+        data_type: timestamp
+      - name: actualfinishdate
+        data_type: timestamp
+      - name: labels
+        data_type: varchar(100)
+      - name: forecaststartdate
+        data_type: timestamp
+      - name: forecastfinishdate
+        data_type: timestamp
+      - name: documentid
+        data_type: varchar(100)
+      - name: documentstatusid
+        data_type: int
+      - name: documentstatus
+        data_type: varchar(100)
+      - name: documentdescription
+        data_type: varchar(1000)
+      - name: documentlongdescription
+        data_type: varchar(1000)
+      - name: documentexternallink
+        data_type: varchar(100)
+      - name: documentrevision
+        data_type: varchar(100)
+      - name: documentownercompanyid
+        data_type: varchar(100)
+      - name: documentownercompany
+        data_type: varchar(100)
+      - name: documenttypeid
+        data_type: int
+      - name: documenttype
+        data_type: varchar(100)
+      - name: documentnumber
+        data_type: varchar(100)
+      - name: attachmentcount
+        data_type: int
+      - name: mechanicalequipmentid
+        data_type: varchar(100)
+      - name: mechanicalequipment
+        data_type: varchar(100)
+      - name: unitcode
+        data_type: varchar(100)
+      - name: areacode
+        data_type: varchar(100)
+      - name: wbsid
+        data_type: int
+      - name: wbs
+        data_type: varchar(100)
+      - name: contractgroupid
+        data_type: int
+      - name: contractgroup
+        data_type: varchar(100)
+      - name: criticalpathcategoryid
+        data_type: varchar(100)
+      - name: criticalpathcategory
+        data_type: varchar(100)
+      - name: masterentityid
+        data_type: varchar(100)
+      - name: releasedbyuserid
+        data_type: varchar(100)
+      - name: releasedbyuser
+        data_type: varchar(100)
+      - name: datereleased
+        data_type: timestamp
+      - name: leadengineeruserid
+        data_type: int
+      - name: constructionrepresentativeuserid
+        data_type: int
+      - name: leadengineer
+        data_type: varchar(100)
+      - name: constructionrepresentative
+        data_type: varchar(100)
+      - name: iwpsid
+        data_type: int
+      - name: subcwp
+        data_type: varchar(100)
+      - name: deliveryteamid
+        data_type: varchar(100)
+      - name: deliveryteam
+        data_type: varchar(100)
+      - name: purposecategoryid
+        data_type: varchar(100)
+      - name: purposecategory
+        data_type: varchar(100)
+      - name: keyquantity
+        data_type: float
+      - name: unitofmeasureid
+        data_type: varchar(100)
+      - name: uom
+        data_type: varchar(100)
+      - name: datefirstconstraintcompleted
+        data_type: timestamp
+      - name: datefirstconstraintcreated
+        data_type: timestamp
+      - name: datelastconstraintcreated
+        data_type: timestamp
+      - name: plannedduration
+        data_type: varchar(100)
+      - name: criticalpath2
+        data_type: boolean
+      - name: plannedreleasedtoqualitydate
+        data_type: timestamp
+      - name: actualreleasedtoqualitydate
+        data_type: timestamp
+      - name: calendarstartdate
+        data_type: timestamp
+      - name: calendarenddate
+        data_type: timestamp
+      - name: projectphaseid
+        data_type: int
+      - name: projectphase
+        data_type: varchar(100)
+      - name: plannedreleasedate
+        data_type: timestamp
+      - name: forecastreleasedate
+        data_type: timestamp
+      - name: cwaareareleaseid
+        data_type: varchar(100)
+      - name: cwaarearelease
+        data_type: varchar(100)
+      - name: drawingnumber
+        data_type: varchar(1000)
+      - name: drawingstatusid
+        data_type: int
+      - name: drawingstatus
+        data_type: varchar(100)
+      - name: drawingdescription
+        data_type: varchar(5000)
+      - name: longdescription
+        data_type: varchar(500)
+      - name: externallink
+        data_type: varchar(1000)
+      - name: revision
+        data_type: varchar(100)
+      - name: revisiondate
+        data_type: timestamp
+      - name: drawingtypeid
+        data_type: int
+      - name: drawingtype
+        data_type: varchar(100)
+      - name: dateissued
+        data_type: timestamp
+      - name: filename
+        data_type: varchar(500)
+      - name: location
+        data_type: varchar(1000)
+      - name: percentdocumented
+        data_type: float
+      - name: percentdocumentedinclusive
+        data_type: float
+      - name: percentconstraintfree
+        data_type: float
+      - name: percentdelayfree
+        data_type: float
+      - name: percentapproved
+        data_type: float
+      - name: percentdeveloped
+        data_type: float
+      - name: drawingcompanyid
+        data_type: varchar(100)
+      - name: drawingcompany
+        data_type: varchar(100)
+      - name: sheet
+        data_type: varchar(100)
+      - name: sourcedeleted
+        data_type: boolean
+      - name: sourceurn
+        data_type: varchar(1000)
+      - name: modelguid
+        data_type: varchar(100)
+      - name: modelid
+        data_type: varchar(100)
+      - name: hasreleasedversion
+        data_type: boolean
+      - name: hasworkingversion
+        data_type: boolean
+      - name: drawinghasrevisionattachment
+        data_type: boolean
+      - name: drawingrevisionattachmentispdf
+        data_type: boolean
+      - name: workingrevision
+        data_type: varchar(100)
+      - name: openannotationcount
+        data_type: int
+      - name: manufacturer
+        data_type: varchar(100)
+      - name: visibletoallusers
+        data_type: boolean
+      - name: rfi
+        data_type: varchar(100)
+      - name: rfistatusid
+        data_type: int
+      - name: rfidescription
+        data_type: varchar(1000)
+      - name: rfistatus
+        data_type: varchar(100)
+      - name: companycontactuserid
+        data_type: int
+      - name: companycontactuser
+        data_type: varchar(100)
+      - name: scheduleimpactid
+        data_type: int
+      - name: scheduleimpact
+        data_type: varchar(100)
+      - name: scheduleimpactcolor
+        data_type: varchar(100)
+      - name: costimpactid
+        data_type: int
+      - name: costimpact
+        data_type: varchar(100)
+      - name: costimpactcolor
+        data_type: varchar(100)
+      - name: responsibleengineeruserid
+        data_type: int
+      - name: responsibleengineeruser
+        data_type: varchar(100)
+      - name: reasonid
+        data_type: int
+      - name: reason
+        data_type: varchar(100)
+      - name: resolutionid
+        data_type: varchar(100)
+      - name: resolution
+        data_type: varchar(100)
+      - name: documentrevisionsrequired
+        data_type: boolean
+      - name: rfitypeid
+        data_type: int
+      - name: rfitype
+        data_type: varchar(100)
+      - name: workimpactid
+        data_type: varchar(100)
+      - name: workimpact
+        data_type: varchar(100)
+      - name: workimpactcolor
+        data_type: varchar(100)
+      - name: disciplines
+        data_type: varchar(100)
+      - name: subject
+        data_type: varchar(100)
+      - name: openedbyuserid
+        data_type: int
+      - name: openedbyuser
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+
+  - name: transformed_iwps
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: iwpspk
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: is_current
+        data_type: int
+      - name: ID
+        data_type: varchar(100)
+      - name: cwpstatuscolor
+        data_type: varchar(100)
+      - name: cwpstatus
+        data_type: varchar(100)
+      - name: actualfinishweekofyear
+        data_type: int
+      - name: cwpstatusid
+        data_type: int
+      - name: assemblystartweek
+        data_type: int
+      - name: finishdatevariance
+        data_type: int
+      - name: actualfinishdayofyear
+        data_type: int
+      - name: actualfinishmonth
+        data_type: int
+      - name: actualfinishyear
+        data_type: int
+      - name: plannedfinishweek
+        data_type: int
+      - name: startdatevariance
+        data_type: int
+      - name: actualstartdayofyear
+        data_type: int
+      - name: actualstartweekofyear
+        data_type: int
+      - name: actualstartmonth
+        data_type: int
+      - name: actualstartyear
+        data_type: int
+      - name: plannedstartweek
+        data_type: int
+      - name: plannedstartdayofyear
+        data_type: int
+      - name: plannedstartweekofyear
+        data_type: int
+      - name: plannedstartmonth
+        data_type: int
+      - name: plannedstartyear
+        data_type: int
+      - name: cwpplannedfinishdate
+        data_type: timestamp
+      - name: disciplinedescription
+        data_type: varchar(500)
+      - name: discipline
+        data_type: varchar(100)
+      - name: cwpplannedstartdate
+        data_type: timestamp
+      - name: cwpscheduleactivityid
+        data_type: int
+      - name: cwpdescription
+        data_type: varchar(1000)
+      - name: issuedatevariance
+        data_type: int
+      - name: zone
+        data_type: varchar(10)
+      - name: constructiontype
+        data_type: varchar(100)
+      - name: area
+        data_type: varchar(100)
+      - name: constructionworkarea
+        data_type: varchar(100)    
+      - name: name
+        data_type: varchar(100)
+      - name: entityid
+        data_type: int
+      - name: entitytypeid
+        data_type: int
+      - name: constructionworkareaid
+        data_type: int
+      - name: constructiontypeid
+        data_type: int
+      - name: disciplineid
+        data_type: int
+      - name: cwpsid
+        data_type: varchar(100)
+      - name: iwpsid
+        data_type: varchar(100)
+      - name: iwpsdescription
+        data_type: varchar(20000)
+      - name: iwpslongdescription
+        data_type: varchar(20000)
+      - name: projectid
+        data_type: int
+      - name: projectcode
+        data_type: varchar(100)
+      - name: projectinfo
+        data_type: varchar(100)
+      - name: statusid
+        data_type: int
+      - name: status
+        data_type: varchar(100)
+      - name: statusdate
+        data_type: timestamp
+      - name: iwpstatuscolor
+        data_type: varchar(100)
+      - name: significantrequirements
+        data_type: varchar(10000)
+      - name: scopeexclusions
+        data_type: varchar(1000)
+      - name: externallink
+        data_type: varchar(100)
+      - name: workpackagetypeid
+        data_type: varchar(100)
+      - name: workpackagetype
+        data_type: varchar(100)
+      - name: revision
+        data_type: varchar(100)
+      - name: constructionworkpackageid
+        data_type: int
+      - name: unitid
+        data_type: int
+      - name: unit
+        data_type: varchar(100)
+      - name: deliveryteamid
+        data_type: varchar(100)
+      - name: deliveryteam
+        data_type: varchar(100)
+      - name: zoneid
+        data_type: int
+      - name: areaid
+        data_type: int
+      - name: RegionID
+        data_type: int
+      - name: areacode
+        data_type: varchar(100)
+      - name: purposeid
+        data_type: int
+      - name: purpose
+        data_type: varchar(100)
+      - name: purposecategoryid
+        data_type: varchar(100)
+      - name: purposecategory
+        data_type: varchar(100)
+      - name: contractid
+        data_type: int
+      - name: contract
+        data_type: varchar(100)
+      - name: planneruserid
+        data_type: int
+      - name: planneruser
+        data_type: varchar(100)
+      - name: planneruseremail
+        data_type: varchar(100)
+      - name: plannerusercompany
+        data_type: varchar(100)
+      - name: drawingcount
+        data_type: int
+      - name: budgetedhours
+        data_type: float
+      - name: estimatedhours
+        data_type: float
+      - name: iwpsequencenumber
+        data_type: int
+      - name: scheduleactivityid
+        data_type: varchar(100)
+      - name: taskcode
+        data_type: varchar(500)
+      - name: plannedissuedate
+        data_type: timestamp
+      - name: actualissuedate
+        data_type: timestamp
+      - name: plannedstartdate
+        data_type: timestamp
+      - name: actualstartdate
+        data_type: timestamp
+      - name: plannedfinishdate
+        data_type: timestamp
+      - name: actualfinishdate
+        data_type: timestamp
+      - name: assemblystartdate
+        data_type: timestamp
+      - name: assemblyfinishdate
+        data_type: timestamp
+      - name: releasedtouserid
+        data_type: varchar(100)
+      - name: releasedtouser
+        data_type: varchar(100)
+      - name: datereleased
+        data_type: timestamp
+      - name: datedelivered
+        data_type: timestamp
+      - name: earnedhours
+        data_type: float
+      - name: actualhours
+        data_type: float
+      - name: forecastedhours
+        data_type: float
+      - name: productivityfactor
+        data_type: varchar(100)
+      - name: percentcomplete
+        data_type: float
+      - name: percentdocumented
+        data_type: float
+      - name: percentdocumentedinclusive
+        data_type: float
+      - name: openconstraintcount
+        data_type: int
+      - name: overdueconstraintcount
+        data_type: int
+      - name: totalconstraintcount
+        data_type: int
+      - name: closedconstraintcount
+        data_type: int
+      - name: percentconstraintfree
+        data_type: float
+      - name: percentdelayfree
+        data_type: varchar(100)
+      - name: percentapproved
+        data_type: float
+      - name: percentdeveloped
+        data_type: float
+      - name: subcwp
+        data_type: varchar(100)
+      - name: iwpfilename
+        data_type: varchar(100)
+      - name: iwpstatus
+        data_type: varchar(100)
+      - name: keyquantity
+        data_type: float
+      - name: unitofmeasureid
+        data_type: int
+      - name: uom
+        data_type: varchar(100)
+      - name: draftreviewdate
+        data_type: timestamp
+      - name: plannedreadyforreviewdate
+        data_type: timestamp
+      - name: readyforreviewdate
+        data_type: timestamp
+      - name: plannedapproveddate
+        data_type: timestamp
+      - name: approveddate
+        data_type: timestamp
+      - name: preparedfor
+        data_type: varchar(100)
+      - name: plannedduration
+        data_type: varchar(100)
+      - name: actualduration
+        data_type: varchar(100)
+      - name: wbsid
+        data_type: int
+      - name: wbs
+        data_type: varchar(100)
+      - name: wbsdescription
+        data_type: varchar(500)
+      - name: sourceid
+        data_type: varchar(100)
+      - name: source
+        data_type: varchar(100)
+      - name: sourceimportid
+        data_type: varchar(100)
+      - name: sourcedatecreated
+        data_type: timestamp
+      - name: sourcedeleted
+        data_type: boolean
+      - name: datecreated
+        data_type: timestamp
+      - name: createdbyuserid
+        data_type: int
+      - name: createdbyuser
+        data_type: varchar(100)
+      - name: datemodified
+        data_type: timestamp
+      - name: modifiedbyuserid
+        data_type: int
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: isdeleted
+        data_type: boolean
+      - name: dateconstraintfree
+        data_type: timestamp
+      - name: datefirstconstraintcompleted
+        data_type: timestamp
+      - name: datefirstconstraintcreated
+        data_type: timestamp
+      - name: datelastconstraintcreated
+        data_type: timestamp
+      - name: datedatacomplete
+        data_type: timestamp
+      - name: datecloseoutdatacomplete
+        data_type: timestamp
+      - name: planneddevelopmentstartdate
+        data_type: timestamp
+      - name: actualdevelopmentstartdate
+        data_type: timestamp
+      - name: lastpackagedcomponentdate
+        data_type: timestamp
+      - name: constraintrollupstatusid
+        data_type: int
+      - name: constraintrollupstatus
+        data_type: varchar(100)
+      - name: constraintrollupstatuscolor
+        data_type: varchar(100)
+      - name: datacompletenessstatus
+        data_type: varchar(100)
+      - name: calendarstartdate
+        data_type: timestamp
+      - name: calendarenddate
+        data_type: timestamp
+      - name: crewsize
+        data_type: int
+      - name: workconditionid
+        data_type: varchar(100)
+      - name: workcondition
+        data_type: varchar(100)
+      - name: revisiondate
+        data_type: timestamp
+      - name: tradecoordinationnotes
+        data_type: varchar(1000)
+      - name: plantoperationsnotes
+        data_type: varchar(1000)
+      - name: specialtycontractornotes
+        data_type: varchar(1000)
+      - name: qualitynotes
+        data_type: varchar(1791)
+      - name: toolnotes
+        data_type: varchar(100)
+      - name: constructionequipmentnotes
+        data_type: varchar(1000)
+      - name: overviewmodelshotattachmentid
+        data_type: varchar(100)
+      - name: actualcloseoutdate
+        data_type: timestamp
+      - name: plannedcloseoutdate
+        data_type: timestamp
+      - name: contractgroupid
+        data_type: int
+      - name: contractgroup
+        data_type: varchar(100)
+      - name: criticalpath
+        data_type: boolean
+      - name: criticalpathcategoryid
+        data_type: varchar(100)
+      - name: criticalpathcategory
+        data_type: varchar(100)
+      - name: statuscolor
+        data_type: varchar(100)
+      - name: safetynotes
+        data_type: varchar(1000)
+      - name: dateapprovedforconstruction
+        data_type: timestamp
+      - name: fccnotes
+        data_type: varchar(1000)
+      - name: lessonslearnednotes
+        data_type: varchar(1000)
+      - name: interfacesnotes
+        data_type: varchar(1134)
+      - name: specialnotes
+        data_type: varchar(1000)
+      - name: turnoversystemid
+        data_type: varchar(100)
+      - name: turnoversystem
+        data_type: varchar(100)
+      - name: turnoversubsystemid
+        data_type: varchar(100)
+      - name: turnoversubsystem
+        data_type: varchar(100)
+      - name: baselinestartdate
+        data_type: timestamp
+      - name: baselinefinishdate
+        data_type: timestamp
+      - name: attachmentcount
+        data_type: int
+      - name: foremanuserid
+        data_type: varchar(100)
+      - name: foreman
+        data_type: varchar(100)
+      - name: foreman2userid
+        data_type: varchar(100)
+      - name: foreman2
+        data_type: varchar(100)
+      - name: foreman3userid
+        data_type: varchar(100)
+      - name: foreman3
+        data_type: varchar(100)
+      - name: alternateforemanuserid
+        data_type: varchar(100)
+      - name: alternateforeman
+        data_type: varchar(100)
+      - name: generalforemanuserid
+        data_type: varchar(100)
+      - name: generalforeman
+        data_type: varchar(100)
+      - name: generalforemanemail
+        data_type: varchar(100)
+      - name: generalforeman2userid
+        data_type: varchar(100)
+      - name: generalforeman2
+        data_type: varchar(100)
+      - name: generalforeman2email
+        data_type: varchar(100)
+      - name: generalforeman3userid
+        data_type: varchar(100)
+      - name: generalforeman3
+        data_type: varchar(100)
+      - name: generalforeman3email
+        data_type: varchar(100)
+      - name: superintendentuserid
+        data_type: varchar(100)
+      - name: superintendent
+        data_type: varchar(100)
+      - name: superintendentemail
+        data_type: varchar(100)
+      - name: superintendent2userid
+        data_type: varchar(100)
+      - name: superintendent2
+        data_type: varchar(100)
+      - name: superintendent2email
+        data_type: varchar(100)
+      - name: superintendent3userid
+        data_type: varchar(100)
+      - name: superintendent3
+        data_type: varchar(100)
+      - name: superintendent3email
+        data_type: varchar(100)
+      - name: testsystemid
+        data_type: varchar(100)
+      - name: testsystem
+        data_type: varchar(100)
+      - name: testsubsystemid
+        data_type: varchar(100)
+      - name: testsubsystem
+        data_type: varchar(100)
+      - name: permitissuerid
+        data_type: varchar(100)
+      - name: permitissuer
+        data_type: varchar(100)
+      - name: latestartrootcauseid
+        data_type: varchar(100)
+      - name: latestartrootcause
+        data_type: varchar(100)
+      - name: latefinishrootcauseid
+        data_type: varchar(100)
+      - name: latefinishrootcause
+        data_type: varchar(100)
+      - name: companysupervisorid
+        data_type: varchar(100)
+      - name: companysupervisor
+        data_type: varchar(100)
+      - name: contractorsupervisorid
+        data_type: varchar(100)
+      - name: contractorsupervisor
+        data_type: varchar(100)
+      - name: unitcategoryid
+        data_type: varchar(100)
+      - name: unitcategory
+        data_type: varchar(100)
+      - name: labels
+        data_type: varchar(100)
+      - name: stateid
+        data_type: varchar(100)
+      - name: forecaststartdate
+        data_type: timestamp
+      - name: forecastfinishdate
+        data_type: timestamp
+      - name: externallinkverified
+        data_type: boolean
+      - name: externallinkverifiedbyuser
+        data_type: varchar(100)
+      - name: externallinkverifiedbyuserid
+        data_type: varchar(100)
+      - name: externallinkverifieddate
+        data_type: timestamp
+      - name: plannedapprovedforconstructiondate
+        data_type: timestamp
+      - name: forgemodelshotstate
+        data_type: varchar(20000)
+      - name: invalidmodeldata
+        data_type: boolean
+      - name: operationsrequirements
+        data_type: varchar(100)
+      - name: projectphaseid
+        data_type: int
+      - name: projectphase
+        data_type: varchar(100)
+      - name: criticalpath2
+        data_type: boolean
+      - name: systemrequired
+        data_type: boolean
+      - name: plannedreleasedtoqualitydate
+        data_type: timestamp
+      - name: actualreleasedtoqualitydate
+        data_type: timestamp
+      - name: rigginglocationid
+        data_type: varchar(100)
+      - name: rigginglocation
+        data_type: varchar(100)
+      - name: tasksneedingcalculationcount
+        data_type: int
+      - name: modelshot
+        data_type: boolean
+      - name: forecastduration
+        data_type: varchar(100)
+      - name: insulationtypeid
+        data_type: varchar(100)
+      - name: insulationtype
+        data_type: varchar(100)
+      - name: painttypeid
+        data_type: varchar(100)
+      - name: painttype
+        data_type: varchar(100)
+      - name: hydrotesttypeid
+        data_type: varchar(100)
+      - name: hydrotesttype
+        data_type: varchar(100)
+      - name: estimatedcost
+        data_type: float
+      - name: forecastcost
+        data_type: float
+      - name: actualcost
+        data_type: float
+      - name: scheduleactivitylookupid
+        data_type: varchar(100)
+      - name: scheduleactivity
+        data_type: varchar(100)
+      - name: plotplancount
+        data_type: int
+      - name: crewid
+        data_type: varchar(100)
+      - name: crew
+        data_type: varchar(100)
+      - name: scaffoldingrequired
+        data_type: boolean
+      - name: remaininghours
+        data_type: float
+      - name: scheduledatadate
+        data_type: timestamp
+      - name: earlystartdate
+        data_type: timestamp
+      - name: latestartdate
+        data_type: timestamp
+      - name: earlyfinishdate
+        data_type: timestamp
+      - name: latefinishdate
+        data_type: timestamp
+      - name: workingdayduration
+        data_type: float
+      - name: developedhours
+        data_type: float
+      - name: functionalareaid
+        data_type: varchar(100)
+      - name: functionalarea
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_materials
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: materials_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: bank
+        data_type: varchar(100)
+      - name: bay
+        data_type: varchar(100)
+      - name: catalogcode
+        data_type: varchar(500)
+      - name: constructionworkpackage
+        data_type: varchar(100)
+      - name: constructionworkpackageid
+        data_type: varchar(100)
+      - name: model_created_date
+        data_type: date
+      - name: createdbyuser
+        data_type: varchar(100)
+      - name: createdbyuserid
+        data_type: varchar(100)
+      - name: datecreated
+        data_type: varchar(100)
+      - name: datemodified
+        data_type: varchar(100)
+      - name: datemodified_ts
+        data_type: timestamp
+      - name: description
+        data_type: varchar(10000)
+      - name: eff_end_date
+        data_type: date
+      - name: eff_start_date
+        data_type: date
+      - name: execution_date
+        data_type: date
+      - name: id
+        data_type: varchar(100)
+      - name: installationworkpackageid
+        data_type: varchar(100)
+      - name: is_current
+        data_type: integer
+      - name: iwp
+        data_type: varchar(100)
+      - name: level
+        data_type: varchar(100)
+      - name: model_load_id
+        data_type: varchar(100)
+      - name: location
+        data_type: varchar(100)
+      - name: manufacturer
+        data_type: varchar(100)
+      - name: manufacturerid
+        data_type: varchar(100)
+      - name: materialcatalogid
+        data_type: varchar(100)
+      - name: materialtype
+        data_type: varchar(100)
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: modifiedbyuserid
+        data_type: varchar(100)
+      - name: ownercompany
+        data_type: varchar(100)
+      - name: ownercompanyid
+        data_type: varchar(100)
+      - name: ponumber
+        data_type: varchar(100)
+      - name: primary_key
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: projectinfo
+        data_type: varchar(100)
+      - name: quantity
+        data_type: varchar(100)
+      - name: receiptnumber
+        data_type: varchar(100)
+      - name: size1
+        data_type: varchar(100)
+      - name: size2
+        data_type: varchar(100)
+      - name: source
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: sourceid
+        data_type: varchar(100)
+      - name: status
+        data_type: varchar(100)
+      - name: statusid
+        data_type: varchar(100)
+      - name: supplier
+        data_type: varchar(100)
+      - name: trackingtag
+        data_type: varchar(100)
+      - name: uom
+        data_type: varchar(100)
+      - name: model_updated_date
+        data_type: date
+  - name: transformed_material_requirements
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: material_requirements_key
+        data_type: int
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+      - name: actualreceiptdate
+        data_type: timestamp
+      - name: atsite
+        data_type: varchar(100)
+      - name: atsiteid
+        data_type: int
+      - name: autocreatedfromconstructioncomponentid
+        data_type: varchar(100)
+      - name: autocreatedfrompipecomponentid
+        data_type: int
+      - name: autocreatedfrompipespoolid
+        data_type: int
+      - name: catalogcode
+        data_type: varchar(100)
+      - name: clonedfromentityid
+        data_type: int
+      - name: clonedfromid
+        data_type: int
+      - name: clonedfromscopeid
+        data_type: int
+      - name: componentidentifier
+        data_type: varchar(100)
+      - name: componentlookupkey
+        data_type: varchar(100)
+      - name: constructioncomponentid
+        data_type: int
+      - name: model_created_date
+        data_type: date
+      - name: createdbyuser
+        data_type: varchar(100)
+      - name: createdbyuserid
+        data_type: int
+      - name: datecreated
+        data_type: timestamp
+      - name: datemodified
+        data_type: timestamp
+      - name: datemodified_ts
+        data_type: timestamp
+      - name: description
+        data_type: varchar(1000)
+      - name: drawing
+        data_type: varchar(100)
+      - name: drawingfilename
+        data_type: varchar(100)
+      - name: drawingid
+        data_type: int
+      - name: eff_end_date
+        data_type: date
+      - name: eff_start_date
+        data_type: date
+      - name: entityid
+        data_type: int
+      - name: entityplannedstartdate
+        data_type: timestamp
+      - name: entitystatusstate
+        data_type: varchar(100)
+      - name: entitytypeid
+        data_type: int
+      - name: execution_date
+        data_type: date
+      - name: fabricated
+        data_type: varchar(100)
+      - name: fabricatedid
+        data_type: int
+      - name: forecastreceiptdate
+        data_type: timestamp
+      - name: height
+        data_type: Decimal(10,3)
+      - name: heightuom
+        data_type: varchar(100)
+      - name: id
+        data_type: int
+      - name: inchdia
+        data_type: varchar(100)
+      - name: inchmeter
+        data_type: varchar(100)
+      - name: includeinpackageestimationscope
+        data_type: varchar(100)
+      - name: inwarehouse
+        data_type: varchar(100)
+      - name: inwarehouseid
+        data_type: int
+      - name: is_current
+        data_type: integer
+      - name: isaddedtoiwp
+        data_type: varchar(100)
+      - name: issuedquantity
+        data_type: Decimal(10,3)
+      - name: length
+        data_type: Decimal(10,3)
+      - name: lengthuom
+        data_type: varchar(100)
+      - name: model_load_id
+        data_type: varchar(100)
+      - name: marapproved
+        data_type: varchar(100)
+      - name: marapprovedid
+        data_type: int
+      - name: materialarea
+        data_type: Decimal(10,3)
+      - name: materialareauom
+        data_type: varchar(100)
+      - name: materialavailability
+        data_type: varchar(100)
+      - name: materialavailabilitycolor
+        data_type: varchar(100)
+      - name: materialavailabilityid
+        data_type: int
+      - name: materialcatalogid
+        data_type: int
+      - name: materialcategory
+        data_type: varchar(100)
+      - name: materialcategoryid
+        data_type: int
+      - name: materialrequirementsuom
+        data_type: varchar(100)
+      - name: materialstatus
+        data_type: varchar(100)
+      - name: materialstatusid
+        data_type: int
+      - name: materialtype
+        data_type: varchar(100)
+      - name: mirraised
+        data_type: varchar(100)
+      - name: mirraisedid
+        data_type: int
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: modifiedbyuserid
+        data_type: int
+      - name: needsverification
+        data_type: varchar(100)
+      - name: notes
+        data_type: varchar(100)
+      - name: orderdate
+        data_type: timestamp
+      - name: orderingresponsibleparty
+        data_type: varchar(100)
+      - name: primary_key
+        data_type: varchar(100)
+      - name: projectid
+        data_type: int
+      - name: providedby
+        data_type: varchar(100)
+      - name: purchased
+        data_type: varchar(100)
+      - name: purchasedid
+        data_type: int
+      - name: quantity
+        data_type: Decimal(10,3)
+      - name: receiveoffshoredate
+        data_type: timestamp
+      - name: responsibility
+        data_type: varchar(100)
+      - name: responsibilityid
+        data_type: int
+      - name: sdsapproved
+        data_type: varchar(100)
+      - name: sdsapprovedid
+        data_type: int
+      - name: sendoffshoredate
+        data_type: timestamp
+      - name: sequence
+        data_type: varchar(100)
+      - name: sheet
+        data_type: varchar(100)
+      - name: shortquantity
+        data_type: varchar(100)
+      - name: size1
+        data_type: varchar(100)
+      - name: size2
+        data_type: varchar(100)
+      - name: source
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: sourceid
+        data_type: int
+      - name: sourceimportid
+        data_type: int
+      - name: sourcekey
+        data_type: varchar(100)
+      - name: statusid
+        data_type: int
+      - name: trackingtag
+        data_type: varchar(100)
+      - name: model_updated_date
+        data_type: date
+      - name: vendordrawing
+        data_type: varchar(100)
+      - name: volume
+        data_type: Decimal(10,3)
+      - name: volumeuom
+        data_type: varchar(100)
+      - name: weight
+        data_type: Decimal(10,3)
+      - name: weightrange
+        data_type: varchar(100)
+      - name: weightuom
+        data_type: varchar(100)
+      - name: width
+        data_type: Decimal(10,3)
+      - name: widthuom
+        data_type: varchar(100)
+  - name: transformed_material_catalog
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: material_catalog_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: areadensity
+        data_type: varchar(100)
+      - name: areadensityuom
+        data_type: varchar(100)
+      - name: catalogcode
+        data_type: varchar(500)
+      - name: model_created_date
+        data_type: date
+      - name: createdbyuser
+        data_type: varchar(100)
+      - name: createdbyuserid
+        data_type: varchar(100)
+      - name: currency
+        data_type: varchar(100)
+      - name: datecreated
+        data_type: varchar(100)
+      - name: datemodified
+        data_type: varchar(100)
+      - name: datemodified_ts
+        data_type: timestamp
+      - name: density
+        data_type: varchar(100)
+      - name: densityuom
+        data_type: varchar(100)
+      - name: description
+        data_type: varchar(10000)
+      - name: drawingidsjson
+        data_type: varchar(100)
+      - name: eff_end_date
+        data_type: date
+      - name: eff_start_date
+        data_type: date
+      - name: execution_date
+        data_type: date
+      - name: id
+        data_type: varchar(100)
+      - name: is_current
+        data_type: integer
+      - name: lineardensity
+        data_type: varchar(100)
+      - name: lineardensityuom
+        data_type: varchar(100)
+      - name: model_load_id
+        data_type: varchar(100)
+      - name: materialtype
+        data_type: varchar(500)
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: modifiedbyuserid
+        data_type: varchar(100)
+      - name: primary_key
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: projectinfo
+        data_type: varchar(100)
+      - name: size1
+        data_type: varchar(100)
+      - name: size2
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: unitarea
+        data_type: varchar(100)
+      - name: unitareauom
+        data_type: varchar(100)
+      - name: unitheight
+        data_type: varchar(100)
+      - name: unitheightuom
+        data_type: varchar(100)
+      - name: unitlength
+        data_type: varchar(100)
+      - name: unitlengthuom
+        data_type: varchar(100)
+      - name: unitprice
+        data_type: varchar(100)
+      - name: unitvolume
+        data_type: varchar(100)
+      - name: unitvolumeuom
+        data_type: varchar(100)
+      - name: unitweight
+        data_type: varchar(100)
+      - name: unitweightuom
+        data_type: varchar(100)
+      - name: unitwidth
+        data_type: varchar(100)
+      - name: unitwidthuom
+        data_type: varchar(100)
+      - name: uom
+        data_type: varchar(100)
+      - name: model_updated_date
+        data_type: date
+  - name: transformed_contracts
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: contracts_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: constructionleaduser
+        data_type: varchar(100)
+      - name: constructionleaduserid
+        data_type: varchar(100)
+      - name: contractgroup
+        data_type: varchar(100)
+      - name: contractgroupid
+        data_type: varchar(100)
+      - name: contractors
+        data_type: varchar(100)
+      - name: model_created_date
+        data_type: date
+      - name: createdbyuser
+        data_type: varchar(100)
+      - name: createdbyuserid
+        data_type: varchar(100)
+      - name: datecreated
+        data_type: varchar(100)
+      - name: datemodified
+        data_type: varchar(100)
+      - name: datemodified_ts
+        data_type: timestamp
+      - name: description
+        data_type: varchar(100)
+      - name: eff_end_date
+        data_type: date
+      - name: eff_start_date
+        data_type: date
+      - name: engineeringleaduser
+        data_type: varchar(100)
+      - name: engineeringleaduserid
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: externallink
+        data_type: varchar(100)
+      - name: id
+        data_type: varchar(100)
+      - name: is_current
+        data_type: integer
+      - name: isdeleted
+        data_type: varchar(100)
+      - name: model_load_id
+        data_type: varchar(100)
+      - name: longdescription
+        data_type: varchar(100)
+      - name: modifiedbyuser
+        data_type: varchar(100)
+      - name: modifiedbyuserid
+        data_type: varchar(100)
+      - name: name
+        data_type: varchar(100)
+      - name: percentapproved
+        data_type: varchar(100)
+      - name: percentconstraintfree
+        data_type: varchar(100)
+      - name: percentdelayfree
+        data_type: varchar(100)
+      - name: percentdocumented
+        data_type: varchar(100)
+      - name: percentdocumentedinclusive
+        data_type: varchar(100)
+      - name: primary_key
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: projectinfo
+        data_type: varchar(100)
+      - name: projectteams
+        data_type: varchar(100)
+      - name: revision
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: status
+        data_type: varchar(100)
+      - name: statusid
+        data_type: varchar(100)
+      - name: model_updated_date
+        data_type: date
+  - name: transformed_crew_schedule
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: crew_schedule_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: model_created_date
+        data_type: date
+      - name: detailformconfigurationid
+        data_type: varchar(100)
+      - name: eff_end_date
+        data_type: date
+      - name: eff_start_date
+        data_type: date
+      - name: entitytypeid
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: fridayhours
+        data_type: varchar(100)
+      - name: is_current
+        data_type: integer
+      - name: model_load_id
+        data_type: varchar(100)
+      - name: mondayhours
+        data_type: varchar(100)
+      - name: nonworkingday
+        data_type: varchar(100)
+      - name: primary_key
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: saturdayhours
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: sundayhours
+        data_type: varchar(100)
+      - name: thursdayhours
+        data_type: varchar(100)
+      - name: tuesdayhours
+        data_type: varchar(100)
+      - name: model_updated_date
+        data_type: date
+      - name: usercanaddattachments
+        data_type: varchar(100)
+      - name: usercandelete
+        data_type: varchar(100)
+      - name: usercandownload
+        data_type: varchar(100)
+      - name: usercaneditapprovals
+        data_type: varchar(100)
+      - name: usercaneditconstraints
+        data_type: varchar(100)
+      - name: usercanupdate
+        data_type: varchar(100)
+      - name: userisprojectadmin
+        data_type: varchar(100)
+      - name: wednesdayhours
+        data_type: varchar(100)
+  - name: transformed_fts_timesheet
+    tags: ["fts"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: sitecode
+        data_type: varchar(100)
+      - name: employeenumber
+        data_type: integer
+      - name: class
+        data_type: varchar(100)
+      - name: crewcode
+        data_type: varchar(100)
+      - name: timecarddate
+        data_type: varchar(100)
+      - name: weekendingdate
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: tasknumber
+        data_type: varchar(100)
+      - name: taskname
+        data_type: varchar(100)
+      - name: spenthours
+        data_type: float
+      - name: overtimehours
+        data_type: float
+      - name: dutyhours
+        data_type: float
+      - name: iwpsid
+        data_type: varchar(50)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)     
+  - name: transformed_construction_components
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: construction_component_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: id
+        data_type: string
+      - name: projectid
+        data_type: string
+      - name: tagnumber
+        data_type: string
+      - name: lookupkey
+        data_type: string
+      - name: systempath
+        data_type: string
+      - name: drawingid
+        data_type: string
+      - name: uniqueid
+        data_type: string
+      - name: drawing
+        data_type: string
+      - name: drawingsourceurn
+        data_type: string
+      - name: drawingmaterialavailabilityid
+        data_type: string
+      - name: drawingmaterialavailability
+        data_type: string
+      - name: drawingmaterialavailabilitycolor
+        data_type: string
+      - name: componenttypeid
+        data_type: string
+      - name: componenttype
+        data_type: string
+      - name: datecreated
+        data_type: string
+      - name: createdbyuserid
+        data_type: string
+      - name: createdbyuser
+        data_type: string
+      - name: datemodified
+        data_type: string
+      - name: modifiedbyuserid
+        data_type: string
+      - name: modifiedbyuser
+        data_type: string
+      - name: sheet
+        data_type: string
+      - name: area
+        data_type: string
+      - name: module
+        data_type: string
+      - name: unit
+        data_type: string
+      - name: core
+        data_type: string
+      - name: description
+        data_type: string
+      - name: insulation
+        data_type: string
+      - name: insulationspecification
+        data_type: string
+      - name: linenumber
+        data_type: string
+      - name: loopnumber
+        data_type: string
+      - name: pipelineid
+        data_type: string
+      - name: material
+        data_type: string
+      - name: materialidentifier
+        data_type: string
+      - name: objecttype
+        data_type: string
+      - name: pid
+        data_type: string
+      - name: pressurerating
+        data_type: string
+      - name: schedule
+        data_type: string
+      - name: service
+        data_type: string
+      - name: shortmaterialtype
+        data_type: string
+      - name: specification
+        data_type: string
+      - name: subobjecttype
+        data_type: string
+      - name: subsystemname
+        data_type: string
+      - name: systemname
+        data_type: string
+      - name: terminationnumber
+        data_type: string
+      - name: testpressure
+        data_type: string
+      - name: testtype
+        data_type: string
+      - name: voltage
+        data_type: string
+      - name: insulationthickness
+        data_type: string
+      - name: fromtag
+        data_type: string
+      - name: totag
+        data_type: string
+      - name: boresize
+        data_type: string
+      - name: length
+        data_type: string
+      - name: areadimension
+        data_type: string
+      - name: volume
+        data_type: string
+      - name: weight
+        data_type: string
+      - name: constructionworkareaid
+        data_type: string
+      - name: cwa
+        data_type: string
+      - name: constructionworkpackageid
+        data_type: string
+      - name: cwp
+        data_type: string
+      - name: ismodelcomponent
+        data_type: string
+      - name: systemdescription
+        data_type: string
+      - name: subsystemdescription
+        data_type: string
+      - name: status
+        data_type: string
+      - name: pipespoolid
+        data_type: string
+      - name: topelevation
+        data_type: string
+      - name: bottomelevation
+        data_type: string
+      - name: locationposition
+        data_type: string
+      - name: materialuom
+        data_type: string
+      - name: materialquantity
+        data_type: string
+      - name: materialtype
+        data_type: string
+      - name: materialcategory
+        data_type: string
+      - name: materialdrawing
+        data_type: string
+      - name: materialsource
+        data_type: string
+      - name: drawings
+        data_type: string
+      - name: trackingtag
+        data_type: string
+      - name: hostcomponents
+        data_type: string
+      - name: width
+        data_type: string
+      - name: height
+        data_type: string
+      - name: thickness
+        data_type: string
+      - name: perimeter
+        data_type: string
+      - name: temperature
+        data_type: string
+      - name: componentidentifier
+        data_type: string
+      - name: classification
+        data_type: string
+      - name: maincomponent
+        data_type: string
+      - name: engineeringrevision
+        data_type: string
+      - name: cwatext
+        data_type: string
+      - name: cwptext
+        data_type: string
+      - name: fabricationstatusid
+        data_type: string
+      - name: fabricationstatus
+        data_type: string
+      - name: paintingspec
+        data_type: string
+      - name: tracingspec
+        data_type: string
+      - name: pressureequipmentdirective
+        data_type: string
+      - name: shopweldcount
+        data_type: string
+      - name: fieldweldcount
+        data_type: string
+      - name: ewptext
+        data_type: string
+      - name: engineeringworkpackageid
+        data_type: string
+      - name: ewp
+        data_type: string
+      - name: iwpcount
+        data_type: string
+      - name: systemid
+        data_type: string
+      - name: subsystemid
+        data_type: string
+      - name: ismanual
+        data_type: string
+      - name: componentbacklogtaskcount
+        data_type: string
+      - name: ratecode
+        data_type: string
+      - name: costcode
+        data_type: string
+      - name: externallookup
+        data_type: string
+      - name: sequencerank
+        data_type: string
+      - name: splitparentid
+        data_type: string
+      - name: keyquantity
+        data_type: string
+      - name: keyquantityuom
+        data_type: string
+      - name: splitallocatedquantity
+        data_type: string
+      - name: splitremainingquantity
+        data_type: string
+      - name: execution_date
+        data_type: date
+      - name: datemodified_ts
+        data_type: timestamp
+      - name: source_system_name
+        data_type: string
+      - name: primary_key
+        data_type: string
+      - name: is_current
+        data_type: int
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+  - name: transformed_ewps
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: ewps_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null 
+      - name: assemblystartdate
+        data_type: timestamp
+      - name: assemblyfinishdate
+        data_type: timestamp
+      - name: notes
+        data_type: varchar(10000)
+      - name: remarks
+        data_type: varchar(100)
+      - name: company
+        data_type: varchar(100)
+      - name: companyresponsibleid
+        data_type: int
+      - name: cwpplannedfinishdate
+        data_type: timestamp
+      - name: latefinishdate
+        data_type: timestamp
+      - name: earlyfinishdate
+        data_type: timestamp
+      - name: latestartdate
+        data_type: timestamp
+      - name: earlystartdate
+        data_type: timestamp
+      - name: scheduledatadate
+        data_type: timestamp
+      - name: entitytypeid
+        data_type: int
+      - name: plotplancount
+        data_type: int
+      - name: productivityfactor
+        data_type: varchar(100)
+      - name: forecastduration
+        data_type: varchar(100)
+      - name: modelshot
+        data_type: boolean
+      - name: annotateddrawingscount
+        data_type: int
+      - name: statuscolor
+        data_type: varchar(50)
+      - name: calendarenddate
+        data_type: timestamp
+      - name: calendarstartdate
+        data_type: timestamp
+      - name: cwpplannedstartdate
+        data_type: timestamp
+      - name: plannedapprovedforconstructiondate
+        data_type: timestamp
+      - name: dateapprovedforconstruction
+        data_type: timestamp
+      - name: externallinkverifieddate
+        data_type: timestamp
+      - name: externallinkverifiedbyuser
+        data_type: varchar(100)
+      - name: externallinkverifiedbyuserid
+        data_type: varchar(100)
+      - name: externallinkverified
+        data_type: boolean
+      - name: stateid
+        data_type: int
+      - name: labels
+        data_type: varchar(50)
+      - name: unitcategoryid
+        data_type: varchar(50)
+      - name: unitcategory
+        data_type: varchar(100)
+      - name: attachmentcount
+        data_type: int
+      - name: readyforreviewdate
+        data_type: timestamp
+      - name: plannedreadyforreviewdate
+        data_type: timestamp
+      - name: overviewmodelshotattachmentid
+        data_type: int
+      - name: criticalpath
+        data_type: boolean
+      - name: contractgroup
+        data_type: varchar(100)
+      - name: contractgroupid
+        data_type: int
+      - name: datacompletenessstatus
+        data_type: varchar(100)
+      - name: datecloseoutdatacomplete
+        data_type: timestamp
+      - name: openconstraintcount
+        data_type: int
+      - name: datedatacomplete
+        data_type: timestamp
+      - name: dateconstraintfree
+        data_type: timestamp
+      - name: releasedtouser
+        data_type: varchar(100)
+      - name: releasedtouserid
+        data_type: varchar(100)
+      - name: percentdocumentedinclusive
+        data_type: float
+      - name: id
+        data_type: string
+      - name: projectid
+        data_type: string
+      - name: projectinfo
+        data_type: string
+      - name: name
+        data_type: string
+      - name: statusid
+        data_type: string
+      - name: status
+        data_type: string
+      - name: statusdate
+        data_type: date
+      - name: ewpstatus
+        data_type: string
+      - name: description
+        data_type: string
+      - name: longdescription
+        data_type: string
+      - name: significantrequirements
+        data_type: string
+      - name: scopeexclusions
+        data_type: string
+      - name: externallink
+        data_type: string
+      - name: revision
+        data_type: string
+      - name: revisiondate
+        data_type: date
+      - name: constructionworkpackageid
+        data_type: string
+      - name: cwp
+        data_type: string
+      - name: unitid
+        data_type: string
+      - name: unit
+        data_type: string
+      - name: constructionworkareaid
+        data_type: string
+      - name: constructionworkarea
+        data_type: string
+      - name: zoneid
+        data_type: string
+      - name: zone
+        data_type: string
+      - name: constructiontypeid
+        data_type: string
+      - name: constructiontype
+        data_type: string
+      - name: areaid
+        data_type: string
+      - name: area
+        data_type: string
+      - name: disciplineid
+        data_type: string
+      - name: discipline
+        data_type: string
+      - name: purposeid
+        data_type: string
+      - name: purpose
+        data_type: string
+      - name: engineeruserid
+        data_type: string
+      - name: engineeruser
+        data_type: string
+      - name: drawingcount
+        data_type: int
+      - name: budgetedhours
+        data_type: int
+      - name: estimatedhours
+        data_type: int
+      - name: scheduleactivityid
+        data_type: string
+      - name: plannedissuedate
+        data_type: date
+      - name: actualissuedate
+        data_type: date
+      - name: issuedatevariance
+        data_type: int
+      - name: plannedstartdate
+        data_type: date
+      - name: plannedstartyear
+        data_type: int
+      - name: plannedstartmonth
+        data_type: int
+      - name: plannedstartweekofyear
+        data_type: int
+      - name: plannedstartdayofyear
+        data_type: int
+      - name: plannedstartweek
+        data_type: int
+      - name: actualstartdate
+        data_type: date
+      - name: actualstartyear
+        data_type: int
+      - name: actualstartmonth
+        data_type: int
+      - name: actualstartweekofyear
+        data_type: int
+      - name: actualstartdayofyear
+        data_type: int
+      - name: startdatevariance
+        data_type: int
+      - name: plannedfinishdate
+        data_type: date
+      - name: actualfinishdate
+        data_type: date
+      - name: finishdatevariance
+        data_type: int
+      - name: actualfinishyear
+        data_type: int
+      - name: actualfinishmonth
+        data_type: int
+      - name: actualfinishweekofyear
+        data_type: int
+      - name: actualfinishdayofyear
+        data_type: int
+      - name: datereleased
+        data_type: date
+      - name: datedelivered
+        data_type: date
+      - name: earnedhours
+        data_type: int
+      - name: actualhours
+        data_type: int
+      - name: forecastedhours
+        data_type: int
+      - name: percentcomplete
+        data_type: float
+      - name: percentdocumented
+        data_type: float
+      - name: percentconstraintfree
+        data_type: float
+      - name: percentdelayfree
+        data_type: float
+      - name: percentapproved
+        data_type: float
+      - name: percentdeveloped
+        data_type: float
+      - name: datecreated
+        data_type: date
+      - name: createdbyuserid
+        data_type: string
+      - name: createdbyuser
+        data_type: string
+      - name: datemodified
+        data_type: date
+      - name: modifiedbyuserid
+        data_type: string
+      - name: modifiedbyuser
+        data_type: string
+      - name: isdeleted
+        data_type: boolean
+      - name: sourcedeleted
+        data_type: boolean
+      - name: contractid
+        data_type: string
+      - name: contract
+        data_type: string
+      - name: planneruserid
+        data_type: string
+      - name: planneruser
+        data_type: string
+      - name: plannerusercompany
+        data_type: string
+      - name: draftreviewdate
+        data_type: date
+      - name: plannedapproveddate
+        data_type: date
+      - name: approveddate
+        data_type: date
+      - name: planneddevelopmentstartdate
+        data_type: date
+      - name: actualdevelopmentstartdate
+        data_type: date
+      - name: plannedcloseoutdate
+        data_type: date
+      - name: actualcloseoutdate
+        data_type: date
+      - name: plannedduration
+        data_type: int
+      - name: actualduration
+        data_type: int
+      - name: baselinestartdate
+        data_type: date
+      - name: baselinefinishdate
+        data_type: date
+      - name: forecaststartdate
+        data_type: date
+      - name: forecastfinishdate
+        data_type: date
+      - name: datemodified_ts
+        data_type: timestamp
+      - name: source_system_name
+        data_type: string
+      - name: primary_key
+        data_type: string
+      - name: is_current
+        data_type: int
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+
+  - name: transformed_twps
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: twps_key
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+      - name: id
+        data_type: string
+      - name: projectid
+        data_type: string
+      - name: name
+        data_type: string
+      - name: status
+        data_type: string
+      - name: description
+        data_type: string
+      - name: model_created_date
+        data_type: timestamp
+      - name: revision
+        data_type: string
+      - name: discipline
+        data_type: string
+      - name: execution_date
+        data_type: string
+      - name: datemodified_ts
+        data_type: timestamp
+      - name: source_system_name
+        data_type: string
+      - name: primary_key
+        data_type: string
+      - name: is_current
+        data_type: int
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: actualduration
+        data_type: string
+      - name: actualfinishdate
+        data_type: string
+      - name: actualhours
+        data_type: string
+      - name: actualissuedate
+        data_type: string
+      - name: actualstartdate
+        data_type: string
+      - name: area
+        data_type: string
+      - name: areaid
+        data_type: string
+      - name: assemblyfinishdate
+        data_type: string
+      - name: assemblystartdate
+        data_type: string
+      - name: attachmentcount
+        data_type: string
+      - name: baselinefinishdate
+        data_type: string
+      - name: baselinestartdate
+        data_type: string
+      - name: budgetedhours
+        data_type: string
+      - name: constructionworkarea
+        data_type: string
+      - name: constructionworkareaid
+        data_type: string
+      - name: contract
+        data_type: string
+      - name: contractgroup
+        data_type: string
+      - name: contractgroupid
+        data_type: string
+      - name: contractid
+        data_type: string
+      - name: createdbyuser
+        data_type: string
+      - name: createdbyuserid
+        data_type: string
+      - name: criticalpath
+        data_type: string
+      - name: datacompletenessstatus
+        data_type: string
+      - name: datecloseoutdatacomplete
+        data_type: string
+      - name: dateconstraintfree
+        data_type: string
+      - name: datecreated
+        data_type: string
+      - name: datedatacomplete
+        data_type: string
+      - name: datedelivered
+        data_type: string
+      - name: datemodified
+        data_type: string
+      - name: datereleased
+        data_type: string
+      - name: disciplineid
+        data_type: string
+      - name: drawingcount
+        data_type: string
+      - name: earnedhours
+        data_type: string
+      - name: entitytypeid
+        data_type: string
+      - name: estimatedhours
+        data_type: string
+      - name: externallink
+        data_type: string
+      - name: externallinkverified
+        data_type: string
+      - name: externallinkverifiedbyuser
+        data_type: string
+      - name: externallinkverifiedbyuserid
+        data_type: string
+      - name: externallinkverifieddate
+        data_type: string
+      - name: finishdatevariance
+        data_type: string
+      - name: forecastedhours
+        data_type: string
+      - name: forecastfinishdate
+        data_type: date
+      - name: forecaststartdate
+        data_type: date
+      - name: isdeleted
+        data_type: string
+      - name: issuedatevariance
+        data_type: string
+      - name: labels
+        data_type: string
+      - name: longdescription
+        data_type: string
+      - name: modifiedbyuser
+        data_type: string
+      - name: modifiedbyuserid
+        data_type: string
+      - name: percentapproved
+        data_type: string
+      - name: percentcomplete
+        data_type: string
+      - name: percentconstraintfree
+        data_type: string
+      - name: percentdelayfree
+        data_type: string
+      - name: percentdeveloped
+        data_type: string
+      - name: percentdocumented
+        data_type: string
+      - name: percentdocumentedinclusive
+        data_type: string
+      - name: plannedduration
+        data_type: string
+      - name: plannedfinishdate
+        data_type: string
+      - name: plannedissuedate
+        data_type: string
+      - name: plannedstartdate
+        data_type: string
+      - name: planneruser
+        data_type: string
+      - name: planneruserid
+        data_type: string
+      - name: projectinfo
+        data_type: string
+      - name: purpose
+        data_type: string
+      - name: purposeid
+        data_type: string
+      - name: releasedtouser
+        data_type: string
+      - name: releasedtouserid
+        data_type: string
+      - name: scheduleactivityid
+        data_type: string
+      - name: sourcedeleted
+        data_type: string
+      - name: startdatevariance
+        data_type: string
+      - name: statusdate
+        data_type: string
+      - name: statusid
+        data_type: string
+      - name: subsystem
+        data_type: string
+      - name: subsystemid
+        data_type: string
+      - name: actualmechanicalcompletiondate
+        data_type: date
+      - name: actualreadyforstartupdate
+        data_type: date
+      - name: calendarenddate
+        data_type: date
+      - name: calendarstartdate
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: criticalpathcategory
+        data_type: string
+      - name: criticalpathcategoryid
+        data_type: string
+      - name: earlyfinishdate
+        data_type: date
+      - name: earlystartdate
+        data_type: date
+      - name: execution_date
+        data_type: date
+      - name: executionplanincluded
+        data_type: string
+      - name: forecastduration
+        data_type: string
+      - name: forecastmechanicalcompletiondate
+        data_type: date
+      - name: forecastreadyforstartupdate
+        data_type: date
+      - name: foreman
+        data_type: string
+      - name: foremanuserid
+        data_type: string
+      - name: generalforeman
+        data_type: string
+      - name: generalforemanemail
+        data_type: string
+      - name: generalforemanuserid
+        data_type: string
+      - name: hydrotesttype
+        data_type: string
+      - name: hydrotesttypeid
+        data_type: string
+      - name: insulationtype
+        data_type: string
+      - name: insulationtypeid
+        data_type: string
+      - name: keyquantity
+        data_type: string
+      - name: latefinishdate
+        data_type: date
+      - name: latestartdate
+        data_type: date
+      - name: mechanicalcompletiondate
+        data_type: date
+      - name: notes
+        data_type: string
+      - name: openconstraintcount
+        data_type: string
+      - name: operatingpressure
+        data_type: string
+      - name: packagingstatus
+        data_type: string
+      - name: packagingstatusid
+        data_type: string
+      - name: painttype
+        data_type: string
+      - name: painttypeid
+        data_type: string
+      - name: parentgroup
+        data_type: string
+      - name: percentiwpcomplete
+        data_type: string
+      - name: plannedmechanicalcompletiondate
+        data_type: date
+      - name: plannedreadyforstartupdate
+        data_type: date
+      - name: plannerusercompany
+        data_type: string
+      - name: plotplancount
+        data_type: string
+      - name: prioritygroup
+        data_type: string
+      - name: prioritygroupid
+        data_type: string
+      - name: qualitynotes
+        data_type: string
+      - name: safetynotes
+        data_type: string
+      - name: scheduledatadate
+        data_type: date
+      - name: statuscolor
+        data_type: string
+      - name: superintendent
+        data_type: string
+      - name: superintendentemail
+        data_type: string
+      - name: superintendentuserid
+        data_type: string
+      - name: system
+        data_type: string
+      - name: systemid
+        data_type: string
+      - name: tasksneedingcalculationcount
+        data_type: string
+      - name: testmedium
+        data_type: string
+      - name: testmediumid
+        data_type: string
+      - name: testpressure
+        data_type: string
+      - name: testtype
+        data_type: string
+      - name: testtypeid
+        data_type: string
+      - name: totalconstraintcount
+        data_type: string
+      - name: twpsequencenumber
+        data_type: string
+      - name: twpstatus
+        data_type: string
+      - name: unit
+        data_type: string
+      - name: unitcategory
+        data_type: string
+      - name: unitcategoryid
+        data_type: string
+      - name: unitid
+        data_type: string
+      - name: unitofmeasureid
+        data_type: string
+      - name: uom
+        data_type: string
+      - name: model_updated_date
+        data_type: date
+      - name: volume
+        data_type: string
+      - name: wbs
+        data_type: string
+      - name: wbsid
+        data_type: string
+      - name: model_load_id
+        data_type: varchar(100)
+         
+  - name: transformed_fabrication_status
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+      
+    columns:
+      - name: jobno
+        data_type: integer
+        tests:
+          - not_null
+      - name: cwasid
+        data_type: varchar(50)
+      - name: TagNumber
+        data_type: varchar(100)
+      - name: orderco
+        data_type: integer
+      - name: orderconame
+        data_type: varchar(50)
+      - name: orderno
+        data_type: integer
+      - name: spoolno
+        data_type: integer
+      - name: drawingref
+        data_type: varchar(100)
+      - name: transmittalno
+        data_type: integer
+      - name: transmittaldate
+        data_type: date
+      - name: laststatusdesc
+        data_type: varchar(100)
+      - name: headersize
+        data_type: integer
+      - name: materialtype
+        data_type: integer
+      - name: materialtypedesc
+        data_type: varchar(100)
+      - name: priority
+        data_type: integer
+      - name: numsort
+        data_type: integer
+      - name: fdi
+        data_type: integer
+      - name: weight
+        data_type: integer
+      - name: surfacearea
+        data_type: integer
+      - name: baycode
+        data_type: varchar(10)
+      - name: linespec
+        data_type: varchar(50)
+      - name: laydownarea
+        data_type: varchar(50)
+      - name: alphasort
+        data_type: varchar(50)
+      - name: heattreat
+        data_type: varchar(5)
+      - name: bendyn
+        data_type: varchar(5)
+      - name: hydroyn
+        data_type: varchar(5)
+      - name: hydrolist
+        data_type: varchar(5)
+      - name: sortcode
+        data_type: varchar(10)
+      - name: paintsystem
+        data_type: varchar(10)
+      - name: ordernotes
+        data_type: varchar(100)
+      - name: noofwelds
+        data_type: integer
+      - name: deliveryno
+        data_type: integer
+      - name: shiptoname
+        data_type: varchar(100)
+      - name: revision
+        data_type: integer
+      - name: holdcode
+        data_type: varchar(10)
+      - name: holdcodedesc
+        data_type: varchar(100)
+      - name: holddate
+        data_type: date
+      - name: currentdaysonhold
+        data_type: integer
+      - name: totaldaysonhold
+        data_type: integer
+      - name: drawingreceiveddate
+        data_type: date
+      - name: engineeringreleaseddate
+        data_type: date
+      - name: editcheckcompletedate
+        data_type: date
+      - name: inventoryreleasedate
+        data_type: date
+      - name: materialhandlingdate
+        data_type: date
+      - name: releasetowipdate
+        data_type: date
+      - name: shopshortreturntomcdate
+        data_type: date
+      - name: cutcompletedate
+        data_type: date
+      - name: machiningdate
+        data_type: date
+      - name: machiningcompletedate
+        data_type: date
+      - name: fitcompletedate
+        data_type: date
+      - name: finalfitcompletedate
+        data_type: date
+      - name: weldcompletedate
+        data_type: date
+      - name: squareupdate
+        data_type: date
+      - name: shoprepairdate
+        data_type: date
+      - name: checkoutcompletedate
+        data_type: date
+      - name: hydrocutapartdate
+        data_type: date
+      - name: receivedinqcdate
+        data_type: date
+      - name: ndedate
+        data_type: date
+      - name: readytostressdate
+        data_type: date
+      - name: stresscompletedate
+        data_type: date
+      - name: xraydate
+        data_type: date
+      - name: xrayrepairdate
+        data_type: date
+      - name: hydrodate
+        data_type: date
+      - name: hydrocompletedate
+        data_type: date
+      - name: qcreviewdate
+        data_type: date
+      - name: qccompletedate
+        data_type: date
+      - name: loadedoncartdate
+        data_type: date
+      - name: idblastdate
+        data_type: date
+      - name: coat1completedate
+        data_type: date
+      - name: coat2completedate
+        data_type: date
+      - name: coat3completedate
+        data_type: date
+      - name: paintcompletedate
+        data_type: date
+      - name: inspectioncompletedate
+        data_type: date
+      - name: readytoshipdate
+        data_type: date
+      - name: loadedontruckdate
+        data_type: date
+      - name: shippeddate
+        data_type: date
+      - name: voidedspooldate
+        data_type: date
+      - name: canceledinorderentrydate
+        data_type: date
+      - name: ros
+        data_type: varchar(50)
+      - name: ssct
+        data_type: date
+      - name: projectid
+        data_type: int
+      - name: execution_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)
+
+  - name: transformed_work_package_components
+    tags: ["o3"]
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: id
+        data_type: varchar(500)
+      - name: entityid
+        data_type: varchar(500)
+      - name: entitytypename
+        data_type: varchar(500)
+      - name: projectid
+        data_type: varchar(500)
+      - name: entitytypeid
+        data_type: varchar(500)
+      - name: entitystatusid
+        data_type: varchar(500)
+      - name: entitystatus
+        data_type: varchar(500)
+      - name: entitystatuscolor
+        data_type: varchar(500)
+      - name: entityname
+        data_type: varchar(500)
+      - name: entitydescription
+        data_type: varchar(500)
+      - name: plannedstartdate
+        data_type: varchar(500)
+      - name: plannedfinishdate
+        data_type: varchar(500)
+      - name: actualstartdate
+        data_type: varchar(500)
+      - name: actualfinishdate
+        data_type: varchar(500)
+      - name: componenttype
+        data_type: varchar(500)
+      - name: tagnumber
+        data_type: varchar(500)
+      - name: lookupkey
+        data_type: varchar(500)
+      - name: constructioncomponentid
+        data_type: varchar(500)
+      - name: description
+        data_type: varchar(500)
+      - name: datecreated
+        data_type: varchar(500)
+      - name: createdbyuserid
+        data_type: varchar(500)
+      - name: createdbyuser
+        data_type: varchar(500)
+      - name: datemodified
+        data_type: varchar(500)
+      - name: modifiedbyuserid
+        data_type: varchar(500)
+      - name: modifiedbyuser
+        data_type: varchar(500)
+      - name: componentmissing
+        data_type: varchar(500)
+      - name: drawingid
+        data_type: varchar(500)
+      - name: drawing
+        data_type: varchar(500)
+      - name: associatedentityplannerid
+        data_type: varchar(500)
+      - name: isdeleted
+        data_type: varchar(500)
+      - name: purposeid
+        data_type: varchar(500)
+      - name: constraintrollupstatusid
+        data_type: varchar(500)
+      - name: constraintrollupstatus
+        data_type: varchar(500)
+      - name: constraintrollupstatuscolor
+        data_type: varchar(500)
+      - name: systempath
+        data_type: varchar(500)
+      - name: sheet
+        data_type: varchar(500)
+      - name: area
+        data_type: varchar(500)
+      - name: module
+        data_type: varchar(500)
+      - name: unit
+        data_type: varchar(500)
+      - name: core
+        data_type: varchar(500)
+      - name: insulation
+        data_type: varchar(500)
+      - name: insulationspecification
+        data_type: varchar(500)
+      - name: linenumber
+        data_type: varchar(500)
+      - name: loopnumber
+        data_type: varchar(500)
+      - name: pipelineid
+        data_type: varchar(500)
+      - name: material
+        data_type: varchar(500)
+      - name: materialidentifier
+        data_type: varchar(500)
+      - name: objecttype
+        data_type: varchar(500)
+      - name: pid
+        data_type: varchar(500)
+      - name: pressurerating
+        data_type: varchar(500)
+      - name: schedule
+        data_type: varchar(500)
+      - name: service
+        data_type: varchar(500)
+      - name: shortmaterialtype
+        data_type: varchar(500)
+      - name: specification
+        data_type: varchar(500)
+      - name: subobjecttype
+        data_type: varchar(500)
+      - name: subsystemname
+        data_type: varchar(500)
+      - name: systemname
+        data_type: varchar(500)
+      - name: terminationnumber
+        data_type: varchar(500)
+      - name: testpressure
+        data_type: varchar(500)
+      - name: testtype
+        data_type: varchar(500)
+      - name: voltage
+        data_type: varchar(500)
+      - name: insulationthickness
+        data_type: varchar(500)
+      - name: fromtag
+        data_type: varchar(500)
+      - name: totag
+        data_type: varchar(500)
+      - name: boresize
+        data_type: varchar(500)
+      - name: length
+        data_type: varchar(500)
+      - name: areadimension
+        data_type: varchar(500)
+      - name: volume
+        data_type: varchar(500)
+      - name: weight
+        data_type: varchar(500)
+      - name: systemdescription
+        data_type: varchar(500)
+      - name: subsystemdescription
+        data_type: varchar(500)
+      - name: status
+        data_type: varchar(500)
+      - name: topelevation
+        data_type: varchar(500)
+      - name: bottomelevation
+        data_type: varchar(500)
+      - name: locationposition
+        data_type: varchar(500)
+      - name: drawingtypeid
+        data_type: varchar(500)
+      - name: drawingtype
+        data_type: varchar(500)
+      - name: sourceurn
+        data_type: varchar(500)
+      - name: trackingtag
+        data_type: varchar(500)
+      - name: contractid
+        data_type: varchar(500)
+      - name: priority
+        data_type: varchar(500)
+      - name: fabricationstatusid
+        data_type: varchar(500)
+      - name: fabricationstatus
+        data_type: varchar(500)
+      - name: entitystatusstateid
+        data_type: varchar(500)
+      - name: autocreatedfromcc
+        data_type: varchar(500)
+      - name: externallookup
+        data_type: varchar(500)
+      - name: keyquantity
+        data_type: float
+      - name: keyquantityuom
+        data_type: varchar(500)
+      - name: sortorder
+        data_type: varchar(500)
+      - name: haspendingdatareview
+        data_type: varchar(500)
+      - name: execution_date
+        data_type: date
+      - name: datemodified_ts
+        data_type: timestamp
+      - name: source_system_name
+        data_type: varchar(500)
+      - name: primary_key
+        data_type: varchar(500)
+      - name: is_current
+        data_type: int
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: model_created_date
+        data_type: date
+      - name: model_updated_date
+        data_type: date
+      - name: model_load_id
+        data_type: varchar(100)

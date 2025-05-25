@@ -1,0 +1,28 @@
+SourceSystemId: ecosys
+MetadataType: api#ecosys#project_list
+name: project_list
+is_active: y
+api_parameter:
+  api_method: get # Mandatory (Key and Value)
+  api_response_type : raw
+  endpoint: https://ecosys-int.worley.com/ecosys/api/restjson/Ecosys_ProjectList/ #Mandatory (Key and Value)
+  api_auth_type: Basic #Mandatory (Key and Value)
+  secret_key: ${secret_prefix}-api-ecosys  # This goes into SecretsManager (Mandatory) (Key and Value)
+  api_ssl_verify : False
+  api_retry: 3 #Mandatory (Key and Value)
+  api_timeout: 300 #Mandatory (Key and Value)
+  api_headers: #Mandatory 
+    content_type: application/json #Mandatory (Key and Value)
+  dynamic_api_headers: #Mandatory
+    Authorization : None #Optional (Key only)
+  api_query_params: None #Mandatory (Key only)
+  dynamic_api_query_param :  #Optional 
+  api_body: None #Mandatory (Key only)
+job_parameter:
+  bucket_name: ${raw_bucket}
+  input_path : project_control/ecosys/
+  full_incr: f
+  table_prefix: project_list
+  secorg_id : None
+  s3_output_uri : project_control/ecosys/project_list/{secorg_id}/{partition_uri}
+  s3_datasample_path : project_control/ecosys/data_sampling/project_list/

@@ -1,0 +1,78 @@
+SourceSystemId: ecosys_curated
+MetadataType: curated#ecosys#projectKeyMembers#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/project_control/ecosys/projectKeyMembers/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: ecosys-projectKeyMembers
+  name: ecosys_projectKeyMembers
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: projectKeyMembers_CostObjectID
+    comment: projectKeyMembers_CostObjectID
+    data_classification: null
+    nullable: true
+    raw_column_name: projectKeyMembers_CostObjectID
+  - column_data_type: string
+    column_name: projectKeyMembers_InternalID
+    comment: projectKeyMembers_InternalID
+    data_classification: null
+    nullable: true
+    raw_column_name: projectKeyMembers_InternalID
+  - column_data_type: string
+    column_name: projectKeyMembers_ProjectInternalID
+    comment: projectKeyMembers_ProjectInternalID
+    data_classification: null
+    nullable: true
+    raw_column_name: projectKeyMembers_ProjectInternalID
+  - column_data_type: string
+    column_name: projectKeyMembers_ProjectKeyMemberTypeID
+    comment: projectKeyMembers_ProjectKeyMemberTypeID
+    data_classification: null
+    nullable: true
+    raw_column_name: projectKeyMembers_ProjectKeyMemberTypeID
+  - column_data_type: string
+    column_name: projectKeyMembers_ResourceID
+    comment: projectKeyMembers_ResourceID
+    data_classification: null
+    nullable: true
+    raw_column_name: projectKeyMembers_ResourceID
+  - column_data_type: string
+    column_name: projectKeyMembers_StartDate
+    comment: projectKeyMembers_StartDate
+    data_classification: null
+    nullable: true
+    raw_column_name: projectKeyMembers_StartDate
+  schema_properties:
+    enforce: false
+    # primary_key: []
+    rename_columns: false
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_project_control_ecosys_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/project_control/ecosys/projectKeyMembers/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_ecosys_projectkeymembers
+  load_type: full_load
+  name: ecosys_projectKeyMembers
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/project_control/ecosys/projectKeyMembers
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'ecosys' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

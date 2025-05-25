@@ -1,0 +1,60 @@
+SourceSystemId: supplier_package
+MetadataType: csv_xlsx#document_control#supplier_package
+aws_region: ${region}
+Env: dev
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  csv_files_path: document_control/supplier_package/csv
+  drop_duplicate_columns: true
+  drop_duplicate_rows: true
+  parquet_files_path: document_control/supplier_package/parquet/
+  raw_files_path: document_control/supplier_package/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: document_control/supplier_package/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  csv_files:
+    - filename: DAC_SupplierReport_30_09_2024 09_52_06.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 20
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: supplierreport
+      with_header: true
+    - filename: DAC_PackageReport_30_09_2024 09_54_43.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 20
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: packagereport
+      with_header: true
+    - filename: DAC_MasterReport_30_09_2024 09_24_22.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 20
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: masterreport
+      with_header: true
+    - filename: DAC_TransmittalReport_30_09_2024 09_29_48.csv
+      is_fixed_file_name: false
+      file_prefix_length: 0
+      file_suffix_length: 20
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: transmittalreport
+      with_header: true
+
+name: supplier_package
+Namespace: document_control
+

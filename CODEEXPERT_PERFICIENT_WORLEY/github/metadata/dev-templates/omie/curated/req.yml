@@ -1,0 +1,414 @@
+---
+SourceSystemId: database_omie_curated
+MetadataType: curated#omie#req#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/omie/req/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: omie-project
+  name: omie_project
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: integer
+    column_name: id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: id
+  - column_data_type: string
+    column_name: title
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: title
+  - column_data_type: string
+    column_name: attributes
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: attributes
+  - column_data_type: string
+    column_name: description
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: description
+  - column_data_type: string
+    column_name: response
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: response
+  - column_data_type: string
+    column_name: comments
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: comments
+  - column_data_type: string
+    column_name: log
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: log
+  - column_data_type: string
+    column_name: code
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: code
+  - column_data_type: string
+    column_name: rev
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rev
+  - column_data_type: integer
+    column_name: wfstatus_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wfstatus_id
+  - column_data_type: integer
+    column_name: reqpriority_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: reqpriority_id
+  - column_data_type: integer
+    column_name: probability_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: probability_id
+  - column_data_type: integer
+    column_name: impact_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: impact_id
+  - column_data_type: integer
+    column_name: text_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: text_id
+  - column_data_type: integer
+    column_name: combo_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: combo_id
+  - column_data_type: integer
+    column_name: customdate_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customdate_id
+  - column_data_type: integer
+    column_name: req_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: req_type_id
+  - column_data_type: string
+    column_name: from
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: from
+  - column_data_type: integer
+    column_name: from_entity_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: from_entity_id
+  - column_data_type: string
+    column_name: to
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: to
+  - column_data_type: integer
+    column_name: to_entity_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: to_entity_id
+  - column_data_type: integer
+    column_name: from_orgchart_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: from_orgchart_id
+  - column_data_type: string
+    column_name: from_orgchart
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: from_orgchart
+  - column_data_type: integer
+    column_name: to_orgchart_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: to_orgchart_id
+  - column_data_type: string
+    column_name: to_orgchart
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: to_orgchart
+  - column_data_type: integer
+    column_name: from_orgposition_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: from_orgposition_id
+  - column_data_type: string
+    column_name: from_orgposition
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: from_orgposition
+  - column_data_type: integer
+    column_name: to_orgposition_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: to_orgposition_id
+  - column_data_type: string
+    column_name: to_orgposition
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: to_orgposition
+  - column_data_type: string
+    column_name: component1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: component1
+  - column_data_type: integer
+    column_name: component1_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: component1_id
+  - column_data_type: string
+    column_name: project
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project
+  - column_data_type: integer
+    column_name: project_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: project_id
+  - column_data_type: string
+    column_name: component2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: component2
+  - column_data_type: integer
+    column_name: component2_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: component2_id
+  - column_data_type: timestamp
+    column_name: requireddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: requireddate
+  - column_data_type: timestamp
+    column_name: closeddate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: closeddate
+  - column_data_type: timestamp
+    column_name: responsedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: responsedate
+  - column_data_type: string
+    column_name: converted_from
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: converted_from
+  - column_data_type: string
+    column_name: converted_to
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: converted_to
+  - column_data_type: string
+    column_name: last_comment
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: last_comment
+  - column_data_type: string
+    column_name: historyjson
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: historyjson
+  - column_data_type: string
+    column_name: documentjson
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: documentjson
+  - column_data_type: integer
+    column_name: documentcount
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: documentcount
+  - column_data_type: string
+    column_name: customvals
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: customvals
+  - column_data_type: string
+    column_name: commentsjson
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: commentsjson
+  - column_data_type: string
+    column_name: cc_ids
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cc_ids
+  - column_data_type: string
+    column_name: cc_list
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cc_list
+  - column_data_type: string
+    column_name: resp_list
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resp_list
+  - column_data_type: string
+    column_name: resp_ids
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resp_ids
+  - column_data_type: integer
+    column_name: internal
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: internal
+  - column_data_type: string
+    column_name: import
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: import
+  - column_data_type: integer
+    column_name: order
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: order
+  - column_data_type: integer
+    column_name: updated_by_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: updated_by_id
+  - column_data_type: timestamp
+    column_name: archivedate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: archivedate
+  - column_data_type: timestamp
+    column_name: mdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: mdate
+  - column_data_type: integer
+    column_name: created_by_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: created_by_id
+  - column_data_type: timestamp
+    column_name: cdate
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cdate
+  - column_data_type: integer
+    column_name: disabled
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: disabled
+  - column_data_type: integer
+    column_name: deleted
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: deleted
+  - column_data_type: integer
+    column_name: confidential
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: confidential
+  - column_data_type: string
+    column_name: resp_companies
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: resp_companies    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_omie_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/omie/req/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_req
+  load_type: append
+  name: curated_omie_req
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/omie/req
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'omie' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

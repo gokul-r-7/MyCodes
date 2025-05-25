@@ -1,0 +1,342 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#PLANT#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/PLANT/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-plant
+  name: spi_plant
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: plant_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_id
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date
+  - column_data_type: string
+    column_name: plant_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_name
+  - column_data_type: string
+    column_name: addr1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: addr1
+  - column_data_type: string
+    column_name: addr2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: addr2
+  - column_data_type: string
+    column_name: city
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: city
+  - column_data_type: string
+    column_name: state
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: state
+  - column_data_type: string
+    column_name: zip
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: zip
+  - column_data_type: string
+    column_name: country
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: country
+  - column_data_type: string
+    column_name: plant_note
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_note
+  - column_data_type: decimal(38,0)
+    column_name: owner_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: owner_id
+  - column_data_type: string
+    column_name: location
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: location
+  - column_data_type: decimal(38,0)
+    column_name: hu_item_lib_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: hu_item_lib_id
+  - column_data_type: string
+    column_name: browse_dw_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: browse_dw_name
+  - column_data_type: string
+    column_name: plant_type_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_type_flg
+  - column_data_type: string
+    column_name: wire_tag_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: wire_tag_flg
+  - column_data_type: decimal(38,0)
+    column_name: routing_length_uom_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: routing_length_uom_id
+  - column_data_type: decimal(38,0)
+    column_name: routing_width_uom_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: routing_width_uom_id
+  - column_data_type: decimal(38,0)
+    column_name: routing_spare_length_percent
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: routing_spare_length_percent
+  - column_data_type: decimal(38,0)
+    column_name: routing_spare_length_fix
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: routing_spare_length_fix
+  - column_data_type: decimal(38,0)
+    column_name: extra_routing_length
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: extra_routing_length
+  - column_data_type: string
+    column_name: generic_terminology
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: generic_terminology
+  - column_data_type: decimal(38,0)
+    column_name: parent_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: parent_id
+  - column_data_type: string
+    column_name: plant_udf_c01
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c01
+  - column_data_type: string
+    column_name: plant_udf_c02
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c02
+  - column_data_type: string
+    column_name: plant_udf_c03
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c03
+  - column_data_type: string
+    column_name: plant_udf_c04
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c04
+  - column_data_type: string
+    column_name: plant_udf_c05
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c05
+  - column_data_type: string
+    column_name: plant_udf_c06
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c06
+  - column_data_type: string
+    column_name: plant_udf_c07
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c07
+  - column_data_type: string
+    column_name: plant_udf_c08
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c08
+  - column_data_type: string
+    column_name: plant_udf_c09
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c09
+  - column_data_type: string
+    column_name: plant_udf_c10
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c10
+  - column_data_type: string
+    column_name: plant_udf_c11
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c11
+  - column_data_type: string
+    column_name: plant_udf_c12
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c12
+  - column_data_type: string
+    column_name: plant_udf_c13
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c13
+  - column_data_type: string
+    column_name: plant_udf_c14
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c14
+  - column_data_type: string
+    column_name: plant_udf_c15
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c15
+  - column_data_type: string
+    column_name: plant_udf_c16
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c16
+  - column_data_type: string
+    column_name: plant_udf_c17
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c17
+  - column_data_type: string
+    column_name: plant_udf_c18
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c18
+  - column_data_type: string
+    column_name: plant_udf_c19
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c19
+  - column_data_type: string
+    column_name: plant_udf_c20
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_udf_c20
+  - column_data_type: string
+    column_name: plant_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_flg
+  - column_data_type: string
+    column_name: pipe_standard
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: pipe_standard    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/PLANT/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_plant
+  load_type: append
+  name: curated_plant
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_plant
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

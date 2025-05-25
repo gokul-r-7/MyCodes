@@ -1,0 +1,75 @@
+SourceSystemId: assurance
+MetadataType: curated#assurance#event_formal_root_cause_analysis_people_driven#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/health_safety_environment/assurance/parquet/event_formal_root_cause_analysis_people_driven.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: event_formal_root_cause_analysis_people_driven
+  name: event_formal_root_cause_analysis_people_driven
+  spark_options:
+    format: parquet
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_health_safety_environment_assurance_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/health_safety_environment/assurance/event_formal_root_cause_analysis_people_driven/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: event_formal_root_cause_analysis_people_driven
+  load_type: incremental
+  name: event_formal_root_cause_analysis_people_driven
+  primary_key: [dwk_event_formal_root_cause_analysis, li_people_driven]
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/health_safety_environment/assurance/event_formal_root_cause_analysis_people_driven
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- sql: SELECT *, 'assurance' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+table_schema:
+  schema_properties:
+    enforce: true
+    primary_key: [dwk_event_formal_root_cause_analysis, li_people_driven]
+    rename_columns: true
+  columns:
+  - column_name: dwk_event_formal_root_cause_analysis
+    column_data_type: decimal(38,0)
+    comment: dwk_event_formal_root_cause_analysis
+    data_classification:
+    nullable: true
+    raw_column_name: dwk_event_formal_root_cause_analysis
+  - column_name: people_driven
+    column_data_type: string
+    comment: people_driven
+    data_classification:
+    nullable: true
+    raw_column_name: people_driven
+  - column_name: li_people_driven
+    column_data_type: string
+    comment: li_people_driven
+    data_classification:
+    nullable: true
+    raw_column_name: li_people_driven
+  - column_name: lo_people_driven
+    column_data_type: decimal(38,0)
+    comment: lo_people_driven
+    data_classification:
+    nullable: true
+    raw_column_name: lo_people_driven

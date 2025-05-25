@@ -1,0 +1,114 @@
+SourceSystemId: circuit_breaker_curated
+MetadataType: curated#circuit_breaker#openit_monthly_summary_by_location#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/circuit_breaker/parquet/consumption_openit_monthly_summary_by_location.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: consumption_openit_monthly_summary_by_location_curated
+  name: consumption_openit_monthly_summary_by_location_curated
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_applicationname
+    comment: openit_monthly_summary_by_location_applicationname
+    data_classification: 
+    nullable: true
+    raw_column_name: applicationname
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_applicationversion
+    comment: openit_monthly_summary_by_location_applicationversion
+    data_classification: 
+    nullable: true
+    raw_column_name: applicationversion
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_year
+    comment: openit_monthly_summary_by_location_year
+    data_classification: 
+    nullable: true
+    raw_column_name: year
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_month
+    comment: openit_monthly_summary_by_location_month
+    data_classification: 
+    nullable: true
+    raw_column_name: month
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_country
+    comment: openit_monthly_summary_by_location_country
+    data_classification: 
+    nullable: true
+    raw_column_name: country
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_elapsedtime
+    comment: openit_monthly_summary_by_location_elapsedtime
+    data_classification: 
+    nullable: true
+    raw_column_name: elapsedtime
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_maxinuse
+    comment: openit_monthly_summary_by_location_maxinuse
+    data_classification: 
+    nullable: true
+    raw_column_name: maxinuse
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_maxavailable
+    comment: openit_monthly_summary_by_location_maxavailable
+    data_classification: 
+    nullable: true
+    raw_column_name: maxavailable
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_denials
+    comment: openit_monthly_summary_by_location_denials
+    data_classification: 
+    nullable: true
+    raw_column_name: denials
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_distinctuser
+    comment: openit_monthly_summary_by_location_distinctuser
+    data_classification: 
+    nullable: true
+    raw_column_name: distinctuser
+  - column_data_type: string
+    column_name: openit_monthly_summary_by_location_distincthost
+    comment: openit_monthly_summary_by_location_distincthost
+    data_classification: 
+    nullable: true
+    raw_column_name: distincthost
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: worley_datalake_sydney_${envn}_glue_catalog_database_circuit_breaker_hexagon_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/circuit_breaker/consumption/curated_consumption_openit_monthly_summary_by_location/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_consumption_openit_monthly_summary_by_location
+  load_type: full_load
+  name: curated_consumption_openit_monthly_summary_by_location
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/circuit_breaker/consumption/curated_consumption_openit_monthly_summary_by_location
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd  HH:mm:ss
+  transform: add_run_date
+- sql: SELECT *, 'circuit_breaker' as SOURCE_SYSTEM_NAME, 'curated_consumption_openit_monthly_summary_by_location'
+    as CUSTOM_PROJECT_ID FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,95 @@
+---
+SourceSystemId: oraclegbs_curated
+MetadataType: curated#oraclegbs#currency_type#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/finance/oracle_gbs/parquet/currency_type.parquet/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: currency_type
+  name: currency_type
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: datasource_num_id
+    comment: datasource_num_id
+    data_classification: 
+    nullable: true
+    raw_column_name: datasource_num_id
+  - column_data_type: string
+    column_name: br_key
+    comment: br_key
+    data_classification: 
+    nullable: true
+    raw_column_name: br_key
+  - column_data_type: string
+    column_name: person_id
+    comment: person_id
+    data_classification: 
+    nullable: true
+    raw_column_name: person_id
+  - column_data_type: string
+    column_name: currency_type
+    comment: currency_type
+    data_classification: 
+    nullable: true
+    raw_column_name: currency_type
+  - column_data_type: string
+    column_name: code
+    comment: code
+    data_classification: 
+    nullable: true
+    raw_column_name: code
+  - column_data_type: string
+    column_name: name
+    comment: name
+    data_classification: 
+    nullable: true
+    raw_column_name: name
+  - column_data_type: string
+    column_name: global_currency_indicator
+    comment: global_currency_indicator
+    data_classification: 
+    nullable: true
+    raw_column_name: global_currency_indicator
+  schema_properties:
+    enforce: true
+    primary_key: br_key
+    rename_columns: true
+target:
+  compute_engine: spark
+  drop_duplicates: true
+  iceberg_properties:
+    database_name: ${database_prefix}_finance_oracle_gbs_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/finance/oracle_gbs/currency_type/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: currency_type
+  load_type: incremental_no_delete
+  name: currency_type
+  primary_key: br_key
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/finance/oracle_gbs/currency_type
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'oracle_gbs' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

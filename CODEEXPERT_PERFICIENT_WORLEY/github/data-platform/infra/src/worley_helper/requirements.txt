@@ -1,0 +1,8 @@
+annotated-types==0.6.0
+pydantic-core==2.18.2
+pydantic==2.7.1
+pyyaml==6.0.1
+typing-extensions==4.11.0
+dynamodb-json==1.4.2
+aws-lambda-powertools==3.3.0
+aws-xray-sdk==2.14.0

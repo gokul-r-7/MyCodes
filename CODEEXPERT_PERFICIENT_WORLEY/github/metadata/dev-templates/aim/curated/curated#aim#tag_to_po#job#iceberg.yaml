@@ -1,0 +1,66 @@
+SourceSystemId: aim_curated
+MetadataType: curated#aim#tag_to_po#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/aim/parquet/tag_to_po.parquet/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: tag_to_po-csv_xlsx_curated
+  name: tag_to_po
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: OBJECT_TYPE
+    comment: OBJECT_TYPE
+    data_classification: 
+    nullable: true
+    raw_column_name: object_type
+  - column_data_type: string
+    column_name: CLASSNAME
+    comment: CLASSNAME
+    data_classification: 
+    nullable: true
+    raw_column_name: class name
+  - column_data_type: string
+    column_name: TAG TO PO
+    comment: TAG TO PO
+    data_classification: 
+    nullable: true
+    raw_column_name: tag_to_po
+  schema_properties:
+    enforce: true
+    rename_columns: true
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_aim_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/aim/tag_to_po/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_tag_to_po
+  name: curated_tag_to_po
+  load_type: append
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/aim/tag_to_po
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'aim_tag_to_po_static' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql
+

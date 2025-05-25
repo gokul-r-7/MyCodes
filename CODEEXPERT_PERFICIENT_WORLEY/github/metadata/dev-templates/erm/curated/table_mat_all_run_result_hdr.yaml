@@ -1,0 +1,235 @@
+SourceSystemId: erm_curated
+MetadataType: curated#erm#PublishMatAllRunResultHdr#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/supply_chain/erm/PublishMatAllRunResultHdr/
+    connection_type: s3
+    format: parquet
+    format_options:
+      mergeSchema: true
+    transformation_ctx: erm-PublishMatAllRunResultHdr 
+  name: erm_PublishMatAllRunResultHdr 
+  spark_options:
+    format: parquet
+table_schema:
+  columns:
+  - column_data_type: string
+    column_name: tablename
+    comment: tablename
+    data_classification: null
+    nullable: true
+    raw_column_name: tablename
+  - column_data_type: decimal(38,2)
+    column_name: publishkey
+    comment: publishkey
+    data_classification: null
+    nullable: true
+    raw_column_name: publishkey
+  - column_data_type: decimal(38,2)
+    column_name: primarykey
+    comment: primarykey
+    data_classification: null
+    nullable: true
+    raw_column_name: primarykey
+  - column_data_type: decimal(38,2)
+    column_name: publishscn
+    comment: publishscn
+    data_classification: null
+    nullable: true
+    raw_column_name: publishscn
+  - column_data_type: decimal(38,2)
+    column_name: referencetypekey
+    comment: referencetypekey
+    data_classification: null
+    nullable: true
+    raw_column_name: referencetypekey
+  - column_data_type: string
+    column_name: status
+    comment: status
+    data_classification: null
+    nullable: true
+    raw_column_name: status
+  - column_data_type: decimal(38,2)
+    column_name: mat_all_run_result_hdr_no
+    comment: mat_all_run_result_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_all_run_result_hdr_no
+  - column_data_type: decimal(38,2)
+    column_name: mat_all_run_hist_no
+    comment: mat_all_run_hist_no
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_all_run_hist_no
+  - column_data_type: decimal(38,2)
+    column_name: seq_no
+    comment: seq_no
+    data_classification: null
+    nullable: true
+    raw_column_name: seq_no
+  - column_data_type: decimal(38,2)
+    column_name: allocation_stat
+    comment: allocation_stat
+    data_classification: null
+    nullable: true
+    raw_column_name: allocation_stat
+  - column_data_type: decimal(38,2)
+    column_name: site_mto_hdr_no
+    comment: site_mto_hdr_no
+    data_classification: null
+    nullable: true
+    raw_column_name: site_mto_hdr_no
+  - column_data_type: string
+    column_name: site_mto_hdr_id
+    comment: site_mto_hdr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: site_mto_hdr_id
+  - column_data_type: date
+    column_name: site_mto_hdr_req_date
+    comment: site_mto_hdr_req_date
+    data_classification: null
+    nullable: true
+    raw_column_name: site_mto_hdr_req_date
+  - column_data_type: decimal(38,2)
+    column_name: site_mto_hdr_priority
+    comment: site_mto_hdr_priority
+    data_classification: null
+    nullable: true
+    raw_column_name: site_mto_hdr_priority
+  - column_data_type: string
+    column_name: site_mto_hdr_required
+    comment: site_mto_hdr_required
+    data_classification: null
+    nullable: true
+    raw_column_name: site_mto_hdr_required
+  - column_data_type: decimal(38,2)
+    column_name: site_mto_hdr_site_no
+    comment: site_mto_hdr_site_no
+    data_classification: null
+    nullable: true
+    raw_column_name: site_mto_hdr_site_no
+  - column_data_type: decimal(38,2)
+    column_name: site_mto_hdr_deliv_desig_no
+    comment: site_mto_hdr_deliv_desig_no
+    data_classification: null
+    nullable: true
+    raw_column_name: site_mto_hdr_deliv_desig_no
+  - column_data_type: decimal(38,2)
+    column_name: mat_all_pckg_no
+    comment: mat_all_pckg_no
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_all_pckg_no
+  - column_data_type: string
+    column_name: mat_all_pckg_id
+    comment: mat_all_pckg_id
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_all_pckg_id
+  - column_data_type: string
+    column_name: mat_all_pckg_descr
+    comment: mat_all_pckg_descr
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_all_pckg_descr
+  - column_data_type: date
+    column_name: mat_all_pckg_req_date
+    comment: mat_all_pckg_req_date
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_all_pckg_req_date
+  - column_data_type: decimal(38,2)
+    column_name: mat_all_pckg_priority
+    comment: mat_all_pckg_priority
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_all_pckg_priority
+  - column_data_type: string
+    column_name: mat_all_pckg_required
+    comment: mat_all_pckg_required
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_all_pckg_required
+  - column_data_type: string
+    column_name: def_usr_id
+    comment: def_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: def_usr_id
+  - column_data_type: date
+    column_name: def_date
+    comment: def_date
+    data_classification: null
+    nullable: true
+    raw_column_name: def_date
+  - column_data_type: string
+    column_name: upd_usr_id
+    comment: upd_usr_id
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_usr_id
+  - column_data_type: date
+    column_name: upd_date
+    comment: upd_date
+    data_classification: null
+    nullable: true
+    raw_column_name: upd_date
+  - column_data_type: date
+    column_name: mat_available_date
+    comment: mat_available_date
+    data_classification: null
+    nullable: true
+    raw_column_name: mat_available_date
+  - column_data_type: string
+    column_name: available_on_site
+    comment: available_on_site
+    data_classification: null
+    nullable: true
+    raw_column_name: available_on_site
+  schema_properties:
+    enforce: true
+    primary_key: primarykey
+    rename_columns: true
+target:
+  cdc_properties:
+    cdc_operation_column_name: status
+    cdc_operation_value_map:
+      delete: D
+      insert: M
+      update: M
+  compute_engine: spark
+  drop_duplicates: true
+  primary_constraint_properties:
+    enforce_primary_constraint: true
+    timestamp_column_name: upd_date
+  iceberg_properties:
+    database_name: ${database_prefix}_supply_chain_erm_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/supply_chain/erm/PublishMatAllRunResultHdr/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: mat_all_run_result_hdr
+  load_type: cdc
+  name: mat_all_run_result_hdr
+  primary_key: primarykey
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/supply_chain/erm/PublishMatAllRunResultHdr 
+transforms:
+- rename_column: true
+  transform: rename_columns
+- select_columns: true
+  transform: select_columns_from_config_file
+- change_types: true
+  transform: change_data_types
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'erm' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

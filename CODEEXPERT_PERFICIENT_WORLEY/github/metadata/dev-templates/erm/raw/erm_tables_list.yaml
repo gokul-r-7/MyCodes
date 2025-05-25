@@ -1,0 +1,645 @@
+SourceSystemId: erm
+MetadataType: erm#tables#list
+aws_region: ${region}
+Env: ${envn}
+datasets:  
+ - id: 1
+   table_name: MAT_SUB_HDR
+   publish_id: PublishMatSubHdr
+   query_id: Q13217
+ - id: 2
+   table_name: MOVE_CONDITION
+   publish_id: PublishMoveCondition
+   query_id: Q13230
+ - id: 3
+   table_name: PROC_EXT_STAT
+   publish_id: PublishProcExtStat
+   query_id: Q13187
+ - id: 4
+   table_name: SCHEME
+   publish_id: PublishScheme
+   query_id: Q13235
+ - id: 5
+   table_name: INV_STAT
+   publish_id: PublishInvStat
+   query_id: Q13180
+ - id: 6
+   table_name: PROC_INT_STAT
+   publish_id: PublishProcIntStat
+   query_id: Q13162
+ - id: 7
+   table_name: NC_DISPOSITION
+   publish_id: PublishNcDisposition
+   query_id: Q13282
+ - id: 8
+   table_name: FOLLOW_UP_STAT
+   publish_id: PublishFollowUpStat
+   query_id: Q13210
+ - id: 9
+   table_name: WORKFLOW_PURPOSE
+   publish_id: PublishWorkflowPurpose
+   query_id: Q13222
+ - id: 10
+   table_name: PICK_LST_STAT
+   publish_id: PublishPickLstStat
+   query_id: Q13285
+ - id: 11
+   table_name: TRANS_TERM
+   publish_id: PublishTransTerm
+   query_id: Q13166
+ - id: 12
+   table_name: SUPPLEMENTARY_ITEM
+   publish_id: PublishSupplementaryItem
+   query_id: Q13237
+ - id: 13
+   table_name: PO_CODE
+   publish_id: PublishPoCode
+   query_id: Q13160
+ - id: 14
+   table_name: MAT_GRP_TYPE
+   publish_id: PublishMatGrpType
+   query_id: Q13194
+ - id: 15
+   table_name: PROJECT_TYPE
+   publish_id: PublishProjectType
+   query_id: Q13265
+ - id: 16
+   table_name: DELIV_TERM
+   publish_id: PublishDelivTerm
+   query_id: Q13169
+ - id: 17
+   table_name: TRANS_PCKG
+   publish_id: PublishTransPckg
+   query_id: Q13273
+ - id: 18
+   table_name: FA_HDR
+   publish_id: PublishFaHdr
+   query_id: Q13290
+ - id: 19
+   table_name: PAY_TERM
+   publish_id: PublishPayTerm
+   query_id: Q13159
+ - id: 20
+   table_name: CALENDAR
+   publish_id: PublishCalendar
+   query_id: Q13189
+ - id: 21
+   table_name: AR_ROLE
+   publish_id: PublishArRole
+   query_id: Q13286
+ - id: 22
+   table_name: VAT_TYPE
+   publish_id: PublishVatType
+   query_id: Q13240
+ - id: 23
+   table_name: CUR
+   publish_id: PublishCur
+   query_id: Q13247
+ - id: 24
+   table_name: DRAW_DISCIPLINE
+   publish_id: PublishDrawDiscipline
+   query_id: Q13184
+ - id: 25
+   table_name: NC_ACTION
+   publish_id: PublishNcAction
+   query_id: Q13279
+ - id: 26
+   table_name: WI_ACTION_LINK
+   publish_id: PublishWiActionLink
+   query_id: Q13283
+ - id: 27
+   table_name: SHIP_NOTE_HDR
+   publish_id: PublishShipNoteHdr
+   query_id: Q13266
+ - id: 28
+   table_name: STD_MAT_CLS
+   publish_id: PublishStdMatCls
+   query_id: Q13270
+ - id: 29
+   table_name: UNIT
+   publish_id: PublishUnit
+   query_id: Q13274
+ - id: 30
+   table_name: COUNTRY
+   publish_id: PublishCountry
+   query_id: Q13205
+ - id: 31
+   table_name: ATTRIB
+   publish_id: PublishAttrib
+   query_id: Q13291
+ - id: 32
+   table_name: LEGAL_ENTITY
+   publish_id: PublishLegalEntity
+   query_id: Q13185
+ - id: 33
+   table_name: FA_ITEM
+   publish_id: PublishFaItem
+   query_id: Q13275
+ - id: 34
+   table_name: PO_PAY_PLAN_CPV
+   publish_id: PublishPoPayPlanCpv
+   query_id: Q13178
+ - id: 35
+   table_name: C_WP_PAY_PLAN
+   publish_id: PublishCWpPayPlan
+   query_id: Q13281
+ - id: 36
+   table_name: SPEC_PROJ_PARAM
+   publish_id: PublishSpecProjParam
+   query_id: Q13236
+ - id: 37
+   table_name: PROJ
+   publish_id: PublishProj
+   query_id: Q13140
+ - id: 38
+   table_name: PROJ_CPV
+   publish_id: PublishProjCpv
+   query_id: Q13157
+ - id: 39
+   table_name: INSP_SCH
+   publish_id: PublishInspSch
+   query_id: Q13254
+ - id: 40
+   table_name: PROC_MILESTONE
+   publish_id: PublishProcMilestone
+   query_id: Q13186
+ - id: 41
+   table_name: DRL_HDR_CPV
+   publish_id: PublishDrlHdrCpv
+   query_id: Q13192
+ - id: 42
+   table_name: ENQ_SUPPL_CPV
+   publish_id: PublishEnqSupplCpv
+   query_id: Q13208
+ - id: 43
+   table_name: ENQ_HDR_HIST
+   publish_id: PublishEnqHdrHist
+   query_id: Q13250
+ - id: 44
+   table_name: STORE_HDR
+   publish_id: PublishStoreHdr
+   query_id: Q13155
+ - id: 45
+   table_name: ENQ_ITEM_PO_ITEM
+   publish_id: PublishEnqItemPoItem
+   query_id: Q13207
+ - id: 46
+   table_name: MAT_NON_CONFORMANCE_HDR
+   publish_id: PublishMatNonConformanceHdr
+   query_id: Q13260
+ - id: 47
+   table_name: DELIV_DESIG
+   publish_id: PublishDelivDesig
+   query_id: Q13248
+ - id: 48
+   table_name: ENQ_HDR_CPV
+   publish_id: PublishEnqHdrCpv
+   query_id: Q13206
+ - id: 49
+   table_name: INSP_SCH_HDR
+   publish_id: PublishInspSchHdr
+   query_id: Q13255
+ - id: 50
+   table_name: NC_HDR
+   publish_id: PublishNcHdr
+   query_id: Q13280
+ - id: 51
+   table_name: ENQ_HDR
+   publish_id: PublishEnqHdr
+   query_id: Q13249
+ - id: 52
+   table_name: DELIV_ADDR
+   publish_id: PublishDelivAddr
+   query_id: Q13223
+ - id: 53
+   table_name: SITE
+   publish_id: PublishSite
+   query_id: Q13154
+ - id: 54
+   table_name: ATTRIB_REPRESENT
+   publish_id: PublishAttribRepresent
+   query_id: Q13244
+ - id: 55
+   table_name: PICK_LST_HDR_CPV
+   publish_id: PublishPickLstHdrCpv
+   query_id: Q13195
+ - id: 56
+   table_name: MAT_ALL_RUN
+   publish_id: PublishMatAllRun
+   query_id: Q13257
+ - id: 57
+   table_name: CONS_AREA
+   publish_id: PublishConsArea
+   query_id: Q13246
+ - id: 58
+   table_name: USR
+   publish_id: PublishUsr
+   query_id: Q13276
+ - id: 59
+   table_name: ENQ_SUPPL
+   publish_id: PublishEnqSuppl
+   query_id: Q13252
+ - id: 60
+   table_name: MTO_TYPE
+   publish_id: PublishMtoType
+   query_id: Q13231
+ - id: 61
+   table_name: SPEC_HDR
+   publish_id: PublishSpecHdr
+   query_id: Q13269
+ - id: 62
+   table_name: FOLLOW_UP_ITEM
+   publish_id: PublishFollowUpItem
+   query_id: Q13253
+ - id: 63
+   table_name: MAT_ALL_RUN_PCKG
+   publish_id: PublishMatAllRunPckg
+   query_id: Q13212
+ - id: 64
+   table_name: EXPEDITE_ITEM_LOG
+   publish_id: PublishExpediteItemLog
+   query_id: Q13227
+ - id: 65
+   table_name: PROC_SCH_HDR_CPV
+   publish_id: PublishProcSchHdrCpv
+   query_id: Q13233
+ - id: 66
+   table_name: PROC_SCH_HDR
+   publish_id: PublishProcSchHdr
+   query_id: Q13148
+ - id: 67
+   table_name: CONT_PERSON
+   publish_id: PublishContPerson
+   query_id: Q13153
+ - id: 68
+   table_name: CONT
+   publish_id: PublishCont
+   query_id: Q13141
+ - id: 69
+   table_name: SIZE_REF
+   publish_id: PublishSizeRef
+   query_id: Q13241
+ - id: 70
+   table_name: MAT_ALL_PCKG
+   publish_id: PublishMatAllPckg
+   query_id: Q13211
+ - id: 71
+   table_name: CONT_ADDR
+   publish_id: PublishContAddr
+   query_id: Q13152
+ - id: 72
+   table_name: MAT_CNTRL_SECT
+   publish_id: PublishMatCntrlSect
+   query_id: Q13259
+ - id: 73
+   table_name: CLASS_ATTRIB_ASSOCIATION
+   publish_id: PublishClassAttribAssociation
+   query_id: Q13242
+ - id: 74
+   table_name: MAT_ALL_RUN_HIST
+   publish_id: PublishMatAllRunHist
+   query_id: Q13258
+ - id: 75
+   table_name: CUSP_VALUE_LIST_ITEM
+   publish_id: PublishCuspValueListItem
+   query_id: Q13161
+ - id: 76
+   table_name: COMMODITY_ASSOCIATION
+   publish_id: PublishCommodityAssociation
+   query_id: Q13224
+ - id: 77
+   table_name: PO_PAY_PLAN
+   publish_id: PublishPoPayPlan
+   query_id: Q13177
+ - id: 78
+   table_name: MMT_HDR
+   publish_id: PublishMmtHdr
+   query_id: Q13146
+ - id: 79
+   table_name: TMR_HDR
+   publish_id: PublishTMRHdr
+   query_id: Q13135
+ - id: 80
+   table_name: TMR_HDR_CPV
+   publish_id: PublishTmrHdrCpv
+   query_id: Q13176
+ - id: 81
+   table_name: PROC_SCH_ITEM_CPV
+   publish_id: PublishProcSchItemCpv
+   query_id: Q13188
+ - id: 82
+   table_name: TMR_HDR_ACCEPT
+   publish_id: PublishTmrHdrAccept
+   query_id: Q13219
+ - id: 83
+   table_name: PICK_LST_HDR
+   publish_id: PublishPickLstHdr
+   query_id: Q13261
+ - id: 84
+   table_name: PROJ_PLANNED_TMR_HDR
+   publish_id: PublishProjPlannedTmrHdr
+   query_id: Q13183
+ - id: 85
+   table_name: AR_USR_GRP_ROLE
+   publish_id: PublishArUsrGrpRole
+   query_id: Q13287
+ - id: 86
+   table_name: INSP_SCH_ITEM
+   publish_id: PublishInspSchItem
+   query_id: Q13256
+ - id: 87
+   table_name: TMR_HDR_HIST_CPV
+   publish_id: PublishTmrHdrHistCpv
+   query_id: Q13238
+ - id: 88
+   table_name: TMR_HDR_HIST
+   publish_id: PublishTmrHdrHist
+   query_id: Q13271
+ - id: 89
+   table_name: CLASS_ATTRIB
+   publish_id: PublishClassAttrib
+   query_id: Q13243
+ - id: 90
+   table_name: DRL_HDR
+   publish_id: PublishDrlHdr
+   query_id: Q13191
+ - id: 91
+   table_name: TMR_ITEM_ENQ_ITEM
+   publish_id: PublishTmrItemEnqItem
+   query_id: Q13221
+ - id: 92
+   table_name: ENQ_ITEM
+   publish_id: PublishEnqItem
+   query_id: Q13251
+ - id: 93
+   table_name: FABRICATE
+   publish_id: PublishFabricate
+   query_id: Q13228
+ - id: 94
+   table_name: AR_USR_GRP_USR
+   publish_id: PublishArUsrGrpUsr
+   query_id: Q13288
+ - id: 95
+   table_name: EXPEDITE_ITEM_CPV
+   publish_id: PublishExpediteItemCpv
+   query_id: Q13226
+ - id: 96
+   table_name: STORE_ITEM
+   publish_id: PublishStoreItem
+   query_id: Q13202
+ - id: 97
+   table_name: PROJ_FIN_ACC_CODE_CPV
+   publish_id: PublishProjFinAccCodeCpv
+   query_id: Q13164
+ - id: 98
+   table_name: PROJ_FIN_ACC_CODE
+   publish_id: PublishProjFinAccCode
+   query_id: Q13165
+ - id: 99
+   table_name: TMR_ITEM_CPV
+   publish_id: PublishTmrItemCpv
+   query_id: Q13220
+ - id: 100
+   table_name: EXPEDITE_HDR
+   publish_id: PublishExpediteHdr
+   query_id: Q13150
+ - id: 101
+   table_name: EXPEDITE_HDR_CPV
+   publish_id: PublishExpediteHdrCpv
+   query_id: Q13181
+ - id: 102
+   table_name: PO_HDR
+   publish_id: PublishPoHdr
+   query_id: Q13138
+ - id: 103
+   table_name: PO_HDR_CPV
+   publish_id: PublishPoHdrCpv
+   query_id: Q13158
+ - id: 104
+   table_name: PO_QUEUE
+   publish_id: PublishPoQueue
+   query_id: Q13209
+ - id: 105
+   table_name: PART_ASSOCIATION
+   publish_id: PublishPartAssociation
+   query_id: Q13232
+ - id: 106
+   table_name: PROJ_COMP_CPV
+   publish_id: PublishProjCompCpv
+   query_id: Q13173
+ - id: 107
+   table_name: EXPEDITE_HDR_LOG
+   publish_id: PublishExpediteHdrLog
+   query_id: Q13225
+ - id: 108
+   table_name: PROJ_STD_TXT_LANG
+   publish_id: PublishProjStdTxtLang
+   query_id: Q13234
+ - id: 109
+   table_name: PROJ_STD_TXT
+   publish_id: PublishProjStdTxt
+   query_id: Q13264
+ - id: 110
+   table_name: PO_HDR_HIST_CPV
+   publish_id: PublishPoHdrHistCpv
+   query_id: Q13179
+ - id: 111
+   table_name: PO_HDR_HIST
+   publish_id: PublishPoHdrHist
+   query_id: Q13149
+ - id: 112
+   table_name: PROC_SCH_ITEM
+   publish_id: PublishProcSchItem
+   query_id: Q13151
+ - id: 113
+   table_name: RECEIPT_HDR_CPV
+   publish_id: PublishReceiptHdrCpv
+   query_id: Q13174
+ - id: 114
+   table_name: INV_PAY
+   publish_id: PublishInvPay
+   query_id: Q13175
+ - id: 115
+   table_name: INV_HDR_CPV
+   publish_id: PublishInvHdrCpv
+   query_id: Q13182
+ - id: 116
+   table_name: INV_HDR
+   publish_id: PublishInvHdr
+   query_id: Q13142
+ - id: 117
+   table_name: RECEIPT_HDR
+   publish_id: PublishReceiptHdr
+   query_id: Q13136
+ # - id: 118
+ #   table_name: MAT_ALL_RUN_RESULT_ITEM_DTL
+ #   publish_id: PublishMatAllRunResultItemDtl
+ #   query_id: Q13215
+ - id: 119
+   table_name: PIPELINE_LIST
+   publish_id: PublishPipelineList
+   query_id: Q13262
+ - id: 120
+   table_name: TMR_ITEM_PO_ITEM
+   publish_id: PublishTmrItemPoItem
+   query_id: Q13163
+ - id: 121
+   table_name: PL_HDR_CPV
+   publish_id: PublishPlHdrCpv
+   query_id: Q13203
+ - id: 122
+   table_name: PICK_LST_ITEM
+   publish_id: PublishPickLstItem
+   query_id: Q13196
+ - id: 123
+   table_name: SITE_MTO_HDR_CPV
+   publish_id: PublishSiteMtoHdrCpv
+   query_id: Q13204
+ - id: 124
+   table_name: TMR_ITEM_PO_ITEM_HIST
+   publish_id: PublishTmrItemPoItemHist
+   query_id: Q13239
+ - id: 125
+   table_name: DRL_ITEM
+   publish_id: PublishDrlItem
+   query_id: Q13193
+ - id: 126
+   table_name: PL_HDR
+   publish_id: PublishPlHdr
+   query_id: Q13156
+ - id: 127
+   table_name: DRAW
+   publish_id: PublishDraw
+   query_id: Q13190
+ - id: 128
+   table_name: TMR_ITEM
+   publish_id: PublishTmrItem
+   query_id: Q13144
+ - id: 129
+   table_name: PROJ_COST_ACC
+   publish_id: PublishProjCostAcc
+   query_id: Q13167
+ - id: 130
+   table_name: EXPEDITE_ITEM
+   publish_id: PublishExpediteItem
+   query_id: Q13147
+ - id: 131
+   table_name: SITE_MTO_HDR
+   publish_id: PublishSiteMtoHdr
+   query_id: Q13198
+ - id: 132
+   table_name: COMMODITY
+   publish_id: PublishCommodity
+   query_id: Q13145
+ - id: 133
+   table_name: SPEC_ENTRY
+   publish_id: PublishSpecEntry
+   query_id: Q13268
+ - id: 134
+   table_name: INV_ITEM
+   publish_id: PublishInvItem
+   query_id: Q13143
+ - id: 135
+   table_name: TMR_ITEM_HIST
+   publish_id: PublishTmrItemHist
+   query_id: Q13272
+ - id: 136
+   table_name: PL_ITEM_CPV
+   publish_id: PublishPlItemCpv
+   query_id: Q13218
+ - id: 137
+   table_name: RECEIPT_ITEM
+   publish_id: PublishReceiptItem
+   query_id: Q13137
+ - id: 138
+   table_name: PROJ_COMP
+   publish_id: PublishProjComp
+   query_id: Q13197
+ - id: 139
+   table_name: PO_ITEM
+   publish_id: PublishPoItem
+   query_id: Q13139
+ - id: 140
+   table_name: STD_MAT_CPV
+   publish_id: PublishStdMatCpv
+   query_id: Q13172
+ - id: 141
+   table_name: PO_ITEM_HIST
+   publish_id: PublishPoItemHist
+   query_id: Q13263
+ - id: 142
+   table_name: STOCK_TRX
+   publish_id: PublishStockTrx
+   query_id: Q13201
+ - id: 143
+   table_name: ATTRIB_VALUE
+   publish_id: PublishAttribValue
+   query_id: Q13292
+ - id: 144
+   table_name: STD_MAT
+   publish_id: PublishStdMat
+   query_id: Q13171
+ - id: 145
+   table_name: PART
+   publish_id: PublishPart
+   query_id: Q13170
+ - id: 146
+   table_name: PL_ITEM
+   publish_id: PublishPLItem
+   query_id: Q13131
+ - id: 147
+   table_name: STD_MAT_SCHEME
+   publish_id: PublishStdMatScheme
+   query_id: Q13200
+ - id: 148
+   table_name: MAT
+   publish_id: PublishMAT
+   query_id: Q13132
+ - id: 149
+   table_name: SITE_MTO_ITEM
+   publish_id: PublishSiteMtoItem
+   query_id: Q13199
+ - id: 150
+   table_name: SPEC_COMPONENT
+   publish_id: PublishSpecComponent
+   query_id: Q13267
+# - id: 151
+#   table_name: PROJ_SYS_BRKDWN
+#   publish_id: PublishProjSysBrkdwn
+#   query_id: Q13168
+# - id: 152
+#   table_name: MAT_ALL_RUN_RESULT_HDR
+#   publish_id: PublishMatAllRunResultHdr
+#   query_id: Q13213
+#  - id: 153
+#    table_name: INSTANCE_PROPERTY_VALUE
+#    publish_id: PublishInstancePropertyValue
+#    query_id: Q13229
+# - id: 153
+#   table_name: INSTANCE_PROPERTY_VALUE
+#   publish_id: PublishInstancePropertyValue
+#   query_id: Q13229
+# - id: 154
+#   table_name: HISTORY_INFO
+#   publish_id: PublishHistoryInfo
+#   query_id: Q13289
+# - id: 155
+#   table_name: INSTANCE_ATTRIB_VALUE
+#   publish_id: PublishInstanceAttribValue
+#   query_id: Q13245
+# - id: 156
+#   table_name: MAT_ALL_RUN_RESULT_ITEM
+#   publish_id: PublishMatAllRunResultItem
+#   query_id: Q13214
+# These tables has no rows in ERM hence not part of data ingestion
+#- id: 157
+#  table_name: MAT_DEVIATION
+#  publish_id: PublishMatDeviation
+#  query_id: Q13216
+#- id: 158
+#  table_name: INSP_VISIT_ITEM
+#  publish_id: PublishInspVisitItem
+#  query_id: Q13277
+#- id: 159
+#  table_name: INSP_VISIT
+#  publish_id: PublishInspVisit

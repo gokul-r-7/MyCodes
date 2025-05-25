@@ -1,0 +1,360 @@
+---
+SourceSystemId: database_spi_curated
+MetadataType: curated#spi#DRAWING#job#iceberg
+source:
+  compute_engine: spark
+  glue_options:
+    connection_options: s3://${raw_bucket}/engineering/spi/DRAWING/
+    connection_type: s3
+    format: parquet
+    transformation_ctx: spi-drawing
+  name: spi_drawing
+  spark_options:
+    format: parquet
+table_schema:
+  schema_properties:
+    enforce: true
+    rename_columns: true
+  columns:
+  - column_data_type: decimal(38,0)
+    column_name: dwg_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_id
+  - column_data_type: decimal(38,0)
+    column_name: proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: proj_id
+  - column_data_type: decimal(38,0)
+    column_name: site_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: site_id
+  - column_data_type: decimal(38,0)
+    column_name: chg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_num
+  - column_data_type: decimal(38,0)
+    column_name: plant_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: plant_id
+  - column_data_type: decimal(38,0)
+    column_name: unit_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: unit_id
+  - column_data_type: string
+    column_name: user_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: user_name
+  - column_data_type: decimal(38,0)
+    column_name: dwg_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_type_id
+  - column_data_type: string
+    column_name: chg_status
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_status
+  - column_data_type: timestamp
+    column_name: chg_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: chg_date
+  - column_data_type: decimal(38,0)
+    column_name: dwg_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_num
+  - column_data_type: decimal(38,0)
+    column_name: curr_rev_num
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: curr_rev_num
+  - column_data_type: string
+    column_name: dwg_title1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_title1
+  - column_data_type: string
+    column_name: dwg_title2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_title2
+  - column_data_type: string
+    column_name: dwg_title3
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_title3
+  - column_data_type: string
+    column_name: dwg_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_name
+  - column_data_type: string
+    column_name: ven_prop_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_prop_by
+  - column_data_type: timestamp
+    column_name: ven_prop_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_prop_date
+  - column_data_type: string
+    column_name: ven_dsgn_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_dsgn_by
+  - column_data_type: timestamp
+    column_name: ven_dsgn_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_dsgn_date
+  - column_data_type: string
+    column_name: ven_drwn_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_drwn_by
+  - column_data_type: timestamp
+    column_name: ven_drwn_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_drwn_date
+  - column_data_type: string
+    column_name: ven_ck_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_ck_by
+  - column_data_type: timestamp
+    column_name: ven_ck_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_ck_date
+  - column_data_type: string
+    column_name: ven_appr_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_appr_by
+  - column_data_type: timestamp
+    column_name: ven_appr_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ven_appr_date
+  - column_data_type: string
+    column_name: cl_ck_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cl_ck_by
+  - column_data_type: timestamp
+    column_name: cl_ck_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cl_ck_date
+  - column_data_type: string
+    column_name: cl_engr_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cl_engr_by
+  - column_data_type: timestamp
+    column_name: cl_engr_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cl_engr_date
+  - column_data_type: string
+    column_name: cl_appr_by
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cl_appr_by
+  - column_data_type: timestamp
+    column_name: cl_appr_date
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: cl_appr_date
+  - column_data_type: decimal(38,0)
+    column_name: area_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: area_id
+  - column_data_type: string
+    column_name: bmp_file_name
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: bmp_file_name
+  - column_data_type: string
+    column_name: bmp_file_path
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: bmp_file_path
+  - column_data_type: string
+    column_name: dwg_desc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_desc
+  - column_data_type: decimal(38,0)
+    column_name: output_dwg_fmt_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: output_dwg_fmt_id
+  - column_data_type: decimal(38,0)
+    column_name: parent_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: parent_id
+  - column_data_type: string
+    column_name: ref_subj_desc
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: ref_subj_desc
+  - column_data_type: decimal(38,0)
+    column_name: format_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: format_id
+  - column_data_type: decimal(38,0)
+    column_name: rev_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: rev_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_proj_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_proj_id
+  - column_data_type: decimal(38,0)
+    column_name: eng_ref_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: eng_ref_id
+  - column_data_type: decimal(38,0)
+    column_name: dwg_key1_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_key1_id
+  - column_data_type: decimal(38,0)
+    column_name: dwg_key2_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_key2_id
+  - column_data_type: decimal(38,0)
+    column_name: dwg_key3_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_key3_id
+  - column_data_type: decimal(38,0)
+    column_name: dwg_style_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_style_id
+  - column_data_type: string
+    column_name: dwg_cond1
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_cond1
+  - column_data_type: string
+    column_name: dwg_cond2
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: dwg_cond2
+  - column_data_type: decimal(38,0)
+    column_name: report_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: report_type_id
+  - column_data_type: string
+    column_name: merge_release_flg
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: merge_release_flg
+  - column_data_type: string
+    column_name: type_gen
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: type_gen
+  - column_data_type: decimal(38,0)
+    column_name: document_type_id
+    comment: null
+    data_classification: null
+    nullable: true
+    raw_column_name: document_type_id    
+target:
+  compute_engine: spark
+  iceberg_properties:
+    database_name: ${database_prefix}_engineering_spi_curated
+    iceberg_configuration:
+      create_table: true
+      iceberg_catalog_warehouse: ${curated_bucket}/engineering/spi/DRAWING/
+      table_properties:
+        format-version: '2'
+        write.format.default: parquet
+    table_name: curated_drawing
+  load_type: append
+  name: curated_drawing
+  spark_options:
+    format: iceberg
+    options:
+      path: s3://${curated_bucket}/engineering/spi/curated_drawing
+transforms:
+- column_name: EXECUTION_DATE
+  date_format: yyyy-MM-dd
+  transform: add_run_date
+- sql: SELECT *, 'spi' as SOURCE_SYSTEM_NAME FROM temp_df_static
+  temp_view_name: temp_df_static
+  transform: custom_sql

@@ -1,0 +1,130 @@
+---
+SourceSystemId: erm
+MetadataType: csv#erm
+aws_region: ${region}
+Env: ${envn}
+is_active: 'y'
+job_parameter:
+  bucket_name: ${raw_bucket}
+  drop_duplicate_columns: true
+  csv_files_path: supply_chain/erm/raw/
+  drop_duplicate_rows: true
+  parquet_files_path: supply_chain/erm/parquet/
+  raw_files_path: supply_chain/erm/raw/
+  replacement_char: _
+  replace_non_alphanumeric_with_underscore: true
+  replace_non_printable_ascii_with_underscore: false
+  sample_data_location: supply_chain/erm/data_sampling
+  sampling_fraction: '0.5'
+  sampling_seed: 42
+  specialchars_to_be_replaced_in_columnnames: []
+  csv_files:
+    - filename: taxonomy_master_20231220100822.csv
+      file_prefix_length: 0
+      file_suffix_length: 15
+      is_fixed_file_name: false
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: taxonomy_master
+      with_header: true
+    - filename: support_info_criteria_and_calculations.csv
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: support_info_criteria_and_calculations
+      with_header: true
+    - filename: dim_date.csv
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      multiline: true
+      quote_character: '"'
+      separator: ','
+      tablename: dim_date
+      with_header: true
+    - filename: ril_min_number_list.csv
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      multiline: true
+      quote_character: '"'
+      separator: '|'
+      tablename: ril_min_number
+      with_header: true        
+  xls_files:   
+    - filename: Location_Hierarchy.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Loc_Hierarchy
+          tablename: location_hierarchy
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+        - sheet_name: Project_Loc
+          tablename: project_location
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: Supplier_Country.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Data
+          tablename: supplier_country
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: Business_Units.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: data
+          tablename: business_units
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0
+    - filename: ril_min_list.xlsx
+      file_prefix_length: 0
+      file_suffix_length: 0
+      is_fixed_file_name: false
+      xls_engine_name: openpyxl
+      sheets:
+        - sheet_name: Sheet1
+          tablename: ril_min_list
+          quote_character: '"'
+          separator: ','
+          multiline: true
+          header_row: 0
+          header_column: 0
+          data_start_row: 0
+          data_start_column: 0         
+
+name: erm
+Namespace: global
