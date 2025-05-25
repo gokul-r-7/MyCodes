@@ -1,0 +1,22 @@
+{
+    "redshift_idc_application_arn" : "arn:aws:sso::637423194134:application/ssoins-82599c89c0dd6c44/apl-26e04dc88aad8414",
+    "identity_store_id" : "d-9767447864",
+    "aws_account_id" : "891377181979",
+    "redshift_host": "worley-datawarehouse-sydney-dev-redshift",
+    "redshift_serverless_host": "worley-datalake-sydney-dev-redshift-serverless-workgroup",
+    "redshift_serverless_idc_application_arn": "arn:aws:sso::637423194134:application/ssoins-82599c89c0dd6c44/apl-9cd5a2ab2cdcdd8c",
+    "redshift_serverless_secret_arn": "arn:aws:secretsmanager:ap-southeast-2:891377181979:secret:redshift!worley-datalake-sydney-dev-redshift-serverless-namespace-admin-3UcjbQ",
+    "database_permissions_store": "worley-mf-rbac-sydney-dev-database-permissions-metadata",
+    "external_user_store_bucket" : "worley-mf-sydney-dev-external-user-store",
+    "rbac_notifications_arn" : "arn:aws:sns:ap-southeast-2:891377181979:worley-mf-sydney-dev-rbac-notifications",
+    "data_modelling_notifications_arn": "arn:aws:sns:ap-southeast-2:891377181979:worley-sydney-dev-modelling-dag-notifications",
+    "service_roles" : {
+        "redshift_iam_role" : "arn:aws:iam::891377181979:role/worley-datalake-sydney-dev-iam-service-role-redshift-awsidc",
+        "glue_service_role" : "arn:aws:iam::891377181979:role/worley-datalake-sydney-dev-iam-service-role-glue",
+        "lakeformation_lambda_role" : "arn:aws:iam::891377181979:role/worley-rbac-dev-lakeformation-manage-permissions",
+        "mwaa_service_role": "arn:aws:iam::891377181979:role/worley-datalake-sydney-dev-mwaa-airflow-iam",
+        "glue_notebook_service_role": "arn:aws:iam::891377181979:role/worley-datalake-sydney-dev-iam-service-role-glue-notebook"
+    },
+    "consumer_databases" : ["global_standard_reporting", "dac","integrations"],
+    "consumer_schemas" : ["domain_integrated_model","dac_model", "snowflake_model","assurance_model"]
+}

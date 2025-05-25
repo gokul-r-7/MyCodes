@@ -1,0 +1,10 @@
+{
+    "user_identifier": {
+        "column_name" : "user_name",
+        "type" : "varchar(200)"
+    },
+    "project_identifier": {
+        "column_name" : "integration_id",
+        "type" : "varchar(100)"
+    }
+}

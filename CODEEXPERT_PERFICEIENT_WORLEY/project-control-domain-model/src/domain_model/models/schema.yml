@@ -1,0 +1,5697 @@
+---
+models:
+  - name: transformed_p6_activity
+    tags: ["p6","v2"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_pk
+        data_type: varchar(1000)
+      - name: accountingvariance
+        data_type: varchar(1000)
+      - name: accountingvariancelaborunits
+        data_type: varchar(1000)
+      - name: activityowneruserid
+        data_type: varchar(1000)
+      - name: actualduration
+        data_type: float
+      - name: actualexpensecost
+        data_type: varchar(1000)
+      - name: actualfinishdate
+        data_type: timestamp
+      - name: actuallaborcost
+        data_type: varchar(500)
+      - name: actuallaborunits
+        data_type: varchar(1000)
+      - name: actualmaterialcost
+        data_type: varchar(1000)
+      - name: actualnonlaborcost
+        data_type: varchar(100)
+      - name: actualnonlaborunits
+        data_type: varchar(100)
+      - name: actualstartdate
+        data_type: timestamp
+      - name: actualthisperiodlaborcost
+        data_type: varchar(100)
+      - name: actualthisperiodlaborunits
+        data_type: varchar(100)
+      - name: actualthisperiodmaterialcost
+        data_type: varchar(100)
+      - name: actualthisperiodnonlaborcost
+        data_type: varchar(100)
+      - name: actualthisperiodnonlaborunits
+        data_type: varchar(100)
+      - name: actualtotalcost
+        data_type: varchar(100)
+      - name: actualtotalunits
+        data_type: varchar(1000)
+      - name: atcompletionduration
+        data_type: varchar(100)
+      - name: atcompletionexpensecost
+        data_type: varchar(100)
+      - name: atcompletionlaborcost
+        data_type: varchar(1000)
+      - name: atcompletionlaborunits
+        data_type: varchar(1000)
+      - name: atcompletionlaborunitsvariance
+        data_type: varchar(1000)
+      - name: atcompletionmaterialcost
+        data_type: varchar(1000)
+      - name: atcompletionnonlaborcost
+        data_type: varchar(1000)
+      - name: atcompletionnonlaborunits
+        data_type: varchar(1000)
+      - name: atcompletiontotalcost
+        data_type: varchar(1000)
+      - name: atcompletiontotalunits
+        data_type: varchar(1000)
+      - name: atcompletionvariance
+        data_type: varchar(1000)
+      - name: autocomputeactuals
+        data_type: varchar(1000)
+      - name: baseline1duration
+        data_type: varchar(1000)
+      - name: baseline1finishdate
+        data_type: varchar(1000)
+      - name: baseline1plannedduration
+        data_type: varchar(1000)
+      - name: baseline1plannedexpensecost
+        data_type: varchar(1000)
+      - name: baseline1plannedlaborcost
+        data_type: varchar(1000)
+      - name: baseline1plannedlaborunits
+        data_type: varchar(1000)
+      - name: baseline1plannedmaterialcost
+        data_type: varchar(1000)
+      - name: baseline1plannednonlaborcost
+        data_type: varchar(1000)
+      - name: baseline1plannednonlaborunits
+        data_type: varchar(1000)
+      - name: baseline1plannedtotalcost
+        data_type: varchar(1000)
+      - name: baseline1startdate
+        data_type: varchar(1000)
+      - name: baseline2duration
+        data_type: varchar(1000)
+      - name: baseline2finishdate
+        data_type: varchar(1000)
+      - name: baseline2plannedduration
+        data_type: varchar(1000)
+      - name: baseline2plannedexpensecost
+        data_type: varchar(1000)
+      - name: baseline2plannedlaborcost
+        data_type: varchar(1000)
+      - name: baseline2plannedlaborunits
+        data_type: varchar(100)
+      - name: baseline2plannedmaterialcost
+        data_type: varchar(100)
+      - name: baseline2plannednonlaborcost
+        data_type: varchar(1000)
+      - name: baseline2plannednonlaborunits
+        data_type: varchar(1000)
+      - name: baseline2plannedtotalcost
+        data_type: varchar(1000)
+      - name: baseline2startdate
+        data_type: varchar(1000)
+      - name: baseline3duration
+        data_type: varchar(1000)
+      - name: baseline3finishdate
+        data_type: varchar(1000)
+      - name: baseline3plannedduration
+        data_type: varchar(1000)
+      - name: baseline3plannedexpensecost
+        data_type: varchar(1000)
+      - name: baseline3plannedlaborcost
+        data_type: varchar(1000)
+      - name: baseline3plannedlaborunits
+        data_type: varchar(1000)
+      - name: baseline3plannedmaterialcost
+        data_type: varchar(1000)
+      - name: baseline3plannednonlaborcost
+        data_type: varchar(1000)
+      - name: baseline3plannednonlaborunits
+        data_type: varchar(1000)
+      - name: baseline3plannedtotalcost
+        data_type: varchar(1000)
+      - name: baseline3startdate
+        data_type: varchar(1000)
+      - name: baselineduration
+        data_type: float
+      - name: baselinefinishdate
+        data_type: timestamp
+      - name: baselineplannedduration
+        data_type: varchar(1000)
+      - name: baselineplannedexpensecost
+        data_type: varchar(1000)
+      - name: baselineplannedlaborcost
+        data_type: varchar(1000)
+      - name: baselineplannedlaborunits
+        data_type: varchar(1000)
+      - name: baselineplannedmaterialcost
+        data_type: varchar(1000)
+      - name: baselineplannednonlaborcost
+        data_type: varchar(1000)
+      - name: baselineplannednonlaborunits
+        data_type: varchar(1000)
+      - name: baselineplannedtotalcost
+        data_type: varchar(1000)
+      - name: baselinestartdate
+        data_type: timestamp
+      - name: budgetatcompletion
+        data_type: varchar(1000)
+      - name: cbscode
+        data_type: varchar(1000)
+      - name: cbsid
+        data_type: varchar(1000)
+      - name: cbsobjectid
+        data_type: varchar(1000)
+      - name: calendarname
+        data_type: varchar(1000)
+      - name: calendarobjectid
+        data_type: varchar(1000)
+      - name: costpercentcomplete
+        data_type: varchar(1000)
+      - name: costpercentofplanned
+        data_type: varchar(1000)
+      - name: costperformanceindex
+        data_type: varchar(1000)
+      - name: costperformanceindexlaborunits
+        data_type: varchar(1000)
+      - name: costvariance
+        data_type: varchar(1000)
+      - name: costvarianceindex
+        data_type: varchar(1000)
+      - name: costvarianceindexlaborunits
+        data_type: varchar(1000)
+      - name: costvariancelaborunits
+        data_type: varchar(1000)
+      - name: createdate
+        data_type: date
+      - name: createuser
+        data_type: varchar(1000)
+      - name: datadate
+        data_type: timestamp
+      - name: duration1variance
+        data_type: varchar(1000)
+      - name: duration2variance
+        data_type: varchar(100)
+      - name: duration3variance
+        data_type: varchar(100)
+      - name: durationpercentcomplete
+        data_type: varchar(100)
+      - name: durationpercentofplanned
+        data_type: varchar(100)
+      - name: durationtype
+        data_type: varchar(100)
+      - name: durationvariance
+        data_type: varchar(1000)
+      - name: earlyfinishdate
+        data_type: timestamp
+      - name: earlystartdate
+        data_type: timestamp
+      - name: earnedvaluecost
+        data_type: varchar(1000)
+      - name: earnedvaluelaborunits
+        data_type: varchar(1000)
+      - name: estimateatcompletioncost
+        data_type: varchar(1000)
+      - name: estimateatcompletionlaborunits
+        data_type: varchar(1000)
+      - name: estimatetocomplete
+        data_type: varchar(1000)
+      - name: estimatetocompletelaborunits
+        data_type: varchar(1000)
+      - name: estimatedweight
+        data_type: varchar(100)
+      - name: expectedfinishdate
+        data_type: varchar(1000)
+      - name: expensecost1variance
+        data_type: varchar(1000)
+      - name: expensecost2variance
+        data_type: varchar(1000)
+      - name: expensecost3variance
+        data_type: varchar(1000)
+      - name: expensecostpercentcomplete
+        data_type: varchar(1000)
+      - name: expensecostvariance
+        data_type: varchar(1000)
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(1000)
+      - name: feedback
+        data_type: varchar(1000)
+      - name: financialperiodtmplid
+        data_type: varchar(1000)
+      - name: finishdate
+        data_type: timestamp
+      - name: finishdate1variance
+        data_type: varchar(1000)
+      - name: finishdate2variance
+        data_type: varchar(1000)
+      - name: finishdate3variance
+        data_type: varchar(1000)
+      - name: finishdatevariance
+        data_type: float
+      - name: floatpath
+        data_type: varchar(1000)
+      - name: floatpathorder
+        data_type: varchar(1000)
+      - name: freefloat
+        data_type: float
+      - name: guid
+        data_type: varchar(1000)
+      - name: hasfuturebucketdata
+        data_type: varchar(1000)
+      - name: id
+        data_type: varchar(1000)
+      - name: isbaseline
+        data_type: varchar(1000)
+      - name: iscritical
+        data_type: varchar(1000)
+      - name: islongestpath
+        data_type: varchar(1000)
+      - name: isnewfeedback
+        data_type: varchar(1000)
+      - name: isstarred
+        data_type: varchar(100)
+      - name: istemplate
+        data_type: varchar(100)
+      - name: isworkpackage
+        data_type: varchar(1000)
+      - name: laborcost1variance
+        data_type: varchar(1000)
+      - name: laborcost2variance
+        data_type: varchar(1000)
+      - name: laborcost3variance
+        data_type: varchar(1000)
+      - name: laborcostpercentcomplete
+        data_type: varchar(1000)
+      - name: laborcostvariance
+        data_type: varchar(100)
+      - name: laborunits1variance
+        data_type: varchar(100)
+      - name: laborunits2variance
+        data_type: varchar(100)
+      - name: laborunits3variance
+        data_type: varchar(100)
+      - name: laborunitspercentcomplete
+        data_type: varchar(100)
+      - name: laborunitsvariance
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: date
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: latefinishdate
+        data_type: timestamp
+      - name: latestartdate
+        data_type: timestamp
+      - name: levelingpriority
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(1000)
+      - name: materialcost1variance
+        data_type: varchar(1000)
+      - name: materialcost2variance
+        data_type: varchar(1000)
+      - name: materialcost3variance
+        data_type: varchar(1000)
+      - name: materialcostpercentcomplete
+        data_type: varchar(1000)
+      - name: materialcostvariance
+        data_type: varchar(1000)
+      - name: maximumduration
+        data_type: varchar(1000)
+      - name: minimumduration
+        data_type: varchar(1000)
+      - name: mostlikelyduration
+        data_type: varchar(1000)
+      - name: name
+        data_type: varchar(1000)
+      - name: nonlaborcost1variance
+        data_type: varchar(1000)
+      - name: nonlaborcost2variance
+        data_type: varchar(100)
+      - name: nonlaborcost3variance
+        data_type: varchar(1000)
+      - name: nonlaborcostpercentcomplete
+        data_type: varchar(1000)
+      - name: nonlaborcostvariance
+        data_type: varchar(100)
+      - name: nonlaborunits1variance
+        data_type: varchar(100)
+      - name: nonlaborunits2variance
+        data_type: varchar(100)
+      - name: nonlaborunits3variance
+        data_type: varchar(1000)
+      - name: nonlaborunitspercentcomplete
+        data_type: varchar(1000)
+      - name: nonlaborunitsvariance
+        data_type: varchar(1000)
+      - name: notestoresources
+        data_type: varchar(1000)
+      - name: objectid
+        data_type: integer
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: percentcomplete
+        data_type: varchar(100)
+      - name: percentcompletetype
+        data_type: varchar(1000)
+      - name: performancepercentcomplete
+        data_type: varchar(1000)
+      - name: performancepercentcompletebylaborunits
+        data_type: varchar(1000)
+      - name: physicalpercentcomplete
+        data_type: varchar(1000)
+      - name: plannedduration
+        data_type: float
+      - name: plannedexpensecost
+        data_type: varchar(1000)
+      - name: plannedfinishdate
+        data_type: date
+      - name: plannedlaborcost
+        data_type: varchar(1000)
+      - name: plannedlaborunits
+        data_type: varchar(1000)
+      - name: plannedmaterialcost
+        data_type: varchar(1000)
+      - name: plannednonlaborcost
+        data_type: varchar(100)
+      - name: plannednonlaborunits
+        data_type: varchar(100)
+      - name: plannedstartdate
+        data_type: date
+      - name: plannedtotalcost
+        data_type: varchar(1000)
+      - name: plannedtotalunits
+        data_type: varchar(100)
+      - name: plannedvaluecost
+        data_type: varchar(1000)
+      - name: plannedvaluelaborunits
+        data_type: varchar(1000)
+      - name: postrespcriticalityindex
+        data_type: varchar(1000)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(1000)
+      - name: postresponsepessimisticstart
+        data_type: varchar(1000)
+      - name: prerespcriticalityindex
+        data_type: varchar(1000)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(1000)
+      - name: preresponsepessimisticstart
+        data_type: varchar(1000)
+      - name: primaryconstraintdate
+        data_type: varchar(1000)
+      - name: primaryconstrainttype
+        data_type: varchar(1000)
+      - name: primaryresourceid
+        data_type: varchar(1000)
+      - name: primaryresourcename
+        data_type: varchar(1000)
+      - name: primaryresourceobjectid
+        data_type: varchar(1000)
+      - name: projectflag
+        data_type: varchar(1000)
+      - name: projectid
+        data_type: varchar(1000)
+      - name: projectname
+        data_type: varchar(1000)
+      - name: projectnamesepchar
+        data_type: varchar(100)
+      - name: projectobjectid
+        data_type: integer
+      - name: projectprojectflag
+        data_type: varchar(1000)
+      - name: remainingduration
+        data_type: float
+      - name: remainingearlyfinishdate
+        data_type: timestamp
+      - name: remainingearlystartdate
+        data_type: timestamp
+      - name: remainingexpensecost
+        data_type: varchar(1000)
+      - name: remainingfloat
+        data_type: float
+      - name: remaininglaborcost
+        data_type: varchar(100)
+      - name: remaininglaborunits
+        data_type: varchar(100)
+      - name: remaininglatefinishdate
+        data_type: timestamp
+      - name: remaininglatestartdate
+        data_type: timestamp
+      - name: remainingmaterialcost
+        data_type: varchar(1000)
+      - name: remainingnonlaborcost
+        data_type: varchar(1000)
+      - name: remainingnonlaborunits
+        data_type: varchar(1000)
+      - name: remainingtotalcost
+        data_type: varchar(1000)
+      - name: remainingtotalunits
+        data_type: varchar(1000)
+      - name: resumedate
+        data_type: varchar(1000)
+      - name: reviewfinishdate
+        data_type: varchar(1000)
+      - name: reviewrequired
+        data_type: varchar(1000)
+      - name: reviewstatus
+        data_type: varchar(1000)
+      - name: schedulepercentcomplete
+        data_type: varchar(1000)
+      - name: scheduleperformanceindex
+        data_type: varchar(1000)
+      - name: scheduleperformanceindexlaborunits
+        data_type: varchar(1000)
+      - name: schedulevariance
+        data_type: varchar(1000)
+      - name: schedulevarianceindex
+        data_type: varchar(1000)
+      - name: schedulevarianceindexlaborunits
+        data_type: varchar(1000)
+      - name: schedulevariancelaborunits
+        data_type: varchar(100)
+      - name: scopepercentcomplete
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(1000)
+      - name: secondaryconstrainttype
+        data_type: varchar(100)
+      - name: startdate
+        data_type: timestamp
+      - name: startdate1variance
+        data_type: varchar(1000)
+      - name: startdate2variance
+        data_type: varchar(100)
+      - name: startdate3variance
+        data_type: varchar(1000)
+      - name: startdatevariance
+        data_type: float
+      - name: status
+        data_type: varchar(1000)
+      - name: statuscode
+        data_type: varchar(1000)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatuscompletion
+        data_type: varchar(1000)
+      - name: taskstatusdates
+        data_type: varchar(1000)
+      - name: taskstatusindicator
+        data_type: varchar(1000)
+      - name: tocompleteperformanceindex
+        data_type: varchar(1000)
+      - name: totalcost1variance
+        data_type: varchar(1000)
+      - name: totalcost2variance
+        data_type: varchar(1000)
+      - name: totalcost3variance
+        data_type: varchar(1000)
+      - name: totalcostvariance
+        data_type: varchar(100)
+      - name: totalfloat
+        data_type: float
+      - name: totalpastperiodearnedvaluecostbcwp
+        data_type: varchar(100)
+      - name: totalpastperiodearnedvaluelaborunits
+        data_type: varchar(1000)
+      - name: totalpastperiodexpensecost
+        data_type: varchar(1000)
+      - name: totalpastperiodlaborcost
+        data_type: varchar(1000)
+      - name: totalpastperiodlaborunits
+        data_type: varchar(1000)
+      - name: totalpastperiodmaterialcost
+        data_type: varchar(1000)
+      - name: totalpastperiodnonlaborcost
+        data_type: varchar(1000)
+      - name: totalpastperiodnonlaborunits
+        data_type: varchar(1000)
+      - name: totalpastperiodplannedvaluecost
+        data_type: varchar(1000)
+      - name: totalpastperiodplannedvaluelaborunits
+        data_type: varchar(1000)
+      - name: type
+        data_type: varchar(1000)
+      - name: unitspercentcomplete
+        data_type: varchar(1000)
+      - name: unreadcommentcount
+        data_type: varchar(1000)
+      - name: wbscode
+        data_type: varchar(1000)
+      - name: wbsname
+        data_type: varchar(1000)
+      - name: wbsnamepath
+        data_type: varchar(1000)
+      - name: wbsobjectid
+        data_type: varchar(100)
+      - name: wbspath
+        data_type: varchar(1000)
+      - name: workpackageid
+        data_type: varchar(1000)
+      - name: workpackagename
+        data_type: varchar(100)
+      - name: etl_job_status_pk
+        data_type: varchar(100)
+      - name: active_indicator
+        data_type: varchar(1000)
+      - name: created_by
+        data_type: varchar(1000)
+      - name: updated_by
+        data_type: varchar(1000)
+      - name: extracted_date
+        data_type: varchar(100)
+      - name: project_code
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_p6_eps
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_key
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: createdate
+        data_type: varchar(100)
+      - name: createuser
+        data_type: varchar(100)
+      - name: currentbudget
+        data_type: varchar(100)
+      - name: currentvariance
+        data_type: varchar(100)
+      - name: distributedcurrentbudget
+        data_type: varchar(100)
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: guid
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: id
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: name
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: objectid
+        data_type: varchar(100)
+      - name: obsname
+        data_type: varchar(100)
+      - name: obsobjectid
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: parentepsid
+        data_type: varchar(100)
+      - name: parentepsname
+        data_type: varchar(100)
+      - name: parentobjectid
+        data_type: varchar(100)
+      - name: plannedstartdate
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: projectobjectid
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: sequencenumber
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: summaryunitspercentcomplete
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: totalbenefitplan
+        data_type: varchar(100)
+      - name: totalbenefitplantally
+        data_type: varchar(100)
+      - name: totalspendingplan
+        data_type: varchar(100)
+      - name: totalspendingplantally
+        data_type: varchar(100)
+      - name: unallocatedbudget
+        data_type: varchar(100)
+      - name: undistributedcurrentvariance
+        data_type: varchar(100)
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_p6_project_activitycode
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activityid
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: codeconcatname
+        data_type: varchar(100)
+      - name: codetypename
+        data_type: varchar(100)
+      - name: codetypeobjectid
+        data_type: varchar(100)
+      - name: codetypescope
+        data_type: varchar(100)
+      - name: codevalue
+        data_type: varchar(100)
+      - name: color
+        data_type: varchar(100)
+      - name: createdate
+        data_type: varchar(100)
+      - name: createuser
+        data_type: varchar(100)
+      - name: description
+        data_type: varchar(200)
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: objectid
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: parentobjectid
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: projectobjectid
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: sequencenumber
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_p6_project_activitycodeassignment
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_key
+        data_type: varchar(100)
+      - name: activitycodedescription
+        data_type: varchar(200)
+      - name: activitycodeobjectid
+        data_type: varchar(100)
+      - name: activitycodetypename
+        data_type: varchar(100)
+      - name: activitycodetypeobjectid
+        data_type: varchar(100)
+      - name: activitycodetypescope
+        data_type: varchar(100)
+      - name: activitycodevalue
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activityname
+        data_type: varchar(200)
+      - name: activityobjectid
+        data_type: varchar(100)
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: createdate
+        data_type: varchar(100)
+      - name: createuser
+        data_type: varchar(100)
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: isbaseline
+        data_type: varchar(100)
+      - name: istemplate
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: projectobjectid
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: wbsobjectid
+        data_type: varchar(100)
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_p6_project_activitycodetype
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_key
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_p6_project_activityspread
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_key
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activityobjectid
+        data_type: integer
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: enddate
+        data_type: varchar(100)
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: period_actualcost
+        data_type: DOUBLE
+      - name: period_actualexpensecost
+        data_type: DOUBLE
+      - name: period_actuallaborcost
+        data_type: DOUBLE
+      - name: period_actuallaborunits
+        data_type: DOUBLE
+      - name: period_actualmaterialcost
+        data_type: DOUBLE
+      - name: period_actualnonlaborcost
+        data_type: DOUBLE
+      - name: period_actualnonlaborunits
+        data_type: DOUBLE
+      - name: period_actualtotalcost
+        data_type: DOUBLE
+      - name: period_atcompletionexpensecost
+        data_type: DOUBLE
+      - name: period_atcompletionlaborcost
+        data_type: DOUBLE
+      - name: period_atcompletionlaborunits
+        data_type: DOUBLE
+      - name: period_atcompletionmaterialcost
+        data_type: DOUBLE
+      - name: period_atcompletionnonlaborcost
+        data_type: DOUBLE
+      - name: period_atcompletionnonlaborunits
+        data_type: DOUBLE
+      - name: period_atcompletiontotalcost
+        data_type: DOUBLE
+      - name: period_baseline1actualexpensecost
+        data_type: DOUBLE
+      - name: period_baseline1actuallaborcost
+        data_type: DOUBLE
+      - name: period_baseline1actuallaborunits
+        data_type: DOUBLE
+      - name: period_baseline1actualmaterialcost
+        data_type: DOUBLE
+      - name: period_baseline1actualnonlaborcost
+        data_type: DOUBLE
+      - name: period_baseline1actualnonlaborunits
+        data_type: DOUBLE
+      - name: period_baseline1actualtotalcost
+        data_type: DOUBLE
+      - name: period_baseline1plannedexpensecost
+        data_type: DOUBLE
+      - name: period_baseline1plannedlaborcost
+        data_type: DOUBLE
+      - name: period_baseline1plannedlaborunits
+        data_type: DOUBLE
+      - name: period_baseline1plannedmaterialcost
+        data_type: DOUBLE
+      - name: period_baseline1plannednonlaborcost
+        data_type: DOUBLE
+      - name: period_baseline1plannednonlaborunits
+        data_type: DOUBLE
+      - name: period_baseline1plannedtotalcost
+        data_type: DOUBLE
+      - name: period_baselineactualexpensecost
+        data_type: DOUBLE
+      - name: period_baselineactuallaborcost
+        data_type: DOUBLE
+      - name: period_baselineactuallaborunits
+        data_type: DOUBLE
+      - name: period_baselineactualmaterialcost
+        data_type: DOUBLE
+      - name: period_baselineactualnonlaborcost
+        data_type: DOUBLE
+      - name: period_baselineactualnonlaborunits
+        data_type: DOUBLE
+      - name: period_baselineactualtotalcost
+        data_type: DOUBLE
+      - name: period_baselineplannedexpensecost
+        data_type: DOUBLE
+      - name: period_baselineplannedlaborcost
+        data_type: DOUBLE
+      - name: period_baselineplannedlaborunits
+        data_type: DOUBLE
+      - name: period_baselineplannedmaterialcost
+        data_type: DOUBLE
+      - name: period_baselineplannednonlaborcost
+        data_type: DOUBLE
+      - name: period_baselineplannednonlaborunits
+        data_type: DOUBLE
+      - name: period_baselineplannedtotalcost
+        data_type: DOUBLE
+      - name: period_cumulativeactualcost
+        data_type: DOUBLE
+      - name: period_cumulativeactualexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativeactuallaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeactuallaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeactualmaterialcost
+        data_type: DOUBLE
+      - name: period_cumulativeactualnonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeactualnonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeactualtotalcost
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletionexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletionlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletionlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletionmaterialcost
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletionnonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletionnonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletiontotalcost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1actualexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1actuallaborcost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1actuallaborunits
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1actualmaterialcost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1actualnonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1actualnonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1actualtotalcost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1plannedexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1plannedlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1plannedlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1plannedmaterialcost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1plannednonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1plannednonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativebaseline1plannedtotalcost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineactualexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineactuallaborcost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineactuallaborunits
+        data_type: DOUBLE
+      - name: period_cumulativebaselineactualmaterialcost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineactualnonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineactualnonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativebaselineactualtotalcost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineplannedexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineplannedlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineplannedlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativebaselineplannedmaterialcost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineplannednonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativebaselineplannednonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativebaselineplannedtotalcost
+        data_type: DOUBLE
+      - name: period_cumulativeearnedvaluecost
+        data_type: DOUBLE
+      - name: period_cumulativeearnedvaluelaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeestimateatcompletioncost
+        data_type: DOUBLE
+      - name: period_cumulativeestimateatcompletionlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeestimatetocompletecost
+        data_type: DOUBLE
+      - name: period_cumulativeestimatetocompletelaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeplannedexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativeplannedlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeplannedlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeplannedmaterialcost
+        data_type: DOUBLE
+      - name: period_cumulativeplannednonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeplannednonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeplannedtotalcost
+        data_type: DOUBLE
+      - name: period_cumulativeplannedvaluecost
+        data_type: DOUBLE
+      - name: period_cumulativeplannedvaluelaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeremainingexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglateexpensecost
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglatelaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglatelaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglatematerialcost
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglatenonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglatenonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglatetotalcost
+        data_type: DOUBLE
+      - name: period_cumulativeremainingmaterialcost
+        data_type: DOUBLE
+      - name: period_cumulativeremainingnonlaborcost
+        data_type: DOUBLE
+      - name: period_cumulativeremainingnonlaborunits
+        data_type: DOUBLE
+      - name: period_cumulativeremainingtotalcost
+        data_type: DOUBLE
+      - name: period_earnedvaluecost
+        data_type: DOUBLE
+      - name: period_earnedvaluelaborunits
+        data_type: DOUBLE
+      - name: period_enddate
+        data_type: varchar(100)
+      - name: period_estimateatcompletioncost
+        data_type: DOUBLE
+      - name: period_estimateatcompletionlaborunits
+        data_type: DOUBLE
+      - name: period_estimatetocompletecost
+        data_type: DOUBLE
+      - name: period_estimatetocompletelaborunits
+        data_type: DOUBLE
+      - name: period_plannedexpensecost
+        data_type: DOUBLE
+      - name: period_plannedlaborcost
+        data_type: DOUBLE
+      - name: period_plannedlaborunits
+        data_type: DOUBLE
+      - name: period_plannedmaterialcost
+        data_type: DOUBLE
+      - name: period_plannednonlaborcost
+        data_type: DOUBLE
+      - name: period_plannednonlaborunits
+        data_type: DOUBLE
+      - name: period_plannedtotalcost
+        data_type: DOUBLE
+      - name: period_plannedvaluecost
+        data_type: DOUBLE
+      - name: period_plannedvaluelaborunits
+        data_type: DOUBLE
+      - name: period_remainingexpensecost
+        data_type: DOUBLE
+      - name: period_remaininglaborcost
+        data_type: DOUBLE
+      - name: period_remaininglaborunits
+        data_type: DOUBLE
+      - name: period_remaininglateexpensecost
+        data_type: DOUBLE
+      - name: period_remaininglatelaborcost
+        data_type: DOUBLE
+      - name: period_remaininglatelaborunits
+        data_type: DOUBLE
+      - name: period_remaininglatematerialcost
+        data_type: DOUBLE
+      - name: period_remaininglatenonlaborcost
+        data_type: DOUBLE
+      - name: period_remaininglatenonlaborunits
+        data_type: DOUBLE
+      - name: period_remaininglatetotalcost
+        data_type: DOUBLE
+      - name: period_remainingmaterialcost
+        data_type: DOUBLE
+      - name: period_remainingnonlaborcost
+        data_type: DOUBLE
+      - name: period_remainingnonlaborunits
+        data_type: DOUBLE
+      - name: period_remainingtotalcost
+        data_type: DOUBLE
+      - name: period_startdate
+        data_type: varchar(100)
+      - name: periodtype
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: startdate
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_p6_project_relationship
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: created_date
+        data_type: date
+      - name: createdate
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: lag
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: load_id
+        data_type: varchar(100)
+      - name: objectid
+        data_type: varchar(100)
+      - name: predecessoractivityobjectid
+        data_type: varchar(100)
+      - name: predecessorprojectobjectid
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: successoractivityobjectid
+        data_type: varchar(100)
+      - name: successorprojectobjectid
+        data_type: varchar(100)
+      - name: type
+        data_type: varchar(100)
+      - name: updated_date
+        data_type: date
+
+  - name: transformed_p6_project_resourceassignment
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activityid
+        data_type: varchar(100)
+      - name: activityactualfinish
+        data_type: varchar(100)
+      - name: activityname
+        data_type: varchar(200)
+      - name: activityobjectid
+        data_type: varchar(100)
+      - name: activityspreadobjectid
+        data_type: varchar(100)
+      - name: activitytype
+        data_type: varchar(100)
+      - name: actualcost
+        data_type: varchar(100)
+      - name: actualduration
+        data_type: varchar(100)
+      - name: actualfinishdate
+        data_type: varchar(100)
+      - name: actualovertimecost
+        data_type: varchar(100)
+      - name: actualovertimeunits
+        data_type: varchar(100)
+      - name: actualregularcost
+        data_type: varchar(100)
+      - name: actualregularunits
+        data_type: varchar(100)
+      - name: actualstartdate
+        data_type: varchar(100)
+      - name: actualthisperiodcost
+        data_type: varchar(100)
+      - name: actualthisperiodunits
+        data_type: varchar(100)
+      - name: actualunits
+        data_type: varchar(100)
+      - name: assignmentpercentcomplete
+        data_type: varchar(100)
+      - name: atcompletioncost
+        data_type: varchar(100)
+      - name: atcompletionduration
+        data_type: varchar(100)
+      - name: atcompletionunits
+        data_type: varchar(100)
+      - name: autocomputeactuals
+        data_type: varchar(100)
+      - name: calendarname
+        data_type: varchar(100)
+      - name: calendarobjectid
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: createdate
+        data_type: varchar(100)
+      - name: createuser
+        data_type: varchar(100)
+      - name: drivingactivitydatesflag
+        data_type: varchar(100)
+      - name: durationpercentcomplete
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: financialperiodtmplid
+        data_type: varchar(100)
+      - name: finishdate
+        data_type: varchar(100)
+      - name: guid
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: isactive
+        data_type: varchar(100)
+      - name: isactivityflagged
+        data_type: varchar(100)
+      - name: isbaseline
+        data_type: varchar(100)
+      - name: iscostunitslinked
+        data_type: varchar(100)
+      - name: isovertimeallowed
+        data_type: varchar(100)
+      - name: isprimaryresource
+        data_type: varchar(100)
+      - name: istemplate
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: load_id
+        data_type: varchar(100)
+      - name: percentcomplete
+        data_type: varchar(100)
+      - name: percentcompletetype
+        data_type: varchar(100)
+      - name: plannedcost
+        data_type: varchar(100)
+      - name: plannedduration
+        data_type: varchar(100)
+      - name: plannedfinishdate
+        data_type: varchar(100)
+      - name: plannedlag
+        data_type: varchar(100)
+      - name: plannedstartdate
+        data_type: varchar(100)
+      - name: plannedunits
+        data_type: varchar(100)
+      - name: plannedunitspertime
+        data_type: varchar(100)
+      - name: priceperunit
+        data_type: varchar(100)
+      - name: proficiency
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectflag
+        data_type: varchar(100)
+      - name: projectname
+        data_type: varchar(100)
+      - name: projectobjectid
+        data_type: varchar(100)
+      - name: projectprojectflag
+        data_type: varchar(100)
+      - name: ratesource
+        data_type: varchar(100)
+      - name: ratetype
+        data_type: varchar(100)
+      - name: remainingcost
+        data_type: varchar(100)
+      - name: remainingduration
+        data_type: varchar(100)
+      - name: remainingfinishdate
+        data_type: varchar(100)
+      - name: remaininglag
+        data_type: varchar(100)
+      - name: remaininglatefinishdate
+        data_type: varchar(100)
+      - name: remaininglatestartdate
+        data_type: varchar(100)
+      - name: remainingstartdate
+        data_type: varchar(100)
+      - name: remainingunits
+        data_type: varchar(100)
+      - name: remainingunitspertime
+        data_type: varchar(100)
+      - name: resourcecalendarname
+        data_type: varchar(100)
+      - name: resourceid
+        data_type: varchar(100)
+      - name: resourcename
+        data_type: varchar(100)
+      - name: resourceobjectid
+        data_type: varchar(100)
+      - name: resourcetype
+        data_type: varchar(100)
+      - name: reviewrequired
+        data_type: varchar(100)
+      - name: staffedremainingcost
+        data_type: varchar(100)
+      - name: staffedremainingunits
+        data_type: varchar(100)
+      - name: startdate
+        data_type: varchar(100)
+      - name: statuscode
+        data_type: varchar(100)
+      - name: totalpastperiodcost
+        data_type: varchar(100)
+      - name: totalpastperiodunits
+        data_type: varchar(100)
+      - name: unitspercentcomplete
+        data_type: varchar(100)
+      - name: unreadcommentcount
+        data_type: varchar(100)
+      - name: unstaffedremainingcost
+        data_type: varchar(100)
+      - name: unstaffedremainingunits
+        data_type: varchar(100)
+      - name: updated_date
+        data_type: date
+      - name: wbsnamepath
+        data_type: varchar(400)
+      - name: wbsobjectid
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+
+  - name: transformed_p6_project_udfvalue
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_key
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: createdate
+        data_type: varchar(100)
+      - name: createuser
+        data_type: varchar(100)
+      - name: double
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: finishdate
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: foreignobjectid
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: integer
+        quote: true
+        data_type: varchar(100)
+      - name: isbaseline
+        data_type: varchar(100)
+      - name: istemplate
+        data_type: varchar(100)
+      - name: isudftypecalculated
+        data_type: varchar(100)
+      - name: isudftypeconditional
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: load_id
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: projectobjectid
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: startdate
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: text
+        data_type: varchar(300)
+      - name: udftypedatatype
+        data_type: varchar(100)
+      - name: udftypeobjectid
+        data_type: varchar(100)
+      - name: udftypesubjectarea
+        data_type: varchar(100)
+      - name: udftypetitle
+        data_type: varchar(100)
+      - name: updated_date
+        data_type: date
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+
+  - name: transformed_p6_project
+    tags: ["p6"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_key
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activitydefaultactivitytype
+        data_type: varchar(100)
+      - name: activitydefaultcalendarname
+        data_type: varchar(100)
+      - name: activitydefaultcalendarobjectid
+        data_type: varchar(100)
+      - name: activitydefaultdurationtype
+        data_type: varchar(100)
+      - name: activitydefaultpercentcompletetype
+        data_type: varchar(100)
+      - name: activitydefaultpriceperunit
+        data_type: varchar(100)
+      - name: activityidbasedonselectedactivity
+        data_type: varchar(100)
+      - name: activityidincrement
+        data_type: varchar(100)
+      - name: activityidprefix
+        data_type: varchar(100)
+      - name: activityidsuffix
+        data_type: varchar(100)
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: activitypercentcompletebasedonactivitysteps
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: addactualtoremaining
+        data_type: varchar(100)
+      - name: addedby
+        data_type: varchar(100)
+      - name: allownegativeactualunitsflag
+        data_type: varchar(100)
+      - name: allowstatusreview
+        data_type: varchar(100)
+      - name: assignmentdefaultdrivingflag
+        data_type: varchar(100)
+      - name: assignmentdefaultratetype
+        data_type: varchar(100)
+      - name: calculatefloatbasedonfinishdate
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: checkoutstatus
+        data_type: varchar(100)
+      - name: computetotalfloattype
+        data_type: varchar(100)
+      - name: containssummarydata
+        data_type: varchar(100)
+      - name: costquantityrecalculateflag
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: createdate
+        data_type: varchar(100)
+      - name: createuser
+        data_type: varchar(100)
+      - name: criticalactivityfloatlimit
+        data_type: varchar(100)
+      - name: criticalactivityfloatthreshold
+        data_type: varchar(100)
+      - name: criticalactivitypathtype
+        data_type: varchar(100)
+      - name: criticalfloatthreshold
+        data_type: varchar(100)
+      - name: currentbudget
+        data_type: varchar(100)
+      - name: currentvariance
+        data_type: varchar(100)
+      - name: datadate
+        data_type: varchar(100)
+      - name: dateadded
+        data_type: varchar(100)
+      - name: defaultpricetimeunits
+        data_type: varchar(100)
+      - name: discountapplicationperiod
+        data_type: varchar(100)
+      - name: distributedcurrentbudget
+        data_type: varchar(100)
+      - name: earnedvaluecomputetype
+        data_type: varchar(100)
+      - name: earnedvalueetccomputetype
+        data_type: varchar(100)
+      - name: earnedvalueetcuservalue
+        data_type: varchar(100)
+      - name: earnedvalueuserpercent
+        data_type: varchar(100)
+      - name: enableprimesycflag
+        data_type: varchar(100)
+      - name: enablepublication
+        data_type: varchar(100)
+      - name: enablesummarization
+        data_type: varchar(100)
+      - name: etlinterval
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: externalcrkey
+        data_type: varchar(100)
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: financialperiodtemplateid
+        data_type: varchar(100)
+      - name: fiscalyearstartmonth
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: guid
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: historyinterval
+        data_type: varchar(100)
+      - name: historylevel
+        data_type: varchar(100)
+      - name: id
+        data_type: varchar(100)
+      - name: ignoreotherprojectrelationships
+        data_type: varchar(100)
+      - name: independentetclaborunits
+        data_type: varchar(100)
+      - name: independentetctotalcost
+        data_type: varchar(100)
+      - name: integratedtype
+        data_type: varchar(100)
+      - name: integratedwbs
+        data_type: varchar(100)
+      - name: istemplate
+        data_type: varchar(100)
+      - name: lastapplyactualsdate
+        data_type: varchar(100)
+      - name: lastscheduledate
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: levelallresources
+        data_type: varchar(100)
+      - name: leveldateflag
+        data_type: varchar(100)
+      - name: levelfloatthresholdcount
+        data_type: varchar(100)
+      - name: levelingpriority
+        data_type: varchar(100)
+      - name: levelouterassign
+        data_type: varchar(100)
+      - name: levelouterassignpriority
+        data_type: varchar(100)
+      - name: leveloverallocationpercent
+        data_type: varchar(100)
+      - name: levelprioritylist
+        data_type: varchar(100)
+      - name: levelresourcelist
+        data_type: varchar(100)
+      - name: levelwithinfloat
+        data_type: varchar(100)
+      - name: limitmultiplefloatpaths
+        data_type: varchar(100)
+      - name: linkactualtoactualthisperiod
+        data_type: varchar(100)
+      - name: linkpercentcompletewithactual
+        data_type: varchar(100)
+      - name: linkplannedandatcompletionflag
+        data_type: varchar(100)
+      - name: load_id
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: makeopenendedactivitiescritical
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: maximummultiplefloatpaths
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: multiplefloatpathsenabled
+        data_type: varchar(100)
+      - name: multiplefloatpathsusetotalfloat
+        data_type: varchar(100)
+      - name: name
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: objectid
+        data_type: varchar(100)
+      - name: obsname
+        data_type: varchar(100)
+      - name: obsobjectid
+        data_type: varchar(100)
+      - name: originalbudget
+        data_type: varchar(100)
+      - name: outofsequencescheduletype
+        data_type: varchar(100)
+      - name: overallprojectscore
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: parentepsid
+        data_type: varchar(100)
+      - name: parentepsname
+        data_type: varchar(100)
+      - name: parentepsobjectid
+        data_type: varchar(100)
+      - name: plannedstartdate
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: primaryresourcescanmarkactivitiesascompleted
+        data_type: varchar(100)
+      - name: primaryresourcescanupdateactivitydates
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: projectscheduletype
+        data_type: varchar(100)
+      - name: propertytype
+        data_type: varchar(100)
+      - name: proposedbudget
+        data_type: varchar(100)
+      - name: publicationpriority
+        data_type: varchar(100)
+      - name: publishlevel
+        data_type: varchar(100)
+      - name: relationshiplagcalendar
+        data_type: varchar(100)
+      - name: resetplannedtoremainingflag
+        data_type: varchar(100)
+      - name: resourcecanbeassignedtosameactivitymorethanonce
+        data_type: varchar(100)
+      - name: resourcescanassignthemselvestoactivities
+        data_type: varchar(100)
+      - name: resourcescanassignthemselvestoactivitiesoutsideobsaccess
+        data_type: varchar(100)
+      - name: resourcescaneditassignmentpercentcomplete
+        data_type: varchar(100)
+      - name: resourcescanmarkassignmentascompleted
+        data_type: varchar(100)
+      - name: resourcescanstaffroleassignment
+        data_type: varchar(100)
+      - name: resourcescanviewinactiveactivities
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: reviewtype
+        data_type: varchar(100)
+      - name: riskexposure
+        data_type: varchar(100)
+      - name: risklevel
+        data_type: varchar(100)
+      - name: riskscore
+        data_type: varchar(100)
+      - name: scheduledfinishdate
+        data_type: varchar(100)
+      - name: schedulewbshierarchytype
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: startdate
+        data_type: varchar(100)
+      - name: starttostartlagcalculationtype
+        data_type: varchar(100)
+      - name: status
+        data_type: varchar(100)
+      - name: strategicpriority
+        data_type: varchar(100)
+      - name: summarizeresourcesrolesbywbs
+        data_type: varchar(100)
+      - name: summarizetowbslevel
+        data_type: varchar(100)
+      - name: summarylevel
+        data_type: varchar(100)
+      - name: summaryunitspercentcomplete
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: teammemberactivityfields
+        data_type: varchar(100)
+      - name: teammemberassignmentoption
+        data_type: varchar(100)
+      - name: teammemberdisplaydiscussionsflag
+        data_type: varchar(100)
+      - name: teammemberincludeprimaryresources
+        data_type: varchar(100)
+      - name: teammemberresourceassignmentfields
+        data_type: varchar(100)
+      - name: teammemberstepsadddeletable
+        data_type: varchar(100)
+      - name: totalbenefitplan
+        data_type: varchar(100)
+      - name: totalbenefitplantally
+        data_type: varchar(100)
+      - name: totalspendingplan
+        data_type: varchar(100)
+      - name: totalspendingplantally
+        data_type: varchar(100)
+      - name: unallocatedbudget
+        data_type: varchar(100)
+      - name: undistributedcurrentvariance
+        data_type: varchar(100)
+      - name: updated_date
+        data_type: date
+      - name: useexpectedfinishdates
+        data_type: varchar(100)
+      - name: useprojectbaselineforearnedvalue
+        data_type: varchar(100)
+      - name: wbscodeseparator
+        data_type: varchar(100)
+      - name: wbsmilestonepercentcomplete
+        data_type: varchar(100)
+      - name: wbsobjectid
+        data_type: varchar(100)
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+
+  - name: transformed_p6_resource
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_key
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: autocomputeactuals
+        data_type: varchar(100)
+      - name: calculatecostfromunits
+        data_type: varchar(100)
+      - name: calendarname
+        data_type: varchar(100)
+      - name: calendarobjectid
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: createdate
+        data_type: varchar(100)
+      - name: createuser
+        data_type: varchar(100)
+      - name: currencyid
+        data_type: varchar(100)
+      - name: currencyname
+        data_type: varchar(100)
+      - name: currencyobjectid
+        data_type: varchar(100)
+      - name: defaultunitspertime
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: guid
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: id
+        data_type: varchar(100)
+      - name: integratedtype
+        data_type: varchar(100)
+      - name: isactive
+        data_type: varchar(100)
+      - name: isovertimeallowed
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: load_id
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: maxunitspertime
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: name
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: objectid
+        data_type: varchar(100)
+      - name: overtimefactor
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: parentobjectid
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: priceperunit
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: primaryroleid
+        data_type: varchar(100)
+      - name: primaryrolename
+        data_type: varchar(100)
+      - name: primaryroleobjectid
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: resourcenotes
+        data_type: varchar(100)
+      - name: resourcetype
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: sequencenumber
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: updated_date
+        data_type: date
+      - name: usetimesheets
+        data_type: varchar(100)
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+
+  - name: transformed_p6_udftype
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activity_key
+        data_type: varchar(100)
+      - name: activity_val_id
+        data_type: varchar(100)
+      - name: activityowneruserid
+        data_type: varchar(100)
+      - name: actuallaborunits
+        data_type: varchar(100)
+      - name: cbscode
+        data_type: varchar(100)
+      - name: cbsid
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: createdate
+        data_type: varchar(100)
+      - name: createuser
+        data_type: varchar(100)
+      - name: datatype
+        data_type: varchar(100)
+      - name: displayindicatorflag
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: externalearlystartdate
+        data_type: varchar(100)
+      - name: externallatefinishdate
+        data_type: varchar(100)
+      - name: feedback
+        data_type: varchar(100)
+      - name: floatpath
+        data_type: varchar(100)
+      - name: floatpathorder
+        data_type: varchar(100)
+      - name: hasfuturebucketdata
+        data_type: varchar(100)
+      - name: iscalculated
+        data_type: varchar(100)
+      - name: isconditional
+        data_type: varchar(100)
+      - name: issecurecode
+        data_type: varchar(100)
+      - name: lastupdatedate
+        data_type: varchar(100)
+      - name: lastupdateuser
+        data_type: varchar(100)
+      - name: load_id
+        data_type: varchar(100)
+      - name: locationname
+        data_type: varchar(100)
+      - name: locationobjectid
+        data_type: varchar(100)
+      - name: maximumduration
+        data_type: varchar(100)
+      - name: minimumduration
+        data_type: varchar(100)
+      - name: mostlikelyduration
+        data_type: varchar(100)
+      - name: notestoresources
+        data_type: varchar(100)
+      - name: objectid
+        data_type: varchar(100)
+      - name: owneridarray
+        data_type: varchar(100)
+      - name: ownernamesarray
+        data_type: varchar(100)
+      - name: postrespcriticalityindex
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart
+        data_type: varchar(100)
+      - name: prerespcriticalityindex
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart
+        data_type: varchar(100)
+      - name: primaryconstraintdate
+        data_type: varchar(100)
+      - name: project_id
+        data_type: varchar(100)
+      - name: projectid
+        data_type: varchar(100)
+      - name: resumedate
+        data_type: varchar(100)
+      - name: reviewfinishdate
+        data_type: varchar(100)
+      - name: secondaryconstraintdate
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: subjectarea
+        data_type: varchar(100)
+      - name: summarymethod
+        data_type: varchar(100)
+      - name: suspenddate
+        data_type: varchar(100)
+      - name: taskstatusindicator
+        data_type: varchar(100)
+      - name: title
+        data_type: varchar(100)
+      - name: updated_date
+        data_type: date
+      - name: workpackageid
+        data_type: varchar(100)
+      - name: workpackagename
+        data_type: varchar(100)
+
+  - name: transformed_p6_activitycode
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activitycode_pk	
+        data_type: varchar(100)      
+      - name: codeconcatname	
+        data_type: varchar(100)
+      - name: codetypename	
+        data_type: varchar(100)
+      - name: codetypeobjectid	
+        data_type: integer
+      - name: codetypescope	
+        data_type: varchar(100)
+      - name: codevalue	
+        data_type: varchar(100)
+      - name: color	
+        data_type: varchar(100)
+      - name: createdate	
+        data_type: date
+      - name: createuser	
+        data_type: varchar(100)
+      - name: description	
+        data_type: varchar(200)
+      - name: lastupdatedate	
+        data_type: date
+      - name: lastupdateuser	
+        data_type: varchar(100)
+      - name: objectid	
+        data_type: integer
+      - name: parentobjectid	
+        data_type: integer
+      - name: projectobjectid	
+        data_type: integer
+      - name: sequencenumber	
+        data_type: varchar(100)
+      - name: etl_job_status_pk	
+        data_type: varchar(100)
+      - name: active_indicator	
+        data_type: varchar(100)
+      - name: created_by	
+        data_type: varchar(100)
+      - name: updated_by	
+        data_type: varchar(100)     
+      - name: extracted_date	
+        data_type: varchar(100)
+      - name: project_code	
+        data_type: varchar(100)
+      - name: created_date	
+        data_type: date
+      - name: updated_date	
+        data_type: date
+      - name: load_id	
+        data_type: varchar(100)
+      
+  - name: transformed_p6_activitycodetype
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: created_date	
+        data_type: date
+      - name: createdate	
+        data_type: varchar(100)
+      - name: createuser	
+        data_type: varchar(100)
+      - name: epscodetypehierarchy	
+        data_type: varchar(100)
+      - name: epsobjectid	
+        data_type: varchar(100)
+      - name: execution_date	
+        data_type: date
+      - name: isbaseline	
+        data_type: varchar(100)
+      - name: issecurecode	
+        data_type: varchar(100)
+      - name: istemplate	
+        data_type: varchar(100)
+      - name: lastupdatedate	
+        data_type: varchar(100)
+      - name: lastupdateuser	
+        data_type: varchar(100)
+      - name: length	
+        data_type: varchar(100)
+      - name: load_id	
+        data_type: varchar(100)
+      - name: name	
+        data_type: varchar(100)
+      - name: objectid	
+        data_type: varchar(100)
+      - name: project_id	
+        data_type: varchar(100)
+      - name: projectobjectid	
+        data_type: varchar(100)
+      - name: refprojectobjectids	
+        data_type: varchar(100)
+      - name: scope	
+        data_type: varchar(100)
+      - name: sequencenumber	
+        data_type: varchar(100)
+      - name: source_system_name	
+        data_type: varchar(100)
+      - name: updated_date	
+        data_type: date
+
+  - name: transformed_p6_project_resourceassignmentspread
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: activityid	
+        data_type: varchar(100)
+      - name: activityowneruserid	
+        data_type: varchar(100)
+      - name: actuallaborunits	
+        data_type: varchar(100)
+      - name: cbscode	
+        data_type: varchar(100)
+      - name: cbsid	
+        data_type: varchar(100)
+      - name: created_date	
+        data_type: date
+      - name: enddate	
+        data_type: varchar(100)
+      - name: execution_date	
+        data_type: date
+      - name: externalearlystartdate	
+        data_type: varchar(100)
+      - name: externallatefinishdate	
+        data_type: varchar(100)
+      - name: feedback	
+        data_type: varchar(100)
+      - name: floatpath	
+        data_type: varchar(100)
+      - name: floatpathorder	
+        data_type: varchar(100)
+      - name: hasfuturebucketdata	
+        data_type: varchar(100)
+      - name: load_id	
+        data_type: varchar(100)
+      - name: locationname	
+        data_type: varchar(100)
+      - name: locationobjectid	
+        data_type: varchar(100)
+      - name: maximumduration	
+        data_type: varchar(100)
+      - name: minimumduration	
+        data_type: varchar(100)
+      - name: mostlikelyduration	
+        data_type: varchar(100)
+      - name: notestoresources	
+        data_type: varchar(100)
+      - name: owneridarray	
+        data_type: varchar(100)
+      - name: ownernamesarray	
+        data_type: varchar(100)
+      - name: period_actualcost	
+        data_type: DOUBLE
+      - name: period_actualovertimecost	
+        data_type: DOUBLE
+      - name: period_actualovertimeunits	
+        data_type: DOUBLE
+      - name: period_actualregularcost	
+        data_type: DOUBLE
+      - name: period_actualregularunits	
+        data_type: DOUBLE
+      - name: period_actualunits	
+        data_type: DOUBLE
+      - name: period_atcompletioncost	
+        data_type: DOUBLE
+      - name: period_atcompletionunits	
+        data_type: DOUBLE
+      - name: period_cumulativeactualcost	
+        data_type: DOUBLE
+      - name: period_cumulativeactualovertimecost	
+        data_type: DOUBLE
+      - name: period_cumulativeactualovertimeunits	
+        data_type: DOUBLE
+      - name: period_cumulativeactualregularcost	
+        data_type: DOUBLE
+      - name: period_cumulativeactualregularunits	
+        data_type: DOUBLE
+      - name: period_cumulativeactualunits	
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletioncost	
+        data_type: DOUBLE
+      - name: period_cumulativeatcompletionunits	
+        data_type: DOUBLE
+      - name: period_cumulativeplannedcost	
+        data_type: DOUBLE
+      - name: period_cumulativeplannedunits	
+        data_type: DOUBLE
+      - name: period_cumulativeremainingcost	
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglatecost	
+        data_type: DOUBLE
+      - name: period_cumulativeremaininglateunits	
+        data_type: DOUBLE
+      - name: period_cumulativeremainingunits	
+        data_type: DOUBLE
+      - name: period_cumulativestaffedremainingcost	
+        data_type: DOUBLE
+      - name: period_cumulativestaffedremaininglatecost	
+        data_type: DOUBLE
+      - name: period_cumulativestaffedremaininglateunits	
+        data_type: DOUBLE
+      - name: period_cumulativestaffedremainingunits	
+        data_type: DOUBLE
+      - name: period_cumulativeunstaffedremainingcost	
+        data_type: DOUBLE
+      - name: period_cumulativeunstaffedremaininglatecost	
+        data_type: DOUBLE
+      - name: period_cumulativeunstaffedremaininglateunits	
+        data_type: DOUBLE
+      - name: period_cumulativeunstaffedremainingunits	
+        data_type: DOUBLE
+      - name: period_enddate	
+        data_type: varchar(100)
+      - name: period_periodactualcost	
+        data_type: DOUBLE
+      - name: period_periodactualunits	
+        data_type: DOUBLE
+      - name: period_periodatcompletioncost	
+        data_type: DOUBLE
+      - name: period_periodatcompletionunits	
+        data_type: DOUBLE
+      - name: period_plannedcost	
+        data_type: DOUBLE
+      - name: period_plannedunits	
+        data_type: DOUBLE
+      - name: period_remainingcost	
+        data_type: DOUBLE
+      - name: period_remaininglatecost	
+        data_type: DOUBLE
+      - name: period_remaininglateunits	
+        data_type: DOUBLE
+      - name: period_remainingunits	
+        data_type: DOUBLE
+      - name: period_staffedremainingcost	
+        data_type: DOUBLE
+      - name: period_staffedremaininglatecost	
+        data_type: DOUBLE
+      - name: period_staffedremaininglateunits	
+        data_type: DOUBLE
+      - name: period_staffedremainingunits	
+        data_type: DOUBLE
+      - name: period_startdate	
+        data_type: varchar(100)
+      - name: period_unstaffedremainingcost	
+        data_type: DOUBLE
+      - name: period_unstaffedremaininglatecost	
+        data_type: DOUBLE
+      - name: period_unstaffedremaininglateunits	
+        data_type: DOUBLE
+      - name: period_unstaffedremainingunits	
+        data_type: DOUBLE
+      - name: periodtype	
+        data_type: varchar(100)
+      - name: postrespcriticalityindex	
+        data_type: varchar(100)
+      - name: postresponsepessimisticfinish	
+        data_type: varchar(100)
+      - name: postresponsepessimisticstart	
+        data_type: varchar(100)
+      - name: prerespcriticalityindex	
+        data_type: varchar(100)
+      - name: preresponsepessimisticfinish	
+        data_type: varchar(100)
+      - name: preresponsepessimisticstart	
+        data_type: varchar(100)
+      - name: primaryconstraintdate	
+        data_type: varchar(100)
+      - name: project_id	
+        data_type: varchar(100)
+      - name: projectid	
+        data_type: varchar(100)
+      - name: resourceassignmentobjectid	
+        data_type: integer
+      - name: resumedate	
+        data_type: varchar(100)
+      - name: reviewfinishdate	
+        data_type: varchar(100)
+      - name: secondaryconstraintdate	
+        data_type: varchar(100)
+      - name: source_system_name	
+        data_type: varchar(100)
+      - name: startdate	
+        data_type: varchar(100)
+      - name: suspenddate	
+        data_type: varchar(100)
+      - name: taskstatusindicator	
+        data_type: varchar(100)
+      - name: updated_date	
+        data_type: date
+      - name: workpackageid	
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_progress_category
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: progress_category
+        data_type: varchar(50)
+      - name: progress_category_description
+        data_type: varchar(5000)
+      - name: display_order
+        data_type: varchar(100)
+      - name: etl_job_status_pk
+        data_type: varchar(100)
+      - name: active_indicator
+        data_type: varchar(10)
+      - name: created_by
+        data_type: varchar(50)
+      - name: updated_by
+        data_type: varchar(10)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_status
+    tags: ["ecosys","v2"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: snapshotlog_costobjectid
+        data_type: varchar(50)
+      - name: snapshotlog_snapshotintid
+        data_type: varchar(50)
+      - name: status
+        data_type: varchar(10)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_cost
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_id
+        data_type: varchar(50)
+      - name: cost_object_hierarchy_path_id
+        data_type: varchar(200)
+      - name: pa_date
+        data_type: varchar(50)
+      - name: pa_date2
+        data_type: varchar(50)
+      - name: snapshot_date
+        data_type: date
+      - name: snapshot_date2
+        data_type: date
+      - name: cost_category
+        data_type: varchar(50)
+      - name: original_budget_cost
+        data_type: float
+      - name: approved_variations_cost
+        data_type: float
+      - name: pending_variations_cost
+        data_type: float
+      - name: current_budget
+        data_type: float
+      - name: actuals_to_date_cost
+        data_type: float
+      - name: estimate_to_complete_cost
+        data_type: float
+      - name: estimate_at_completion_cost
+        data_type: float
+      - name: planned_cost
+        data_type: float
+      - name: earned_cost
+        data_type: float
+      - name: variance_cost
+        data_type: float
+      - name: commitments_cost
+        data_type: float
+      - name: original_cost_category
+        data_type: varchar(50)
+      - name: orig_cost_cat_current_budget_cost
+        data_type: float
+      - name: orig_cost_cat_actual_cost
+        data_type: float
+      - name: orig_cost_cat_planned_cost
+        data_type: float
+      - name: orig_cost_cat_earned_cost
+        data_type: float
+      - name: billable_yes_no_name
+        data_type: boolean
+      - name: billing_type_name
+        data_type: varchar(50)
+      - name: legacy_wbs
+        data_type: varchar(10)
+      - name: cost_type_internal_id
+        data_type: varchar(50)
+      - name: control_account_internal_id
+        data_type: varchar(50)
+      - name: project_internal_id
+        data_type: varchar(50)
+      - name: wbs01
+        data_type: varchar(50)
+      - name: wbs02
+        data_type: varchar(50)
+      - name: top_task_id
+        data_type: varchar(50)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_work_hours
+    tags: ["ecosys","v2"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_id
+        data_type: varchar(50)
+      - name: cost_object_hierarchy_path_id
+        data_type: varchar(200)
+      - name: pa_date
+        data_type: varchar(50)
+      - name: pa_date2
+        data_type: varchar(50)
+      - name: snapshot_date
+        data_type: date
+      - name: snapshot_date2
+        data_type: date
+      - name: hours_category
+        data_type: varchar(50)
+      - name: wpi_category
+        data_type: varchar(100)
+      - name: original_budget_work_hours
+        data_type: float
+      - name: approved_variations_work_hours
+        data_type: float
+      - name: pending_variations_work_hours
+        data_type: float
+      - name: current_budget_work_hours
+        data_type: float
+      - name: actuals_to_date_work_hours
+        data_type: float
+      - name: estimate_to_complete_work_hours
+        data_type: float
+      - name: estimate_at_complete_work_hours
+        data_type: float
+      - name: variance_work_hours
+        data_type: float
+      - name: planned_work_hours
+        data_type: float
+      - name: earned_work_hours
+        data_type: float
+      - name: original_hours_category
+        data_type: varchar(50)
+      - name: orig_hours_cat_current_budget_hours
+        data_type: float
+      - name: orig_hours_cat_actual_hours
+        data_type: float
+      - name: orig_hours_cat_planned_hours
+        data_type: float
+      - name: orig_hours_cat_earned_hours
+        data_type: float
+      - name: billable_yes_no_name
+        data_type: boolean
+      - name: billing_type_name
+        data_type: varchar(50)
+      - name: legacy_wbs
+        data_type: varchar(10)
+      - name: cost_type_internal_id
+        data_type: varchar(50)
+      - name: control_account_internal_id
+        data_type: varchar(50)
+      - name: project_internal_id
+        data_type: varchar(50)
+      - name: wbs01
+        data_type: varchar(50)
+      - name: wbs02
+        data_type: varchar(50)
+      - name: top_task_id
+        data_type: varchar(50)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_global_phases
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: phase_id
+        data_type: varchar(5)
+      - name: phase_name
+        data_type: varchar(50)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_global_locations
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: location_id
+        data_type: varchar(5)
+      - name: location_name
+        data_type: varchar(50)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_service_type
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: header_servicetypeidname
+        data_type: varchar(100)
+      - name: service_type
+        data_type: varchar(50)
+      - name: service_type_description
+        data_type: varchar(50)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_org_access
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: id
+        data_type: varchar(50)
+      - name: access_id
+        data_type: varchar(50)
+      - name: user_id
+        data_type: varchar(50)
+      - name: org_id
+        data_type: varchar(50)
+      - name: active_indicator
+        data_type: boolean
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_org_hierarchy
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: id
+        data_type: varchar(50)
+      - name: org_id
+        data_type: varchar(255)
+      - name: org_name
+        data_type: varchar(1000)
+      - name: org_type
+        data_type: varchar(255)
+      - name: org_parent_id
+        data_type: varchar(255)
+      - name: path
+        data_type: varchar(1000)
+      - name: hq_id
+        data_type: varchar(100)
+      - name: region_id
+        data_type: varchar(100)
+      - name: sub_region_id
+        data_type: varchar(100)
+      - name: location_l1_id
+        data_type: varchar(100)
+      - name: location_l2_id
+        data_type: varchar(100)
+      - name: location_l3_id
+        data_type: varchar(100)
+      - name: location_l4_id
+        data_type: varchar(100)
+      - name: location_l5_id
+        data_type: varchar(100)
+      - name: location_l6_id
+        data_type: varchar(100)
+      - name: active_indicator
+        data_type: boolean
+      - name: execution_date
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: region
+        data_type: varchar(1000)
+      - name: sub_region
+        data_type: varchar(1000)
+      - name: location_l1
+        data_type: varchar(1000)
+      - name: location_l2
+        data_type: varchar(1000)
+      - name: location_l3
+        data_type: varchar(1000)
+      - name: location_l4
+        data_type: varchar(1000)
+      - name: location_l5
+        data_type: varchar(1000)
+      - name: location_l6
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)       
+
+  - name: transformed_ecosys_costtypepcsmapping
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: cost_object_category_value_id
+        data_type: varchar(50)
+      - name: cost_object_category_value_name
+        data_type: varchar(100)
+      - name: parent_category_id
+        data_type: varchar(50)
+      - name: cost_object_category_value_internal_id
+        data_type: varchar(50)
+      - name: legacy_wbs
+        data_type: boolean
+      - name: inactive
+        data_type: boolean
+      - name: create_user
+        data_type: varchar(100)
+      - name: create_date
+        data_type: date
+      - name: last_update_user
+        data_type: varchar(100)
+      - name: last_update_date
+        data_type: date
+      - name: pcs_revenue
+        data_type: varchar(50)
+      - name: mapct_and_revenue_category
+        data_type: varchar(50)
+      - name: pcs_cost
+        data_type: varchar(50)
+      - name: pcs_hours
+        data_type: varchar(50)
+      - name: pcs_nb_cost
+        data_type: varchar(50)
+      - name: pcs_nb_hours
+        data_type: varchar(50)
+      - name: construction_pcs_revenue
+        data_type: varchar(50)
+      - name: construction_pcs_cost
+        data_type: varchar(50)
+      - name: construction_pcs_hours
+        data_type: varchar(50)
+      - name: epc_mapping
+        data_type: varchar(10)
+      - name: change_major_group
+        data_type: varchar(10)
+      - name: change_minor_group
+        data_type: varchar(10)
+      - name: ct_labour
+        data_type: boolean
+      - name: direct_labour
+        data_type: boolean
+      - name: execution_date
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: primary_key
+        data_type: varchar(100)
+      - name: is_current
+        data_type: int
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_calendar
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: YEAR
+        data_type: varchar(10)
+      - name: MONTH
+        data_type: varchar(10)
+      - name: START_DATE
+        data_type: varchar(10)
+      - name: END_DATE_VALUE
+        data_type: varchar(10)
+      - name: END_DATE
+        data_type: date
+      - name: TRANSACTION_CATEGORY_INTERNAL_ID
+        data_type: varchar(100)
+      - name: DATE_TYPE
+        data_type: varchar(10)
+      - name: ETL_JOB_STATUS_PK
+        data_type: varchar(10)
+      - name: ACTIVE_INDICATOR
+        data_type: varchar(10)
+      - name: CREATED_BY
+        data_type: varchar(10)
+      - name: UPDATED_BY
+        data_type: varchar(10)
+      - name: CREATED_DATE
+        data_type: date
+      - name: UPDATED_DATE
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_cost_category
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: cost_parent_category
+        data_type: varchar(10)
+      - name: cost_parent_category_description
+        data_type: varchar(100)
+      - name: cost_category
+        data_type: varchar(10)
+      - name: cost_category_description
+        data_type: varchar(100)
+      - name: progress_category
+        data_type: varchar(100)
+      - name: display_order
+        data_type: varchar(10)
+      - name: gross_margin_category
+        data_type: varchar(100)
+      - name: is_overhead
+        data_type: boolean
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_ecodata
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: projectid
+        data_type: varchar(1000)
+      - name: costobjecthierarchypathid
+        data_type: varchar(1000)
+      - name: billableyesnoname
+        data_type: BOOLEAN
+      - name: obcost
+        data_type: decimal(23,8)
+      - name: obsell
+        data_type: decimal(23,8)
+      - name: approvedchangescost
+        data_type: decimal(23,8)
+      - name: approvedchangessell
+        data_type: decimal(23,8)
+      - name: pendingchangescost
+        data_type: decimal(23,8)
+      - name: pendingchangessell
+        data_type: decimal(23,8)
+      - name: cbcost
+        data_type: decimal(23,8)
+      - name: cbsell
+        data_type: decimal(23,8)
+      - name: actualcosts
+        data_type: decimal(23,8)
+      - name: alternateactualcosts
+        data_type: decimal(23,8)
+      - name: workingforecastcfc
+        data_type: decimal(23,8)
+      - name: workingforecastcfs
+        data_type: decimal(23,8)
+      - name: originalbudgeth
+        data_type: decimal(23,8)
+      - name: approvedchangesh
+        data_type: decimal(23,8)
+      - name: pendingchangesh
+        data_type: decimal(23,8)
+      - name: cbhours
+        data_type: decimal(23,8)
+      - name: actualunits
+        data_type: decimal(23,8)
+      - name: cfhours
+        data_type: decimal(23,8)
+      - name: codeofaccountid
+        data_type: varchar(1000)
+      - name: codeofaccountname
+        data_type: varchar(1000)
+      - name: costtypeid
+        data_type: varchar(1000)
+      - name: costtypename
+        data_type: varchar(1000)
+      - name: costobjectid
+        data_type: varchar(1000)
+      - name: costobjectname
+        data_type: varchar(1000)
+      - name: wbsidnamel01
+        data_type: varchar(1000)
+      - name: wbsidnamel02
+        data_type: varchar(1000)
+      - name: wbsidnamel03
+        data_type: varchar(1000)
+      - name: wbsidnamel04
+        data_type: varchar(1000)
+      - name: wbsidnamel05
+        data_type: varchar(1000)
+      - name: wbsidnamel06
+        data_type: varchar(1000)
+      - name: wbsidnamel07
+        data_type: varchar(1000)
+      - name: wbsidnamel08
+        data_type: varchar(1000)
+      - name: wbsidnamel09
+        data_type: varchar(1000)
+      - name: wbsidnamel10
+        data_type: varchar(1000)
+      - name: pcsctcategory
+        data_type: varchar(1000)
+      - name: plannedcost
+        data_type: decimal(23,8)
+      - name: plannedsell
+        data_type: decimal(23,8)
+      - name: earnedcost
+        data_type: decimal(23,8)
+      - name: earnedsell
+        data_type: decimal(23,8)
+      - name: plannedhours
+        data_type: decimal(23,8)
+      - name: earnedhours
+        data_type: decimal(23,8)
+      - name: originalbudgetstartdate
+        data_type: date
+      - name: originalbudgetenddate
+        data_type: date
+      - name: workingforecastenddate
+        data_type: date
+      - name: committedcost
+        data_type: decimal(23,8)
+      - name: committedsell
+        data_type: decimal(23,8)
+      - name: toptaskid
+        data_type: varchar(1000)
+      - name: pa_date
+        data_type: varchar(1000)
+      - name: snapshotid
+        data_type: varchar(1000)
+      - name: secorgid
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: ct_internal_id
+        data_type: varchar(1000)
+      - name: coa_internal_id
+        data_type: varchar(1000)
+      - name: status
+        data_type: varchar(1000)
+      - name: status_update_date
+        data_type: varchar(1000)
+      - name: control_account_internal_id
+        data_type: varchar(1000)
+      - name: project_internal_id
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: is_current
+        data_type: integer        
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100) 
+
+  - name: transformed_ecosys_gross_margin_category
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: gross_margin_category
+        data_type: varchar(100)
+      - name: description
+        data_type: varchar(100)
+      - name: display_order
+        data_type: varchar(10)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_header
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: alternate_id
+        data_type: varchar(100)
+      - name: approval_date
+        data_type: timestamp
+      - name: approved_by
+        data_type: varchar(100)
+      - name: as_sold_basis_attached
+        data_type: varchar(100)
+      - name: asset_type
+        data_type: varchar(100)
+      - name: authorized_signatory_name
+        data_type: timestamp
+      - name: billing_type
+        data_type: varchar(100)
+      - name: billing_type_name
+        data_type: varchar(100)        
+      - name: bill_to_address_line_1
+        data_type: varchar(100)
+      - name: bill_to_address_line_2
+        data_type: varchar(100)
+      - name: bill_to_address_line_3
+        data_type: varchar(100)
+      - name: bill_to_address_line_4
+        data_type: varchar(100)
+      - name: bill_to_address_line_5
+        data_type: varchar(100)
+      - name: business_line
+        data_type: varchar(100)
+      - name: checklist_csoc_attached
+        data_type: varchar(100)
+      - name: closed_date
+        data_type: timestamp
+      - name: completed_by
+        data_type: varchar(100)
+      - name: 	contract_no
+        data_type: 	varchar(100)
+      - name: 	contractual_basis_for_commencement_of_billable_work
+        data_type: 	varchar(100)        
+      - name: 	project_currency
+        data_type: 	varchar(100)
+      - name: 	countryofasset
+        data_type: 	varchar(100)
+      - name: 	customer_name
+        data_type: 	varchar(200)
+      - name: 	customer_contact_name
+        data_type: 	varchar(100)
+      - name: 	customer_internal_entity
+        data_type: 	varchar(100)
+      - name: 	customer_project_manager
+        data_type: 	varchar(100)
+      - name: 	customer_type
+        data_type: 	varchar(100)
+      - name: 	earned_value_weighting
+        data_type: 	varchar(100)
+      - name: 	estimated_wp_hours
+        data_type: 	varchar(100)
+      - name: 	estimated_wp_revenue
+        data_type: 	varchar(100)
+      - name: 	existing_customer_reference_no
+        data_type: 	varchar(100)
+      - name: 	existing_wp_contract
+        data_type: 	varchar(100)
+      - name: 	forecast_period_date
+        data_type: 	timestamp
+      - name: 	gbs_project_template
+        data_type: 	varchar(100)
+      - name: 	hwpcoa_ctlibrary
+        data_type: 	varchar(100)
+      - name: 	home_office_location
+        data_type: 	varchar(100)
+      - name: 	image_path1
+        data_type: 	varchar(100)
+      - name: 	image_path2
+        data_type: 	varchar(100)
+      - name: 	sector
+        data_type: 	varchar(100)
+      - name: 	industry_sub_sector
+        data_type: 	varchar(100)
+      - name: 	internal_entity
+        data_type: 	varchar(100)
+      - name: 	last_request_madefor_documents
+        data_type: 	varchar(100)
+      - name: 	legacy_wbs
+        data_type: 	varchar(100)
+      - name: 	major_project
+        data_type: 	varchar(100)
+      - name: 	ownerorganizationid
+        data_type: 	varchar(100)
+      - name: 	pcac1
+        data_type: 	varchar(100)
+      - name: 	pcac2
+        data_type: 	varchar(100)
+      - name: 	pcac3
+        data_type: 	varchar(100)
+      - name: 	pcac4
+        data_type: 	varchar(100)
+      - name: 	pcac5
+        data_type: 	varchar(100)
+      - name: 	pcac6
+        data_type: 	varchar(100)
+      - name: 	pcac7
+        data_type: 	varchar(100)
+      - name: 	pcac8
+        data_type: 	varchar(100)
+      - name: 	pcac9
+        data_type: 	varchar(100)
+      - name: 	pcac10
+        data_type: 	varchar(100)
+      - name: 	portfolio_project_grouping
+        data_type: 	varchar(100)
+      - name: 	approval_status_id
+        data_type: 	varchar(100)
+      - name: 	project_controller
+        data_type: 	varchar(100)
+      - name: 	project_create_date
+        data_type: 	timestamp
+      - name: 	project_forecast_end_date
+        data_type: 	timestamp
+      - name: 	project_execution_location
+        data_type: 	varchar(100)
+      - name: 	project_funding
+        data_type: 	float
+      - name: 	project_no
+        data_type: 	varchar(100)
+      - name: 	project_internal_id
+        data_type: 	varchar(100)
+      - name: 	project_manager
+        data_type: 	varchar(100)
+      - name: 	project_manager_name
+        data_type: 	varchar(100)
+      - name: 	project_title
+        data_type: 	varchar(100)
+      - name: 	project_risk_classification
+        data_type: 	varchar(100)
+      - name: 	project_size_classification
+        data_type: 	varchar(200)
+      - name: 	project_sponsor
+        data_type: 	varchar(100)
+      - name: 	project_start_date
+        data_type: 	timestamp
+      - name: 	project_type
+        data_type: 	varchar(100)
+      - name: 	proposal_budget
+        data_type: 	varchar(100)
+      - name: 	proposal_no
+        data_type: 	varchar(100)
+      - name: 	purchase_order_no
+        data_type: 	varchar(100)
+      - name: 	risk_form_attached
+        data_type: 	varchar(100)
+      - name: 	run_date
+        data_type: 	timestamp
+      - name: 	sec_org_project_cat01
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat02
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat03
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat04
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat05
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat06
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat07
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat08
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat09
+        data_type: 	varchar(100)
+      - name: 	sec_org_project_cat10
+        data_type: 	varchar(100)
+      - name: 	service_type
+        data_type: 	varchar(100)
+      - name: 	service_unit
+        data_type: 	varchar(100)
+      - name: 	ship_to_address_line_1
+        data_type: 	varchar(100)
+      - name: 	ship_to_address_line_2
+        data_type: 	varchar(100)
+      - name: 	ship_to_address_line_3
+        data_type: 	varchar(100)
+      - name: 	ship_to_address_line_4
+        data_type: 	varchar(100)
+      - name: 	ship_to_address_line_5
+        data_type: 	varchar(100)        
+      - name: 	small_project_moc
+        data_type: 	varchar(100)
+      - name: 	snap_shot_date
+        data_type: 	timestamp
+      - name: 	sustainability
+        data_type: 	varchar(100)
+      - name: 	udf01
+        data_type: 	varchar(100)
+      - name: 	udf02
+        data_type: 	varchar(100)
+      - name: 	udf03
+        data_type: 	varchar(100)
+      - name: 	udf04
+        data_type: 	varchar(100)
+      - name: 	udf05
+        data_type: 	varchar(100)
+      - name: 	udf06
+        data_type: 	varchar(100)
+      - name: 	udf07
+        data_type: 	varchar(100)
+      - name: 	udf08
+        data_type: 	varchar(100)
+      - name: 	udf09
+        data_type: 	varchar(100)
+      - name: 	udf10
+        data_type: 	varchar(100)
+      - name: 	wo_po_contract_attached
+        data_type: 	varchar(100)
+      - name: 	wp_contracting_entity
+        data_type: 	varchar(100)        
+      - name: 	advisian_service_line
+        data_type: 	varchar(100)
+      - name: 	crmt_entry_no
+        data_type: 	varchar(100) 
+      - name: 	pm_date
+        data_type: 	varchar(100)
+      - name: 	asn_date
+        data_type: 	varchar(100)        
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_hours_category
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: hours_parent_category
+        data_type: varchar(10)
+      - name: hours_parent_category_description
+        data_type: varchar(100)
+      - name: hours_category
+        data_type: varchar(10)
+      - name: hours_category_description
+        data_type: varchar(100)
+      - name: progress_category
+        data_type: varchar(50)
+      - name: display_order
+        data_type: varchar(10)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_revenue_category
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: revenue_parent_category
+        data_type: varchar(10)
+      - name: revenue_parent_category_description
+        data_type: varchar(100)
+      - name: revenue_category
+        data_type: varchar(10)
+      - name: revenue_category_description
+        data_type: varchar(100)
+      - name: progress_category
+        data_type: varchar(50)
+      - name: display_order
+        data_type: varchar(10)
+      - name: gross_margin_category
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_users
+    tags: ["ecosys","v2"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: ID
+        data_type: varchar(1000)
+      - name: USER_ID
+        data_type: varchar(100)
+      - name: USER_NAME
+        data_type: varchar(100)
+      - name: USER_EMAIL
+        data_type: varchar(100)
+      - name: USER_ROLE
+        data_type: varchar(100)
+      - name: costobjectsuperuser
+        data_type: varchar(100)        
+      - name: ACTIVE_INDICATOR
+        data_type: varchar(10)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_project_access
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: id
+        data_type: varchar(10)
+      - name: access_id
+        data_type: varchar(10)
+      - name: user_id
+        data_type: varchar(255)
+      - name: project_id
+        data_type: varchar(255)
+      - name: org_id
+        data_type: varchar(100)
+      - name: active_indicator
+        data_type: varchar(10)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_findata
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_internal_id
+        data_type: varchar(1000)
+      - name: cost_object_id
+        data_type: varchar(1000)
+      - name: transaction_date
+        data_type: date
+      - name: rec_revenue
+        data_type: float
+      - name: invd_to_date
+        data_type: float
+      - name: recd_to_date
+        data_type: float
+      - name: wip
+        data_type: float
+      - name: outstanding_total
+        data_type: float
+      - name: outstanding_current
+        data_type: float
+      - name: outstanding_1_to_30_days
+        data_type: float
+      - name: outstanding_31_to_60_days
+        data_type: float
+      - name: outstanding_61_plus_days
+        data_type: float
+      - name: terms
+        data_type: varchar(100)
+      - name: dwu
+        data_type: float
+      - name: ddo
+        data_type: float
+      - name: dso
+        data_type: float
+      - name: contingency_breakdown_service
+        data_type: float
+      - name: contingency_breakdown_proc
+        data_type: float
+      - name: contingency_breakdown_construction
+        data_type: float
+      - name: contingency_breakdown_other
+        data_type: float
+      - name: contingency_breakdown_closeout
+        data_type: float
+      - name: secorgid
+        data_type: varchar(1000)
+      - name: pcscomments
+        data_type: varchar(1000)
+      - name: pcsstatus
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: primary_key
+        data_type: varchar(1000)
+      - name: is_current
+        data_type: integer
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_secorg_findata_pcs
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_internal_id
+        data_type: varchar(255)
+      - name: secorgid
+        data_type: varchar(255)
+      - name: owner_organizationid
+        data_type: varchar(255)
+      - name: cost_object_id
+        data_type: varchar(255)
+      - name: transaction_date
+        data_type: timestamp
+      - name: pcs_comments
+        data_type: varchar(1000)
+      - name: pcs_number
+        data_type: varchar(500)
+      - name: pcs_status
+        data_type: varchar(500)
+      - name: working_forecast_units
+        data_type: float
+      - name: pcs_payment_term
+        data_type: varchar(255)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100) 
+  
+  - name: transformed_ecosys_snapshotfull
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: costobjectid
+        data_type: varchar(1000)
+      - name: createdate
+        data_type: timestamp
+      - name: exclude
+        data_type: varchar(1000)
+      - name: snapshotid
+        data_type: varchar(1000)
+      - name: snapshotintid
+        data_type: varchar(1000)
+      - name: secorg_id
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: row_hash
+        data_type: varchar(1000)
+      - name: primary_key
+        data_type: varchar(1000)
+      - name: is_current
+        data_type: integer
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100) 
+  
+  - name: transformed_ecosys_snapidlist
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: transaction_category_internal_id
+        data_type: varchar(1000)
+      - name: transaction_category_id
+        data_type: varchar(1000)
+      - name: transaction_category_name
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: primary_key
+        data_type: varchar(1000)
+      - name: is_current
+        data_type: integer
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100) 
+
+  - name: transformed_ecosys_budget_grid_cols
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: budget_grid_column_header
+        data_type: varchar(1000)
+      - name: display_order
+        data_type: int
+      - name: budget_grid_column_header_abbreviation
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_budget_grid_rows
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: budget_grid_row_description
+        data_type: varchar(1000)
+      - name: display_order
+        data_type: int
+      - name: budget_grid_row_abbreviation
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_data_type_switch
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: data_type
+        data_type: varchar(1000)
+      - name: display_order
+        data_type: int
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_invoice_due_categories
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: invoice_due_category
+        data_type: varchar(1000)
+      - name: display_order
+        data_type: int
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_progress_type
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: progress_type_description
+        data_type: varchar(1000)
+      - name: display_order
+        data_type: int
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_project_risks
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_size
+        data_type: varchar(1000)
+      - name: display_order
+        data_type: int
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_project_sizes
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_size
+        data_type: varchar(1000)
+      - name: display_order
+        data_type: int
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_revenue_at_risk
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: includes_pending
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_exchange_rates
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: startminorperiod
+        data_type: date
+      - name: exchangeratetableidname
+        data_type: varchar(1000)
+      - name: aed
+        data_type: float
+      - name: aoa
+        data_type: float
+      - name: ars
+        data_type: float
+      - name: aud
+        data_type: float
+      - name: azn
+        data_type: float
+      - name: bgn
+        data_type: float
+      - name: bhd
+        data_type: float
+      - name: bnd
+        data_type: float
+      - name: brl
+        data_type: float
+      - name: cad
+        data_type: float
+      - name: chf
+        data_type: float
+      - name: clp
+        data_type: float
+      - name: cny
+        data_type: float
+      - name: cop
+        data_type: float
+      - name: czk
+        data_type: float
+      - name: dkk
+        data_type: float
+      - name: egp
+        data_type: float
+      - name: eur
+        data_type: float
+      - name: gbp
+        data_type: float
+      - name: ghs
+        data_type: float
+      - name: hkd
+        data_type: float
+      - name: idr
+        data_type: float
+      - name: inr
+        data_type: float
+      - name: iqd
+        data_type: float
+      - name: irr
+        data_type: float
+      - name: jmd
+        data_type: float
+      - name: jod
+        data_type: float
+      - name: jpy
+        data_type: float
+      - name: kes
+        data_type: float
+      - name: kgs
+        data_type: float
+      - name: krw
+        data_type: float
+      - name: kwd
+        data_type: float
+      - name: kzt
+        data_type: float
+      - name: lyd
+        data_type: float
+      - name: mad
+        data_type: float
+      - name: mnt
+        data_type: float
+      - name: mxn
+        data_type: float
+      - name: myr
+        data_type: float
+      - name: mzn
+        data_type: float
+      - name: nad
+        data_type: float
+      - name: ngn
+        data_type: float
+      - name: nok
+        data_type: float
+      - name: nzd
+        data_type: float
+      - name: omr
+        data_type: float
+      - name: pen
+        data_type: float
+      - name: pgk
+        data_type: float
+      - name: php
+        data_type: float
+      - name: pln
+        data_type: float
+      - name: qar
+        data_type: float
+      - name: ron
+        data_type: float
+      - name: rub
+        data_type: float
+      - name: sar
+        data_type: float
+      - name: sek
+        data_type: float
+      - name: sgd
+        data_type: float
+      - name: skk
+        data_type: float
+      - name: syp
+        data_type: float
+      - name: thb
+        data_type: float
+      - name: tnd
+        data_type: float
+      - name: try
+        data_type: float
+      - name: ttd
+        data_type: float
+      - name: tzs
+        data_type: float
+      - name: uah
+        data_type: float
+      - name: usd
+        data_type: float
+      - name: uyu
+        data_type: float
+      - name: uzs
+        data_type: float
+      - name: vef
+        data_type: float
+      - name: vnd
+        data_type: float
+      - name: xaf
+        data_type: float
+      - name: xpf
+        data_type: float
+      - name: zar
+        data_type: float
+      - name: zmk
+        data_type: float
+      - name: execution_date
+        data_type: varchar(255)   
+      - name: source_system_name
+        data_type: varchar(255)       
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_projectkeymembers
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: costobjectid
+        data_type: varchar(1000)
+      - name: enddate
+        data_type: date
+      - name: internalid
+        data_type: varchar(1000)
+      - name: projectinternalid
+        data_type: varchar(1000)
+      - name: projectkeymembertypeid
+        data_type: varchar(1000)
+      - name: resourceid
+        data_type: varchar(1000)
+      - name: startdate
+        data_type: date
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_project_list
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: secorg
+        data_type: varchar(1000)
+      - name: project
+        data_type: varchar(1000)
+      - name: project_internal_id
+        data_type: varchar(1000)
+      - name: systemdate
+        data_type: date
+      - name: latestsnapshotdate
+        data_type: date
+      - name: projectname
+        data_type: varchar(1000)
+      - name: projecttype
+        data_type: varchar(1000)
+      - name: client
+        data_type: varchar(1000)
+      - name: scope
+        data_type: varchar(1000)    
+      - name: status
+        data_type: varchar(1000)
+      - name: portfolio_project_grouping
+        data_type: varchar(1000)
+      - name: pm
+        data_type: varchar(1000)
+      - name: pc
+        data_type: varchar(1000)
+      - name: customer_pm
+        data_type: varchar(1000)
+      - name: customer_rep
+        data_type: varchar(1000)
+      - name: project_size_classification
+        data_type: varchar(1000)
+      - name: projectapprovalstatus
+        data_type: varchar(1000)
+      - name: projectstartdate
+        data_type: date
+      - name: projectenddate
+        data_type: date
+      - name: billingtype
+        data_type: varchar(1000)
+      - name: projectriskclassification
+        data_type: varchar(1000)
+      - name: scopeofservice
+        data_type: varchar(1000)
+      - name: countryof_asset
+        data_type: varchar(1000)
+      - name: project_execution_location
+        data_type: varchar(1000)
+      - name: assettype
+        data_type: varchar(1000)
+      - name: publishedto_powerbi
+        data_type: varchar(1000)
+      - name: major_project
+        data_type: varchar(1000)    
+      - name: h_wp_coa_ct_library
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(1000)
+      - name: source_system_name
+        data_type: varchar(1000)
+      - name: row_hash
+        data_type: varchar(1000)
+      - name: primary_key
+        data_type: varchar(1000)
+      - name: is_current
+        data_type: integer
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_revenue
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_id
+        data_type: varchar(1000)
+      - name: cost_object_hierarchy_path_id
+        data_type: varchar(1000)
+      - name: pa_date
+        data_type: varchar(1000)
+      - name: pa_date2
+        data_type: varchar(100)
+      - name: snapshot_date
+        data_type: date
+      - name: snapshot_date2
+        data_type: date
+      - name: revenue_category
+        data_type: varchar(1000)
+      - name: actuals_to_date_all_revenue
+        data_type: float
+      - name: original_budget_revenue
+        data_type: float    
+      - name: approved_variations_revenue
+        data_type: float
+      - name: pending_variations_revenue
+        data_type: float
+      - name: current_budget_revenue
+        data_type: float
+      - name: planned_revenue
+        data_type: float
+      - name: earned_revenue
+        data_type: float
+      - name: commitments_revenue
+        data_type: float
+      - name: actuals_to_date_revenue
+        data_type: float
+      - name: estimate_at_completion_revenue
+        data_type: float
+      - name: estimate_to_complete_revenue
+        data_type: float
+      - name: variance_revenue
+        data_type: float
+      - name: original_budget_start_date
+        data_type: date
+      - name: original_budget_end_date
+        data_type: date
+      - name: working_forecast_end_date
+        data_type: date
+      - name: billable_yes_no_name
+        data_type: boolean
+      - name: billing_type_name
+        data_type: varchar(1000)
+      - name: legacy_wbs
+        data_type: varchar(1000)
+      - name: cost_type_internal_id
+        data_type: varchar(1000)
+      - name: control_account_internal_id
+        data_type: varchar(1000)    
+      - name: project_internal_id
+        data_type: varchar(1000)
+      - name: wbs01
+        data_type: varchar(1000)
+      - name: wbs02
+        data_type: varchar(1000)
+      - name: top_task_id
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  
+  - name: transformed_ecosys_finance_outstanding
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: COST_OBJECT_ID
+        data_type: varchar(1000)
+      - name: TRANSACTION_DATE
+        data_type: date
+      - name: REC_REVENUE
+        data_type: float
+      - name: INVD_TO_DATE
+        data_type: float
+      - name: WIP
+        data_type: float
+      - name: RECD_TO_DATE
+        data_type: float
+      - name: OUTSTANDING_CURRENT
+        data_type: float
+      - name: OUTSTANDING_1_TO_30_DAYS
+        data_type: float
+      - name: OUTSTANDING_31_TO_60_DAYS
+        data_type: float    
+      - name: OUTSTANDING_61_PLUS_DAYS
+        data_type: float
+      - name: DSO
+        data_type: float
+      - name: PROJECT_INTERNAL_ID
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_finance_contingency
+    tags: ["ecosys"]
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: cost_object_id
+        data_type: varchar(1000)
+      - name: transaction_date
+        data_type: date
+      - name: contingency_category
+        data_type: varchar(1000)
+      - name: contingency_weighting
+        data_type: float
+      - name: project_internal_id
+        data_type: varchar(1000)
+      - name: execution_date
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_unallocated_actuals
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_id
+        data_type: varchar(500)
+      - name: cost_object_hierarchy_path_id
+        data_type: varchar(1000)
+      - name: pa_date
+        data_type: varchar(255)
+      - name: cost_type_id
+        data_type: varchar(255)
+      - name: snapshot_date
+        data_type: date
+      - name: actual_revenue
+        data_type: float
+      - name: actual_cost
+        data_type: float
+      - name: actual_hours
+        data_type: float
+      - name: cost_type_internal_id
+        data_type: varchar(255)
+      - name: control_account_internal_id
+        data_type: varchar(255)
+      - name: project_internal_id
+        data_type: varchar(255)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+        
+  - name: transformed_vw_ecosys_secorg_ecodata_latest
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: EXECUTION_DATE
+        data_type: varchar(100)
+      - name: SOURCE_SYSTEM_NAME
+        data_type: varchar(1000)
+      - name: secorg_id
+        data_type: varchar(100)
+      - name: snapshot_id
+        data_type: varchar(100)
+      - name: status
+        data_type: varchar(100)
+      - name: actual_costs
+        data_type: decimal
+      - name: actual_units
+        data_type: decimal
+      - name: alternate_actual_costs
+        data_type: decimal
+      - name: approved_changes
+        data_type: decimal
+      - name: approved_changes_cost
+        data_type: decimal
+      - name: approved_changes_sell
+        data_type: decimal
+      - name: billableyesnoname
+        data_type: boolean
+      - name: cfhours
+        data_type: decimal
+      - name: coainternalid
+        data_type: varchar(1000)
+      - name: code_of_account_id
+        data_type: varchar(1000)
+      - name: code_of_account_name
+        data_type: varchar(1000)
+      - name: committed_cost
+        data_type: decimal
+      - name: committed_sell
+        data_type: decimal
+      - name: controlaccountinternalid
+        data_type: varchar(1000)
+      - name: cost_object_hierarchy_path_id
+        data_type: varchar(1000)
+      - name: cost_object_id
+        data_type: varchar(1000)
+      - name: cost_object_name
+        data_type: varchar(1000)
+      - name: cost_type_id
+        data_type: varchar(1000)
+      - name: cost_type_name
+        data_type: varchar(1000)
+      - name: created_date
+        data_type: date
+      - name: ctinternalid
+        data_type: varchar(1000)
+      - name: current_budget_cost
+        data_type: decimal
+      - name: current_budget_hours
+        data_type: decimal
+      - name: current_budget_sell
+        data_type: decimal
+      - name: earned_cost
+        data_type: decimal
+      - name: earned_hours
+        data_type: decimal
+      - name: earned_sell
+        data_type: decimal
+      - name: eff_end_date
+        data_type: date
+      - name: eff_start_date
+        data_type: date
+      - name: is_current
+        data_type: int
+      - name: load_id
+        data_type: varchar(1000)
+      - name: obcost
+        data_type: decimal
+      - name: obsell
+        data_type: decimal
+      - name: original_budget
+        data_type: decimal
+      - name: original_budget_end_date
+        data_type: date
+      - name: original_budget_start_date
+        data_type: date
+      - name: pa_date
+        data_type: varchar(1000)
+      - name: pcs_ct_category
+        data_type: varchar(1000)
+      - name: pending_changes
+        data_type: decimal
+      - name: pending_changes_cost
+        data_type: decimal
+      - name: pending_changes_sell
+        data_type: decimal
+      - name: planned_cost
+        data_type: decimal
+      - name: planned_hours
+        data_type: decimal
+      - name: planned_sell
+        data_type: decimal
+      - name: primary_key
+        data_type: varchar(1000)
+      - name: project_id
+        data_type: varchar(1000)
+      - name: projectinternalid
+        data_type: varchar(1000)
+      - name: snapshotcreatedate
+        data_type: date
+      - name: top_task_id
+        data_type: varchar(1000)
+      - name: updated_date
+        data_type: date
+      - name: wbs_id_namel01
+        data_type: varchar(1000)
+      - name: wbs_id_namel02
+        data_type: varchar(1000)
+      - name: wbs_id_namel03
+        data_type: varchar(1000)
+      - name: wbs_id_namel04
+        data_type: varchar(1000)
+      - name: wbs_id_namel05
+        data_type: varchar(1000)
+      - name: wbs_id_namel06
+        data_type: varchar(1000)
+      - name: wbs_id_namel07
+        data_type: varchar(1000)
+      - name: wbs_id_namel08
+        data_type: varchar(1000)
+      - name: wbs_id_namel09
+        data_type: varchar(1000)
+      - name: wbs_id_namel10
+        data_type: varchar(1000)
+      - name: working_forecast_cfc
+        data_type: decimal
+      - name: working_forecast_cfs
+        data_type: decimal
+      - name: working_forecast_end_date
+        data_type: date
+
+  - name: transformed_control_account
+    config:
+      contract: {enforced: true}
+
+    columns:
+      - name: acost
+        data_type: varchar(100)
+      - name: ahours
+        data_type: varchar(100)
+      - name: asell
+        data_type: varchar(100)
+      - name: apprchgcost
+        data_type: varchar(100)
+      - name: apprchghours
+        data_type: varchar(100)
+      - name: apprchgsell
+        data_type: varchar(100)
+      - name: bcost
+        data_type: varchar(100)
+      - name: bhours
+        data_type: varchar(100)
+      - name: bsell
+        data_type: varchar(100)
+      - name: billable
+        data_type: varchar(100)
+      - name: cacc01id
+        data_type: varchar(100)
+      - name: cacc01name
+        data_type: varchar(100)
+      - name: cacc02id
+        data_type: varchar(100)
+      - name: cacc02name
+        data_type: varchar(100)
+      - name: cacc03id
+        data_type: varchar(100)
+      - name: cacc03name
+        data_type: varchar(100)
+      - name: cacc04id
+        data_type: varchar(100)
+      - name: cacc04name
+        data_type: varchar(100)
+      - name: caid
+        data_type: varchar(100)
+      - name: cainternalid
+        data_type: varchar(100)
+      - name: caname
+        data_type: varchar(100)
+      - name: castatus
+        data_type: varchar(100)
+      - name: closedca
+        data_type: varchar(100)
+      - name: codeofaccountid
+        data_type: varchar(100)
+      - name: codeofaccountname
+        data_type: varchar(100)
+      - name: committedcost
+        data_type: varchar(100)
+      - name: committedsell
+        data_type: varchar(100)
+      - name: costtypeid
+        data_type: varchar(100)
+      - name: costtypename
+        data_type: varchar(100)
+      - name: currency
+        data_type: varchar(100)
+      - name: customercaowner
+        data_type: varchar(100)
+      - name: ecost
+        data_type: varchar(100)
+      - name: ehours
+        data_type: varchar(100)
+      - name: esell
+        data_type: varchar(100)
+      - name: faccost
+        data_type: varchar(100)
+      - name: fachours
+        data_type: varchar(100)
+      - name: facsell
+        data_type: varchar(100)
+      - name: ftccost
+        data_type: varchar(100)
+      - name: ftchours
+        data_type: varchar(100)
+      - name: ftcsell
+        data_type: varchar(100)
+      - name: forecastfinish
+        data_type: varchar(100)
+      - name: forecaststart
+        data_type: varchar(100)
+      - name: ocost
+        data_type: varchar(100)
+      - name: ohours
+        data_type: varchar(100)
+      - name: osell
+        data_type: varchar(100)
+      - name: originalfinish
+        data_type: varchar(100)
+      - name: originalstart
+        data_type: varchar(100)
+      - name: pendingbgtcost
+        data_type: varchar(100)
+      - name: pendingbgthours
+        data_type: varchar(100)
+      - name: pendingbgtsell
+        data_type: varchar(100)
+      - name: pendingchgcost
+        data_type: varchar(100)
+      - name: pendingchghours
+        data_type: varchar(100)
+      - name: pendingchgsell
+        data_type: varchar(100)
+      - name: portfoliocacode01id
+        data_type: varchar(100)
+      - name: portfoliocacode01name
+        data_type: varchar(100)
+      - name: portfoliocacode02id
+        data_type: varchar(100)
+      - name: portfoliocacode02name
+        data_type: varchar(100)
+      - name: portfoliocacode03id
+        data_type: varchar(100)
+      - name: portfoliocacode03name
+        data_type: varchar(100)
+      - name: portfoliocacode04id
+        data_type: varchar(100)
+      - name: portfoliocacode04name
+        data_type: varchar(100)
+      - name: portfoliocacode05id
+        data_type: varchar(100)
+      - name: portfoliocacode05name
+        data_type: varchar(100)
+      - name: portfoliocacode06id
+        data_type: varchar(100)
+      - name: portfoliocacode06name
+        data_type: varchar(100)
+      - name: portfoliocacode07id
+        data_type: varchar(100)
+      - name: portfoliocacode07name
+        data_type: varchar(100)
+      - name: portfoliocacode08id
+        data_type: varchar(100)
+      - name: portfoliocacode08name
+        data_type: varchar(100)
+      - name: portfoliocacode09id
+        data_type: varchar(100)
+      - name: portfoliocacode09name
+        data_type: varchar(100)
+      - name: portfoliocacode10id
+        data_type: varchar(100)
+      - name: portfoliocacode10name
+        data_type: varchar(100)
+      - name: projstatus
+        data_type: varchar(100)
+      - name: project
+        data_type: varchar(100)
+      - name: projectinternalid
+        data_type: varchar(100)
+      - name: secorg
+        data_type: varchar(100)
+      - name: systemdate
+        data_type: varchar(100)
+      - name: udf01
+        data_type: varchar(100)
+      - name: udf02
+        data_type: varchar(100)
+      - name: udf03
+        data_type: varchar(100)
+      - name: udf04
+        data_type: varchar(100)
+      - name: udf05
+        data_type: varchar(100)
+      - name: udf06
+        data_type: varchar(100)
+      - name: udf07
+        data_type: varchar(100)
+      - name: udf08
+        data_type: varchar(100)
+      - name: udf09
+        data_type: varchar(100)
+      - name: udf10
+        data_type: varchar(100)
+      - name: wbsid01
+        data_type: varchar(100)
+      - name: wbsid02
+        data_type: varchar(100)
+      - name: wbsid03
+        data_type: varchar(100)
+      - name: wbsid04
+        data_type: varchar(100)
+      - name: wbsid05
+        data_type: varchar(100)
+      - name: wbsid06
+        data_type: varchar(100)
+      - name: wbsid07
+        data_type: varchar(100)
+      - name: wbsid08
+        data_type: varchar(100)
+      - name: wbsid09
+        data_type: varchar(100)
+      - name: wbsid10
+        data_type: varchar(100)
+      - name: wbsnamel01
+        data_type: varchar(100)
+      - name: wbsnamel02
+        data_type: varchar(100)
+      - name: wbsnamel03
+        data_type: varchar(100)
+      - name: wbsnamel04
+        data_type: varchar(100)
+      - name: wbsnamel05
+        data_type: varchar(100)
+      - name: wbsnamel06
+        data_type: varchar(100)
+      - name: wbsnamel07
+        data_type: varchar(100)
+      - name: wbsnamel08
+        data_type: varchar(100)
+      - name: wbsnamel09
+        data_type: varchar(100)
+      - name: wbsnamel10
+        data_type: varchar(100)
+      - name: worleycaowner
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_usersecorg
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: usersecorg_secorgidlist
+        data_type: varchar(500)
+      - name: usersecorg_userusername
+        data_type: varchar(500)
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: is_current
+        data_type: int		
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+  - name: transformed_ecosys_secorglist
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: hierarchypathid
+        data_type: varchar(200)
+      - name: parentsecorgid
+        data_type: varchar(200)
+      - name: secorgid
+        data_type: varchar(100)
+      - name: secorgname
+        data_type: varchar(200)
+      - name: secorgtype
+        data_type: varchar(200)	
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: is_current
+        data_type: int		
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_userproject
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: userproject_projectidlist
+        data_type: varchar(200)
+      - name: userproject_userusername
+        data_type: varchar(200)
+      - name: eff_start_date
+        data_type: date
+      - name: eff_end_date
+        data_type: date
+      - name: is_current
+        data_type: int		
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_timephased
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: secorg 
+        data_type: varchar(200)
+      - name: project 
+        data_type: varchar(200)
+      - name: projectinternalid 
+        data_type: varchar(200)
+      - name: systemdate 
+        data_type: date
+      - name: caid
+        data_type: varchar(100)
+      - name: cainternalid 
+        data_type: varchar(200)
+      - name: majorperiod 
+        data_type: varchar(200)
+      - name: minorperiod 
+        data_type: varchar(200)
+      - name: ohours 
+        data_type: varchar(200)
+      - name: bhours 
+        data_type: varchar(200)
+      - name: chours 
+        data_type: varchar(200)
+      - name: pendingchghours 
+        data_type: varchar(200)
+      - name: pendingbgthours 
+        data_type: varchar(200)
+      - name: ahours 
+        data_type: varchar(200)
+      - name: ehours 
+        data_type: varchar(200)
+      - name: ftchours 
+        data_type: varchar(200)
+      - name: fachours 
+        data_type: varchar(200)
+      - name: ocost 
+        data_type: varchar(200)
+      - name: bcost 
+        data_type: varchar(200)
+      - name: ccost 
+        data_type: varchar(200)
+      - name: pendingchgcost 
+        data_type: varchar(200)
+      - name: pendingbgtcost 
+        data_type: varchar(200)
+      - name: acost 
+        data_type: varchar(200)
+      - name: ecost 
+        data_type: varchar(200)
+      - name: ftccost 
+        data_type: varchar(200)
+      - name: faccost 
+        data_type: varchar(200)
+      - name: osell 
+        data_type: varchar(200)
+      - name: bsell 
+        data_type: varchar(200)
+      - name: csell 
+        data_type: varchar(200)
+      - name: pendingchgsell 
+        data_type: varchar(200)
+      - name: pendingbgtsell 
+        data_type: varchar(200)
+      - name: asell 
+        data_type: varchar(200)
+      - name: esell 
+        data_type: varchar(200)
+      - name: ftcsell 
+        data_type: varchar(200)
+      - name: facsell 
+        data_type: varchar(200)
+      - name: committedcost 
+        data_type: varchar(200)
+      - name: committedsell 
+        data_type: varchar(200)
+      - name: ca 
+        data_type: varchar(200)
+      - name: billableyesnoid 
+        data_type: varchar(200)
+      - name: codeofaccountidname 
+        data_type: varchar(200)
+      - name: costtypeid 
+        data_type: varchar(200)
+      - name: costtypeinternalid 
+        data_type: varchar(200)	
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_ecosys_snapshotlog
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: snapshotlog_costobjectid
+        data_type: varchar(200)
+      - name: snapshotlog_createdate
+        data_type: timestamp
+      - name: snapshotlog_description
+        data_type: varchar(5000)
+      - name: snapshotlog_exclude
+        data_type: varchar(100)
+      - name: snapshotlog_ownerorganizationid
+        data_type: varchar(100)
+      - name: snapshotlog_snapshotid
+        data_type: varchar(100)
+      - name: snapshotlog_snapshotintid
+        data_type: varchar(100)
+      - name: snapshotlog_transactiontypeid
+        data_type: varchar(200)	
+      - name: secorg_id
+        data_type: varchar(200)			
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: date
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+      
+  - name: transformed_change_deliverable
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: change_deliverable_actualfinish
+        data_type: varchar(200)
+      - name: change_deliverable_actualstart
+        data_type: varchar(200)
+      - name: change_deliverable_appchangehours
+        data_type: varchar(200)
+      - name: change_deliverable_caid
+        data_type: varchar(200)
+      - name: change_deliverable_cainternalid
+        data_type: varchar(200)
+      - name: change_deliverable_changecurrent
+        data_type: varchar(200)
+      - name: change_deliverable_changehours
+        data_type: varchar(200)
+      - name: change_deliverable_changeid
+        data_type: varchar(200)
+      - name: change_deliverable_changeinternalid
+        data_type: varchar(200)
+      - name: change_deliverable_changestatusname
+        data_type: varchar(200)
+      - name: change_deliverable_classificationname
+        data_type: varchar(200)
+      - name: change_deliverable_clientdoctypeid
+        data_type: varchar(200)
+      - name: change_deliverable_delegate
+        data_type: varchar(200)
+      - name: change_deliverable_deliverableid
+        data_type: varchar(200)
+      - name: change_deliverable_deliverableinternalid
+        data_type: varchar(200)
+      - name: change_deliverable_deliverablename
+        data_type: varchar(5000)
+      - name: change_deliverable_deliverableowner
+        data_type: varchar(200)
+      - name: change_deliverable_earlyfinish
+        data_type: varchar(200)
+      - name: change_deliverable_earlystart
+        data_type: varchar(200)
+      - name: change_deliverable_gatesetid
+        data_type: varchar(200)
+      - name: change_deliverable_gatesetname
+        data_type: varchar(200)
+      - name: change_deliverable_gateworkingforecast
+        data_type: varchar(200)
+      - name: change_deliverable_latefinish
+        data_type: varchar(200)
+      - name: change_deliverable_latestart
+        data_type: varchar(200)
+      - name: change_deliverable_plannedfinish
+        data_type: varchar(200)
+      - name: change_deliverable_plannedstart
+        data_type: varchar(200)
+      - name: change_deliverable_project
+        data_type: varchar(200)
+      - name: change_deliverable_projectinternalid
+        data_type: varchar(200)
+      - name: change_deliverable_publishedtopowerbi
+        data_type: varchar(200)
+      - name: change_deliverable_responsibility
+        data_type: varchar(200)
+      - name: change_deliverable_rev
+        data_type: varchar(200)
+      - name: change_deliverable_revdate
+        data_type: varchar(200)
+      - name: change_deliverable_unappchangehours
+        data_type: varchar(200)
+      - name: change_deliverable_wpdoctypeid
+        data_type: varchar(200)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: dbt_ingestion_date
+        data_type: timestamp
+      - name: dim_snapshot_date
+        data_type: timestamp
+      - name: dbt_created_date
+        data_type: date
+      - name: dbt_updated_date
+        data_type: date
+      - name: dbt_load_id
+        data_type: varchar(100)
+
+
+  
+  - name: transformed_dcs_mapping
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: project_id
+        data_type: varchar(100)
+      - name: deliverable_id
+        data_type: varchar(100)
+      - name: doc_no
+        data_type: varchar(200)
+      - name: projectinternalid
+        data_type: varchar(200)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: dbt_ingestion_date
+        data_type: timestamp
+      - name: dim_snapshot_date
+        data_type: timestamp
+      - name: dbt_created_date
+        data_type: date
+      - name: dbt_updated_date
+        data_type: date
+      - name: dbt_load_id
+        data_type: varchar(100)
+
+
+  - name: transformed_gate_data
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: deliverablehierarchypathid
+        data_type: varchar(100)
+      - name: deliverablename
+        data_type: varchar(500)
+      - name: costobjecthierarchypathid
+        data_type: varchar(100)
+      - name: costobjectname
+        data_type: varchar(500)
+      - name: relationshiptypetocaid1
+        data_type: varchar(100)
+      - name: progressmethodname
+        data_type: varchar(200)
+      - name: sequence
+        data_type: varchar(100)
+      - name: codeid
+        data_type: varchar(100)
+      - name: codename
+        data_type: varchar(200)
+      - name: gate
+        data_type: varchar(100)
+      - name: actualquantity
+        data_type: varchar(100)
+      - name: quantity
+        data_type: varchar(100)
+      - name: alternateunits
+        data_type: varchar(100)
+      - name: max
+        data_type: varchar(100)
+      - name: complete
+        data_type: varchar(100)
+      - name: statusname
+        data_type: varchar(100)
+      - name: plannedstart
+        data_type: date
+      - name: plannedfinish
+        data_type: date
+      - name: actualstart
+        data_type: date
+      - name: actualfinish
+        data_type: date
+      - name: forecaststart
+        data_type: date
+      - name: forecastfinish
+        data_type: date
+      - name: target1startdate
+        data_type: date
+      - name: target1finishdate
+        data_type: date
+      - name: target2startdate
+        data_type: date
+      - name: target2finishdate
+        data_type: date
+      - name: progresslinktoid
+        data_type: varchar(100)
+      - name: planningactivitylink
+        data_type: varchar(100)
+      - name: documentstatus
+        data_type: varchar(100)
+      - name: globaldeliverablelibraryabcidname
+        data_type: varchar(500)
+      - name: workingforecasttransactioninternalid
+        data_type: varchar(100)
+      - name: projectinternalid
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: dbt_ingestion_date
+        data_type: timestamp
+      - name: dim_snapshot_date
+        data_type: timestamp
+      - name: dbt_created_date
+        data_type: date
+      - name: dbt_updated_date
+        data_type: date
+      - name: dbt_load_id
+        data_type: varchar(100)
+      
+  - name: transformed_ecosys_archival
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: organizationid
+        data_type: varchar(200)
+      - name: projectid
+        data_type: varchar(200)
+      - name: projectinternalid
+        data_type: varchar(200)
+      - name: projectname
+        data_type: varchar(500)
+      - name: projectstatusid
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: varchar(200)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_deliverable_source
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: budgetid
+        data_type: varchar(200)
+      - name: caid
+        data_type: varchar(200)
+      - name: cainternalid
+        data_type: varchar(200)
+      - name: changeid
+        data_type: varchar(200)
+      - name: changetypeidname
+        data_type: varchar(500)
+      - name: delid
+        data_type: varchar(200)
+      - name: delinternalid
+        data_type: varchar(200)
+      - name: description
+        data_type: varchar(5000)
+      - name: pbbudget
+        data_type: varchar(200)
+      - name: pbchanges
+        data_type: varchar(200)
+      - name: pbchangesapp
+        data_type: varchar(200)
+      - name: pbchangesunapp
+        data_type: varchar(200)
+      - name: pbcurrent
+        data_type: varchar(200)
+      - name: pborigapproved
+        data_type: varchar(200)
+      - name: project
+        data_type: varchar(200)
+      - name: projectinternalid
+        data_type: varchar(200)
+      - name: systemdate
+        data_type: varchar(200)
+      - name: transactiontypeid
+        data_type: varchar(200)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: varchar(200)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_deliverable_gate
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: actualfinish
+        data_type: varchar(200)
+      - name: actualstart
+        data_type: varchar(200)
+      - name: cainternalid
+        data_type: varchar(200)
+      - name: codeid
+        data_type: varchar(200)
+      - name: codename
+        data_type: varchar(500)
+      - name: complete
+        data_type: varchar(100)
+      - name: costobjectid
+        data_type: varchar(200)
+      - name: countofworkingforecasttransactions
+        data_type: varchar(100)
+      - name: currentbudgethours
+        data_type: varchar(100)
+      - name: dela60egateprogress
+        data_type: varchar(200)
+      - name: dela60ewftdelgateincremental
+        data_type: varchar(200)
+      - name: deliverableid
+        data_type: varchar(200)
+      - name: deliverableinternalid
+        data_type: varchar(200)
+      - name: forecastfinish
+        data_type: varchar(200)
+      - name: forecaststart
+        data_type: varchar(200)
+      - name: gate
+        data_type: varchar(200)
+      - name: max
+        data_type: varchar(200)
+      - name: plannedfinish
+        data_type: varchar(200)
+      - name: plannedstart
+        data_type: varchar(200)
+      - name: planningactivitylink
+        data_type: varchar(200)
+      - name: progresslinktoid
+        data_type: varchar(200)
+      - name: publishedtopowerbi
+        data_type: varchar(100)
+      - name: sequence
+        data_type: varchar(100)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: varchar(200)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_deliverable
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: actualfinish
+        data_type: varchar(200)
+      - name: actualstart
+        data_type: varchar(200)
+      - name: apprchghrs
+        data_type: varchar(100)
+      - name: budgethours
+        data_type: varchar(100)
+      - name: caid
+        data_type: varchar(200)
+      - name: cainternalid
+        data_type: varchar(200)
+      - name: caname
+        data_type: varchar(500)
+      - name: classification
+        data_type: varchar(200)
+      - name: complete
+        data_type: varchar(100)
+      - name: currentbgthrs
+        data_type: varchar(100)
+      - name: delid
+        data_type: varchar(200)
+      - name: delinternalid
+        data_type: varchar(200)
+      - name: delname
+        data_type: varchar(500)
+      - name: delowner
+        data_type: varchar(200)
+      - name: delegate
+        data_type: varchar(100)
+      - name: doctype
+        data_type: varchar(100)
+      - name: doctypeid
+        data_type: varchar(100)
+      - name: earnedhours
+        data_type: varchar(100)
+      - name: ftchours
+        data_type: varchar(100)
+      - name: forecastfinish
+        data_type: varchar(200)
+      - name: forecaststart
+        data_type: varchar(200)
+      - name: gatemethod
+        data_type: varchar(100)
+      - name: gatename
+        data_type: varchar(200)
+      - name: getseq
+        data_type: varchar(100)
+      - name: milestone
+        data_type: varchar(100)
+      - name: pendingchghrs
+        data_type: varchar(100)
+      - name: plannedfinish
+        data_type: varchar(200)
+      - name: plannedstart
+        data_type: varchar(200)
+      - name: planningactivity
+        data_type: varchar(200)
+      - name: project
+        data_type: varchar(200)
+      - name: projectinternalid
+        data_type: varchar(200)
+      - name: qty
+        data_type: varchar(100)
+      - name: responsibility
+        data_type: varchar(200)
+      - name: rev
+        data_type: varchar(100)
+      - name: revdate
+        data_type: varchar(200)
+      - name: secorg
+        data_type: varchar(100)
+      - name: status
+        data_type: varchar(100)
+      - name: systemdate
+        data_type: varchar(200)
+      - name: udf01
+        data_type: varchar(200)
+      - name: udf02
+        data_type: varchar(200)
+      - name: udf03
+        data_type: varchar(200)
+      - name: udf04
+        data_type: varchar(200)
+      - name: udf05
+        data_type: varchar(200)
+      - name: udf06
+        data_type: varchar(200)
+      - name: udf07
+        data_type: varchar(200)
+      - name: udf08
+        data_type: varchar(200)
+      - name: udf09
+        data_type: varchar(200)
+      - name: udf10
+        data_type: varchar(200)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: execution_date
+        data_type: varchar(200)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(100)
+
+  - name: transformed_control_account_snapshot
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: acost
+        data_type: varchar(200)
+      - name: ahours
+        data_type: varchar(200)
+      - name: asell
+        data_type: varchar(200)
+      - name: apprchgcost
+        data_type: varchar(200)
+      - name: apprchghours
+        data_type: varchar(200)
+      - name: apprchgsell
+        data_type: varchar(200)
+      - name: bcost
+        data_type: varchar(200)
+      - name: bhours
+        data_type: varchar(200)
+      - name: bsell
+        data_type: varchar(200)
+      - name: billable
+        data_type: boolean
+      - name: cacc01id
+        data_type: varchar(200)
+      - name: cacc01name
+        data_type: varchar(200)
+      - name: cacc02id
+        data_type: varchar(200)
+      - name: cacc02name
+        data_type: varchar(200)
+      - name: cacc03id
+        data_type: varchar(200)
+      - name: cacc03name
+        data_type: varchar(200)
+      - name: cacc04id
+        data_type: varchar(200)
+      - name: cacc04name
+        data_type: varchar(200)
+      - name: caid
+        data_type: varchar(200)
+      - name: cainternalid
+        data_type: varchar(200)
+      - name: caname
+        data_type: varchar(200)
+      - name: castatus
+        data_type: varchar(200)
+      - name: closedca
+        data_type: boolean
+      - name: codeofaccountid
+        data_type: varchar(200)
+      - name: codeofaccountname
+        data_type: varchar(200)
+      - name: committedcost
+        data_type: varchar(200)
+      - name: committedsell
+        data_type: varchar(200)
+      - name: costtypeid
+        data_type: varchar(200)
+      - name: costtypename
+        data_type: varchar(200)
+      - name: currency
+        data_type: varchar(200)
+      - name: customercaowner
+        data_type: varchar(200)
+      - name: ecost
+        data_type: varchar(200)
+      - name: ehours
+        data_type: varchar(200)
+      - name: esell
+        data_type: varchar(200)
+      - name: faccost
+        data_type: varchar(200)
+      - name: fachours
+        data_type: varchar(200)
+      - name: facsell
+        data_type: varchar(200)
+      - name: ftccost
+        data_type: varchar(200)
+      - name: ftchours
+        data_type: varchar(200)
+      - name: ftcsell
+        data_type: varchar(200)
+      - name: forecastfinish
+        data_type: date
+      - name: forecaststart
+        data_type: date
+      - name: ocost
+        data_type: varchar(200)
+      - name: ohours
+        data_type: varchar(200)
+      - name: osell
+        data_type: varchar(200)
+      - name: originalfinish
+        data_type: date
+      - name: originalstart
+        data_type: date
+      - name: pendingbgtcost
+        data_type: varchar(200)
+      - name: pendingbgthours
+        data_type: varchar(200)
+      - name: pendingbgtsell
+        data_type: varchar(200)
+      - name: pendingchgcost
+        data_type: varchar(200)
+      - name: pendingchghours
+        data_type: varchar(200)
+      - name: pendingchgsell
+        data_type: varchar(200)
+      - name: portfoliocacode01id
+        data_type: varchar(200)
+      - name: portfoliocacode01name
+        data_type: varchar(200)
+      - name: portfoliocacode02id
+        data_type: varchar(200)
+      - name: portfoliocacode02name
+        data_type: varchar(200)
+      - name: portfoliocacode03id
+        data_type: varchar(200)
+      - name: portfoliocacode03name
+        data_type: varchar(200)
+      - name: portfoliocacode04id
+        data_type: varchar(200)
+      - name: portfoliocacode04name
+        data_type: varchar(200)
+      - name: portfoliocacode05id
+        data_type: varchar(200)
+      - name: portfoliocacode05name
+        data_type: varchar(200)
+      - name: portfoliocacode06id
+        data_type: varchar(200)
+      - name: portfoliocacode06name
+        data_type: varchar(200)
+      - name: portfoliocacode07id
+        data_type: varchar(200)
+      - name: portfoliocacode07name
+        data_type: varchar(200)
+      - name: portfoliocacode08id
+        data_type: varchar(200)
+      - name: portfoliocacode08name
+        data_type: varchar(200)
+      - name: portfoliocacode09id
+        data_type: varchar(200)
+      - name: portfoliocacode09name
+        data_type: varchar(200)
+      - name: portfoliocacode10id
+        data_type: varchar(200)
+      - name: portfoliocacode10name
+        data_type: varchar(200)
+      - name: projstatus
+        data_type: varchar(200)
+      - name: project
+        data_type: varchar(200)
+      - name: projectinternalid
+        data_type: varchar(200)
+      - name: secorg
+        data_type: varchar(200)
+      - name: systemdate
+        data_type: varchar(200)
+      - name: udf01
+        data_type: varchar(200)
+      - name: udf02
+        data_type: varchar(200)
+      - name: udf03
+        data_type: varchar(200)
+      - name: udf04
+        data_type: varchar(200)
+      - name: udf05
+        data_type: varchar(200)
+      - name: udf06
+        data_type: varchar(200)
+      - name: udf07
+        data_type: varchar(200)
+      - name: udf08
+        data_type: varchar(200)
+      - name: udf09
+        data_type: varchar(200)
+      - name: udf10
+        data_type: varchar(200)
+      - name: wbsid01
+        data_type: varchar(200)
+      - name: wbsid02
+        data_type: varchar(200)
+      - name: wbsid03
+        data_type: varchar(200)
+      - name: wbsid04
+        data_type: varchar(200)
+      - name: wbsid05
+        data_type: varchar(200)
+      - name: wbsid06
+        data_type: varchar(200)
+      - name: wbsid07
+        data_type: varchar(200)
+      - name: wbsid08
+        data_type: varchar(200)
+      - name: wbsid09
+        data_type: varchar(200)
+      - name: wbsid10
+        data_type: varchar(200)
+      - name: wbsnamel01
+        data_type: varchar(200)
+      - name: wbsnamel02
+        data_type: varchar(200)
+      - name: wbsnamel03
+        data_type: varchar(200)
+      - name: wbsnamel04
+        data_type: varchar(200)
+      - name: wbsnamel05
+        data_type: varchar(200)
+      - name: wbsnamel06
+        data_type: varchar(200)
+      - name: wbsnamel07
+        data_type: varchar(200)
+      - name: wbsnamel08
+        data_type: varchar(200)
+      - name: wbsnamel09
+        data_type: varchar(200)
+      - name: wbsnamel10
+        data_type: varchar(200)
+      - name: worleycaowner
+        data_type: varchar(200)
+      - name: execution_date
+        data_type: varchar(200)
+      - name: source_system_name
+        data_type: varchar(200)
+      - name: created_date
+        data_type: date
+      - name: updated_date
+        data_type: date
+      - name: load_id
+        data_type: varchar(200)
+
+  - name: transformed_compiled_log
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: costobjectid
+        data_type: varchar(255)
+      - name: period_date
+        data_type: varchar(255)
+      - name: reporting_week_end_date
+        data_type: varchar(255)
+      - name: description
+        data_type: varchar(500)
+      - name: status
+        data_type: varchar(100)
+      - name: created_date
+        data_type: varchar(255)
+      - name: type
+        data_type: varchar(50)
+      - name: source_system_name
+        data_type: varchar(100)
+      - name: dbt_ingestion_date
+        data_type: timestamp
+      - name: dim_snapshot_date
+        data_type: timestamp
+      - name: dbt_created_date
+        data_type: date
+      - name: dbt_updated_date
+        data_type: date
+      - name: dbt_load_id
+        data_type: varchar(100)
