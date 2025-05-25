@@ -1,0 +1,201 @@
+{
+    "domain" : [
+        {
+            "name" : "Engineering",
+            "description" : "Engineering data",
+            "roles" : [
+                {
+                    "role_name" : "AWS-PIM - Non-Prod-Redshift-DBA",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"]
+                },
+                {
+                    "role_name" : "AWS-PIM - DataPlatform Data Engineer - Non Prod",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"]
+                },
+                {
+                    "role_name" : "AWS-PIM - DataPlatform Data Curator - Non Prod",
+                    "allowed_services" : ["redshift","quicksight"]
+                }
+            ]
+        },
+        {
+            "name" : "Construction",
+            "description" : "Construction data",
+            "roles" : [
+                {
+                    "role_name" : "AWS-PIM - Non-Prod-Redshift-DBA",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"]
+                },
+                {
+                    "role_name" : "AWS-PIM - DataPlatform Data Engineer - Non Prod",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"],
+                    "allowed_objects" :[
+                        {
+                            "database_name" : "construction",
+                            "schema" : "*"
+                        },
+                        {
+                            "database_name" : "global_standard_reporting",
+                            "schema" : "construction"
+                        }
+                    ]
+                },
+                {
+                    "role_name" : "Test_Data_Consumer",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"],
+                    "allowed_objects" :[
+                        {
+                            "database_name" : "construction",
+                            "schema" : "*"
+                        },
+                        {
+                            "database_name" : "global_standard_reporting",
+                            "schema" : "construction"
+                        }
+                    ]
+                },
+                {
+                    "role_name" : "AWS-PIM - DataPlatform Data Curator - Non Prod",
+                    "allowed_services" : ["redshift","quicksight"]
+                }
+            ]
+        },
+        {
+            "name" : "Project_control",
+            "description" : "project control",
+            "roles" : [
+                {
+                    "role_name" : "AWS-PIM - Non-Prod-Redshift-DBA",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"]
+                },
+                {
+                    "role_name" : "AWS-PIM - DataPlatform Data Engineer - Non Prod",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"],
+                    "allowed_objects" :[
+                        {
+                            "database_name" : "project_control",
+                            "schema" : "*"
+                        },
+                        {
+                            "database_name" : "global_standard_reporting",
+                            "schema" : "project_control"
+                        }
+                    ]
+                },
+                {
+                    "role_name" : "Test_Data_Consumer",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"],
+                    "allowed_objects" :[
+                        {
+                            "database_name" : "project_control",
+                            "schema" : "*"
+                        },
+                        {
+                            "database_name" : "global_standard_reporting",
+                            "schema" : "project_control"
+                        }
+                    ]
+                },
+                {
+                    "role_name" : "AWS-PIM - DataPlatform Data Curator - Non Prod",
+                    "allowed_services" : ["redshift","quicksight"]
+                }
+            ]
+        },
+        {
+            "name" : "People",
+            "description" : "people data",
+            "roles" : []
+        },
+        {
+            "name" : "Finance",
+            "description" : "Finance data",
+            "roles" : []   
+        },
+        {
+            "name" : "Document_Management",
+            "description" : "Document control data",
+            "roles" : [
+                {
+                    "role_name" : "AWS-PIM - Non-Prod-Redshift-DBA",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"],
+                    "allowed_objects" :[
+                        {
+                            "database_name" : "document_management",
+                            "schema" : "*"
+                        },
+                        {
+                            "database_name" : "global_standard_reporting",
+                            "schema" : "document_management"
+                        }
+                    ]
+                },
+                {
+                    "role_name" : "AWS-PIM - DataPlatform Data Engineer - Non Prod",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"],
+                    "allowed_objects" :[
+                        {
+                            "database_name" : "document_management",
+                            "schema" : "*"
+                        },
+                        {
+                            "database_name" : "global_standard_reporting",
+                            "schema" : "document_management"
+                        }
+                    ]
+                },
+                {
+                    "role_name" : "Test_Data_Consumer",
+                    "allowed_services" : ["redshift","quicksight","emr_studio"],
+                    "allow_schema" :[
+                        {
+                            "database_name" : "document_management",
+                            "schema" : "*"
+                        },
+                        {
+                            "database_name" : "global_standard_reporting",
+                            "schema" : "document_management"
+                        }
+                    ]
+                },
+                {
+                    "role_name" : "AWS-PIM - DataPlatform Data Curator - Non Prod",
+                    "allowed_services" : ["redshift","quicksight"],
+                    "allowed_objects" :[
+                        {
+                            "database_name" : "document_management",
+                            "schema" : "*"
+                        },
+                        {
+                            "database_name" : "global_standard_reporting",
+                            "schema" : "document_management"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "Supply_Chain",
+            "description" : "Supply chain data",
+            "roles" : []
+        },
+        {
+            "name" : "DAC",
+            "description" : "DAC",
+            "roles" : []
+        }
+    ],
+    "data_classification" : [
+        {
+            "name" : "Confidential",
+            "description" : "Confidential data",
+            "roles" : []
+        },
+        {
+            "name" : "Public",
+            "description" : "Public data",
+            "roles" : []
+        }
+    ]
+
+}

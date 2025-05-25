@@ -1,0 +1,20 @@
+{
+    "redshift_idc_application_arn" : "arn:aws:sso::637423194134:application/ssoins-82599c89c0dd6c44/apl-2a850c873402960a",
+    "identity_store_id" : "d-9767447864",
+    "aws_account_id" : "471112986846",
+    "redshift_host": "worley-datawarehouse-sydney-prd-redshift",
+    "database_permissions_store": "worley-mf-rbac-sydney-prd-database-permissions-metadata",
+    "external_user_store_bucket" : "worley-mf-sydney-prd-external-user-store",
+    "rbac_notifications_arn" : "arn:aws:sns:ap-southeast-2:471112986846:worley-mf-sydney-prd-rbac-notifications",
+    "data_modelling_notifications_arn": "arn:aws:sns:ap-southeast-2:471112986846:worley-sydney-prd-modelling-dag-notifications",
+    
+    "service_roles" : {
+        "redshift_iam_role" : "arn:aws:iam::471112986846:role/worley-datalake-sydney-prd-iam-service-role-redshift-awsidc",
+        "glue_service_role" : "arn:aws:iam::471112986846:role/worley-datalake-sydney-prd-iam-service-role-glue",
+        "lakeformation_lambda_role" : "arn:aws:iam::471112986846:role/worley-rbac-prd-lakeformation-manage-permissions",
+        "mwaa_service_role": "arn:aws:iam::471112986846:role/worley-datalake-sydney-prd-mwaa-airflow-iam"
+    },
+    
+    "consumer_databases" : ["global_standard_reporting","dac"],
+    "consumer_schemas" : ["domain_integrated_model", "dac_model", "snowflake_model"]
+}
